@@ -40,8 +40,8 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'node_module
 
 set :rvm_custom_path, '/usr/share/rvm'
 
-set :yarn_target_path, -> { release_path.join('frontend') } # default not set
-set :yarn_flags, ''
+# set :yarn_target_path, -> { release_path.join('frontend') } # default not set
+# set :yarn_flags, ''
 
 set :init_system, :systemd
 
