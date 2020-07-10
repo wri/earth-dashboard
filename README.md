@@ -8,6 +8,7 @@ Native execution requires the following:
 - [Nodejs v8.x](https://nodejs.org/en/) 
 - [yarn](https://yarnpkg.com/)
 - [RW API](https://api.resourcewatch.org/)
+- [Redis](https://redis.io/)
 
 There are included [Dockerfile](https://docs.docker.com/engine/reference/builder/) and [docker compose](https://docs.docker.com/compose/) configuration files that may make it easier to run the application locally.
 
@@ -30,6 +31,20 @@ yarn build
 this will generate your build in `./dist` folder ready to run 
 
 Happy coding!
+
+## Deploying to servers
+
+Deployment is done using [Capistrano](https://capistranorb.com/), a [Ruby](https://www.ruby-lang.org/en/) gem. It also requires you to have SSH access to the server using a public/private key pair.
+
+Once you have Capistrano and its dependencies up and running, simply run:
+
+```shell
+bundle exec cap <environment> deploy
+```
+
+Each available environment will have a file with its name in the `config/deploy` folder.
+
+The process may take a few minutes. The deployment is based of Github, not your local machine, so be sure to have the code you want to see live pushed to Github. You can continue editing your code locally while the deployment process takes place.
 
 ## env
 There's an `.env.sample` file you will need to duplicate and rename to `.env` in order to make the app work. Populate it properly and that's all.
