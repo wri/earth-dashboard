@@ -1,3 +1,10 @@
-server 'ec2-52-2-145-35.compute-1.amazonaws.com', user: 'ubuntu', roles: %w{web app db}, primary: true
+server 'ec2-107-23-106-56.compute-1.amazonaws.com', user: 'ubuntu', roles: %w{web app db}, primary: true
 
 set :ssh_options, forward_agent: true
+
+set :default_env, {
+  'NODE_ENV' => 'production',
+  'WRI_API_URL' => 'https://api.resourcewatch.org/v1',
+  'CONTROL_TOWER_URL' => 'https://api.resourcewatch.org',
+  'CALLBACK_URL' => 'https://resourcewatch.org/auth'
+}

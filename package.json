@@ -1,7 +1,7 @@
 {
-  "name": "resource-watch",
+  "name": "earth-dashboard",
   "version": "2.15.13",
-  "description": "Resource Watch",
+  "description": "Earth Dashboard",
   "author": "Vizzuality",
   "license": "MIT",
   "main": "index.js",
