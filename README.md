@@ -10,8 +10,6 @@ Native execution requires the following:
 - [RW API](https://api.resourcewatch.org/)
 - [Redis](https://redis.io/)
 
-There are included [Dockerfile](https://docs.docker.com/engine/reference/builder/) and [docker compose](https://docs.docker.com/compose/) configuration files that may make it easier to run the application locally.
-
 # Installation (native) 📦
 Run
 ```bash
@@ -55,9 +53,6 @@ You might run into some problems installing dependencies:
 ### Cairo / Canvas
 If the installation fails at the point where it installs `canvas`, you may want to take a look at [this](https://github.com/Automattic/node-canvas#compiling).
 
-
-# Installation (Docker) 🐳
-[TO-DO]
 
 # Architecture 📂
 The application is built on top of [**Next.js**](https://github.com/zeit/next.js/) - _a framework for server-rendered React apps_. _Next_ provides a zero-setup [webpack](https://webpack.js.org/) build ready to develop along a [express](https://expressjs.com/) server to run the application and [SASS](https://sass-lang.com/) styles compilation.
