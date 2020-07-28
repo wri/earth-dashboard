@@ -1,215 +1,116 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { Link, Router } from 'routes';
-import MediaQuery from 'react-responsive';
-import YouTube from 'react-youtube';
+import React, { useState } from 'react';
+import { Scrollama, Step } from 'react-scrollama';
+// import PropTypes from 'prop-types';
+// import classnames from 'classnames';
+// import { Link, Router } from 'routes';
 
 // components
 import Layout from 'layout/layout/layout-app';
-import Banner from 'components/app/common/Banner';
-import DashboardThumbnailList from 'components/dashboards/thumbnail-list';
-import BlogFeed from 'components/blog/feed';
-import ExploreCards from 'layout/app/home/explore-cards';
-
-// utils
-import { breakpoints } from 'utils/responsive';
-import { browserSupported } from 'utils/browser';
-
-// constants
-import {
-  VIDEO_ID,
-  VIDEO_OPTIONS
-} from './constants';
 
 // styles
 import './styles.scss';
 
-class LayoutHome extends PureComponent {
-  static propTypes = {
-    responsive: PropTypes.object.isRequired,
-    dashFeatured: PropTypes.array
+const IFRAME_SOURCES = [
+  'https://www.youtube.com/embed/bFdPmiwZzVE?autoplay=1&controls=0',
+  'https://resourcewatch.org/embed/data/explore/Coral-Bleaching-Frequency-Prediction?section=All%20data&zoom=1.7257785315276597&lat=-4.158823646934527&lng=89.79658291955457&pitch=0&bearing=0&basemap=satellite&labels=light&layers=%255B%257B%2522dataset%2522%253A%25221ef55baf-bbbe-480d-85e9-7132c742f196%2522%252C%2522opacity%2522%253A1%252C%2522layer%2522%253A%2522dc2c2cc8-a351-4221-ad16-0671bc430ada%2522%257D%255D&page=1&sort=relevance&sortDirection=-1&search=coral%20bleaching',
+  'https://resourcewatch.org/embed/data/explore/bio005-Coral-Reef-Bleaching-Alerts?section=All%20data&zoom=1.7257785315276597&lat=-4.158823646934527&lng=89.79658291955457&pitch=0&bearing=0&basemap=aqueduct&labels=light&layers=%255B%257B%2522dataset%2522%253A%2522e2a2d074-8428-410e-920c-325bbe363a2e%2522%252C%2522opacity%2522%253A1%252C%2522layer%2522%253A%252231429259-9a9a-4d66-a1b9-92c08aa407f3%2522%257D%255D&page=1&sort=relevance&sortDirection=-1&search=coral%20bleaching'
+];
+
+const STEPS_CONTENT = [
+  {
+    description: 'This dataset was created by the World Resources Institute (WRI) in conjunction with Simon Donner at the University of British Columbia. It was created as part of the Reefs at Risk Revisited project to assess the status and threats to the world’s coral reefs. It can be used to help determine government policy and increase awareness on the issue. It strives to create public understanding on the importance of protecting coral reefs for future generations. Coral reefs play an integral role in the world. They are where over 25% of all marine species live and over 25 million people are directly reliant on coral reefs for their livelihood. They are the breeding grounds and nurseries for many species and without them the ocean would become much less productive.',
+    iframe: null
+  },
+  {
+    description: 'This is a description',
+    iframe: <iframe src="https://resourcewatch.org/embed/widget/8aa36188-2e20-40a9-8735-107fa81f7ece" width="100%" height="500px" frameBorder="0" />
+  },
+  {
+    description: 'Socioeconomic dependence and adaptive capacity of national fisheries in the coming century measured to determine their vulnerability. Sea surface temperature anomalies affect fishing markets, and this is projected to worsen.',
+    iframe: <iframe src="https://resourcewatch.org/embed/widget/24b15bbf-edf9-4904-93d1-14e9476fa423" width="100%" height="500px" frameBorder="0" />
   }
+];
 
-  static defaultProps = { dashFeatured: [] };
 
-  state = { videoReady: false }
+function LayoutHome(props) {
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const isBrowser = typeof window !== 'undefined';
 
-  onVideoStateChange = ({ data }) => { this.setState({ videoReady: data === 1 }); };
+  // This callback fires when a Step hits the offset threshold. It receives the
+  // data prop of the step, which in this demo stores the index of the step.
+  const onStepEnter = ({ data }) => {
+    setCurrentStepIndex(data);
+  };
 
-  render() {
-    const { responsive: { fakeWidth }, dashFeatured } = this.props;
-    const { videoReady } = this.state;
-    const videoForegroundClass = classnames(
-      'video-foreground',
-      { '-ready': videoReady }
-    );
+  return (
+    <Layout
+      title="Earth Dashboard"
+      description="Earth Dashboard"
+      className="homepage"
+    >
 
-    return (
-      <Layout
-        title="Monitoring the Planet’s Pulse — Resource Watch"
-        description="Trusted and timely data for a sustainable future."
-        className="l-home"
+      <section
+        className="header-section"
       >
-        <div className="video-intro">
-          <MediaQuery
-            minDeviceWidth={breakpoints.medium}
-            values={{ deviceWidth: fakeWidth }}
-          >
-            <div className={videoForegroundClass}>
-              {browserSupported() && (
-                <YouTube
-                  videoId={VIDEO_ID}
-                  opts={VIDEO_OPTIONS}
-                  onStateChange={this.onVideoStateChange}
-                />
-              )}
-            </div>
-          </MediaQuery>
-          <div className="video-text">
-            <div>
-              <h1>Monitoring the Planet&rsquo;s Pulse</h1>
-              <p>Resource Watch provides trusted and timely data for a sustainable future.</p>
-              <Link route="explore">
-                <a className="c-button -alt -primary">Explore data</a>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <h1>Earth Dashboard</h1>
 
+      </section>
+
+      {isBrowser &&
         <section
-          id="discoverIsights"
-          className="l-section"
+          className="story-section"
         >
-          <div className="l-container">
-            <header>
-              <div className="row">
-                <div className="column small-12 medium-6">
-                  <h2>Latest stories</h2>
-                  <p>Discover data insights on the Resource Watch blog.</p>
+          <h2>Coral Bleaching</h2>
+          <div
+            id="scrollama"
+          >
+            <div className="description">
+              <p>The Frequency of Future Coral Reef Bleaching Events dataset shows the number of years during the 2030 and 2050 decades that coral bleaching is likely to occur from increased water temperature. The dataset relies on a thermal stress model that uses the units degree heating months (DHM) to determine risk of bleaching. A water temperature rise of 2 degrees celsius is equal to the National Oceanic and Atmospheric Administration (NOAA) Bleaching Alert Level 2, where bleaching will likely occur. The final dataset is presented at a gridded spatial resolution of 50 km and shows the number of years each grid cell will reach a DHM of at least 2 during the decade.</p>
+            </div>
+            <div className="story">
+              <div className="main-map">
+                <div>
+                  <iframe src={IFRAME_SOURCES[currentStepIndex]} width="100%" height="500px" frameBorder="0" />
                 </div>
               </div>
-            </header>
-
-            <BlogFeed />
-
-            <div className="-text-center">
-              <div className="row">
-                <div className="column small-12">
-                  <div className=" buttons">
-                    <Link route="newsletter" >
-                      <a className="c-button -secondary join-us-button">
-                        Subscribe to our newsletter
-                      </a>
-                    </Link>
-                    <a href="/blog" className="c-btn -primary">
-                      More stories
-                    </a>
-                  </div>
-                </div>
+              <div className="steps">
+                <Scrollama onStepEnter={onStepEnter}>
+                  {STEPS_CONTENT.map((stepObject, stepIndex) => (
+                    <Step data={stepIndex} key={stepIndex}>
+                      <div
+                        className="step-panel"
+                      >
+                        <p>{stepObject.description}</p>
+                        {stepObject.iframe}
+                      </div>
+                    </Step>
+                  ))}
+                </Scrollama>
               </div>
             </div>
           </div>
         </section>
-
-        <section className="l-section -secondary">
-          <div className="l-container">
-            <div className="dashboards-container">
-              <header>
-                <div className="row">
-                  <div className="column small-12 medium-6">
-                    <h2>Featured dashboards</h2>
-                    <p>
-                      Discover collections of curated data on the major
-                      challenges facing human society and the planet.
-                    </p>
-                  </div>
-                </div>
-              </header>
-              <div className="row">
-                <div className="column small-12">
-                  <DashboardThumbnailList
-                    onSelect={({ slug }) => {
-                      Router.pushRoute('dashboards_detail', { slug })
-                        .then(() => {
-                          window.scrollTo(0, 0);
-                        });
-                    }}
-                    dashboards={dashFeatured}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="l-section">
-          <div className="l-container">
-            <header>
-              <div className="row">
-                <div className="column small-12 medium-6">
-                  <h2>Dive into the data</h2>
-                  <p>
-                    Create overlays, share visualizations, and
-                    subscribe to updates on your favorite issues.
-                  </p>
-                </div>
-              </div>
-            </header>
-
-            <div className="explore-cards">
-              <div className="row">
-                <ExploreCards />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Banner
-          className="get-involved"
-          bgImage="/static/images/backgrounds/mod_getInvolved.jpg"
-        >
-          <div className="l-container">
-            <h2>Get involved</h2>
-            <p>Use data to drive change in your community and around the world.</p>
-            <div className="buttons -align-left">
-              <Link route="sign-in">
-                <a className="c-btn -alt -primary">Sign up</a>
-              </Link>
-
-              <Link
-                route="get_involved_detail"
-                params={{ id: 'join-the-community', source: 'home' }}
-              >
-                <a className="c-btn -b -alt">Join the community</a>
-              </Link>
-
-              <Link
-                route="get_involved_detail"
-                params={{ id: 'contribute-data', source: 'home' }}
-              >
-                <a className="c-btn -b -alt">Contribute data</a>
-              </Link>
-
-              <Link
-                route="get_involved_detail"
-                params={{ id: 'suggest-a-story', source: 'home' }}
-              >
-                <a className="c-btn -b -alt">Suggest a story</a>
-              </Link>
-
-              <Link
-                route="get_involved_detail"
-                params={{ id: 'develop-your-app', source: 'home' }}
-              >
-                <a className="c-btn -b -alt">Develop your app</a>
-              </Link>
-            </div>
-          </div>
-        </Banner>
-      </Layout>
-    );
-  }
+      }
+    </Layout>
+  );
 }
+
+// const step_spec =
+// { 
+//   title: "Story title",
+//   description: "Story description",
+//   steps: [
+//     {
+//       offsetTop: 1000,
+//       offsetBottom: 1000,
+//       widget: "widget-id/null",
+//       iframe: {
+//         src: "",
+//         width: "",
+//         height: ""
+//       }
+//     }
+//   ]
+// };
 
 export default LayoutHome;
