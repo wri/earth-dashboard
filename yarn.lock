@@ -14021,6 +14021,11 @@ react-responsive@^4.0.0:
     matchmediaquery "^0.2.1"
     prop-types "^15.6.1"
 
+react-scrollama@^2.2.10:
+  version "2.2.10"
+  resolved "https://registry.yarnpkg.com/react-scrollama/-/react-scrollama-2.2.10.tgz#31bf15b5f7c114e020af8f1785e017364f08bb4b"
+  integrity sha512-8YzeLtdxFasKTIaY1TTD7cGjYomTRNZKpPaHe2xTQX7e7yIO9a6UUAPqxXjBV2H+iQY9pzG8/rd1cNCKDQkdnw==
+
 react-select@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-1.2.1.tgz#a2fe58a569eb14dcaa6543816260b97e538120d1"
