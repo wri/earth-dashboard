@@ -3,7 +3,7 @@ import { deburrUpper } from 'utils/data';
 import moment from 'moment';
 
 // constants
-import { LEGEND_TIMELINE_PROPERTIES } from 'layout/explore/explore-map/constants';
+import { LEGEND_TIMELINE_PROPERTIES } from './constants';
 
 export const reduceParams = (params) => {
   if (!params) return null;
