@@ -6,6 +6,7 @@ import { Scrollama, Step } from 'react-scrollama';
 
 // components
 import Layout from 'layout/layout/layout-app';
+import TextBox from 'components/scrolly-telling/text-box';
 
 // styles
 import './styles.scss';
@@ -18,16 +19,16 @@ const IFRAME_SOURCES = [
 
 const STEPS_CONTENT = [
   {
-    description: 'This dataset was created by the World Resources Institute (WRI) in conjunction with Simon Donner at the University of British Columbia. It was created as part of the Reefs at Risk Revisited project to assess the status and threats to the world’s coral reefs. It can be used to help determine government policy and increase awareness on the issue. It strives to create public understanding on the importance of protecting coral reefs for future generations. Coral reefs play an integral role in the world. They are where over 25% of all marine species live and over 25 million people are directly reliant on coral reefs for their livelihood. They are the breeding grounds and nurseries for many species and without them the ocean would become much less productive.',
+    description: 'The tiny trees here represent the estimated XX Ha of tree cover present in the world in the year 2000. That would be a tree cover area equivalent to a country like Mexico',
     iframe: null
   },
   {
-    description: 'This is a description',
-    iframe: <iframe src="https://resourcewatch.org/embed/widget/8aa36188-2e20-40a9-8735-107fa81f7ece" width="100%" height="500px" frameBorder="0" />
+    description: 'To get an idea of the scale, one tree represents XX Ha of tree cover, equivalent to an area the size of Monaco',
+    iframe: null
   },
   {
-    description: 'Socioeconomic dependence and adaptive capacity of national fisheries in the coming century measured to determine their vulnerability. Sea surface temperature anomalies affect fishing markets, and this is projected to worsen.',
-    iframe: <iframe src="https://resourcewatch.org/embed/widget/24b15bbf-edf9-4904-93d1-14e9476fa423" width="100%" height="500px" frameBorder="0" />
+    description: 'Let’s fast forward to 2020. This is how much of that 2000 tree cover is left. The world has lost the equivalent of the size of Belgium since 2000.',
+    iframe: null
   }
 ];
 
@@ -77,12 +78,7 @@ function LayoutHome(props) {
                 <Scrollama onStepEnter={onStepEnter}>
                   {STEPS_CONTENT.map((stepObject, stepIndex) => (
                     <Step data={stepIndex} key={stepIndex}>
-                      <div
-                        className="step-panel"
-                      >
-                        <p>{stepObject.description}</p>
-                        {stepObject.iframe}
-                      </div>
+                      <TextBox text={stepObject.description} />
                     </Step>
                   ))}
                 </Scrollama>
