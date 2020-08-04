@@ -13,30 +13,6 @@ class Footer extends PureComponent {
     menu: PropTypes.array.isRequired
   };
 
-  renderPartners() {
-    const { partners } = this.props;
-
-    return partners.map(_partner => (
-      <div
-        key={_partner.id}
-        className="item"
-      >
-        <Link
-          route="partner"
-          params={{ id: _partner.id }}
-        >
-          <a>
-            <img
-              className="-img"
-              src={`${process.env.STATIC_SERVER_URL}${_partner.logo.thumb}`}
-              alt={_partner.name}
-            />
-          </a>
-        </Link>
-      </div>
-    ));
-  }
-
   render() {
     const { partners, menu } = this.props;
 
@@ -53,52 +29,6 @@ class Footer extends PureComponent {
                   src="/static/images/logo-embed.png"
                   alt="Resource Watch"
                 />
-              </div>
-            </div>
-          </div>
-          <CompoundMenu items={menu} />
-        </div>
-
-        <div className="footer-social">
-          <div className="l-container">
-            <div className="row">
-              <div className="column small-12">
-                <ul>
-                  <li>
-                    <Link route="newsletter" >
-                      <a className="c-button -primary join-us-button">
-                        Subscribe to our newsletter
-                      </a>
-                    </Link>
-                  </li>
-                  <li>
-                    <a
-                      className="c-button -secondary"
-                      href="https://twitter.com/resource_watch"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Icon name="icon-twitter" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="footer-intro">
-          <div className="title">
-            <Link route="about_partners"><a>Partners</a></Link>
-          </div>
-
-          <div className="l-container">
-            <div className="row">
-              <div className="column small-12">
-                <div className="c-partners-slider">
-                  {partners.length && typeof window !== 'undefined' ?
-                    <Carousel items={this.renderPartners()} /> : ''}
-                </div>
               </div>
             </div>
           </div>
