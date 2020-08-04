@@ -13,9 +13,9 @@ import Trees from 'components/scrolly-telling/visualizations/trees';
 import './styles.scss';
 
 const VISUALIZATION_SOURCES = [
-  <Trees data={[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]} width={500} height={400} />,
+  <Trees data={[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]} width={500} height={400} />,
   <Trees data={[1, 0, 1, 1, 0, 1, 1, 0, 1, 1]} width={500} height={400} />,
-  <Trees data={[0, 0, 0, 0, 0, 1, 1, 1, 1, 1]} width={500} height={400} />
+  <Trees data={[0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1]} width={500} height={400} />
 ];
 
 const STEPS_CONTENT = [
@@ -39,7 +39,7 @@ function LayoutHome(props) {
   const isBrowser = typeof window !== 'undefined';
 
   // This callback fires when a Step hits the offset threshold. It receives the
-  // data prop of the step, which in this demo stores the index of the step.
+  // data prop of the step
   const onStepEnter = ({ data }) => {
     setCurrentStepIndex(data);
   };
@@ -77,7 +77,9 @@ function LayoutHome(props) {
                 <Scrollama onStepEnter={onStepEnter}>
                   {STEPS_CONTENT.map((stepObject, stepIndex) => (
                     <Step data={stepIndex} key={stepIndex}>
-                      <TextBox text={stepObject.description} />
+                      <div>
+                        <TextBox text={stepObject.description} />
+                      </div>
                     </Step>
                   ))}
                 </Scrollama>

@@ -1,23 +1,48 @@
-import React from 'react';
-import * as d3 from "d3";
+import React, { useState, useRef, useEffect } from 'react';
+
+let ForceGraph2D;
+if (typeof window !== 'undefined') {
+  /* eslint-disable */
+  ForceGraph2D = require('react-force-graph-2d').default;
+  /* eslint-enable */
+}
 
 function Trees(props) {
     const { data, width, height } = props;
+    const [graphData, setGraphData] = useState({ 
+        nodes: data.map((value, i) => ({
+            id: i,
+            color: value ? 'green' : 'grey'
+        })), 
+        links: [] 
+    });
+    const graphRef = useRef(null);
+    const isClient = typeof window !== 'undefined';
 
-    console.log('d3', d3);
 
-    // const force = d3.layout.force()
-    //     .nodes(data)
-    //     .links([])
-    //     .size([width, height]);
-
+    useEffect(() => {
+        setGraphData({ 
+            nodes: data.map((value, i) => ({
+                id: i,
+                color: value ? 'green' : 'grey'
+            })), 
+            links: [] 
+        });
+    }, [data]);
 
     return (
         <div className="trees-visualization">
-            <svg width={width} height={height}>
-                <g>
-                </g>
-            </svg>
+            {isClient &&
+                <ForceGraph2D 
+                    ref={graphRef}
+                    graphData={graphData}
+                    width={width}
+                    height={height}
+                    cooldownTime={5000}
+                    d3AlphaDecay={0.5}
+                    d3VelocityDecay={0.3}
+                />
+            }
         </div>
     );
 }
