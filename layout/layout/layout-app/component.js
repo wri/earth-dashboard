@@ -16,7 +16,6 @@ import HeadApp from 'layout/head/app';
 import Header from 'layout/header';
 import Footer from 'layout/footer';
 
-import UserReport from 'layout/user-report';
 import IconsRW from 'components/icons';
 import Tooltip from 'components/ui/Tooltip';
 import Modal from 'components/ui/Modal';
@@ -149,7 +148,6 @@ class LayoutApp extends Component {
           transitionOut="fadeOut"
         />
 
-        <UserReport />
       </div>
     );
   }

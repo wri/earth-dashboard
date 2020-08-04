@@ -30,27 +30,8 @@ import * as datasetListItem from 'components/datasets/list/list-item';
 import * as similarDatasets from 'components/datasets/similar-datasets/similar-datasets';
 import * as trySubscriptionModal from 'components/datasets/form/try-subscription-modal';
 
-// subscriptions
-import * as subscriptions from 'components/modal/subscriptions-modal';
-
 // Tools
 import * as relatedTools from 'components/tools/related-tools';
-
-// Explore
-import * as explore from 'layout/explore';
-
-// Pulse
-import * as pulse from 'layout/app/pulse';
-import * as layerContainer from 'layout/app/pulse/layer-container';
-import * as layerMenu from 'layout/app/pulse/layer-menu';
-import * as layerCard from 'layout/app/pulse/layer-card';
-import * as layerPill from 'layout/app/pulse/layer-pill';
-import * as labelsPill from 'layout/app/pulse/labels-pill';
-import * as globeCesium from 'components/vis/globe-cesium';
-
-// Get Involved
-import * as getInvolvedIndex from 'layout/get-involved';
-import * as getInvolvedDetail from 'layout/get-involved-detail';
 
 // Admin Interactions
 import * as adminInteractions from 'components/admin/data/layers/form/interactions';
@@ -81,32 +62,13 @@ const reducer = combineReducers({
   // Dashboards
   widgetBlock: handleModule(widgetBlockModule),
 
-  // Explore
-  explore: handleModule(explore),
-
-  // Pulse
-  layerContainerPulse: handleModule(layerContainer),
-  layerMenuPulse: handleModule(layerMenu),
-  layerCardPulse: handleModule(layerCard),
-  contextLayersPulse: handleModule(layerPill),
-  labelsPulse: handleModule(labelsPill),
-  globeCesium: handleModule(globeCesium),
-  pulse: handleModule(pulse),
-
   // Dataset
   datasetListItem: handleModule(datasetListItem),
   similarDatasets: handleModule(similarDatasets),
   trySubscriptionModal: handleModule(trySubscriptionModal),
 
-  // subscriptions
-  subscriptions: handleModule(subscriptions),
-
   // Tools
   relatedTools: handleModule(relatedTools),
-
-  // Get Involved
-  getInvolvedIndex: handleModule(getInvolvedIndex),
-  getInvolvedDetail: handleModule(getInvolvedDetail),
 
   // Admin interactions
   interactions: handleModule(adminInteractions),
