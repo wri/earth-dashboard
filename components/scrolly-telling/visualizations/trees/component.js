@@ -9,23 +9,25 @@ if (typeof window !== 'undefined') {
 
 function Trees(props) {
     const { data, width, height } = props;
+    const generatedNodes = data => 
+        data.map((value, i) => {
+            const img = new Image();
+            img.src = `static/images/scrolly-telling/${value ? 'tree.png' : 'ghost-tree.png'}`;
+            return {
+                id: i,
+                img
+            };
+    });
     const [graphData, setGraphData] = useState({ 
-        nodes: data.map((value, i) => ({
-            id: i,
-            color: value ? 'green' : 'grey'
-        })), 
+        nodes: generatedNodes(data), 
         links: [] 
     });
     const graphRef = useRef(null);
     const isClient = typeof window !== 'undefined';
 
-
     useEffect(() => {
         setGraphData({ 
-            nodes: data.map((value, i) => ({
-                id: i,
-                color: value ? 'green' : 'grey'
-            })), 
+            nodes: generatedNodes(data), 
             links: [] 
         });
     }, [data]);
@@ -41,6 +43,10 @@ function Trees(props) {
                     cooldownTime={5000}
                     d3AlphaDecay={0.5}
                     d3VelocityDecay={0.3}
+                    nodeCanvasObject={({ img, x, y }, ctx) => {
+                        const size = 12;
+                        ctx.drawImage(img, x - size / 2, y - size / 2, size, size);
+                      }}
                 />
             }
         </div>

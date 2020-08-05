@@ -13,8 +13,8 @@ import Trees from 'components/scrolly-telling/visualizations/trees';
 import './styles.scss';
 
 const VISUALIZATION_SOURCES = [
-  <Trees data={[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]} width={500} height={400} />,
-  <Trees data={[1, 0, 1, 1, 0, 1, 1, 0, 1, 1]} width={500} height={400} />,
+  <Trees data={[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]} width={500} height={400} />,
+  <Trees data={[1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1]} width={500} height={400} />,
   <Trees data={[0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1]} width={500} height={400} />
 ];
 

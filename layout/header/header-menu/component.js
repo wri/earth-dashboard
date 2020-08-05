@@ -8,8 +8,6 @@ import HeaderData from 'layout/header/header-data';
 import HeaderAbout from 'layout/header/header-about';
 import HeaderSearch from 'layout/header/header-search';
 import HeaderUser from 'layout/header/header-user';
-import HeaderDashboards from 'layout/header/header-dashboards';
-import HeaderGetInvolved from 'layout/header/header-get-involved';
 
 // constants
 import { APP_HEADER_ITEMS } from 'layout/header/constants';
@@ -26,10 +24,8 @@ class HeaderMenu extends PureComponent {
   headerComponents = {
     data: <HeaderData />,
     about: <HeaderAbout />,
-    dashboards: <HeaderDashboards />,
     myrw: <HeaderUser />,
     search: <HeaderSearch />,
-    get_involved: <HeaderGetInvolved />
   }
 
   render() {
