@@ -1,11 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'routes';
-
-// components
-import CompoundMenu from 'components/ui/CompoundMenu';
-import Carousel from 'components/ui/Carousel';
-import Icon from 'components/ui/icon';
 
 class Footer extends PureComponent {
   static propTypes = {
