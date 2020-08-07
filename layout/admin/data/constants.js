@@ -16,12 +16,6 @@ export const DATA_TABS = [
     value: 'layers',
     route: 'admin_data',
     params: { tab: 'layers' }
-  },
-  {
-    label: 'Explore',
-    value: 'explore',
-    route: 'admin_data',
-    params: { tab: 'explore' }
   }
 ];
 

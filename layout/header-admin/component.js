@@ -46,7 +46,7 @@ class AdminHeader extends PureComponent {
                 <div className="header-logo">
                   <Link route="home">
                     <a>
-                      <Icon name="icon-rw-logo" className="brand-logo" />
+                      <img src="/static/images/GCA_logo.png" />
                       <h1 className="brand-title">Resource Watch</h1>
                     </a>
                   </Link>

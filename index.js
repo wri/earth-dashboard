@@ -111,24 +111,13 @@ app.prepare().then(() => {
     return handle(req, res, parsedUrl);
   };
 
-  // Redirecting data to data/explore
-  server.get('/data', (req, res) => res.redirect('/data/explore'));
-
-  // Redirecting 'topics' to 'dashboards'
-  server.get('/topics', (req, res) => res.redirect('/dashboards'));
-  // Redirecting specific 'topic' pages to new 'dashboard' pages
-  server.get('/topics/:id', (req, res) => {
-    const { id } = req.params;
-    res.redirect(`/dashboards/${id}`);
-  });
-
   // Authentication
   server.get(
     '/auth',
     auth.authenticate({ failureRedirect: '/sign-in' }),
     (req, res) => {
       if (req.user.role === 'ADMIN' && /admin/.test(req.session.referrer)) return res.redirect('/admin');
-      const authRedirect = req.cookies.authUrl || '/myrw/widgets/my_widgets';
+      const authRedirect = req.cookies.authUrl || '/admin';
 
       if (req.cookies.authUrl) {
         res.clearCookie('authUrl');
@@ -177,18 +166,10 @@ app.prepare().then(() => {
   });
 
   // authenticated routes
-  server.get('/myrw', isAuthenticated, (req, res) => {
-    res.redirect('/myrw/widgets/my_widgets');
-  });
-  server.get('/myrw-detail*?', isAuthenticated, handleUrl); // TODO: review these routes
-  server.get('/myrw*?', isAuthenticated, handleUrl);
   server.get('/admin*?', isAuthenticated, isAdmin, handleUrl);
 
   // local sign-in
   server.post('/local-sign-in', auth.signin);
-
-  // updates user data
-  server.post('/update-user', auth.updateUser);
 
   server.use(handle);
 

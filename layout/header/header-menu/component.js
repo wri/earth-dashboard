@@ -4,10 +4,7 @@ import classnames from 'classnames';
 import { Link } from 'routes';
 
 // components
-import HeaderData from 'layout/header/header-data';
 import HeaderAbout from 'layout/header/header-about';
-import HeaderSearch from 'layout/header/header-search';
-import HeaderUser from 'layout/header/header-user';
 
 // constants
 import { APP_HEADER_ITEMS } from 'layout/header/constants';
@@ -22,10 +19,7 @@ class HeaderMenu extends PureComponent {
   }
 
   headerComponents = {
-    data: <HeaderData />,
-    about: <HeaderAbout />,
-    myrw: <HeaderUser />,
-    search: <HeaderSearch />,
+    about: <HeaderAbout />
   }
 
   render() {
