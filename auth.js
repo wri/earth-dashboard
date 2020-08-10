@@ -19,16 +19,16 @@ module.exports = (() => {
   const strategy = new Strategy({
     controlTowerUrl: process.env.CONTROL_TOWER_URL,
     callbackUrl: process.env.CALLBACK_URL,
-    applications: process.env.APPLICATIONS || 'rw'
+    applications: process.env.APPLICATIONS || 'earthhq'
   });
   const localStrategy = new LocalStrategy(
     { usernameField: 'email', passwordField: 'password', session: true },
     (email, password, done) => {
       const queryParams = queryString.stringify({
         callbackUrl: process.env.CALLBACK_URL,
-        applications: 'rw',
+        applications: 'earthhq',
         token: true,
-        origin: 'rw'
+        origin: 'earthhq'
       });
 
       fetch(`${process.env.CONTROL_TOWER_URL}/auth/login?${queryParams}`, {
