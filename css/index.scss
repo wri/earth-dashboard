@@ -53,7 +53,6 @@
 @import "./components/ui/paginator";
 @import "./components/ui/progress-bar";
 @import "./components/ui/related-content";
-@import "./components/ui/search";
 @import "./components/ui/search-input";
 @import "./components/ui/slider-tooltip";
 @import "./components/ui/spinner";
@@ -77,38 +76,16 @@
 
 
 // Modal
-@import "./components/modal/credits_modal";
 @import "./components/modal/save_widget_modal";
-@import "./components/modal/how_to_widget_editor_modal";
 @import "./components/modal/embed_my_widget_modal";
 @import "./components/modal/share_modal_explore";
 @import "./components/modal/embed_layer_modal";
 @import "./components/modal/embed_table_modal";
-@import "./components/modal/subscribe_to_dataset_modal";
-@import "./components/modal/area_subscription_modal";
-@import "./components/modal/subscriptions_modal";
-@import "./components/modal/alerts_preview";
-
-
-// areas
-@import "./components/areas/areas_form";
-@import "./components/areas/upload_area";
-
-
-// collections
-@import "./components/collections/collections-panel";
 
 // datasets
 @import './components/datasets/list';
 @import './components/datasets/list-item';
 @import './components/datasets/search';
-
-// Subscriptions
-@import "./components/subscriptions/subscriptions_form";
-@import "./components/subscriptions/subscription_selector";
-
-// VIS
-@import "./components/vis/globe";
 
 // Map
 @import "./components/map/map";
@@ -186,59 +163,17 @@
 // Tags
 @import "./components/admin/tags/tags_form";
 
-// FAQs
-@import "./components/admin/faqs/faqs_table";
-
 // ================== APP ======================
 
 // COMMON
 @import "./components/app/common/banner";
 @import "./components/app/common/viel";
 @import "./components/app/common/card_static";
-@import "./components/app/common/partner_block";
-@import "./components/app/common/partners_slider";
-
-// PAGES
-@import "./components/app/pages/explore";
-@import "./components/app/pages/submit_insight";
-@import "./components/app/pages/partner_detail";
-@import "./components/app/pages/getInvolved";
-@import "./components/app/pages/develop_app";
-@import "./components/app/pages/apps";
-@import "./components/app/pages/alerts_page";
-@import "./components/app/pages/newsletter";
-
-// EXPLORE
-
-// old
-@import "./components/app/explore/dataset_placeholder_chart";
-@import "./components/app/explore/widget_configurator";
-@import "./components/app/explore/explore_layers_tooltip";
-@import "./components/app/explore/resume_filters";
-@import "./components/app/explore/dataset_tags_tooltip";
-@import "./components/app/explore/explore_dataset_filters";
-@import "./components/app/explore/similar_datasets";
-
-// DASHBOARDS
-@import './components/dashboards/list';
-@import './components/dashboards/template-selector';
-@import './components/dashboards/dashboards-subheader-block';
-
-// MyRW
-@import "./components/app/pages/myrw/myrw_edit_profile";
-@import "./components/app/pages/myrw/myrw_subscriptions";
-@import "./components/app/pages/myrw/myrw_common";
-@import "./components/app/pages/myrw/myrw_widgets_edit";
-@import "./components/app/pages/myrw/myrw_widgets_new";
-@import "./components/app/pages/myrw/myrw_dataset_widgets";
 
 // Embed
 @import "./components/app/pages/embed/embed_widget";
 @import "./components/app/pages/embed/embed_table";
 @import "./components/app/pages/embed/embed_dataset";
-
-// Subscriptions
-@import "./components/app/subscriptions/subscription_card";
 
 // Foundation:
 // We are using this library only for grid system

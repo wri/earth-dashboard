@@ -5,7 +5,6 @@ import isEmpty from 'lodash/isEmpty';
 import { fetchDataset } from 'services/dataset';
 import RasterService from 'services/raster';
 import { fetchLayer } from 'services/layer';
-import { deleteFavourite, createFavourite, fetchFavourites } from 'services/favourites';
 import { fetchWidget } from 'services/widget';
 
 /**
@@ -21,7 +20,6 @@ const SET_WIDGET_BAND_STATS = 'SET_WIDGET_BAND_STATS';
 const SET_WIDGET_LAYERGROUPS = 'SET_WIDGET_LAYERGROUPS';
 const SET_WIDGET_ZOOM = 'SET_WIDGET_ZOOM';
 const SET_WIDGET_LATLNG = 'SET_WIDGET_LATLNG';
-const GET_WIDGET_FAVORITE = 'GET_WIDGET_FAVORITE';
 
 /**
  * STORE
@@ -36,10 +34,6 @@ const initialState = {
   latLng: { lat: 0, lng: 0 },
   loading: true, // Are we loading the data?
   error: null, // An error was produced while loading the data
-  favourite: {
-    id: null,
-    favourited: false
-  }
 };
 
 /**
@@ -102,11 +96,6 @@ export default function (state = initialState, action) {
 
     case SET_WIDGET_LATLNG: {
       return Object.assign({}, state, { latLng: action.payload });
-    }
-
-    case GET_WIDGET_FAVORITE: {
-      return Object.assign({}, state,
-        { favourite: Object.assign({}, state.favourite, action.payload) });
     }
 
     default:
@@ -256,66 +245,5 @@ export function toggleLayerGroupVisibility(layerGroup) {
     });
 
     dispatch({ type: SET_WIDGET_LAYERGROUPS, payload: [...layerGroups] });
-  };
-}
-
-/**
- * Set the favourited attribute of the store
- * @export
- * @param {string} widgetId  Widget ID
- * @param {{ id: string, token: string }?} user  Widget ID
- */
-
-export function checkIfFavorited(widgetId) {
-  return (dispatch, getState) => {
-    const { user } = getState();
-
-    if (!user.id) {
-      dispatch({ type: GET_WIDGET_FAVORITE, payload: { id: null, favourited: false } });
-    } else {
-      fetchFavourites(user.token)
-        .then((res) => {
-          const favourite = res.find && res.find(elem => elem.attributes.resourceId === widgetId);
-
-          dispatch({
-            type: GET_WIDGET_FAVORITE,
-            payload: {
-              id: favourite ? favourite.id : null,
-              favourited: !!favourite
-            }
-          });
-        });
-    }
-  };
-}
-
-/**
- * Set if the wiget is favourited or not
- * @export
- * @param {string} widgetId Widget ID
- * @param {boolean} toFavorite Whether to make it favourite or not
- */
-export function setIfFavorited(widgetId, toFavorite) {
-  return (dispatch, getState) => {
-    const { user, widget } = getState();
-
-    // If the user is not logged in, we just return
-    if (!user.id) return;
-
-    // We have an optimistic approach: we tell the user the action
-    // is already done, and if it fails, we rever it
-    dispatch({ type: GET_WIDGET_FAVORITE, payload: { favourited: toFavorite } });
-
-    if (toFavorite) {
-      createFavourite(user.token, { resourceType: 'widget', resourceId: widgetId })
-        .then(res => dispatch({ type: GET_WIDGET_FAVORITE, payload: { id: res.data.id } }))
-        .catch(() => dispatch({ type: GET_WIDGET_FAVORITE, payload: { id: null } }));
-    } else {
-      const { favourite: { id } } = widget;
-
-      deleteFavourite(id, user.token)
-        .then(() => dispatch({ type: GET_WIDGET_FAVORITE, payload: { id: null } }))
-        .catch(() => dispatch({ type: GET_WIDGET_FAVORITE, payload: { id } }));
-    }
   };
 }

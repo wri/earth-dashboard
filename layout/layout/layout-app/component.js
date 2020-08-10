@@ -20,9 +20,7 @@ import IconsRW from 'components/icons';
 import Tooltip from 'components/ui/Tooltip';
 import Modal from 'components/ui/Modal';
 import Toastr from 'react-redux-toastr';
-import Search from 'layout/header/search';
 import NoBrowserSupport from 'components/app/common/Browser';
-import GDPRBanner from 'components/ui/gdpr-banner';
 
 class LayoutApp extends Component {
   static propTypes = {
@@ -108,8 +106,6 @@ class LayoutApp extends Component {
           {...thumbnail && { thumbnail }}
         />
 
-        <GDPRBanner />
-
         {!browserSupported() &&
           <Modal
             open
@@ -131,8 +127,6 @@ class LayoutApp extends Component {
         {!isFullScreen && (<Footer />)}
 
         <Tooltip />
-
-        <Search />
 
         <Modal
           open={modalOpen}

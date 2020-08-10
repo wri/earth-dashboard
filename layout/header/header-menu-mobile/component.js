@@ -6,7 +6,6 @@ import { toastr } from 'react-redux-toastr';
 
 // components
 import Icon from 'components/ui/icon';
-import SearchMobile from 'layout/header/search-mobile';
 
 // constants
 import { APP_HEADER_ITEMS } from 'layout/header/constants';
@@ -74,8 +73,6 @@ class HeaderMenuMobile extends PureComponent {
             >
               <Icon name="icon-cross" className="-smaller" />
             </button>
-
-            <SearchMobile />
 
             <ul>
               {APP_HEADER_ITEMS.map((item) => {

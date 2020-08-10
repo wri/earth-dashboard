@@ -19,16 +19,12 @@ module.exports = withCSS(withSass({
     CALLBACK_URL: process.env.CALLBACK_URL,
     CONTROL_TOWER_URL: process.env.CONTROL_TOWER_URL,
     WRI_API_URL: process.env.WRI_API_URL,
-    BLOG_API_URL: process.env.BLOG_API_URL,
     STATIC_SERVER_URL: process.env.STATIC_SERVER_URL,
-    ADD_SEARCH_KEY: process.env.ADD_SEARCH_KEY,
-    TRANSIFEX_LIVE_API: process.env.TRANSIFEX_LIVE_API,
     BING_MAPS_API_KEY: process.env.BING_MAPS_API_KEY,
     API_ENV: process.env.API_ENV,
     GOOGLE_ANALYTICS: process.env.GOOGLE_ANALYTICS,
     RW_GOGGLE_API_TOKEN_SHORTENER: process.env.RW_GOGGLE_API_TOKEN_SHORTENER,
     BITLY_TOKEN: process.env.BITLY_TOKEN,
-    PARDOT_NEWSLETTER_URL: process.env.PARDOT_NEWSLETTER_URL
   },
 
   webpack: (config) => {

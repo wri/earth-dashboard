@@ -19,8 +19,6 @@ import Header from 'layout/header-admin';
 import Tooltip from 'components/ui/Tooltip';
 import Modal from 'components/ui/Modal';
 import Toastr from 'react-redux-toastr';
-import Search from 'layout/header/search';
-import GDPRBanner from 'components/ui/gdpr-banner';
 
 class LayoutAdmin extends PureComponent {
   static propTypes = {
@@ -105,8 +103,6 @@ class LayoutAdmin extends PureComponent {
       <div id="#main" className={componentClass}>
         <Head title={title} description={description} />
 
-        <GDPRBanner />
-
         <Icons />
         <IconsRW />
 
@@ -117,8 +113,6 @@ class LayoutAdmin extends PureComponent {
         {this.props.children}
 
         <Tooltip />
-
-        <Search />
 
         <Modal
           open={modalOpen}

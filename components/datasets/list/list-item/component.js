@@ -13,14 +13,6 @@ import LoginRequired from 'components/ui/login-required';
 import MediaQuery from 'react-responsive';
 import { breakpoints } from 'utils/responsive';
 
-// Tooltip
-import { Tooltip } from 'vizzuality-components';
-import CollectionsPanel from 'components/collections-panel';
-import { getTooltipContainer } from 'utils/tooltip';
-
-// helpers
-import { belongsToACollection } from 'components/collections-panel/collections-panel-helpers';
-
 // Thumbnails charts
 import WidgetChart from 'components/charts/widget-chart';
 import LayerChart from 'components/charts/layer-chart';
@@ -85,17 +77,6 @@ class DatasetListItem extends React.Component {
   render() {
     const { dataset, metadata, mode, user, actions, tags, responsive } = this.props;
 
-    const isInACollection = belongsToACollection(user, dataset);
-    const starIconName = classnames({
-      'icon-star-full': isInACollection,
-      'icon-star-empty': !isInACollection
-    });
-    const starIconClass = classnames({
-      '-small': true,
-      '-filled': isInACollection,
-      '-empty': !isInACollection
-    });
-
     const dateLastUpdated = getDateConsideringTimeZone(dataset.dataLastUpdated);
 
     return (
@@ -135,33 +116,6 @@ class DatasetListItem extends React.Component {
                     {(metadata && metadata.info && metadata.info.name) || dataset.name}
                   </a>
                 </Link>
-
-                {/* Favorite dataset icon */}
-                <LoginRequired>
-                  <Tooltip
-                    overlay={
-                      <CollectionsPanel
-                        resource={dataset}
-                        resourceType="dataset"
-                      />
-                    }
-                    overlayClassName="c-rc-tooltip"
-                    placement="bottomRight"
-                    trigger="click"
-                    getTooltipContainer={getTooltipContainer}
-                    monitorWindowResize
-                  >
-                    <button
-                      className="c-btn favourite-button"
-                      tabIndex={-1}
-                    >
-                      <Icon
-                        name={starIconName}
-                        className={starIconClass}
-                      />
-                    </button>
-                  </Tooltip>
-                </LoginRequired>
               </h4>
             </div>
 

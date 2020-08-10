@@ -16,22 +16,13 @@ import modules from 'modules';
 import * as header from 'layout/header';
 import * as headerAdmin from 'layout/header-admin';
 
-// Search
-import * as search from 'layout/search';
-
 // Share
 import * as shareModal from 'components/modal/share-modal';
-
-// Dashboard
-import * as widgetBlockModule from 'components/wysiwyg/widget-block';
 
 // Dataset
 import * as datasetListItem from 'components/datasets/list/list-item';
 import * as similarDatasets from 'components/datasets/similar-datasets/similar-datasets';
 import * as trySubscriptionModal from 'components/datasets/form/try-subscription-modal';
-
-// Tools
-import * as relatedTools from 'components/tools/related-tools';
 
 // Admin Interactions
 import * as adminInteractions from 'components/admin/data/layers/form/interactions';
@@ -53,22 +44,13 @@ const reducer = combineReducers({
   header: handleModule(header),
   headerAdmin: handleModule(headerAdmin),
 
-  // Search
-  search: handleModule(search),
-
   // Share
   shareModal: handleModule(shareModal),
-
-  // Dashboards
-  widgetBlock: handleModule(widgetBlockModule),
 
   // Dataset
   datasetListItem: handleModule(datasetListItem),
   similarDatasets: handleModule(similarDatasets),
   trySubscriptionModal: handleModule(trySubscriptionModal),
-
-  // Tools
-  relatedTools: handleModule(relatedTools),
 
   // Admin interactions
   interactions: handleModule(adminInteractions),
