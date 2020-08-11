@@ -151,7 +151,7 @@ app.prepare().then(() => {
     );
   });
 
-  // if the user is already logged-in, redirect it to /myrw
+  // if the user is already logged-in, redirect it to /admin
   // if it tries to go to sign-in page
   server.get('/sign-in', (req, res, nextAction) => {
     if (req.isAuthenticated()) res.redirect('/admin');

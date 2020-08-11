@@ -58,8 +58,8 @@ class LoginModal extends PureComponent {
         loginUser(userSettings)
           .then((data) => {
             setUser(data);
-            // redirects the user to /myrw once logged-in
-            window.location.href = '/myrw';
+            // redirects the user to /admin once logged-in
+            window.location.href = '/admin';
           })
           .catch((err) => {
             const { status, statusText } = err.response;
