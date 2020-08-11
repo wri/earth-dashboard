@@ -10,6 +10,12 @@ export const ADMIN_HEADER_ITEMS = [
     label: 'Pages',
     route: 'admin_pages',
     pathnames: ['/admin/pages', '/admin/PagesDetail']
+  },
+  {
+    admin: true,
+    id: 'logout',
+    label: 'Log out',
+    route: 'logout'
   }
 ];
 

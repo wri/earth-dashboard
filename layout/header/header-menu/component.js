@@ -24,18 +24,26 @@ class HeaderMenu extends PureComponent {
 
   render() {
     const {
-      user: { token },
+      user: { token, role },
       routes
     } = this.props;
+
+    console.log('user', this.props.user, 'token', token);
 
     return (
       <nav className="header-menu">
         <ul>
           {APP_HEADER_ITEMS.map((item) => {
             const isUserLogged = !!token;
+            const isUserAdmin = isUserLogged && role === 'ADMIN';
 
-            // if user is defined but it is not equal to the current token
-            if (typeof item.user !== 'undefined' && item.user !== isUserLogged) return null;
+            console.log('item', item, 'item.admin', !!item.admin);
+
+            // If admin user is defined and is not equal to the current token
+            if (typeof item.admin !== 'undefined' && item.admin !== isUserAdmin) {
+              console.log('Hey!');
+              return null;
+            } 
 
             const activeClassName = classnames({ '-active': item.pathnames && item.pathnames.includes(routes.pathname) });
             const component = this.headerComponents[item.id];
@@ -44,11 +52,6 @@ class HeaderMenu extends PureComponent {
               <li
                 key={item.label}
                 className={activeClassName}
-                onClick={() => {
-                  if (item.label === 'App Gallery') {
-                    logEvent('App Gallery Link Clicked', 'Header');
-                  }
-                }}
               >
                 {!component && item.route &&
                   <Link

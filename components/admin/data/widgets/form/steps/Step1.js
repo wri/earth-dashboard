@@ -138,30 +138,6 @@ class Step1 extends Component {
           >
             {Checkbox}
           </Field>
-
-          {/* FREEZE */}
-          <div className="freeze-container">
-            <Field
-              ref={(c) => { if (c) FORM_ELEMENTS.elements.freeze = c; }}
-              onChange={value => this.props.onChange({ freeze: value.checked })}
-              properties={{
-                name: 'freeze',
-                label: this.props.id ? '' : 'Do you want to freeze this widget?',
-                value: 'freeze',
-                title: 'Freeze',
-                checked: this.props.form.freeze,
-                // Temporarily disabled --> we need to review the implementation
-                disabled: true
-              }}
-            >
-              {Checkbox}
-            </Field>
-            {this.props.form.freeze && this.props.id &&
-              <div className="freeze-text">
-                This widget has been <strong>frozen</strong> and cannot be modified...
-              </div>
-            }
-          </div>
         </fieldset>
 
         {this.state.form.dataset &&

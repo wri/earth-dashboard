@@ -9,11 +9,7 @@ import finallyShim from 'promise.prototype.finally';
 
 // actions
 import { setRouter } from 'redactions/routes';
-import {
-  setUser,
-  getUserFavourites,
-  getUserCollections
-} from 'redactions/user';
+import { setUser } from 'redactions/user';
 import { setMobileDetect, mobileParser } from 'react-responsive-redux';
 import { setHostname } from 'redactions/common';
 
@@ -22,7 +18,7 @@ import 'css/index.scss';
 
 finallyShim.shim();
 
-class RWApp extends App {
+class EDApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     const { asPath } = router;
     const { req, store, query, isServer } = ctx;
@@ -35,7 +31,6 @@ class RWApp extends App {
     // sets hostname
     const hostname = isServer ? req.headers.host : window.origin;
     store.dispatch(setHostname(hostname));
-
     // sets user data coming from a request (server) or the store (client)
     const { user } = isServer ? req : store.getState();
     if (user) {
@@ -70,4 +65,4 @@ class RWApp extends App {
   }
 }
 
-export default withRedux(initStore)(RWApp);
+export default withRedux(initStore)(EDApp);

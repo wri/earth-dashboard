@@ -7,15 +7,22 @@ export const APP_HEADER_ITEMS = [
     children: []
   },
   {
-    user: false,
+    admin: false,
     id: 'log_in',
-    label: 'Log in'
+    label: 'Log in',
+    route: 'sign-in'
   },
   {
     admin: true,
     id: 'admin',
     route: 'admin_home',
     label: 'Admin'
+  },
+  {
+    admin: true,
+    id: 'logout',
+    label: 'Log out',
+    route: 'logout'
   }
 ];
 
