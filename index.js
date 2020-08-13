@@ -147,7 +147,7 @@ app.prepare().then(() => {
     return res.redirect(
       `${process.env.CONTROL_TOWER_URL}/auth/${service}?callbackUrl=${
         process.env.CALLBACK_URL
-      }&applications=rw&token=true&origin=rw`
+      }&applications=earthhq&token=true&origin=earthhq`
     );
   });
 

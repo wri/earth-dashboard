@@ -196,9 +196,7 @@ class Step1 extends PureComponent {
               properties={{
                 name: 'env',
                 label: 'Environment',
-                placeholder: 'Type the columns...',
-                noResultsText: 'Please, type the name of the columns and press enter',
-                promptTextCreator: label => `The name of the column is "${label}"`,
+                placeholder: 'Please select an environment',
                 default: 'preproduction',
                 value: this.props.form.env
               }}

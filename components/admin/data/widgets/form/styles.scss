@@ -1,0 +1,36 @@
+@import 'css/settings';
+
+.c-widget-form {
+
+    .template-select-container {
+        display: flex;
+        flex-direction: column;;
+
+        select {
+            width: 120px;
+        }
+    }
+
+    .json-editor-container {
+        display: flex;
+        flex-direction: row;
+        margin-top: 5 * $space;
+
+        .json-editor {
+            width: 50%;
+            height: 500px;
+            font-family: "Fira code", "Fira Mono", monospace;
+            overflow: auto;
+            resize: none;
+        }
+
+        .widget-preview {
+            width: 50%;
+        }
+    }
+
+    .buttons-container {
+        margin-top: 4 * $space;
+    }
+    
+}

@@ -19,6 +19,9 @@ import {
 // constants
 import { STATE_DEFAULT, FORM_ELEMENTS } from './constants';
 
+// styles
+import './styles.scss';
+
 class WidgetForm extends PureComponent {
   static propTypes = {
     authorization: PropTypes.string.isRequired,
@@ -204,7 +207,7 @@ class WidgetForm extends PureComponent {
       datasets
     } = this.state;
     return (
-      <form className="c-form c-widgets-form" noValidate>
+      <form className="c-form c-widget-form" noValidate>
         <Spinner isLoading={loading} className="-light" />
         {step === 1 && !loading && (
           <Step1

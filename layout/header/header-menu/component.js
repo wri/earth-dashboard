@@ -28,8 +28,6 @@ class HeaderMenu extends PureComponent {
       routes
     } = this.props;
 
-    console.log('user', this.props.user, 'token', token);
-
     return (
       <nav className="header-menu">
         <ul>
@@ -37,11 +35,8 @@ class HeaderMenu extends PureComponent {
             const isUserLogged = !!token;
             const isUserAdmin = isUserLogged && role === 'ADMIN';
 
-            console.log('item', item, 'item.admin', !!item.admin);
-
             // If admin user is defined and is not equal to the current token
             if (typeof item.admin !== 'undefined' && item.admin !== isUserAdmin) {
-              console.log('Hey!');
               return null;
             } 
 
