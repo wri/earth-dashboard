@@ -6,16 +6,25 @@ import RwAdapter from '@widget-editor/rw-adapter';
 // Redux
 import { connect } from 'react-redux';
 
-// Constants
-import { FORM_ELEMENTS } from 'components/admin/data/widgets/form/constants';
-
 // Components
 import Field from 'components/form/Field';
 import Select from 'components/form/SelectInput';
 import Checkbox from 'components/form/Checkbox';
+import RadioGroup from 'components/form/RadioGroup';
 
 // Utils
 import DefaultTheme from 'utils/widgets/theme';
+
+// Constants
+import {
+  FORM_ELEMENTS,
+  DEFAULT_WIDGET_TYPE_OPTION,
+  WIDGET_TYPE_OPTIONS,
+  NEW_WIDGET_TYPES,
+  WIDGET_TYPE_NEW,
+  NEW_WIDGET_TYPES_TEMPLATES,
+  NEW_WIDGET_TYPES_OPTIONS
+} from '../constants';
 
 class Step1 extends Component {
   static propTypes = {
@@ -28,12 +37,25 @@ class Step1 extends Component {
     query: PropTypes.object.isRequired
   };
 
-  state = {
-    id: this.props.id,
-    form: this.props.form,
-  };
+  constructor(props) {
+    super(props);
+    const { form, id } = props;
+    const widgetType = form && form.widgetConfig && form.widgetConfig.type;
+    const isNewWidgetType = !!id && widgetType &&
+      NEW_WIDGET_TYPES.includes(widgetType);
+    const defaultCode = isNewWidgetType ? 
+      NEW_WIDGET_TYPES_TEMPLATES.find(e => e.id === widgetType).value
+      : NEW_WIDGET_TYPES_TEMPLATES[0];
 
-  UNSAFE_componentWillReceiveProps(nextProps) {    
+    this.state = {
+      id,
+      form,
+      showNewWidgetsInterface: !!id && isNewWidgetType,
+      newWidgetTypesEditorCode: !!id ? JSON.stringify(form, null, 5) : JSON.stringify(defaultCode, null, 5)
+    };
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       form: {
         ...nextProps.form,
@@ -42,10 +64,26 @@ class Step1 extends Component {
     });
   }
 
+  onWidgetTypeChange = (value) => {
+    this.setState({ showNewWidgetsInterface: value === 'new' });
+  }
+
+  onWidgetTypeTemplateChange = (event) => {
+    const newCode = NEW_WIDGET_TYPES_TEMPLATES.find(e => e.id === event.target.value).value;
+    this.setState({
+      newWidgetTypesEditorCode: JSON.stringify(newCode, null, 5)
+    });
+  }
+
   render() {
-    const { id } = this.state;
-    const { user, query } = this.props;
-    
+    const { id, showNewWidgetsInterface, newWidgetTypesEditorCode } = this.state;
+    const { user, query, form } = this.props;
+    const datasetSelected = this.state.form.dataset;
+    const editMode = !!id;
+    const widgetType = form && form.widgetConfig && form.widgetConfig.type;
+    const isNewWidgetType = editMode && widgetType && 
+      NEW_WIDGET_TYPES.includes(widgetType);
+
     // Reset FORM_ELEMENTS
     FORM_ELEMENTS.elements = {};
 
@@ -84,9 +122,7 @@ class Step1 extends Component {
               properties={{
                 name: 'env',
                 label: 'Environment',
-                placeholder: 'Type the columns...',
-                noResultsText: 'Please, type the name of the columns and press enter',
-                promptTextCreator: label => `The name of the column is "${label}"`,
+                placeholder: 'Please select an environment',
                 default: 'preproduction',
                 value: this.props.form.env
               }}
@@ -138,10 +174,20 @@ class Step1 extends Component {
           >
             {Checkbox}
           </Field>
+          <div className="widget-type-radio-group">
+            <label className="label">Choose a widget type:</label>
+            <RadioGroup
+              name="show-new-widget-types-interface"
+              properties={{ default: !!isNewWidgetType ? WIDGET_TYPE_NEW : DEFAULT_WIDGET_TYPE_OPTION }}
+              options={WIDGET_TYPE_OPTIONS}
+              onChange={this.onWidgetTypeChange}
+            />
+          </div>
         </fieldset>
 
-        {this.state.form.dataset &&
-          <WidgetEditor 
+        {datasetSelected && !showNewWidgetsInterface &&
+          !isNewWidgetType &&
+          <WidgetEditor
             datasetId={this.state.form.dataset}
             {...(id && { widgetId: id })}
             application="rw"
@@ -151,6 +197,44 @@ class Step1 extends Component {
             authenticated={true}
             compact={false}
           />
+        }
+        {datasetSelected && showNewWidgetsInterface &&
+          <div className="new-widget-types-container">
+            <div className="template-select-container">
+              <label className="label">Choose a template:</label>
+              <select
+                onChange={this.onWidgetTypeTemplateChange}
+              >
+                {NEW_WIDGET_TYPES_OPTIONS.map(elem =>
+                  <option
+                    key={elem.label}
+                    value={elem.value}
+                    {...(elem.value === widgetType && { selected: true })}
+                  >
+                    {elem.label}
+                  </option>
+                )}
+              </select>
+            </div>
+            <div className="json-editor-container">
+              <textarea
+                className="json-editor"
+                onChange={event => this.setState({ newWidgetTypesEditorCode: event.target.value })}
+                value={newWidgetTypesEditorCode}
+              />
+              <div className="widget-preview">
+
+              </div>
+            </div>
+            <div className="buttons-container">
+              <button
+                className="c-button -primary"
+                onClick={() => this.props.onSave(JSON.parse(newWidgetTypesEditorCode))}
+              >
+                Save
+              </button>
+            </div>
+          </div>
         }
       </fieldset>
     );

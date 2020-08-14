@@ -19,6 +19,9 @@ import {
 // constants
 import { STATE_DEFAULT, FORM_ELEMENTS } from './constants';
 
+// styles
+import './styles.scss';
+
 class WidgetForm extends PureComponent {
   static propTypes = {
     authorization: PropTypes.string.isRequired,
@@ -151,7 +154,7 @@ class WidgetForm extends PureComponent {
         const { id, name } = response;
         toastr.success('Success', `The widget "${id}" - "${name}" has been created correctly`);
         this.setState({ loading: false });
-        if (onSubmit) onSubmit(widget);
+        if (onSubmit) onSubmit(response);
       })
       .catch((error) => {
         this.setState({ loading: false });
@@ -166,7 +169,7 @@ class WidgetForm extends PureComponent {
         const { id, name } = response;
         toastr.success('Success', `The widget "${id}" - "${name}" has been updated correctly`);
         this.setState({ loading: false });
-        if (onSubmit) onSubmit(widget);
+        if (onSubmit) onSubmit(response);
       })
       .catch((error) => {
         this.setState({ loading: false });
@@ -204,7 +207,7 @@ class WidgetForm extends PureComponent {
       datasets
     } = this.state;
     return (
-      <form className="c-form c-widgets-form" noValidate>
+      <form className="c-form c-widget-form" noValidate>
         <Spinner isLoading={loading} className="-light" />
         {step === 1 && !loading && (
           <Step1
