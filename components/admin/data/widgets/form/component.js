@@ -154,7 +154,7 @@ class WidgetForm extends PureComponent {
         const { id, name } = response;
         toastr.success('Success', `The widget "${id}" - "${name}" has been created correctly`);
         this.setState({ loading: false });
-        if (onSubmit) onSubmit(widget);
+        if (onSubmit) onSubmit(response);
       })
       .catch((error) => {
         this.setState({ loading: false });
@@ -169,7 +169,7 @@ class WidgetForm extends PureComponent {
         const { id, name } = response;
         toastr.success('Success', `The widget "${id}" - "${name}" has been updated correctly`);
         this.setState({ loading: false });
-        if (onSubmit) onSubmit(widget);
+        if (onSubmit) onSubmit(response);
       })
       .catch((error) => {
         this.setState({ loading: false });

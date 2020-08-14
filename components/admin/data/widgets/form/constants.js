@@ -35,18 +35,25 @@ export const FORM_ELEMENTS = {
   }
 };
 
+export const WIDGET_TYPE_STANDARD = 'standard';
+export const WIDGET_TYPE_NEW = 'new';
 export const WIDGET_TYPE_OPTIONS = [
   {
     label: 'Standard widget',
-    value: 'standard'
+    value: WIDGET_TYPE_STANDARD
   },
   {
     label: 'New widget types',
-    value: 'new'
+    value: WIDGET_TYPE_NEW
   }
 ];
 
 export const DEFAULT_WIDGET_TYPE_OPTION = 'standard';
+
+export const LIST_WIDGET_TYPE = 'list';
+export const COMBINED_WIDGET_TYPE = 'combined';
+export const DYNAMIC_TEXT_WIDGET_TYPE = 'dynamic-text';
+export const NEW_WIDGET_TYPES = [LIST_WIDGET_TYPE, COMBINED_WIDGET_TYPE, DYNAMIC_TEXT_WIDGET_TYPE];
 
 export const LIST_WIDGET_TEMPLATE = {
   type: 'widget',
@@ -110,15 +117,30 @@ export const DYNAMIC_TEXT_WIDGET_TEMPLATE = {
 
 export const NEW_WIDGET_TYPES_TEMPLATES = [
   {
-    label: 'List',
+    id: LIST_WIDGET_TYPE,
     value: LIST_WIDGET_TEMPLATE
   },
   {
-    label: 'Combined',
+    id: COMBINED_WIDGET_TYPE,
     value: COMBINED_WIDGET_TEMPLATE
   },
   {
-    label: 'Dynamic text',
+    id: DYNAMIC_TEXT_WIDGET_TYPE,
     value: DYNAMIC_TEXT_WIDGET_TEMPLATE
+  }
+];
+
+export const NEW_WIDGET_TYPES_OPTIONS = [
+  {
+    label: 'List',
+    value: LIST_WIDGET_TYPE
+  },
+  {
+    label: 'Combined',
+    value: COMBINED_WIDGET_TYPE
+  },
+  {
+    label: 'Dynamic text',
+    value: DYNAMIC_TEXT_WIDGET_TYPE
   }
 ];

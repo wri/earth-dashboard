@@ -6,13 +6,6 @@ import RwAdapter from '@widget-editor/rw-adapter';
 // Redux
 import { connect } from 'react-redux';
 
-// Constants
-import {
-  FORM_ELEMENTS,
-  DEFAULT_WIDGET_TYPE_OPTION,
-  WIDGET_TYPE_OPTIONS
-} from 'components/admin/data/widgets/form/constants';
-
 // Components
 import Field from 'components/form/Field';
 import Select from 'components/form/SelectInput';
@@ -23,7 +16,15 @@ import RadioGroup from 'components/form/RadioGroup';
 import DefaultTheme from 'utils/widgets/theme';
 
 // Constants
-import { NEW_WIDGET_TYPES_TEMPLATES, LIST_WIDGET_TEMPLATE } from '../constants';
+import {
+  FORM_ELEMENTS,
+  DEFAULT_WIDGET_TYPE_OPTION,
+  WIDGET_TYPE_OPTIONS,
+  NEW_WIDGET_TYPES,
+  WIDGET_TYPE_NEW,
+  NEW_WIDGET_TYPES_TEMPLATES,
+  NEW_WIDGET_TYPES_OPTIONS
+} from '../constants';
 
 class Step1 extends Component {
   static propTypes = {
@@ -36,12 +37,23 @@ class Step1 extends Component {
     query: PropTypes.object.isRequired
   };
 
-  state = {
-    id: this.props.id,
-    form: this.props.form,
-    showNewWidgetsInterface: false,
-    newWidgetTypesEditorCode: JSON.stringify(LIST_WIDGET_TEMPLATE, null, 5)
-  };
+  constructor(props) {
+    super(props);
+    const { form, id } = props;
+    const widgetType = form && form.widgetConfig && form.widgetConfig.type;
+    const isNewWidgetType = !!id && widgetType &&
+      NEW_WIDGET_TYPES.includes(widgetType);
+    const defaultCode = isNewWidgetType ? 
+      NEW_WIDGET_TYPES_TEMPLATES.find(e => e.id === widgetType).value
+      : NEW_WIDGET_TYPES_TEMPLATES[0];
+
+    this.state = {
+      id,
+      form,
+      showNewWidgetsInterface: !!id && isNewWidgetType,
+      newWidgetTypesEditorCode: !!id ? JSON.stringify(form, null, 5) : JSON.stringify(defaultCode, null, 5)
+    };
+  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
@@ -57,15 +69,20 @@ class Step1 extends Component {
   }
 
   onWidgetTypeTemplateChange = (event) => {
+    const newCode = NEW_WIDGET_TYPES_TEMPLATES.find(e => e.id === event.target.value).value;
     this.setState({
-      newWidgetTypesEditorCode: event.target.value,
+      newWidgetTypesEditorCode: JSON.stringify(newCode, null, 5)
     });
   }
 
   render() {
     const { id, showNewWidgetsInterface, newWidgetTypesEditorCode } = this.state;
-    const { user, query } = this.props;
+    const { user, query, form } = this.props;
     const datasetSelected = this.state.form.dataset;
+    const editMode = !!id;
+    const widgetType = form && form.widgetConfig && form.widgetConfig.type;
+    const isNewWidgetType = editMode && widgetType && 
+      NEW_WIDGET_TYPES.includes(widgetType);
 
     // Reset FORM_ELEMENTS
     FORM_ELEMENTS.elements = {};
@@ -161,7 +178,7 @@ class Step1 extends Component {
             <label className="label">Choose a widget type:</label>
             <RadioGroup
               name="show-new-widget-types-interface"
-              properties={{ default: DEFAULT_WIDGET_TYPE_OPTION }}
+              properties={{ default: !!isNewWidgetType ? WIDGET_TYPE_NEW : DEFAULT_WIDGET_TYPE_OPTION }}
               options={WIDGET_TYPE_OPTIONS}
               onChange={this.onWidgetTypeChange}
             />
@@ -169,6 +186,7 @@ class Step1 extends Component {
         </fieldset>
 
         {datasetSelected && !showNewWidgetsInterface &&
+          !isNewWidgetType &&
           <WidgetEditor
             datasetId={this.state.form.dataset}
             {...(id && { widgetId: id })}
@@ -184,11 +202,14 @@ class Step1 extends Component {
           <div className="new-widget-types-container">
             <div className="template-select-container">
               <label className="label">Choose a template:</label>
-              <select onChange={this.onWidgetTypeTemplateChange}>
-                {NEW_WIDGET_TYPES_TEMPLATES.map(elem =>
+              <select
+                onChange={this.onWidgetTypeTemplateChange}
+              >
+                {NEW_WIDGET_TYPES_OPTIONS.map(elem =>
                   <option
                     key={elem.label}
-                    value={JSON.stringify(elem.value, null, 5)}
+                    value={elem.value}
+                    {...(elem.value === widgetType && { selected: true })}
                   >
                     {elem.label}
                   </option>
