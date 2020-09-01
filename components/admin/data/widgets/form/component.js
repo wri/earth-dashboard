@@ -13,7 +13,9 @@ import {
   fetchWidget,
   deleteWidget,
   updateWidget as updateWidgetService,
-  createWidget as createWidgetService
+  createWidget as createWidgetService,
+  createWidgetMetadata,
+  updateWidgetMetadata
 } from 'services/widget';
 
 // constants
@@ -91,22 +93,28 @@ class WidgetForm extends PureComponent {
 
   onWidgetSave = (widget) => {
     const { step, form, id } = this.state;
+    const { widgetConfig, name, description, metadata } = widget;
     // Validate the form
     FORM_ELEMENTS.validate(step);
-    
+
     const valid = FORM_ELEMENTS.isValid(step);
     if (valid) {
       this.setState({ loading: true });
-      const formObj = { ...widget.attributes, ...form };
+      const formObj = {
+        widgetConfig,
+        name,
+        description,
+        ...form
+      };
 
       if (formObj.sourceUrl === '') {
         delete formObj.sourceUrl;
       }
 
       if (id) {
-        this.updateWidget(formObj);
+        this.updateWidget(formObj, metadata);
       } else {
-        this.createWidget(formObj);
+        this.createWidget(formObj, metadata);
       }
     } else {
       toastr.error('Error', 'Fill all the required fields or correct the invalid values');
@@ -146,15 +154,27 @@ class WidgetForm extends PureComponent {
     return newForm;
   }
 
-  createWidget(widget) {
+  createWidget(widget, metadata) {
     const { onSubmit, authorization } = this.props;
     const { form: { dataset } } = this.state;
     createWidgetService(widget, dataset, authorization)
       .then((response) => {
         const { id, name } = response;
-        toastr.success('Success', `The widget "${id}" - "${name}" has been created correctly`);
-        this.setState({ loading: false });
-        if (onSubmit) onSubmit(response);
+        // We need to create the widget metadata now
+        createWidgetMetadata(
+          id,
+          dataset,
+          {
+            language: 'en',
+            info: { caption: metadata.caption }
+          },
+          authorization
+        )
+          .then(() => {
+            toastr.success('Success', `The widget "${id}" - "${name}" has been created correctly`);
+            this.setState({ loading: false });
+            if (onSubmit) onSubmit(response);
+          });
       })
       .catch((error) => {
         this.setState({ loading: false });
@@ -162,14 +182,45 @@ class WidgetForm extends PureComponent {
       });
   }
 
-  updateWidget(widget) {
+  updateWidget(widget, metadata) {
     const { onSubmit, authorization } = this.props;
+    const { widgetMetadata } = this.state;
     updateWidgetService(widget, authorization)
       .then((response) => {
-        const { id, name } = response;
-        toastr.success('Success', `The widget "${id}" - "${name}" has been updated correctly`);
-        this.setState({ loading: false });
-        if (onSubmit) onSubmit(response);
+        const { id, name, dataset } = response;
+        if (widgetMetadata) {
+          // A metadata object already exists for this widget so we have to update it
+          updateWidgetMetadata(
+            id,
+            dataset,
+            {
+              language: 'en',
+              info: { caption: metadata.caption }
+            },
+            authorization
+          )
+            .then(() => {
+              toastr.success('Success', `The widget "${id}" - "${name}" has been updated correctly`);
+              this.setState({ loading: false });
+              if (onSubmit) onSubmit(response);
+            });
+        } else {
+          // There is no metadata for this widget so we need to create it
+          createWidgetMetadata(
+            id,
+            dataset,
+            {
+              language: 'en',
+              info: { caption: metadata.caption }
+            },
+            authorization
+          )
+            .then(() => {
+              toastr.success('Success', `The widget "${id}" - "${name}" has been updated correctly`);
+              this.setState({ loading: false });
+              if (onSubmit) onSubmit(response);
+            });
+        }
       })
       .catch((error) => {
         this.setState({ loading: false });
