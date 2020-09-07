@@ -103,10 +103,10 @@ class WidgetForm extends PureComponent {
     if (valid) {
       this.setState({ loading: true });
       const formObj = {
+        ...form,
         widgetConfig,
         name,
         description,
-        ...form
       };
 
       if (formObj.sourceUrl === '') {
@@ -187,7 +187,7 @@ class WidgetForm extends PureComponent {
   updateWidget(widget, metadata) {
     const { onSubmit, authorization } = this.props;
     const { widgetMetadata } = this.state;
-    
+
     updateWidgetService(widget, authorization)
       .then((response) => {
         const { id, name, dataset } = response;
@@ -196,10 +196,7 @@ class WidgetForm extends PureComponent {
           updateWidgetMetadata(
             id,
             dataset,
-            {
-              language: 'en',
-              info: { caption: metadata && metadata.caption }
-            },
+            widget.metadata[0],
             authorization
           )
             .then(() => {
@@ -214,6 +211,7 @@ class WidgetForm extends PureComponent {
             dataset,
             {
               language: 'en',
+              application: process.env.APPLICATIONS,
               info: { caption: metadata && metadata.caption }
             },
             authorization
