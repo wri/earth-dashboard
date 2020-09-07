@@ -42,7 +42,6 @@ function LayoutHome(props) {
   // data prop of the step
   const onStepEnter = ({ data }) => {
     setCurrentStepIndex(data);
-    console.log('onStepEnter', data);
   };
 
   return (

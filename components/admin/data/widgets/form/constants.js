@@ -57,60 +57,60 @@ export const NEW_WIDGET_TYPES = [LIST_WIDGET_TYPE, COMBINED_WIDGET_TYPE, DYNAMIC
 
 export const LIST_WIDGET_TEMPLATE = {
   type: 'widget',
-  attributes: {
-    name: 'widget-name',
-    description: 'widget-description',
-    widgetConfig: {
-      type: 'list',
-      listWidgetConfig: {
-        heading: 'this-is-the-heading-of-the-list',
-        query: 'enter the data query here',
-        format: '0.2s',
-        bullets: true,
-        numbers: false
-      }
+  name: 'widget-name',
+  description: 'widget-description',
+  widgetConfig: {
+    type: 'list',
+    listWidgetConfig: {
+      heading: 'this-is-the-heading-of-the-list',
+      query: 'enter the data query here',
+      format: '0.2s',
+      bullets: true,
+      numbers: false
     }
   }
 };
 
 export const COMBINED_WIDGET_TEMPLATE = {
   type: 'widget',
-  attributes: {
-    name: 'widget-name',
-    description: 'widget-description',
-    widgetConfig: {
-      type: 'combined',
-      combinedWidgetConfig: {
-        widget1: 'ID of the first widget',
-        widget2: 'ID of the second widget',
-        direction: 'choose betweem the values row/column'
-      }
+  name: 'widget-name',
+  description: 'widget-description',
+  widgetConfig: {
+    type: 'combined',
+    combinedWidgetConfig: {
+      widget1: {
+        id: 'ID of the first widget',
+        percentage: 50
+      },
+      widget2: {
+        id: 'ID of the second widget',
+        percentage: 50
+      },
+      direction: 'choose betweem the values row/column'
     }
   }
 };
 
 export const DYNAMIC_TEXT_WIDGET_TEMPLATE = {
   type: 'widget',
-  attributes: {
-    name: 'widget-name',
-    description: 'widget-description',
-    widgetConfig: {
-      type: 'dynamic-text',
-      dynamicTextWidgetConfig: {
-        text: 'Coral Reefs at risk of bleaching during the year {{year}}: {{percentage}}',
-        parameters: [
-          {
-            key: "year",
-            query: "SELECT....",
-            format: "0.s"
-          },
-          {
-            key: "percentage",
-            query: "SELECT * FROM table {{where}}",
-            format: "0.%"
-          }
-        ]
-      }
+  name: 'widget-name',
+  description: 'widget-description',
+  widgetConfig: {
+    type: 'dynamic-text',
+    dynamicTextWidgetConfig: {
+      text: 'Coral Reefs at risk of bleaching during the year {{year}}: {{percentage}}',
+      parameters: [
+        {
+          key: 'year',
+          query: 'SELECT....',
+          format: '0.s'
+        },
+        {
+          key: 'percentage',
+          query: 'SELECT * FROM table {{where}}',
+          format: '0.%'
+        }
+      ]
     }
   }
 };

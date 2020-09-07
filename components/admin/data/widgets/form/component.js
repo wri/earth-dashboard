@@ -44,7 +44,8 @@ class WidgetForm extends PureComponent {
     form: {
       ...STATE_DEFAULT.form,
       dataset: this.props.dataset
-    }
+    },
+    widgetMetadata: null
   });
 
   UNSAFE_componentWillMount() {
@@ -63,7 +64,7 @@ class WidgetForm extends PureComponent {
     ];
 
     // fetchs the widget if exists
-    if (id) promises.push(fetchWidget(id));
+    if (id) promises.push(fetchWidget(id, { includes: 'metadata' }));
 
     Promise.all(promises)
       .then((response) => {
@@ -80,7 +81,8 @@ class WidgetForm extends PureComponent {
             type: _dataset.type,
             tableName: _dataset.tableName,
             slug: _dataset.slug
-          }))
+          })),
+          widgetMetadata: current.metadata[0]
         });
       })
       .catch((err) => {
@@ -166,7 +168,7 @@ class WidgetForm extends PureComponent {
           dataset,
           {
             language: 'en',
-            info: { caption: metadata.caption }
+            info: { caption: metadata && metadata.caption }
           },
           authorization
         )
@@ -185,6 +187,7 @@ class WidgetForm extends PureComponent {
   updateWidget(widget, metadata) {
     const { onSubmit, authorization } = this.props;
     const { widgetMetadata } = this.state;
+    
     updateWidgetService(widget, authorization)
       .then((response) => {
         const { id, name, dataset } = response;
@@ -195,7 +198,7 @@ class WidgetForm extends PureComponent {
             dataset,
             {
               language: 'en',
-              info: { caption: metadata.caption }
+              info: { caption: metadata && metadata.caption }
             },
             authorization
           )
@@ -211,7 +214,7 @@ class WidgetForm extends PureComponent {
             dataset,
             {
               language: 'en',
-              info: { caption: metadata.caption }
+              info: { caption: metadata && metadata.caption }
             },
             authorization
           )
@@ -224,7 +227,7 @@ class WidgetForm extends PureComponent {
       })
       .catch((error) => {
         this.setState({ loading: false });
-        toastr.error('Tnere was an error', error);
+        toastr.error(`Tnere was an errorerror: ${error}`);
       });
   }
 
