@@ -11,6 +11,7 @@ import Field from 'components/form/Field';
 import Select from 'components/form/SelectInput';
 import Checkbox from 'components/form/Checkbox';
 import RadioGroup from 'components/form/RadioGroup';
+import WidgetPreview from '../preview';
 
 // Utils
 import DefaultTheme from 'utils/widgets/theme';
@@ -43,7 +44,7 @@ class Step1 extends Component {
     const widgetType = form && form.widgetConfig && form.widgetConfig.type;
     const isNewWidgetType = !!id && widgetType &&
       NEW_WIDGET_TYPES.includes(widgetType);
-    const defaultCode = isNewWidgetType ? 
+    const defaultCode = isNewWidgetType ?
       NEW_WIDGET_TYPES_TEMPLATES.find(e => e.id === widgetType).value
       : NEW_WIDGET_TYPES_TEMPLATES[0];
 
@@ -51,16 +52,19 @@ class Step1 extends Component {
       id,
       form,
       showNewWidgetsInterface: !!id && isNewWidgetType,
-      newWidgetTypesEditorCode: !!id ? JSON.stringify(form, null, 5) : JSON.stringify(defaultCode, null, 5)
+      newWidgetTypesEditorCode: id ? JSON.stringify(form, null, 5) : JSON.stringify(defaultCode, null, 5),
+      previewSource: !!id && !!form && form 
     };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
+    const newForm = {
+      ...nextProps.form,
+      dataset: nextProps.form.dataset || nextProps.query.dataset
+    };
     this.setState({
-      form: {
-        ...nextProps.form,
-        dataset: nextProps.form.dataset || nextProps.query.dataset
-      }
+      form: newForm,
+      previewSource: newForm
     });
   }
 
@@ -70,32 +74,33 @@ class Step1 extends Component {
 
   onWidgetTypeTemplateChange = (event) => {
     const newCode = NEW_WIDGET_TYPES_TEMPLATES.find(e => e.id === event.target.value).value;
-    this.setState({
-      newWidgetTypesEditorCode: JSON.stringify(newCode, null, 5)
-    });
+    this.setState({ newWidgetTypesEditorCode: JSON.stringify(newCode, null, 5) });
   }
 
   render() {
-    const { id, showNewWidgetsInterface, newWidgetTypesEditorCode } = this.state;
+    const {
+      id,
+      showNewWidgetsInterface,
+      newWidgetTypesEditorCode,
+      previewSource
+    } = this.state;
     const { user, query, form } = this.props;
     const datasetSelected = this.state.form.dataset;
     const editMode = !!id;
     const widgetType = form && form.widgetConfig && form.widgetConfig.type;
-    const isNewWidgetType = editMode && widgetType && 
+    const isNewWidgetType = editMode && widgetType &&
       NEW_WIDGET_TYPES.includes(widgetType);
 
     // Reset FORM_ELEMENTS
     FORM_ELEMENTS.elements = {};
 
     return (
-      <fieldset className="c-field-container">
+      <fieldset className="c-widget-form-step1 c-field-container">
         <fieldset className="c-field-container">
           {/* DATASET */}
           <Field
             ref={(c) => { if (c) FORM_ELEMENTS.elements.dataset = c; }}
-            onChange={value => this.props.onChange({
-              dataset: value
-            })}
+            onChange={value => this.props.onChange({ dataset: value })}
             validations={['required']}
             className="-fluid"
             options={this.props.datasets}
@@ -178,7 +183,7 @@ class Step1 extends Component {
             <label className="label">Choose a widget type:</label>
             <RadioGroup
               name="show-new-widget-types-interface"
-              properties={{ default: !!isNewWidgetType ? WIDGET_TYPE_NEW : DEFAULT_WIDGET_TYPE_OPTION }}
+              properties={{ default: isNewWidgetType ? WIDGET_TYPE_NEW : DEFAULT_WIDGET_TYPE_OPTION }}
               options={WIDGET_TYPE_OPTIONS}
               onChange={this.onWidgetTypeChange}
             />
@@ -194,7 +199,7 @@ class Step1 extends Component {
             onSave={this.props.onSave}
             theme={DefaultTheme}
             adapter={RwAdapter}
-            authenticated={true}
+            authenticated
             compact={false}
           />
         }
@@ -206,14 +211,13 @@ class Step1 extends Component {
                 onChange={this.onWidgetTypeTemplateChange}
               >
                 {NEW_WIDGET_TYPES_OPTIONS.map(elem =>
-                  <option
+                  (<option
                     key={elem.label}
                     value={elem.value}
                     {...(elem.value === widgetType && { selected: true })}
                   >
                     {elem.label}
-                  </option>
-                )}
+                   </option>))}
               </select>
             </div>
             <div className="json-editor-container">
@@ -222,14 +226,29 @@ class Step1 extends Component {
                 onChange={event => this.setState({ newWidgetTypesEditorCode: event.target.value })}
                 value={newWidgetTypesEditorCode}
               />
-              <div className="widget-preview">
-
-              </div>
+              <WidgetPreview widget={previewSource} />
+            </div>
+            <div className="preview-actions">
+              <button
+                className="c-button -primary"
+                type="button"
+                onClick={() => {
+                  this.setState({ previewSource: JSON.parse(newWidgetTypesEditorCode) });
+                }}
+              >
+                Refresh
+              </button>
             </div>
             <div className="buttons-container">
               <button
                 className="c-button -primary"
-                onClick={() => this.props.onSave(JSON.parse(newWidgetTypesEditorCode))}
+                type="button"
+                onClick={() => {
+                  const widgetObj = JSON.parse(newWidgetTypesEditorCode);
+                  // We need to adapt the widget object syntax so that it's compatible
+                  // with the one returned by the Widget Editor
+                  this.props.onSave(widgetObj);
+                }}
               >
                 Save
               </button>
