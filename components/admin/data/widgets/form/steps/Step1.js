@@ -53,16 +53,18 @@ class Step1 extends Component {
       form,
       showNewWidgetsInterface: !!id && isNewWidgetType,
       newWidgetTypesEditorCode: id ? JSON.stringify(form, null, 5) : JSON.stringify(defaultCode, null, 5),
-      previewSource: null
+      previewSource: !!id && !!form && form 
     };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
+    const newForm = {
+      ...nextProps.form,
+      dataset: nextProps.form.dataset || nextProps.query.dataset
+    };
     this.setState({
-      form: {
-        ...nextProps.form,
-        dataset: nextProps.form.dataset || nextProps.query.dataset
-      }
+      form: newForm,
+      previewSource: newForm
     });
   }
 
