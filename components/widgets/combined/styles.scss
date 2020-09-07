@@ -5,6 +5,10 @@
     min-height: 100%;
     min-width: 100%;
 
+    .widget1-container, .widget2-container {
+        position: relative;
+    }
+
     &.-row {
         flex-direction: row;
 
