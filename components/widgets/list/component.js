@@ -28,7 +28,7 @@ function ListWidget(props) {
       .catch((err) => {
         toastr.error(`There was an error loading the widget ${widget.name} query: ${err}`);
       });
-  }, [query, widget]);
+  }, [widget]);
 
   const ListTag = numbers ? 'ol' : 'ul';
 
