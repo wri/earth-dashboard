@@ -1,0 +1,25 @@
+@import 'css/settings';
+
+.c-list-widget {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+
+    ul, ol {
+        list-style: circle inside;   
+    }
+
+    li {
+        display: flex;
+        margin-left: 5 * $space;
+    }
+
+    ol {
+        list-style-type: decimal;
+    }
+
+    ul {
+        list-style-type: circle;
+    }
+}
