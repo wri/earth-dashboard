@@ -57,16 +57,16 @@ export const NEW_WIDGET_TYPES = [LIST_WIDGET_TYPE, COMBINED_WIDGET_TYPE, DYNAMIC
 
 export const LIST_WIDGET_TEMPLATE = {
   type: 'widget',
-  name: 'widget-name',
+  name: 'Test widget list',
   description: 'widget-description',
   widgetConfig: {
     type: 'list',
     listWidgetConfig: {
-      heading: 'this-is-the-heading-of-the-list',
-      query: 'enter the data query here',
+      heading: 'These are the first 5 values for land temperature: ',
+      query: 'https://api.resourcewatch.org/v1/query/47dc1a1b-2c91-4d69-b04e-ea8c4561e2b5?sql=SELECT date as key , no_smoothing as value FROM cli_044_global_land_temperature ORDER BY no_smoothing desc LIMIT 5',
       format: '0.2s',
-      bullets: true,
-      numbers: false
+      bullets: false,
+      numbers: true
     }
   }
 };

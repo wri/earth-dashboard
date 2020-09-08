@@ -82,7 +82,7 @@ class WidgetForm extends PureComponent {
             tableName: _dataset.tableName,
             slug: _dataset.slug
           })),
-          widgetMetadata: current.metadata[0]
+          widgetMetadata: current && current.metadata[0]
         });
       })
       .catch((err) => {
@@ -106,7 +106,7 @@ class WidgetForm extends PureComponent {
         ...form,
         widgetConfig,
         name,
-        description,
+        description
       };
 
       if (formObj.sourceUrl === '') {

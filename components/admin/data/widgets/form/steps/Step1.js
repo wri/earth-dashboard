@@ -6,15 +6,15 @@ import RwAdapter from '@widget-editor/rw-adapter';
 // Redux
 import { connect } from 'react-redux';
 
+// Utils
+import DefaultTheme from 'utils/widgets/theme';
+
 // Components
 import Field from 'components/form/Field';
 import Select from 'components/form/SelectInput';
 import Checkbox from 'components/form/Checkbox';
 import RadioGroup from 'components/form/RadioGroup';
 import WidgetPreview from '../preview';
-
-// Utils
-import DefaultTheme from 'utils/widgets/theme';
 
 // Constants
 import {
@@ -46,14 +46,14 @@ class Step1 extends Component {
       NEW_WIDGET_TYPES.includes(widgetType);
     const defaultCode = isNewWidgetType ?
       NEW_WIDGET_TYPES_TEMPLATES.find(e => e.id === widgetType).value
-      : NEW_WIDGET_TYPES_TEMPLATES[0];
+      : NEW_WIDGET_TYPES_TEMPLATES[0].value;
 
     this.state = {
       id,
       form,
       showNewWidgetsInterface: !!id && isNewWidgetType,
       newWidgetTypesEditorCode: id ? JSON.stringify(form, null, 5) : JSON.stringify(defaultCode, null, 5),
-      previewSource: !!id && !!form && form 
+      previewSource: !!id && !!form && form
     };
   }
 
