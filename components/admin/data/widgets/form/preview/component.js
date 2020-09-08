@@ -6,6 +6,7 @@ import Renderer from '@widget-editor/renderer';
 // components
 import CombinedWidget from 'components/widgets/combined';
 import ListWidget from 'components/widgets/list';
+import DynamicTextWidget from 'components/widgets/dynamic-text';
 
 // styles
 import './styles.scss';
@@ -18,6 +19,7 @@ function WidgetPreview(props) {
   const isEmbed = widgetType === 'embed';
   const isCombined = widgetType === 'combined';
   const isList = widgetType === 'list';
+  const isDynamicText = widgetType === 'dynamic-text';
   const widgetEmbedUrl = isEmbed && widgetConfig.url;
 
   return (
@@ -43,6 +45,11 @@ function WidgetPreview(props) {
       }
       {isList &&
         <ListWidget
+          widget={widget}
+        />
+      }
+      {isDynamicText &&
+        <DynamicTextWidget
           widget={widget}
         />
       }
