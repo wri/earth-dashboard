@@ -12,9 +12,9 @@ function DynamicTextWidget(props) {
     const { widget } = props;
     const widgetConfig = widget && widget.widgetConfig;
     const dynamicTextWidgetConfig = widgetConfig && widgetConfig.dynamicTextWidgetConfig;
-    const { text, parameters } = dynamicTextWidgetConfig || {};
+    const { text, parameters, style } = dynamicTextWidgetConfig || {};
     const [loading, setLoading] = useState(true);
-    const [completeText, setCompleteText] = useState('');
+    const [textData, setTextData] = useState(null);
 
     useEffect(() => {
         setLoading(true);
@@ -32,20 +32,45 @@ function DynamicTextWidget(props) {
                     newValues[key] = value;
                 });
 
-                const newCompleteText = Object.keys(newValues).reduce(
-                    (acc, currentKey) => acc.replace(`{{${currentKey}}}`, newValues[currentKey]), text);
-                
-                setCompleteText(newCompleteText);
+                const paramRegexp = /\{\{([^\}]+)\}\}/g;
+                const splitArray = text.split(paramRegexp);
+                const paramsFound = text.match(paramRegexp)
+                    .map(e => e.replace(/\{\{/g, '').replace(/\}\}/g, ''));
+
+                setTextData({
+                    splitArray,
+                    paramsFound,
+                    newValues
+                });
             })
             .catch(error => toastr.error(`Error fetching widget queries for ${widget.name}: ${error}`));
       }, [widget]);
 
     
+    const textElements = textData && textData.splitArray
+        .map((currentStr) => {
+            if (textData.paramsFound.includes(currentStr)) {
+                return (
+                    <span 
+                        className="parameter"
+                        style={parameters.find(p => p.key === currentStr).style}
+                    >
+                        {textData.newValues[currentStr]}
+                    </span>);
+            } else {
+                return <span className="text">{currentStr}</span>;
+            }
+        });
     
     return (
-        <div className="c-dynamic-text-widget">
+        <div
+            className="c-dynamic-text-widget"
+            {...(style && { style })}
+        >
             <Spinner isLoading={loading} className="-relative -light" />
-            {completeText}
+            <div className="text-container">
+                {textElements}
+            </div>
         </div>
     );
 }
