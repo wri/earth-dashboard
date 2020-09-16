@@ -30,8 +30,6 @@ function WidgetPreview(props) {
   const isDynamicText = widgetType === DYNAMIC_TEXT_WIDGET_TYPE;
   const widgetEmbedUrl = isEmbed && widgetConfig.url;
 
-  console.log('isNews', isNews, widgetType, NEWS_WIDGET_TYPE);
-
   return (
     <div
       className="c-widget-preview"

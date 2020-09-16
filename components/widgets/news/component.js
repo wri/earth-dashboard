@@ -5,9 +5,15 @@ import Parser from 'rss-parser';
 
 // components
 import Spinner from 'components/ui/Spinner';
+import MongabayNews from './mongabay-news';
+import GuardianNews from './guardian-news';
 
 // constants
-import { CORS_PROXY } from './constants';
+import { 
+    CORS_PROXY,
+    MONGABAY_NEWS_TYPE,
+    GUARDIAN_NEWS_TYPE 
+} from './constants';
 
 // styles
 import './styles.scss';
@@ -18,28 +24,39 @@ function NewsWidget(props) {
     const newsWidgetConfig = widgetConfig && widgetConfig.newsWidgetConfig;
     const { url, type } = newsWidgetConfig || {};
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState(null);
+    const [item, setItem] = useState(null);
+
+    const isMongabay = type === MONGABAY_NEWS_TYPE;
+    const isGuardian = type === GUARDIAN_NEWS_TYPE;
 
     useEffect(() => {
         setLoading(true);
-        
-        const parser = new Parser();
-        parser.parseURL(`${CORS_PROXY}${url}`)
-            .then((response) => {
-                setLoading(false);
-                const post = response.items[0];
-                const { link, title, enclosure: { url: imageURL }, contentSnippet: description} = post;
-                setData({
-                    title,
-                    link,
-                    description,
-                    imageURL
+        const urlWithProxy = `${CORS_PROXY}${url}`;
+                
+        if (isMongabay) {
+            const parser = new Parser();
+            parser.parseURL(urlWithProxy)
+                .then((response) => {
+                    setLoading(false);
+                    setItem(response.items[0]);
+                })
+                .catch((error) => {
+                    toastr.error(`There was an error loading the news widget ${widget.id}: ${error}`);
+                    setLoading(false);
                 });
-            })
-            .catch((error) => {
-                toastr.error(`There was an error loading the news widget ${widget.id}: ${error}`);
-                setLoading(false);
-            });
+        } else if (isGuardian) {
+            fetch(url)
+                .then(response => response.json())
+                .then((response) => {
+                    setLoading(false);
+                    setItem(response.response.content);
+                })
+                .catch((error) => {
+                    toastr.error(`There was an error loading the news widget ${widget.id}: ${error}`);
+                    setLoading(false);
+                });
+        }
+        
         
       }, [widget]);
 
@@ -48,20 +65,11 @@ function NewsWidget(props) {
     return (
         <div className="c-news-widget">
             <Spinner isLoading={loading} className="-relative -light" />
-            {data && 
-                <div className="news-container">
-                    <div className="image-container">
-                        <img src={data.imageURL} />
-                    </div>
-                    <div className="text-container">
-                        <h3>
-                            <a href={data.link} target="_blank">
-                                {data.title}
-                            </a>
-                        </h3>
-                        <p>{data.description}</p>
-                    </div>
-                </div>
+            {item && type === MONGABAY_NEWS_TYPE &&
+                <MongabayNews item={item} />
+            }
+            {item && type === GUARDIAN_NEWS_TYPE &&
+                <GuardianNews item={item} />
             }
         </div>
     );
