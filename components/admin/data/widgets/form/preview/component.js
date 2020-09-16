@@ -7,6 +7,13 @@ import Renderer from '@widget-editor/renderer';
 import CombinedWidget from 'components/widgets/combined';
 import ListWidget from 'components/widgets/list';
 import DynamicTextWidget from 'components/widgets/dynamic-text';
+import NewsWidget from 'components/widgets/news';
+import { 
+  LIST_WIDGET_TYPE,
+  COMBINED_WIDGET_TYPE,
+  NEWS_WIDGET_TYPE,
+  DYNAMIC_TEXT_WIDGET_TYPE
+} from '../constants';
 
 // styles
 import './styles.scss';
@@ -17,9 +24,10 @@ function WidgetPreview(props) {
   const widgetType = widgetConfig && (widgetConfig.type || 'chart');
   const useRenderer = ['map', 'chart'].includes(widgetType);
   const isEmbed = widgetType === 'embed';
-  const isCombined = widgetType === 'combined';
-  const isList = widgetType === 'list';
-  const isDynamicText = widgetType === 'dynamic-text';
+  const isCombined = widgetType ===   COMBINED_WIDGET_TYPE;
+  const isList = widgetType === LIST_WIDGET_TYPE;
+  const isNews = widgetType === NEWS_WIDGET_TYPE;
+  const isDynamicText = widgetType === DYNAMIC_TEXT_WIDGET_TYPE;
   const widgetEmbedUrl = isEmbed && widgetConfig.url;
 
   return (
@@ -50,6 +58,11 @@ function WidgetPreview(props) {
       }
       {isDynamicText &&
         <DynamicTextWidget
+          widget={widget}
+        />
+      }
+      {isNews && 
+        <NewsWidget
           widget={widget}
         />
       }

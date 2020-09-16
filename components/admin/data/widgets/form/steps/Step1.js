@@ -63,8 +63,7 @@ class Step1 extends Component {
       dataset: nextProps.form.dataset || nextProps.query.dataset
     };
     this.setState({
-      form: newForm,
-      previewSource: newForm
+      form: newForm
     });
   }
 

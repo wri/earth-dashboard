@@ -111,6 +111,7 @@
     "redux-thunk": "2.1.0",
     "redux-tools": "github:vizzuality/redux-tools#3.3.0",
     "reselect": "3.0.1",
+    "rss-parser": "^3.9.0",
     "serve-static": "^1.13.2",
     "three": "0.83.0",
     "use-debounce": "^2.1.0",

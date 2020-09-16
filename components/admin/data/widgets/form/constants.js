@@ -53,7 +53,26 @@ export const DEFAULT_WIDGET_TYPE_OPTION = 'standard';
 export const LIST_WIDGET_TYPE = 'list';
 export const COMBINED_WIDGET_TYPE = 'combined';
 export const DYNAMIC_TEXT_WIDGET_TYPE = 'dynamic-text';
-export const NEW_WIDGET_TYPES = [LIST_WIDGET_TYPE, COMBINED_WIDGET_TYPE, DYNAMIC_TEXT_WIDGET_TYPE];
+export const NEWS_WIDGET_TYPE = 'news';
+export const NEW_WIDGET_TYPES = [
+  LIST_WIDGET_TYPE,
+  COMBINED_WIDGET_TYPE,
+  DYNAMIC_TEXT_WIDGET_TYPE,
+  NEWS_WIDGET_TYPE
+];
+
+export const NEWS_WIDGET_TEMPLATE = {
+  type: 'widget',
+  name: 'Test news widget',
+  description: 'widget-description',
+  widgetConfig: {
+    type: 'news',
+    newsWidgetConfig: {
+      url: 'https://news.mongabay.com/2020/09/crisis-in-venezuela-non-governmental-organizations-adapt-to-survive/feed/',
+      type: 'mongabay'
+    }
+  }
+};
 
 export const LIST_WIDGET_TEMPLATE = {
   type: 'widget',
@@ -127,6 +146,10 @@ export const NEW_WIDGET_TYPES_TEMPLATES = [
   {
     id: DYNAMIC_TEXT_WIDGET_TYPE,
     value: DYNAMIC_TEXT_WIDGET_TEMPLATE
+  },
+  {
+    id: NEWS_WIDGET_TYPE,
+    value: NEWS_WIDGET_TEMPLATE
   }
 ];
 
@@ -142,5 +165,9 @@ export const NEW_WIDGET_TYPES_OPTIONS = [
   {
     label: 'Dynamic text',
     value: DYNAMIC_TEXT_WIDGET_TYPE
+  },
+  {
+    label: 'News',
+    value: NEWS_WIDGET_TYPE
   }
 ];
