@@ -6,6 +6,16 @@
     .header-section {
         padding: 40px;
     }
+    .highlighted-widgets-section {
+        padding: 40px;
+        .widget-box {
+            height: 400px;
+            padding: $space;
+            > .c-widget-preview {
+                border: solid 1px black;
+            }
+        }
+    }
     .story-section {
         overflow: initial;
         padding: 40px;

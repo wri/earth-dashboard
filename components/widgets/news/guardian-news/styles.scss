@@ -1,5 +1,15 @@
 @import 'css/settings';
 
 .c-guardian-news {
-    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .image-container {
+        max-height: 140px;
+        img {
+            height: 100%;
+        }
+    }
 }

@@ -106,7 +106,7 @@ class Step1 extends Component {
             properties={{
               name: 'dataset',
               label: 'Dataset',
-              default: query.dataset,
+              default: this.state.form.dataset || query.dataset,
               value: this.state.form.dataset || query.dataset,
               disabled: !!id,
               required: true,

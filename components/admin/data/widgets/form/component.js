@@ -65,7 +65,6 @@ function WidgetForm(props) {
     .then((widgetResponse) => {
       setWidget(widgetResponse);
       setForm(widgetResponse);
-      console.log('hey!!! ');
       if (datasets.length === 0) {
         // we need to load the widget dataset
         fetchDataset(widgetResponse.dataset)
@@ -99,7 +98,7 @@ function WidgetForm(props) {
     const { widgetConfig, name, description, metadata } = widget;
     // Validate the form
     FORM_ELEMENTS.validate();
-    const valid = FORM_ELEMENTS.isValid(step);
+    const valid = FORM_ELEMENTS.isValid();
     if (valid) {
       setLoading(true);
       const formObj = {
@@ -222,8 +221,6 @@ function WidgetForm(props) {
       }
     });
   };
-
-  console.log('form 0', form);
 
   return (
     <form className="c-form c-widget-form" noValidate>

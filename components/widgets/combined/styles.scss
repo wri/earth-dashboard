@@ -7,17 +7,15 @@
 
     .widget1-container, .widget2-container {
         position: relative;
+        padding: $space;
+        overflow: auto;
     }
 
     &.-row {
         flex-direction: row;
 
         .widget1-container, .widget1-container {
-            min-height: '100%';
-        }
-
-        .widget1-container {
-            margin-right: 2 * $space;
+            min-height: 100%;
         }
     }
 
@@ -25,11 +23,7 @@
         flex-direction: column;
 
         .widget1-container, .widget2-container {
-            min-width: '100%'
-        }
-
-        .widget1-container {
-            margin-bottom: 2 * $space;
+            min-width: 100%
         }
     }
 }

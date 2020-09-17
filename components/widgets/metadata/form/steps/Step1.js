@@ -91,7 +91,14 @@ class Step1 extends React.Component {
           {/* CAPTION */}
           <Field
             ref={(c) => { if (c) FORM_ELEMENTS.elements.caption = c; }}
-            onChange={value => this.props.onChange({ info: Object.assign({}, this.state.form.info, { caption: value }) })}
+            onChange={value => this.props.onChange(
+              { 
+                info: {
+                  ...this.state.form.info,
+                  caption: value 
+                }
+              }
+            )}
             className="-fluid"
             properties={{
               name: 'caption',
@@ -102,6 +109,44 @@ class Step1 extends React.Component {
             }}
           >
             {Input}
+          </Field>
+          {/* HIGHLIGHTED */}
+          <Field
+            ref={(c) => { if (c) FORM_ELEMENTS.elements.highlighted = c; }}
+            onChange={value => this.props.onChange(
+              { 
+                info: {
+                  ...this.state.form.info,
+                  highlighted: value.checked
+                }
+              }
+            )}
+            properties={{
+              name: 'highlighted',
+              title: 'Highlighted',
+              checked: info.highlighted
+            }}
+          >
+            {Checkbox}
+          </Field>
+          {/* ARCHIVED */}
+          <Field
+            ref={(c) => { if (c) FORM_ELEMENTS.elements.archived = c; }}
+            onChange={value => this.props.onChange(
+              { 
+                info: {
+                  ...this.state.form.info,
+                  archived: value.checked
+                }
+              }
+            )}
+            properties={{
+              name: 'archived',
+              title: 'Archived',
+              checked: info.archived
+            }}
+          >
+            {Checkbox}
           </Field>
           {/*
           *****************************************************

@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
 // import PropTypes from 'prop-types';
 // import classnames from 'classnames';
 // import { Link, Router } from 'routes';
+
+// services
+import { fetchWidgets } from 'services/widget';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -11,6 +14,7 @@ import Trees from 'components/scrolly-telling/visualizations/trees';
 
 // styles
 import './styles.scss';
+import WidgetPreview from 'components/admin/data/widgets/form/preview';
 
 const VISUALIZATION_SOURCES = [
   <Trees data={[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]} width={500} height={400} />,
@@ -36,6 +40,7 @@ const STEPS_CONTENT = [
 
 function LayoutHome(props) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [highlightedWidgets, setHighlightedWidgets] = useState([]);
   const isBrowser = typeof window !== 'undefined';
 
   // This callback fires when a Step hits the offset threshold. It receives the
@@ -43,6 +48,21 @@ function LayoutHome(props) {
   const onStepEnter = ({ data }) => {
     setCurrentStepIndex(data);
   };
+
+  useEffect(() => {
+    fetchWidgets({
+      includes: 'metadata',
+      application: process.env.APPLICATIONS,
+      env: process.env.API_ENV
+    })
+      .then((widgets) => {
+        setHighlightedWidgets(widgets.filter((widget) => {
+          const metadata = widget.metadata;
+          return metadata && metadata.length > 0 && metadata[0].info &&
+            metadata[0].info.highlighted
+        }));
+      });
+  }, []);
 
   return (
     <Layout
@@ -55,7 +75,24 @@ function LayoutHome(props) {
         className="header-section"
       >
         <h1>Earth Dashboard</h1>
+      </section>
 
+      <section
+        className="highlighted-widgets-section"
+      >
+        <h2>Highlighted widgets</h2>
+        <div className="highlighted-widgets-container">
+          <div className="row">
+            { highlightedWidgets.map(hw => 
+              <div
+                key={`widget-box-${hw.id}`}
+                className="column small-12 medium-6 widget-box"
+              >
+                <WidgetPreview widget={hw} />
+              </div>
+            )}
+          </div>
+        </div>
       </section>
 
       {isBrowser &&
