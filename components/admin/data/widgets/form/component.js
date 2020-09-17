@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
 import { Router } from 'routes';
@@ -8,7 +8,7 @@ import Step1 from 'components/admin/data/widgets/form/steps/Step1';
 import Spinner from 'components/ui/Spinner';
 
 // services
-import { fetchDatasets } from 'services/dataset';
+import { fetchDatasets, fetchDataset } from 'services/dataset';
 import {
   fetchWidget,
   deleteWidget,
@@ -19,89 +19,88 @@ import {
 } from 'services/widget';
 
 // constants
-import { STATE_DEFAULT, FORM_ELEMENTS } from './constants';
+import { FORM_ELEMENTS } from './constants';
 
 // styles
 import './styles.scss';
 
-class WidgetForm extends PureComponent {
-  static propTypes = {
-    authorization: PropTypes.string.isRequired,
-    id: PropTypes.string,
-    onSubmit: PropTypes.func.isRequired,
-    locale: PropTypes.string.isRequired,
-    dataset: PropTypes.string
-  };
+function WidgetForm(props) {
+  const { id } = props;
+  const [loading, setLoading] = useState(false);
+  const [datasets, setDatasets] = useState([]);
+  const [widget, setWidget] = useState(null);
+  const [form, setForm] = useState({});
 
-  static defaultProps = {
-    id: null,
-    dataset: null
-  };
+  useEffect(() => {
+    const editionMode = !!id;
+    setLoading(true);
 
-  state = Object.assign({}, STATE_DEFAULT, {
-    id: this.props.id,
-    loading: !!this.props.id,
-    form: {
-      ...STATE_DEFAULT.form,
-      dataset: this.props.dataset
-    },
-    widgetMetadata: null
-  });
-
-  UNSAFE_componentWillMount() {
-    const { locale } = this.props;
-    const { id } = this.state;
-
-    const promises = [
+    // ----- EDITION MODE ------
+    if (editionMode) {
+      loadWidget(id);
+    }
+    // ------- NEW WIDGET MODE ------
+    else {
       // TO-DO: replace this for a dynamic search or lazy loading
       fetchDatasets({
         application: [process.env.APPLICATIONS].join(','),
-        language: locale,
         'page[size]': 9999999,
         sort: 'name',
-        env: process.env.API_ENV
+        env: process.env.API_ENV,
+        includes: 'metadata'
       })
-    ];
-
-    // fetchs the widget if exists
-    if (id) promises.push(fetchWidget(id, { includes: 'metadata' }));
-
-    Promise.all(promises)
-      .then((response) => {
-        const datasets = response[0];
-        const current = response[1];
-
-        this.setState({
-          // current widget
-          form: id ? this.setFormFromParams(current) : this.state.form,
-          loading: false,
-          datasets: datasets.map(_dataset => ({
-            label: _dataset.name,
-            value: _dataset.id,
-            type: _dataset.type,
-            tableName: _dataset.tableName,
-            slug: _dataset.slug
-          })),
-          widgetMetadata: current && current.metadata[0]
+        .then((datasetsResponse) => {
+          setDatasets(datasetsResponse.map(_dataset => mapDataset(_dataset)));
+          setLoading(false);
+        })
+        .catch((error) => {
+          setLoading(false);
+          toastr.error(`There was an error loading the datasets ${error}`);
         });
-      })
-      .catch((err) => {
-        this.setState({ loading: false }, () => {
-          toastr.error('Something went wrong', err.message);
-        });
-      });
-  }
+    }
+  }, [id]);
 
+  const loadWidget = (id) => {
+    fetchWidget(id, { includes: 'metadata' })
+    .then((widgetResponse) => {
+      setWidget(widgetResponse);
+      setForm(widgetResponse);
+      if (datasets.length === 0) {
+        // we need to load the widget dataset
+        fetchDataset(widgetResponse.dataset)
+          .then((dataset) => {
+            setDatasets([mapDataset(dataset)]);
+            setLoading(false);
+          })
+          .catch((error) => {
+            setLoading(false);
+            toastr.error(`There was an error loading the dataset with ID ${widgetResponse.dataset}: ${error}`);
+          });
+      } else {
+        setLoading(false);
+      }
+    })
+    .catch((error) => {
+      setLoading(false);
+      toastr.error(`There was an error loading the widget with ID ${id}: ${error}`);
+    });
+  };
 
-  onWidgetSave = (widget) => {
-    const { step, form, id } = this.state;
+  const mapDataset = (datasetValue) => ({
+    label: datasetValue.name,
+    value: datasetValue.id,
+    type: datasetValue.type,
+    tableName: datasetValue.tableName,
+    slug: datasetValue.slug
+  });
+
+  const onWidgetSave = (widget) => {
     const { widgetConfig, name, description, metadata } = widget;
     // Validate the form
-    FORM_ELEMENTS.validate(step);
-
-    const valid = FORM_ELEMENTS.isValid(step);
+    FORM_ELEMENTS.validate();
+    const valid = FORM_ELEMENTS.isValid();
     if (valid) {
-      this.setState({ loading: true });
+      setLoading(true);
       const formObj = {
         ...form,
         widgetConfig,
@@ -114,51 +113,25 @@ class WidgetForm extends PureComponent {
       }
 
       if (id) {
-        this.updateWidget(formObj, metadata);
+        updateWidget(formObj, metadata);
       } else {
-        this.createWidget(formObj, metadata);
+        createWidget(formObj, metadata);
       }
     } else {
       toastr.error('Error', 'Fill all the required fields or correct the invalid values');
     }
-  }
+  };
 
-  /**
-   * UI EVENTS
-   * - onChange
-   */
-  onChange = (obj) => {
-    const form = Object.assign({}, this.state.form, obj);
-    this.setState({ form });
-  }
-  onStepChange = (step) => {
-    this.setState({ step });
-  }
-
-  // HELPERS
-  setFormFromParams(params) {
-    const newForm = {};
-
-    Object.keys(params).forEach((f) => {
-      switch (f) {
-        default: {
-          if (
-            typeof params[f] !== 'undefined' ||
-            params[f] !== null ||
-            (typeof this.state.form[f] !== 'undefined' || this.state.form[f] !== null)
-          ) {
-            newForm[f] = params[f] || this.state.form[f];
-          }
-        }
-      }
+  const onChange = (obj) => {
+    setForm({
+      ...form,
+      ...obj
     });
+  };
 
-    return newForm;
-  }
-
-  createWidget(widget, metadata) {
-    const { onSubmit, authorization } = this.props;
-    const { form: { dataset } } = this.state;
+  const createWidget = (widget, metadata) => {
+    const { onSubmit, authorization } = props;
+    const { dataset } = form;
     createWidgetService(widget, dataset, authorization)
       .then((response) => {
         const { id, name } = response;
@@ -174,34 +147,33 @@ class WidgetForm extends PureComponent {
         )
           .then(() => {
             toastr.success('Success', `The widget "${id}" - "${name}" has been created correctly`);
-            this.setState({ loading: false });
+            setLoading(false);
             if (onSubmit) onSubmit(response);
           });
       })
       .catch((error) => {
-        this.setState({ loading: false });
+        setLoading(false);
         toastr.error('Tnere was an error', error);
       });
-  }
+  };
 
-  updateWidget(widget, metadata) {
-    const { onSubmit, authorization } = this.props;
-    const { widgetMetadata } = this.state;
+  const updateWidget = (widget, metadata) => {
+    const { onSubmit, authorization } = props;
 
     updateWidgetService(widget, authorization)
       .then((response) => {
         const { id, name, dataset } = response;
-        if (widgetMetadata) {
+        if (widget.metadata && widget.metadata.length > 0) {
           // A metadata object already exists for this widget so we have to update it
           updateWidgetMetadata(
             id,
             dataset,
-            widget.metadata[0],
+            metadata[0],
             authorization
           )
             .then(() => {
               toastr.success('Success', `The widget "${id}" - "${name}" has been updated correctly`);
-              this.setState({ loading: false });
+              setLoading(false);
               if (onSubmit) onSubmit(response);
             });
         } else {
@@ -218,20 +190,20 @@ class WidgetForm extends PureComponent {
           )
             .then(() => {
               toastr.success('Success', `The widget "${id}" - "${name}" has been updated correctly`);
-              this.setState({ loading: false });
+              setLoading(false);
               if (onSubmit) onSubmit(response);
             });
         }
       })
       .catch((error) => {
-        this.setState({ loading: false });
-        toastr.error(`Tnere was an errorerror: ${error}`);
+        setLoading(false);
+        toastr.error(`Tnere was an error: ${error}`);
       });
-  }
+  };
 
-  handleDelete = () => {
-    const { form: { name, dataset, id } } = this.state;
-    const { authorization } = this.props;
+  const handleDelete = () => {
+    const { name, dataset, id } = form;
+    const { authorization } = props;
 
     toastr.confirm(`Are you sure that you want to delete the widget: "${name}"`, {
       onOk: () => {
@@ -248,31 +220,35 @@ class WidgetForm extends PureComponent {
           });
       }
     });
-  }
+  };
 
-  render() {
-    const {
-      step,
-      loading,
-      id,
-      form,
-      datasets
-    } = this.state;
-    return (
-      <form className="c-form c-widget-form" noValidate>
-        <Spinner isLoading={loading} className="-light" />
-        {step === 1 && !loading && (
-          <Step1
-            id={id}
-            form={form}
-            datasets={datasets}
-            onChange={value => this.onChange(value)}
-            onSave={this.onWidgetSave}
-          />
-        )}
-      </form>
-    );
-  }
+  return (
+    <form className="c-form c-widget-form" noValidate>
+      <Spinner isLoading={loading} className="-light" />
+      {!loading && (
+        <Step1
+          id={id}
+          form={form}
+          datasets={datasets}
+          onChange={value => onChange(value)}
+          onSave={onWidgetSave}
+        />
+      )}
+    </form>
+  );
+
 }
+
+WidgetForm.propTypes = {
+  authorization: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+  dataset: PropTypes.string
+};
+
+WidgetForm.defaultProps = {
+  id: null,
+  dataset: null
+};
 
 export default WidgetForm;

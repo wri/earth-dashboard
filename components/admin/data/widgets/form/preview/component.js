@@ -30,6 +30,8 @@ function WidgetPreview(props) {
   const isDynamicText = widgetType === DYNAMIC_TEXT_WIDGET_TYPE;
   const widgetEmbedUrl = isEmbed && widgetConfig.url;
 
+  console.log('WP widget', widget);
+  console.log('WP widgettype', widgetType);
   return (
     <div
       className="c-widget-preview"

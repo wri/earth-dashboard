@@ -89,7 +89,7 @@ class MetadataForm extends React.Component {
 
         // Remove the id field
         const formObj = this.state.form;
-        formObj.info.widgetLinks = formObj.info.widgetLinks.map(elem =>
+        formObj.info.widgetLinks = formObj.info.widgetLinks && formObj.info.widgetLinks.map(elem =>
           ({ link: elem.link, name: elem.name }));
 
         if (widget && thereIsMetadata) {

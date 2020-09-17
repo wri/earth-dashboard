@@ -39,6 +39,9 @@ function CombinedWidget(props) {
 
         setLoading(false);
 
+        console.log('widgetObj1', widgetObj1);
+        console.log('widgetObj2', widgetObj2);
+
         setWidgets({
           widget1: widgetObj1,
           widget2: widgetObj2
@@ -56,6 +59,7 @@ function CombinedWidget(props) {
     '-column': !directionIsRow
   });
 
+  console.log('widgets', widgets);
   return (
     <div className={mainClassname}>
       {loading && <Spinner isLoading={loading} className="-relative -light" />}

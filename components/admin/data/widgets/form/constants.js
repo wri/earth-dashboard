@@ -1,21 +1,3 @@
-export const STATE_DEFAULT = {
-  step: 1,
-  stepLength: 1,
-  submitting: false,
-  loading: false,
-  partners: [],
-  form: {
-    // STEP 1
-    application: [process.env.APPLICATIONS],
-    dataset: null,
-    source: '',
-    sourceUrl: '',
-    authors: '',
-    default: false,
-    published: false
-  }
-};
-
 export const FORM_ELEMENTS = {
   elements: {},
   validate() {
