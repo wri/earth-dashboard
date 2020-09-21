@@ -17,8 +17,6 @@ import Select from 'components/form/SelectInput';
 import Checkbox from 'components/form/Checkbox';
 import Title from 'components/ui/Title';
 import Spinner from 'components/ui/Spinner';
-import Modal from 'components/modal/modal-component';
-import TrySubscriptionModal from 'components/datasets/form/try-subscription-modal';
 import SortingLayerManager from '../sorting-layer-manager';
 
 class Step1 extends PureComponent {
@@ -44,9 +42,7 @@ class Step1 extends PureComponent {
     dataset: this.props.dataset,
     dataDataset: this.props.dataDataset,
     form: this.props.form,
-    carto: {},
-    subscribableSelected: this.props.form.subscribable.length > 0,
-    activeSubscriptionModal: null
+    carto: {}
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -63,32 +59,6 @@ class Step1 extends PureComponent {
   onLegendChange(obj) {
     const legend = Object.assign({}, this.props.form.legend, obj);
     this.props.onChange({ legend });
-  }
-
-  onSubscribableChange(obj) {
-    let { subscribable } = this.props.form;
-
-    subscribable = subscribable.map((s) => {
-      if (s.id === obj.id) {
-        return Object.assign({}, s, obj);
-      }
-      return s;
-    });
-
-    this.props.onChange({ subscribable });
-  }
-
-  onSubscribableCheckboxChange(checked) {
-    this.setState({ subscribableSelected: checked });
-    if (checked) {
-      this.props.onChange({ subscribable: [{ type: '', value: '', id: 0 }] });
-    } else {
-      this.props.onChange({ subscribable: [] });
-    }
-  }
-
-  onToggleSubscribableModal(id) {
-    this.setState({ activeSubscriptionModal: id });
   }
 
   setProviderOptions() {
@@ -114,19 +84,6 @@ class Step1 extends PureComponent {
 
     return basic ? compact(options) : options;
   }
-
-  handleRemoveSubscription(id) {
-    let { subscribable } = this.state.form;
-    subscribable = subscribable.filter(s => s.id !== id);
-
-    this.props.onChange({ subscribable });
-  }
-
-  handleAddSubscription = () => {
-    const { subscribable } = this.state.form;
-    subscribable.push({ type: '', value: '', id: Date.now() });
-    this.props.onChange({ subscribable });
-  };
 
   handleSortLayer = (layers) => {
     const { dataDataset: { applicationConfig } } = this.state;
@@ -156,7 +113,7 @@ class Step1 extends PureComponent {
 
   render() {
     const { user, columns, loadingColumns, basic, sortedLayers, authorization } = this.props;
-    const { dataset, subscribableSelected } = this.state;
+    const { dataset } = this.state;
     const { provider, columnFields, application } = this.state.form;
 
     // Reset FORM_ELEMENTS
@@ -601,174 +558,6 @@ class Step1 extends PureComponent {
             >
               {Input}
             </Field>
-          )}
-
-          {/*
-           *****************************************************
-           ****************** SUBSCRIBABLE ****************
-           *****************************************************
-           */}
-
-          {user.role === 'ADMIN' && !basic && (
-            <Field
-              ref={(c) => {
-                if (c) FORM_ELEMENTS.elements.subscribable = c;
-              }}
-              onChange={value => this.onSubscribableCheckboxChange(value.checked)}
-              properties={{
-                name: 'subscribable',
-                title: 'Subscribable',
-                checked: Object.keys(this.state.form.subscribable).length > 0
-              }}
-            >
-              {Checkbox}
-            </Field>
-          )}
-
-          {subscribableSelected && this.state.form.subscribable.length && (
-            <h3>Subscriptions ({this.state.form.subscribable.length})</h3>
-          )}
-
-          {subscribableSelected && (
-            <div>
-              {this.state.form.subscribable.map(elem => (
-                <div className="c-field-row subscription-container" key={elem.id}>
-                  <div className="l-row row">
-                    <div className="column small-12">
-                      <Field
-                        ref={(c) => {
-                          if (c) FORM_ELEMENTS.elements.subscribableType = c;
-                        }}
-                        onChange={type =>
-                          this.onSubscribableChange({
-                            type,
-                            id: elem.id
-                          })
-                        }
-                        validations={[
-                          'required',
-                          {
-                            type: 'unique',
-                            value: elem.type,
-                            default: elem.type,
-                            condition: 'type',
-                            data: this.state.form.subscribable
-                          }
-                        ]}
-                        className="-fluid"
-                        properties={{
-                          name: 'subscribableType',
-                          label: 'Type',
-                          type: 'text',
-                          default: elem.type,
-                          required: true
-                        }}
-                      >
-                        {Input}
-                      </Field>
-                    </div>
-
-                    <div className="column small-12">
-                      <Field
-                        ref={(c) => {
-                          if (c) FORM_ELEMENTS.elements.dataQuery = c;
-                        }}
-                        onChange={dataQuery =>
-                          this.onSubscribableChange({ dataQuery, id: elem.id })
-                        }
-                        validations={['required']}
-                        className="-fluid"
-                        button={
-                          <button
-                            type="button"
-                            className="c-button -secondary"
-                            onClick={() => this.onToggleSubscribableModal(elem.id)}
-                          >
-                            Try it
-                          </button>
-                        }
-                        properties={{
-                          name: 'dataQuery',
-                          label: 'Data query',
-                          type: 'text',
-                          default: elem.dataQuery,
-                          required: true
-                        }}
-                      >
-                        {Input}
-                      </Field>
-
-                      {this.state.activeSubscriptionModal === elem.id && (
-                        <Modal isOpen onRequestClose={() => this.onToggleSubscribableModal(null)}>
-                          <TrySubscriptionModal query={elem.dataQuery} />
-                        </Modal>
-                      )}
-                    </div>
-
-                    <div className="column small-12">
-                      <Field
-                        ref={(c) => {
-                          if (c) FORM_ELEMENTS.elements.subscriptionQuery = c;
-                        }}
-                        onChange={subscriptionQuery =>
-                          this.onSubscribableChange({ subscriptionQuery, id: elem.id })
-                        }
-                        validations={['required']}
-                        className="-fluid"
-                        button={
-                          <button
-                            type="button"
-                            className="c-button -secondary"
-                            onClick={() => this.onToggleSubscribableModal(elem.id)}
-                          >
-                            Try it
-                          </button>
-                        }
-                        properties={{
-                          name: 'subscriptionQuery',
-                          label: 'Subscription query',
-                          type: 'text',
-                          default: elem.subscriptionQuery,
-                          required: true
-                        }}
-                      >
-                        {Input}
-                      </Field>
-
-                      {this.state.activeSubscriptionModal === elem.id && (
-                        <Modal isOpen onRequestClose={() => this.onToggleSubscribableModal(null)}>
-                          <TrySubscriptionModal query={elem.subscriptionQuery} />
-                        </Modal>
-                      )}
-                    </div>
-
-                    <div className="column small-12 remove-subscribable-container">
-                      <button
-                        type="button"
-                        className="c-button -secondary"
-                        onClick={() => this.handleRemoveSubscription(elem.id)}
-                        disabled={this.state.form.subscribable.length === 1}
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              <div className="c-field-row">
-                <div className="l-row row">
-                  <div className="column small-12 add-subscribable-container">
-                    <button
-                      type="button"
-                      className="c-button -secondary -fullwidth"
-                      onClick={this.handleAddSubscription}
-                    >
-                      Add subscription
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
           )}
 
           {/*

@@ -22,7 +22,6 @@ import * as shareModal from 'components/modal/share-modal';
 // Dataset
 import * as datasetListItem from 'components/datasets/list/list-item';
 import * as similarDatasets from 'components/datasets/similar-datasets/similar-datasets';
-import * as trySubscriptionModal from 'components/datasets/form/try-subscription-modal';
 
 // Admin Interactions
 import * as adminInteractions from 'components/admin/data/layers/form/interactions';
@@ -50,7 +49,6 @@ const reducer = combineReducers({
   // Dataset
   datasetListItem: handleModule(datasetListItem),
   similarDatasets: handleModule(similarDatasets),
-  trySubscriptionModal: handleModule(trySubscriptionModal),
 
   // Admin interactions
   interactions: handleModule(adminInteractions),
