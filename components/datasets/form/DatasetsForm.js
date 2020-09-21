@@ -136,25 +136,14 @@ class DatasetsForm extends PureComponent {
 
           let bodyObj = omit(form, requestOptions.omit);
 
-          bodyObj.subscribable = {};
-          form.subscribable.forEach((_subscription) => {
-            bodyObj.subscribable[_subscription.type] = Object.assign(
-              {},
-              {
-                dataQuery: _subscription.dataQuery,
-                subscriptionQuery: _subscription.subscriptionQuery
-              }
-            );
-          });
-
           // every updated dataset will contain set the layer order in its config
           // if it doesn't previously
           if (
             dataset &&
             layers.length &&
             (!bodyObj.applicationConfig ||
-            !bodyObj.applicationConfig[process.env.APPLICATIONS] ||
-            !bodyObj.applicationConfig[process.env.APPLICATIONS].layerOrder)
+              !bodyObj.applicationConfig[process.env.APPLICATIONS] ||
+              !bodyObj.applicationConfig[process.env.APPLICATIONS].layerOrder)
           ) {
             bodyObj = {
               ...bodyObj,
@@ -216,25 +205,15 @@ class DatasetsForm extends PureComponent {
   }
 
   // HELPERS
-  setFormFromParams(params) {    
+  setFormFromParams(params) {
     const form = Object.keys(this.state.form);
     const newForm = {};
 
     form.forEach((f) => {
       if (params[f] || this.state.form[f]) {
-        if (f === 'subscribable') {
-          const subscribable = params[f] || this.state.form[f];
-          newForm.subscribable = Object.keys(subscribable).map((prop, i) => ({
-            type: prop,
-            dataQuery: subscribable[prop].dataQuery,
-            subscriptionQuery: subscribable[prop].subscriptionQuery,
-            id: i
-          }));
-        } else {
-          newForm[f] = params[f] || this.state.form[f];
-        }
+        newForm[f] = params[f] || this.state.form[f];
       }
-    });    
+    });
     return newForm;
   }
 
