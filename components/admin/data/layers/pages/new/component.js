@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 // components
 import LayersForm from 'components/admin/data/layers/form/LayersForm';
 
+// styles
+import './styles.scss';
+
 class LayersNew extends PureComponent {
   static propTypes = {
     dataset: PropTypes.string,

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Aside from 'components/ui/Aside';
 import DatasetsForm from 'components/datasets/form/DatasetsForm';
 import DatasetMetadataForm from 'components/datasets/metadata/form';
-import TagsForm from 'components/admin/tags/TagsForm';
+import TagsForm from 'components/admin/tags/form';
 import WidgetsIndex from 'components/admin/data/widgets/pages/list';
 import LayersIndex from 'components/admin/data/layers/pages/list';
 

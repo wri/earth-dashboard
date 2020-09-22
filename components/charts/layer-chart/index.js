@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MapThumbnail from 'components/ui/map/map-thumbnail';
 
+// styles
+import './styles.scss';
+
 function DatasetLayerChart(props) {
   const { layer } = props;
 

@@ -19,10 +19,6 @@ import * as headerAdmin from 'layout/header-admin';
 // Share
 import * as shareModal from 'components/modal/share-modal';
 
-// Dataset
-import * as datasetListItem from 'components/datasets/list/list-item';
-import * as similarDatasets from 'components/datasets/similar-datasets/similar-datasets';
-
 // Admin Interactions
 import * as adminInteractions from 'components/admin/data/layers/form/interactions';
 import * as adminLayerPreview from 'components/admin/data/layers/form/layer-preview';
@@ -45,10 +41,6 @@ const reducer = combineReducers({
 
   // Share
   shareModal: handleModule(shareModal),
-
-  // Dataset
-  datasetListItem: handleModule(datasetListItem),
-  similarDatasets: handleModule(similarDatasets),
 
   // Admin interactions
   interactions: handleModule(adminInteractions),

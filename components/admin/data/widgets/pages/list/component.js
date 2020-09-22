@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 // components
 import WidgetsTable from 'components/admin/data/widgets/table';
 
+// styles
+import './styles.scss';
+
 class WidgetsIndex extends PureComponent {
   static propTypes = { dataset: PropTypes.string }
 

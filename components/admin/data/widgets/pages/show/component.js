@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // components
 import Aside from 'components/ui/Aside';
 import WidgetForm from 'components/admin/data/widgets/form';
-import MetadataForm from 'components/widgets/metadata/form/MetadataForm';
+import MetadataForm from 'components/widgets/metadata/form';
 
 class WidgetsShow extends PureComponent {
   static propTypes = {
