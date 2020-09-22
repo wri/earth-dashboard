@@ -8,7 +8,7 @@ import { BASEMAPS, LABELS } from 'components/map/constants';
 import TetherComponent from 'react-tether';
 import Icon from 'components/ui/icon';
 import RadioGroup from 'components/form/RadioGroup';
-import Checkbox from 'components/form/Checkbox';
+import Checkbox from 'components/form/checkbox';
 
 class BasemapControl extends React.Component {
   static propTypes = {

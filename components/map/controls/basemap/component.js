@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import TetherComponent from 'react-tether';
 import Icon from 'components/ui/icon';
 import RadioGroup from 'components/form/RadioGroup';
-import Checkbox from 'components/form/Checkbox';
+import Checkbox from 'components/form/checkbox';
 
 // constants
 import { BASEMAPS, LABELS } from 'components/map/constants';

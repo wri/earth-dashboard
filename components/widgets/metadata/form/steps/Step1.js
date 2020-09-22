@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // components
 import Field from 'components/form/Field';
 import Input from 'components/form/Input';
-import Checkbox from 'components/form/Checkbox';
+import Checkbox from 'components/form/checkbox';
 import Title from 'components/ui/Title';
 
 // constants
