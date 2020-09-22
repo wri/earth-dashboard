@@ -54,7 +54,7 @@ class Navigation extends PureComponent {
     const submittingClassName = classnames({ '-submitting': submitting });
 
     return (
-      <ul className="c-field-buttons">
+      <ul className="c-navigation">
         {showDelete &&
           <li className="c-button-container -full-width">
             <Button

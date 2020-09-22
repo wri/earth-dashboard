@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'routes';
 
-// components
-import HeaderUser from 'layout/header-admin/header-admin-user';
-
 // constants
 import { ADMIN_HEADER_ITEMS } from 'layout/header-admin/constants';
 
 class AdminHeaderMenu extends PureComponent {
   static propTypes = { routes: PropTypes.object.isRequired }
-
-  headerComponents = { myrw: <HeaderUser /> }
 
   render() {
     const { routes: { pathname } } = this.props;
@@ -22,7 +17,6 @@ class AdminHeaderMenu extends PureComponent {
         <ul>
           {ADMIN_HEADER_ITEMS.map((item) => {
             const activeClassName = classnames({ '-active': item.pathnames && item.pathnames.includes(pathname) });
-            const component = this.headerComponents[item.id];
 
             return (
               <li

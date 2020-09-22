@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from 'components/ui/icon';
 
-import FormElement from './FormElement';
+import FormElement from '../FormElement';
 
+// styles
+import './styles.scss';
 
 export default class Checkbox extends FormElement {
   /**

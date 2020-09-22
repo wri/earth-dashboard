@@ -1,0 +1,17 @@
+.c-navigation {
+    display: flex;
+    justify-content: flex-end;
+    margin: 50px 0 0;
+    padding: 50px 0 0;
+    border-top: 1px solid $border-color-1;
+  
+    > li {
+      margin: 0 10px 0 0;
+      list-style: none;
+  
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+  

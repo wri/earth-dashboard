@@ -15,7 +15,7 @@ import {
 import { fetchFields } from 'services/fields';
 
 // components
-import Navigation from 'components/form/Navigation';
+import Navigation from 'components/form/navigation';
 import Step1 from 'components/datasets/form/steps';
 import Spinner from 'components/ui/Spinner';
 

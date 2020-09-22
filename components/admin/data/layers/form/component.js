@@ -19,7 +19,7 @@ import { setLayerInteractionError } from 'components/admin/data/layers/form/laye
 
 // Components
 import Step1 from 'components/admin/data/layers/form/steps/Step1';
-import Navigation from 'components/form/Navigation';
+import Navigation from 'components/form/navigation';
 import Spinner from 'components/ui/Spinner';
 
 // Utils

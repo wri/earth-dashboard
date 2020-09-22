@@ -11,7 +11,7 @@ import { STATE_DEFAULT, FORM_ELEMENTS } from 'components/datasets/metadata/form/
 
 // Components
 import Spinner from 'components/ui/Spinner';
-import Navigation from 'components/form/Navigation';
+import Navigation from 'components/form/navigation';
 import Step1 from 'components/datasets/metadata/form/steps/Step1';
 
 // utils

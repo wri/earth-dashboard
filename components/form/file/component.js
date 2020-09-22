@@ -10,8 +10,10 @@ import { post } from 'utils/request';
 
 // Components
 import Spinner from 'components/ui/Spinner';
+import FormElement from '../FormElement';
 
-import FormElement from './FormElement';
+// styles
+import './styles.scss';
 
 // constants
 const COLUMN_FORMAT = ['csv', 'tsv'];

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
 
 // Components
-import Navigation from 'components/form/Navigation';
+import Navigation from 'components/form/navigation';
 import Step1 from 'components/widgets/metadata/form/steps/Step1';
 
 // Services

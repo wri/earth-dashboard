@@ -7,7 +7,7 @@ import Graph from 'react-graph-vis';
 import Spinner from 'components/ui/Spinner';
 import Field from 'components/form/Field';
 import Select from 'components/form/SelectInput';
-import Navigation from 'components/form/Navigation';
+import Navigation from 'components/form/navigation';
 
 // Services
 import {

@@ -12,7 +12,7 @@ import isEmpty from 'lodash/isEmpty';
 import { BOUNDARIES } from 'components/ui/map/constants';
 
 // Components
-import LayerPopup from 'components/ui/map/popup/LayerPopup';
+import LayerPopup from 'components/ui/map/popup';
 import Spinner from 'components/ui/Spinner';
 
 // Redux
