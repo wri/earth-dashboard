@@ -22,6 +22,9 @@ import Title from 'components/ui/Title';
 import Spinner from 'components/ui/Spinner';
 import SourcesContentModal from 'components/datasets/metadata/form/SourcesContentModal';
 
+// styles
+import './styles.scss';
+
 // constants
 import {
   FORM_ELEMENTS,
@@ -29,7 +32,7 @@ import {
   RASTER_COLUMN_TYPES
 } from 'components/datasets/metadata/form/constants';
 
-class Step1 extends React.Component {
+class Step extends React.Component {
   static propTypes = {
     form: PropTypes.object.isRequired,
     columns: PropTypes.array.isRequired,
@@ -87,7 +90,7 @@ class Step1 extends React.Component {
     });
 
     return (
-      <div>
+      <div classnames="c-dataset-metadata-form-step">
         <fieldset className="c-field-container">
           <Title className="-big -secondary">Edit metadata</Title>
 
@@ -361,7 +364,7 @@ class Step1 extends React.Component {
           </button>
 
           {sources.length > 0 && (
-            <div className="c-metadata-source-list">
+            <div className="metadata-source-list">
               <ul className="source-list">
                 {compact(sources).map(source => (
                   <li key={source.id} className="source-item">
@@ -625,4 +628,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Step1);
+)(Step);

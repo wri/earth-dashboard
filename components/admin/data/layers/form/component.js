@@ -22,7 +22,11 @@ import Step1 from 'components/admin/data/layers/form/steps/Step1';
 import Navigation from 'components/form/Navigation';
 import Spinner from 'components/ui/Spinner';
 
+// Utils
 import LayerManager from 'utils/layers/LayerManager';
+
+// styles
+import './styles.scss';
 
 // constants
 import { STATE_DEFAULT, FORM_ELEMENTS } from './constants';

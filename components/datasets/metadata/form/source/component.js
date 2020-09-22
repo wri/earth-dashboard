@@ -79,7 +79,7 @@ class Source extends React.Component {
     const { values } = this.state;
 
     return (
-      <div className="c-source-item">
+      <div className="c-dataset-metadata-form-source">
         <div className="l-row row">
           <div className="column small-4">
             <Field

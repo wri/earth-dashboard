@@ -1,15 +1,11 @@
 require('dotenv').load();
 
-const path = require('path');
-const withSass = require('@zeit/next-sass');
-const withCSS = require('@zeit/next-css')
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
 const { BundleAnalyzerPlugin } = (process.env.RW_NODE_ENV === 'production' && process.env.BUNDLE_ANALYZER) ?
   require('webpack-bundle-analyzer') : {};
 
-module.exports = withCSS(withSass({
+module.exports = {
   useFileSystemPublicRoutes: false,
 
   env: {
@@ -45,18 +41,8 @@ module.exports = withCSS(withSass({
       })
     );
 
-    // Copy the images of the widget-editor
-    _config.plugins.push(
-      new CopyWebpackPlugin([
-        {
-          from: path.join(__dirname, 'node_modules/widget-editor/dist/images'),
-          to: path.join(__dirname, 'public/static/images/widget-editor/')
-        }
-      ])
-    );
-
     if (process.env.BUNDLE_ANALYZER) _config.plugins.push(new BundleAnalyzerPlugin());
 
     return _config;
   }
-}));
+};
