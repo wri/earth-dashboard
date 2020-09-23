@@ -4,7 +4,7 @@ import { toastr } from 'react-redux-toastr';
 import Parser from 'rss-parser';
 
 // components
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import MongabayNews from './mongabay-news';
 import GuardianNews from './guardian-news';
 

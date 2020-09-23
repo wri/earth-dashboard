@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/ui/icon';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 export default class Modal extends React.Component {
   static propTypes = {

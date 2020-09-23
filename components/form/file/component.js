@@ -9,7 +9,7 @@ import Dropzone from 'react-dropzone';
 import { post } from 'utils/request';
 
 // Components
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import FormElement from '../FormElement';
 
 // styles

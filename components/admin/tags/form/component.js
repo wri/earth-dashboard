@@ -4,7 +4,7 @@ import { toastr } from 'react-redux-toastr';
 import Graph from 'react-graph-vis';
 
 // Components
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import Field from 'components/form/Field';
 import Select from 'components/form/SelectInput';
 import Navigation from 'components/form/navigation';

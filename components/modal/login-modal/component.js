@@ -7,7 +7,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 // components
 import Field from 'components/form/Field';
 import Input from 'components/form/Input';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // services
 import { loginUser, registerUser } from 'services/user';

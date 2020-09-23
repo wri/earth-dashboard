@@ -16,7 +16,7 @@ import File from 'components/form/File';
 import Select from 'components/form/SelectInput';
 import Checkbox from 'components/form/checkbox';
 import Title from 'components/ui/Title';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import SortingLayerManager from '../sorting-layer-manager';
 
 class Step1 extends PureComponent {

@@ -13,7 +13,7 @@ import { BOUNDARIES } from 'components/ui/map/constants';
 
 // Components
 import LayerPopup from 'components/ui/map/popup';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // Redux
 import { connect } from 'react-redux';

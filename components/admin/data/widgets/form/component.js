@@ -5,7 +5,7 @@ import { Router } from 'routes';
 
 // components
 import Step1 from 'components/admin/data/widgets/form/steps/Step1';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // services
 import { fetchDatasets, fetchDataset } from 'services/dataset';

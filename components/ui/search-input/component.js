@@ -9,6 +9,9 @@ import { Link } from 'routes';
 // Components
 import Icon from 'components/ui/icon';
 
+// styles
+import './styles.scss';
+
 class SearchInput extends PureComponent {
   static defaultProps = {
     link: {},

@@ -5,6 +5,9 @@ import classnames from 'classnames';
 // Next components
 import { Link } from 'routes';
 
+// styles
+import './styles.scss';
+
 export default class Tabs extends React.Component {
   constructor(props) {
     super(props);

@@ -5,7 +5,7 @@ import axios from 'axios';
 // components
 import LayoutEmbed from 'layout/layout/layout-embed';
 import CompareMaps from 'components/map/plugins/compare';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // services
 import { fetchLayer } from 'services/layer';

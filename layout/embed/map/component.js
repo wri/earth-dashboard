@@ -19,7 +19,7 @@ import MapControls from 'components/map/controls';
 import ZoomControls from 'components/map/controls/zoom';
 import ResetViewControls from 'components/map/controls/reset-view';
 import LayerPopup from 'components/map/popup';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import Icon from 'components/ui/icon';
 
 // constants

@@ -4,7 +4,7 @@ import { toastr } from 'react-redux-toastr';
 import PropTypes from 'prop-types';
 
 // components
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import WidgetPreview from 'components/admin/data/widgets/form/preview';
 
 // services

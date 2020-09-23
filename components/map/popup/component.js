@@ -7,7 +7,7 @@ import numeral from 'numeral';
 import axios from 'axios';
 
 // components
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // styles
 import './styles.scss';

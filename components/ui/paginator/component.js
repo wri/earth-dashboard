@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Pagination from 'rc-pagination';
 
+// styles
+import './styles.scss';
+
 class Paginator extends PureComponent {
   static propTypes = {
     options: PropTypes.object.isRequired,

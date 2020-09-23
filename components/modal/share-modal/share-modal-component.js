@@ -4,7 +4,7 @@ import { toastr } from 'react-redux-toastr';
 
 // components
 import Icon from 'components/ui/icon';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // styles
 import './styles.scss';

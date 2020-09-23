@@ -28,7 +28,7 @@ import { INITIAL_STATE, REDUCER } from 'components/widgets/card/constants';
 // components
 import Title from 'components/ui/Title';
 import Icon from 'components/ui/icon';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import Map from 'components/map';
 import LayerManager from 'components/map/layer-manager';
 import LoginRequired from 'components/ui/login-required';

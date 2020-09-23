@@ -7,12 +7,14 @@ import { connect } from 'react-redux';
 
 import TetherComponent from 'react-tether';
 
-
 // Next components
 import { Link } from 'routes';
 
 // Components
 import Icon from 'components/ui/icon';
+
+// styles
+import './styles.scss';
 
 class DatasetsRelatedContent extends React.Component {
   constructor(props) {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // components
 import LayoutEmbed from 'layout/layout/layout-embed';
 import TextChart from 'components/widgets/charts/TextChart';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // utils
 import { isLoadedExternally } from 'utils/embed';

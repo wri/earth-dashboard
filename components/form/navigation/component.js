@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Button from 'components/ui/Button';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 class Navigation extends PureComponent {
   static propTypes = {

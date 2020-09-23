@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// components
 import TableFilters from './TableFilters';
 import TableSorts from './TableSorts';
+
+// styles
+import './styles.scss';
 
 function TableHeaderActions(props) {
   return (
