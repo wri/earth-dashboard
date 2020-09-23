@@ -26,12 +26,12 @@ import Spinner from 'components/ui/spinner';
 import LayerManager from 'utils/layers/LayerManager';
 
 // styles
-import './styles.scss';
+import styles from './layer-form.module.scss';
 
 // constants
 import { STATE_DEFAULT, FORM_ELEMENTS } from './constants';
 
-class LayersForm extends PureComponent {
+class LayerForm extends PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
     dataset: PropTypes.string,
@@ -281,7 +281,7 @@ class LayersForm extends PureComponent {
     const { newState } = this.props;
 
     return (
-      <form className="c-form c-layers-form" onSubmit={this.onSubmit} noValidate>
+      <form className={`c-form ${styles['c-layers-form']}`} onSubmit={this.onSubmit} noValidate>
         <Spinner isLoading={loading} className="-light" />
 
         {(step === 1 && !loading) &&
@@ -324,4 +324,4 @@ const mapDispatchToProps = { setLayerInteractionError };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LayersForm);
+)(LayerForm);

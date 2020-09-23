@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 // styles
-import './styles.scss';
+import './map-controls.module.scss';
 
 class MapControls extends PureComponent {
   static propTypes = {
@@ -16,7 +16,7 @@ class MapControls extends PureComponent {
   render() {
     const { customClass, children } = this.props;
     const componentClass = classnames({
-      'c-map-controls': true,
+      [styles['c-map-controls']]: true,
       [customClass]: !!customClass
     });
 
