@@ -6,6 +6,9 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { setTooltipPosition } from 'redactions/tooltip';
 
+// styles
+import './styles.scss';
+
 class Tooltip extends React.Component {
   constructor(props) {
     super(props);

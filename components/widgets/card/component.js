@@ -26,7 +26,6 @@ import { MAPSTYLES } from 'components/map/constants';
 import { INITIAL_STATE, REDUCER } from 'components/widgets/card/constants';
 
 // components
-import Title from 'components/ui/Title';
 import Icon from 'components/ui/icon';
 import Spinner from 'components/ui/spinner';
 import Map from 'components/map';
@@ -303,9 +302,9 @@ const WidgetCard = (props) => {
           // onClick={() => this.props.onWidgetClick && this.props.onWidgetClick(widget)}
         >
           {/* Title */}
-          <Title className="-default -primary">
+          <h4>
             {widget.name}
-          </Title>
+          </h4>
           <p>
             {truncate(widget.description, { length: limitChar, separator: ' ', omission: '...' })}
           </p>

@@ -85,9 +85,9 @@ class Step1 extends React.Component {
     return (
       <div>
         <fieldset className="c-field-container">
-          <Title className="-big -secondary">
+          <h4>
             Edit metadata
-          </Title>
+          </h4>
           {/* CAPTION */}
           <Field
             ref={(c) => { if (c) FORM_ELEMENTS.elements.caption = c; }}

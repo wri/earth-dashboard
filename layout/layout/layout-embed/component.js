@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { Router } from 'routes';
 import IconsRW from 'components/icons';
 import HeadApp from 'layout/head/app';
-import Tooltip from 'components/ui/Tooltip';
+import Tooltip from 'components/ui/tooltip';
 
 // vizzuality-components
 import { Icons } from 'vizzuality-components';

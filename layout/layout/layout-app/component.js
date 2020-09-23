@@ -17,7 +17,7 @@ import Header from 'layout/header';
 import Footer from 'layout/footer';
 
 import IconsRW from 'components/icons';
-import Tooltip from 'components/ui/Tooltip';
+import Tooltip from 'components/ui/tooltip';
 import Modal from 'components/ui/modal';
 import Toastr from 'react-redux-toastr';
 import NoBrowserSupport from 'components/app/common/Browser';

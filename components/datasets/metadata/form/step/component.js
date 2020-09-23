@@ -92,9 +92,9 @@ class Step extends React.Component {
     return (
       <div classnames="c-dataset-metadata-form-step">
         <fieldset className="c-field-container">
-          <Title className="-big -secondary">Edit metadata</Title>
+          <h3>Edit metadata</h3>
 
-          <Title className="-default -secondary">General</Title>
+          <h3>General</h3>
 
           <Field
             ref={(c) => {
@@ -187,7 +187,7 @@ class Step extends React.Component {
         </fieldset>
 
         <fieldset className="c-field-container">
-          <Title className="-default -secondary">Data info</Title>
+          <h4>Data info</h4>
 
           <Field
             ref={(c) => {
@@ -389,7 +389,7 @@ class Step extends React.Component {
         </fieldset>
 
         <fieldset className="c-field-container">
-          <Title className="-default -secondary">Translated</Title>
+          <h4>Translated</h4>
 
           <Field
             ref={(c) => {
@@ -442,7 +442,7 @@ class Step extends React.Component {
         </fieldset>
 
         <fieldset className="c-field-container">
-          <Title className="-default -secondary">Links</Title>
+          <h4>Links</h4>
 
           <Field
             ref={(c) => {
@@ -496,7 +496,7 @@ class Step extends React.Component {
         </fieldset>
 
         <fieldset className="c-field-container">
-          <Title className="-default -secondary">Columns</Title>
+          <h4>Columns</h4>
 
           {loadingColumns && <Spinner className="-inline" isLoading={loadingColumns} />}
 

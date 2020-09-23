@@ -775,7 +775,7 @@ class Step1 extends PureComponent {
 
         {this.state.form.provider && dataset && (
           <fieldset className="c-field-container">
-            <Title className="-default -secondary">Relevant Columns</Title>
+            <h4>Relevant Columns</h4>
 
             {loadingColumns && <Spinner className="-inline" isLoading={loadingColumns} />}
 
@@ -847,7 +847,7 @@ class Step1 extends PureComponent {
 
         {this.state.form.provider && dataset && sortedLayers.length > 0 && (
           <fieldset className="c-field-container">
-            <Title className="-default -secondary">Layer Sorting</Title>
+            <h4>Layer Sorting</h4>
             <SortingLayerManager layers={sortedLayers} onChange={this.handleSortLayer} />
           </fieldset>
         )}

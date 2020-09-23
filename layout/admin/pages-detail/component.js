@@ -64,9 +64,9 @@ class LayoutAdminPagesDetail extends PureComponent {
                   <Breadcrumbs
                     items={[{ name: capitalizeFirstLetter(tab), route: 'admin_pages', params: { tab } }]}
                   />
-                  <Title className="-primary -huge page-header-title" >
+                  <h4>
                     {this.getName()}
-                  </Title>
+                  </h4>
                 </div>
               </div>
             </div>

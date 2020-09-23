@@ -16,7 +16,7 @@ import { Icons } from 'vizzuality-components';
 import Head from 'layout/head/admin';
 import Header from 'layout/header-admin';
 
-import Tooltip from 'components/ui/Tooltip';
+import Tooltip from 'components/ui/tooltip';
 import Modal from 'components/ui/modal';
 import Toastr from 'react-redux-toastr';
 
