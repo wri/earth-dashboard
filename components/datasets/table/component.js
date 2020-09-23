@@ -26,6 +26,9 @@ import DeleteAction from './actions/delete';
 // constants
 import { INITIAL_PAGINATION } from './constants';
 
+// styles
+import './styles.scss';
+
 class DatasetsTable extends PureComponent {
   static propTypes = { user: PropTypes.object.isRequired }
 

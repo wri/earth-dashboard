@@ -1,9 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-
 import Modal from 'react-modal';
+
+// components
 import Icon from 'components/ui/icon';
+
+// styles
+import './styles.scss';
 
 class ModalComponent extends PureComponent {
   static propTypes = {

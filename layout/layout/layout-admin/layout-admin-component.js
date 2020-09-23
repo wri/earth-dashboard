@@ -17,7 +17,7 @@ import Head from 'layout/head/admin';
 import Header from 'layout/header-admin';
 
 import Tooltip from 'components/ui/Tooltip';
-import Modal from 'components/ui/Modal';
+import Modal from 'components/ui/modal';
 import Toastr from 'react-redux-toastr';
 
 class LayoutAdmin extends PureComponent {

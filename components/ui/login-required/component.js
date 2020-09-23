@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 // components
-import Modal from 'components/modal/modal-component';
+import Modal from 'components/modal';
 import LoginModal from 'components/modal/login-modal';
 
 class LoginRequired extends PureComponent {
