@@ -15,6 +15,9 @@ import Input from 'components/form/Input';
 // constants
 import { SOURCE_ELEMENTS } from 'components/datasets/metadata/form/constants';
 
+// styles
+import styles from './dataset-metadata-form-source.module.scss';
+
 class Source extends React.Component {
   static propTypes = {
     index: Proptypes.number,
@@ -79,7 +82,7 @@ class Source extends React.Component {
     const { values } = this.state;
 
     return (
-      <div className="c-dataset-metadata-form-source">
+      <div className={styles['c-dataset-metadata-form-source']}>
         <div className="l-row row">
           <div className="column small-4">
             <Field

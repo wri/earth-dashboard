@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // components
 import Aside from 'components/ui/Aside';
-import DatasetsForm from 'components/datasets/form/DatasetsForm';
+import DatasetsForm from 'components/datasets/form';
 import DatasetMetadataForm from 'components/datasets/metadata/form';
 import TagsForm from 'components/admin/tags/form';
 import WidgetsIndex from 'components/admin/data/widgets/pages/list';

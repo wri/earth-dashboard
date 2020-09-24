@@ -19,6 +19,9 @@ import {
   updateDatasetTags
 } from 'services/dataset';
 
+// styles
+import styles from './tags-form.module.scss';
+
 const graphOptions = {
   height: '100%',
   layout: { hierarchical: false },
@@ -191,7 +194,10 @@ class TagsForm extends React.Component {
     } = this.state;
 
     return (
-      <form className="c-tags-form" onSubmit={this.handleSubmit}>
+      <form
+        className={styles['c-tags-form']}
+        onSubmit={this.handleSubmit}
+      >
         <Spinner
           className="-light"
           isLoading={loadingAllTags || loadingDatasetTags}

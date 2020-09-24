@@ -27,7 +27,7 @@ import DeleteAction from './actions/delete';
 import { INITIAL_PAGINATION } from './constants';
 
 // styles
-import './styles.scss';
+import styles from './dataset-table.module.scss';
 
 class DatasetsTable extends PureComponent {
   static propTypes = { user: PropTypes.object.isRequired }
@@ -134,7 +134,7 @@ class DatasetsTable extends PureComponent {
     } = this.state;
 
     return (
-      <div className="c-dataset-table">
+      <div className={styles['c-dataset-table']}>
         <Spinner
           className="-light"
           isLoading={loading}

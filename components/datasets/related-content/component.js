@@ -14,7 +14,7 @@ import { Link } from 'routes';
 import Icon from 'components/ui/icon';
 
 // styles
-import './styles.scss';
+import styles from './related-content.module.scss';
 
 class DatasetsRelatedContent extends React.Component {
   constructor(props) {
@@ -68,7 +68,7 @@ class DatasetsRelatedContent extends React.Component {
     const isOwnerOrAdmin = (dataset.userId === user.id || user.role === 'ADMIN');
 
     return (
-      <div className="c-related-content">
+      <div className={styles['c-related-content']}>
         <ul>
           {buttons.widget &&
             <li>

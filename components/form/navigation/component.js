@@ -2,8 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+// components
 import Button from 'components/ui/Button';
 import Spinner from 'components/ui/spinner';
+
+// styles
+import styles from './navigation.module.scss';
 
 class Navigation extends PureComponent {
   static propTypes = {
@@ -54,7 +58,7 @@ class Navigation extends PureComponent {
     const submittingClassName = classnames({ '-submitting': submitting });
 
     return (
-      <ul className="c-navigation">
+      <ul className={styles['c-navigation']}>
         {showDelete &&
           <li className="c-button-container -full-width">
             <Button

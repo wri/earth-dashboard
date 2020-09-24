@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import LayerCard from './layer-card';
 
 // styles
-import './styles.scss';
+import styles from './sorting-layer-manager.module.scss';
 
 class SortingLayerManager extends PureComponent {
   static propTypes = {
@@ -44,7 +44,7 @@ class SortingLayerManager extends PureComponent {
     const { layers } = this.state;
 
     return (
-      <div className="c-sorting-layer-manager">
+      <div className={styles['c-sorting-layer-manager']}>
         <ul className="sorting-layer-manager-list">
           {layers.map((layer, index) => (
             <LayerCard

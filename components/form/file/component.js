@@ -13,7 +13,7 @@ import Spinner from 'components/ui/spinner';
 import FormElement from '../FormElement';
 
 // styles
-import './styles.scss';
+import styles from './file.module.scss';
 
 // constants
 const COLUMN_FORMAT = ['csv', 'tsv'];
@@ -182,7 +182,7 @@ class File extends FormElement {
     });
 
     return (
-      <div className="c-file">
+      <div className={styles['c-file']}>
         <Dropzone
           ref={(node) => { this.dropzone = node; }}
           className="file-dropzone"

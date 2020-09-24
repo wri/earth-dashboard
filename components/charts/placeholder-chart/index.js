@@ -1,11 +1,11 @@
 import React from 'react';
 
 // styles
-import './styles.scss';
+import './placeholder-chart.module.scss';
 
 function DatasetPlaceholderChart() {
   return (
-    <div className="c-placeholder-chart">
+    <div className={styles['c-placeholder-chart']}>
       <div className="c-we-chart" />
     </div>
   );

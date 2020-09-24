@@ -6,7 +6,7 @@ import Icon from 'components/ui/icon';
 import FormElement from '../FormElement';
 
 // styles
-import './styles.scss';
+import styles from './checkbox.module.scss';
 
 export default class Checkbox extends FormElement {
   /**
@@ -24,12 +24,12 @@ export default class Checkbox extends FormElement {
 
   render() {
     const { name, value, title, className } = this.props.properties;
-    const customClassName = classnames({
-      [className]: !!className
-    });
 
     return (
-      <div className={`c-checkbox ${customClassName}`}>
+      <div className={classnames({
+          [styles['c-checkbox']]: true,
+          [className]: !!className
+        })}>
         <input
           {...this.props.properties}
           type="checkbox"

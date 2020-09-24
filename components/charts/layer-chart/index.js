@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import MapThumbnail from 'components/ui/map/map-thumbnail';
 
 // styles
-import './styles.scss';
+import './layer-chart.module.scss';
 
 function DatasetLayerChart(props) {
   const { layer } = props;
 
   return (
-    <div className="c-layer-chart">
+    <div className={styles['c-layer-chart']}>
       <div className="c-we-chart">
         <MapThumbnail
           layerSpec={layer}

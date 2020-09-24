@@ -23,7 +23,7 @@ import Spinner from 'components/ui/spinner';
 import SourcesContentModal from 'components/datasets/metadata/form/SourcesContentModal';
 
 // styles
-import './styles.scss';
+import styles from './dataset-metadata-form-step.module.scss';
 
 // constants
 import {
@@ -90,7 +90,7 @@ class Step extends React.Component {
     });
 
     return (
-      <div classnames="c-dataset-metadata-form-step">
+      <div classnames={styles['c-dataset-metadata-form-step']}>
         <fieldset className="c-field-container">
           <h3>Edit metadata</h3>
 

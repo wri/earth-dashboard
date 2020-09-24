@@ -3,7 +3,7 @@ import { Router } from 'routes';
 import PropTypes from 'prop-types';
 
 // Components
-import DatasetsForm from 'components/datasets/form/DatasetsForm';
+import DatasetsForm from 'components/datasets/form';
 
 class DatasetsNew extends PureComponent {
   static propTypes = { user: PropTypes.object.isRequired }
