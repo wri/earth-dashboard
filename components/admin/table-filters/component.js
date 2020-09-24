@@ -9,9 +9,9 @@ import RadioGroup from 'components/form/RadioGroup';
 import { USER_TYPES, USER_OPTIONS } from './constants.js';
 
 // styles
-import './styles.scss';
+import styles from './table-filters.module.scss';
 
-class FiltersComponent extends PureComponent {
+class TableFiltersComponent extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     filtersChange: PropTypes.func.isRequired
@@ -26,7 +26,7 @@ class FiltersComponent extends PureComponent {
   render() {
     const { className } = this.props;
     const classNameValue = classnames({
-      'c-filters': true,
+      [styles['c-table-filters']]: true,
       [className]: !!className
     });
     return (
@@ -44,4 +44,4 @@ class FiltersComponent extends PureComponent {
   }
 }
 
-export default FiltersComponent;
+export default TableFiltersComponent;

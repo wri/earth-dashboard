@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 // styles
-import './styles.scss';
+import styles from './icon.module.scss';
 
 class Icon extends PureComponent {
   static propTypes = {
@@ -15,7 +15,10 @@ class Icon extends PureComponent {
 
   render() {
     const { className, name } = this.props;
-    const componentClass = classnames('c-icon', { [className]: !!className });
+    const componentClass = classnames({ 
+      [styles['c-icon']]: true,
+      [className]: !!className 
+    });
 
     return (
       <svg className={componentClass}>

@@ -7,7 +7,7 @@ import Icon from 'components/ui/icon';
 import Spinner from 'components/ui/spinner';
 
 // styles
-import './styles.scss';
+import styles from './share-modal.module.scss';
 
 class ShareModalComponent extends PureComponent {
   static propTypes = {
@@ -97,7 +97,7 @@ class ShareModalComponent extends PureComponent {
     const { links, shortLinks, loading } = this.props;
 
     return (
-      <div className="c-share-modal">
+      <div className={styles['c-share-modal']}>
         <h2>Share</h2>
 
         <div className="share-content">

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import LayersForm from 'components/admin/data/layers/form/LayersForm';
 
 // styles
-import './styles.scss';
+import styles from './layers-new.module.scss';
 
 class LayersNew extends PureComponent {
   static propTypes = {
@@ -31,7 +31,7 @@ class LayersNew extends PureComponent {
     } = this.props;
 
     return (
-      <div className="c-layers-new">
+      <div className={styles['c-layers-new']}>
         <LayersForm
           application={[process.env.APPLICATIONS]}
           authorization={token}

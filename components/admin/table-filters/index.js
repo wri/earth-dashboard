@@ -1,3 +1,3 @@
-import Filters from './component';
+import TableFiltersComponent from './component';
 
-export default Filters;
+export default TableFiltersComponent;

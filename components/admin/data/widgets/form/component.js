@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
 import { Router } from 'routes';
+import classnames from 'classnames';
 
 // components
 import Step1 from 'components/admin/data/widgets/form/steps/Step1';
@@ -22,7 +23,7 @@ import {
 import { FORM_ELEMENTS } from './constants';
 
 // styles
-import './styles.scss';
+import styles from './widget-form.module.scss';
 
 function WidgetForm(props) {
   const { id } = props;
@@ -223,7 +224,13 @@ function WidgetForm(props) {
   };
 
   return (
-    <form className="c-form c-widget-form" noValidate>
+    <form 
+      className={classnames({
+        'c-form': true,
+        [styles['c-widget-form']]: true
+      })}
+      noValidate
+    >
       <Spinner isLoading={loading} className="-light" />
       {!loading && (
         <Step1

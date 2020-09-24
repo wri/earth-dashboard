@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import * as actions from './share-modal-actions';
-import * as reducers from './share-modal-reducers';
-import initialState from './share-modal-default-state';
+import * as actions from './actions';
+import * as reducers from './reducers';
+import initialState from './default-state';
 
-import ShareModalComponent from './share-modal-component';
+import ShareModalComponent from './component';
 
 // Mandatory
 export {

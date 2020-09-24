@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import WidgetsTable from 'components/admin/data/widgets/table';
 
 // styles
-import './styles.scss';
+import styles from './widgets-index.module.scss';
 
 class WidgetsIndex extends PureComponent {
   static propTypes = { dataset: PropTypes.string }
@@ -16,7 +16,7 @@ class WidgetsIndex extends PureComponent {
     const { dataset } = this.props;
 
     return (
-      <div className="c-widgets-index">
+      <div className={styles['c-widgets-index']}>
         <WidgetsTable dataset={dataset} />
       </div>
     );

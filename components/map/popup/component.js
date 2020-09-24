@@ -10,7 +10,7 @@ import axios from 'axios';
 import Spinner from 'components/ui/spinner';
 
 // styles
-import './styles.scss';
+import styles from './layer-popup.module.scss';
 
 class LayerPopup extends PureComponent {
   static propTypes = {
@@ -147,7 +147,7 @@ class LayerPopup extends PureComponent {
     const interactionState = this.state.interaction[layer.id] || {};
 
     return (
-      <div className="c-layer-popup">
+      <div className={styles['c-layer-popup']}>
         <header className="popup-header">
           <select
             className="popup-header-select"
