@@ -14,7 +14,7 @@ const initialState = {
   webshot: false,
   isLoadedExternally: false,
   isServer: true,
-  hostname: 'http://www.resourcewatch.org'
+  hostname: 'http://earth-dashboard-prod-674332768.us-east-1.elb.amazonaws.com/'
 };
 
 export default function (state = initialState, action) {

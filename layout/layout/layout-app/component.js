@@ -20,7 +20,7 @@ import IconsRW from 'components/icons';
 import Tooltip from 'components/ui/tooltip';
 import Modal from 'components/ui/modal';
 import Toastr from 'react-redux-toastr';
-import NoBrowserSupport from 'components/app/common/Browser';
+import NoBrowserSupport from 'components/app/common/browser';
 
 class LayoutApp extends Component {
   static propTypes = {
