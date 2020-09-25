@@ -1,5 +1,5 @@
-import initialState from './share-modal-default-state';
-import * as actions from './share-modal-actions';
+import initialState from './default-state';
+import * as actions from './actions';
 
 export default {
   [actions.setShortLinks]: (state, action) =>

@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'routes';
 
-// components
-import HeaderAbout from 'layout/header/header-about';
-
 // constants
 import { APP_HEADER_ITEMS } from 'layout/header/constants';
 
@@ -19,7 +16,6 @@ class HeaderMenu extends PureComponent {
   }
 
   headerComponents = {
-    about: <HeaderAbout />
   }
 
   render() {

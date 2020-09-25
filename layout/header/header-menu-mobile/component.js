@@ -11,7 +11,7 @@ import Icon from 'components/ui/icon';
 import { APP_HEADER_ITEMS } from 'layout/header/constants';
 
 // styles
-import './styles.scss';
+import styles from './header-menu-mobile.module.scss';
 
 class HeaderMenuMobile extends PureComponent {
   static propTypes = {
@@ -50,7 +50,7 @@ class HeaderMenuMobile extends PureComponent {
     const classNames = classnames({ '-opened': mobileOpened });
 
     return (
-      <div className="c-header-menu-mobile">
+      <div className={styles['c-header-menu-mobile']}>
         <button
           className="c-button -secondary -alt -compressed header-burger-button"
           onClick={() => setMobileOpened(true)}

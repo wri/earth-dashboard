@@ -13,7 +13,7 @@ import Icon from 'components/ui/icon';
 import { breakpoints } from 'utils/responsive';
 
 // styles
-import './styles.scss';
+import styles from './header.module.scss';
 
 class Header extends PureComponent {
   static propTypes = {
@@ -31,10 +31,10 @@ class Header extends PureComponent {
       responsive: { fakeWidth }
     } = this.props;
     const { medium } = breakpoints;
-    const headerClass = classnames(
-      'l-header',
-      { '-transparent': pageHeader }
-    );
+    const headerClass = classnames({
+      [styles['l-header']]: true,
+      '-transparent': pageHeader
+    });
     const containerClass = classnames(
       'l-container',
       { '-admin': admin }

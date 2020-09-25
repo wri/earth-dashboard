@@ -13,7 +13,7 @@ import TextBox from 'components/scrolly-telling/text-box';
 import Trees from 'components/scrolly-telling/visualizations/trees';
 
 // styles
-import './styles.scss';
+import styles from './homepage.module.scss';
 import WidgetPreview from 'components/admin/data/widgets/form/preview';
 
 const VISUALIZATION_SOURCES = [
@@ -68,7 +68,7 @@ function LayoutHome(props) {
     <Layout
       title="Earth Dashboard"
       description="Earth Dashboard"
-      className="homepage"
+      className={styles['homepage']}
     >
 
       <section
