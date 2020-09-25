@@ -7,7 +7,7 @@ import InView from 'components/in-view';
 import WidgetCard from '../card';
 
 // styles
-import './styles.scss';
+import styles from './widget-list.module.scss';
 
 const WidgetCardList = (props) => {
   const {
@@ -23,7 +23,7 @@ const WidgetCardList = (props) => {
   } = props;
 
   const componentClass = classnames({
-    'c-widget-list': true,
+    [styles['c-widget-list']]: true,
     [className]: !!className
   });
 

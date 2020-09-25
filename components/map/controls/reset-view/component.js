@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import Icon from 'components/ui/icon';
 
 // styles
-import './styles.scss';
+import styles from './reset-view-control.module.scss';
 
 class ResetViewControls extends PureComponent {
   static propTypes = {

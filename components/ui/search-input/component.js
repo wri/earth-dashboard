@@ -10,7 +10,7 @@ import { Link } from 'routes';
 import Icon from 'components/ui/icon';
 
 // styles
-import './styles.scss';
+import styles from './search-input.module.scss';
 
 class SearchInput extends PureComponent {
   static defaultProps = {
@@ -73,7 +73,10 @@ class SearchInput extends PureComponent {
     const { link, input, isHeader } = this.props;
     const { onlyDesktop } = link;
 
-    const classNames = classnames({ 'c-search-input--header': isHeader });
+    const classNames = classnames({ 
+      [styles['c-search-input']]: true,
+      'c-search-input--header': isHeader 
+    });
 
     const inputClassNames = classnames({ 'c-search-input--header': isHeader });
 
@@ -84,7 +87,7 @@ class SearchInput extends PureComponent {
     });
 
     return (
-      <div className={`c-search-input ${classNames}`}>
+      <div className={classNames}>
         <div className="c-field -fluid">
           <div className="field-container">
             <input

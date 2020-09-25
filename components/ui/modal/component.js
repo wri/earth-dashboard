@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/ui/icon';
 import Spinner from 'components/ui/spinner';
+import classnames from 'classnames';
+
+// styles
+import styles from './modal.module.scss';
 
 export default class Modal extends React.Component {
   static propTypes = {
@@ -50,10 +54,16 @@ export default class Modal extends React.Component {
 
   render() {
     const { options, open, className, canClose } = this.props;
+    
     return (
       <section
         ref={(node) => { this.el = node; }}
-        className={`c-modal ${open ? '' : '-hidden'} ${options.size || ''} ${className || ''}`}
+        className={classnames({
+          [styles['c-modal']]: true,
+          '-hidden': !open,
+          [className]: !!className,
+          [options.size]: !!options.size
+        })}
       >
         <div className="modal-container">
           {canClose &&

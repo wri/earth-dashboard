@@ -10,7 +10,7 @@ import { replace } from 'layer-manager';
 import Spinner from 'components/ui/spinner';
 
 // styles
-import './styles.scss';
+import styles from './map-popup.module.scss';
 
 class LayerPopup extends React.Component {
   static propTypes = {
@@ -127,7 +127,7 @@ class LayerPopup extends React.Component {
     const interactionState = this.state.interaction[layer.id] || {};
 
     return (
-      <div className="c-map-popup">
+      <div className={styles['c-map-popup']}>
         <header className="popup-header">
           <select
             className="popup-header-select"

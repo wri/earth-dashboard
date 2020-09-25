@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // styles
-import './styles.scss';
+import styles from './guardian-news.module.scss';
 
 function GuardianNews(props){
     const { item } = props;
     const { fields: { thumbnail, trailText }, webTitle, webUrl} = item;
 
     return (
-        <div className="c-guardian-news">
+        <div className={styles['c-guardian-news']}>
             <div className="image-container">
                 <img src={thumbnail} />
             </div>

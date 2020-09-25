@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { Link } from 'routes';
 
 // styles
-import './styles.scss';
+import styles from './tabs.module.scss';
 
 export default class Tabs extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ export default class Tabs extends React.Component {
     return (
       <header
         className={classnames({
-          'c-tabs': true,
+          [styles['c-tabs']]: true,
           [className]: !!className
         })}
       >

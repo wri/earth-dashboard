@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { setTooltipPosition } from 'redactions/tooltip';
 
 // styles
-import './styles.scss';
+import styles from './tooltip.module.scss';
 
 class Tooltip extends React.Component {
   constructor(props) {
@@ -111,7 +111,7 @@ class Tooltip extends React.Component {
     const className = this.props.tooltip.className;
 
     const tooltipClasses = classnames({
-      'c-tooltip': true,
+      [styles['c-tooltip']]: true,
       '-hidden': !this.props.tooltip.opened,
       '-arrow-top': direction === 'top',
       '-arrow-bottom': direction === 'bottom',

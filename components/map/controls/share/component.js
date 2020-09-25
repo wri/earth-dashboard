@@ -9,7 +9,7 @@ import Icon from 'components/ui/icon';
 import { logEvent } from 'utils/analytics';
 
 // styles
-import './styles.scss';
+import './share-control.module.scss';
 
 class ShareControls extends PureComponent {
   state = { showShareModal: false }

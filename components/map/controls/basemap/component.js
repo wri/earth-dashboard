@@ -14,7 +14,7 @@ import { BASEMAPS, LABELS } from 'components/map/constants';
 import { logEvent } from 'utils/analytics';
 
 // styles
-import './styles.scss';
+import styles from './basemap-control.module.scss';
 
 class BasemapControls extends PureComponent {
   static propTypes = {
@@ -87,7 +87,7 @@ class BasemapControls extends PureComponent {
     const { active } = this.state;
 
     return (
-      <div className="c-basemap-control">
+      <div className={styles['c-basemap-control']}>
         <TetherComponent
           attachment="top right"
           constraints={[{ to: 'window' }]}

@@ -148,7 +148,7 @@ class MetadataForm extends React.Component {
 
   render() {
     return (
-      <div className="c-widget-metadata-form">
+      <div className={styles['c-widget-metadata-form']}>
         <form className="c-form" onSubmit={this.onSubmit} noValidate>
           {this.state.loading && 'loading'}
           {!this.state.loading &&

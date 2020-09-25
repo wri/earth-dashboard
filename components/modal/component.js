@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 import Icon from 'components/ui/icon';
 
 // styles
-import './styles.scss';
+import styles from './modal2-overlay.module.scss';
 
 class ModalComponent extends PureComponent {
   static propTypes = {
@@ -40,7 +40,7 @@ class ModalComponent extends PureComponent {
     return (
       <Modal
         className={`c-modal2 ${classNames}`}
-        overlayClassName="c-modal2-overlay"
+        overlayClassName={styles['c-modal2-overlay']}
         bodyOpenClassName="-no-scroll"
         isOpen={isOpen}
         ariaHideApp={false}

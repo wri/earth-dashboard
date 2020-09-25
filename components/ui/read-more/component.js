@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import classnames from 'classnames';
 
 // Styles
-import './styles.scss';
+import styles from './read-more.module.scss';
 
 function ReadMore(props) {
   const [visible, setVisible] = useState(false);
@@ -24,7 +24,7 @@ function ReadMore(props) {
     text :
     truncate(text, { length: limitChar, separator: '', omission: '...' });
   const classValue = classnames({
-    'c-read-more': true,
+    [styles['c-read-more']]: true,
     '-truncated': !visible
   });
 

@@ -6,7 +6,7 @@ import { toastr } from 'react-redux-toastr';
 import Spinner from 'components/ui/spinner';
 
 // styles
-import './styles.scss';
+import styles from './dynamic-text-widget.module.scss';
 
 function DynamicTextWidget(props) {
     const { widget } = props;

@@ -6,7 +6,7 @@ import { toastr } from 'react-redux-toastr';
 import Spinner from 'components/ui/spinner';
 
 // styles
-import './styles.scss';
+import styles from './list-widget.module.scss';
 
 function ListWidget(props) {
   const { widget } = props;

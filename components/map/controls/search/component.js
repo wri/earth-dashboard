@@ -9,7 +9,7 @@ import Icon from 'components/ui/icon';
 import { logEvent } from 'utils/analytics';
 
 // styles
-import './styles.scss';
+import styles from './search-control.module.scss';
 
 class SearchControls extends PureComponent {
   static propTypes = { onSelectLocation: PropTypes.func.isRequired };
@@ -55,7 +55,7 @@ class SearchControls extends PureComponent {
     const { showSearchInput } = this.state;
 
     return (
-      <div className="c-search-control">
+      <div className={styles['c-search-control']}>
         {showSearchInput &&
           <Geosuggest
             ref={(r) => { this.geosuggest = r; }}

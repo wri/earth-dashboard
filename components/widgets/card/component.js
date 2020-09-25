@@ -39,7 +39,7 @@ import TextChart from 'components/widgets/charts/TextChart';
 import WidgetActionsTooltip from './tooltip';
 
 // styles
-import './styles.scss';
+import styles from './widget-card.module.scss';
 
 const WidgetCard = (props) => {
   const {
@@ -290,7 +290,7 @@ const WidgetCard = (props) => {
   });
 
   return (
-    <div className="c-widget-card">
+    <div className={styles['c-widget-card']}>
       <div className="widget-preview">
         {getWidgetPreview()}
       </div>

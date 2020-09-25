@@ -15,7 +15,7 @@ import LayerManager from 'components/map/layer-manager';
 import MapboxCompare from './mapbox-compare';
 
 // styles
-import './styles.scss';
+import styles from './map-compare.module.scss';
 
 const CompareMaps = (props) => {
   const {
@@ -36,7 +36,7 @@ const CompareMaps = (props) => {
   };
 
   return (
-    <div className="c-map-comparison">
+    <div className={styles['c-map-compare']}">
       <div className="compare-container">
         {/* left map */}
         <Map

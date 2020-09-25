@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // styles
-import './styles.scss';
+import styles from './text-box.module.scss';
 
 function TextBox(props) {
     const { text } = props;
 
     return (
-        <div className="c-text-box">
+        <div className={styles['c-text-box']}>
             {text}
         </div>
     );

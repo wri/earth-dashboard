@@ -7,7 +7,7 @@ import classnames from 'classnames';
 import Icon from 'components/ui/icon';
 
 // styles
-import './styles.scss';
+import styles from './draw-polygon-control.scss';
 
 class DrawPolygonControls extends PureComponent {
   static propTypes = {
@@ -38,7 +38,7 @@ class DrawPolygonControls extends PureComponent {
   render() {
     const { className, drawing, showRemovePolygonButton } = this.props;
     const componentClass = classnames({
-      'c-draw-polygon-control': true,
+      [styles['c-draw-polygon-control']]: true,
       [className]: !!className
     });
 

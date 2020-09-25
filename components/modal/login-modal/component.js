@@ -16,7 +16,7 @@ import { loginUser, registerUser } from 'services/user';
 import { FORM_ELEMENTS } from './constants';
 
 // styles
-import './styles.scss';
+import styles from './login-modal.module.scss';
 
 class LoginModal extends PureComponent {
   static propTypes = { setUser: PropTypes.func.isRequired }
@@ -84,7 +84,7 @@ class LoginModal extends PureComponent {
     } = this.state;
 
     return (
-      <div className="c-login-modal">
+      <div className={styles['c-login-modal']}>
         <div className="content">
           <div className="log-in-container">
             {loading && <Spinner className="-light" isLoading />}

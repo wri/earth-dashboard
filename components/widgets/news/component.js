@@ -16,7 +16,7 @@ import {
 } from './constants';
 
 // styles
-import './styles.scss';
+import styles from './news-widget.module.scss';
 
 function NewsWidget(props) {
     const { widget } = props;
@@ -63,7 +63,7 @@ function NewsWidget(props) {
     
     
     return (
-        <div className="c-news-widget">
+        <div className={styles['c-news-widget']}>
             <Spinner isLoading={loading} className="-relative -light" />
             {item && type === MONGABAY_NEWS_TYPE &&
                 <MongabayNews item={item} />

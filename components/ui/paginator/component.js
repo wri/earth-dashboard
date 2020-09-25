@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Pagination from 'rc-pagination';
 
 // styles
-import './styles.scss';
+import styles from './paginator.module.scss';
 
 class Paginator extends PureComponent {
   static propTypes = {
@@ -46,7 +46,7 @@ class Paginator extends PureComponent {
     const { size, page, limit } = this.state;
 
     return (
-      <div className="c-paginator">
+      <div className={styles['c-paginator']}>
         <Pagination
           showLessItems
           current={page}

@@ -11,7 +11,7 @@ import WidgetPreview from 'components/admin/data/widgets/form/preview';
 import { fetchWidget } from 'services/widget';
 
 // styles
-import './styles.scss';
+import styles from './combined-widget.module.scss';
 
 function CombinedWidget(props) {
   const { widget } = props;
@@ -54,7 +54,7 @@ function CombinedWidget(props) {
   }, [widget, widget1.id, widget2.id]);
 
   const mainClassname = classnames({
-    'c-combined-widget': true,
+    [styles['c-combined-widget']]: true,
     '-row': directionIsRow,
     '-column': !directionIsRow
   });
