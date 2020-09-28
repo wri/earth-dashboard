@@ -19,36 +19,40 @@ import 'css/index.scss';
 finallyShim.shim();
 
 class EDApp extends App {
-  static async getInitialProps({ Component, router, ctx }) {
-    const { asPath } = router;
-    const { req, store, query, isServer } = ctx;
-    const pathname = req ? asPath : ctx.asPath;
+  // static async getInitialProps({ Component, router, ctx }) {
+  //   const { asPath } = router;
+  //   const { req, store, query, isServer } = ctx;
+  //   const pathname = req ? asPath : ctx.asPath;
 
-    // sets app routes
-    const url = { asPath, pathname, query };
-    store.dispatch(setRouter(url));
+  //   // sets app routes
+  //   const url = { asPath, pathname, query };
+  //   store.dispatch(setRouter(url));
 
-    // sets hostname
-    const hostname = isServer ? req.headers.host : window.origin;
-    store.dispatch(setHostname(hostname));
-    // sets user data coming from a request (server) or the store (client)
-    const { user } = isServer ? req : store.getState();
-    if (user) {
-      store.dispatch(setUser(user));
-    }
+    
+  //   console.log('ctx', ctx);
+  //   console.log('isServer', isServer);
 
-    // mobile detection
-    if (isServer) {
-      const mobileDetect = mobileParser(req);
-      store.dispatch(setMobileDetect(mobileDetect));
-    }
+  //   // sets hostname
+  //   const hostname = isServer ? req.headers.host : window.origin;
+  //   store.dispatch(setHostname(hostname));
+  //   // sets user data coming from a request (server) or the store (client)
+  //   const { user } = isServer ? req : store.getState();
+  //   if (user) {
+  //     store.dispatch(setUser(user));
+  //   }
 
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
+  //   // mobile detection
+  //   if (isServer) {
+  //     const mobileDetect = mobileParser(req);
+  //     store.dispatch(setMobileDetect(mobileDetect));
+  //   }
 
-    return { pageProps: { ...pageProps, user, isServer, url } };
-  }
+  //   const pageProps = Component.getInitialProps
+  //     ? await Component.getInitialProps(ctx)
+  //     : {};
+
+  //   return { pageProps: { ...pageProps, user, isServer, url } };
+  // }
 
   render() {
     const {
