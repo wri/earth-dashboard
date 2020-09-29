@@ -99,7 +99,7 @@ export const DYNAMIC_TEXT_WIDGET_TEMPLATE = {
   widgetConfig: {
     type: 'dynamic-text',
     dynamicTextWidgetConfig: {
-      text: 'Coral Reefs at risk of bleaching during the year {{year}}: {{percentage}}',
+      text: 'Coral Reefs at risk of bleaching during the year {{date}}: {{value}}',
       parameters: [
         {
           key: 'date',
@@ -118,7 +118,7 @@ export const DYNAMIC_TEXT_WIDGET_TEMPLATE = {
           key: 'value',
           query: 'https://api.resourcewatch.org/v1/query/47dc1a1b-2c91-4d69-b04e-ea8c4561e2b5?sql=SELECT no_smoothing as value FROM cli_044_global_land_temperature ORDER BY no_smoothing desc LIMIT 1',
           format: '.^20',
-          type: number,
+          type: 'number',
           style: {
             'font-style': 'italic',
             'text-decoration': 'underline'
