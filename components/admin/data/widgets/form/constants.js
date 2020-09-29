@@ -102,14 +102,27 @@ export const DYNAMIC_TEXT_WIDGET_TEMPLATE = {
       text: 'Coral Reefs at risk of bleaching during the year {{year}}: {{percentage}}',
       parameters: [
         {
-          key: 'year',
-          query: 'SELECT....',
-          format: '0.s'
+          key: 'date',
+          query: 'https://api.resourcewatch.org/v1/query/47dc1a1b-2c91-4d69-b04e-ea8c4561e2b5?sql=SELECT date FROM cli_044_global_land_temperature ORDER BY no_smoothing desc LIMIT 1',
+          outputFormat: '%B %d, %Y',
+          inputFormat: '%Y-%m-%d',
+          type: 'date',
+          style: {
+            'font-weight': 800,
+            color: 'blue',
+            'font-size': 28,
+            'text-shadow': '4px 4px 5px #afcfdb'
+          }
         },
         {
-          key: 'percentage',
-          query: 'SELECT * FROM table {{where}}',
-          format: '0.%'
+          key: 'value',
+          query: 'https://api.resourcewatch.org/v1/query/47dc1a1b-2c91-4d69-b04e-ea8c4561e2b5?sql=SELECT no_smoothing as value FROM cli_044_global_land_temperature ORDER BY no_smoothing desc LIMIT 1',
+          format: '.^20',
+          type: number,
+          style: {
+            'font-style': 'italic',
+            'text-decoration': 'underline'
+          }
         }
       ]
     }
