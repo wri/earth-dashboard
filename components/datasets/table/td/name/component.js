@@ -26,7 +26,8 @@ class NameTD extends PureComponent {
       {
         tab: 'widgets',
         id: 'new',
-        dataset: id
+        dataset: id,
+        application: 'rw'
       } :
       {
         tab: 'datasets',

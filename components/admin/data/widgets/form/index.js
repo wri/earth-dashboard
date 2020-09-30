@@ -7,7 +7,8 @@ export default connect(
   state => ({
     locale: state.common.locale,
     newState: state.routes.query.id === 'new',
-    dataset: state.routes.query.dataset
+    dataset: state.routes.query.dataset,
+    application: state.routes.query.application
   }),
   null
 )(WidgetForm);
