@@ -60,10 +60,8 @@ function DynamicTextWidget(props) {
                 if (type === 'number') {
                     textValue = d3.format(format)(val)
                 } else if (type === 'date' ) {
-                    console.log('val', val);
                     const parsedDate = timeParse(inputFormat)(val);
                     textValue = timeFormat(outputFormat)(parsedDate);
-                    console.log('parsedDate', parsedDate);
                 }
                 
                 return (

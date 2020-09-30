@@ -31,12 +31,14 @@ class DatasetsTable extends PureComponent {
     user: PropTypes.object.isRequired,
     application: PropTypes.string.isRequired,
     showActions: PropTypes.boolean,
-    showNewDatasetButton: PropTypes.boolean
+    showNewDatasetButton: PropTypes.boolean,
+    showRelatedContent: PropTypes.boolean
   }
 
   static defaultProps = {
     showActions: true,
-    showNewDatasetButton: true
+    showNewDatasetButton: true,
+    showRelatedContent: true
   }
 
   state = {
@@ -100,8 +102,6 @@ class DatasetsTable extends PureComponent {
     const { user: { token }, application } = this.props;
     const { pagination, filters } = this.state;
 
-    console.log(`filters ${application}`, filters);
-
     this.setState({ loading: true });
 
     fetchDatasets({
@@ -144,7 +144,9 @@ class DatasetsTable extends PureComponent {
 
     const {
       showActions,
-      application
+      application,
+      showNewDatasetButton,
+      showRelatedContent
     } = this.props;
 
     return (
@@ -161,11 +163,13 @@ class DatasetsTable extends PureComponent {
 
         <SearchInput
           input={{ placeholder: 'Search dataset' }}
-          link={{
-            label: 'New dataset',
-            route: 'admin_data_detail',
-            params: { tab: 'datasets', id: 'new' }
-          }}
+          {...(showNewDatasetButton && {
+            link: {
+              label: 'New dataset',
+              route: 'admin_data_detail',
+              params: { tab: 'datasets', id: 'new' }
+            }
+          })}
           onSearch={this.onSearch}
         />
         <CustomTable
@@ -179,7 +183,7 @@ class DatasetsTable extends PureComponent {
             { label: 'Role', value: 'role', td: RoleTD },
             { label: 'Updated at', value: 'updatedAt', td: UpdatedAtTD },
             { label: 'Applications', value: 'application', td: ApplicationsTD },
-            { label: 'Related content', value: 'status', td: RelatedContentTD, tdProps: { route: 'admin_data_detail' } }
+            ...(showRelatedContent && { label: 'Related content', value: 'status', td: RelatedContentTD, tdProps: { route: 'admin_data_detail' } })
           ]}
           actions={{
             show: showActions,

@@ -29,7 +29,8 @@ class DatasetsIndex extends PureComponent {
             }}
             application="rw"
             showActions={false}
-            showNewDatasetsButton={false}
+            showNewDatasetButton={false}
+            showRelatedContent={false}
           />
         </div>
       </div>
