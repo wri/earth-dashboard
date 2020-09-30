@@ -31,6 +31,7 @@ class DatasetsIndex extends PureComponent {
             showActions={false}
             showNewDatasetButton={false}
             showRelatedContent={false}
+            linkToNewWidgetFromName={true}
           />
         </div>
       </div>

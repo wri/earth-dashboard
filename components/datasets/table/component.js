@@ -32,13 +32,15 @@ class DatasetsTable extends PureComponent {
     application: PropTypes.string.isRequired,
     showActions: PropTypes.boolean,
     showNewDatasetButton: PropTypes.boolean,
-    showRelatedContent: PropTypes.boolean
+    showRelatedContent: PropTypes.boolean,
+    linkToNewWidgetFromName: PropTypes.boolean
   }
 
   static defaultProps = {
     showActions: true,
     showNewDatasetButton: true,
-    showRelatedContent: true
+    showRelatedContent: true,
+    linkToNewWidgetFromName: false
   }
 
   state = {
@@ -146,7 +148,8 @@ class DatasetsTable extends PureComponent {
       showActions,
       application,
       showNewDatasetButton,
-      showRelatedContent
+      showRelatedContent,
+      linkToNewWidgetFromName
     } = this.props;
 
     return (
@@ -174,7 +177,12 @@ class DatasetsTable extends PureComponent {
         />
         <CustomTable
           columns={[
-            { label: 'Name', value: 'name', td: NameTD, tdProps: { route: 'admin_data_detail' } },
+            { label: 'Name', value: 'name', td: NameTD, 
+              tdProps: {
+                route: 'admin_data_detail',
+                linkToNewWidget: linkToNewWidgetFromName
+              }
+            },
             { label: 'Code', value: 'code', td: CodeTD },
             { label: 'Status', value: 'status', td: StatusTD },
             { label: 'Published', value: 'published', td: PublishedTD },
@@ -183,7 +191,7 @@ class DatasetsTable extends PureComponent {
             { label: 'Role', value: 'role', td: RoleTD },
             { label: 'Updated at', value: 'updatedAt', td: UpdatedAtTD },
             { label: 'Applications', value: 'application', td: ApplicationsTD },
-            ...(showRelatedContent && { label: 'Related content', value: 'status', td: RelatedContentTD, tdProps: { route: 'admin_data_detail' } })
+            ...(showRelatedContent ? [{ label: 'Related content', value: 'status', td: RelatedContentTD, tdProps: { route: 'admin_data_detail' } }] : [])
           ]}
           actions={{
             show: showActions,
