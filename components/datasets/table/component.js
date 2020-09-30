@@ -27,7 +27,17 @@ import DeleteAction from './actions/delete';
 import { INITIAL_PAGINATION } from './constants';
 
 class DatasetsTable extends PureComponent {
-  static propTypes = { user: PropTypes.object.isRequired }
+  static propTypes = {
+    user: PropTypes.object.isRequired,
+    application: PropTypes.string.isRequired,
+    showActions: PropTypes.boolean,
+    showNewDatasetButton: PropTypes.boolean
+  }
+
+  static defaultProps = {
+    showActions: true,
+    showNewDatasetButton: true
+  }
 
   state = {
     pagination: INITIAL_PAGINATION,
@@ -87,8 +97,10 @@ class DatasetsTable extends PureComponent {
   }
 
   loadDatasets = () => {
-    const { user: { token } } = this.props;
+    const { user: { token }, application } = this.props;
     const { pagination, filters } = this.state;
+
+    console.log(`filters ${application}`, filters);
 
     this.setState({ loading: true });
 
@@ -96,7 +108,7 @@ class DatasetsTable extends PureComponent {
       includes: 'widget,layer,metadata,user',
       'page[number]': pagination.page,
       'page[size]': pagination.limit,
-      application: process.env.APPLICATIONS,
+      application,
       ...filters
     }, { Authorization: token }, true)
       .then(({ datasets, meta }) => {
@@ -130,6 +142,11 @@ class DatasetsTable extends PureComponent {
       datasets
     } = this.state;
 
+    const {
+      showActions,
+      application
+    } = this.props;
+
     return (
       <div className="c-dataset-table">
         <Spinner
@@ -139,6 +156,7 @@ class DatasetsTable extends PureComponent {
 
         <TableFilters
           filtersChange={this.onFiltersChange}
+          application={application}
         />
 
         <SearchInput
@@ -164,7 +182,7 @@ class DatasetsTable extends PureComponent {
             { label: 'Related content', value: 'status', td: RelatedContentTD, tdProps: { route: 'admin_data_detail' } }
           ]}
           actions={{
-            show: true,
+            show: showActions,
             list: [
               { name: 'Edit', route: 'admin_data_detail', params: { tab: 'datasets', subtab: 'edit', id: '{{id}}' }, show: true, component: EditAction, componentProps: { route: 'admin_data_detail' } },
               { name: 'Remove', route: 'admin_data_detail', params: { tab: 'datasets', subtab: 'remove', id: '{{id}}' }, component: DeleteAction }
