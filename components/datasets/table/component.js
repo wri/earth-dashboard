@@ -27,7 +27,21 @@ import DeleteAction from './actions/delete';
 import { INITIAL_PAGINATION } from './constants';
 
 class DatasetsTable extends PureComponent {
-  static propTypes = { user: PropTypes.object.isRequired }
+  static propTypes = {
+    user: PropTypes.object.isRequired,
+    application: PropTypes.string.isRequired,
+    showActions: PropTypes.boolean,
+    showNewDatasetButton: PropTypes.boolean,
+    showRelatedContent: PropTypes.boolean,
+    linkToNewWidgetFromName: PropTypes.boolean
+  }
+
+  static defaultProps = {
+    showActions: true,
+    showNewDatasetButton: true,
+    showRelatedContent: true,
+    linkToNewWidgetFromName: false
+  }
 
   state = {
     pagination: INITIAL_PAGINATION,
@@ -87,7 +101,7 @@ class DatasetsTable extends PureComponent {
   }
 
   loadDatasets = () => {
-    const { user: { token } } = this.props;
+    const { user: { token }, application } = this.props;
     const { pagination, filters } = this.state;
 
     this.setState({ loading: true });
@@ -96,7 +110,7 @@ class DatasetsTable extends PureComponent {
       includes: 'widget,layer,metadata,user',
       'page[number]': pagination.page,
       'page[size]': pagination.limit,
-      application: process.env.APPLICATIONS,
+      application,
       ...filters
     }, { Authorization: token }, true)
       .then(({ datasets, meta }) => {
@@ -130,6 +144,14 @@ class DatasetsTable extends PureComponent {
       datasets
     } = this.state;
 
+    const {
+      showActions,
+      application,
+      showNewDatasetButton,
+      showRelatedContent,
+      linkToNewWidgetFromName
+    } = this.props;
+
     return (
       <div className="c-dataset-table">
         <Spinner
@@ -139,20 +161,28 @@ class DatasetsTable extends PureComponent {
 
         <TableFilters
           filtersChange={this.onFiltersChange}
+          application={application}
         />
 
         <SearchInput
           input={{ placeholder: 'Search dataset' }}
-          link={{
-            label: 'New dataset',
-            route: 'admin_data_detail',
-            params: { tab: 'datasets', id: 'new' }
-          }}
+          {...(showNewDatasetButton && {
+            link: {
+              label: 'New dataset',
+              route: 'admin_data_detail',
+              params: { tab: 'datasets', id: 'new' }
+            }
+          })}
           onSearch={this.onSearch}
         />
         <CustomTable
           columns={[
-            { label: 'Name', value: 'name', td: NameTD, tdProps: { route: 'admin_data_detail' } },
+            { label: 'Name', value: 'name', td: NameTD, 
+              tdProps: {
+                route: 'admin_data_detail',
+                linkToNewWidget: linkToNewWidgetFromName
+              }
+            },
             { label: 'Code', value: 'code', td: CodeTD },
             { label: 'Status', value: 'status', td: StatusTD },
             { label: 'Published', value: 'published', td: PublishedTD },
@@ -161,10 +191,10 @@ class DatasetsTable extends PureComponent {
             { label: 'Role', value: 'role', td: RoleTD },
             { label: 'Updated at', value: 'updatedAt', td: UpdatedAtTD },
             { label: 'Applications', value: 'application', td: ApplicationsTD },
-            { label: 'Related content', value: 'status', td: RelatedContentTD, tdProps: { route: 'admin_data_detail' } }
+            ...(showRelatedContent ? [{ label: 'Related content', value: 'status', td: RelatedContentTD, tdProps: { route: 'admin_data_detail' } }] : [])
           ]}
           actions={{
-            show: true,
+            show: showActions,
             list: [
               { name: 'Edit', route: 'admin_data_detail', params: { tab: 'datasets', subtab: 'edit', id: '{{id}}' }, show: true, component: EditAction, componentProps: { route: 'admin_data_detail' } },
               { name: 'Remove', route: 'admin_data_detail', params: { tab: 'datasets', subtab: 'remove', id: '{{id}}' }, component: DeleteAction }

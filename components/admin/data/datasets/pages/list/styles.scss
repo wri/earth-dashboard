@@ -1,0 +1,12 @@
+@import 'css/settings';
+
+.c-datasets-index {
+    .datasets-table {
+        margin-bottom: 8 * $space;
+        
+        .c-table {
+            max-height: 400px;
+            overflow: auto;
+        }
+    }
+}
