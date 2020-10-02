@@ -5,8 +5,6 @@ import { setMobileDetect, mobileParser } from 'react-responsive-redux';
 import { setMobileOpened } from 'layout/header/actions';
 import { setHostname } from 'redactions/common';
 
-import 'css/index.scss';
-
 class Page extends PureComponent {
   // static async getInitialProps({
   //   asPath,

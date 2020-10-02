@@ -2,9 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'routes';
 
-// Global styles
-import 'css/index.scss';
-
 // components
 import ErrorHead from 'layout/head/error';
 

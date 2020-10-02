@@ -77,7 +77,7 @@ function LayoutHome(props) {
         <h1>Earth Dashboard</h1>
       </section>
 
-      <section
+      {/* <section
         className="highlighted-widgets-section"
       >
         <h2>Highlighted widgets</h2>
@@ -124,7 +124,7 @@ function LayoutHome(props) {
             </div>
           </div>
         </section>
-      }
+      } */}
     </Layout>
   );
 }
