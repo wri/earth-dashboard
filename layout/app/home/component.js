@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Scrollama, Step } from 'react-scrollama';
+import Particles from 'react-particles-js';
+// import Globe from 'react-globe.gl';
+// import { Scrollama, Step } from 'react-scrollama';
 // import PropTypes from 'prop-types';
 // import classnames from 'classnames';
 // import { Link, Router } from 'routes';
 
 // services
-import { fetchWidgets } from 'services/widget';
+// import { fetchWidgets } from 'services/widget';
 
 // components
 import Layout from 'layout/layout/layout-app';
-import TextBox from 'components/scrolly-telling/text-box';
-import Trees from 'components/scrolly-telling/visualizations/trees';
+// import TextBox from 'components/scrolly-telling/text-box';
+// import Trees from 'components/scrolly-telling/visualizations/trees';
 
 // styles
 import './styles.scss';
-import WidgetPreview from 'components/admin/data/widgets/form/preview';
 
-const VISUALIZATION_SOURCES = [
-  <Trees data={[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]} width={500} height={400} />,
-  <Trees data={[1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1]} width={500} height={400} />,
-  <Trees data={[0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1]} width={500} height={400} />
-];
+// constants
+import { PARTICLES_DEFINITION } from './constants';
+
+// import WidgetPreview from 'components/admin/data/widgets/form/preview';
+
+// const VISUALIZATION_SOURCES = [
+//   <Trees data={[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]} width={500} height={400} />,
+//   <Trees data={[1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1]} width={500} height={400} />,
+//   <Trees data={[0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1]} width={500} height={400} />
+// ];
 
 const STEPS_CONTENT = [
   {
@@ -39,30 +45,30 @@ const STEPS_CONTENT = [
 
 
 function LayoutHome(props) {
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [highlightedWidgets, setHighlightedWidgets] = useState([]);
+  // const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  // const [highlightedWidgets, setHighlightedWidgets] = useState([]);
   const isBrowser = typeof window !== 'undefined';
 
   // This callback fires when a Step hits the offset threshold. It receives the
   // data prop of the step
-  const onStepEnter = ({ data }) => {
-    setCurrentStepIndex(data);
-  };
+  // const onStepEnter = ({ data }) => {
+  //   setCurrentStepIndex(data);
+  // };
 
-  useEffect(() => {
-    fetchWidgets({
-      includes: 'metadata',
-      application: process.env.APPLICATIONS,
-      env: process.env.API_ENV
-    })
-      .then((widgets) => {
-        setHighlightedWidgets(widgets.filter((widget) => {
-          const metadata = widget.metadata;
-          return metadata && metadata.length > 0 && metadata[0].info &&
-            metadata[0].info.highlighted
-        }));
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetchWidgets({
+  //     includes: 'metadata',
+  //     application: process.env.APPLICATIONS,
+  //     env: process.env.API_ENV
+  //   })
+  //     .then((widgets) => {
+  //       setHighlightedWidgets(widgets.filter((widget) => {
+  //         const metadata = widget.metadata;
+  //         return metadata && metadata.length > 0 && metadata[0].info &&
+  //           metadata[0].info.highlighted
+  //       }));
+  //     });
+  // }, []);
 
   return (
     <Layout
@@ -70,8 +76,17 @@ function LayoutHome(props) {
       description="Earth Dashboard"
       className="homepage"
     >
+      <Particles 
+        className="particles"
+        params={PARTICLES_DEFINITION}
+      />
 
-      <section
+      <div className="main-title">
+        <h1>Earth HQ</h1>
+        <h5>A Global Commons alliance project, powered by RESOURCE WATCH</h5>
+      </div>
+
+      {/* <section
         className="header-section"
       >
         <h1>Earth Dashboard</h1>
@@ -124,7 +139,7 @@ function LayoutHome(props) {
             </div>
           </div>
         </section>
-      }
+      } */}
     </Layout>
   );
 }

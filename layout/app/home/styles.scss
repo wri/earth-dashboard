@@ -1,7 +1,29 @@
 @import 'css/settings';
 
 .homepage {
+    height: 100vh;
+    width: 100%;
     overflow: initial !important;
+    background-color: #1A2129;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .main-title {
+        text-align: center;
+        h1 {
+            color: white;
+        }
+        h5 {
+            color: lightgrey;
+        }
+    }
+
+    .particles {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
 
     .header-section {
         padding: 40px;
