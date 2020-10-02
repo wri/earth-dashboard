@@ -1,5 +1,5 @@
 import 'isomorphic-fetch';
-import { createAction, createThunkAction } from 'redux-tools';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { BitlyClient } from 'bitly';
 
 // Actions
@@ -11,7 +11,7 @@ export const resetShortLinks = createAction('RESET_SHARE_SHORT_LINKS');
 const BITLY = new BitlyClient(process.env.BITLY_TOKEN);
 
 // Async actions
-export const fetchShortUrl = createThunkAction(
+export const fetchShortUrl = createAsyncThunk(
   'SHARE_SHORT_URL_FETCH_DATA',
   (payload = {}) => (dispatch) => {
     dispatch(setLoading(true));

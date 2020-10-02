@@ -2,7 +2,7 @@ import App from 'next/app';
 import React from 'react';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
-import { initStore } from 'store';
+import { wrapper } from '../store';
 
 // es6 shim for .finally() in promises
 import finallyShim from 'promise.prototype.finally';
@@ -69,4 +69,4 @@ class EDApp extends App {
   }
 }
 
-export default withRedux(initStore)(EDApp);
+export default wrapper.withRedux(EDApp);

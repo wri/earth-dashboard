@@ -4,12 +4,12 @@ import React, { PureComponent } from 'react';
 import ResetPassword from 'layout/reset-password';
 
 class ResetPasswordPage extends PureComponent {
-  static async getInitialProps({ store }) {
-    const { getState } = store;
-    const { routes: { query: { tokenEmail } } } = getState();
+  // static async getInitialProps({ store }) {
+  //   const { getState } = store;
+  //   const { routes: { query: { tokenEmail } } } = getState();
 
-    return { tokenEmail };
-  }
+  //   return { tokenEmail };
+  // }
   render() {
     return (<ResetPassword {...this.props} />);
   }

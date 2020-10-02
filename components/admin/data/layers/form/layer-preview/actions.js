@@ -1,5 +1,5 @@
 import 'isomorphic-fetch';
-import { createAction, createThunkAction } from 'redux-tools';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Actions
 export const setLayerGroups = createAction('ADMIN_LAYER_PREVIEW_SET_LAYER_GROUPS');
@@ -8,7 +8,7 @@ export const setLayerInteractionError = createAction('ADMIN_LAYER_PREVIEW_SET_LA
 export const setLayerInteraction = createAction('ADMIN_LAYER_PREVIEW_SET_LAYER_INTERACTION');
 export const setLayerInteractionSelected = createAction('ADMIN_LAYER_PREVIEW_SET_LAYER_INTERACTION_SELECTED');
 export const setLayerInteractionLatLng = createAction('ADMIN_LAYER_PREVIEW_SET_LAYER_INTERACTION_LATLNG');
-export const generateLayerGroups = createThunkAction('ADMIN_LAYER_PREVIEW_GENERATE_LAYER_GROUPS', payload => (dispatch) => {
+export const generateLayerGroups = createAsyncThunk('ADMIN_LAYER_PREVIEW_GENERATE_LAYER_GROUPS', payload => (dispatch) => {
   const { layer, interactions } = payload;
   const layerGroups = [{
     dataset: layer.dataset,

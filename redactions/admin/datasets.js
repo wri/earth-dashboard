@@ -1,4 +1,4 @@
-import { createAction, createThunkAction } from 'redux-tools';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { fetchDatasets } from 'services/dataset';
 
@@ -140,7 +140,7 @@ export const setPaginationTotal = createAction(SET_DATASETS_PAGINATION_TOTAL);
 export const setPaginationLimit = createAction(SET_DATASETS_PAGINATION_LIMIT);
 export const resetDatasets = createAction(RESET_DATASETS);
 
-export const getAllDatasets = createThunkAction(
+export const getAllDatasets = createAsyncThunk(
   'datasets/getAllDatasets',
   options => (dispatch, getState) => {
     dispatch({ type: GET_DATASETS_LOADING });
@@ -169,7 +169,7 @@ export const getAllDatasets = createThunkAction(
   }
 );
 
-export const getDatasetsByTab = createThunkAction(
+export const getDatasetsByTab = createAsyncThunk(
   'datasets/getDatasetsByTab',
   tab => (dispatch, getState) => {
     const { user, datasets } = getState();

@@ -1,4 +1,4 @@
-import { createAction, createThunkAction } from 'redux-tools';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 // services
 import { fetchFields } from 'services/fields';
@@ -11,14 +11,14 @@ export const setAvailabletInteractions = createAction('LAYER-INTERACTIONS__SET_A
 export const setLoading = createAction('LAYER-INTERACTIONS__SET-LOADING');
 export const resetInteractions = createAction('LAYER-INTERACTIONS__RESET_INTERACTIONS');
 
-export const getCurrentLayerInteractions = createThunkAction('LAYER-INTERACTIONS__GET-CURRENT-LAYER-INTERACTIONS', props => (dispatch) => {
+export const getCurrentLayerInteractions = createAsyncThunk('LAYER-INTERACTIONS__GET-CURRENT-LAYER-INTERACTIONS', props => (dispatch) => {
   const { layer } = props;
   const { interactionConfig: { output } } = layer;
 
   if (output) dispatch(setCurrentInteractions(output));
 });
 
-export const getAvailableLayerInteractions = createThunkAction('LAYER-INTERACTIONS__GET-AVAILABLE-LAYER-INTERACTIONS', props => (dispatch) => {
+export const getAvailableLayerInteractions = createAsyncThunk('LAYER-INTERACTIONS__GET-AVAILABLE-LAYER-INTERACTIONS', props => (dispatch) => {
   const { layer } = props;
 
   dispatch(setLoading(true));

@@ -1,4 +1,4 @@
-import { createAction } from 'redux-tools';
+import { createAction } from '@reduxjs/toolkit';
 
 // actions
 export const setMobileOpened = createAction('HEADER_SET_MOBILE_OPENED');

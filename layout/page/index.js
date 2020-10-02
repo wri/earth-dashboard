@@ -8,40 +8,40 @@ import { setHostname } from 'redactions/common';
 import 'css/index.scss';
 
 class Page extends PureComponent {
-  static async getInitialProps({
-    asPath,
-    pathname,
-    query,
-    req,
-    store,
-    isServer
-  }) {
-    // Routes
-    const url = { asPath, pathname, query };
-    store.dispatch(setRouter(url));
+  // static async getInitialProps({
+  //   asPath,
+  //   pathname,
+  //   query,
+  //   req,
+  //   store,
+  //   isServer
+  // }) {
+  //   // Routes
+  //   const url = { asPath, pathname, query };
+  //   store.dispatch(setRouter(url));
 
-    // Hostname
-    const hostname = isServer ? req.headers.host : window.location.origin;
-    await store.dispatch(setHostname(hostname));
+  //   // Hostname
+  //   const hostname = isServer ? req.headers.host : window.location.origin;
+  //   await store.dispatch(setHostname(hostname));
 
-    // User favourites and collection
-    const { user } = isServer ? req : store.getState();
+  //   // User favourites and collection
+  //   const { user } = isServer ? req : store.getState();
 
-    await store.dispatch(setUser(user));
-    await store.dispatch(getUserFavourites());
-    await store.dispatch(getUserCollections());
+  //   await store.dispatch(setUser(user));
+  //   await store.dispatch(getUserFavourites());
+  //   await store.dispatch(getUserCollections());
 
-    // Mobile detection
-    if (isServer) {
-      const mobileDetect = mobileParser(req);
-      store.dispatch(setMobileDetect(mobileDetect));
-    }
+  //   // Mobile detection
+  //   if (isServer) {
+  //     const mobileDetect = mobileParser(req);
+  //     store.dispatch(setMobileDetect(mobileDetect));
+  //   }
 
-    // Hide mobile header
-    store.dispatch(setMobileOpened(false));
+  //   // Hide mobile header
+  //   store.dispatch(setMobileOpened(false));
 
-    return { user, isServer, url };
-  }
+  //   return { user, isServer, url };
+  // }
 }
 
 
