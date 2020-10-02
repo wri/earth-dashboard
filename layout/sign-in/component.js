@@ -5,7 +5,7 @@ import Layout from 'layout/layout/layout-app';
 import LoginModal from 'components/modal/login-modal';
 
 // styles
-import styles from './log-in-module.scss';
+import styles from './log-in.module.scss';
 
 class SigIn extends PureComponent {
   render() {

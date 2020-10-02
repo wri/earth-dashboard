@@ -13,8 +13,6 @@
     "@widget-editor/renderer": "^2.3.2",
     "@widget-editor/rw-adapter": "^2.3.2",
     "@widget-editor/widget-editor": "^2.3.2",
-    "@zeit/next-css": "^1.0.1",
-    "@zeit/next-sass": "^1.0.1",
     "autoprefixer": "^9.4.2",
     "axios": "^0.18.0",
     "basic-auth": "1.1.0",
