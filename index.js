@@ -75,12 +75,12 @@ if (prod) {
 }
 
 // Using basic auth in prod mode
-const { RW_USERNAME, RW_PASSWORD } = process.env;
-if (prod && (RW_USERNAME && RW_PASSWORD)) {
+const { ED_USERNAME, ED_PASSWORD } = process.env;
+if (prod && (ED_USERNAME && ED_PASSWORD)) {
   server.use(
     checkBasicAuth({
-      name: RW_USERNAME,
-      pass: RW_PASSWORD
+      name: ED_USERNAME,
+      pass: ED_PASSWORD
     })
   );
 }

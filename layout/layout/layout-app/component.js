@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Progress from 'react-progress-2';
 import classnames from 'classnames';
 
 // Utils
@@ -51,15 +50,6 @@ class LayoutApp extends Component {
   state = { modalOpen: false }
 
   componentDidMount() {
-    Router.onRouteChangeStart = () => {
-      this.props.updateIsLoading(true);
-      if (Progress && Progress.Component.instance) Progress.show();
-    };
-    Router.onRouteChangeComplete = () => {
-      this.props.updateIsLoading(false);
-      if (Progress && Progress.Component.instance) Progress.hideAll();
-    };
-
     // Google Analytics
     if (!window.GA_INITIALIZED) {
       initGA();
@@ -115,16 +105,7 @@ class LayoutApp extends Component {
           </Modal>
         }
 
-        <Icons />
-        <IconsRW />
-
-        <Header pageHeader={pageHeader} />
-
-        <Progress.Component />
-
         {children}
-
-        {!isFullScreen && (<Footer />)}
 
         <Tooltip />
 

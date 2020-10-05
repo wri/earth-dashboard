@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Scrollama, Step } from 'react-scrollama';
+import Particles from 'react-particles-js';
+// import Globe from 'react-globe.gl';
+// import { Scrollama, Step } from 'react-scrollama';
 // import PropTypes from 'prop-types';
 // import classnames from 'classnames';
 // import { Link, Router } from 'routes';
 
 // services
-import { fetchWidgets } from 'services/widget';
+// import { fetchWidgets } from 'services/widget';
 
 // components
 import Layout from 'layout/layout/layout-app';
-import TextBox from 'components/scrolly-telling/text-box';
-import Trees from 'components/scrolly-telling/visualizations/trees';
+// import TextBox from 'components/scrolly-telling/text-box';
+// import Trees from 'components/scrolly-telling/visualizations/trees';
 
 // styles
 import styles from './homepage.module.scss';
 import WidgetPreview from 'components/admin/data/widgets/form/preview';
 
-const VISUALIZATION_SOURCES = [
-  <Trees data={[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]} width={500} height={400} />,
-  <Trees data={[1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1]} width={500} height={400} />,
-  <Trees data={[0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1]} width={500} height={400} />
-];
+// constants
+import { PARTICLES_DEFINITION } from './constants';
+
+// import WidgetPreview from 'components/admin/data/widgets/form/preview';
+
+// const VISUALIZATION_SOURCES = [
+//   <Trees data={[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]} width={500} height={400} />,
+//   <Trees data={[1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1]} width={500} height={400} />,
+//   <Trees data={[0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1]} width={500} height={400} />
+// ];
 
 const STEPS_CONTENT = [
   {
@@ -70,8 +77,17 @@ function LayoutHome(props) {
       description="Earth Dashboard"
       className={styles['homepage']}
     >
+      <Particles 
+        className="particles"
+        params={PARTICLES_DEFINITION}
+      />
 
-      <section
+      <div className="main-title">
+        <h1>Earth HQ</h1>
+        <h5>A Global Commons alliance project, powered by RESOURCE WATCH</h5>
+      </div>
+
+      {/* <section
         className="header-section"
       >
         <h1>Earth Dashboard</h1>

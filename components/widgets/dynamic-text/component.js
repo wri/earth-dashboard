@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
+import d3 from 'd3';
+import { timeFormat, timeParse } from 'd3-time-format';
 
 // components
 import Spinner from 'components/ui/spinner';
@@ -50,12 +52,24 @@ function DynamicTextWidget(props) {
     const textElements = textData && textData.splitArray
         .map((currentStr) => {
             if (textData.paramsFound.includes(currentStr)) {
+                const currentParam = parameters.find(p => p.key === currentStr);
+                const { type, format, inputFormat, outputFormat } = currentParam;
+                const val = textData.newValues[currentStr];
+                let textValue;
+
+                if (type === 'number') {
+                    textValue = d3.format(format)(val)
+                } else if (type === 'date' ) {
+                    const parsedDate = timeParse(inputFormat)(val);
+                    textValue = timeFormat(outputFormat)(parsedDate);
+                }
+                
                 return (
                     <span 
                         className="parameter"
-                        style={parameters.find(p => p.key === currentStr).style}
+                        style={currentParam.style}
                     >
-                        {textData.newValues[currentStr]}
+                        {textValue}
                     </span>);
             } else {
                 return <span className="text">{currentStr}</span>;

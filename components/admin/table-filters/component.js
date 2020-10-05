@@ -24,7 +24,7 @@ class TableFiltersComponent extends PureComponent {
   }
 
   render() {
-    const { className } = this.props;
+    const { className, application } = this.props;
     const classNameValue = classnames({
       [styles['c-table-filters']]: true,
       [className]: !!className
@@ -34,7 +34,7 @@ class TableFiltersComponent extends PureComponent {
         className={classNameValue}
       >
         <RadioGroup
-          name="owner-filter"
+          name={`${application}-owner-filter`}
           properties={{ default: USER_TYPES.ADMIN }}
           options={USER_OPTIONS}
           onChange={this.onOwnerChange}

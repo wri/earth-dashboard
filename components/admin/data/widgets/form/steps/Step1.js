@@ -40,7 +40,7 @@ class Step1 extends Component {
 
   constructor(props) {
     super(props);
-    const { form, id } = props;
+    const { form, id, query } = props;
     const widgetType = form && form.widgetConfig && form.widgetConfig.type;
     const isNewWidgetType = !!id && widgetType &&
       NEW_WIDGET_TYPES.includes(widgetType);
@@ -50,7 +50,10 @@ class Step1 extends Component {
 
     this.state = {
       id,
-      form,
+      form: {
+        ...form,
+        dataset: form.dataset || query && query.dataset
+      },
       showNewWidgetsInterface: !!id && isNewWidgetType,
       newWidgetTypesEditorCode: id ? JSON.stringify(form, null, 5) : JSON.stringify(defaultCode, null, 5),
       previewSource: !!id && !!form && form
@@ -58,12 +61,11 @@ class Step1 extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const newForm = {
-      ...nextProps.form,
-      dataset: nextProps.form.dataset || nextProps.query.dataset
-    };
     this.setState({
-      form: newForm
+      form: {
+        ...nextProps.form,
+        dataset: nextProps.form.dataset || nextProps.query.dataset
+      }
     });
   }
 

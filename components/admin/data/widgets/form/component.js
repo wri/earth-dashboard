@@ -26,7 +26,7 @@ import { FORM_ELEMENTS } from './constants';
 import styles from './widget-form.module.scss';
 
 function WidgetForm(props) {
-  const { id } = props;
+  const { id, application, dataset } = props;
   const [loading, setLoading] = useState(false);
   const [datasets, setDatasets] = useState([]);
   const [widget, setWidget] = useState(null);
@@ -42,49 +42,61 @@ function WidgetForm(props) {
     }
     // ------- NEW WIDGET MODE ------
     else {
-      // TO-DO: replace this for a dynamic search or lazy loading
-      fetchDatasets({
-        application: [process.env.APPLICATIONS].join(','),
-        'page[size]': 9999999,
-        sort: 'name',
-        env: process.env.API_ENV,
-        includes: 'metadata'
-      })
-        .then((datasetsResponse) => {
-          setDatasets(datasetsResponse.map(_dataset => mapDataset(_dataset)));
-          setLoading(false);
+      if (application === 'rw') {
+        fetchDataset(dataset)
+          .then((datasetResponse) => {
+            setDatasets([mapDataset(datasetResponse)]);
+            setLoading(false);
+          })
+          .catch((error) => {
+            setLoading(false);
+            toastr.error(`There was an error loading the dataset ${dataset}: ${error}`);
+          });
+      } else {
+        // TO-DO: replace this for a dynamic search or lazy loading
+        fetchDatasets({
+          application: [process.env.APPLICATIONS].join(','),
+          'page[size]': 9999999,
+          sort: 'name',
+          env: process.env.API_ENV,
+          includes: 'metadata'
         })
-        .catch((error) => {
-          setLoading(false);
-          toastr.error(`There was an error loading the datasets ${error}`);
-        });
+          .then((datasetsResponse) => {
+            setDatasets(datasetsResponse.map(_dataset => mapDataset(_dataset)));
+            setLoading(false);
+          })
+          .catch((error) => {
+            setLoading(false);
+            toastr.error(`There was an error loading the datasets ${error}`);
+          });
+      }
     }
   }, [id]);
 
   const loadWidget = (id) => {
     fetchWidget(id, { includes: 'metadata' })
-    .then((widgetResponse) => {
-      setWidget(widgetResponse);
-      setForm(widgetResponse);
-      if (datasets.length === 0) {
-        // we need to load the widget dataset
-        fetchDataset(widgetResponse.dataset)
-          .then((dataset) => {
-            setDatasets([mapDataset(dataset)]);
-            setLoading(false);
-          })
-          .catch((error) => {
-            setLoading(false);
-            toastr.error(`There was an error loading the dataset with ID ${widgetResponse.dataset}: ${error}`);
-          });
-      } else {
+      .then((widgetResponse) => {
+        setWidget(widgetResponse);
+        setForm(widgetResponse);
+        if (datasets.length === 0) {
+          // we need to load the widget dataset
+          fetchDataset(widgetResponse.dataset)
+            .then((dataset) => {
+              setDatasets([mapDataset(dataset)]);
+              setLoading(false);
+            })
+            .catch((error) => {
+              setLoading(false);
+              toastr.error(`There was an error loading the dataset with ID ${widgetResponse.dataset}: ${error}`);
+            });
+        } else {
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
         setLoading(false);
-      }
-    })
-    .catch((error) => {
-      setLoading(false);
-      toastr.error(`There was an error loading the widget with ID ${id}: ${error}`);
-    });
+        toastr.error(`There was an error loading the widget with ID ${id}: ${error}`);
+      });
   };
 
   const mapDataset = (datasetValue) => ({
@@ -131,15 +143,18 @@ function WidgetForm(props) {
   };
 
   const createWidget = (widget, metadata) => {
-    const { onSubmit, authorization } = props;
+    const { onSubmit, authorization, dataset: queryDataset } = props;
     const { dataset } = form;
-    createWidgetService(widget, dataset, authorization)
+
+    const datasetValue = dataset || queryDataset;
+    
+    createWidgetService(widget, datasetValue, authorization)
       .then((response) => {
         const { id, name } = response;
         // We need to create the widget metadata now
         createWidgetMetadata(
           id,
-          dataset,
+          datasetValue,
           {
             language: 'en',
             info: { caption: metadata && metadata.caption }
