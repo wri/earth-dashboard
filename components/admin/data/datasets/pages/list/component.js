@@ -4,13 +4,13 @@ import React, { PureComponent } from 'react';
 import DatasetsTable from 'components/datasets/table';
 
 // styles
-import './styles.scss';
+import styles from './datasets-page-list.module.scss';
 
 class DatasetsIndex extends PureComponent {
   render() {
     return (
-      <div className="c-datasets-index">
-        <div className="datasets-table">
+      <div className={styles['c-datasets-index']}>
+        <div className={styles['datasets-table']}>
           <h3>EarthHQ datasets</h3>
           <DatasetsTable
             routes={{
@@ -20,7 +20,7 @@ class DatasetsIndex extends PureComponent {
             application={process.env.APPLICATIONS}
           />
         </div>
-        <div className="datasets-table">
+        <div className={styles['datasets-table']}>
           <h3>RW datasets</h3>
           <DatasetsTable
             routes={{

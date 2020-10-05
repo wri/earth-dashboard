@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 // components
 import Layout from 'layout/layout/layout-admin';
-import Tabs from 'components/ui/Tabs';
+import Tabs from 'components/ui/tabs';
 import PagesIndex from 'components/admin/pages/pages/list';
 import Title from 'components/ui/Title';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TableHeaderActions from './TableHeaderActions';
+import TableHeaderActions from './header-actions';
 
 export default function TableHeader(props) {
   const {

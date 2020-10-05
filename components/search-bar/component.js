@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 
 // components
-import SearchInput from 'components/ui/SearchInput';
+import SearchInput from 'components/ui/search-input';
 import Icon from 'components/ui/icon';
 
 class SearchBar extends PureComponent {

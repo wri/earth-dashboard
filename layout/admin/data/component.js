@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // components
 import Layout from 'layout/layout/layout-admin';
-import Tabs from 'components/ui/Tabs';
+import Tabs from 'components/ui/tabs';
 import DatasetsIndex from 'components/admin/data/datasets/pages/list';
 import WidgetsIndex from 'components/admin/data/widgets/pages/list';
 import LayersIndex from 'components/admin/data/layers/pages/list';

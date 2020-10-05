@@ -9,7 +9,7 @@ import { fetchDatasets } from 'services/dataset';
 // components
 import Spinner from 'components/ui/spinner';
 import CustomTable from 'components/ui/customtable/CustomTable';
-import SearchInput from 'components/ui/SearchInput';
+import SearchInput from 'components/ui/search-input';
 import TableFilters from 'components/admin/table-filters';
 import NameTD from './td/name';
 import CodeTD from './td/code';

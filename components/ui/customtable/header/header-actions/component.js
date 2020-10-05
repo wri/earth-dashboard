@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // components
-import TableFilters from './TableFilters';
-import TableSorts from './TableSorts';
+import TableFilters from '../TableFilters';
+import TableSorts from '../TableSorts';
 
 // styles
 import styles from './table-header-actions.module.scss';
