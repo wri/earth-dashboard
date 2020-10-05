@@ -177,6 +177,9 @@
       }
     }
   },
+  "engines": {
+    "node": "8.14.1"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
