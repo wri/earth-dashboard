@@ -39,30 +39,30 @@ const STEPS_CONTENT = [
 
 
 function LayoutHome(props) {
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [highlightedWidgets, setHighlightedWidgets] = useState([]);
-  const isBrowser = typeof window !== 'undefined';
+  // const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  // const [highlightedWidgets, setHighlightedWidgets] = useState([]);
+  // const isBrowser = typeof window !== 'undefined';
 
   // This callback fires when a Step hits the offset threshold. It receives the
   // data prop of the step
-  const onStepEnter = ({ data }) => {
-    setCurrentStepIndex(data);
-  };
+  // const onStepEnter = ({ data }) => {
+  //   setCurrentStepIndex(data);
+  // };
 
-  useEffect(() => {
-    fetchWidgets({
-      includes: 'metadata',
-      application: process.env.APPLICATIONS,
-      env: process.env.API_ENV
-    })
-      .then((widgets) => {
-        setHighlightedWidgets(widgets.filter((widget) => {
-          const metadata = widget.metadata;
-          return metadata && metadata.length > 0 && metadata[0].info &&
-            metadata[0].info.highlighted
-        }));
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetchWidgets({
+  //     includes: 'metadata',
+  //     application: process.env.APPLICATIONS,
+  //     env: process.env.API_ENV
+  //   })
+  //     .then((widgets) => {
+  //       setHighlightedWidgets(widgets.filter((widget) => {
+  //         const metadata = widget.metadata;
+  //         return metadata && metadata.length > 0 && metadata[0].info &&
+  //           metadata[0].info.highlighted
+  //       }));
+  //     });
+  // }, []);
 
   return (
     <Layout

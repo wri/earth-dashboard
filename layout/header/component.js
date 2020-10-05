@@ -7,7 +7,6 @@ import MediaQuery from 'react-responsive';
 // components
 import HeaderMenu from 'layout/header/header-menu';
 import HeaderMenuMobile from 'layout/header/header-menu-mobile';
-import Icon from 'components/ui/icon';
 
 // utils
 import { breakpoints } from 'utils/responsive';
@@ -18,7 +17,6 @@ import styles from './header.module.scss';
 class Header extends PureComponent {
   static propTypes = {
     header: PropTypes.object.isRequired,
-    responsive: PropTypes.object.isRequired,
     pageHeader: PropTypes.bool
   };
 
@@ -26,9 +24,7 @@ class Header extends PureComponent {
 
   render() {
     const {
-      header: { admin },
       pageHeader,
-      responsive: { fakeWidth }
     } = this.props;
     const { medium } = breakpoints;
     const headerClass = classnames({
@@ -37,7 +33,7 @@ class Header extends PureComponent {
     });
     const containerClass = classnames(
       'l-container',
-      { '-admin': admin }
+      { '-admin': false }
     );
 
     return (
@@ -58,7 +54,7 @@ class Header extends PureComponent {
                 {/* Mobile header */}
                 <MediaQuery
                   maxDeviceWidth={medium - 1}
-                  values={{ deviceWidth: fakeWidth }}
+                  values={{ deviceWidth: 1000 }}
                 >
                   <HeaderMenuMobile />
                 </MediaQuery>
@@ -66,7 +62,7 @@ class Header extends PureComponent {
                 {/* Desktop header */}
                 <MediaQuery
                   minDeviceWidth={medium}
-                  values={{ deviceWidth: fakeWidth }}
+                  values={{ deviceWidth: 1000 }}
                 >
                   <HeaderMenu />
                 </MediaQuery>

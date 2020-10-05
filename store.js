@@ -7,9 +7,12 @@ import {
   sagas
 } from '@widget-editor/widget-editor';
 
+import * as redactions from 'redactions';
+
 // REDUCERS
 const reducer = combineReducers({
-  ...WEReducers
+  ...WEReducers,
+  ...redactions
 });
 
 const makeStore = () => configureStore({
