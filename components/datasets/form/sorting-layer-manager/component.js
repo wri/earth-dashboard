@@ -45,7 +45,7 @@ class SortingLayerManager extends PureComponent {
 
     return (
       <div className={styles['c-sorting-layer-manager']}>
-        <ul className="sorting-layer-manager-list">
+        <ul className={styles['sorting-layer-manager-list']}>
           {layers.map((layer, index) => (
             <LayerCard
               key={layer.id}

@@ -61,7 +61,7 @@ function CombinedWidget(props) {
       {loading && <Spinner isLoading={loading} className="-relative -light" />}
       {widgets && widgets.widget1 &&
         <div
-          className="widget1-container"
+          className={styles['widget1-container']}
           style={directionIsRow ? {
                         'min-width': `${widget1.percentage}%`,
                         'max-width': `${widget1.percentage}%`
@@ -76,7 +76,7 @@ function CombinedWidget(props) {
             }
       {widgets && widgets.widget2 &&
         <div
-          className="widget2-container"
+          className={styles['widget2-container']}
           style={directionIsRow ? {
                         'min-width': `${widget2.percentage}%`,
                         'max-width': `${widget2.percentage}%`

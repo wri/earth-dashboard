@@ -85,8 +85,8 @@ class LoginModal extends PureComponent {
 
     return (
       <div className={styles['c-login-modal']}>
-        <div className="content">
-          <div className="log-in-container">
+        <div className={styles.content}>
+          <div className={styles['log-in-container']}>
             {loading && <Spinner className="-light" isLoading />}
             <div className="row">
               <div className="column small-12">
@@ -128,7 +128,7 @@ class LoginModal extends PureComponent {
                   </Field>
                   {!register && (
                     <Link to="forgot-password">
-                      <a className="forgot-password-link">Have you forgotten your password?</a>
+                      <a className={styles['forgot-password-link']}>Have you forgotten your password?</a>
                     </Link>)}
 
                   {register &&
@@ -182,9 +182,9 @@ class LoginModal extends PureComponent {
                 </form>
               </div>
               <div className="column small-12 medium-5 medium-offset-2">
-                <span className="social-media-intro">...or with your social media account</span>
-                <ul className="social-btn-list">
-                  <li className="social-btn-item">
+                <span className={styles['social-media-intro']}>...or with your social media account</span>
+                <ul className={styles['social-btn-list']}>
+                  <li className={styles['social-btn-item']}>
                     <a
                       href="/auth/google"
                       className="c-button -google -fullwidth"
@@ -192,7 +192,7 @@ class LoginModal extends PureComponent {
                       Google
                     </a>
                   </li>
-                  <li className="social-btn-item">
+                  <li className={styles['social-btn-item']}>
                     <a
                       href="/auth/facebook"
                       className="c-button -facebook -fullwidth"
@@ -200,7 +200,7 @@ class LoginModal extends PureComponent {
                       facebook
                     </a>
                   </li>
-                  <li className="social-btn-item">
+                  <li className={styles['social-btn-item']}>
                     <a
                       href="/auth/twitter"
                       className="c-button -twitter -fullwidth"

@@ -100,7 +100,7 @@ class ShareModalComponent extends PureComponent {
       <div className={styles['c-share-modal']}>
         <h2>Share</h2>
 
-        <div className="share-content">
+        <div className={styles['share-content']}>
           {Object.keys(links).map((type) => {
             const htmlFor = `share-${type}`;
             const url = shortLinks[type] || links[type];
@@ -111,7 +111,7 @@ class ShareModalComponent extends PureComponent {
                   <div key={type} className="c-field">
                     <label htmlFor={htmlFor}>Public url to share</label>
 
-                    <div className="share-input-container">
+                    <div className={styles['share-input-container']}>
                       {loading && <Spinner className="-light -tiny" isLoading />}
 
                       <input
@@ -120,12 +120,12 @@ class ShareModalComponent extends PureComponent {
                         }}
                         id={htmlFor}
                         name={htmlFor}
-                        className="share-input"
+                        className={styles['share-input']}
                         value={url}
                         readOnly
                       />
 
-                      <div className="share-buttons">
+                      <div className={styles['share-buttons']}>
                         <a
                           className="c-btn -secondary -compressed -square"
                           href={`mailto:?subject=Shared from Resource Watch&body= I thought you'd be interested in what I found on Resource Watch: ${url}`}
@@ -174,19 +174,19 @@ class ShareModalComponent extends PureComponent {
                   <div key={type} className="c-field">
                     <label htmlFor={htmlFor}>Code to embed</label>
 
-                    <div className="share-input-container">
+                    <div className={styles['share-input-container']}>
                       <input
                         ref={(n) => {
                           this.inputs[type] = n;
                         }}
                         id={htmlFor}
                         name={htmlFor}
-                        className="share-input"
+                        className={styles['share-input']}
                         value={`<iframe src="${url}" width="100%" height="500px" frameBorder="0" />`}
                         readOnly
                       />
 
-                      <div className="share-buttons">
+                      <div className={styles['share-buttons']}>
                         <a
                           className="c-btn -secondary -compressed"
                           tabIndex={0}

@@ -291,12 +291,12 @@ const WidgetCard = (props) => {
 
   return (
     <div className={styles['c-widget-card']}>
-      <div className="widget-preview">
+      <div className={styles['widget-preview']}>
         {getWidgetPreview()}
       </div>
-      <div className="info">
+      <div className={styles.info}>
         <div
-          className="detail"
+          className={styles.detail}
           // tabIndex={-1}
           // role="button"
           // onClick={() => this.props.onWidgetClick && this.props.onWidgetClick(widget)}
@@ -336,7 +336,7 @@ const WidgetCard = (props) => {
         </div>
 
         {(showActions || showRemove || showEmbed) &&
-          <div className="actions">
+          <div className={styles.actions}>
             {showActions && (
 
               <Tooltip

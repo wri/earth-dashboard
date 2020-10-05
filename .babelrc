@@ -29,7 +29,6 @@
           "components": "./components",
           "layout": "./layout",
           "redactions": "./redactions",
-          "modules": "./modules",
           "utils": "./utils",
           "selectors": "./selectors",
           "static": "./public/static",

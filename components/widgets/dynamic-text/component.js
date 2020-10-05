@@ -66,23 +66,23 @@ function DynamicTextWidget(props) {
                 
                 return (
                     <span 
-                        className="parameter"
+                        className={styles.parameter}
                         style={currentParam.style}
                     >
                         {textValue}
                     </span>);
             } else {
-                return <span className="text">{currentStr}</span>;
+                return <span className={styles.text}>{currentStr}</span>;
             }
         });
     
     return (
         <div
-            className="c-dynamic-text-widget"
+            className={styles['c-dynamic-text-widget']}
             {...(style && { style })}
         >
             <Spinner isLoading={loading} className="-relative -light" />
-            <div className="text-container">
+            <div className={styles['text-container']}>
                 {textElements}
             </div>
         </div>

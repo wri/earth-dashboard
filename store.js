@@ -22,4 +22,6 @@ const makeStore = () => configureStore({
   preloadedState: {}
 });
 
+// WEmiddleware.run(sagas);
+
 export const wrapper = createWrapper(makeStore, {});

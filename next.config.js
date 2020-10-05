@@ -1,7 +1,5 @@
 require('dotenv').load();
 
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const cssnano = require('cssnano');
 const { BundleAnalyzerPlugin } = (process.env.RW_NODE_ENV === 'production' && process.env.BUNDLE_ANALYZER) ?
   require('webpack-bundle-analyzer') : {};
 
@@ -32,14 +30,6 @@ module.exports = {
       net: 'empty',
       tls: 'empty'
     };
-
-    _config.plugins.push(
-      // optimizes any css file generated
-      new OptimizeCssAssetsPlugin({
-        cssProcessor: cssnano,
-        cssProcessorPluginOptions: { preset: ['default', { discardComments: { removeAll: true } }] }
-      })
-    );
 
     if (process.env.BUNDLE_ANALYZER) _config.plugins.push(new BundleAnalyzerPlugin());
 

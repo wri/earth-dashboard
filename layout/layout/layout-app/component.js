@@ -109,14 +109,6 @@ class LayoutApp extends Component {
 
         <Tooltip />
 
-        <Modal
-          open={modalOpen}
-          options={modal.options}
-          loading={modal.loading}
-          toggleModal={toggleModal}
-          setModalOptions={setModalOptions}
-        />
-
         <Toastr
           preventDuplicates
           transitionIn="fadeIn"

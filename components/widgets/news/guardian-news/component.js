@@ -10,10 +10,10 @@ function GuardianNews(props){
 
     return (
         <div className={styles['c-guardian-news']}>
-            <div className="image-container">
+            <div className={styles['image-container']}>
                 <img src={thumbnail} />
             </div>
-            <div className="text-container">
+            <div className={styles['text-container']}>
                 <h3>
                     <a href={webUrl} target="_blank">
                         {webTitle}

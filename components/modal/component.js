@@ -36,10 +36,13 @@ class ModalComponent extends PureComponent {
       onAfterOpen,
       onRequestClose
     } = this.props;
-    const classNames = classnames({ [className]: !!className });
+    const classNames = classnames({ 
+      [styles['c-modal2']]: true,
+      [className]: !!className 
+    });
     return (
       <Modal
-        className={`c-modal2 ${classNames}`}
+        className={classNames}
         overlayClassName={styles['c-modal2-overlay']}
         bodyOpenClassName="-no-scroll"
         isOpen={isOpen}
@@ -50,13 +53,13 @@ class ModalComponent extends PureComponent {
         {header}
 
         <button
-          className="modal-close"
+          className={styles['modal-close']}
           onClick={e => e.stopPropagation() || onRequestClose()}
         >
           <Icon name="icon-cross" className="-small" />
         </button>
 
-        <div className="modal-content">
+        <div className={styles['modal-content']}>
           {this.props.children}
         </div>
       </Modal>

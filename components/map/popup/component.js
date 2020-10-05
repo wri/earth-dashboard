@@ -148,9 +148,9 @@ class LayerPopup extends PureComponent {
 
     return (
       <div className={styles['c-layer-popup']}>
-        <header className="popup-header">
+        <header className={styles['popup-header']}>
           <select
-            className="popup-header-select"
+            className={styles['popup-header-select']}
             name="interactionLayers"
             value={layer.id}
             onChange={e => this.props.onChangeInteractiveLayer(e.target.value)}
@@ -160,7 +160,7 @@ class LayerPopup extends PureComponent {
           </select>
         </header>
 
-        <div className="popup-content">
+        <div className={styles['popup-content']}>
           {(interaction.data || interactionState.data) &&
             output.map((outputItem) => {
               const { column } = outputItem;
@@ -169,13 +169,13 @@ class LayerPopup extends PureComponent {
                 interaction.data || interactionState.data);
                 return (
                   <div
-                    className="popup-field"
+                    className={styles['popup-field']}
                     key={outputItem.property || outputItem.column}
                   >
-                    <div className="field-title">
+                    <div className={styles['field-title']}>
                       {outputItem.property || outputItem.column}
                     </div>
-                    <div className="field-value">
+                    <div className={styles['field-value']}>
                       {(outputItem.property || outputItem.column) === 'Link' &&
                         <a
                           href={value}
@@ -195,7 +195,7 @@ class LayerPopup extends PureComponent {
 
           {this.state.loading && (!interaction.data || !interactionState.data) &&
             interactionConfig.config && interactionConfig.config.url &&
-            <div className="popup-loader">
+            <div className={styles['popup-loader']}>
               <Spinner isLoading className="-tiny -inline -pink-color" />
             </div>}
 

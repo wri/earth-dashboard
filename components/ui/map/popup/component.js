@@ -128,9 +128,9 @@ class LayerPopup extends React.Component {
 
     return (
       <div className={styles['c-map-popup']}>
-        <header className="popup-header">
+        <header className={styles['popup-header']}>
           <select
-            className="popup-header-select"
+            className={styles['popup-header-select']}
             name="interactionLayers"
             value={layer.id}
             onChange={e => this.props.onChangeInteractiveLayer(e.target.value)}
@@ -140,7 +140,7 @@ class LayerPopup extends React.Component {
           </select>
         </header>
 
-        <div className="popup-content">
+        <div className={styles['popup-content']}>
           {(interaction.data || interactionState.data) &&
             <table className="popup-table">
               <tbody>
@@ -167,7 +167,7 @@ class LayerPopup extends React.Component {
           }
 
           {this.state.loading && (!interaction.data || !interactionState.data) && interactionConfig.config && interactionConfig.config.url &&
-            <div className="popup-loader">
+            <div className={styles['popup-loader']}>
               <Spinner isLoading className="-tiny -inline -pink-color" />
             </div>
           }

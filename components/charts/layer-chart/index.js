@@ -10,7 +10,7 @@ function DatasetLayerChart(props) {
 
   return (
     <div className={styles['c-layer-chart']}>
-      <div className="c-we-chart">
+      <div className={styles['c-we-chart']}>
         <MapThumbnail
           layerSpec={layer}
         />

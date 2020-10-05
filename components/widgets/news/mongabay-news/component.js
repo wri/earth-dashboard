@@ -10,10 +10,10 @@ function MongabayNews(props){
 
     return (
         <div className={styles['c-mongabay-news']}>
-            <div className="image-container">
+            <div className={styles['image-container']}>
                 <img src={imageURL} />
             </div>
-            <div className="text-container">
+            <div className={styles['text-container']}>
                 <h3>
                     <a href={link} target="_blank">
                         {title}

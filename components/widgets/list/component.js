@@ -33,9 +33,9 @@ function ListWidget(props) {
   const ListTag = numbers ? 'ol' : 'ul';
 
   return (
-    <div className="c-list-widget">
+    <div className={styles['c-list-widget']}>
       <Spinner isLoading={loading} className="-relative -light" />
-      <div className="list-heading">
+      <div className={styles['list-heading']}>
         {heading}
       </div>
       <ListTag>

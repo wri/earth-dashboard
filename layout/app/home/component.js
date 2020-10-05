@@ -75,14 +75,14 @@ function LayoutHome(props) {
     <Layout
       title="Earth Dashboard"
       description="Earth Dashboard"
-      className={styles['homepage']}
+      className={styles.homepage}
     >
       <Particles 
-        className="particles"
+        className={styles.particles}
         params={PARTICLES_DEFINITION}
       />
 
-      <div className="main-title">
+      <div className={styles['main-title']}>
         <h1>Earth HQ</h1>
         <h5>A Global Commons alliance project, powered by RESOURCE WATCH</h5>
       </div>

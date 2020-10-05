@@ -65,19 +65,22 @@ export default class Modal extends React.Component {
           [options.size]: !!options.size
         })}
       >
-        <div className="modal-container">
+        <div className={styles['modal-container']}>
           {canClose &&
-            <button className="modal-close" onClick={e => e.stopPropagation() || this.props.toggleModal(false)}>
+            <button 
+              className={styles['modal-close']} 
+              onClick={e => e.stopPropagation() || this.props.toggleModal(false)}
+            >
               <Icon name="icon-cross" className="-small" />
             </button>
           }
-          <div className="modal-content">
+          <div className={styles['modal-content']}>
             {this.props.children ? this.props.children : null}
             {this.props.loading ? <Spinner isLoading /> : this.getContent()}
           </div>
         </div>
         <div
-          className="modal-backdrop"
+          className={styles['modal-backdrop']}
           onClick={e => e.stopPropagation() || this.props.toggleModal(false)}
         />
       </section>

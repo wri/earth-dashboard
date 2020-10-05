@@ -216,7 +216,7 @@ class TagsForm extends React.Component {
           {Select}
         </Field>
         <h5>Inferred tags:</h5>
-        <div className="inferred-tags">
+        <div className={styles['inferred-tags']}>
           {inferredTags.map(tag =>
             (
               <div
@@ -227,7 +227,7 @@ class TagsForm extends React.Component {
               </div>
             ))}
         </div>
-        <div className="graph-div">
+        <div className={styles['graph-div']}>
           <Spinner
             className="-light -relative"
             isLoading={loadingInferredTags}

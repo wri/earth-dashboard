@@ -13,7 +13,7 @@ function ReadMore(props) {
 
   if (text.length <= limitChar) {
     return (
-      <div className="c-read-more">
+      <div className={styles['c-read-more']}>
         {markdown && <ReactMarkdown linkTarget="_blank" source={text} />}
         {!markdown && <p>{text}</p>}
       </div>

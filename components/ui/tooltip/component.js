@@ -142,7 +142,7 @@ class Tooltip extends React.Component {
         { this.props.tooltip.opened &&
           <div ref={(node) => { this.el = node; }}>
             {this.getContent()}
-            <div className="tip" style={{ left: `calc(50% + (${this.state.tipOffset}px))` }} />
+            <div className={styles.tip} style={{ left: `calc(50% + (${this.state.tipOffset}px))` }} />
           </div>
         }
       </TetherComponent>
