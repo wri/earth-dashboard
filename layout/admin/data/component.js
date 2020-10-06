@@ -15,9 +15,9 @@ class LayoutAdminData extends PureComponent {
   static propTypes = { query: PropTypes.object.isRequired }
 
   render() {
-    const { query: { tab } } = this.props;
+    const { query } = this.props;
     // TO-DO: set properly this in express
-    const currentTab = tab || 'datasets';
+    const currentTab = (query && query.tab) || 'datasets';
 
     return (
       <Layout

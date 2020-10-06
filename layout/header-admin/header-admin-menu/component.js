@@ -23,7 +23,7 @@ class AdminHeaderMenu extends PureComponent {
                 key={item.label}
                 className={activeClassName}
               >
-                {!component && item.route &&
+                {item.route &&
                   <Link
                     route={item.route}
                     params={item.params}
@@ -32,12 +32,10 @@ class AdminHeaderMenu extends PureComponent {
                   </Link>
                 }
 
-                {!component && item.href &&
+                {item.href &&
                   <a href={item.href}>
                     {item.label}
                   </a>}
-
-                {!!component && component}
               </li>
             );
           })}

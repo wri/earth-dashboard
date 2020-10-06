@@ -91,12 +91,8 @@ class LayoutAdmin extends PureComponent {
       title,
       description,
       pageHeader,
-      modal,
-      className,
-      toggleModal,
-      setModalOptions
+      className
     } = this.props;
-    const { modalOpen } = this.state;
     const componentClass = classnames('l-page', { [className]: !!className });
 
     return (
@@ -113,14 +109,6 @@ class LayoutAdmin extends PureComponent {
         {this.props.children}
 
         <Tooltip />
-
-        <Modal
-          open={modalOpen}
-          options={modal.options}
-          loading={modal.loading}
-          toggleModal={toggleModal}
-          setModalOptions={setModalOptions}
-        />
 
         <Toastr preventDuplicates transitionIn="fadeIn" transitionOut="fadeOut" />
       </div>
