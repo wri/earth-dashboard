@@ -12,7 +12,7 @@ import {
 // components
 import Field from 'components/form/Field';
 import Input from 'components/form/Input';
-import File from 'components/form/File';
+import File from 'components/form/file';
 import Select from 'components/form/SelectInput';
 import Checkbox from 'components/form/checkbox';
 import Spinner from 'components/ui/spinner';

@@ -210,7 +210,12 @@ class File extends FormElement {
 
           <button
             type="button"
-            className="c-button -primary -compressed file-button"
+            className={classnames({
+              'c-button': true,
+              '-primary': true,
+              '-compressed': true,
+              [styles['file-button']]: true
+            })}
             onClick={this.triggerBrowseOrCancel}
           >
             <Spinner className="-light -small" isLoading={loading} />
