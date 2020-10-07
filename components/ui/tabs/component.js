@@ -44,8 +44,9 @@ export default class Tabs extends React.Component {
         <div className="row l-row">
           {options.map((option) => {
             const btnClasses = classnames({
-              '-active': option.value === selected,
-              '-desktopOnly': option.desktopOnly
+              [styles['tabs-btn']]: true,
+              [styles['-active']]: option.value === selected,
+              [styles['-desktopOnly']]: option.desktopOnly
             });
 
             return (
@@ -55,17 +56,17 @@ export default class Tabs extends React.Component {
               >
                 {option.route &&
                   <Link route={option.route} params={option.params} >
-                    <a className={`tabs-btn ${btnClasses}`}>
-                      <span className="title">{option.label}</span>
-                      {!!option.number && <span className="number">{option.number}</span>}
+                    <a className={btnClasses}>
+                      <span className={styles.title}>{option.label}</span>
+                      {!!option.number && <span className={styles.number}>{option.number}</span>}
                     </a>
                   </Link>
                 }
 
                 {!option.route &&
-                  <button className={`tabs-btn ${btnClasses}`} onClick={() => this.onChangeTab(option.value)}>
-                    <span className="title">{option.label}</span>
-                    {!!option.number && <span className="number">{option.number}</span>}
+                  <button className={btnClasses} onClick={() => this.onChangeTab(option.value)}>
+                    <span className={styles.title}>{option.label}</span>
+                    {!!option.number && <span className={styles.number}>{option.number}</span>}
                   </button>
                 }
               </div>

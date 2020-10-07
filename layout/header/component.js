@@ -41,8 +41,8 @@ class Header extends PureComponent {
         <div className={containerClass}>
           <div className="row">
             <div className="column">
-              <div className="header-main">
-                <div className="header-logo">
+              <div className={styles['header-main']}>
+                <div className={styles['header-logo']}>
                   <Link route="home">
                     <a>
                       <img className="brand-logo" src="/static/images/GCA_logo.png" />
