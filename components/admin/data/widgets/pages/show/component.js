@@ -4,7 +4,7 @@ import { Router } from 'routes';
 import PropTypes from 'prop-types';
 
 // components
-import Aside from 'components/ui/Aside';
+import Aside from 'components/ui/aside';
 import WidgetForm from 'components/admin/data/widgets/form';
 import MetadataForm from 'components/widgets/metadata/form';
 

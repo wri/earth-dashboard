@@ -65,7 +65,6 @@ export default wrapper.withRedux(EDApp);
 
 export async function getServerSideProps(context) {
   const { req, store } = context;
-  console.log('req.user', req.user, );
 
   if (req.user) {
     store.dispatch(setUser(user));

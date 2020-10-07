@@ -17,7 +17,6 @@ import Head from 'layout/head/admin';
 import Header from 'layout/header-admin';
 
 import Tooltip from 'components/ui/tooltip';
-import Modal from 'components/ui/modal';
 import Toastr from 'react-redux-toastr';
 
 class LayoutAdmin extends PureComponent {
@@ -27,17 +26,12 @@ class LayoutAdmin extends PureComponent {
     description: PropTypes.string,
     pageHeader: PropTypes.bool,
     className: PropTypes.string,
-    modal: PropTypes.object.isRequired,
-    toggleModal: PropTypes.func.isRequired,
     toggleTooltip: PropTypes.func.isRequired,
-    setModalOptions: PropTypes.func.isRequired,
     updateIsLoading: PropTypes.func.isRequired,
     setLocale: PropTypes.func.isRequired
   };
 
   static defaultProps = { className: null };
-
-  state = { modalOpen: false }
 
   UNSAFE_componentWillMount() {
     // When a tooltip is shown and the router navigates to a
@@ -78,12 +72,6 @@ class LayoutAdmin extends PureComponent {
       window.GA_INITIALIZED = true;
     }
     logPageView();
-  }
-
-  UNSAFE_componentWillReceiveProps(newProps) {
-    if (this.state.modalOpen !== newProps.modal.open) {
-      this.setState({ modalOpen: newProps.modal.open });
-    }
   }
 
   render() {

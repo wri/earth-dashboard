@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Field from 'components/form/Field';
 import Input from 'components/form/Input';
 import Checkbox from 'components/form/checkbox';
-import Title from 'components/ui/Title';
 
 // constants
 import { FORM_ELEMENTS } from 'components/widgets/metadata/form/constants';

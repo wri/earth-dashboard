@@ -7,10 +7,10 @@ import { Link } from 'routes';
 import { ADMIN_HEADER_ITEMS } from 'layout/header-admin/constants';
 
 class AdminHeaderMenu extends PureComponent {
-  static propTypes = { routes: PropTypes.object.isRequired }
+  static propTypes = { pathname: PropTypes.string.isRequired }
 
   render() {
-    const { routes: { pathname } } = this.props;
+    const { pathname } = this.props;
 
     return (
       <nav className="header-menu">
@@ -46,3 +46,11 @@ class AdminHeaderMenu extends PureComponent {
 }
 
 export default AdminHeaderMenu;
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      pathname: context.req.pathname
+    }
+  }
+}

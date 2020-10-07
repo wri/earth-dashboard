@@ -75,7 +75,7 @@ class SearchInput extends PureComponent {
 
     const classNames = classnames({ 
       [styles['c-search-input']]: true,
-      'c-search-input--header': isHeader 
+      [styles['c-search-input--header']]: isHeader 
     });
 
     const inputClassNames = classnames({ 'c-search-input--header': isHeader });

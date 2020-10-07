@@ -3,7 +3,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import PropTypes from 'prop-types';
 
 // components
-import Aside from 'components/ui/Aside';
+import Aside from 'components/ui/aside';
 import DatasetsForm from 'components/datasets/form';
 import DatasetMetadataForm from 'components/datasets/metadata/form';
 import TagsForm from 'components/admin/tags/form';

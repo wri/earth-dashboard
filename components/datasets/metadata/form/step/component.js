@@ -18,7 +18,6 @@ import Field from 'components/form/Field';
 import Input from 'components/form/Input';
 import Select from 'components/form/SelectInput';
 import TextArea from 'components/form/TextArea';
-import Title from 'components/ui/Title';
 import Spinner from 'components/ui/spinner';
 import SourcesContentModal from 'components/datasets/metadata/form/SourcesContentModal';
 

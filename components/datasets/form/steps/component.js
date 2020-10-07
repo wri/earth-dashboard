@@ -15,7 +15,6 @@ import Input from 'components/form/Input';
 import File from 'components/form/File';
 import Select from 'components/form/SelectInput';
 import Checkbox from 'components/form/checkbox';
-import Title from 'components/ui/Title';
 import Spinner from 'components/ui/spinner';
 import SortingLayerManager from '../sorting-layer-manager';
 
