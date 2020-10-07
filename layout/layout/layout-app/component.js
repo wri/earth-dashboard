@@ -17,7 +17,6 @@ import Footer from 'layout/footer';
 
 import IconsRW from 'components/icons';
 import Tooltip from 'components/ui/tooltip';
-import Modal from 'components/ui/modal';
 import Toastr from 'react-redux-toastr';
 import NoBrowserSupport from 'components/app/common/browser';
 
@@ -28,12 +27,9 @@ class LayoutApp extends Component {
     description: PropTypes.string,
     pageHeader: PropTypes.bool,
     className: PropTypes.string,
-    modal: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     thumbnail: PropTypes.string,
     isFullScreen: PropTypes.bool.isRequired,
-    toggleModal: PropTypes.func.isRequired,
-    setModalOptions: PropTypes.func.isRequired,
     updateIsLoading: PropTypes.func.isRequired,
     explicitHostname: PropTypes.string
   };
@@ -58,27 +54,17 @@ class LayoutApp extends Component {
     logPageView();
   }
 
-  UNSAFE_componentWillReceiveProps(newProps) {
-    if (this.state.modalOpen !== newProps.modal.open) {
-      this.setState({ modalOpen: newProps.modal.open });
-    }
-  }
-
   render() {
     const {
       title,
       description,
       pageHeader,
-      modal,
       className,
       thumbnail,
       isFullScreen,
       children,
-      toggleModal,
-      setModalOptions,
       explicitHostname
     } = this.props;
-    const { modalOpen } = this.state;
     const componentClass = classnames(
       'l-page',
       { [className]: !!className }
@@ -95,15 +81,6 @@ class LayoutApp extends Component {
           explicitHostname={explicitHostname}
           {...thumbnail && { thumbnail }}
         />
-
-        {!browserSupported() &&
-          <Modal
-            open
-            canClose={false}
-          >
-            <NoBrowserSupport />
-          </Modal>
-        }
 
         {children}
 

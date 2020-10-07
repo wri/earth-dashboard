@@ -8,6 +8,9 @@ import { Link } from 'routes';
 // Components
 import Icon from 'components/ui/icon';
 
+// styles
+import styles from 'aside.module.scss';
+
 class Aside extends PureComponent {
   static propTypes = {
     items: PropTypes.array,
@@ -24,7 +27,7 @@ class Aside extends PureComponent {
   render() {
     const { style, selected, items } = this.props;
     return (
-      <aside className="c-aside" style={style}>
+      <aside className={styles['c-aside']} style={style}>
         <nav>
           <ul>
             {items.filter(i => i.params).map((s) => {

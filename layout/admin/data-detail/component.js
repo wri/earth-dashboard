@@ -6,7 +6,7 @@ import isEqual from 'react-fast-compare';
 
 // components
 import Layout from 'layout/layout/layout-admin';
-import Breadcrumbs from 'components/ui/Breadcrumbs';
+import Breadcrumbs from 'components/ui/breadcrumbs';
 import DatasetsTab from 'components/admin/data/datasets';
 import WidgetsTab from 'components/admin/data/widgets';
 import LayersTab from 'components/admin/data/layers';
