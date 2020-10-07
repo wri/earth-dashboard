@@ -9,7 +9,7 @@ import { Link } from 'routes';
 import Icon from 'components/ui/icon';
 
 // styles
-import styles from 'aside.module.scss';
+import styles from './aside.module.scss';
 
 class Aside extends PureComponent {
   static propTypes = {

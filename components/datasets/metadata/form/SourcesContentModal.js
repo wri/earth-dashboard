@@ -10,7 +10,7 @@ import { setTmpSources, setSources } from 'redactions/admin/sources';
 
 // components
 import ContentGroup from 'components/ui/ContentGroup';
-import Source from 'components/datasets/metadata/form/Source';
+import Source from 'components/datasets/metadata/form/source';
 import { SOURCE_ELEMENTS } from 'components/datasets/metadata/form/constants';
 
 class SourcesContentModal extends React.Component {

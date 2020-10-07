@@ -12,7 +12,7 @@ import { STATE_DEFAULT, FORM_ELEMENTS } from 'components/datasets/metadata/form/
 // Components
 import Spinner from 'components/ui/spinner';
 import Navigation from 'components/form/navigation';
-import Step1 from 'components/datasets/metadata/form/steps/Step1';
+import Step1 from 'components/datasets/metadata/form/step';
 
 // utils
 import { getFieldUrl, getFields } from 'utils/fields';

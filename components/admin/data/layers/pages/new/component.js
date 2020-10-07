@@ -3,7 +3,7 @@ import { Router } from 'routes';
 import PropTypes from 'prop-types';
 
 // components
-import LayersForm from 'components/admin/data/layers/form/LayersForm';
+import LayersForm from 'components/admin/data/layers/form';
 
 // styles
 import styles from './layers-new.module.scss';

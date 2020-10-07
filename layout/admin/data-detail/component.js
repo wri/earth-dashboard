@@ -25,6 +25,7 @@ class LayoutAdminDataDetail extends PureComponent {
   state= { data: null }
 
   UNSAFE_componentWillMount() {
+    console.log('UNSAFE_componentWillMount', this.props);
     const { query: { id } } = this.props;
     if (id === 'new') return;
 
@@ -107,9 +108,9 @@ class LayoutAdminDataDetail extends PureComponent {
           <div className="l-container -admin">
             <div className="row">
               <div className="column small-12">
-                {(tab === 'datasets') && (<DatasetsTab />)}
-                {(tab === 'widgets') && (<WidgetsTab />)}
-                {(tab === 'layers') && (<LayersTab />)}
+                {(tab === 'datasets') && (<DatasetsTab query={this.props.query} />)}
+                {(tab === 'widgets') && (<WidgetsTab query={this.props.query} />)}
+                {(tab === 'layers') && (<LayersTab query={this.props.query} />)}
               </div>
             </div>
           </div>

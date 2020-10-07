@@ -8,16 +8,20 @@ import WidgetsShow from 'components/admin/data/widgets/pages/show';
 class WidgetsTab extends PureComponent {
   static propTypes = {
     user: PropTypes.object.isRequired,
-    id: PropTypes.string
+    query: PropTypes.string.isRequired
   }
 
   static defaultProps = { id: null }
 
   render() {
     const {
-      id,
+      query,
       user: { token }
     } = this.props;
+
+    const id = query?.id;
+
+    console.log('id', id);
 
     return (
       <div className="c-widgets-tab">

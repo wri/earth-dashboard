@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 // components
-import LayersForm from 'components/admin/data/layers/form/LayersForm';
+import LayersForm from 'components/admin/data/layers/form';
 
 class LayersShow extends PureComponent {
   static propTypes = {

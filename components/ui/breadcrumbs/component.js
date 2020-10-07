@@ -6,7 +6,7 @@ import { Link } from 'routes';
 import Icon from 'components/ui/icon';
 
 // styles
-import styles from 'breadcrumbs.module.scss';
+import styles from './breadcrumbs.module.scss';
 
 function Breadcrumbs({ items = [] }) {
   return (

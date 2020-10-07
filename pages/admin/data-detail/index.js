@@ -5,8 +5,17 @@ import LayoutAdminDataDetail from 'layout/admin/data-detail';
 
 class AdminDataDetailPage extends PureComponent {
   render() {
-    return (<LayoutAdminDataDetail />);
+    console.log('context this.props', this.props);
+    return (<LayoutAdminDataDetail {...this.props} />);
   }
 }
 
 export default AdminDataDetailPage;
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      query: context.query
+    }
+  }
+}
