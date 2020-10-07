@@ -18,6 +18,7 @@ class LayoutAdminData extends PureComponent {
     const { query } = this.props;
     // TO-DO: set properly this in express
     const currentTab = (query && query.tab) || 'datasets';
+    console.log('query', query, 'this.props', this.props);
 
     return (
       <Layout

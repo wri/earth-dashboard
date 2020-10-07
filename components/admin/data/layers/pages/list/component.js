@@ -14,7 +14,6 @@ class LayersIndex extends PureComponent {
 
   render() {
     const {
-      user: { token },
       dataset
     } = this.props;
 
@@ -23,7 +22,7 @@ class LayersIndex extends PureComponent {
         <LayersTable
           application={[process.env.APPLICATIONS]}
           dataset={dataset}
-          authorization={token}
+          authorization={''}
         />
       </div>
     );

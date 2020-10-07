@@ -6,10 +6,7 @@ import { wrapper } from '../store';
 import finallyShim from 'promise.prototype.finally';
 
 // actions
-import { setRouter } from 'redactions/routes';
 import { setUser } from 'redactions/user';
-import { setMobileDetect, mobileParser } from 'react-responsive-redux';
-import { setHostname } from 'redactions/common';
 
 // global styles
 import 'css/index.scss';
@@ -65,3 +62,12 @@ class EDApp extends App {
 }
 
 export default wrapper.withRedux(EDApp);
+
+export async function getServerSideProps(context) {
+  const { req, store } = context;
+  console.log('req.user', req.user, );
+
+  if (req.user) {
+    store.dispatch(setUser(user));
+  }
+}
