@@ -1,9 +1,6 @@
-import App from 'next/app';
 import React from 'react';
-import { wrapper } from '../store';
-
-// es6 shim for .finally() in promises
-import finallyShim from 'promise.prototype.finally';
+import store from '../store';
+import { Provider } from 'react-redux'
 
 // global styles
 import 'css/index.scss';
@@ -13,43 +10,44 @@ import { setRouter } from 'redactions/routes';
 import { setUser } from 'redactions/user';
 import { setHostname } from 'redactions/common';
 
-finallyShim.shim();
-
-function EDApp(props){
-  const {
-    Component,
-    pageProps
-  } = props;
-
+function EDApp({ Component, pageProps }){
   return (
-    <Component {...pageProps} />
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
   );
 }
 
 EDApp.getInitialProps = async (appContext) => {
-  const { req, store, query, router } = appContext;
+  const { router, ctx, Component } = appContext;
+  const { store, req, query } = ctx;
   const { asPath } = router;
   const isServer = typeof window === 'undefined';
   const pathname = req ? asPath : appContext.asPath;
 
-  console.log('store', store, 'query', query, 'isServer', isServer);
-
   // sets app routes
   const url = { asPath, pathname, query };
-  store.dispatch(setRouter(url));
+  console.log('url', url);
+  if (store) {
+    store.dispatch(setRouter(url));
+  }
 
   // sets hostname
   const hostname = isServer ? req.headers.host : window.origin;
-  store.dispatch(setHostname(hostname));
+  if (store) {
+    store.dispatch(setHostname(hostname));
+  }
   // sets user data coming from a request (server) or the store (client)
   const { user } = isServer ? req : store.getState();
   if (user) {
     store.dispatch(setUser(user));
   }
 
-  const appProps = await App.getInitialProps(ctx);
+  const appProps = Component.getInitialProps
+  ? await Component.getInitialProps(ctx)
+  : {};
 
   return { pageProps: { ...appProps, user, isServer, url } };
 };
 
-export default wrapper.withRedux(EDApp);
+export default EDApp;

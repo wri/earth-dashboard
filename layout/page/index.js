@@ -1,46 +1,33 @@
-import { PureComponent } from 'react';
-import { setUser, getUserFavourites, getUserCollections } from 'redactions/user';
+import { setUser } from 'redactions/user';
 import { setRouter } from 'redactions/routes';
-import { setMobileDetect, mobileParser } from 'react-responsive-redux';
-import { setMobileOpened } from 'layout/header/actions';
 import { setHostname } from 'redactions/common';
 
-class Page extends PureComponent {
-  // static async getInitialProps({
-  //   asPath,
-  //   pathname,
-  //   query,
-  //   req,
-  //   store,
-  //   isServer
-  // }) {
-  //   // Routes
-  //   const url = { asPath, pathname, query };
-  //   store.dispatch(setRouter(url));
+function Page() { }
 
-  //   // Hostname
-  //   const hostname = isServer ? req.headers.host : window.location.origin;
-  //   await store.dispatch(setHostname(hostname));
+Page.getInitialProps = async (appContext) => {
+  const { router, ctx } = appContext;
+  const { store, req, query } = ctx;
+  const { asPath } = router;
+  const isServer = typeof window === 'undefined';
+  const pathname = req ? asPath : appContext.asPath;
 
-  //   // User favourites and collection
-  //   const { user } = isServer ? req : store.getState();
+  // sets app routes
+  const url = { asPath, pathname, query };
+  store.dispatch(setRouter(url));
 
-  //   await store.dispatch(setUser(user));
-  //   await store.dispatch(getUserFavourites());
-  //   await store.dispatch(getUserCollections());
+  // sets hostname
+  const hostname = isServer ? req.headers.host : window.origin;
+  store.dispatch(setHostname(hostname));
+  // sets user data coming from a request (server) or the store (client)
+  const { user } = isServer ? req : store.getState();
+  if (user) {
+    store.dispatch(setUser(user));
+  }
 
-  //   // Mobile detection
-  //   if (isServer) {
-  //     const mobileDetect = mobileParser(req);
-  //     store.dispatch(setMobileDetect(mobileDetect));
-  //   }
+  console.log('hey!!!');
 
-  //   // Hide mobile header
-  //   store.dispatch(setMobileOpened(false));
-
-  //   return { user, isServer, url };
-  // }
-}
+  return { user, isServer, url };
+};
 
 
 export default Page;

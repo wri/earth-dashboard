@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import {createWrapper} from 'next-redux-wrapper';
 import { configureStore } from '@reduxjs/toolkit';
 import {
   reducers as WEReducers,
@@ -15,13 +14,11 @@ const reducer = combineReducers({
   ...redactions
 });
 
-const makeStore = () => configureStore({
+// WEmiddleware.run(sagas);
+
+export default configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(WEmiddleware),
   devTools: process.env.NODE_ENV !== 'production',
   preloadedState: {}
 });
-
-// WEmiddleware.run(sagas);
-
-export const wrapper = createWrapper(makeStore, {});
