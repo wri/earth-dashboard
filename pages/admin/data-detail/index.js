@@ -3,19 +3,23 @@ import React, { PureComponent } from 'react';
 // components
 import LayoutAdminDataDetail from 'layout/admin/data-detail';
 
+// actions
+import { setUser } from 'redactions/user';
+import { setQuery } from 'redactions/routes';
+
 class AdminDataDetailPage extends PureComponent {
   render() {
-    console.log('context this.props', this.props);
-    return (<LayoutAdminDataDetail {...this.props} />);
+    return (<LayoutAdminDataDetail />);
   }
 }
 
 export default AdminDataDetailPage;
 
 export async function getServerSideProps(context) {
-  return {
-    props: {
-      query: context.query
-    }
+  const { req, store, query } = context;
+
+  if (req.user) {
+    store.dispatch(setUser(user));
   }
+  store.dispatch(setQuery(query));
 }

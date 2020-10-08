@@ -5,68 +5,51 @@ import { wrapper } from '../store';
 // es6 shim for .finally() in promises
 import finallyShim from 'promise.prototype.finally';
 
-// actions
-import { setUser } from 'redactions/user';
-
 // global styles
 import 'css/index.scss';
 
+// actions
+import { setRouter } from 'redactions/routes';
+import { setUser } from 'redactions/user';
+import { setHostname } from 'redactions/common';
+
 finallyShim.shim();
 
-class EDApp extends App {
-  // static async getInitialProps({ Component, router, ctx }) {
-  //   const { asPath } = router;
-  //   const { req, store, query, isServer } = ctx;
-  //   const pathname = req ? asPath : ctx.asPath;
+function EDApp(props){
+  const {
+    Component,
+    pageProps
+  } = props;
 
-  //   // sets app routes
-  //   const url = { asPath, pathname, query };
-  //   store.dispatch(setRouter(url));
-
-    
-  //   console.log('ctx', ctx);
-  //   console.log('isServer', isServer);
-
-  //   // sets hostname
-  //   const hostname = isServer ? req.headers.host : window.origin;
-  //   store.dispatch(setHostname(hostname));
-  //   // sets user data coming from a request (server) or the store (client)
-  //   const { user } = isServer ? req : store.getState();
-  //   if (user) {
-  //     store.dispatch(setUser(user));
-  //   }
-
-  //   // mobile detection
-  //   if (isServer) {
-  //     const mobileDetect = mobileParser(req);
-  //     store.dispatch(setMobileDetect(mobileDetect));
-  //   }
-
-  //   const pageProps = Component.getInitialProps
-  //     ? await Component.getInitialProps(ctx)
-  //     : {};
-
-  //   return { pageProps: { ...pageProps, user, isServer, url } };
-  // }
-
-  render() {
-    const {
-      Component,
-      pageProps
-    } = this.props;
-
-    return (
-      <Component {...pageProps} />
-    );
-  }
+  return (
+    <Component {...pageProps} />
+  );
 }
 
-export default wrapper.withRedux(EDApp);
+EDApp.getInitialProps = async (appContext) => {
+  const { req, store, query, router } = appContext;
+  const { asPath } = router;
+  const isServer = typeof window === 'undefined';
+  const pathname = req ? asPath : appContext.asPath;
 
-export async function getServerSideProps(context) {
-  const { req, store } = context;
+  console.log('store', store, 'query', query, 'isServer', isServer);
 
-  if (req.user) {
+  // sets app routes
+  const url = { asPath, pathname, query };
+  store.dispatch(setRouter(url));
+
+  // sets hostname
+  const hostname = isServer ? req.headers.host : window.origin;
+  store.dispatch(setHostname(hostname));
+  // sets user data coming from a request (server) or the store (client)
+  const { user } = isServer ? req : store.getState();
+  if (user) {
     store.dispatch(setUser(user));
   }
-}
+
+  const appProps = await App.getInitialProps(ctx);
+
+  return { pageProps: { ...appProps, user, isServer, url } };
+};
+
+export default wrapper.withRedux(EDApp);

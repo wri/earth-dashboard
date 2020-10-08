@@ -25,7 +25,6 @@ class LayoutAdminDataDetail extends PureComponent {
   state= { data: null }
 
   UNSAFE_componentWillMount() {
-    console.log('UNSAFE_componentWillMount', this.props);
     const { query: { id } } = this.props;
     if (id === 'new') return;
 
