@@ -57,7 +57,6 @@ class LoginModal extends PureComponent {
         // sign-in user
         loginUser(userSettings)
           .then((data) => {
-            console.log('heyyyyy', data);
             setUser(data);
             // redirects the user to /admin once logged-in
             Router.pushRoute('admin_home');

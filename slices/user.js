@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { forEach } from 'lodash';
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {};
@@ -8,11 +9,15 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
-      state = action.payload
+      Object.keys(action.payload).forEach(
+        propertyKey => state[propertyKey] = action.payload[propertyKey]);
     }
   },
   extraReducers: {
-		[HYDRATE]: (state, action) => action.payload.user
+		[HYDRATE]: (state, action) => {
+      console.log('I am hydrating!, action ', action );
+      return action.payload.user;
+    }
 	}
 });
 

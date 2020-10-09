@@ -1,5 +1,4 @@
 import React from 'react';
-import { Provider } from 'react-redux'
 
 // store
 import { wrapper } from 'store';
@@ -29,8 +28,6 @@ EDApp.getInitialProps = async (appContext) => {
   const hostname = isServer ? req.headers.host : window.origin;
   let user;
 
-  console.log('_app.js store', store, appContext);
-
   if (store) {
     console.log('there is store!');
     // set app routes
@@ -40,8 +37,7 @@ EDApp.getInitialProps = async (appContext) => {
 
     const { user } = isServer ? req : store.getState();
 
-    if (user) {
-      console.log('heyyy!! user', user);
+    if (user && Object.keys(user).length > 0) {
       store.dispatch(setUser(user));
     }
   }
