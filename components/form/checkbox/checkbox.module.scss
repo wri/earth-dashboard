@@ -2,7 +2,8 @@
 
 .c-checkbox {
     label {
-      display: block;
+      display: flex;
+      align-items: center;
       padding: 2px 0;
       text-transform: none;
       position: relative;

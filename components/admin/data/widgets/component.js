@@ -21,8 +21,6 @@ class WidgetsTab extends PureComponent {
 
     const id = query?.id;
 
-    console.log('id', id);
-
     return (
       <div className="c-widgets-tab">
         {(token && id) && (id === 'new') && (<WidgetsNew />)}

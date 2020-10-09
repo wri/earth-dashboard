@@ -29,7 +29,6 @@ EDApp.getInitialProps = async (appContext) => {
   let user;
 
   if (store) {
-    console.log('there is store!');
     // set app routes
     store.dispatch(setRouter(url));
     // set hostname

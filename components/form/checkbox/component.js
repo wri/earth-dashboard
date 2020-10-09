@@ -37,10 +37,10 @@ export default class Checkbox extends FormElement {
           onChange={this.triggerChange}
         />
         <label htmlFor={`checkbox-${name}-${value}`}>
-          <span className="checkbox-icon">
+          <span className={styles['checkbox-icon']}>
             <Icon name="icon-checkbox" />
           </span>
-          <span className="item-title">{title}</span>
+          <span className={styles['item-title']}>{title}</span>
         </label>
       </div>
     );

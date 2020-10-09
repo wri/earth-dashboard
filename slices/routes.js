@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {};
 
@@ -7,9 +8,15 @@ const routesSlice = createSlice({
   initialState,
   reducers: {
     setRouter(state, action) {
-      state = action.payload
+      Object.keys(action.payload).forEach(
+        propertyKey => state[propertyKey] = action.payload[propertyKey]);
     }
-  }
+  },
+  extraReducers: {
+		[HYDRATE]: (state, action) => {
+      return action.payload.routes;
+    }
+	}
 });
 
 export const { setRouter } = routesSlice.actions

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { forEach } from 'lodash';
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {};
@@ -15,7 +14,6 @@ const userSlice = createSlice({
   },
   extraReducers: {
 		[HYDRATE]: (state, action) => {
-      console.log('I am hydrating!, action ', action );
       return action.payload.user;
     }
 	}
