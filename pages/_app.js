@@ -1,20 +1,20 @@
 import React from 'react';
-import store from '../store';
 import { Provider } from 'react-redux'
+
+// store
+import { wrapper } from 'store';
 
 // global styles
 import 'css/index.scss';
 
 // actions
-import { setRouter } from 'redactions/routes';
-import { setUser } from 'redactions/user';
-import { setHostname } from 'redactions/common';
+import { setRouter } from 'slices/routes';
+import { setUser } from 'slices/user';
+import { setHostname } from 'slices/common';
 
 function EDApp({ Component, pageProps }){
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <Component {...pageProps} />
   );
 }
 
@@ -25,22 +25,25 @@ EDApp.getInitialProps = async (appContext) => {
   const isServer = typeof window === 'undefined';
   const pathname = req ? asPath : appContext.asPath;
 
-  // sets app routes
   const url = { asPath, pathname, query };
-  console.log('url', url);
-  if (store) {
-    store.dispatch(setRouter(url));
-  }
-
-  // sets hostname
   const hostname = isServer ? req.headers.host : window.origin;
+  let user;
+
+  console.log('_app.js store', store, appContext);
+
   if (store) {
+    console.log('there is store!');
+    // set app routes
+    store.dispatch(setRouter(url));
+    // set hostname
     store.dispatch(setHostname(hostname));
-  }
-  // sets user data coming from a request (server) or the store (client)
-  const { user } = isServer ? req : store.getState();
-  if (user) {
-    store.dispatch(setUser(user));
+
+    const { user } = isServer ? req : store.getState();
+
+    if (user) {
+      console.log('heyyy!! user', user);
+      store.dispatch(setUser(user));
+    }
   }
 
   const appProps = Component.getInitialProps
@@ -50,4 +53,4 @@ EDApp.getInitialProps = async (appContext) => {
   return { pageProps: { ...appProps, user, isServer, url } };
 };
 
-export default EDApp;
+export default wrapper.withRedux(EDApp);

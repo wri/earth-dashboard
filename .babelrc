@@ -28,7 +28,7 @@
           "css": "./css",
           "components": "./components",
           "layout": "./layout",
-          "redactions": "./redactions",
+          "slices": "./slices",
           "utils": "./utils",
           "selectors": "./selectors",
           "static": "./public/static",

@@ -15,8 +15,6 @@ import HeadApp from 'layout/head/app';
 import Header from 'layout/header';
 import Footer from 'layout/footer';
 
-import IconsRW from 'components/icons';
-import Tooltip from 'components/ui/tooltip';
 import Toastr from 'react-redux-toastr';
 import NoBrowserSupport from 'components/app/common/browser';
 
@@ -83,8 +81,6 @@ class LayoutApp extends Component {
         />
 
         {children}
-
-        <Tooltip />
 
         <Toastr
           preventDuplicates

@@ -16,7 +16,6 @@ import { Icons } from 'vizzuality-components';
 import Head from 'layout/head/admin';
 import Header from 'layout/header-admin';
 
-import Tooltip from 'components/ui/tooltip';
 import Toastr from 'react-redux-toastr';
 
 class LayoutAdmin extends PureComponent {
@@ -95,8 +94,6 @@ class LayoutAdmin extends PureComponent {
         <Header pageHeader={pageHeader} />
 
         {this.props.children}
-
-        <Tooltip />
 
         <Toastr preventDuplicates transitionIn="fadeIn" transitionOut="fadeOut" />
       </div>

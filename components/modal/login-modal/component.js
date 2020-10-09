@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
-import { Link } from 'routes';
+import { Link, Router } from 'routes';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 // components
@@ -57,9 +57,10 @@ class LoginModal extends PureComponent {
         // sign-in user
         loginUser(userSettings)
           .then((data) => {
+            console.log('heyyyyy', data);
             setUser(data);
             // redirects the user to /admin once logged-in
-            window.location.href = '/admin';
+            Router.pushRoute('admin_home');
           })
           .catch((err) => {
             const { status, statusText } = err.response;
