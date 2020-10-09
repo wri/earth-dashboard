@@ -5,7 +5,7 @@ import { Router } from 'routes';
 import classnames from 'classnames';
 
 // components
-import Step1 from 'components/admin/data/widgets/form/steps/Step1';
+import Step1 from 'components/admin/data/widgets/form/steps';
 import Spinner from 'components/ui/spinner';
 
 // services
@@ -21,9 +21,6 @@ import {
 
 // constants
 import { FORM_ELEMENTS } from './constants';
-
-// styles
-import styles from './widget-form.module.scss';
 
 function WidgetForm(props) {
   const { id, application, dataset } = props;
@@ -240,10 +237,7 @@ function WidgetForm(props) {
 
   return (
     <form 
-      className={classnames({
-        'c-form': true,
-        [styles['c-widget-form']]: true
-      })}
+      className="c-form"
       noValidate
     >
       <Spinner isLoading={loading} className="-light" />

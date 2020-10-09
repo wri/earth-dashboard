@@ -16,6 +16,9 @@ import {
 // Contants
 import { STATE_DEFAULT, FORM_ELEMENTS } from 'components/widgets/metadata/form/constants';
 
+// styles
+import styles from './widget-metadata-form.module.scss';
+
 class MetadataForm extends React.Component {
   static propTypes = {
     widget: PropTypes.string.isRequired,
