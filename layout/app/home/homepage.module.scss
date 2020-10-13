@@ -9,13 +9,55 @@
     justify-content: center;
     align-items: center;
 
-    .main-title {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
+
         h1 {
-            color: white;
+            color: $white;
+            font-size: 48px;
+            font-family: 'Barlow Condensed';
         }
         h5 {
-            color: lightgrey;
+            color: $light-grey;
+            font-size: 18px;
+            font-family: 'Barlow';
+            max-width: 520px;
+        }
+        .highlighted-text {
+            padding-right: $space;
+            font-style: italic;
+            background-color: $forests-color;
+        }
+
+        .topic-links {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 520px;
+
+            >a {
+                color: $white;
+                border-bottom: solid 2px;
+                text-decoration: none;
+                font-family: 'Barlow Condensed';
+                font-size: 20px;
+            }
+
+            .climate-link {
+                border-color: $climate-color;
+            }
+            .forests-link {
+                border-color: $forests-color;
+            }
+            .freshwater-link {
+                border-color: $freshwater-color;
+            }
+            .oceans-link {
+                border-color: $oceans-color;
+            }
         }
     }
 
@@ -23,41 +65,5 @@
         position: absolute;
         height: 100%;
         width: 100%;
-    }
-
-    .header-section {
-        padding: 40px;
-    }
-    .highlighted-widgets-section {
-        padding: 40px;
-        .widget-box {
-            height: 400px;
-            padding: $space;
-            > .c-widget-preview {
-                border: solid 1px black;
-            }
-        }
-    }
-    .story-section {
-        overflow: initial;
-        padding: 40px;
-
-        .description {
-            margin-bottom: 40px;
-        }
-
-        .story {
-            .main-map {
-                position: sticky;
-                top: 100px;
-                margin-left: 50%;
-            }
-    
-            .c-text-box {                
-                margin-left: 12.5%;
-                padding: 20px;
-                margin-bottom: 600px;
-            }
-        }
     }
 }

@@ -7,7 +7,7 @@
     bottom: 0;
     left: 0;
     z-index: 998;
-    background: rgba($color-black, 0.5);
+    background: rgba($black, 0.5);
     visibility: hidden;
     opacity: 0;
   
@@ -25,7 +25,7 @@
         margin: 0 auto;
         border-radius: 50%;
         border: 3px solid transparent;
-        border-top-color: $color-primary;
+        border-top-color: $freshwater-color;
         animation: rotate $animation-time-4 infinite $ease-in-out-sine;
       }
   
@@ -41,14 +41,14 @@
     }
   
     // Colors
-    &.-light { background: rgba($color-white, 0.5); }
-    &.-transparent { background: rgba($color-white, 0); }
+    &.-light { background: rgba($white, 0.5); }
+    &.-transparent { background: rgba($white, 0); }
   
     // Icon colors
     &.-white-icon {
       .spinner-box {
         .icon {
-          border-top-color: $color-white;
+          border-top-color: $white;
         }
       }
     }

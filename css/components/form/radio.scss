@@ -5,7 +5,7 @@
     text-transform: none;
     position: relative;
     padding-left: 20px;
-    font-size: $font-size-default;
+    font-size: $font-size-normal;
     line-height: 1;
     cursor: pointer;
     width: auto;
@@ -13,10 +13,10 @@
     left: 0;
     transform: none;
     text-align: left;
-    color: $color-text-1;
+    color: $charcoal-grey;
 
     &:hover {
-      color: lighten($color-text-1, 12.5%);
+      color: lighten($charcoal-grey, 12.5%);
     }
 
     span {

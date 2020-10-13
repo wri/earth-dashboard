@@ -15,8 +15,8 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   outline: none;
   background: none;
-  color: $color-primary;
-  fill: $color-primary;
+  color: $freshwater-color;
+  fill: $freshwater-color;
   font-size: $font-size-medium;
   font-weight: $font-weight-regular;
   font-family: inherit;
@@ -65,7 +65,7 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
   &.-primary {
     color: $alt-font-color;
     fill: $alt-font-color;
-    background-color: $color-primary;
+    background-color: $freshwater-color;
 
     &:hover {
       box-shadow: $btn-hover-shadow;
@@ -74,8 +74,8 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
 
     &.-alt {
       background-color: $body-bg-color;
-      color: $color-primary;
-      fill: $color-primary;
+      color: $freshwater-color;
+      fill: $freshwater-color;
 
       &:hover {
         box-shadow: $btn-hover-shadow;
@@ -101,8 +101,8 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
 
   &.-b,
   &.-secondary {
-    color: $color-primary;
-    fill: $color-primary;
+    color: $freshwater-color;
+    fill: $freshwater-color;
     background-color: $body-bg-color;
     border-color: $btn-border-color;
 
@@ -188,7 +188,7 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
   &.-facebook {
     display: inline-flex;
     background: #3b5998;
-    color: $color-white;
+    color: $white;
     border-color: #3b5998;
 
     &:hover {
@@ -199,7 +199,7 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
   &.-twitter {
     display: inline-flex;
     background: #55acee;
-    color: $color-white;
+    color: $white;
     border-color: #55acee;
 
     &:hover {
@@ -210,7 +210,7 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
   &.-google {
     display: inline-flex;
     background: #D62D20;
-    color: $color-white;
+    color: $white;
     border-color: #D62D20;
 
     &:hover {

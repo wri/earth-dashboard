@@ -7,13 +7,13 @@
   z-index: 1;
 
   &.-embed {
-    top: $space-1 * 2 !important;
-    right: $space-1 * 2 !important;
+    top: $space * 2 !important;
+    right: $space * 2 !important;
   }
 
   &.-left {
-    top: $space-1 * 2;
-    left: $space-1 * 2;
+    top: $space * 2;
+    left: $space * 2;
     right: auto;
   }
 
@@ -31,7 +31,7 @@
     padding: 0;
 
     &:not(:first-child) {
-      margin: $space-1 / 2 0 0 0;
+      margin: $space / 2 0 0 0;
     }
   }
 }

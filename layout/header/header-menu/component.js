@@ -6,9 +6,6 @@ import { Link } from 'routes';
 // constants
 import { APP_HEADER_ITEMS } from 'layout/header/constants';
 
-// Utils
-import { logEvent } from 'utils/analytics';
-
 class HeaderMenu extends PureComponent {
   static propTypes = {
     routes: PropTypes.object.isRequired,

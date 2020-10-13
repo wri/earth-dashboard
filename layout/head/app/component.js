@@ -1,9 +1,6 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import HeadNext from 'next/head';
-
-// constants
-import { CESIUM_ROUTES, HOTJAR_ROUTES } from 'constants/app';
 
 class HeadApp extends PureComponent {
   static propTypes = {
@@ -55,6 +52,9 @@ class HeadApp extends PureComponent {
           href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css"
           crossOrigin=""
         />
+        {/* Fonts */}
+        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet"/>
       </HeadNext>
     );
   }

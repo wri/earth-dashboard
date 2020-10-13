@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'routes';
 
+// styles
+import styles from './sorting-layer-manager-item.module.scss';
+
 const LayerCardItem = ({ layer, onDragStart, onDragEnd, onDragOver, index }) => {
   const { name, id, dataset, published } = layer;
 
   return (
     <li
       draggable
-      className="sorting-layer-manager-item"
+      className={styles['sorting-layer-manager-item']}
       onDragStart={e => onDragStart(e, index)}
       onDragEnd={onDragEnd}
       onDragOver={() => onDragOver(index)}

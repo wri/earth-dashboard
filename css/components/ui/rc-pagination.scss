@@ -40,9 +40,9 @@
       text-align: center;
       list-style: none;
       float: left;
-      background-color: $color-white;
+      background-color: $white;
       margin-right: 8px;
-      border: 1px solid $color-pale-grey;
+      border: 1px solid $pale-grey;
       outline: none;
 
       a {
@@ -62,12 +62,12 @@
         border-color: $blue-turquoise;
 
         a {
-          color: $color-white;
+          color: $white;
         }
 
         &:hover {
           a {
-            color: $color-white;
+            color: $white;
           }
         }
       }
@@ -85,7 +85,7 @@
       border-radius: 6px;
       list-style: none;
       min-width: 28px;
-      padding: 0 $space-1;
+      padding: 0 $space;
       font-size: 28px;
       line-height: 28px;
       float: left;
@@ -178,7 +178,7 @@
         input {
           margin: 0 8px;
           box-sizing: border-box;
-          background-color: $color-white;
+          background-color: $white;
           border-radius: 6px;
           border: 1px solid $border-color-1;
           outline: none;
@@ -212,7 +212,7 @@
         input {
           margin: 0 8px;
           box-sizing: border-box;
-          background-color: $color-white;
+          background-color: $white;
           border-radius: 6px;
           border: 1px solid $border-color-1;
           outline: none;

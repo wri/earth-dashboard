@@ -53,7 +53,7 @@
 
       h3 {
         color: $alt-font-color;
-        margin: $space-1 * 2 0px $space-1 * 5;
+        margin: $space * 2 0px $space * 5;
         font-weight: $font-weight-light;
       }
 
@@ -75,7 +75,7 @@
     }
 
     .page-header-info {
-      margin: $space-1 * 2 0 0;
+      margin: $space * 2 0 0;
 
       a {
         color: inherit;
@@ -91,7 +91,7 @@
         list-style: none;
 
         li {
-          margin: 0 0 0 $space-1 * 4;
+          margin: 0 0 0 $space * 4;
           word-break: break-word;
 
           &:first-child{ margin: 0; }

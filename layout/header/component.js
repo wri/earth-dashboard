@@ -45,8 +45,8 @@ class Header extends PureComponent {
                 <div className={styles['header-logo']}>
                   <Link route="home">
                     <a>
-                      <img className="brand-logo" src="/static/images/GCA_logo.png" />
-                      <h1 className="brand-title">Resource Watch</h1>
+                      <img className={styles['brand-logo']} src="/static/images/GCA_logo.png" />
+                      <h1 className={styles['brand-title']}>Earth Dashboard</h1>
                     </a>
                   </Link>
                 </div>
