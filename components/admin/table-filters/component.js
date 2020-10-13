@@ -35,6 +35,7 @@ class TableFiltersComponent extends PureComponent {
       >
         <RadioGroup
           name={`${application}-owner-filter`}
+          className={styles['c-radio-box']}
           properties={{ default: USER_TYPES.ADMIN }}
           options={USER_OPTIONS}
           onChange={this.onOwnerChange}
