@@ -3,8 +3,7 @@
 .homepage {
     height: 100vh;
     width: 100%;
-    overflow: initial !important;
-    background-color: #1A2129;
+    background-color: $black-page-background;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,6 +13,7 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        z-index: 2;
 
         h1 {
             color: $white;

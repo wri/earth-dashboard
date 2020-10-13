@@ -1,0 +1,55 @@
+@import 'css/settings';
+
+.topic {
+    height: 100vh;
+    width: 100%;
+    background-color: $black-page-background;
+
+    .right-link {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 100%;
+        width: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        a {
+            text-align: center;
+            text-decoration: none;
+            color: $white;
+        }
+    }
+
+    .indicators-row {
+        justify-content: center;
+        .indicators-container {
+            margin-top: 116px;
+            padding: 0px;
+            border-top: solid 2px $lighter-grey;
+            width: 100%;
+            height: 100%;
+    
+            .indicators-header {
+                .header-title {
+                    color: $lighter-grey;
+                    font-size: 14px;
+                    font-family: 'Barlow Condensed';
+                }
+                .header-subtitle {
+                    font-size: 11px;
+                    color: $darker-grey;
+                    font-family: 'Lato';
+                    margin-left: $space;
+    
+                    a {
+                        color: $darker-grey;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
