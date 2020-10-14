@@ -133,27 +133,6 @@
     "build": "next build",
     "start": "next start"
   },
-  "betterScripts": {
-    "build": {
-      "command": "next build",
-      "env": {
-        "NODE_OPTIONS": "--max_old_space_size=4096",
-        "RW_NODE_ENV": "production"
-      }
-    },
-    "start": {
-      "command": "node index.js",
-      "env": {
-        "RW_NODE_ENV": "production"
-      }
-    },
-    "bundle-analyzer": {
-      "command": "yarn build",
-      "env": {
-        "BUNDLE_ANALYZER": "1"
-      }
-    }
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

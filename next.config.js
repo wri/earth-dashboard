@@ -4,8 +4,6 @@ const { BundleAnalyzerPlugin } = (process.env.RW_NODE_ENV === 'production' && pr
   require('webpack-bundle-analyzer') : {};
 
 module.exports = {
-  useFileSystemPublicRoutes: false,
-
   env: {
     RW_NODE_ENV: process.env.RW_NODE_ENV || 'development',
     APPLICATIONS: 'earthhq',
