@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import Particles from 'react-particles-js';
 import Link from 'next/link';
 
 // components
@@ -18,7 +19,8 @@ import {
 import styles from './topic.module.scss';
 import { useRouter } from 'next/router';
 
-// constants
+// utils
+import { PARTICLES_DEFINITION } from 'utils/particles';
 
 function LayoutTopic(props) {
   const { topic } = props;
@@ -30,6 +32,10 @@ function LayoutTopic(props) {
       description="Earth Dashboard"
       className={styles.topic}
     >
+      <Particles 
+        className={styles.particles}
+        params={PARTICLES_DEFINITION}
+      />
       <div className={classnames({
         'row': true,
         [styles['indicators-row']]: true

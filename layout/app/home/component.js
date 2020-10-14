@@ -8,8 +8,8 @@ import Layout from 'layout/layout/layout-app';
 // styles
 import styles from './homepage.module.scss';
 
-// constants
-import { PARTICLES_DEFINITION } from './constants';
+// utils
+import { PARTICLES_DEFINITION } from 'utils/particles';
 
 function LayoutHome() {
 
