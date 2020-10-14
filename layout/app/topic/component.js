@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 // components
 import Layout from 'layout/layout/layout-app';
+import TopicNews from './news';
 
 // utils
 import {
@@ -32,10 +33,6 @@ function LayoutTopic(props) {
       description="Earth Dashboard"
       className={styles.topic}
     >
-      <Particles 
-        className={styles.particles}
-        params={PARTICLES_DEFINITION}
-      />
       <div className={classnames({
         'row': true,
         [styles['indicators-row']]: true
@@ -46,14 +43,20 @@ function LayoutTopic(props) {
           'medium-6': true,
           'column': true
         })}>
+          {/* INDICATORS HEADER */}
           <div className={styles['indicators-header']}>
             <span className={styles['header-title']}>THE GLOBAL COMMONS REPORT</span>
             <span className={styles['header-subtitle']}>
               powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
             </span>
           </div>
+          <div className={styles['indicator-block']}>
+            <span className={styles['block-header']}>RECENT NEWS</span>
+            <TopicNews topic={topic} />
+          </div>
         </div>
       </div>
+      {/* RIGHT SIDE LINK TO STORY TELLING PAGE */}
       <div
         className={styles['right-link']}
         onClick={() => router.push(`/${topic}/story`)}
@@ -61,6 +64,7 @@ function LayoutTopic(props) {
       >
         <a>EXPLORE {topic && topic.toUpperCase()}</a>
       </div>
+      {/* LEFT MENU */}
       <div
         className={styles['left-menu']}
       >
@@ -97,6 +101,10 @@ function LayoutTopic(props) {
           </a>
         </Link>
       </div>
+      <Particles 
+        className={styles.particles}
+        params={PARTICLES_DEFINITION}
+      />
     </Layout>
   );
 }

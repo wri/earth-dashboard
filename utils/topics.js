@@ -8,6 +8,11 @@ export const FRESHWATER = 'freshwater';
 export const OCEANS = 'oceans';
 export const FORESTS = 'forests';
 
+export const MONGABAY_CLIMATE = 'climate';
+export const MONGABAY_FRESHWATER = 'water';
+export const MONGABAY_OCEANS = 'oceans';
+export const MONGABAY_FORESTS = 'forests';
+
 export function getColorByTopic(topicSt) {
     switch (topicSt) {
         case CLIMATE:
@@ -18,6 +23,19 @@ export function getColorByTopic(topicSt) {
             return OCEANS_COLOR;
         case FORESTS:
             return FORESTS_COLOR;
+    }
+}
+
+export function getMongabayTagsByTopic(topicSt) {
+    switch (topicSt) {
+        case CLIMATE:
+            return MONGABAY_CLIMATE;
+        case FRESHWATER:
+            return MONGABAY_FRESHWATER;
+        case OCEANS:
+            return MONGABAY_OCEANS;
+        case FORESTS:
+            return MONGABAY_FORESTS;
     }
 }
 
