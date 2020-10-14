@@ -68,21 +68,24 @@ function LayoutTopic(props) {
         </Link>
         <Link href="/forests">
           <a className={classnames({
-            [styles['forests-link']]: topic === FORESTS
+            [styles['forests-link']]: topic === FORESTS,
+            [styles['selected-link']]: topic === FORESTS
           })}>
             FORESTS
           </a>
         </Link>
         <Link href="/freshwater">
           <a className={classnames({
-            [styles['freshwater-link']]: topic === FRESHWATER
+            [styles['freshwater-link']]: topic === FRESHWATER,
+            [styles['selected-link']]: topic === FRESHWATER
           })}>
             FRESHWATER
           </a>
         </Link>
         <Link href="/oceans">
           <a className={classnames({
-            [styles['oceans-link']]: topic === OCEANS
+            [styles['oceans-link']]: topic === OCEANS,
+            [styles['selected-link']]: topic === OCEANS
           })}>
             OCEANS
           </a>
