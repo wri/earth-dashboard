@@ -5,6 +5,43 @@
     width: 100%;
     background-color: $black-page-background;
 
+    .left-menu {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding-left: 6 * $space;
+
+        > a {
+            font-family: 'Barlow Condensed';
+            color: $darker-grey;
+            margin-bottom: 8 * $space;
+            text-decoration: none;
+
+            &.selected-link {
+                color: $white;
+            }
+        }
+
+        .climate-link {
+            border-bottom: solid 2px $climate-color;
+        }
+        .forests-link {
+            border-bottom: solid 2px $forests-color;
+        }
+        .freshwater-link {
+            border-bottom: solid 2px $freshwater-color;
+        }
+        .oceans-link {
+            border-bottom: solid 2px $oceans-color;
+        }
+    }
+
     .right-link {
         position: absolute;
         top: 0px;

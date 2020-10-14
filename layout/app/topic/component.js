@@ -1,11 +1,18 @@
 import React from 'react';
 import classnames from 'classnames';
+import Link from 'next/link';
 
 // components
 import Layout from 'layout/layout/layout-app';
 
 // utils
-import { getColorByTopic } from 'utils/topics';
+import {
+  getColorByTopic,
+  CLIMATE,
+  OCEANS,
+  FORESTS,
+  FRESHWATER
+} from 'utils/topics';
 
 // styles
 import styles from './topic.module.scss';
@@ -24,9 +31,9 @@ function LayoutTopic(props) {
       className={styles.topic}
     >
       <div className={classnames({
-          'row': true,
-          [styles['indicators-row']]: true
-        })}>
+        'row': true,
+        [styles['indicators-row']]: true
+      })}>
         <div className={classnames({
           [styles['indicators-container']]: true,
           'small-8': true,
@@ -47,6 +54,39 @@ function LayoutTopic(props) {
         style={{ backgroundColor: getColorByTopic(topic) }}
       >
         <a>EXPLORE {topic && topic.toUpperCase()}</a>
+      </div>
+      <div
+        className={styles['left-menu']}
+      >
+        <Link href="/climate">
+          <a className={classnames({
+            [styles['climate-link']]: topic === CLIMATE,
+            [styles['selected-link']]: topic === CLIMATE
+          })}>
+            CLIMATE
+          </a>
+        </Link>
+        <Link href="/forests">
+          <a className={classnames({
+            [styles['forests-link']]: topic === FORESTS
+          })}>
+            FORESTS
+          </a>
+        </Link>
+        <Link href="/freshwater">
+          <a className={classnames({
+            [styles['freshwater-link']]: topic === FRESHWATER
+          })}>
+            FRESHWATER
+          </a>
+        </Link>
+        <Link href="/oceans">
+          <a className={classnames({
+            [styles['oceans-link']]: topic === OCEANS
+          })}>
+            OCEANS
+          </a>
+        </Link>
       </div>
     </Layout>
   );
