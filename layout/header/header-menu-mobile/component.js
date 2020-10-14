@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Link } from 'routes';
+import Link from 'next/link';
 import { toastr } from 'react-redux-toastr';
 
 // components
@@ -94,9 +94,11 @@ class HeaderMenuMobile extends PureComponent {
                   >
                     {item.route &&
                       <h2>
-                        <Link
-                          route={item.route}
-                          params={item.params}
+                        <Link href={
+                          {
+                            pathname: item.route,
+                            query: item.params
+                          }}
                         >
                           <a>{item.label}</a>
                         </Link>
@@ -131,9 +133,11 @@ class HeaderMenuMobile extends PureComponent {
                           return (
                             <li key={c.label}>
                               {!!c.route &&
-                                <Link
-                                  route={c.route}
-                                  params={c.params}
+                                <Link href={
+                                  {
+                                    pathname: c.route,
+                                    query: c.params
+                                  }}
                                 >
                                   <a>{c.label}</a>
                                 </Link>

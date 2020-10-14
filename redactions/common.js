@@ -1,5 +1,3 @@
-import { Router } from 'routes';
-
 const SET_LOCALE = 'common/SET_LOCALE';
 const SET_EMBED = 'common/SET_EMBED';
 const SET_WEBSHOT = 'common/SET_WEBSHOT';
@@ -14,7 +12,7 @@ const initialState = {
   webshot: false,
   isLoadedExternally: false,
   isServer: true,
-  hostname: 'http://earth-dashboard-prod-674332768.us-east-1.elb.amazonaws.com/'
+  hostname: 'https://earthhq.org'
 };
 
 export default function (state = initialState, action) {
@@ -40,16 +38,6 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
-
-/**
- * ACTIONS
- */
-
-export function redirectTo(url) {
-  return (dispatch) => {
-    dispatch(Router.pushRoute(url));
-  };
 }
 
 /**

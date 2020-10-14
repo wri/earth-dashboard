@@ -1,30 +1,31 @@
-import React, { PureComponent } from 'react';
-import { Router } from 'routes';
+import React from 'react';
+import { useRouter } from 'next/router'
 import PropTypes from 'prop-types';
 
 // Components
 import DatasetsForm from 'components/datasets/form';
 
-class DatasetsNew extends PureComponent {
-  static propTypes = { user: PropTypes.object.isRequired }
+function DatasetsNew(props) {
+  const { user: { token } } = this.props;
+  const router = useRouter();
+  const handleSubmit = id => router.push({
+    pathname: '/admin/data/:tab/:id',
+    query: { tab: 'datasets', id }
+  });
 
-  handleSubmit = (id) => { Router.pushRoute('admin_data_detail', { tab: 'datasets', id }); }
-
-  render() {
-    const { user: { token } } = this.props;
-
-    return (
-      <div className="c-datasets-new">
-        <DatasetsForm
-          application={[process.env.APPLICATIONS]}
-          authorization={token}
-          onSubmit={this.handleSubmit}
-          basic={false}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="c-datasets-new">
+      <DatasetsForm
+        application={[process.env.APPLICATIONS]}
+        authorization={token}
+        onSubmit={handleSubmit}
+        basic={false}
+      />
+    </div>
+  );
 }
+
+DatasetsNew.propTypes = { user: PropTypes.object.isRequired };
 
 export default DatasetsNew;
 

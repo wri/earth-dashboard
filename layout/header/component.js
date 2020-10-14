@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Link } from 'routes';
+import Link from 'next/link';
 import MediaQuery from 'react-responsive';
 
 // components
@@ -43,7 +43,7 @@ class Header extends PureComponent {
             <div className="column">
               <div className={styles['header-main']}>
                 <div className={styles['header-logo']}>
-                  <Link route="home">
+                  <Link href="/">
                     <a>
                       <img className={styles['brand-logo']} src="/static/images/GCA_logo.png" />
                       <h1 className={styles['brand-title']}>Earth Dashboard</h1>

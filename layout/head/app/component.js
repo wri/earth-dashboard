@@ -29,7 +29,7 @@ class HeadApp extends PureComponent {
     } = this.props;
     return (
       <HeadNext>
-        <title>{title ? `${title} | Resource Watch` : 'Resource Watch'}</title>
+        <title>{title}</title>
 
         <meta property="og:url" content={explicitHostname ? explicitHostname : hostname} />
         <meta name="description" content={description} />

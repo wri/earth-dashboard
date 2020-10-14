@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 // Next components
-import { Link } from 'routes';
+import Link from 'next/link';
 
 // styles
 import styles from './tabs.module.scss';
@@ -55,7 +55,12 @@ export default class Tabs extends React.Component {
                 className="column shrink"
               >
                 {option.route &&
-                  <Link route={option.route} params={option.params} >
+                  <Link href={
+                    {
+                      pathname: option.route,
+                      query: option.params
+                    }}
+                  >
                     <a className={btnClasses}>
                       <span className={styles.title}>{option.label}</span>
                       {!!option.number && <span className={styles.number}>{option.number}</span>}

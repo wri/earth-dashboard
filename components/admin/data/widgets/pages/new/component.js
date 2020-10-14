@@ -1,38 +1,46 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Router } from 'routes';
+import { useRouter } from 'next/router';
 
 // components
 import WidgetForm from 'components/admin/data/widgets/form';
 
-class WidgetsNew extends PureComponent {
-  static propTypes = { user: PropTypes.object.isRequired }
+function WidgetsNew(props) {
+  const { user: { token } } = props;
+  const router = useRouter();
 
-  handleSubmit = (widget) => {
+  const handleSubmit = (widget) => {
     if (widget) {
-      Router.pushRoute('admin_data_detail', {
-        tab: 'widgets',
-        subtab: 'edit',
-        id: widget.id,
-        dataset: widget.dataset
+      router.push({
+        pathname: '/admin/data/[tab]/[id]/[subtab]', 
+        query: {
+          tab: 'widgets',
+          subtab: 'edit',
+          id: widget.id,
+          dataset: widget.dataset
+        }
       });
     } else {
-      Router.pushRoute('admin_data', { tab: 'widgets' });
+      router.push({
+        pathname: '/admin/data/[tab]', 
+        query: {
+          tab: 'widgets'
+        }
+      });
     }
   }
 
-  render() {
-    const { user: { token } } = this.props;
+  return (
+    <div className="c-widgets-new">
+      <WidgetForm
+        authorization={token}
+        onSubmit={handleSubmit}
+      />
+    </div>
+  );
 
-    return (
-      <div className="c-widgets-new">
-        <WidgetForm
-          authorization={token}
-          onSubmit={this.handleSubmit}
-        />
-      </div>
-    );
-  }
 }
+
+WidgetsNew.propTypes = { user: PropTypes.object.isRequired };
 
 export default WidgetsNew;

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import TetherComponent from 'react-tether';
 
 // Next components
-import { Link } from 'routes';
+import Link from 'next/link';
 
 // Components
 import Icon from 'components/ui/icon';
@@ -83,7 +83,16 @@ class DatasetsRelatedContent extends React.Component {
                 }}
               >
                 {isOwnerOrAdmin ?
-                  <Link route={route} params={{ tab: 'datasets', id: dataset.id, subtab: 'widgets' }}>
+                  <Link href={
+                    {
+                      pathname: route,
+                      query: { 
+                        tab: 'datasets',
+                        id: dataset.id,
+                        subtab: 'widgets'
+                      }
+                    }}
+                  >
                     <a
                       onMouseEnter={() => this.toggleTooltip('widgetsActive', true)}
                       onMouseLeave={() => this.toggleTooltip('widgetsActive', false)}
@@ -126,7 +135,16 @@ class DatasetsRelatedContent extends React.Component {
                 }}
               >
                 {isOwnerOrAdmin ?
-                  <Link route={route} params={{ tab: 'datasets', id: dataset.id, subtab: 'layers' }}>
+                  <Link href={
+                    {
+                      pathname: route,
+                      query: {
+                        tab: 'datasets',
+                        id: dataset.id,
+                        subtab: 'layers'
+                      }
+                    }}
+                  >
                     <a
                       onMouseEnter={() => this.toggleTooltip('layersActive', true)}
                       onMouseLeave={() => this.toggleTooltip('layersActive', false)}
@@ -169,7 +187,16 @@ class DatasetsRelatedContent extends React.Component {
                 }}
               >
                 {isOwnerOrAdmin ?
-                  <Link route={route} params={{ tab: 'datasets', id: dataset.id, subtab: 'metadata' }}>
+                  <Link href={
+                    {
+                      pathname: route,
+                      query: {
+                        tab: 'datasets',
+                        id: dataset.id,
+                        subtab: 'metadata'
+                      }
+                    }}
+                  >
                     <a
                       className={classnames({ '-empty': (!dataset.metadata || !dataset.metadata.length) })}
                       onMouseEnter={() => this.toggleTooltip('metadataActive', true)}
@@ -214,7 +241,16 @@ class DatasetsRelatedContent extends React.Component {
                 }}
               >
                 {isOwnerOrAdmin ?
-                  <Link route={route} params={{ tab: 'datasets', id: dataset.id, subtab: 'tags' }}>
+                  <Link href={
+                    {
+                      pathname: route,
+                      query: {
+                        tab: 'datasets',
+                        id: dataset.id,
+                        subtab: 'tags'
+                      }
+                    }} 
+                  >
                     <a
                       className={classnames({ '-empty': (!knowledgeGraphVoc) })}
                       onMouseEnter={() => this.toggleTooltip('vocabulariesActive', true)}

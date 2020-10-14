@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Link } from 'routes';
+import Link from 'next/link';
 
 // constants
 import { ADMIN_HEADER_ITEMS } from 'layout/header-admin/constants';
@@ -24,9 +24,11 @@ class AdminHeaderMenu extends PureComponent {
                 className={activeClassName}
               >
                 {item.route &&
-                  <Link
-                    route={item.route}
-                    params={item.params}
+                  <Link href={
+                    {
+                      pathname: item.route,
+                      query: item.params
+                    }}
                   >
                     <a>{item.label}</a>
                   </Link>

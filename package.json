@@ -4,7 +4,6 @@
   "description": "Earth Dashboard",
   "author": "Vizzuality",
   "license": "MIT",
-  "main": "index.js",
   "dependencies": {
     "@babel/core": "^7.2.0",
     "@mapbox/mapbox-gl-draw": "^1.1.2",
@@ -50,7 +49,6 @@
     "next": "^9.5.3",
     "next-progressbar": "^1.0.0",
     "next-redux-wrapper": "^6.0.2",
-    "next-routes": "^1.4.2",
     "normalize.css": "7.0.0",
     "numeral": "^2.0.6",
     "passport": "0.3.2",
@@ -131,13 +129,9 @@
     "webpack-bundle-analyzer": "^3.3.2"
   },
   "scripts": {
-    "test": "yarn lint",
-    "lint": "eslint .",
-    "dev": "node $NODE_DEBUG_OPTION index.js",
-    "build": "better-npm-run build",
-    "start": "better-npm-run start",
-    "bundle-analyzer": "better-npm-run bundle-analyzer",
-    "prod": "NODE_ENV=production node index.js"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
   "betterScripts": {
     "build": {

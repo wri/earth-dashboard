@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Progress from 'react-progress-2';
+import { withRouter } from 'next/router'
 
 // Utils
 import { initGA, logPageView } from 'utils/analytics';
 
 // Components
-import { Router } from 'routes';
 import IconsRW from 'components/icons';
 
 // vizzuality-components
@@ -27,7 +27,8 @@ class LayoutAdmin extends PureComponent {
     className: PropTypes.string,
     toggleTooltip: PropTypes.func.isRequired,
     updateIsLoading: PropTypes.func.isRequired,
-    setLocale: PropTypes.func.isRequired
+    setLocale: PropTypes.func.isRequired,
+    router: PropTypes.object.isRequired
   };
 
   static defaultProps = { className: null };
@@ -46,12 +47,13 @@ class LayoutAdmin extends PureComponent {
   }
 
   componentDidMount() {
-    Router.onRouteChangeStart = () => {
+    const { router } = this.props;
+    router.onRouteChangeStart = () => {
       if (Progress && Progress.Component.instance) Progress.show();
       this.props.toggleTooltip(false);
       this.props.updateIsLoading(true);
     };
-    Router.onRouteChangeComplete = () => {
+    router.onRouteChangeComplete = () => {
       this.props.updateIsLoading(false);
       if (Progress && Progress.Component.instance) Progress.hideAll();
     };
@@ -101,4 +103,4 @@ class LayoutAdmin extends PureComponent {
   }
 }
 
-export default LayoutAdmin;
+export default withRouter(LayoutAdmin);

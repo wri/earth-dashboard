@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'routes';
+import Link from 'next/link';
 
 // utils
 import { substitution } from 'utils/utils';
@@ -26,9 +26,10 @@ class EditAction extends PureComponent {
     const { action: { route } } = this.props;
 
     return (
-      <Link
-        route={route}
-        params={this.getParsedParams()}
+      <Link href={{
+          pathname: route ,
+          query: this.getParsedParams()
+        }}
       >
         <a className="c-btn">Go to dataset</a>
       </Link>

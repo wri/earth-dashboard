@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Link } from 'routes';
+import Link from 'next/link';
 import MediaQuery from 'react-responsive';
 
 // components
@@ -39,7 +39,7 @@ class AdminHeader extends PureComponent {
             <div className="column">
               <div className="header-main">
                 <div className="header-logo">
-                  <Link route="home">
+                  <Link href="/">
                     <a>
                       <img className="brand-logo" src="/static/images/GCA_logo.png" />
                       <h1 className="brand-title">Resource Watch</h1>

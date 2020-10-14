@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Link } from 'routes';
+import Link from 'next/link';
 
 // components
 import Icon from 'components/ui/icon';
@@ -66,9 +66,11 @@ class AdminHeaderMenuMobile extends PureComponent {
                   >
                     {item.route &&
                       <h2>
-                        <Link
-                          route={item.route}
-                          params={item.params}
+                        <Link href={
+                          {
+                            pathname: item.route,
+                            query: item.params
+                          }}
                         >
                           <a>{item.label}</a>
                         </Link>
@@ -85,9 +87,11 @@ class AdminHeaderMenuMobile extends PureComponent {
                         {item.children.map(c => (
                           <li key={c.route || c.href}>
                             {!!c.route &&
-                              <Link
-                                route={c.route}
-                                params={c.params}
+                              <Link href={
+                                {
+                                  pathname: c.route,
+                                  query: c.params
+                                }}
                               >
                                 <a>{c.label}</a>
                               </Link>

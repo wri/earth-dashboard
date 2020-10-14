@@ -4,7 +4,7 @@ import escapeRegExp from 'lodash/escapeRegExp';
 import classnames from 'classnames';
 
 // Next
-import { Link } from 'routes';
+import Link from 'next/link';
 
 // Components
 import Icon from 'components/ui/icon';
@@ -104,7 +104,12 @@ class SearchInput extends PureComponent {
         </div>
 
         {link.route &&
-          <Link route={link.route} params={link.params}>
+          <Link href={
+            {
+              pathname: link.route,
+              query: link.params
+            }}
+          >
             <a className={linkClassNames}>{link.label}</a>
           </Link>
         }

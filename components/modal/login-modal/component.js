@@ -127,7 +127,7 @@ class LoginModal extends PureComponent {
                     {Input}
                   </Field>
                   {!register && (
-                    <Link to="forgot-password">
+                    <Link href="forgot-password">
                       <a className={styles['forgot-password-link']}>Have you forgotten your password?</a>
                     </Link>)}
 

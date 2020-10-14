@@ -1,7 +1,7 @@
 import React, { PureComponent, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Link } from 'routes';
+import Link from 'next/link';
 
 // constants
 import { APP_HEADER_ITEMS } from 'layout/header/constants';
@@ -42,9 +42,11 @@ class HeaderMenu extends PureComponent {
                 className={activeClassName}
               >
                 {!component && item.route &&
-                  <Link
-                    route={item.route}
-                    params={item.params}
+                  <Link href={
+                    {
+                      pathname: item.route,
+                      query: item.params
+                    }}
                   >
                     <a>{item.label}</a>
                   </Link>

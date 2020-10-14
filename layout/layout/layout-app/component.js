@@ -10,7 +10,6 @@ import { browserSupported } from 'utils/browser';
 import { Icons } from 'vizzuality-components';
 
 // Components
-import { Router } from 'routes';
 import HeadApp from 'layout/head/app';
 import Header from 'layout/header';
 import Footer from 'layout/footer';

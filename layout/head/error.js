@@ -10,7 +10,7 @@ class HeadError extends PureComponent {
 
     return (
       <HeadNext>
-        <title>{`${statusCode} | Resource Watch`}</title>
+        <title>{`${statusCode} | Earth Dashboard`}</title>
         <meta name="description" content="Ops, something went wrong" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Vizzuality" />

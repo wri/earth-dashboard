@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Router } from 'routes';
+import { useRouter } from 'next/router';
 import truncate from 'lodash/truncate';
 import classnames from 'classnames';
 import { toastr } from 'react-redux-toastr';
@@ -61,6 +61,7 @@ const WidgetCard = (props) => {
     error,
     tooltip
   } = state;
+  const router = useRouter();
 
   const handleRemoveVisualization = () => {
     const { user: { token }, onWidgetRemove } = props;
@@ -107,18 +108,30 @@ const WidgetCard = (props) => {
     const isAdmin = role === 'ADMIN';
 
     if (isAdmin) {
-      Router.pushRoute('admin_data_detail', { tab: 'widgets', subtab: 'edit', id: widget.id, dataset: widget.dataset });
+      router.push({
+        pathname: '/admin/data/[tab]/[id]/[subtab]', 
+        query: { tab: 'widgets', subtab: 'edit', id: widget.id, dataset: widget.dataset }
+      });
     } else if (isOwner) {
-      Router.pushRoute('myrw_detail', { tab: 'widgets', subtab: 'edit', id: widget.id });
+      router.push({
+        pathname: 'myrw_detail',
+        query: { tab: 'widgets', subtab: 'edit', id: widget.id }
+      });
     } else {
-      Router.pushRoute('myrw_detail', { tab: 'widget_detail', id: widget.id });
+      router.push({
+        pathname: 'myrw_detail', 
+        query: { tab: 'widget_detail', id: widget.id }
+      });
     }
   };
 
   const handleGoToDataset = () => {
     const { dataset } = widget;
 
-    Router.pushRoute('explore', { dataset });
+    router.push({
+      pathname: 'explore',
+      query: { dataset }
+    });
   };
 
   const handleDownloadPDF = () => {

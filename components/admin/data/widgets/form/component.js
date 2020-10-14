@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
-import { Router } from 'routes';
-import classnames from 'classnames';
+import { useRouter } from 'next/router';
 
 // components
 import Step1 from 'components/admin/data/widgets/form/steps';
@@ -28,6 +27,7 @@ function WidgetForm(props) {
   const [datasets, setDatasets] = useState([]);
   const [widget, setWidget] = useState(null);
   const [form, setForm] = useState({});
+  const router = useRouter();
 
   useEffect(() => {
     const editionMode = !!id;
@@ -223,7 +223,10 @@ function WidgetForm(props) {
         deleteWidget(id, dataset, authorization)
           .then(() => {
             toastr.success('Success', `The widget "${id}" - "${name}" has been removed correctly`);
-            Router.pushRoute('admin_data_detail', { tab: 'datasets', subtab: 'widgets', id: dataset });
+            router.push({
+              pathname: '/admin/data/[tab]/[id]/[subtab]', 
+              query: { tab: 'datasets', subtab: 'widgets', id: dataset }
+            });
           })
           .catch((err) => {
             toastr.error(
