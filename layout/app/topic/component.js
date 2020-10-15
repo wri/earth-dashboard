@@ -59,7 +59,7 @@ function LayoutTopic(props) {
       {/* RIGHT SIDE LINK TO STORY TELLING PAGE */}
       <div
         className={styles['right-link']}
-        onClick={() => router.push(`/${topic}/story`)}
+        onClick={() => router.push(`/${topic}/data`)}
         style={{ backgroundColor: getColorByTopic(topic) }}
       >
         <a>EXPLORE {topic && topic.toUpperCase()}</a>
