@@ -12,7 +12,10 @@ function DiveIntoTheDataSection(props) {
   const topicColor = getColorByTopic(topic);
 
   return (
-    <div className={styles['c-dive-into-the-data-section']} >
+    <div
+      id="dive-into-the-data"
+      className={styles['c-dive-into-the-data-section']}
+    >
       <h2>Dive into the <span style={{ color: topicColor }}>Data</span></h2>
     </div>
   );

@@ -12,7 +12,10 @@ function CreditsResourcesSection(props) {
   const topicColor = getColorByTopic(topic);
 
   return (
-    <div className={styles['c-credits-resources-section']} >
+    <div
+      id="credits-and-resources"
+      className={styles['c-credits-resources-section']}
+    >
       <div className={styles['credits-resources-container']}>
         <h2>Credits and <span style={{ color: topicColor }}>Resources</span></h2>
         <div className={styles['credits-field']}>

@@ -1,3 +1,15 @@
+// constants
+import { CLIMATE_HEADLINE_SECTION_DATA } from 'layout/app/topic/data/climate/constants';
+import {
+    FORESTS_HEADLINE_SECTION_DATA,
+    FORESTS_CHALLENGE_SECTION_DATA
+} from 'layout/app/topic/data/forests/constants';
+import {
+    FRESHWATER_HEADLINE_SECTION_DATA,
+    FRESHWATER_CHALLENGE_SECTION_DATA
+} from 'layout/app/topic/data/freshwater/constants';
+import { OCEANS_HEADLINE_SECTION_DATA } from 'layout/app/topic/data/oceans/constants';
+
 // -------- TOPICS ----------
 export const CLIMATE = 'climate';
 export const FRESHWATER = 'freshwater';
@@ -63,3 +75,28 @@ export function getMongabayTagsByTopic(topicSt) {
     }
 }
 
+export function getHeadlineSectionDataBytopic(topic) {
+    switch (topic) {
+        case CLIMATE:
+            return CLIMATE_HEADLINE_SECTION_DATA;
+        case FORESTS:
+            return FORESTS_HEADLINE_SECTION_DATA;
+        case FRESHWATER:
+            return FRESHWATER_HEADLINE_SECTION_DATA;
+        case OCEANS:
+            return OCEANS_HEADLINE_SECTION_DATA;
+        default:
+            return null;
+    }
+};
+
+export function getChallengeSectionDataByTopic(topic) {
+    switch (topic) {
+        case FORESTS:
+            return FORESTS_CHALLENGE_SECTION_DATA;
+        case FRESHWATER:
+            return FRESHWATER_CHALLENGE_SECTION_DATA;
+        default:
+            return null;
+    }
+};

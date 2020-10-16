@@ -63,7 +63,6 @@ class LayoutApp extends Component {
       explicitHostname
     } = this.props;
     const componentClass = classnames(
-      'l-page',
       { [className]: !!className }
     );
 

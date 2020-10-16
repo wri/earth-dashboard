@@ -15,6 +15,7 @@ function ChangeAgentsSection(props) {
     <div
       className={styles['c-change-agents-section']}
       style={{ backgroundColor: topicColor }}
+      id="change-agents"
     >
       <h2>Change Agents <span>(coming soon)</span></h2>
       <div className={styles.subtitle}>
