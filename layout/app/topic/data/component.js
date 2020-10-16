@@ -5,6 +5,7 @@ import Link from 'next/link';
 // components
 import Layout from 'layout/layout/layout-app';
 import HeadlineSection from 'layout/app/topic/data/headline-section';
+import CreditsResourcesSection from 'layout/app/topic/data/credits-resources-section';
 
 // styles
 import styles from './topic-data.module.scss';
@@ -21,9 +22,7 @@ function LayoutTopicData(props) {
       className={styles.topic}
     >
       <div className={styles['topic-data']}>
-        <div
-            className={styles['headline-section']}
-        >
+        <div className={styles['headline-section']}>
           <HeadlineSection topic={topic} />
         </div>
         <div
@@ -46,6 +45,9 @@ function LayoutTopicData(props) {
             // style={{ backgroundColor: topicColor }}
         >
             <h2>Change agents<span className={styles['coming-soon']}>(coming soon)</span></h2>
+        </div>
+        <div className={styles['headline-section']}>
+          <CreditsResourcesSection topic={topic} />
         </div>
       </div>
     </Layout>

@@ -1,0 +1,49 @@
+@import 'css/settings';
+
+.c-credits-resources-section {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 110px 100px 110px;
+
+    .credits-resources-container {
+        width: 50%;
+        padding-right: 110px;
+
+        h2 {
+            font-size: 36px;
+            font-family: 'Barlow Condensed';
+
+            span {
+                font-style: italic;
+            }
+        }
+
+        .credits-field {
+            margin-top: 6 * $space;
+
+            .field-title {
+                font-family: 'Barlow Condensed';
+                color: $darker-grey;
+            }
+
+            .field-content {
+                margin-top: 5 * $space;
+                font-size: 16px;
+                color: $credits-grey;
+            }
+        }
+    }
+
+    .share-container {
+        width: 50%;
+
+        .share-title {
+            font-family: 'Barlow Condensed';
+            color: $darker-grey;
+            font-size: 16px;
+        }
+    }
+}
