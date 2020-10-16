@@ -1,0 +1,38 @@
+@import 'css/settings';
+
+.topic-data {
+    .headline-section {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .challenge-section{
+        height: 100vh;
+        width: 100%;
+        padding: 0px 110px 0px 110px;
+        background-color: $blue-grey; //temporary
+
+        h2 {
+            color: $white;
+        }
+    }
+
+    .dive-into-the-data-section {
+        padding: 115px 110px 115px 110px;
+    }
+
+    .change-agents-section {
+        padding: 120px 135px 120px 135px;
+
+        h2 {
+            font-style: italic;
+            color: $white;
+        }
+
+        .coming-soon {
+            color: $black-page-background;
+            font-style: normal;
+            margin-left: 3 * $space;
+        }
+    }
+}

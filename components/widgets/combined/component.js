@@ -4,14 +4,14 @@ import { toastr } from 'react-redux-toastr';
 import PropTypes from 'prop-types';
 
 // components
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import WidgetPreview from 'components/admin/data/widgets/form/preview';
 
 // services
 import { fetchWidget } from 'services/widget';
 
 // styles
-import './styles.scss';
+import styles from './combined-widget.module.scss';
 
 function CombinedWidget(props) {
   const { widget } = props;
@@ -51,7 +51,7 @@ function CombinedWidget(props) {
   }, [widget, widget1.id, widget2.id]);
 
   const mainClassname = classnames({
-    'c-combined-widget': true,
+    [styles['c-combined-widget']]: true,
     '-row': directionIsRow,
     '-column': !directionIsRow
   });
@@ -61,7 +61,7 @@ function CombinedWidget(props) {
       {loading && <Spinner isLoading={loading} className="-relative -light" />}
       {widgets && widgets.widget1 &&
         <div
-          className="widget1-container"
+          className={styles['widget1-container']}
           style={directionIsRow ? {
                         'min-width': `${widget1.percentage}%`,
                         'max-width': `${widget1.percentage}%`
@@ -76,7 +76,7 @@ function CombinedWidget(props) {
             }
       {widgets && widgets.widget2 &&
         <div
-          className="widget2-container"
+          className={styles['widget2-container']}
           style={directionIsRow ? {
                         'min-width': `${widget2.percentage}%`,
                         'max-width': `${widget2.percentage}%`

@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Progress from 'react-progress-2';
+import { withRouter } from 'next/router'
 
 // Utils
 import { initGA, logPageView } from 'utils/analytics';
 
 // Components
-import { Router } from 'routes';
 import IconsRW from 'components/icons';
 
 // vizzuality-components
@@ -16,8 +16,6 @@ import { Icons } from 'vizzuality-components';
 import Head from 'layout/head/admin';
 import Header from 'layout/header-admin';
 
-import Tooltip from 'components/ui/Tooltip';
-import Modal from 'components/ui/Modal';
 import Toastr from 'react-redux-toastr';
 
 class LayoutAdmin extends PureComponent {
@@ -27,17 +25,13 @@ class LayoutAdmin extends PureComponent {
     description: PropTypes.string,
     pageHeader: PropTypes.bool,
     className: PropTypes.string,
-    modal: PropTypes.object.isRequired,
-    toggleModal: PropTypes.func.isRequired,
     toggleTooltip: PropTypes.func.isRequired,
-    setModalOptions: PropTypes.func.isRequired,
     updateIsLoading: PropTypes.func.isRequired,
-    setLocale: PropTypes.func.isRequired
+    setLocale: PropTypes.func.isRequired,
+    router: PropTypes.object.isRequired
   };
 
   static defaultProps = { className: null };
-
-  state = { modalOpen: false }
 
   UNSAFE_componentWillMount() {
     // When a tooltip is shown and the router navigates to a
@@ -53,12 +47,13 @@ class LayoutAdmin extends PureComponent {
   }
 
   componentDidMount() {
-    Router.onRouteChangeStart = () => {
+    const { router } = this.props;
+    router.onRouteChangeStart = () => {
       if (Progress && Progress.Component.instance) Progress.show();
       this.props.toggleTooltip(false);
       this.props.updateIsLoading(true);
     };
-    Router.onRouteChangeComplete = () => {
+    router.onRouteChangeComplete = () => {
       this.props.updateIsLoading(false);
       if (Progress && Progress.Component.instance) Progress.hideAll();
     };
@@ -80,23 +75,13 @@ class LayoutAdmin extends PureComponent {
     logPageView();
   }
 
-  UNSAFE_componentWillReceiveProps(newProps) {
-    if (this.state.modalOpen !== newProps.modal.open) {
-      this.setState({ modalOpen: newProps.modal.open });
-    }
-  }
-
   render() {
     const {
       title,
       description,
       pageHeader,
-      modal,
-      className,
-      toggleModal,
-      setModalOptions
+      className
     } = this.props;
-    const { modalOpen } = this.state;
     const componentClass = classnames('l-page', { [className]: !!className });
 
     return (
@@ -112,20 +97,10 @@ class LayoutAdmin extends PureComponent {
 
         {this.props.children}
 
-        <Tooltip />
-
-        <Modal
-          open={modalOpen}
-          options={modal.options}
-          loading={modal.loading}
-          toggleModal={toggleModal}
-          setModalOptions={setModalOptions}
-        />
-
         <Toastr preventDuplicates transitionIn="fadeIn" transitionOut="fadeOut" />
       </div>
     );
   }
 }
 
-export default LayoutAdmin;
+export default withRouter(LayoutAdmin);

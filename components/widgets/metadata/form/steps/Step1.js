@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 // components
 import Field from 'components/form/Field';
 import Input from 'components/form/Input';
-import Checkbox from 'components/form/Checkbox';
-import Title from 'components/ui/Title';
+import Checkbox from 'components/form/checkbox';
 
 // constants
 import { FORM_ELEMENTS } from 'components/widgets/metadata/form/constants';
@@ -85,9 +84,9 @@ class Step1 extends React.Component {
     return (
       <div>
         <fieldset className="c-field-container">
-          <Title className="-big -secondary">
+          <h4>
             Edit metadata
-          </Title>
+          </h4>
           {/* CAPTION */}
           <Field
             ref={(c) => { if (c) FORM_ELEMENTS.elements.caption = c; }}

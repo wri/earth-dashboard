@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
 
 // components
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // styles
-import './styles.scss';
+import styles from './list-widget.module.scss';
 
 function ListWidget(props) {
   const { widget } = props;
@@ -33,9 +33,9 @@ function ListWidget(props) {
   const ListTag = numbers ? 'ol' : 'ul';
 
   return (
-    <div className="c-list-widget">
+    <div className={styles['c-list-widget']}>
       <Spinner isLoading={loading} className="-relative -light" />
-      <div className="list-heading">
+      <div className={styles['list-heading']}>
         {heading}
       </div>
       <ListTag>

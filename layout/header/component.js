@@ -1,24 +1,22 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Link } from 'routes';
+import Link from 'next/link';
 import MediaQuery from 'react-responsive';
 
 // components
 import HeaderMenu from 'layout/header/header-menu';
 import HeaderMenuMobile from 'layout/header/header-menu-mobile';
-import Icon from 'components/ui/icon';
 
 // utils
 import { breakpoints } from 'utils/responsive';
 
 // styles
-import './styles.scss';
+import styles from './header.module.scss';
 
 class Header extends PureComponent {
   static propTypes = {
     header: PropTypes.object.isRequired,
-    responsive: PropTypes.object.isRequired,
     pageHeader: PropTypes.bool
   };
 
@@ -26,18 +24,16 @@ class Header extends PureComponent {
 
   render() {
     const {
-      header: { admin },
       pageHeader,
-      responsive: { fakeWidth }
     } = this.props;
     const { medium } = breakpoints;
-    const headerClass = classnames(
-      'l-header',
-      { '-transparent': pageHeader }
-    );
+    const headerClass = classnames({
+      [styles['l-header']]: true,
+      '-transparent': pageHeader
+    });
     const containerClass = classnames(
       'l-container',
-      { '-admin': admin }
+      { '-admin': false }
     );
 
     return (
@@ -45,12 +41,12 @@ class Header extends PureComponent {
         <div className={containerClass}>
           <div className="row">
             <div className="column">
-              <div className="header-main">
-                <div className="header-logo">
-                  <Link route="home">
+              <div className={styles['header-main']}>
+                <div className={styles['header-logo']}>
+                  <Link href="/">
                     <a>
-                      <img className="brand-logo" src="/static/images/GCA_logo.png" />
-                      <h1 className="brand-title">Resource Watch</h1>
+                      <img className={styles['brand-logo']} src="/static/images/GCA_logo.png" />
+                      <h1 className={styles['brand-title']}>Earth Dashboard</h1>
                     </a>
                   </Link>
                 </div>
@@ -58,7 +54,7 @@ class Header extends PureComponent {
                 {/* Mobile header */}
                 <MediaQuery
                   maxDeviceWidth={medium - 1}
-                  values={{ deviceWidth: fakeWidth }}
+                  values={{ deviceWidth: 1000 }}
                 >
                   <HeaderMenuMobile />
                 </MediaQuery>
@@ -66,7 +62,7 @@ class Header extends PureComponent {
                 {/* Desktop header */}
                 <MediaQuery
                   minDeviceWidth={medium}
-                  values={{ deviceWidth: fakeWidth }}
+                  values={{ deviceWidth: 1000 }}
                 >
                   <HeaderMenu />
                 </MediaQuery>

@@ -13,7 +13,7 @@ import Select from 'components/form/SelectInput';
 import InteractionsItems from './interactions-items';
 
 // styles
-import './styles.scss';
+import styles from './layer-form-interactions.module.scss';
 
 class InteractionManager extends PureComponent {
   static propTypes = {
@@ -112,7 +112,7 @@ class InteractionManager extends PureComponent {
     const { interactions } = this.props;
 
     return (
-      <div className="c-interactions">
+      <div className={styles['c-layer-form-interactions']}>
         {interactions.available &&
           <Field
             options={interactions.available}

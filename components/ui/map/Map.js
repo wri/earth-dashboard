@@ -12,8 +12,8 @@ import isEmpty from 'lodash/isEmpty';
 import { BOUNDARIES } from 'components/ui/map/constants';
 
 // Components
-import LayerPopup from 'components/ui/map/popup/LayerPopup';
-import Spinner from 'components/ui/Spinner';
+import LayerPopup from 'components/ui/map/popup';
+import Spinner from 'components/ui/spinner';
 
 // Redux
 import { connect } from 'react-redux';

@@ -9,7 +9,7 @@ import {
   LegendListItem,
   LegendItemTypes
 } from 'vizzuality-components';
-import { Link } from 'routes';
+import Link from 'next/link';
 
 // components
 import LayoutEmbed from 'layout/layout/layout-embed';
@@ -19,7 +19,7 @@ import MapControls from 'components/map/controls';
 import ZoomControls from 'components/map/controls/zoom';
 import ResetViewControls from 'components/map/controls/reset-view';
 import LayerPopup from 'components/map/popup';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import Icon from 'components/ui/icon';
 
 // constants
@@ -236,7 +236,7 @@ class LayoutEmbedMap extends PureComponent {
 
             {isExternal && (
               <div className="widget-footer">
-                <Link route="home">
+                <Link href="/">
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
@@ -265,8 +265,11 @@ class LayoutEmbedMap extends PureComponent {
           {!webshot && (
             <div className="widget-title">
               <Link
-                route="explore"
-                params={{ dataset }}
+              href={
+                {
+                  pathname: 'explore',
+                  query: { dataset }
+                }}
               >
                 <a target="_blank" rel="noopener noreferrer">
                   <h4>{name}</h4>
@@ -381,7 +384,7 @@ class LayoutEmbedMap extends PureComponent {
           {(isExternal && !webshot) && (
             <div className="widget-footer -map">
               Powered by
-              <Link route="home">
+              <Link href="/">
                 <a
                   target="_blank"
                   rel="noopener noreferrer"

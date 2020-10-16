@@ -1,82 +1,89 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { Router } from 'routes';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 // components
-import Aside from 'components/ui/Aside';
+import Aside from 'components/ui/aside';
 import WidgetForm from 'components/admin/data/widgets/form';
-import MetadataForm from 'components/widgets/metadata/form/MetadataForm';
+import MetadataForm from 'components/widgets/metadata/form';
 
-class WidgetsShow extends PureComponent {
-  static propTypes = {
-    tabs: PropTypes.array.isRequired,
-    query: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
-  }
+function WidgetsShow(props) {
+  const {
+    query: { id, subtab },
+    tabs,
+    user: { token }
+  } = this.props;
+  const currentSubTab = subtab || 'edit';
+  const router = useRouter();
 
-  handleSubmit = (widget) => {
+  const handleSubmit = (widget) => {
     if (widget) {
-      Router.pushRoute('admin_data_detail', {
-        tab: 'widgets',
-        subtab: 'edit',
-        id: widget.id,
-        dataset: widget.dataset
+      router.push({
+        pathname: '/admin/data/[tab]/[id]/[subtab]', 
+        query: {
+          tab: 'widgets',
+          subtab: 'edit',
+          id: widget.id,
+          dataset: widget.dataset
+        }
       });
     } else {
-      Router.pushRoute('admin_data', { tab: 'widgets' });
+      router.push({
+        pathname: '/admin/data/[tab]', 
+        query: {
+          tab: 'widgets'
+        }
+      });
     }
   }
 
-  render() {
-    const {
-      query: { id, subtab },
-      tabs,
-      user: { token }
-    } = this.props;
-    const currentSubTab = subtab || 'edit';
+  return (
+    <div className="c-widgets-show">
+      <StickyContainer>
+        <div className="row l-row">
+          <div className="columns small-12 medium-3">
+            <Sticky>
+              {
+                ({ style }) => (
+                  <div style={style}>
+                    <Aside
+                      items={tabs}
+                      selected={currentSubTab}
+                    />
+                  </div>
+                )
+              }
+            </Sticky>
+          </div>
 
-    return (
-      <div className="c-widgets-show">
-        <StickyContainer>
-          <div className="row l-row">
-            <div className="columns small-12 medium-3">
-              <Sticky>
-                {
-                  ({ style }) => (
-                    <div style={style}>
-                      <Aside
-                        items={tabs}
-                        selected={currentSubTab}
-                      />
-                    </div>
-                  )
-                }
-              </Sticky>
-            </div>
-
-            <div className="columns small-12 medium-9">
-              {(subtab === 'edit') &&
+          <div className="columns small-12 medium-9">
+            {(subtab === 'edit') &&
               (<WidgetForm
                 id={id}
                 authorization={token}
                 onSubmit={this.handleSubmit}
               />)}
 
-              {(subtab === 'metadata') &&
-                (<MetadataForm
-                  application={process.env.APPLICATIONS}
-                  authorization={token}
-                  widget={id}
-                  onSubmit={() => { Router.pushRoute('admin_data_detail', { tab: 'widgets', id, subtab: 'edit' }); }}
-                />)}
-            </div>
-
+            {(subtab === 'metadata') &&
+              (<MetadataForm
+                application={process.env.APPLICATIONS}
+                authorization={token}
+                widget={id}
+                onSubmit={() => { Router.pushRoute('admin_data_detail', { tab: 'widgets', id, subtab: 'edit' }); }}
+              />)}
           </div>
-        </StickyContainer>
-      </div>
-    );
-  }
+
+        </div>
+      </StickyContainer>
+    </div>
+  );
 }
+
+WidgetsShow.propTypes = {
+  tabs: PropTypes.array.isRequired,
+  query: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
+};
 
 export default WidgetsShow;

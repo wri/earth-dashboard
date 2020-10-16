@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 // components
-import DatasetsRelatedContent from 'components/datasets/common/DatasetsRelatedContent';
+import DatasetsRelatedContent from 'components/datasets/related-content';
 
 class RelatedContentTD extends PureComponent {
   static propTypes = {

@@ -6,7 +6,7 @@ import isEqual from 'react-fast-compare';
 
 // components
 import Layout from 'layout/layout/layout-admin';
-import Breadcrumbs from 'components/ui/Breadcrumbs';
+import Breadcrumbs from 'components/ui/breadcrumbs';
 import DatasetsTab from 'components/admin/data/datasets';
 import WidgetsTab from 'components/admin/data/widgets';
 import LayersTab from 'components/admin/data/layers';
@@ -107,9 +107,9 @@ class LayoutAdminDataDetail extends PureComponent {
           <div className="l-container -admin">
             <div className="row">
               <div className="column small-12">
-                {(tab === 'datasets') && (<DatasetsTab />)}
-                {(tab === 'widgets') && (<WidgetsTab />)}
-                {(tab === 'layers') && (<LayersTab />)}
+                {(tab === 'datasets') && (<DatasetsTab query={this.props.query} />)}
+                {(tab === 'widgets') && (<WidgetsTab query={this.props.query} />)}
+                {(tab === 'layers') && (<LayersTab query={this.props.query} />)}
               </div>
             </div>
           </div>

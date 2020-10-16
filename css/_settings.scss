@@ -13,29 +13,43 @@ $output-bourbon-deprecation-warnings: false;
 @import "../node_modules/bourbon/app/assets/stylesheets/functions/strip-units";
 @import "../node_modules/bourbon/app/assets/stylesheets/functions/px-to-rem";
 
-// It should be removed
-@import "deprecated";
-
 // grid
 @import 'foundation_settings';
 
 // Colors
-$dark-pink: #c32d7b;
-$yellow: #FAB72E;
+
+// Topic colors
+$forests-color: #009A67;
+$climate-color: #D85D44;
+$freshwater-color: #1F88FF;
+$oceans-color: #C83384;
+
+$yellow: yellow;
+$red: #e23035;
+$mango: #fab72e;
+$lighter-grey: #E4E8EC;
+$darker-grey: #7C90A2;
 $blue-turquoise: #3bb2d0;
 $charcoal-grey: #393f44;
 $dove-grey: #717171;
-$light-grey: #cAccd0;
+$news-title-grey: #B7C2CC;
+$grey: #e3e4e6;
+$light-grey: #D5DCE1;
 $porcelain: #F4F6F7;
 $white: #ffffff;
+$background-white: #F9FAFB;
 $black: #000;
+$black-page-background: #1A2129;
 $sea-blue: #2C75B0;
 $blue-grey: #9AA2A9;
 $color-12: #f0f1f2;
+$pale-grey: #f4f5f6;
+$mid-grey: #b9bfc4;
+$credits-grey: #38444F;
 
 // Theme
 $body-font-color: $charcoal-grey;
-$header-font-color: $color-primary;
+$header-font-color: $black-page-background;
 $link-font-color: $sea-blue;
 $active-font-color: $yellow;
 $ui-font-color: $dove-grey;
@@ -47,9 +61,8 @@ $border-color-1: rgba(26, 28, 34, 0.1);
 $border-color-2: rgba(202, 204,208, 0.85); // For inputs
 $alt-border-color: $white;
 
-$color-primary: $blue-grey;
 $color-secondary: $sea-blue;
-$primary-color: $color-primary;
+$primary-color: $freshwater-color;
 $secondary-color: $sea-blue;
 
 // Typography
@@ -74,7 +87,7 @@ $font-weight-bold: 700;
 $body-background: $body-bg-color;
 $body-font-size: $body-font-color;
 $body-font-color: $body-font-color;
-$body-font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans;
+$body-font-family: 'Barlow Regular', 'Barlow Condensed';
 $global-weight-normal: normal;
 $global-lineheight: 1.625;
 $global-font-size: $font-size-medium;
@@ -91,7 +104,7 @@ $space: 5px;
 $header-main-height: 75px;
 $header-main-height-mobile: 50px;
 $header-secondary-height: 0;
-$header-bg-color: $color-primary;
+$header-bg-color: $freshwater-color;
 
 // Shadows
 $thick-shadow: 0 20px 30px 0 rgba(0,0,0,0.1);

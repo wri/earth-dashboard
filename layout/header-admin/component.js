@@ -1,13 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Link } from 'routes';
+import Link from 'next/link';
 import MediaQuery from 'react-responsive';
 
 // components
 import HeaderMenu from 'layout/header-admin/header-admin-menu';
 import HeaderMenuMobile from 'layout/header-admin/header-admin-menu-mobile';
-import Icon from 'components/ui/icon';
 
 // utils
 import { breakpoints } from 'utils/responsive';
@@ -22,11 +21,7 @@ class AdminHeader extends PureComponent {
   static defaultProps = { pageHeader: false };
 
   render() {
-    const {
-      header: { admin },
-      pageHeader,
-      responsive: { fakeWidth }
-    } = this.props;
+    const { pageHeader } = this.props;
     const { medium } = breakpoints;
     const headerClass = classnames(
       'l-header',
@@ -34,7 +29,7 @@ class AdminHeader extends PureComponent {
     );
     const containerClass = classnames(
       'l-container',
-      { '-admin': admin }
+      { '-admin': true }
     );
 
     return (
@@ -44,7 +39,7 @@ class AdminHeader extends PureComponent {
             <div className="column">
               <div className="header-main">
                 <div className="header-logo">
-                  <Link route="home">
+                  <Link href="/">
                     <a>
                       <img className="brand-logo" src="/static/images/GCA_logo.png" />
                       <h1 className="brand-title">Resource Watch</h1>
@@ -55,7 +50,7 @@ class AdminHeader extends PureComponent {
                 {/* Mobile header */}
                 <MediaQuery
                   maxDeviceWidth={medium - 1}
-                  values={{ deviceWidth: fakeWidth }}
+                  values={{ deviceWidth: 1024 }}
                 >
                   <HeaderMenuMobile />
                 </MediaQuery>
@@ -63,7 +58,7 @@ class AdminHeader extends PureComponent {
                 {/* Desktop header */}
                 <MediaQuery
                   minDeviceWidth={medium}
-                  values={{ deviceWidth: fakeWidth }}
+                  values={{ deviceWidth: 1024 }}
                 >
                   <HeaderMenu />
                 </MediaQuery>

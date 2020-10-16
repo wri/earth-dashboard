@@ -4,7 +4,7 @@ import isEmpty from 'lodash/isEmpty';
 
 // components
 import LayoutEmbed from 'layout/layout/layout-embed';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // utils
 import { isLoadedExternally } from 'utils/embed';

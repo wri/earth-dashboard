@@ -5,8 +5,7 @@ import WidgetsTabs from './component';
 
 export default connect(
   state => ({
-    user: state.user,
-    id: state.routes.query.id
+    user: state.user
   }),
   null
 )(WidgetsTabs);

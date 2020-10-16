@@ -1,0 +1,33 @@
+@import 'css/settings';
+
+.c-topic-news {
+    .news-item {
+        display: flex;
+        margin-top: 5 * $space;
+
+        .news-picture {
+            height: 100px;
+            width: 100%;
+            max-width: 160px;
+        }
+
+        .news-content {
+            padding: 4 * $space;
+
+            h5 {
+                margin: 0px;
+
+                a {
+                    font-size: 18px;
+                    color: $news-title-grey;
+                    text-decoration: none;
+                }
+            }
+
+            .news-date {
+                color: $darker-grey;
+                font-size: 12px;
+            }
+        }
+    }
+}

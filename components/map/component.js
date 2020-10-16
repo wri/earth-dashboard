@@ -10,7 +10,7 @@ import isEmpty from 'lodash/isEmpty';
 import { DEFAULT_VIEWPORT } from './constants';
 
 // styles
-import './styles.scss';
+import styles from  './map.module.scss';
 
 class Map extends PureComponent {
   static propTypes = {
@@ -342,7 +342,7 @@ class Map extends PureComponent {
       <div
         ref={this.mapContainer}
         className={classnames({
-          'c-map': true,
+          [styles.map]: true,
           [className]: !!className
         })}
       >

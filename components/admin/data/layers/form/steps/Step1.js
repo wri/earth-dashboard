@@ -13,7 +13,7 @@ import Field from 'components/form/Field';
 import Input from 'components/form/Input';
 import Select from 'components/form/SelectInput';
 import Textarea from 'components/form/TextArea';
-import Checkbox from 'components/form/Checkbox';
+import Checkbox from 'components/form/checkbox';
 import Code from 'components/form/Code';
 
 import InteractionManager from '../interactions';

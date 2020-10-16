@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import isEqual from 'lodash/isEqual';
-import Checkbox from './Checkbox';
+import Checkbox from './checkbox';
 
 export default class CheckboxGroup extends React.Component {
   constructor(props) {

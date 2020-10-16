@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'routes';
+import Link from 'next/link';
+
+// styles
+import styles from './sorting-layer-manager-item.module.scss';
 
 const LayerCardItem = ({ layer, onDragStart, onDragEnd, onDragOver, index }) => {
   const { name, id, dataset, published } = layer;
@@ -8,19 +11,21 @@ const LayerCardItem = ({ layer, onDragStart, onDragEnd, onDragOver, index }) => 
   return (
     <li
       draggable
-      className="sorting-layer-manager-item"
+      className={styles['sorting-layer-manager-item']}
       onDragStart={e => onDragStart(e, index)}
       onDragEnd={onDragEnd}
       onDragOver={() => onDragOver(index)}
     >
       <div className="card-name">
-        <Link
-          route="admin_data_detail"
-          params={{
-            tab: 'layers',
-            subtab: 'edit',
-            id,
-            dataset
+        <Link href={
+          {
+            pathname: '/admin/data/[tab]/[id]/[subtab]?',
+            query: {
+              tab: 'layers',
+              subtab: 'edit',
+              id,
+              dataset
+            }
           }}
         >
           <a>{name}</a>

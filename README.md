@@ -116,12 +116,12 @@ Try to make stateless component (unless it really needs it). This will make comp
 ### **./modules**
 Contains all redux modules used in the application. Right now, there are components with its own module inside the component folder: try to avoid this behaviour. Keeping modules per component will increase the size of the store and make it harder to handle in the long term.
 
-Usually modules are composed by, at least, three files: `actions`, `reducers`, `initial-state` and its corresponding `index` entrypoint file. To export it, just add it in `modules/index`, you will notice we use [redux-tools](https://github.com/Vizzuality/redux-tools) to handle the modules.
+Usually modules are composed by, at least, three files: `actions`, `reducers`, `initial-state` and its corresponding `index` entrypoint file. To export it, just add it in `modules/index`, you will notice we use [@reduxjs/toolkit](https://github.com/Vizzuality/@reduxjs/toolkit) to handle the modules.
 
-_Legacy note:_ there is a folder named `./redactions` that also contains redux modules not handled with `redux-tools`. This folder is still in use, but the intention is to move everything and organise it according `redux-tools` specs.
+_Legacy note:_ there is a folder named `./redactions` that also contains redux modules not handled with `@reduxjs/toolkit`. This folder is still in use, but the intention is to move everything and organise it according `@reduxjs/toolkit` specs.
 
 ### **./redactions**
-Legacy folder containing redux modules written in a way not supported by `redux-tools`. Any new module should be placed in `./modules`.
+Legacy folder containing redux modules written in a way not supported by `@reduxjs/toolkit`. Any new module should be placed in `./modules`.
 
 ### **./selectors**
 This is a legacy folder. Still in use. [Selectors](https://github.com/reduxjs/reselect) must be used in component's scope. Using them globally will produce the loose of ability of caching. You can have more info [here](https://github.com/reduxjs/reselect#q-can-i-share-a-selector-across-multiple-component-instances).

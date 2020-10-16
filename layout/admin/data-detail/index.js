@@ -5,9 +5,9 @@ import LayoutAdminDataDetail from './component';
 
 export default connect(
   state => ({
-    query: state.routes.query,
     user: state.user,
-    locale: state.common.locale
+    locale: state.common.locale,
+    query: state.routes.query
   }),
   null
 )(LayoutAdminDataDetail);

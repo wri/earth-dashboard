@@ -1,0 +1,47 @@
+@import 'css/settings';
+
+// Related content
+.c-related-content {
+    > ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+  
+      > li {
+        margin: 0 0 0 $space;
+        &:first-child { margin: 0; }
+  
+        a {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          color: $charcoal-grey;
+          fill: $charcoal-grey;
+          padding: $space / 2 6px;
+          border-radius: 4px;
+          font-size: $font-size-normal;
+  
+          > * {
+            margin: 0 0 0 $space/2;
+            &:first-child { margin: 0; }
+          }
+  
+          &.-empty {
+            color: $white;
+            fill: $white;
+            background: $mango;
+          }
+  
+          &:hover {
+            color: $white;
+            fill: $white;
+            background: $charcoal-grey;
+          }
+        }
+      }
+    }
+  }
+  

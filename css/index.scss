@@ -10,11 +10,6 @@
 @import '../node_modules/react-input-range/src/scss/index.scss';
 @import '../node_modules/vizzuality-components/dist/bundle';
 
-
-// Editor
-@import '../node_modules/react-quill/dist/quill.snow';
-
-
 // Common files
 @import "base";
 @import "helpers";
@@ -33,147 +28,41 @@
 // Components
 // UI
 
-@import "./components/ui/aside";
-@import "./components/ui/avatar";
-@import "./components/ui/breadcrumbs";
 @import "./components/ui/button";
 @import "./components/ui/button-container";
 @import "./components/ui/card";
-@import "./components/ui/card-app";
-@import "./components/ui/compound_menu";
-@import "./components/ui/contact-us";
-@import "./components/ui/custom_select";
-@import "./components/ui/dock";
-@import "./components/ui/header-dropdown";
 @import "./components/ui/legend";
-@import "./components/ui/legend-timeline";
+@import "./components/ui/icon";
+@import "./components/ui/custom_select";
 @import "./components/ui/markdown";
-@import "./components/ui/modal";
-@import "./components/ui/modal2";
-@import "./components/ui/paginator";
-@import "./components/ui/progress-bar";
-@import "./components/ui/related-content";
-@import "./components/ui/search-input";
-@import "./components/ui/slider-tooltip";
-@import "./components/ui/spinner";
-@import "./components/ui/switch-options";
-@import "./components/ui/switch";
-@import "./components/ui/table";
-@import "./components/ui/table_header_actions";
 @import "./components/ui/table_tooltip";
-@import "./components/ui/tabs";
-@import "./components/ui/tag";
-@import "./components/ui/tag-list";
-@import "./components/ui/terms";
-@import "./components/ui/title";
-@import "./components/ui/tooltip";
 @import "./components/ui/rc-tooltip";
-@import "./components/ui/tooltip-global";
-@import "./components/ui/tree_selector";
-@import "./components/ui/user-report";
-@import "./components/ui/dataset-table";
-@import "./components/ui/browser";
-
-
-// Modal
-@import "./components/modal/save_widget_modal";
-@import "./components/modal/embed_my_widget_modal";
-@import "./components/modal/share_modal_explore";
-@import "./components/modal/embed_layer_modal";
-@import "./components/modal/embed_table_modal";
-
-// datasets
-@import './components/datasets/list';
-@import './components/datasets/list-item';
-@import './components/datasets/search';
+@import "./components/ui/rc-pagination";
+@import "./components/ui/table";
+@import "./components/ui/sortable-row";
 
 // Map
 @import "./components/map/map";
-@import "./components/map/map-popup";
 @import './components/map/map-side-by-side-layout';
 @import './components/map/map-side-by-side-range';
 
 // Form
-@import '../node_modules/vizz-wysiwyg/build/rw';
 @import "./components/form/form";
 @import "./components/form/field";
 @import "./components/form/field-container";
-@import "./components/form/field-buttons";
-@import "./components/form/file";
-@import "./components/form/file-image";
-@import "./components/form/checkbox";
 @import "./components/form/radio";
 @import "./components/form/select";
-@import "./components/form/token";
-@import "./components/form/toggle-search";
-@import "./components/form/wysiwyg";
-
-
-// WIDGETS
-@import "./components/widgets/add_widget_to_collection_tooltip";
-@import "./components/widgets/text_chart";
-@import "./components/widgets/widget_editor";
-@import "./components/widgets/columnbox";
-@import "./components/widgets/column_container";
-@import "./components/widgets/column_details";
-@import "./components/widgets/dimensions_container";
-@import "./components/widgets/filter_container";
-@import "./components/widgets/filter_tooltip";
-@import "./components/widgets/aggregate_function_tooltip";
-@import "./components/widgets/order_by_tooltip";
-@import "./components/widgets/chart_editor";
-@import "./components/widgets/map_editor";
-@import "./components/widgets/raster_chart_editor";
-@import "./components/widgets/fields_container";
-@import "./components/widgets/sort_container";
-@import "./components/widgets/table_view";
-@import "./components/widgets/limit_container";
-@import "./components/widgets/widget_dock";
-@import "./components/widgets/widget-tooltip-list";
-@import "./components/widgets/chart_tooltip";
-@import "./components/widgets/widget_actions_tooltip";
-@import "./components/widgets/vega_chart_legend";
-
 
 // ================== ADMIN ======================
-
-// Datasets
-@import "./components/admin/dataset/card";
-@import "./components/admin/dataset/filter";
-@import "./components/admin/dataset/filter-item";
-@import "./components/admin/dataset/form";
-@import "./components/admin/dataset/datasets-list-card";
-@import "./components/admin/dataset/source-item";
-@import "./components/admin/dataset/metadata-source-list";
-
 
 // Widgets
 @import "./components/admin/widget/chart";
 @import "./components/admin/widget/widget_chart";
-@import "./components/admin/widget/placeholder_chart";
-@import "./components/admin/widget/layer_chart";
-@import "./components/admin/widget/widget_index";
-@import "./components/admin/widget/form";
-@import "./components/admin/widget/metadata_form";
 
-// Layers
-@import "./components/admin/layer/layers_new";
-@import "./components/admin/layer/form";
-
-// Tags
-@import "./components/admin/tags/tags_form";
-
-// ================== APP ======================
-
-// COMMON
-@import "./components/app/common/banner";
-@import "./components/app/common/viel";
-@import "./components/app/common/card_static";
+// ================== APP =====================
 
 // Embed
 @import "./components/app/pages/embed/embed_widget";
-@import "./components/app/pages/embed/embed_table";
-@import "./components/app/pages/embed/embed_dataset";
 
 // Foundation:
 // We are using this library only for grid system

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'routes';
+import Link from 'next/link';
 
 class TitleTD extends PureComponent {
   static propTypes = {
@@ -16,13 +16,14 @@ class TitleTD extends PureComponent {
 
     return (
       <td className="main">
-        <Link
-          route="admin_data_detail"
-          params={{
-            tab: 'widgets',
-            subtab: 'edit',
-            id,
-            dataset
+        <Link href={{
+            pathname: '/admin/data/[tab]/[id]/[subtab]?',
+            query: {
+              tab: 'widgets',
+              subtab: 'edit',
+              id,
+              dataset
+            }
           }}
         >
           <a>{value}</a>

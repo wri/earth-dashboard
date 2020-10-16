@@ -7,9 +7,9 @@ import { toastr } from 'react-redux-toastr';
 import { fetchDatasets } from 'services/dataset';
 
 // components
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import CustomTable from 'components/ui/customtable/CustomTable';
-import SearchInput from 'components/ui/SearchInput';
+import SearchInput from 'components/ui/search-input';
 import TableFilters from 'components/admin/table-filters';
 import NameTD from './td/name';
 import CodeTD from './td/code';
@@ -25,6 +25,9 @@ import DeleteAction from './actions/delete';
 
 // constants
 import { INITIAL_PAGINATION } from './constants';
+
+// styles
+import styles from './dataset-table.module.scss';
 
 class DatasetsTable extends PureComponent {
   static propTypes = {
@@ -153,7 +156,7 @@ class DatasetsTable extends PureComponent {
     } = this.props;
 
     return (
-      <div className="c-dataset-table">
+      <div className={styles['c-dataset-table']}>
         <Spinner
           className="-light"
           isLoading={loading}

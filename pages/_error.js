@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'routes';
-
-// Global styles
-import 'css/index.scss';
+import Link from 'next/link';
 
 // components
 import ErrorHead from 'layout/head/error';
@@ -43,9 +40,9 @@ class Error extends PureComponent {
         <div className="container">
           <h1>{statusCode}</h1>
           <p>This page could not be found</p>
-          <Link route="home">
+          <Link href="/">
             <a className="c-button -primary">
-              Go to Resource Watch
+              Go to Earth Dashboard
             </a>
           </Link>
         </div>

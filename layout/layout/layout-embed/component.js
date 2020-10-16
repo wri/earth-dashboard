@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { withRouter } from 'next/router'
 
 // components
-import { Router } from 'routes';
 import IconsRW from 'components/icons';
 import HeadApp from 'layout/head/app';
-import Tooltip from 'components/ui/Tooltip';
+import Tooltip from 'components/ui/tooltip';
 
 // vizzuality-components
 import { Icons } from 'vizzuality-components';
@@ -41,11 +41,12 @@ class LayoutEmbed extends PureComponent {
   }
 
   componentDidMount() {
-    Router.onRouteChangeStart = () => {
+    const { router } = this.props;
+    router.onRouteChangeStart = () => {
       this.props.toggleTooltip(false);
       this.props.updateIsLoading(true);
     };
-    Router.onRouteChangeComplete = () => {
+    router.onRouteChangeComplete = () => {
       this.props.updateIsLoading(false);
     };
   }
@@ -76,4 +77,4 @@ class LayoutEmbed extends PureComponent {
   }
 }
 
-export default LayoutEmbed;
+export default withRouter(LayoutEmbed);

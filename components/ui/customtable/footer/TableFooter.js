@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Paginator from 'components/ui/Paginator';
+import Paginator from 'components/ui/paginator';
 
 class TableFooter extends PureComponent {
   static propTypes = {

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Link } from 'routes';
+import Link from 'next/link';
 import { toastr } from 'react-redux-toastr';
 
 // components
@@ -11,7 +11,7 @@ import Icon from 'components/ui/icon';
 import { APP_HEADER_ITEMS } from 'layout/header/constants';
 
 // styles
-import './styles.scss';
+import styles from './header-menu-mobile.module.scss';
 
 class HeaderMenuMobile extends PureComponent {
   static propTypes = {
@@ -50,7 +50,7 @@ class HeaderMenuMobile extends PureComponent {
     const classNames = classnames({ '-opened': mobileOpened });
 
     return (
-      <div className="c-header-menu-mobile">
+      <div className={styles['c-header-menu-mobile']}>
         <button
           className="c-button -secondary -alt -compressed header-burger-button"
           onClick={() => setMobileOpened(true)}
@@ -94,9 +94,11 @@ class HeaderMenuMobile extends PureComponent {
                   >
                     {item.route &&
                       <h2>
-                        <Link
-                          route={item.route}
-                          params={item.params}
+                        <Link href={
+                          {
+                            pathname: item.route,
+                            query: item.params
+                          }}
                         >
                           <a>{item.label}</a>
                         </Link>
@@ -131,9 +133,11 @@ class HeaderMenuMobile extends PureComponent {
                           return (
                             <li key={c.label}>
                               {!!c.route &&
-                                <Link
-                                  route={c.route}
-                                  params={c.params}
+                                <Link href={
+                                  {
+                                    pathname: c.route,
+                                    query: c.params
+                                  }}
                                 >
                                   <a>{c.label}</a>
                                 </Link>

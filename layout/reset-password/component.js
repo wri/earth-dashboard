@@ -6,7 +6,7 @@ import { toastr } from 'react-redux-toastr';
 import Layout from 'layout/layout/layout-app';
 import Field from 'components/form/Field';
 import Input from 'components/form/Input';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // services
 import { resetPassword } from 'services/user';

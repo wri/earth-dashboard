@@ -1,8 +1,12 @@
 import { connect } from 'react-redux';
 
+// component
 import LayoutAdminData from './component';
 
 export default connect(
-  state => ({ query: state.routes.query }),
+  state => ({
+    user: state.user,
+    query: state.routes.query
+  }),
   null
 )(LayoutAdminData);

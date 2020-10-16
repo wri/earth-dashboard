@@ -19,7 +19,7 @@
   box-sizing: border-box;
 }
 .Select.is-disabled > .Select-control {
-  background-color: $color-tertiary;
+  background-color: $pale-grey;
 }
 .Select.is-disabled > .Select-control:hover {
   box-shadow: none;
@@ -43,7 +43,7 @@
   overflow: hidden;
   position: relative;
   width: 100%;
-  font-size: $font-size-default;
+  font-size: $font-size-normal;
 }
 .Select-control:hover {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
@@ -74,7 +74,7 @@
 .Select-placeholder,
 .Select--single > .Select-control .Select-value {
   bottom: 0;
-  color: $color-text-2;
+  color: $blue-grey;
   left: 0;
   line-height: 42px;
   padding-left: 10px;
@@ -204,7 +204,7 @@
 }
 .Select--multi .Select-multi-value-wrapper {
   display: inline-block;
-  margin: 0 0 $space-1;
+  margin: 0 0 $space;
 }
 .Select .Select-aria-only {
   display: inline-block;
@@ -245,7 +245,7 @@
   width: 100%;
   z-index: 10;
   -webkit-overflow-scrolling: touch;
-  font-size: $font-size-default;
+  font-size: $font-size-normal;
 }
 .Select-menu {
   max-height: 198px;
@@ -306,7 +306,7 @@
   display: inline-block;
   font-size: 0.9em;
   line-height: 1.4;
-  margin: $space-1 0 0 $space-1;
+  margin: $space 0 0 $space;
   vertical-align: top;
 }
 .Select--multi .Select-value-icon,
@@ -351,7 +351,7 @@
   background-color: rgba(0, 126, 255, 0.24);
 }
 .Select--multi.is-disabled .Select-value {
-  background-color: $color-tertiary;
+  background-color: $pale-grey;
   border: 1px solid #e3e3e3;
   color: #333;
 }
@@ -362,7 +362,7 @@
 .Select--multi.is-disabled .Select-value-icon:hover,
 .Select--multi.is-disabled .Select-value-icon:focus,
 .Select--multi.is-disabled .Select-value-icon:active {
-  background-color: $color-tertiary;
+  background-color: $pale-grey;
 }
 @keyframes Select-animation-spin {
   to {

@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import Icon from 'components/ui/icon';
 
 // styles
-import './styles.scss';
+import styles from  './zoom-control.module.scss';
 
 class ZoomControls extends PureComponent {
   static propTypes = {
@@ -38,7 +38,7 @@ class ZoomControls extends PureComponent {
     const { zoom, maxZoom, minZoom } = viewport;
 
     const componentClass = classnames({
-      'c-zoom-control': true,
+      [styles['c-zoom-control']]: true,
       [className]: !!className
     });
 

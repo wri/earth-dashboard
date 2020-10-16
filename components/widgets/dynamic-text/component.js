@@ -5,10 +5,10 @@ import d3 from 'd3';
 import { timeFormat, timeParse } from 'd3-time-format';
 
 // components
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 
 // styles
-import './styles.scss';
+import styles from './dynamic-text-widget.module.scss';
 
 function DynamicTextWidget(props) {
     const { widget } = props;
@@ -66,23 +66,23 @@ function DynamicTextWidget(props) {
                 
                 return (
                     <span 
-                        className="parameter"
+                        className={styles.parameter}
                         style={currentParam.style}
                     >
                         {textValue}
                     </span>);
             } else {
-                return <span className="text">{currentStr}</span>;
+                return <span className={styles.text}>{currentStr}</span>;
             }
         });
     
     return (
         <div
-            className="c-dynamic-text-widget"
+            className={styles['c-dynamic-text-widget']}
             {...(style && { style })}
         >
             <Spinner isLoading={loading} className="-relative -light" />
-            <div className="text-container">
+            <div className={styles['text-container']}>
                 {textElements}
             </div>
         </div>

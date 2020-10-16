@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // components
 import LayoutEmbed from 'layout/layout/layout-embed';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import Icon from 'components/ui/icon';
 
 // utils

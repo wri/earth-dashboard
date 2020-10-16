@@ -1,43 +1,55 @@
-import React, { PureComponent } from 'react';
-import { Router } from 'routes';
+import React from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 // components
-import LayersForm from 'components/admin/data/layers/form/LayersForm';
+import LayersForm from 'components/admin/data/layers/form';
 
-class LayersNew extends PureComponent {
-  static propTypes = {
-    dataset: PropTypes.string,
-    user: PropTypes.object.isRequired
-  }
+// styles
+import styles from './layers-new.module.scss';
 
-  static defaultProps = { dataset: null }
-
-  handleSubmit = (layerID, datasetID) => {
+function LayersNew(props) {
+  const {
+    user: { token },
+    dataset
+  } = props;
+  const router = useRouter();
+  const handleSubmit = (layerID, datasetID) => {
     if (layerID && datasetID) {
-      Router.pushRoute('admin_data_detail', { tab: 'layers', id: layerID, subtab: 'edit', dataset: datasetID });
+      router.push({
+        pathname: '/admin/data/[tab]/[id]/[subtab]', 
+        query: { 
+          tab: 'layers',
+          id: layerID,
+          subtab: 'edit',
+          dataset: datasetID
+        }
+      });
     } else {
-      Router.pushRoute('admin_data', { tab: 'layers' });
+      router.push({
+        pathname: '/admin/data/[tab]', 
+        query: { tab: 'layers' }
+      });
     }
   }
 
-  render() {
-    const {
-      user: { token },
-      dataset
-    } = this.props;
-
-    return (
-      <div className="c-layers-new">
-        <LayersForm
-          application={[process.env.APPLICATIONS]}
-          authorization={token}
-          onSubmit={this.handleSubmit}
-          dataset={dataset}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className={styles['c-layers-new']}>
+      <LayersForm
+        application={[process.env.APPLICATIONS]}
+        authorization={token}
+        onSubmit={handleSubmit}
+        dataset={dataset}
+      />
+    </div>
+  );
 }
+
+LayersNew.propTypes = {
+  dataset: PropTypes.string,
+  user: PropTypes.object.isRequired
+};
+
+LayersNew.defaultProps = { dataset: null };
 
 export default LayersNew;

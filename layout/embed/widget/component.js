@@ -7,7 +7,7 @@ import Renderer from '@widget-editor/renderer';
 // components
 import LayoutEmbed from 'layout/layout/layout-embed';
 import Icon from 'components/ui/icon';
-import Modal from 'components/modal/modal-component';
+import Modal from 'components/modal';
 import ShareModal from 'components/modal/share-modal';
 
 // utils

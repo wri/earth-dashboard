@@ -1,0 +1,22 @@
+@import 'css/settings';
+
+.c-dive-into-the-data-section {
+    height: 100%;
+    width: 100%;
+    padding: 110px 135px 110px 135px;
+    background-color: $background-white;
+    color: $black-page-background;
+
+    h2 {
+        font-family: 'Barlow Condensed';
+        font-size: 36px;
+
+        span {
+            font-style: italic;
+        }
+    }
+    
+    .subtitle {
+        color: $white;
+    }
+}

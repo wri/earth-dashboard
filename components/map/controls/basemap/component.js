@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import TetherComponent from 'react-tether';
 import Icon from 'components/ui/icon';
 import RadioGroup from 'components/form/RadioGroup';
-import Checkbox from 'components/form/Checkbox';
+import Checkbox from 'components/form/checkbox';
 
 // constants
 import { BASEMAPS, LABELS } from 'components/map/constants';
@@ -14,7 +14,7 @@ import { BASEMAPS, LABELS } from 'components/map/constants';
 import { logEvent } from 'utils/analytics';
 
 // styles
-import './styles.scss';
+import styles from './basemap-control.module.scss';
 
 class BasemapControls extends PureComponent {
   static propTypes = {
@@ -87,7 +87,7 @@ class BasemapControls extends PureComponent {
     const { active } = this.state;
 
     return (
-      <div className="c-basemap-control">
+      <div className={styles['c-basemap-control']}>
         <TetherComponent
           attachment="top right"
           constraints={[{ to: 'window' }]}

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 
 // components
-import Modal from 'components/modal/modal-component';
+import Modal from 'components/modal';
 import ShareModal from 'components/modal/share-modal';
 import Icon from 'components/ui/icon';
 
@@ -9,7 +9,7 @@ import Icon from 'components/ui/icon';
 import { logEvent } from 'utils/analytics';
 
 // styles
-import './styles.scss';
+import './share-control.module.scss';
 
 class ShareControls extends PureComponent {
   state = { showShareModal: false }

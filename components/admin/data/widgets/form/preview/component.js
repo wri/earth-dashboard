@@ -16,7 +16,7 @@ import {
 } from '../constants';
 
 // styles
-import './styles.scss';
+import styles from './widget-preview.module.scss';
 
 function WidgetPreview(props) {
   const { widget } = props;
@@ -31,9 +31,7 @@ function WidgetPreview(props) {
   const widgetEmbedUrl = isEmbed && widgetConfig.url;
 
   return (
-    <div
-      className="c-widget-preview"
-    >
+    <div className={styles['c-widget-preview']}>
       {useRenderer &&
         <Renderer widgetConfig={widgetConfig} />
       }

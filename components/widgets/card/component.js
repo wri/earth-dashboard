@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Router } from 'routes';
+import { useRouter } from 'next/router';
 import truncate from 'lodash/truncate';
 import classnames from 'classnames';
 import { toastr } from 'react-redux-toastr';
@@ -26,9 +26,8 @@ import { MAPSTYLES } from 'components/map/constants';
 import { INITIAL_STATE, REDUCER } from 'components/widgets/card/constants';
 
 // components
-import Title from 'components/ui/Title';
 import Icon from 'components/ui/icon';
-import Spinner from 'components/ui/Spinner';
+import Spinner from 'components/ui/spinner';
 import Map from 'components/map';
 import LayerManager from 'components/map/layer-manager';
 import LoginRequired from 'components/ui/login-required';
@@ -40,7 +39,7 @@ import TextChart from 'components/widgets/charts/TextChart';
 import WidgetActionsTooltip from './tooltip';
 
 // styles
-import './styles.scss';
+import styles from './widget-card.module.scss';
 
 const WidgetCard = (props) => {
   const {
@@ -62,6 +61,7 @@ const WidgetCard = (props) => {
     error,
     tooltip
   } = state;
+  const router = useRouter();
 
   const handleRemoveVisualization = () => {
     const { user: { token }, onWidgetRemove } = props;
@@ -108,18 +108,30 @@ const WidgetCard = (props) => {
     const isAdmin = role === 'ADMIN';
 
     if (isAdmin) {
-      Router.pushRoute('admin_data_detail', { tab: 'widgets', subtab: 'edit', id: widget.id, dataset: widget.dataset });
+      router.push({
+        pathname: '/admin/data/[tab]/[id]/[subtab]', 
+        query: { tab: 'widgets', subtab: 'edit', id: widget.id, dataset: widget.dataset }
+      });
     } else if (isOwner) {
-      Router.pushRoute('myrw_detail', { tab: 'widgets', subtab: 'edit', id: widget.id });
+      router.push({
+        pathname: 'myrw_detail',
+        query: { tab: 'widgets', subtab: 'edit', id: widget.id }
+      });
     } else {
-      Router.pushRoute('myrw_detail', { tab: 'widget_detail', id: widget.id });
+      router.push({
+        pathname: 'myrw_detail', 
+        query: { tab: 'widget_detail', id: widget.id }
+      });
     }
   };
 
   const handleGoToDataset = () => {
     const { dataset } = widget;
 
-    Router.pushRoute('explore', { dataset });
+    router.push({
+      pathname: 'explore',
+      query: { dataset }
+    });
   };
 
   const handleDownloadPDF = () => {
@@ -291,21 +303,21 @@ const WidgetCard = (props) => {
   });
 
   return (
-    <div className="c-widget-card">
-      <div className="widget-preview">
+    <div className={styles['c-widget-card']}>
+      <div className={styles['widget-preview']}>
         {getWidgetPreview()}
       </div>
-      <div className="info">
+      <div className={styles.info}>
         <div
-          className="detail"
+          className={styles.detail}
           // tabIndex={-1}
           // role="button"
           // onClick={() => this.props.onWidgetClick && this.props.onWidgetClick(widget)}
         >
           {/* Title */}
-          <Title className="-default -primary">
+          <h4>
             {widget.name}
-          </Title>
+          </h4>
           <p>
             {truncate(widget.description, { length: limitChar, separator: ' ', omission: '...' })}
           </p>
@@ -337,7 +349,7 @@ const WidgetCard = (props) => {
         </div>
 
         {(showActions || showRemove || showEmbed) &&
-          <div className="actions">
+          <div className={styles.actions}>
             {showActions && (
 
               <Tooltip

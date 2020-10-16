@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
-import { Router } from 'routes';
+import { useRouter } from 'next/router';
 
 // components
-import Step1 from 'components/admin/data/widgets/form/steps/Step1';
-import Spinner from 'components/ui/Spinner';
+import Step1 from 'components/admin/data/widgets/form/steps';
+import Spinner from 'components/ui/spinner';
 
 // services
 import { fetchDatasets, fetchDataset } from 'services/dataset';
@@ -21,15 +21,13 @@ import {
 // constants
 import { FORM_ELEMENTS } from './constants';
 
-// styles
-import './styles.scss';
-
 function WidgetForm(props) {
   const { id, application, dataset } = props;
   const [loading, setLoading] = useState(false);
   const [datasets, setDatasets] = useState([]);
   const [widget, setWidget] = useState(null);
   const [form, setForm] = useState({});
+  const router = useRouter();
 
   useEffect(() => {
     const editionMode = !!id;
@@ -225,7 +223,10 @@ function WidgetForm(props) {
         deleteWidget(id, dataset, authorization)
           .then(() => {
             toastr.success('Success', `The widget "${id}" - "${name}" has been removed correctly`);
-            Router.pushRoute('admin_data_detail', { tab: 'datasets', subtab: 'widgets', id: dataset });
+            router.push({
+              pathname: '/admin/data/[tab]/[id]/[subtab]', 
+              query: { tab: 'datasets', subtab: 'widgets', id: dataset }
+            });
           })
           .catch((err) => {
             toastr.error(
@@ -238,7 +239,10 @@ function WidgetForm(props) {
   };
 
   return (
-    <form className="c-form c-widget-form" noValidate>
+    <form 
+      className="c-form"
+      noValidate
+    >
       <Spinner isLoading={loading} className="-light" />
       {!loading && (
         <Step1
