@@ -3,10 +3,6 @@ import classnames from 'classnames';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
 
-// components
-import Layout from 'layout/layout/layout-app';
-import TopicNews from './news';
-
 // utils
 import {
   getColorByTopic,
@@ -15,6 +11,10 @@ import {
   FORESTS,
   FRESHWATER
 } from 'utils/topics';
+
+// components
+import Layout from 'layout/layout/layout-app';
+import TopicNews from './news';
 
 // styles
 import styles from './topic.module.scss';
