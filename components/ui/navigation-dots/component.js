@@ -7,8 +7,18 @@ import classnames from 'classnames';
 import styles from './navigation-dots.module.scss';
 
 function NavigationDots(props) {
-    const { items, route } = props;
-    const [selectedItem, setSelectedItem] = useState(items[items.length - 1]);
+    const { items, route, selectedItemID } = props;
+    const [selectedItem, setSelectedItem] = useState(items.find(item => item.id === selectedItemID));
+
+    useEffect(() => {
+        if (selectedItemID && items && items.length > 0) {
+            console.log('selectedItemID', selectedItemID);
+            const itemFound = items.find(i => i.id === selectedItemID);
+            if (itemFound) {
+                setSelectedItem(itemFound);
+            }
+        }
+    }, [selectedItemID]);
 
     return (
         <nav className={styles['c-navigation-dots']}>
@@ -18,7 +28,7 @@ function NavigationDots(props) {
                         <li
                             className={classnames({
                                 [styles.dot]: true,
-                                [styles['-selected']]: selectedItem.id === item.id
+                                [styles['-selected']]: selectedItem?.id === item.id
                             })}
                             onClick={() => setSelectedItem(item)}
                         >
@@ -27,13 +37,16 @@ function NavigationDots(props) {
                     </Link>
                 ))}
                 <li className={styles.label}>
-                    <span className={styles['label-text']}>{selectedItem.label}</span>
+                    <span className={styles['label-text']}>{selectedItem?.label}</span>
                 </li>
             </ul>
         </nav>
     );
 }
 
-NavigationDots.propTypes = { items: PropTypes.array.isRequired };
+NavigationDots.propTypes = {
+    items: PropTypes.array.isRequired,
+    selectedItemID: PropTypes.string
+};
 
 export default NavigationDots;

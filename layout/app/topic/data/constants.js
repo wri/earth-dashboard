@@ -16,7 +16,7 @@ export const NAVIGATION_ITEMS = [
         label: 'THE CHALLENGE TO OUR GLOBAL COMMONS'
     },
     {
-        id: 'story-telling',
+        id: 'scrolly-telling',
         label: 'STORY TELLING'
     }
 ];
