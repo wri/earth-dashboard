@@ -1,12 +1,23 @@
-export const CLIMATE_COLOR = '#D85D44';
-export const FRESHWATER_COLOR = '#1F88FF';
-export const OCEANS_COLOR = '#C83384';
-export const FORESTS_COLOR = '#009A67';
-
+// -------- TOPICS ----------
 export const CLIMATE = 'climate';
 export const FRESHWATER = 'freshwater';
 export const OCEANS = 'oceans';
 export const FORESTS = 'forests';
+
+// ------- TOPIC COLORS -------
+export const CLIMATE_COLOR = '#D85D44';
+export const CLIMATE_SECONDARY_COLOR = '#D85D44';
+
+export const FRESHWATER_COLOR = '#1F88FF';
+export const FRESHWATER_SECONDARY_COLOR = '#11466E';
+
+export const OCEANS_COLOR = '#C83384';
+export const OCEANS_SECONDARY_COLOR = '#C83384';
+
+export const FORESTS_COLOR = '#009A67';
+export const FORESTS_SECONDARY_COLOR = '#004D33';
+
+
 
 export const MONGABAY_CLIMATE = 'climate';
 export const MONGABAY_FRESHWATER = 'water';
@@ -23,6 +34,19 @@ export function getColorByTopic(topicSt) {
             return OCEANS_COLOR;
         case FORESTS:
             return FORESTS_COLOR;
+    }
+}
+
+export function getSecondaryColorByTopic(topicSt) {
+    switch (topicSt) {
+        case CLIMATE:
+            return CLIMATE_SECONDARY_COLOR;
+        case FRESHWATER:
+            return FRESHWATER_SECONDARY_COLOR;
+        case OCEANS:
+            return OCEANS_SECONDARY_COLOR;
+        case FORESTS:
+            return FORESTS_SECONDARY_COLOR;
     }
 }
 

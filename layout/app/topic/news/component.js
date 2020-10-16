@@ -41,7 +41,10 @@ function TopicNews(props) {
         <div className={styles['c-topic-news']}>
             <Spinner className="-light -relative" isLoading={loading} />
             {news.map((newsElem) => (
-                <div className={styles['news-item']}>
+                <div
+                    className={styles['news-item']}
+                    key={`news-item-${newsElem.title}`}
+                >
                     <div className={styles['news-picture']}>
                         <img src={newsElem.enclosure.url} />
                     </div>

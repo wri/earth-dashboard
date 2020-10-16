@@ -1,0 +1,47 @@
+@import 'css/settings';
+
+.c-headline-section {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 520px;
+        text-align: center;
+
+        .topic-name-title {
+            margin-bottom: 8 * $space;
+            font-size: 16px;
+            font-family: 'Barlow Condensed';
+            color: $black-page-background;
+        }
+
+        > h1 {
+            color: $white;
+            font-size: 48px;
+            font-family: 'Barlow Condensed';
+
+            span {
+                font-style: oblique 20%;
+                color: $black-page-background;
+            }
+        }
+
+        .subtitle {
+            margin-top: 7 * $space;
+            font-size: 18px;
+            color: $white;
+        }
+
+        .scroll-to-explore {
+            margin-top: 12 * $space;
+            font-size: 12px;
+            font-family: 'Barlow Condensed';
+        }
+    }
+}
