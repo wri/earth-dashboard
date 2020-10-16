@@ -1,18 +1,22 @@
 export const NAVIGATION_ITEMS = [
     {
-        id: 'story-telling',
-        label: 'STORY TELLING'
-    },
-    {
-        id: 'challenge-to-our-global-commons',
-        label: 'THE CHALLENGE TO OUR GLOBAL COMMONS'
+        id: 'credits-and-resources',
+        label: 'CREDITS AND RESOURCES'
     },
     {
         id: 'change-agents',
         label: 'CHANGE AGENTS'
     },
     {
-        id: 'credits-and-resources',
-        label: 'CREDITS AND RESOURCES'
+        id: 'dive-into-the-data',
+        label: 'DIVE INTO THE DATA'
+    },
+    {
+        id: 'challenge-to-our-global-commons',
+        label: 'THE CHALLENGE TO OUR GLOBAL COMMONS'
+    },
+    {
+        id: 'story-telling',
+        label: 'STORY TELLING'
     }
 ];

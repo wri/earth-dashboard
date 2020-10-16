@@ -29,17 +29,19 @@ function LayoutTopicData(props) {
     >
       <div className={styles['topic-data']}>
         <div className={styles['navigation-dots']}>
-          <NavigationDots items={NAVIGATION_ITEMS} />
+          <NavigationDots items={NAVIGATION_ITEMS} route={`/${topic}/data`} />
         </div>
         <div className={styles['headline-section']}>
           <HeadlineSection topic={topic} />
         </div>
         <div
+          id="scrolly-telling"
           className={styles['scrollytelling-section']}
         >
           Scrolly telling...
         </div>
         <div
+          id="challenge-to-our-global-commons"
           className={styles['challenge-section']}
         >
           {/* <h2>The <span style={{ color: topicColor, fontStyle: 'italic'}}>Challenge</span> to our Global Commons</h2> */}
