@@ -1,4 +1,4 @@
 export const CLIMATE_HEADLINE_SECTION_DATA = {
-    mainTitle: <h1>From Carbon <span>Sink</span> to Carbon <span>Source</span>? Why the Amazon’s Future Hangs in the Balance</h1>,
-    subtitle: 'The Amazon covers 5 million sq km across nine countries and harbors 16,000 tree species. Scroll to learn how fast and why this majestic primary forest is shrinking and degrading.'
+    mainTitle: <h1>Charting the <span>Threat Multiplier Effect</span> of Climate Change</h1>,
+    subtitle: 'Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. These threats intensify with each half degree that temperatures climb.'
 };

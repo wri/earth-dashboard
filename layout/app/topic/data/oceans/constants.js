@@ -1,4 +1,4 @@
 export const OCEANS_HEADLINE_SECTION_DATA = {
-    mainTitle: <h1>From Carbon <span>Sink</span> to Carbon <span>Source</span>? Why the Amazon’s Future Hangs in the Balance</h1>,
-    subtitle: 'The Amazon covers 5 million sq km across nine countries and harbors 16,000 tree species. Scroll to learn how fast and why this majestic primary forest is shrinking and degrading.'
+    mainTitle: <h1>Towards a <span>Sustainable</span> Ocean Economy</h1>,
+    subtitle: 'A healthy ocean is a pathway to a sustainable global economy and stable climate. To harvest this potential, we must protect ocean life from accelerating threats including overfishing, pollution and acidification triggered by warming waters.'
 };

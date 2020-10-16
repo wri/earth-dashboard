@@ -1,11 +1,11 @@
 import React from 'react';
-import classnames from 'classnames';
-import Link from 'next/link';
 
 // components
 import Layout from 'layout/layout/layout-app';
 import HeadlineSection from 'layout/app/topic/data/headline-section';
 import CreditsResourcesSection from 'layout/app/topic/data/credits-resources-section';
+import ChangeAgentsSection from 'layout/app/topic/data/change-agents-section';
+import Footer from 'layout/app/topic/data/footer';
 
 // styles
 import styles from './topic-data.module.scss';
@@ -40,15 +40,11 @@ function LayoutTopicData(props) {
         >
             {/* <h2>Dive into the <span style={{ color: topicColor, fontStyle: 'italic'}}>Data</span></h2> */}
         </div>
-        <div
-            className={styles['change-agents-section']}
-            // style={{ backgroundColor: topicColor }}
-        >
-            <h2>Change agents<span className={styles['coming-soon']}>(coming soon)</span></h2>
-        </div>
-        <div className={styles['headline-section']}>
+        <ChangeAgentsSection topic={topic} />
+        <div className={styles['credits-resources-section']}>
           <CreditsResourcesSection topic={topic} />
         </div>
+        <Footer/>
       </div>
     </Layout>
   );

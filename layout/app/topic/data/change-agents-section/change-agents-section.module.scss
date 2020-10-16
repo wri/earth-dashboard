@@ -1,0 +1,23 @@
+@import 'css/settings';
+
+.c-change-agents-section {
+    height: 100%;
+    width: 100%;
+    padding: 110px 135px 110px 135px;
+
+    h2 {
+        font-family: 'Barlow Condensed';
+        color: $white;
+        font-style: italic;
+        font-size: 36px;
+
+        span {
+            font-style: normal;
+            color: $black-page-background;
+        }
+    }
+    
+    .subtitle {
+        color: $white;
+    }
+}

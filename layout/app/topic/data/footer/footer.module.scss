@@ -1,0 +1,41 @@
+@import 'css/settings';
+
+.c-topic-data-footer {
+    height: 125px;
+    padding: 0px 110px 0px 110px;
+    display: flex;
+    align-items: center;
+    background-color: $black-page-background;
+
+    .main-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .topic-links {
+            display: flex;
+
+            >a {
+                margin-left: 10 * $space;
+                color: $white;
+                border-bottom: solid 2px;
+                text-decoration: none;
+                font-family: 'Barlow Condensed';
+                font-size: 16px;
+            }
+
+            .climate-link {
+                border-color: $climate-color;
+            }
+            .forests-link {
+                border-color: $forests-color;
+            }
+            .freshwater-link {
+                border-color: $freshwater-color;
+            }
+            .oceans-link {
+                border-color: $oceans-color;
+            }
+        }
+    }
+}
