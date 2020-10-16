@@ -8,10 +8,14 @@ import CreditsResourcesSection from './credits-resources-section';
 import ChangeAgentsSection from './change-agents-section';
 import Footer from './footer';
 import DiveIntoTheDataSection from './dive-into-the-data/component';
+import NavigationDots from 'components/ui/navigation-dots';
 
 // styles
 import styles from './topic-data.module.scss';
 import { useRouter } from 'next/router';
+
+// constants
+import { NAVIGATION_ITEMS } from './constants';
 
 function LayoutTopicData(props) {
   const { topic } = props;
@@ -24,6 +28,9 @@ function LayoutTopicData(props) {
       className={styles.topic}
     >
       <div className={styles['topic-data']}>
+        <div className={styles['navigation-dots']}>
+          <NavigationDots items={NAVIGATION_ITEMS} />
+        </div>
         <div className={styles['headline-section']}>
           <HeadlineSection topic={topic} />
         </div>

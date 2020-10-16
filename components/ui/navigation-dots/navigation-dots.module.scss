@@ -1,0 +1,40 @@
+@import 'css/settings';
+
+.c-navigation-dots {
+    .dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        li {
+            &.dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 5px;
+                background-color: $light-grey;
+                margin-left: 8px;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            &.-selected {
+                width: 20px;
+                height: 20px;
+                border-radius: 10px;
+                background-color: $darker-grey;
+            }
+
+            &.label {
+                font-family: 'Barlow Condensed';
+                color: $darker-grey;
+                margin-left: 4 * $space;
+                font-size: 12px;
+            }
+        }
+    }
+
+    
+}
