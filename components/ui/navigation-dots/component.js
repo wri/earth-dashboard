@@ -12,7 +12,6 @@ function NavigationDots(props) {
 
     useEffect(() => {
         if (selectedItemID && items && items.length > 0) {
-            console.log('selectedItemID', selectedItemID);
             const itemFound = items.find(i => i.id === selectedItemID);
             if (itemFound) {
                 setSelectedItem(itemFound);

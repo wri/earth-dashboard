@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
+import WidgetPreview from 'components/admin/data/widgets/form/preview';
 
 // utils
 import {
@@ -24,7 +25,7 @@ import { useRouter } from 'next/router';
 import { PARTICLES_DEFINITION } from 'utils/particles';
 
 function LayoutTopic(props) {
-  const { topic, topicData } = props;
+  const { topic, topicData, widgets } = props;
   const router = useRouter();
 
   const dataArray = topicData[topic].topicPage.data;
@@ -56,17 +57,24 @@ function LayoutTopic(props) {
             const { type } = block;
 
             if (type === 'widget') {
+              const widgetObj = widgets.find(w => w.id === block.id);
               return (
-                <div className={styles['indicator-block']}>
-                  {block.id}
+                <div
+                  className={styles['indicator-block']}
+                  key={widgetObj.id}
+                >
+                  <WidgetPreview widget={widgetObj} />
                 </div>
               );
             } else if (type === 'topic-news') {
-              const { numberOfElements } = block;
+              const { numberOfElements, keywords } = block;
               return (
-                <div className={styles['indicator-block']}>
+                <div
+                  key={`topic-news-${keywords}`}
+                  className={styles['indicator-block']}
+                >
                   <span className={styles['block-header']}>RECENT NEWS</span>
-                    <TopicNews topic={topic} limit={numberOfElements} />
+                    <TopicNews topic={keywords} limit={numberOfElements} />
                 </div>
               );
             }            

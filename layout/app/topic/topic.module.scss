@@ -1,15 +1,15 @@
 @import 'css/settings';
 
 .topic {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background-color: $black-page-background;
 
     .left-menu {
-        position: absolute;
+        position: fixed;
         top: 0px;
         left: 0px;
-        height: 100%;
+        height: 100vh;
         width: 120px;
         display: flex;
         flex-direction: column;
@@ -44,10 +44,10 @@
     }
 
     .right-link {
-        position: absolute;
+        position: fixed;
         top: 0px;
         right: 0px;
-        height: 100%;
+        height: 100vh;
         width: 120px;
         display: flex;
         justify-content: center;
@@ -64,9 +64,10 @@
 
     .indicators-row {
         justify-content: center;
+
         .indicators-container {
             margin-top: 116px;
-            padding: 0px;
+            padding-bottom: 135px;
             border-top: solid 2px $lighter-grey;
             width: 100%;
             height: 100%;
@@ -95,6 +96,7 @@
                 margin-top: 4 * $space;
                 padding-bottom: 6 * $space;
                 border-bottom: solid 2px $lighter-grey;
+                color: $white;
 
                 .block-header {
                     color: $lighter-grey;
