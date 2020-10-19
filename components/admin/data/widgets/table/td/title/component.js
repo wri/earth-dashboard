@@ -17,11 +17,8 @@ class TitleTD extends PureComponent {
     return (
       <td className="main">
         <Link href={{
-            pathname: '/admin/data/[tab]/[id]/[subtab]?',
+            pathname: `/admin/data/widgets/${id}/edit`,
             query: {
-              tab: 'widgets',
-              subtab: 'edit',
-              id,
               dataset
             }
           }}

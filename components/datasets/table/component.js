@@ -172,8 +172,7 @@ class DatasetsTable extends PureComponent {
           {...(showNewDatasetButton && {
             link: {
               label: 'New dataset',
-              route: 'admin_data_detail',
-              params: { tab: 'datasets', id: 'new' }
+              route: '/admin/data/datasets/new'
             }
           })}
           onSearch={this.onSearch}
@@ -182,7 +181,7 @@ class DatasetsTable extends PureComponent {
           columns={[
             { label: 'Name', value: 'name', td: NameTD, 
               tdProps: {
-                route: 'admin_data_detail',
+                route: '/admin/data',
                 linkToNewWidget: linkToNewWidgetFromName
               }
             },
@@ -194,13 +193,13 @@ class DatasetsTable extends PureComponent {
             { label: 'Role', value: 'role', td: RoleTD },
             { label: 'Updated at', value: 'updatedAt', td: UpdatedAtTD },
             { label: 'Applications', value: 'application', td: ApplicationsTD },
-            ...(showRelatedContent ? [{ label: 'Related content', value: 'status', td: RelatedContentTD, tdProps: { route: 'admin_data_detail' } }] : [])
+            ...(showRelatedContent ? [{ label: 'Related content', value: 'status', td: RelatedContentTD, tdProps: { route: '/admin/data' } }] : [])
           ]}
           actions={{
             show: showActions,
             list: [
-              { name: 'Edit', route: 'admin_data_detail', params: { tab: 'datasets', subtab: 'edit', id: '{{id}}' }, show: true, component: EditAction, componentProps: { route: 'admin_data_detail' } },
-              { name: 'Remove', route: 'admin_data_detail', params: { tab: 'datasets', subtab: 'remove', id: '{{id}}' }, component: DeleteAction }
+              { name: 'Edit', route: '/admin/data/datasets/edit', show: true, component: EditAction, componentProps: { route: '/admin/data' } },
+              { name: 'Remove', component: DeleteAction }
             ]
           }}
           sort={{

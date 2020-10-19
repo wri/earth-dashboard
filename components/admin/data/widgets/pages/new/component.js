@@ -12,21 +12,13 @@ function WidgetsNew(props) {
   const handleSubmit = (widget) => {
     if (widget) {
       router.push({
-        pathname: '/admin/data/[tab]/[id]/[subtab]', 
+        pathname: `/admin/data/widgets/${widget.id}/edit`, 
         query: {
-          tab: 'widgets',
-          subtab: 'edit',
-          id: widget.id,
           dataset: widget.dataset
         }
       });
     } else {
-      router.push({
-        pathname: '/admin/data/[tab]', 
-        query: {
-          tab: 'widgets'
-        }
-      });
+      router.push('/admin/data/widgets');
     }
   }
 

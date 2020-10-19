@@ -14,8 +14,8 @@ class DatasetsIndex extends PureComponent {
           <h3>EarthHQ datasets</h3>
           <DatasetsTable
             routes={{
-              index: 'admin_data',
-              detail: 'admin_data_detail'
+              index: '/admin/data',
+              detail: '/admin/data'
             }}
             application={process.env.APPLICATIONS}
           />
@@ -24,8 +24,8 @@ class DatasetsIndex extends PureComponent {
           <h3>RW datasets</h3>
           <DatasetsTable
             routes={{
-              index: 'admin_data',
-              detail: 'admin_data_detail'
+              index: '/admin/data',
+              detail: '/admin/data'
             }}
             application="rw"
             showActions={false}

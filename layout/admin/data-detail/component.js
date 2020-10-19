@@ -88,12 +88,12 @@ class LayoutAdminDataDetail extends PureComponent {
                 <div className="page-header-content">
                   {dataset && tab !== 'datasets' &&
                     (<Breadcrumbs
-                      items={[{ name: capitalizeFirstLetter(tab), route: 'admin_data_detail', params: { tab: 'datasets', subtab: tab, id: dataset } }]}
+                      items={[{ name: capitalizeFirstLetter(tab), route: '/admin/data/datasets', params: { subtab: tab, id: dataset } }]}
                     />)
                   }
                   {!dataset &&
                     (<Breadcrumbs
-                      items={[{ name: capitalizeFirstLetter(tab), route: 'admin_data', params: { tab } }]}
+                      items={[{ name: capitalizeFirstLetter(tab), route: '/admin/data', params: { tab } }]}
                     />)
                   }
                   <h1>{this.getName()}</h1>

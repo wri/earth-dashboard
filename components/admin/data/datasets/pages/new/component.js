@@ -6,12 +6,9 @@ import PropTypes from 'prop-types';
 import DatasetsForm from 'components/datasets/form';
 
 function DatasetsNew(props) {
-  const { user: { token } } = this.props;
+  const { user: { token } } = props;
   const router = useRouter();
-  const handleSubmit = id => router.push({
-    pathname: '/admin/data/:tab/:id',
-    query: { tab: 'datasets', id }
-  });
+  const handleSubmit = id => router.push(`/admin/data/datasets/${id}`);
 
   return (
     <div className="c-datasets-new">

@@ -19,11 +19,8 @@ const LayerCardItem = ({ layer, onDragStart, onDragEnd, onDragOver, index }) => 
       <div className="card-name">
         <Link href={
           {
-            pathname: '/admin/data/[tab]/[id]/[subtab]?',
+            pathname: `/admin/data/layers/${id}/edit`,
             query: {
-              tab: 'layers',
-              subtab: 'edit',
-              id,
               dataset
             }
           }}

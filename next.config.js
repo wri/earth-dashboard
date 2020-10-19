@@ -17,6 +17,7 @@ module.exports = {
     GOOGLE_ANALYTICS: process.env.GOOGLE_ANALYTICS,
     RW_GOGGLE_API_TOKEN_SHORTENER: process.env.RW_GOGGLE_API_TOKEN_SHORTENER,
     BITLY_TOKEN: process.env.BITLY_TOKEN,
+    NEXTAUTH_URL: 'https://earthhq.org'
   },
 
   webpack: (config) => {
@@ -32,5 +33,15 @@ module.exports = {
     if (process.env.BUNDLE_ANALYZER) _config.plugins.push(new BundleAnalyzerPlugin());
 
     return _config;
+  },
+
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/data/datasets',
+        permanent: true,
+      },
+    ]
   }
 };
