@@ -13,28 +13,20 @@ function WidgetsShow(props) {
     query: { id, subtab },
     tabs,
     user: { token }
-  } = this.props;
+  } = props;
   const currentSubTab = subtab || 'edit';
   const router = useRouter();
 
   const handleSubmit = (widget) => {
     if (widget) {
       router.push({
-        pathname: '/admin/data/[tab]/[id]/[subtab]', 
+        pathname: `/admin/data/widgets/${widget.id}/edit`, 
         query: {
-          tab: 'widgets',
-          subtab: 'edit',
-          id: widget.id,
           dataset: widget.dataset
         }
       });
     } else {
-      router.push({
-        pathname: '/admin/data/[tab]', 
-        query: {
-          tab: 'widgets'
-        }
-      });
+      router.push('/admin/data/widgets');
     }
   }
 
@@ -62,7 +54,7 @@ function WidgetsShow(props) {
               (<WidgetForm
                 id={id}
                 authorization={token}
-                onSubmit={this.handleSubmit}
+                onSubmit={handleSubmit}
               />)}
 
             {(subtab === 'metadata') &&
@@ -70,7 +62,7 @@ function WidgetsShow(props) {
                 application={process.env.APPLICATIONS}
                 authorization={token}
                 widget={id}
-                onSubmit={() => { Router.pushRoute('admin_data_detail', { tab: 'widgets', id, subtab: 'edit' }); }}
+                onSubmit={() => { Router.pushRoute('/admin/data', { tab: 'widgets', id, subtab: 'edit' }); }}
               />)}
           </div>
 

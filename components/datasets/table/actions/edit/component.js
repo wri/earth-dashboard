@@ -1,46 +1,27 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
-// utils
-import { substitution } from 'utils/utils';
+function EditAction(props) {
+  const {
+    data: { status, id },
+    action: { route }
+  } = props;
 
-class EditAction extends PureComponent {
-  static propTypes = {
-    data: PropTypes.object.isRequired,
-    action: PropTypes.object.isRequired
-  }
-
-  getParsedParams() {
-    const {
-      data: { id },
-      action: { params }
-    } = this.props;
-
-    return JSON.parse(substitution(JSON.stringify(params), [{ key: 'id', value: id }]));
-  }
-
-  render() {
-    const {
-      data: { status },
-      action
-    } = this.props;
-
-    return (
-      <span>
-        {(status === 'saved') &&
-          <Link href={
-            {
-              pathname: action.route,
-              query: this.getParsedParams()
-            }}
-          >
-            <a className="c-btn">Edit</a>
-          </Link>
-        }
-      </span>
-    );
-  }
+  return (
+    <span>
+      {(status === 'saved') &&
+        <Link href={`${route}/${id}`}>
+          <a className="c-btn">Edit</a>
+        </Link>
+      }
+    </span>
+  );
 }
+
+EditAction.propTypes = {
+  data: PropTypes.object.isRequired,
+  action: PropTypes.object.isRequired
+};
 
 export default EditAction;

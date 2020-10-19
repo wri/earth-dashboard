@@ -17,19 +17,13 @@ function LayersNew(props) {
   const handleSubmit = (layerID, datasetID) => {
     if (layerID && datasetID) {
       router.push({
-        pathname: '/admin/data/[tab]/[id]/[subtab]', 
-        query: { 
-          tab: 'layers',
-          id: layerID,
-          subtab: 'edit',
+        pathname: `/admin/data/layers/${layerID}/edit`, 
+        query: {
           dataset: datasetID
         }
       });
     } else {
-      router.push({
-        pathname: '/admin/data/[tab]', 
-        query: { tab: 'layers' }
-      });
+      router.push('/admin/data/layers');
     }
   }
 

@@ -223,10 +223,7 @@ function WidgetForm(props) {
         deleteWidget(id, dataset, authorization)
           .then(() => {
             toastr.success('Success', `The widget "${id}" - "${name}" has been removed correctly`);
-            router.push({
-              pathname: '/admin/data/[tab]/[id]/[subtab]', 
-              query: { tab: 'datasets', subtab: 'widgets', id: dataset }
-            });
+            router.push(`/admin/data/datasets/${dataset}/widgets`);
           })
           .catch((err) => {
             toastr.error(
