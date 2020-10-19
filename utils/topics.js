@@ -17,14 +17,14 @@ export const OCEANS = 'oceans';
 export const FORESTS = 'forests';
 
 // ------- TOPIC COLORS -------
-export const CLIMATE_COLOR = '#D85D44';
+export const CLIMATE_COLOR = '#F35600';
 export const CLIMATE_SECONDARY_COLOR = '#D85D44';
 
 export const FRESHWATER_COLOR = '#1F88FF';
 export const FRESHWATER_SECONDARY_COLOR = '#11466E';
 
-export const OCEANS_COLOR = '#C83384';
-export const OCEANS_SECONDARY_COLOR = '#C83384';
+export const OCEANS_COLOR = '#31A9BF';
+export const OCEANS_SECONDARY_COLOR = '#31A9BF';
 
 export const FORESTS_COLOR = '#009A67';
 export const FORESTS_SECONDARY_COLOR = '#004D33';
