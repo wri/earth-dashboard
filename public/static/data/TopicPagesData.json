@@ -1,0 +1,78 @@
+{
+    "forests": {
+        "topicPage": {
+            "data": [
+                {
+                    "type": "widget",
+                    "id": "8383ea30-1166-415d-879f-51e0e8e353c6"
+                },
+                {
+                    "type": "topic-news",
+                    "keywords": "forests",
+                    "number-of-elements": 3
+                },
+                {
+                    "type": "widget",
+                    "id": "241418fa-d679-4462-98e8-e8deeb84fbb2"
+                }
+            ]
+        }
+    },
+    "freshwater": {
+        "topicPage": {
+            "data": [
+                {
+                    "type": "widget",
+                    "id": "8383ea30-1166-415d-879f-51e0e8e353c6"
+                },
+                {
+                    "type": "topic-news",
+                    "keywords": "freshwater",
+                    "number-of-elements": 3
+                },
+                {
+                    "type": "widget",
+                    "id": "241418fa-d679-4462-98e8-e8deeb84fbb2"
+                }
+            ]
+        }
+    },
+    "oceans": {
+        "topicPage": {
+            "data": [
+                {
+                    "type": "widget",
+                    "id": "8383ea30-1166-415d-879f-51e0e8e353c6"
+                },
+                {
+                    "type": "topic-news",
+                    "keywords": "oceans",
+                    "number-of-elements": 3
+                },
+                {
+                    "type": "widget",
+                    "id": "241418fa-d679-4462-98e8-e8deeb84fbb2"
+                }
+            ]
+        }
+    },
+    "climate": {
+        "topicPage": {
+            "data": [
+                {
+                    "type": "widget",
+                    "id": "8383ea30-1166-415d-879f-51e0e8e353c6"
+                },
+                {
+                    "type": "topic-news",
+                    "keywords": "climate",
+                    "number-of-elements": 3
+                },
+                {
+                    "type": "widget",
+                    "id": "241418fa-d679-4462-98e8-e8deeb84fbb2"
+                }
+            ]
+        }
+    }
+}

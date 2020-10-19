@@ -15,7 +15,6 @@ class MyDocument extends Document {
             media="screen"
             href="https://fonts.googleapis.com/css?family=Lato:400,300,700"
           />
-          <link rel="stylesheet" media="screen" href="/static/styles/add-search-results.css" />
 
           {/* Mobile address background */}
           {/* Chrome, Firefox OS and Opera */}

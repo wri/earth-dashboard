@@ -24,7 +24,7 @@ import { useRouter } from 'next/router';
 import { PARTICLES_DEFINITION } from 'utils/particles';
 
 function LayoutTopic(props) {
-  const { topic } = props;
+  const { topic, topicData } = props;
   const router = useRouter();
 
   return (
