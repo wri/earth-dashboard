@@ -9,7 +9,7 @@
                 {
                     "type": "topic-news",
                     "keywords": "forests",
-                    "number-of-elements": 3
+                    "numberOfElements": 3
                 },
                 {
                     "type": "widget",

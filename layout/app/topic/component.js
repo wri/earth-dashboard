@@ -27,6 +27,8 @@ function LayoutTopic(props) {
   const { topic, topicData } = props;
   const router = useRouter();
 
+  const dataArray = topicData[topic].topicPage.data;
+
   return (
     <Layout
       title="Earth Dashboard"
@@ -50,10 +52,25 @@ function LayoutTopic(props) {
               powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
             </span>
           </div>
-          <div className={styles['indicator-block']}>
-            <span className={styles['block-header']}>RECENT NEWS</span>
-            <TopicNews topic={topic} />
-          </div>
+          {dataArray.map(block => {
+            const { type } = block;
+
+            if (type === 'widget') {
+              return (
+                <div className={styles['indicator-block']}>
+                  {block.id}
+                </div>
+              );
+            } else if (type === 'topic-news') {
+              const { numberOfElements } = block;
+              return (
+                <div className={styles['indicator-block']}>
+                  <span className={styles['block-header']}>RECENT NEWS</span>
+                    <TopicNews topic={topic} limit={numberOfElements} />
+                </div>
+              );
+            }            
+          })}
         </div>
       </div>
       {/* RIGHT SIDE LINK TO STORY TELLING PAGE */}
