@@ -5,7 +5,7 @@
     padding: 0px 110px 0px 110px;
     display: flex;
     align-items: center;
-    background-color: $black-page-background;
+    background-color: $black;
 
     .main-container {
         width: 100%;
@@ -25,16 +25,16 @@
             }
 
             .climate-link {
-                border-color: $climate-color;
+                border-color: $climate;
             }
             .forests-link {
-                border-color: $forests-color;
+                border-color: $forests;
             }
             .freshwater-link {
-                border-color: $freshwater-color;
+                border-color: $freshwater;
             }
             .oceans-link {
-                border-color: $oceans-color;
+                border-color: $oceans;
             }
         }
     }

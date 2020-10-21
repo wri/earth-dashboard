@@ -18,7 +18,7 @@
           a {
             position: relative;
             font-size: $font-size-medium;
-            color: $charcoal-grey;
+            color: $grey-darkest;
             text-decoration: none;
   
             svg {
@@ -26,15 +26,15 @@
               top: 50%;
               right: 100%;
               transform: translate(-4px, -50%);
-              fill: $freshwater-color;
+              fill: $freshwater;
             }
   
             &:hover {
-              color: $freshwater-color;
+              color: $freshwater;
             }
   
             &.-active {
-              color: $freshwater-color;
+              color: $freshwater;
             }
           }
         }

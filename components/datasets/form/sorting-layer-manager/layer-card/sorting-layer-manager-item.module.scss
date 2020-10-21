@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: space-between;
     padding: $space $space * 2;
-    border: 1px solid $light-grey;
+    border: 1px solid $grey;
     border-radius: 5px;
     cursor: grab;
 
@@ -30,7 +30,7 @@
             display: inline-block;
             width: 3px;
             height: 3px;
-            background: $freshwater-color;
+            background: $freshwater;
         }
 
         &:after {

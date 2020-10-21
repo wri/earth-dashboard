@@ -16,11 +16,11 @@
       left: 0;
       transform: none;
       text-align: left;
-      color: $charcoal-grey;
+      color: $grey-darkest;
       margin-left: 0;
   
       &:hover {
-        color: lighten($charcoal-grey, 12.5%);
+        color: lighten($grey-darkest, 12.5%);
       }
   
       .checkbox-icon {

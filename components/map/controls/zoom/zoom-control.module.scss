@@ -17,7 +17,7 @@
     background-color: $white;
 
     > svg {
-      fill: $charcoal-grey;
+      fill: $grey-darkest;
     }
 
     &:hover {
@@ -30,7 +30,7 @@
 
     &:last-child {
       border-radius: 0 0 3px 3px;
-      border-top: 1px solid $light-grey;
+      border-top: 1px solid $grey;
     }
 
     &.-disabled {

@@ -27,13 +27,13 @@
 
             .field-title {
                 font-family: 'Barlow Condensed';
-                color: $darker-grey;
+                color: $grey-darker;
             }
 
             .field-content {
                 margin-top: 5 * $space;
                 font-size: 16px;
-                color: $credits-grey;
+                color: $grey-darkest;
             }
         }
     }
@@ -44,7 +44,7 @@
 
         .share-title {
             font-family: 'Barlow Condensed';
-            color: $darker-grey;
+            color: $grey-darker;
             font-size: 16px;
         }
     }

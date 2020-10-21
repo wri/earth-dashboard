@@ -5,7 +5,7 @@
   width: 100%;
 
   > .popup-header {
-    border-bottom: 1px solid $light-grey;
+    border-bottom: 1px solid $grey;
 
     > .popup-header-select {
       width: calc(100% - #{$space * 9});
@@ -28,7 +28,7 @@
 
     font-family: $body-font-family;
     font-size: $font-size-small;
-    color: $charcoal-grey;
+    color: $grey-darkest;
 
     .popup-field {
       margin-bottom: $space;

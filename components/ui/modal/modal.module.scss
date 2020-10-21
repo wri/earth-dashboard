@@ -80,7 +80,7 @@
       z-index: 2; /* Otherwise, it won't be reachable */
   
       &:hover {
-        svg { fill: $freshwater-color; }
+        svg { fill: $freshwater; }
       }
     }
   
@@ -96,7 +96,7 @@
     // THEMES
     &.-menu {
       .modal-container {
-        background: $freshwater-color;
+        background: $freshwater;
       }
   
       .modal-content {

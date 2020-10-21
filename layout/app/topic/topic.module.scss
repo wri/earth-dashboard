@@ -4,7 +4,7 @@
     height: 100%;
     min-height: 100vh;
     width: 100%;
-    background-color: $black-page-background;
+    background-color: $black;
 
     .left-menu {
         position: fixed;
@@ -21,7 +21,7 @@
 
         > a {
             font-family: 'Barlow Condensed';
-            color: $darker-grey;
+            color: $grey-darker;
             margin-bottom: 8 * $space;
             text-decoration: none;
 
@@ -31,16 +31,16 @@
         }
 
         .climate-link {
-            border-bottom: solid 2px $climate-color;
+            border-bottom: solid 2px $climate;
         }
         .forests-link {
-            border-bottom: solid 2px $forests-color;
+            border-bottom: solid 2px $forests;
         }
         .freshwater-link {
-            border-bottom: solid 2px $freshwater-color;
+            border-bottom: solid 2px $freshwater;
         }
         .oceans-link {
-            border-bottom: solid 2px $oceans-color;
+            border-bottom: solid 2px $oceans;
         }
     }
 
@@ -69,24 +69,24 @@
         .indicators-container {
             margin-top: 116px;
             padding-bottom: 135px;
-            border-top: solid 2px $lighter-grey;
+            border-top: solid 2px $grey-light;
             width: 100%;
             height: 100%;
             font-family: 'Barlow Condensed';
     
             .indicators-header {
                 .header-title {
-                    color: $lighter-grey;
+                    color: $grey-light;
                     font-size: 14px;
                 }
                 .header-subtitle {
                     font-size: 11px;
-                    color: $darker-grey;
+                    color: $grey-darker;
                     font-family: 'Lato';
                     margin-left: $space;
     
                     a {
-                        color: $darker-grey;
+                        color: $grey-darker;
                         text-decoration: none;
                     }
                 }
@@ -96,11 +96,11 @@
                 width: 100%;
                 margin-top: 4 * $space;
                 padding-bottom: 6 * $space;
-                border-bottom: solid 2px $lighter-grey;
+                border-bottom: solid 2px $grey-light;
                 color: $white;
 
                 .block-header {
-                    color: $lighter-grey;
+                    color: $grey-light;
                 }
             }
         }
