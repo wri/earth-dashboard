@@ -23,13 +23,14 @@
         h5 {
             color: $light-grey;
             font-size: 18px;
-            font-family: 'Barlow';
+            font-family: 'Barlow Regular';
             max-width: 520px;
         }
         .highlighted-text {
             padding-right: $space;
             font-style: italic;
-            background-color: $forests-color;
+            background-color: $light-grey;
+            color: $black-page-background;
         }
 
         .topic-links {
