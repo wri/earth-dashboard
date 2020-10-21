@@ -12,7 +12,7 @@
                 width: 10px;
                 height: 10px;
                 border-radius: 5px;
-                background-color: $light-grey;
+                background-color: $grey;
                 margin-left: 8px;
                 cursor: pointer;
             }
@@ -25,12 +25,12 @@
                 width: 20px;
                 height: 20px;
                 border-radius: 10px;
-                background-color: $darker-grey;
+                background-color: $grey-darker;
             }
 
             &.label {
                 font-family: 'Barlow Condensed';
-                color: $darker-grey;
+                color: $grey-darker;
                 margin-left: 4 * $space;
                 font-size: 12px;
             }

@@ -3,7 +3,7 @@
 .homepage {
     height: 100vh;
     width: 100%;
-    background-color: $black-page-background;
+    background-color: $black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@
             font-family: 'Barlow Condensed';
         }
         h5 {
-            color: $light-grey;
+            color: $grey;
             font-size: 18px;
             font-family: 'Barlow Regular';
             max-width: 520px;
@@ -29,8 +29,8 @@
         .highlighted-text {
             padding-right: $space;
             font-style: italic;
-            background-color: $light-grey;
-            color: $black-page-background;
+            background-color: $grey;
+            color: $black;
         }
 
         .topic-links {
@@ -48,16 +48,16 @@
             }
 
             .climate-link {
-                border-color: $climate-color;
+                border-color: $climate;
             }
             .forests-link {
-                border-color: $forests-color;
+                border-color: $forests;
             }
             .freshwater-link {
-                border-color: $freshwater-color;
+                border-color: $freshwater;
             }
             .oceans-link {
-                border-color: $oceans-color;
+                border-color: $oceans;
             }
         }
     }

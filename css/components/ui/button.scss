@@ -15,8 +15,8 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   outline: none;
   background: none;
-  color: $freshwater-color;
-  fill: $freshwater-color;
+  color: $freshwater;
+  fill: $freshwater;
   font-size: $font-size-medium;
   font-weight: $font-weight-regular;
   font-family: inherit;
@@ -65,7 +65,7 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
   &.-primary {
     color: $alt-font-color;
     fill: $alt-font-color;
-    background-color: $freshwater-color;
+    background-color: $freshwater;
 
     &:hover {
       box-shadow: $btn-hover-shadow;
@@ -74,8 +74,8 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
 
     &.-alt {
       background-color: $body-bg-color;
-      color: $freshwater-color;
-      fill: $freshwater-color;
+      color: $freshwater;
+      fill: $freshwater;
 
       &:hover {
         box-shadow: $btn-hover-shadow;
@@ -101,8 +101,8 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
 
   &.-b,
   &.-secondary {
-    color: $freshwater-color;
-    fill: $freshwater-color;
+    color: $freshwater;
+    fill: $freshwater;
     background-color: $body-bg-color;
     border-color: $btn-border-color;
 

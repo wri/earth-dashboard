@@ -70,25 +70,25 @@
       padding: 0 $space * 2;
   
       .tabs-btn {
-        color: $charcoal-grey;
+        color: $grey-darkest;
         font-size: $font-size-normal;
         padding: 14px 0;
   
         .number {
-          color: $freshwater-color;
+          color: $freshwater;
           background: transparent;
         }
   
         &:after {
-          background: $freshwater-color;
+          background: $freshwater;
         }
   
         &:hover {
-          color: $freshwater-color;
+          color: $freshwater;
         }
   
         &.-active {
-          color: $freshwater-color;
+          color: $freshwater;
         }
       }
     }

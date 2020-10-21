@@ -16,40 +16,56 @@ $output-bourbon-deprecation-warnings: false;
 // grid
 @import 'foundation_settings';
 
-// Colors
+// --------- Colors ------------------
 
-// Topic colors
-$forests-color: #009A67;
-$climate-color: #F35600;
-$freshwater-color: #1F88FF;
-$oceans-color: #31A9BF;
+// ++++++++++ Topic colors +++++++++++++++
+// climate
+$climate: hsl(20, 100%, 48%);
+$climate-light: hsl(20, 100%, 68%);
+$climate-dark: hsl(20, 100%, 23%);
+
+// forests
+$forests: hsl(160, 100%, 30%);
+$forests-light:  hsl(160, 100%, 40%);
+$forests-dark:  hsl(160, 100%, 15%);
+
+// freshwater
+$freshwater: hsl(212, 100%, 56%);
+$freshwater-light: hsl(212, 100%, 76%);
+$freshwater-dark: hsl(212, 100%, 26%);
+
+// oceans
+$oceans: hsl(189, 59%, 47%);
+$oceans-light:  hsl(189, 59%, 67%);
+$oceans-dark:  hsl(189, 59%, 22%);
+// +++++++++++++++++++++++++++++++++++++++
+
+// +++++++++++ Grey-scale colors +++++++++
+$white: hsl(0, 0%, 100%);
+$grey-lightest: hsl(210, 17, 98);
+$grey-lighter:  hsl(210, 17, 96);
+$grey-light:  hsl(210, 19, 91);
+$grey: hsl(210, 19, 86);
+$grey-dark: hsl(209, 17, 76);
+$grey-darker: hsl(209, 17, 56);
+$grey-darkest: hsl(209, 17, 26);
+$black: hsl(212, 22, 13);
+// ++++++++++++++++++++++++++++++++++++++++
 
 $yellow: yellow;
 $red: #e23035;
 $mango: #fab72e;
-$lighter-grey: #E4E8EC;
-$darker-grey: #7C90A2;
-$blue-turquoise: #3bb2d0;
-$charcoal-grey: #393f44;
 $dove-grey: #717171;
-$news-title-grey: #B7C2CC;
-$grey: #e3e4e6;
-$light-grey: #D5DCE1;
 $porcelain: #F4F6F7;
-$white: #ffffff;
-$background-white: #F9FAFB;
-$black: #000;
-$black-page-background: #1A2129;
 $sea-blue: #2C75B0;
 $blue-grey: #9AA2A9;
 $color-12: #f0f1f2;
 $pale-grey: #f4f5f6;
 $mid-grey: #b9bfc4;
-$credits-grey: #38444F;
 
 // Theme
-$body-font-color: $charcoal-grey;
-$header-font-color: $black-page-background;
+$body-font-color: $grey-darkest;
+$header-font-color: $black;
 $link-font-color: $sea-blue;
 $active-font-color: $yellow;
 $ui-font-color: $dove-grey;
@@ -62,7 +78,7 @@ $border-color-2: rgba(202, 204,208, 0.85); // For inputs
 $alt-border-color: $white;
 
 $color-secondary: $sea-blue;
-$primary-color: $freshwater-color;
+$primary-color: $freshwater;
 $secondary-color: $sea-blue;
 
 // Typography
@@ -104,7 +120,7 @@ $space: 5px;
 $header-main-height: 75px;
 $header-main-height-mobile: 50px;
 $header-secondary-height: 0;
-$header-bg-color: $freshwater-color;
+$header-bg-color: $freshwater;
 
 // Shadows
 $thick-shadow: 0 20px 30px 0 rgba(0,0,0,0.1);

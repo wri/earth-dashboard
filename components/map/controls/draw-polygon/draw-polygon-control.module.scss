@@ -19,7 +19,7 @@
     cursor: pointer;
 
     > svg {
-      fill: $charcoal-grey;
+      fill: $grey-darkest;
     }
 
     &:hover {
@@ -29,7 +29,7 @@
 
   > .draw-polygon--btn {
     &.-drawing {
-      background: $freshwater-color;
+      background: $freshwater;
       > svg {
         fill: $white;
       }

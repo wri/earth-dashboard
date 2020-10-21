@@ -8,7 +8,7 @@ $min-width-sidebar-closed: 10px;
   flex-direction: column;
   max-width: $max-width-sidebar;
   background-color: $white;
-  color: $charcoal-grey;
+  color: $grey-darkest;
   z-index: 3;
 
   @media screen and (min-width: map-get($breakpoints, medium)) {

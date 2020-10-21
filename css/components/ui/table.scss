@@ -43,7 +43,7 @@ $table-font-size: $font-size-small;
       th {
         position: relative;
         font-size: $table-font-size;
-        color: $charcoal-grey;
+        color: $grey-darkest;
         font-weight: bold;
         white-space: nowrap;
 
@@ -115,16 +115,16 @@ $table-font-size: $font-size-small;
   // CUSTOM TDs
   // Main
   td.main {
-    color: $charcoal-grey;
+    color: $grey-darkest;
     font-weight: 700;
     min-width: 200px;
 
     a {
-      color: $charcoal-grey;
+      color: $grey-darkest;
       text-decoration: none;
 
       &:hover {
-        color: darken($charcoal-grey, 10%);
+        color: darken($grey-darkest, 10%);
         text-decoration: underline;
       }
     }
@@ -145,8 +145,8 @@ $table-font-size: $font-size-small;
     &.-success,
     &.-saved,
     &.-completed {
-      color: $forests-color;
-      &:before { background-color: $forests-color; }
+      color: $forests;
+      &:before { background-color: $forests; }
     }
 
     &.-pending {

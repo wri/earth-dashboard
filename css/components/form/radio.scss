@@ -13,10 +13,10 @@
     left: 0;
     transform: none;
     text-align: left;
-    color: $charcoal-grey;
+    color: $grey-darkest;
 
     &:hover {
-      color: lighten($charcoal-grey, 12.5%);
+      color: lighten($grey-darkest, 12.5%);
     }
 
     span {
