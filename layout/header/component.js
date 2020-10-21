@@ -1,78 +1,77 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import React, { useState } from 'react';
+import Particles from 'react-particles-js';
 import Link from 'next/link';
-import MediaQuery from 'react-responsive';
-
-// components
-import HeaderMenu from 'layout/header/header-menu';
-import HeaderMenuMobile from 'layout/header/header-menu-mobile';
+import classnames from 'classnames';
 
 // utils
-import { breakpoints } from 'utils/responsive';
+import { PARTICLES_DEFINITION } from 'utils/particles';
+
+// constants
+import { HEADER_TOPICS_DATA } from './constants';
 
 // styles
 import styles from './header.module.scss';
 
-class Header extends PureComponent {
-  static propTypes = {
-    header: PropTypes.object.isRequired,
-    pageHeader: PropTypes.bool
-  };
+function Header() {
+  const [isOpen, setIsOpen] = useState(false);
 
-  static defaultProps = { pageHeader: false };
+  console.log('isOpen', isOpen);
 
-  render() {
-    const {
-      pageHeader,
-    } = this.props;
-    const { medium } = breakpoints;
-    const headerClass = classnames({
-      [styles['l-header']]: true,
-      '-transparent': pageHeader
-    });
-    const containerClass = classnames(
-      'l-container',
-      { '-admin': false }
-    );
+  return (
+    <header className={styles.header}>
+      <div
+        className={styles['hamburguer-button']}
+        onClick={() => setIsOpen(!isOpen)}
+      >
 
-    return (
-      <header className={headerClass}>
-        <div className={containerClass}>
-          <div className="row">
-            <div className="column">
-              <div className={styles['header-main']}>
-                <div className={styles['header-logo']}>
-                  <Link href="/">
-                    <a>
-                      <img className={styles['brand-logo']} src="/static/images/GCA_logo.png" />
-                      <h1 className={styles['brand-title']}>Earth Dashboard</h1>
-                    </a>
-                  </Link>
-                </div>
-
-                {/* Mobile header */}
-                <MediaQuery
-                  maxDeviceWidth={medium - 1}
-                  values={{ deviceWidth: 1000 }}
-                >
-                  <HeaderMenuMobile />
-                </MediaQuery>
-
-                {/* Desktop header */}
-                <MediaQuery
-                  minDeviceWidth={medium}
-                  values={{ deviceWidth: 1000 }}
-                >
-                  <HeaderMenu />
-                </MediaQuery>
-              </div>
+      </div>
+      {isOpen &&
+        <div className={styles['menu-container']}>
+          <Particles
+            className={styles.particles}
+            params={PARTICLES_DEFINITION}
+          />
+          <div className={styles['data-containers']}>
+            <div className={styles['left-container']}>
+              <ul>
+                <li>About</li>
+                <li>Share</li>
+              </ul>
+            </div>
+            <div className={styles['right-container']}>
+              <ul>
+                {HEADER_TOPICS_DATA.map(topicData =>
+                  <li className={styles['topic-container']}>
+                    <div className={styles['topic-title']}>
+                      <span style={{ borderBottom: `solid 2px ${topicData.color}` }}>
+                        {topicData.label}
+                      </span>
+                    </div>
+                    <ul className={styles['topic-link-list']}>
+                      {topicData.links.map(linkData =>
+                        <li className={styles['topic-link']}>
+                          <Link href={`${topicData.mainLink}${linkData.link}`}>
+                            <a 
+                              className={classnames({ [styles['-highlighted-link']]: linkData.highlight })}
+                              style={linkData.highlight ? {
+                                borderBottom: `solid 2px ${topicData.color}`
+                              } : {}}
+                            >
+                                {linkData.label}
+                            </a>
+                          </Link>
+                        </li>
+                      )}
+                    </ul>
+                  </li>
+                )}
+              </ul>
             </div>
           </div>
         </div>
-      </header>
-    );
-  }
+      }
+    </header>
+  );
 }
 
 export default Header;

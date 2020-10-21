@@ -1,90 +1,79 @@
 @import 'css/settings';
 
-.l-header {
-  background-color: $header-bg-color;
-  z-index: 10000;
+.header {
+  position: fixed;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 4 * $space;
+  z-index: 3; // because of the particles
 
-  &.-transparent {
-    background-image: none;
-    background-color: transparent;
+  .hamburguer-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    background-color: $credits-grey;
+    cursor: pointer;
+    z-index: 4;
   }
 
-  .header-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: $header-main-height-mobile;
+  .menu-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100%;
+    overflow: auto;
+    background-color: $black-page-background;
+    color: $lighter-grey;
 
-    @media screen and (min-width: map-get($breakpoints, medium)) {
-      height: $header-main-height;
-    }
-  }
-
-  .header-logo {
-    position: relative;
-
-    .brand-logo {
-      width: 200px;
-      height: 35px;
-      display: block;
-      fill: $white;
+    .particles {
+        position: absolute;
+        height: 100%;
+        width: 100%;
     }
 
-    .brand-title {
-      display: block;
-      height: 0;
-      width: 0;
-      color: transparent;
-      text-indent: -9999px;
-      visibility: hidden;
-      margin: 0;
-    }
-  }
-
-  .header-menu {
-    ul {
+    .data-containers {
+      padding-top: 180px;
       display: flex;
-      align-items: center;
 
-      > li {
+      .left-container {
+        width: 40%;
+        padding-left: 110px;
+        z-index: 4;
+      }
+  
+      .right-container {
+        width: 60%;
+        padding-right: 110px;
+        z-index: 4;
+  
+        .topic-container {
+          margin-bottom: 8 * $space;
 
-        &:not(:first-child) {
-          margin-left: $margin-size-extra-small;
-        }
-
-        > a,
-        > span,
-        > button {
-          display: inline-flex;
-          align-items: center;
-          padding: 7px 10px;
-          color: $alt-font-color;
-          fill: $alt-font-color;
-          cursor: pointer;
-
-          &:hover {
-            color: $active-font-color;
-            fill: $active-font-color;
-            text-decoration: none;
+          .topic-title {
+            font-family: 'Barlow Condensed';
+            font-size: 20px;
+            margin-bottom: 4 * $space;
           }
-        }
 
-        &.-active > a {
-          position: relative;
-          color: $active-font-color;
-          fill: $active-font-color;
-          font-weight: bold;
-          text-decoration: none;
+          .topic-link-list {
+            margin-left: 8 * $space;
 
-          &:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translate(-50%, 0);
-            width: calc(100% - 20px);
-            height: 2px;
-            background: $active-font-color;
+            .topic-link {
+              margin-bottom: 2 * $space;
+              font-size: 16px;
+              a {
+                text-decoration: none;
+                color: $lighter-grey;
+
+                &.-highlighted-link {
+                  color: $white;
+                  font-weight: bold;
+                }
+              }
+            }
           }
         }
       }
