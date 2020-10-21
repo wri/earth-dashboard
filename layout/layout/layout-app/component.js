@@ -43,22 +43,20 @@ class LayoutApp extends Component {
   state = { modalOpen: false }
 
   componentDidMount() {
-    // Google Analytics
-    if (!window.GA_INITIALIZED) {
-      initGA();
-      window.GA_INITIALIZED = true;
-    }
-    logPageView();
+    // // Google Analytics
+    // if (!window.GA_INITIALIZED) {
+    //   initGA();
+    //   window.GA_INITIALIZED = true;
+    // }
+    // logPageView();
   }
 
   render() {
     const {
       title,
       description,
-      pageHeader,
       className,
       thumbnail,
-      isFullScreen,
       children,
       explicitHostname
     } = this.props;
@@ -77,6 +75,8 @@ class LayoutApp extends Component {
           explicitHostname={explicitHostname}
           {...thumbnail && { thumbnail }}
         />
+
+        <Header />
 
         {children}
 
