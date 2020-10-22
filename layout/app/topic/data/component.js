@@ -12,16 +12,24 @@ import Footer from './footer';
 import DiveIntoTheDataSection from './dive-into-the-data-section';
 import ChallengeToOurGlobalCommons from './challenge-to-our-global-commons-section';
 import NavigationDots from 'components/ui/navigation-dots';
+import FreshWaterScrollyTelling from './freshwater/scrolly-telling';
 
 // styles
 import styles from './topic-data.module.scss';
 
 // constants
 import { NAVIGATION_ITEMS } from './constants';
+import {
+  CLIMATE,
+  FORESTS,
+  FRESHWATER,
+  OCEANS
+} from 'utils/topics';
 
 function LayoutTopicData(props) {
   const { topic } = props;
   const router = useRouter();
+  const isBrowser = typeof window !== 'undefined';
   const IN_VIEW_THRESHOLD = 0.5;
   const { ref: scrollyTellingRef, inView: scrollyTellingInView } = useInView({ threshold: IN_VIEW_THRESHOLD });
   const { ref: changeAgentsRef, inView: changeAgentsInView } = useInView({ threshold: IN_VIEW_THRESHOLD });
@@ -43,7 +51,14 @@ function LayoutTopicData(props) {
     }
   }
 
-  console.log('heyyyy getSectionInView', getSectionInView());
+  const getScrollyTelling = () => {
+    switch (topic) {
+      case FRESHWATER:
+        return <FreshWaterScrollyTelling />
+      default:
+        return <div />;
+    }
+  }
 
   return (
     <Layout
@@ -65,10 +80,8 @@ function LayoutTopicData(props) {
         </div>
         <div
           ref={scrollyTellingRef}
-          id="scrolly-telling"
-          className={styles['scrolly-telling-section']}
         >
-          Scrolly telling...
+          {getScrollyTelling()}
         </div>
         <div ref={challengeRef}>
           <ChallengeToOurGlobalCommons topic={topic} />

@@ -1,7 +1,7 @@
 @import 'css/settings';
 
 .c-text-box {
-    width: 300px;
-    border-radius: 4px;
-    background-color: #95a6c2;
+    display: flex;
+    flex-direction: column;
+    padding: 8 * $space;
 }

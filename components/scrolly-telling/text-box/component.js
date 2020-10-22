@@ -15,7 +15,7 @@ function TextBox(props) {
 }
 
 TextBox.propTypes = {
-    text: PropTypes.string.isRequired
+    text: PropTypes.object.isRequired
 };
 
 export default TextBox;
