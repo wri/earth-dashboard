@@ -34,7 +34,7 @@ function FreshwaterScrollyTelling(props) {
                                 <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.svg" />
                             </div>
                             <div className={styles['water-drop']}>
-                                <img src="/static/images/scrolly-telling/freshwater/drop.svg" />
+                                {FRESHWATER_STEPS[currentStepIndex].dropImage}
                             </div>
                         </div>
                         {FRESHWATER_STEPS[currentStepIndex].extraElement}
@@ -45,7 +45,6 @@ function FreshwaterScrollyTelling(props) {
                         <Scrollama 
                             onStepEnter={onStepEnter}
                             offset={0.5}
-                            debug
                         >
                             {FRESHWATER_STEPS.map((step, stepIndex) => {
 
