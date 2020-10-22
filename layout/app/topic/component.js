@@ -28,7 +28,7 @@ function LayoutTopic(props) {
   const { topic, topicData, widgets } = props;
   const router = useRouter();
 
-  const dataArray = topicData[topic].topicPage.data;
+  const dataArray = topicData[topic]?.topicPage?.data;
 
   return (
     <Layout
@@ -53,7 +53,7 @@ function LayoutTopic(props) {
               powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
             </span>
           </div>
-          {dataArray.map(block => {
+          {dataArray && dataArray.map(block => {
             const { type } = block;
 
             if (type === 'widget') {
