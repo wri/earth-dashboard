@@ -9,6 +9,12 @@
   padding-top: 4 * $space;
   z-index: 3; // because of the particles
 
+  .logo-container {
+    position: absolute;
+    left: 5 * $space;
+    top: 3 * $space;
+  }
+
   .hamburguer-button {
     display: flex;
     justify-content: center;

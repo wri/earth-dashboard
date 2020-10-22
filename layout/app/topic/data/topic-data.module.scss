@@ -3,6 +3,12 @@
 .topic-data {
     position: relative;
 
+    .logo-container {
+        position: absolute;
+        top: 3 * $space;
+        left: 5 * $space;
+    }
+
     .navigation-dots {
         position: fixed;
         width: 100vh;

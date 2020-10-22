@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -65,8 +66,16 @@ function LayoutTopicData(props) {
       title="Earth Dashboard"
       description="Earth Dashboard"
       className={styles.topic}
+      showHeaderLogo={false}
     >
       <div className={styles['topic-data']}>
+        <div className={styles['logo-container']}>
+          <Link href="/">
+            <a>
+              <img src="/static/images/logo-light.svg" />
+            </a>
+          </Link>
+        </div>
         <div className={styles['navigation-dots']}>
           <NavigationDots
             items={NAVIGATION_ITEMS}
@@ -74,8 +83,8 @@ function LayoutTopicData(props) {
             selectedItemID={getSectionInView()}
           />
         </div>
-        <div 
-        className={styles['headline-section']}>
+        <div
+          className={styles['headline-section']}>
           <HeadlineSection topic={topic} />
         </div>
         <div

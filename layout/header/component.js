@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
 import classnames from 'classnames';
@@ -13,13 +14,21 @@ import { HEADER_TOPICS_DATA } from './constants';
 // styles
 import styles from './header.module.scss';
 
-function Header() {
+function Header(props) {
+  const { showLogo } = props;
   const [isOpen, setIsOpen] = useState(false);
-
-  console.log('isOpen', isOpen);
 
   return (
     <header className={styles.header}>
+      {showLogo &&
+        <div className={styles['logo-container']}>
+          <Link href="/">
+            <a>
+              <img src="/static/images/logo-light.svg" />
+            </a>
+          </Link>
+        </div>
+      }
       <div
         className={styles['hamburguer-button']}
         onClick={() => setIsOpen(!isOpen)}
@@ -78,5 +87,8 @@ function Header() {
     </header>
   );
 }
+
+Header.propTypes = { showLogo: PropTypes.bool.isRequired };
+Header.defaultProps = { showLogo: true };
 
 export default Header;
