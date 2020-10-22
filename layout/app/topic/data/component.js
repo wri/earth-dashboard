@@ -69,12 +69,11 @@ function LayoutTopicData(props) {
       showHeaderLogo={false}
     >
       <div className={styles['topic-data']}>
-        <div className={styles['logo-container']}>
-          <Link href="/">
-            <a>
-              <img src="/static/images/logo-light.svg" />
-            </a>
-          </Link>
+        <div
+          className={styles['logo-container']}
+          onClick={() => router.push('/')}
+        >
+          <img src="/static/images/logo-light.svg" />
         </div>
         <div className={styles['navigation-dots']}>
           <NavigationDots
