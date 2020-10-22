@@ -1,0 +1,38 @@
+@import 'css/settings';
+
+.c-freshwater-scrolly-telling {
+    overflow: initial;
+    padding: 100px 200px 100px 200px;
+    height: 100vh;
+    background-color: $grey-lighter;
+
+    .story {
+        .water-drop-container {
+            position: sticky;
+            margin-left: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .water-drop-background {
+                margin-top: 20%;
+            }
+
+            .water-drop {
+                position: absolute;
+                left: 33%;
+                display: flex;
+                justify-content: center;
+                width: 33%;
+            }
+        }
+
+        .steps {
+            .text-box-container {
+                max-width: 400px;
+                background-color: $white;
+                margin-bottom: 100vh;
+            }
+        }
+    }
+}

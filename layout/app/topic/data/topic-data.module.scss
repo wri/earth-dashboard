@@ -2,6 +2,7 @@
 
 .topic-data {
     position: relative;
+    overflow: initial;
 
     .navigation-dots {
         position: fixed;
@@ -13,10 +14,6 @@
     .headline-section {
         height: 100vh;
         width: 100%;
-    }
-
-    .scrolly-telling-section {
-        min-height: 500px;
     }
 
     .challenge-section{
