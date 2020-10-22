@@ -24,7 +24,9 @@ function Header() {
         className={styles['hamburguer-button']}
         onClick={() => setIsOpen(!isOpen)}
       >
-
+        <div className={styles['hamburguer-button-image']}>
+          <img src="/static/images/hamburger.svg" />
+        </div>
       </div>
       <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
         {isOpen &&
