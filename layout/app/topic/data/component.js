@@ -29,6 +29,7 @@ import {
 function LayoutTopicData(props) {
   const { topic } = props;
   const router = useRouter();
+  const isBrowser = typeof window !== 'undefined';
   const IN_VIEW_THRESHOLD = 0.5;
   const { ref: scrollyTellingRef, inView: scrollyTellingInView } = useInView({ threshold: IN_VIEW_THRESHOLD });
   const { ref: changeAgentsRef, inView: changeAgentsInView } = useInView({ threshold: IN_VIEW_THRESHOLD });
@@ -79,8 +80,6 @@ function LayoutTopicData(props) {
         </div>
         <div
           ref={scrollyTellingRef}
-          id="scrolly-telling"
-          className={styles['scrolly-telling-section']}
         >
           {getScrollyTelling()}
         </div>

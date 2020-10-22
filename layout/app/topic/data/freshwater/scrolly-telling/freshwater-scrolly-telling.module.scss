@@ -3,12 +3,12 @@
 .c-freshwater-scrolly-telling {
     overflow: initial;
     padding: 100px 200px 100px 200px;
-    height: 100vh;
     background-color: $grey-lighter;
 
     .story {
         .water-drop-container {
             position: sticky;
+            top: 20vh;
             margin-left: 50%;
             display: flex;
             justify-content: center;

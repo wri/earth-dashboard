@@ -22,8 +22,10 @@ function FreshwaterScrollyTelling(props) {
     };
 
     return (
-        <div className={styles['c-freshwater-scrolly-telling']}>
-
+        <div
+            id="scrolly-telling"
+            className={styles['c-freshwater-scrolly-telling']}
+        >
             <div className={styles.story}>
                 <div className={styles['water-drop-container']}>
                     <div className={styles['water-drop-background']}>
