@@ -14,8 +14,6 @@ import styles from './headline-section.module.scss';
 function HeadlineSection(props) {
   const { topic } = props;
 
-  
-
   const topicColor = getColorByTopic(topic);
   const topicSecondaryColor = getSecondaryColorByTopic(topic);
   const sectionData = getHeadlineSectionDataBytopic(topic);
@@ -37,7 +35,8 @@ function HeadlineSection(props) {
           className={styles['scroll-to-explore']}
           style={{ color: topicSecondaryColor }}
         >
-          SCROLL TO EXPLORE
+          <span>SCROLL TO EXPLORE</span>
+          <img src={`/static/images/arrow-down-${topic}.svg`} />
         </div>
       </div>
     </div>
