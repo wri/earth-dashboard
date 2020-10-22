@@ -1,3 +1,6 @@
+// styles
+import styles from './freshwater-scrolly-telling.module.scss';
+
 export const HIGHLIGHT_ORANGE_COLOR = '#D85D44';
 
 export const FRESHWATER_STEPS = [
@@ -18,7 +21,11 @@ export const FRESHWATER_STEPS = [
         index: 2,
         textPanel: {
             text: <p>From that budget, <strong>people withdraw water</strong> to use it in their homes, to run factories, to irrigate fields and for the livestock they raise.</p>
-        }
+        },
+        extraElement:
+            <div className={styles['arrow-down-container']}>
+                <img src="/static/images/scrolly-telling/freshwater/arrow_down.svg" />
+            </div>
     },
     {
         index: 3,
@@ -28,13 +35,24 @@ export const FRESHWATER_STEPS = [
                 <p><strong>Baseline water stress</strong> measures the ratio of total water withdrawals to available renewable surface and groundwater supplies.</p>
                 <p>It is expressed as a percentage.  These risk scores range from low water stress ({'<'}10%) to extremely high water stress ({'>'}80%)</p>
             </>
-        }
+        },
+        extraElement:
+            <div className={styles['baseline-water-stress-container']}>
+                <div className={styles['divider-container']}>
+                    <span>withdrawals</span>
+                    <img src="/static/images/scrolly-telling/freshwater/divider.svg" />
+                    <span>supplies</span>
+                </div>
+                <div className={styles['arrow-up-and-down-container']}>
+                    <img src="/static/images/scrolly-telling/freshwater/arrow_up_and_down.svg" />
+                </div>
+            </div>
     },
     {
         index: 4,
         textPanel: {
             text: <>
-                <p>If a region overspends its budget, we say it has a <span style={{ color: HIGHLIGHT_ORANGE_COLOR }}>high water stress risk</span>. Among the consequences are:</p>
+                <p>If a region overspends its budget, we say it has a <span style={{ color: HIGHLIGHT_ORANGE_COLOR }}><strong>high water stress risk</strong></span>. Among the consequences are:</p>
                 <ul>
                     <li>It has to <strong>import water</strong> from other regions</li>
                     <li>It has to <strong>use non-renewable</strong> groundwater sources, which run the risk of depletion</li>
@@ -48,7 +66,7 @@ export const FRESHWATER_STEPS = [
         index: 5,
         textPanel: {
             text: <p>
-                Let's explore some regions in the world with extremely high <span style={{ color: HIGHLIGHT_ORANGE_COLOR }}>water stress risk</span> (>80%)
+                Let's explore some regions in the world with extremely high <span style={{ color: HIGHLIGHT_ORANGE_COLOR }}><strong>water stress risk</strong></span> ({'>'}80%)
             </p>
         }
     }

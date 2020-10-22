@@ -11,7 +11,7 @@ import { FRESHWATER_STEPS } from './constants';
 import styles from './freshwater-scrolly-telling.module.scss';
 
 function FreshwaterScrollyTelling(props) {
-    const [currentStepIndex, setCurrentStepIndex] = useState(null);
+    const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
 
     // This callback fires when a Step hits the offset threshold. It receives the
@@ -28,16 +28,25 @@ function FreshwaterScrollyTelling(props) {
         >
             <div className={styles.story}>
                 <div className={styles['water-drop-container']}>
-                    <div className={styles['water-drop-background']}>
-                        <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.png" />
-                    </div>
-                    <div className={styles['water-drop']}>
-                        <img src="/static/images/scrolly-telling/freshwater/drop.png" />
+                    <div className={styles['water-drop-elements']}>
+                        <div className={styles['water-drop-plus-background']}>
+                            <div className={styles['water-drop-background']}>
+                                <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.svg" />
+                            </div>
+                            <div className={styles['water-drop']}>
+                                <img src="/static/images/scrolly-telling/freshwater/drop.svg" />
+                            </div>
+                        </div>
+                        {FRESHWATER_STEPS[currentStepIndex].extraElement}
                     </div>
                 </div>
                 {isBrowser &&
                     <div className={styles.steps}>
-                        <Scrollama onStepEnter={onStepEnter} debug>
+                        <Scrollama 
+                            onStepEnter={onStepEnter}
+                            offset={0.5}
+                            debug
+                        >
                             {FRESHWATER_STEPS.map((step, stepIndex) => {
 
                                 return (
