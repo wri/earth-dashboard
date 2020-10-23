@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Scrollama, Step } from 'react-scrollama';
 
 // utils
 import {
@@ -13,6 +14,7 @@ import styles from './challenge-to-our-global-commons-section.module.scss';
 function ChallengeToOurGlobalCommons(props) {
   const { topic } = props;
   const topicColor = getColorByTopic(topic);
+  const isBrowser = typeof window !== 'undefined';
 
   return (
     <div
@@ -22,9 +24,21 @@ function ChallengeToOurGlobalCommons(props) {
     >
       <div className={styles['main-container']}>
         <h1>The <span style={{ color: topicColor }}>Challenge</span> to our Global Commons</h1>
-        <div className={styles.subtitle}>
-          {getChallengeSectionDataByTopic(topic)?.description}
-        </div>
+        {isBrowser &&
+          <div className={styles.paragraphs}>
+            <Scrollama>
+              {getChallengeSectionDataByTopic(topic)?.paragraphs
+                .map((paragraph, stepIndex) =>
+                  <Step key={`step-${stepIndex}`}>
+                    <div>
+                      {paragraph}
+                    </div>
+                  </Step>
+                )
+              }
+            </Scrollama>
+          </div>
+        }
       </div>
       <div className={styles['photo-attribution-container']}>
         Photo by Etienne Delorieux on Unsplash
