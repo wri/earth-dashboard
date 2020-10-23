@@ -1,14 +1,24 @@
 // constants
-import { CLIMATE_HEADLINE_SECTION_DATA } from 'layout/app/topic/data/climate/constants';
 import {
     FORESTS_HEADLINE_SECTION_DATA,
-    FORESTS_CHALLENGE_SECTION_DATA
+    FORESTS_CHALLENGE_SECTION_DATA,
+    FORESTS_DIVE_INTO_THE_DATA_DATA
 } from 'layout/app/topic/data/forests/constants';
 import {
     FRESHWATER_HEADLINE_SECTION_DATA,
-    FRESHWATER_CHALLENGE_SECTION_DATA
+    FRESHWATER_CHALLENGE_SECTION_DATA,
+    FRESHWATER_DIVE_INTO_THE_DATA_DATA
 } from 'layout/app/topic/data/freshwater/constants';
-import { OCEANS_HEADLINE_SECTION_DATA } from 'layout/app/topic/data/oceans/constants';
+import {
+    OCEANS_HEADLINE_SECTION_DATA,
+    OCEANS_CHALLENGE_SECTION_DATA,
+    OCEANS_DIVE_INTO_THE_DATA_DATA
+} from 'layout/app/topic/data/oceans/constants';
+import { 
+    CLIMATE_CHALLENGE_SECTION_DATA,
+    CLIMATE_HEADLINE_SECTION_DATA,
+    CLIMATE_DIVE_INTO_THE_DATA_DATA
+} from '../layout/app/topic/data/climate/constants';
 
 // -------- TOPICS ----------
 export const CLIMATE = 'climate';
@@ -96,7 +106,26 @@ export function getChallengeSectionDataByTopic(topic) {
             return FORESTS_CHALLENGE_SECTION_DATA;
         case FRESHWATER:
             return FRESHWATER_CHALLENGE_SECTION_DATA;
+        case CLIMATE:
+            return CLIMATE_CHALLENGE_SECTION_DATA;
+        case OCEANS:
+            return OCEANS_CHALLENGE_SECTION_DATA;
         default:
             return null;
     }
 };
+
+export function getDiveIntoTheDataDataByTopic(topic) {
+    switch (topic) {
+        case FORESTS:
+            return FORESTS_DIVE_INTO_THE_DATA_DATA;
+        case FRESHWATER:
+            return FRESHWATER_DIVE_INTO_THE_DATA_DATA;
+        case CLIMATE:
+            return CLIMATE_DIVE_INTO_THE_DATA_DATA;
+        case OCEANS:
+            return OCEANS_DIVE_INTO_THE_DATA_DATA;
+        default:
+            return null;
+    }
+}

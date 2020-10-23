@@ -18,6 +18,7 @@ function ChallengeToOurGlobalCommons(props) {
     <div
       className={styles['c-challenge-to-our-global-commons-section']}
       id="challenge-to-our-global-commons"
+      style={{ backgroundImage: `url('/static/images/${topic}/challenge.png')` }}
     >
       <div className={styles['main-container']}>
         <h1>The <span style={{ color: topicColor }}>Challenge</span> to our Global Commons</h1>
