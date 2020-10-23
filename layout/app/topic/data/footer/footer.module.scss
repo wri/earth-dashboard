@@ -11,11 +11,12 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         .topic-links {
             display: flex;
 
-            >a {
+            a {
                 margin-left: 10 * $space;
                 color: $white;
                 border-bottom: solid 2px;
