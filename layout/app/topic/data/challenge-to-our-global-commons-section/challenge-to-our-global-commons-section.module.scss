@@ -1,36 +1,72 @@
 @import 'css/settings';
 
 .c-challenge-to-our-global-commons-section {
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    overflow: initial;
-
-    .main-container {
-        height: 100vh;
-        max-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
-        padding: 20% 110px 20% 110px;
-        
-        h1 {
-            font-family: 'Barlow Condensed';
-            color: $white;
-            font-style: normal;
-            font-size: 48px;
     
-            span {
-                font-style: italic;
+    .background-container {
+        width: 100%;
+        min-height: 100%;
+        position: relative;
+        
+        .title-container {
+            position: sticky;
+            top: 0px;
+            left: 0px;
+            padding: 120px 100px 100px 100px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            z-index: -1;
+
+            h1 {
+                font-family: 'Barlow Condensed';
+                color: $white;
+                font-style: normal;
+                font-size: 48px;
+        
+                span {
+                    font-style: italic;
+                }
             }
         }
+    }
 
-        .paragraphs {
-            overflow: initial;
-            max-width: 520px;
-            color: $grey;
+    .paragraphs-container {
+        margin-top: -60vh;
+
+        .challenge-paragraph{
+            max-width: 50%;
+            padding: 0px 0px 100px 100px;
+            color: grey;
+            z-index: 3;
+    
+            a {
+                color: $white;
+                text-decoration: none;
+            }
+    
+            &.-forests {
+                a {
+                    border-bottom: solid 2px $forests;
+                }
+            }
+    
+            &.-oceans {
+                a {
+                    border-bottom: solid 2px $oceans;
+                }
+            }
+    
+            &.-climate {
+                a {
+                    border-bottom: solid 2px $climate;
+                }
+            }
+    
+            &.-freshwater {
+                a {
+                    border-bottom: solid 2px $freshwater;
+                }
+            }
         }
     }
 

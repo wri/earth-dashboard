@@ -16,11 +16,15 @@
         width: 100vh;
         transform-origin: left top;
         transform: rotate(-90deg) translate(-100%, calc(100vw - 60px));
+        z-index: 9999;
     }
 
     .headline-section {
         height: 100vh;
         width: 100%;
+    }
+
+    .challenge-to-our-global-commons-section {
     }
 
     .dive-into-the-data-section {

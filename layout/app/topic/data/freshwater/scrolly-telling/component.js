@@ -23,7 +23,6 @@ function FreshwaterScrollyTelling(props) {
 
     return (
         <div
-            id="scrolly-telling"
             className={styles['c-freshwater-scrolly-telling']}
         >
             <div className={styles.story}>

@@ -92,7 +92,11 @@ function LayoutTopicData(props) {
         >
           {getScrollyTelling()}
         </div>
-        <div ref={challengeRef}>
+        <div
+          id="challenge-to-our-global-commons"
+          ref={challengeRef}
+          className={styles['challenge-to-our-global-commons-section']}
+        >
           <ChallengeToOurGlobalCommons topic={topic} />
         </div>
         <div ref={diveIntoDataRef}>

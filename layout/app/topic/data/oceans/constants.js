@@ -6,8 +6,7 @@ export const OCEANS_HEADLINE_SECTION_DATA = {
 export const OCEANS_CHALLENGE_SECTION_DATA = {
     paragraphs: [
         <p>
-            The ocean covers 70% of our planet. Yet ocean health is declining as humanity 
-            <a href="https://www.sciencedirect.com/science/article/pii/S2590332219302751" target="_blank">exploits and pollutes marine life</a>. 
+            The ocean covers 70% of our planet. Yet ocean health is declining as humanity <a href="https://www.sciencedirect.com/science/article/pii/S2590332219302751" target="_blank">exploits and pollutes marine life</a>. 
             Tipping points are approaching for coral reef survival and ocean acidification as climate 
             change warms waters. Nearly <a href="http://www.secore.org/site/corals/detail/coral-reefs-are-dying.23.html" target="_blank">50 percent of the world’s coral</a> 
             has died in the last 30 years; Farm waste is fuelling hundreds of low-oxygen dead zones, 
