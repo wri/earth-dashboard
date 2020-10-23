@@ -22,7 +22,7 @@ function ChallengeToOurGlobalCommons(props) {
       <div className={styles['main-container']}>
         <h1>The <span style={{ color: topicColor }}>Challenge</span> to our Global Commons</h1>
         <div className={styles.subtitle}>
-          {getChallengeSectionDataByTopic(topic).description}
+          {getChallengeSectionDataByTopic(topic)?.description}
         </div>
       </div>
     </div>

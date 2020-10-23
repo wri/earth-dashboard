@@ -25,11 +25,11 @@ function HeadlineSection(props) {
     >
       <div className={styles['main-container']}>
         <div className={styles['topic-name-title']}>
-          {topic.toUpperCase()}
+          {topic?.toUpperCase()}
         </div>
-        {sectionData.mainTitle}
+        {sectionData?.mainTitle}
         <div className={styles.subtitle}>
-          {sectionData.subtitle}
+          {sectionData?.subtitle}
         </div>
         <div
           className={styles['scroll-to-explore']}

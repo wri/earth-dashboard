@@ -1,14 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // styles
 import styles from './footer.module.scss';
 
 function Footer() {
+    const router = useRouter();
+
     return (
         <div className={styles['c-topic-data-footer']}>
             <div className={styles['main-container']}>
-                <img src="/static/images/logo-light.svg" />
+                <div
+                    className={styles['logo-container']}
+                    onClick={() => router.push('/')}
+                >
+                    <img src="/static/images/logo-light.svg" />
+                </div>
                 <div className={styles['topic-links']}>
                     <div>
                         <Link href="/climate/data">
