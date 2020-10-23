@@ -22,7 +22,7 @@ class LayoutApp extends Component {
     children: PropTypes.node.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    pageHeader: PropTypes.bool,
+    showHeaderLogo: PropTypes.bool,
     className: PropTypes.string,
     user: PropTypes.object.isRequired,
     thumbnail: PropTypes.string,
@@ -35,9 +35,9 @@ class LayoutApp extends Component {
     title: null,
     description: null,
     className: null,
-    pageHeader: false,
     thumbnail: 'https://resourcewatch.org/static/images/social-big.jpg',
-    explicitHostname: null
+    explicitHostname: null,
+    showHeaderLogo: true,
   }
 
   state = { modalOpen: false }
@@ -58,7 +58,8 @@ class LayoutApp extends Component {
       className,
       thumbnail,
       children,
-      explicitHostname
+      explicitHostname,
+      showHeaderLogo
     } = this.props;
     const componentClass = classnames(
       { [className]: !!className }
@@ -76,7 +77,7 @@ class LayoutApp extends Component {
           {...thumbnail && { thumbnail }}
         />
 
-        <Header />
+        <Header showLogo={showHeaderLogo} />
 
         {children}
 

@@ -77,6 +77,12 @@
             }
         }
 
+        .worldmap-container {
+            position: sticky;
+            top: 20vh;
+            width: 100%;
+        }
+
         .steps {
             .text-box-container {
                 max-width: 400px;

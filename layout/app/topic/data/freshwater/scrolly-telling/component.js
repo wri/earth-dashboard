@@ -23,26 +23,33 @@ function FreshwaterScrollyTelling(props) {
 
     return (
         <div
-            id="scrolly-telling"
             className={styles['c-freshwater-scrolly-telling']}
         >
             <div className={styles.story}>
-                <div className={styles['water-drop-container']}>
-                    <div className={styles['water-drop-elements']}>
-                        <div className={styles['water-drop-plus-background']}>
-                            <div className={styles['water-drop-background']}>
-                                <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.svg" />
+                {currentStepIndex <= 5 &&
+                    <div className={styles['water-drop-container']}>
+                        <div className={styles['water-drop-elements']}>
+                            <div className={styles['water-drop-plus-background']}>
+                                <div className={styles['water-drop-background']}>
+                                    <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.svg" />
+                                </div>
+                                <div className={styles['water-drop']}>
+                                    {FRESHWATER_STEPS[currentStepIndex].dropImage}
+                                </div>
                             </div>
-                            <div className={styles['water-drop']}>
-                                {FRESHWATER_STEPS[currentStepIndex].dropImage}
-                            </div>
+                            {FRESHWATER_STEPS[currentStepIndex].extraElement}
                         </div>
-                        {FRESHWATER_STEPS[currentStepIndex].extraElement}
                     </div>
-                </div>
+                }
+                {currentStepIndex >= 6 &&
+                    <div className={styles['worldmap-container']}>
+                        <img src="/static/images/scrolly-telling/freshwater/worldmap.svg" />
+"
+                    </div>
+                }
                 {isBrowser &&
                     <div className={styles.steps}>
-                        <Scrollama 
+                        <Scrollama
                             onStepEnter={onStepEnter}
                             offset={0.5}
                         >

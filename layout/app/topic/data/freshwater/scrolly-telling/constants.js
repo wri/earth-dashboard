@@ -96,5 +96,13 @@ export const FRESHWATER_STEPS = [
             </p>
         },
         dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />
+    },
+    {
+        index: 7,
+        textPanel: {
+            text: <p>
+                Some text for the map here?
+            </p>
+        }
     }
 ];

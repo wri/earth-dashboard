@@ -39,9 +39,15 @@
         }
 
         .scroll-to-explore {
+            display: flex;
+            flex-direction: column;
             margin-top: 12 * $space;
             font-size: 12px;
             font-family: 'Barlow Condensed';
+
+            img {
+                margin-top: 2 * $space;
+            }
         }
     }
 }
