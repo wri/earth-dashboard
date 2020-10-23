@@ -26,6 +26,9 @@ function ChallengeToOurGlobalCommons(props) {
           {getChallengeSectionDataByTopic(topic)?.description}
         </div>
       </div>
+      <div className={styles['photo-attribution-container']}>
+        Photo by Etienne Delorieux on Unsplash
+      </div>
     </div>
   );
 }

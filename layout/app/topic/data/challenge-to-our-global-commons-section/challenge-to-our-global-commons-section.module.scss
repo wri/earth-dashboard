@@ -5,6 +5,7 @@
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
 
     .main-container {
         display: flex;
@@ -29,5 +30,14 @@
             max-width: 520px;
             color: $grey;
         }
+    }
+
+    .photo-attribution-container{
+        position: absolute;
+        left: 4 * $space;
+        bottom: 4 * $space;
+        color: $grey-darker;
+        font-family: 'Barlow Condensed';
+        font-size: 12px;
     }
 }
