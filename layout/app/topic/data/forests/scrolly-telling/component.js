@@ -4,15 +4,20 @@ import { Scrollama, Step } from 'react-scrollama';
 // components
 import TextBox from 'components/scrolly-telling/text-box';
 
+// utils
+import { getColorByTopic } from 'utils/topics';
+
 // constants
 import { FORESTS_STEPS } from './constants';
 
 // styles
 import styles from './forests-scrolly-telling.module.scss';
 
-function ForestsScrollyTelling(props) {
+function ForestsScrollyTelling({ topic }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
+    const currentStep = FORESTS_STEPS[currentStepIndex];
+    const topicColor = getColorByTopic(topic);
 
     // This callback fires when a Step hits the offset threshold. It receives the
     // data prop of the step, which in this demo stores the index of the step.
@@ -23,37 +28,40 @@ function ForestsScrollyTelling(props) {
 
     return (
         <div
-            className={styles['c-freshwater-scrolly-telling']}
+            className={styles['c-forests-scrolly-telling']}
         >
             <div className={styles.story}>
-                {currentStepIndex <= 5 &&
-                    <div className={styles['water-drop-container']}>
-                        <div className={styles['water-drop-elements']}>
-                            <div className={styles['water-drop-plus-background']}>
-                                <div className={styles['water-drop-background']}>
-                                    <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.svg" />
+                <div className={styles['sticky-container']}>
+                    <div className={styles['wrapper-container']}>
+                        {currentStep.stickyContainerElement &&
+                            <div className={styles['sticky-element']}>
+                                {currentStep.stickyContainerElement}
+                            </div>
+                        }
+                        {currentStep.showYearCounter &&
+                            <div className={styles['year-container']}>
+                                <div
+                                    className={styles['year-value']}
+                                    style={{ color: topicColor }}
+                                >
+                                    {currentStep.yearValue}
                                 </div>
-                                <div className={styles['water-drop']}>
-                                    {FRESHWATER_STEPS[currentStepIndex].dropImage}
+                                <div className={styles['year-subtitle']}>
+                                    {currentStep.yearSubtitle}
                                 </div>
                             </div>
-                            {FRESHWATER_STEPS[currentStepIndex].extraElement}
-                        </div>
+                        }
                     </div>
-                }
-                {currentStepIndex >= 6 &&
-                    <div className={styles['worldmap-container']}>
-                        <img src="/static/images/scrolly-telling/freshwater/worldmap.svg" />
-"
-                    </div>
-                }
+                </div>
+
                 {isBrowser &&
                     <div className={styles.steps}>
                         <Scrollama
                             onStepEnter={onStepEnter}
-                            offset={0.5}
+                            offset={0.6}
+                            debug
                         >
-                            {FRESHWATER_STEPS.map((step, stepIndex) => {
+                            {FORESTS_STEPS.map((step, stepIndex) => {
 
                                 return (
                                     <Step data={stepIndex} key={`step-${stepIndex}`}>
@@ -68,7 +76,7 @@ function ForestsScrollyTelling(props) {
                     </div>
                 }
             </div>
-        </div>
+        </div >
     );
 }
 

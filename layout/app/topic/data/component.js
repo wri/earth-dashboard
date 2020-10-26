@@ -58,7 +58,7 @@ function LayoutTopicData(props) {
       case FRESHWATER:
         return <FreshWaterScrollyTelling />
       case FORESTS:
-        return <ForestsScrollyTelling />
+        return <ForestsScrollyTelling topic={topic} />
       default:
         return <div />;
     }

@@ -24,8 +24,6 @@ function FreshwaterScrollyTelling(props) {
         console.log('onStepEnter!', data);
     };
 
-    console.log('isTabletOrMobile', isTabletOrMobile);
-
     return (
         <div
             className={styles['c-freshwater-scrolly-telling']}
