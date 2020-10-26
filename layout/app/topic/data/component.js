@@ -29,7 +29,7 @@ import {
 } from 'utils/topics';
 
 function LayoutTopicData(props) {
-  const { topic } = props;
+  const { topic, topicData, widgets } = props;
   const router = useRouter();
   const isBrowser = typeof window !== 'undefined';
   const DEFAULT_IN_VIEW_THRESHOLD = 0.3;
@@ -103,7 +103,11 @@ function LayoutTopicData(props) {
           <ChallengeToOurGlobalCommons topic={topic} />
         </div>
         <div ref={diveIntoDataRef}>
-          <DiveIntoTheDataSection topic={topic} />
+          <DiveIntoTheDataSection 
+            topic={topic} 
+            topicData={topicData}
+            widgets={widgets}
+          />
         </div>
         <div ref={changeAgentsRef}>
           <ChangeAgentsSection topic={topic} />

@@ -16,6 +16,22 @@
                     "id": "241418fa-d679-4462-98e8-e8deeb84fbb2"
                 }
             ]
+        },
+        "diveIntoTheData": {
+            "data": [
+                {
+                    "id": "6ab7b2c7-4f5e-4fc3-95ae-3bd8606bf4bd",
+                    "widgetsPerColumn": 1
+                },
+                {
+                    "id": "cd0a50e0-c58e-418b-9604-5a452d07b308",
+                    "widgetsPerColumn": 2
+                },
+                {
+                    "id": "c5566bba-1408-4db6-9079-b169fb919bd0",
+                    "widgetsPerColumn": 2
+                }
+            ]
         }
     },
     "freshwater": {
@@ -37,7 +53,20 @@
             ]
         },
         "diveIntoTheData": {
-            
+            "data": [
+                {
+                    "id": "a85f1ea4-4344-463a-94d5-bb3b4ae91dab",
+                    "widgetsPerColumn": 1
+                },
+                {
+                    "id": "1aed112a-9561-435c-9621-569eb26bfca0",
+                    "widgetsPerColumn": 2
+                },
+                {
+                    "id": "fd6f666b-da36-497f-946d-1af871aa1535",
+                    "widgetsPerColumn": 2
+                }
+            ]
         }
     },
     "oceans": {
