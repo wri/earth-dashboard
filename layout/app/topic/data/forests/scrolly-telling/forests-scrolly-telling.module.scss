@@ -22,9 +22,15 @@
                     height: 100%;
                     align-items: center;
 
-                    .-align-right {
-                        margin-left: 50%;
-                        margin-right: 124px;
+                    &.-mobile {
+                        justify-content: center;
+                    }
+
+                    &:not(.-mobile){
+                        .-align-right {
+                            margin-left: 50%;
+                            margin-right: 124px;
+                        }
                     }
                     .-align-center {
                         display: flex;

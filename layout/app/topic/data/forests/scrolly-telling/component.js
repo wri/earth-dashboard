@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
+import { useMediaQuery } from 'react-responsive';
+import classnames from 'classnames';
 
 // components
 import TextBox from 'components/scrolly-telling/text-box';
@@ -16,6 +18,7 @@ import styles from './forests-scrolly-telling.module.scss';
 function ForestsScrollyTelling({ topic }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
+    const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
     const currentStep = FORESTS_STEPS[currentStepIndex];
     const topicColor = getColorByTopic(topic);
 
@@ -34,7 +37,10 @@ function ForestsScrollyTelling({ topic }) {
                 <div className={styles['sticky-container']}>
                     <div className={styles['wrapper-container']}>
                         {currentStep.stickyContainerElement &&
-                            <div className={styles['sticky-element']}>
+                            <div className={classnames({
+                                [styles['sticky-element']]: true,
+                                [styles['-mobile']]: isTabletOrMobile
+                            })}>
                                 {currentStep.stickyContainerElement}
                             </div>
                         }
