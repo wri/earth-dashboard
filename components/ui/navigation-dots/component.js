@@ -23,8 +23,12 @@ function NavigationDots(props) {
         <nav className={styles['c-navigation-dots']}>
             <ul className={styles.dots}>
                 {items.map(item => (
-                    <Link href={`${route}#${item.id}`}>
+                    <Link 
+                        key={`link-${item.id}`}
+                        href={`${route}#${item.id}`}
+                    >
                         <li
+                            key={`link-li-${item.id}`}
                             className={classnames({
                                 [styles.dot]: true,
                                 [styles['-selected']]: selectedItem?.id === item.id

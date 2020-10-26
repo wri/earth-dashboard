@@ -14,6 +14,7 @@ import DiveIntoTheDataSection from './dive-into-the-data-section';
 import ChallengeToOurGlobalCommons from './challenge-to-our-global-commons-section';
 import NavigationDots from 'components/ui/navigation-dots';
 import FreshWaterScrollyTelling from './freshwater/scrolly-telling';
+import ForestsScrollyTelling from './forests/scrolly-telling';
 
 // styles
 import styles from './topic-data.module.scss';
@@ -56,6 +57,8 @@ function LayoutTopicData(props) {
     switch (topic) {
       case FRESHWATER:
         return <FreshWaterScrollyTelling />
+      case FORESTS:
+        return <ForestsScrollyTelling topic={topic} />
       default:
         return <div />;
     }
