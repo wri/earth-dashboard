@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
-import { useMediaQuery } from 'react-responsive';
-import classnames from 'classnames';
 
 // components
 import TextBox from 'components/scrolly-telling/text-box';
 
 // constants
-import { FRESHWATER_STEPS } from './constants';
+import { FORESTS_STEPS } from './constants';
 
 // styles
-import styles from './freshwater-scrolly-telling.module.scss';
+import styles from './forests-scrolly-telling.module.scss';
 
-function FreshwaterScrollyTelling(props) {
+function ForestsScrollyTelling(props) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
-    const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
 
     // This callback fires when a Step hits the offset threshold. It receives the
     // data prop of the step, which in this demo stores the index of the step.
@@ -24,34 +21,34 @@ function FreshwaterScrollyTelling(props) {
         console.log('onStepEnter!', data);
     };
 
-    console.log('isTabletOrMobile', isTabletOrMobile);
-
     return (
         <div
             className={styles['c-freshwater-scrolly-telling']}
         >
             <div className={styles.story}>
-                <div className={classnames({
-                    [styles['water-drop-container']]: true,
-                    [styles['-mobile']]: isTabletOrMobile
-                })}>
-                    <div className={styles['water-drop-elements']}>
-                        <div className={styles['water-drop-plus-background']}>
-                            <div className={styles['water-drop-background']}>
-                                <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.svg" />
+                {currentStepIndex <= 5 &&
+                    <div className={styles['water-drop-container']}>
+                        <div className={styles['water-drop-elements']}>
+                            <div className={styles['water-drop-plus-background']}>
+                                <div className={styles['water-drop-background']}>
+                                    <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.svg" />
+                                </div>
+                                <div className={styles['water-drop']}>
+                                    {FRESHWATER_STEPS[currentStepIndex].dropImage}
+                                </div>
                             </div>
-                            <div className={styles['water-drop']}>
-                                {FRESHWATER_STEPS[currentStepIndex].dropImage}
-                            </div>
+                            {FRESHWATER_STEPS[currentStepIndex].extraElement}
                         </div>
-                        {FRESHWATER_STEPS[currentStepIndex].extraElement}
                     </div>
-                </div>
+                }
+                {currentStepIndex >= 6 &&
+                    <div className={styles['worldmap-container']}>
+                        <img src="/static/images/scrolly-telling/freshwater/worldmap.svg" />
+"
+                    </div>
+                }
                 {isBrowser &&
-                    <div className={classnames({
-                        [styles.steps]: true,
-                        [styles['-mobile']]: isTabletOrMobile
-                    })}>
+                    <div className={styles.steps}>
                         <Scrollama
                             onStepEnter={onStepEnter}
                             offset={0.5}
@@ -70,12 +67,9 @@ function FreshwaterScrollyTelling(props) {
                         </Scrollama>
                     </div>
                 }
-                {/* <div className={styles['worldmap-container']}>
-                    <img src="/static/images/scrolly-telling/freshwater/worldmap.svg" />
-                </div> */}
             </div>
         </div>
     );
 }
 
-export default FreshwaterScrollyTelling;
+export default ForestsScrollyTelling;

@@ -14,6 +14,10 @@
             justify-content: center;
             align-items: center;
 
+            &.-mobile {
+                margin-left: 0px;
+            }
+
             .water-drop-elements {
                 position: relative;
                 display: flex;
@@ -84,6 +88,13 @@
         }
 
         .steps {
+            display: flex;
+            flex-direction: column;
+
+            &.-mobile {
+                align-items: center;
+            }
+
             .text-box-container {
                 position: relative;
                 max-width: 400px;

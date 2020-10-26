@@ -1,0 +1,18 @@
+@import 'css/settings';
+
+.c-forests-scrolly-telling {
+    overflow: initial;
+    padding: 100px 200px 100px 200px;
+    background-color: $grey-lighter;
+
+    .story {
+
+        .steps {
+            .text-box-container {
+                max-width: 400px;
+                background-color: $white;
+                margin-bottom: 100vh;
+            }
+        }
+    }
+}
