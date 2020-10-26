@@ -9,7 +9,11 @@ export const FORESTS_STEPS = [
                 This is a map of the Amazon region in South America. The <strong>Amazon rainforest</strong> covers 597 Mha across nine countries and harbors 16,000 tree species.
             </p>
         },
-        showYearCounter: false
+        showYearCounter: false,
+        stickyContainerElement: 
+            <div className={styles['-align-right']}>
+                <img src="/static/images/scrolly-telling/forests/amazon_map.svg" />
+            </div>
     },
     {
         index: 1,
@@ -19,7 +23,11 @@ export const FORESTS_STEPS = [
             </p>
         },
         showYearCounter: true,
-        yearValue: 2000
+        yearValue: 2000,
+        stickyContainerElement: 
+            <div className={styles['-align-right']}>
+                <img src="/static/images/scrolly-telling/forests/trees1.svg" />
+            </div>
     },
     {
         index: 2,
@@ -30,7 +38,11 @@ export const FORESTS_STEPS = [
         },
         showYearCounter: true,
         yearValue: 2000,
-        yearSubtitle: '513.8 Mha of tree cover in the Amazon basin'
+        yearSubtitle: '513.8 Mha of tree cover in the Amazon basin',
+        stickyContainerElement: 
+            <div className={styles['-align-right']}>
+                <img src="/static/images/scrolly-telling/forests/trees2.svg" />
+            </div>
     },
     {
         index: 3,
@@ -40,7 +52,11 @@ export const FORESTS_STEPS = [
         },
         showYearCounter: true,
         yearValue: 2019,
-        yearSubtitle: '494,9 Mha of tree cover in the Amazon basin'
+        yearSubtitle: '494,9 Mha of tree cover in the Amazon basin',
+        stickyContainerElement: 
+            <div className={styles['-align-right']}>
+                <img src="/static/images/scrolly-telling/forests/trees3.svg" />
+            </div>
     },
     {
         index: 4,
