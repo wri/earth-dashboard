@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+
+// components
+import WidgetPreview from 'components/admin/data/widgets/form/preview';
 
 // utils
 import {
@@ -10,9 +14,13 @@ import {
 // styles
 import styles from './dive-into-the-data-section.module.scss';
 
-function DiveIntoTheDataSection(props) {
-  const { topic } = props;
+function DiveIntoTheDataSection({
+  topic,
+  topicData,
+  widgets
+}) {
   const topicColor = getColorByTopic(topic);
+  const dataArray = topicData[topic].diveIntoTheData.data;
 
   return (
     <div
@@ -21,6 +29,18 @@ function DiveIntoTheDataSection(props) {
     >
       <h2>Dive into the <span style={{ color: topicColor }}>Data</span></h2>
       <p className={styles.subtitle}>{getDiveIntoTheDataDataByTopic(topic)?.description}</p>
+      <div className="row">
+        {dataArray.map(widget => 
+          <div className={classnames({
+            "column": true,
+            "small-12": widget.widgetsPerColumn === 1,
+            "medium-6": widget.widgetsPerColumn <= 2,
+            "large-4": widget.widgetsPerColumn === 3,
+          })}>
+            <WidgetPreview widget={widgets.find(w => w.id === widget.id)} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
