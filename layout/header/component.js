@@ -4,6 +4,7 @@ import Particles from 'react-particles-js';
 import Link from 'next/link';
 import classnames from 'classnames';
 import { motion } from "framer-motion"
+import { useMediaQuery } from 'react-responsive';
 
 // utils
 import { PARTICLES_DEFINITION } from 'utils/particles';
@@ -17,9 +18,16 @@ import styles from './header.module.scss';
 function Header(props) {
   const { showLogo } = props;
   const [isOpen, setIsOpen] = useState(false);
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 720 });
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+  });
 
   return (
-    <header className={styles.header}>
+    <header className={classnames({
+      [styles.header]: true,
+      [styles['-mobile']]: isTabletOrMobile || isTabletOrMobileDevice
+    })}>
       {showLogo && !isOpen &&
         <div className={styles['logo-container']}>
           <Link href="/">

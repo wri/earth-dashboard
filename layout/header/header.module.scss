@@ -8,6 +8,11 @@
   width: 100%;
   padding-top: 4 * $space;
   z-index: 3; // because of the particles
+  
+  &.-mobile {
+    justify-content: flex-end;
+    padding: 16px;
+  }
 
   .logo-container {
     position: absolute;
