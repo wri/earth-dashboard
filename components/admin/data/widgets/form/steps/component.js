@@ -15,7 +15,7 @@ import Field from 'components/form/Field';
 import Select from 'components/form/SelectInput';
 import Checkbox from 'components/form/checkbox';
 import RadioGroup from 'components/form/RadioGroup';
-import WidgetPreview from '../preview';
+import WidgetPreview from 'components/widgets/preview';
 
 // styles
 import styles from './widget-form-preview-step.module.scss';

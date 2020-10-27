@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
-import WidgetPreview from 'components/admin/data/widgets/form/preview';
+import WidgetPreview from 'components/widgets/preview';
 
 // utils
 import {

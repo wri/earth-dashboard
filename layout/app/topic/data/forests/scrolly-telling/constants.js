@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 // styles
 import styles from './forests-scrolly-telling.module.scss';
 
@@ -88,8 +90,16 @@ export const FORESTS_STEPS = [
         },
         showYearCounter: false,
         stickyContainerElement: 
-            <div className={styles['-align-center']}>
-                <img src="/static/images/scrolly-telling/forests/tipping_point_chart.png" />
+            <div className={classnames({
+                [styles['-align-center']]: true,
+                [styles['chart-pulsating-dot']]: true
+            })}>
+                <div className={styles['chart']}>
+                    <img src="/static/images/scrolly-telling/forests/tipping_point_chart.svg" />
+                </div>
+                <div className={styles['pulsating-dot']}>
+                    <img src="/static/images/scrolly-telling/forests/pulsating_dot.svg" />
+                </div>
             </div>
     }
 ];

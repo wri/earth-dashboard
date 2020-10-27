@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 // components
-import WidgetPreview from 'components/admin/data/widgets/form/preview';
+import WidgetPreview from 'components/widgets/preview';
 
 // utils
 import {
@@ -30,20 +30,28 @@ function DiveIntoTheDataSection({
     >
       <h2>Dive into the <span style={{ color: topicColor }}>Data</span></h2>
       <p className={styles.subtitle}>{getDiveIntoTheDataDataByTopic(topic)?.description}</p>
-      {isBrowser &&
-        <div className="row">
-          {dataArray.map(widget =>
-            <div className={classnames({
-              "column": true,
-              "small-12": widget.widgetsPerColumn === 1,
-              "medium-6": widget.widgetsPerColumn >= 2,
-              "large-4": widget.widgetsPerColumn === 3,
-            })}>
-              <WidgetPreview widget={widgets.find(w => w.id === widget.id)} />
-            </div>
-          )}
-        </div>
-      }
+      <div className={styles['widgets-container']}>
+        {isBrowser &&
+          <div className="row">
+            {dataArray.map(widget =>
+              <div 
+                key={`widget-preview-${widget.id}`}
+                className={classnames({
+                  "column": true,
+                  "small-12": widget.widgetsPerColumn === 1,
+                  "medium-6": widget.widgetsPerColumn >= 2,
+                  "large-4": widget.widgetsPerColumn === 3,
+                  [styles['preview-container']]: true
+                })}
+              >
+                <WidgetPreview
+                  widget={widgets.find(w => w.id === widget.id)} 
+                />
+              </div>
+            )}
+          </div>
+        }
+      </div>
     </div>
   );
 }

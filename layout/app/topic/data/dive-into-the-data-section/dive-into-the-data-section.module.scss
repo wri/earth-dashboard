@@ -19,4 +19,11 @@
     .subtitle {
         max-width: 520px;
     }
+
+    .widgets-container {
+        .preview-container {
+            height: 500px;
+            margin-bottom: 8 * $space;
+        }
+    }
 }

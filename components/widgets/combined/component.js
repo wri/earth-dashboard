@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 // components
 import Spinner from 'components/ui/spinner';
-import WidgetPreview from 'components/admin/data/widgets/form/preview';
+import WidgetPreview from 'components/widgets/preview';
 
 // services
 import { fetchWidget } from 'services/widget';
