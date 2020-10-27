@@ -1,6 +1,6 @@
 // utils
 import { logger } from 'utils/logs';
-import { localAPI, controlTowerAPI } from 'utils/axios';
+import { controlTowerAPI } from 'utils/axios';
 
 /**
  * Logs in a user based on the email + password combination
@@ -10,8 +10,8 @@ import { localAPI, controlTowerAPI } from 'utils/axios';
  */
 export const loginUser = ({ email, password }) => {
   logger.info('Login user');
-  return localAPI
-    .post('local-sign-in', { email, password })
+  return controlTowerAPI
+    .post('auth/login', { email, password })
     .then(response => response.data);
 };
 
