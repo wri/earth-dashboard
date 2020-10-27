@@ -55,6 +55,9 @@ function Header(props) {
                   <li>About</li>
                   <li>Share</li>
                 </ul>
+                <div className={styles['powered-by']}>
+                  powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
+                </div>
               </div>
               <div className={styles['right-container']}>
                 <ul>

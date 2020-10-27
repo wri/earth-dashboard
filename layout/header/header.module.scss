@@ -79,6 +79,18 @@
             margin-bottom: 6 * $space;
           }
         }
+
+        .powered-by {
+          margin-top: 10 * $space;
+          color: $grey-darker;
+          font-size: 11px;
+
+          a {
+            color: $grey-darker;
+            font-family: 'Lato';
+            text-decoration: none;
+          }
+        }
       }
   
       .right-container {
