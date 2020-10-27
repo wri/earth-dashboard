@@ -1,0 +1,50 @@
+@import 'css/settings';
+
+.c-widget-panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .panel-title {
+        display: flex;
+        justify-content: space-between;
+        padding: 4 * $space;
+        border-radius: 12px 12px 0px 0px;
+        border: solid 1px $grey;
+    }
+
+    .widget-preview-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        border-bottom: solid 1px $grey;
+        border-right: solid 1px $grey;
+        border-left: solid 1px $grey;
+
+        &.-chart {
+            padding: 2 * $space;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .powered-by {
+        display: flex;
+        justify-content: flex-end;
+        color: $grey-darker;
+        font-size: 11px;
+        margin-top: 2 * $space;
+
+        a {
+            margin-left: 4px;
+            color: $grey-darker;
+            font-family: 'Lato';
+            text-decoration: none;
+        }
+      }
+}

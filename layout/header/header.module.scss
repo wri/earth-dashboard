@@ -69,6 +69,28 @@
         width: 40%;
         padding-left: 110px;
         z-index: 4;
+
+        .left-links {
+          margin-top: 14 * $space;
+          list-style-type: none;
+          padding: 0px;
+
+          li {
+            margin-bottom: 6 * $space;
+          }
+        }
+
+        .powered-by {
+          margin-top: 10 * $space;
+          color: $grey-darker;
+          font-size: 11px;
+
+          a {
+            color: $grey-darker;
+            font-family: 'Lato';
+            text-decoration: none;
+          }
+        }
       }
   
       .right-container {
@@ -78,19 +100,26 @@
   
         .topic-container {
           margin-bottom: 8 * $space;
+          list-style-type: none;
 
           .topic-title {
             font-family: 'Barlow Condensed';
             font-size: 20px;
             margin-bottom: 4 * $space;
+
+            a {
+              color: $white;
+              text-decoration: none;
+            }
           }
 
           .topic-link-list {
-            margin-left: 8 * $space;
 
             .topic-link {
               margin-bottom: 2 * $space;
               font-size: 16px;
+              list-style-type: none;
+
               a {
                 text-decoration: none;
                 color: $grey-light;
