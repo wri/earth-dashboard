@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 // components
-import WidgetPreview from 'components/widgets/preview';
+import WidgetPanel from 'components/widgets/panel';
 
 // utils
 import {
@@ -44,7 +44,7 @@ function DiveIntoTheDataSection({
                   [styles['preview-container']]: true
                 })}
               >
-                <WidgetPreview
+                <WidgetPanel
                   widget={widgets.find(w => w.id === widget.id)} 
                 />
               </div>
