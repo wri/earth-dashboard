@@ -55,15 +55,23 @@ function Header(props) {
                 <ul>
                   {HEADER_TOPICS_DATA.map(topicData =>
                     <li className={styles['topic-container']}>
-                      <div className={styles['topic-title']}>
-                        <span style={{ borderBottom: `solid 2px ${topicData.color}` }}>
-                          {topicData.label}
-                        </span>
+                      <
+                        div className={styles['topic-title']}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Link href={topicData.link}>
+                          <a style={{ borderBottom: `solid 2px ${topicData.color}` }}>
+                            {topicData.label}
+                          </a>
+                        </Link>
                       </div>
                       <ul className={styles['topic-link-list']}>
                         {topicData.links.map(linkData =>
-                          <li className={styles['topic-link']}>
-                            <Link href={`${topicData.mainLink}${linkData.link}`}>
+                          <li
+                            className={styles['topic-link']}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <Link href={linkData.link}>
                               <a
                                 className={classnames({ [styles['-highlighted-link']]: linkData.highlight })}
                                 style={linkData.highlight ? {

@@ -8,108 +8,109 @@ import {
 export const HEADER_TOPICS_DATA = [
     {
         label: 'CLIMATE',
+        link: '/climate',
         color: CLIMATE_COLOR,
-        mainLink: '/climate/data',
         links: [
             {
                 label: 'The Global Commons Report',
-                link: '#',
+                link: '/climate',
                 highlight: false
             },
             {
                 label: 'Charting the Threat Multiplier Effect of Climate Change',
-                link: '#scrolly-telling',
+                link: '/climate/data#scrolly-telling',
                 highlight: true
             },
             {
                 label: 'The Challenge to our Global Commons',
-                link: '#challenge-to-our-global-commons',
+                link: '/climate/data#challenge-to-our-global-commons',
                 highlight: false
             },
             {
                 label: 'Dive into the Data',
-                link: '#dive-into-the-data',
+                link: '/climate/data#dive-into-the-data',
                 highlight: false
             }
         ]
     },
     {
         label: 'FORESTS',
+        link: '/forests',
         color: FORESTS_COLOR,
-        mainLink: '/forests/data',
         links: [
             {
                 label: 'The Global Commons Report',
-                link: '#',
+                link: '/forests',
                 highlight: false
             },
             {
                 label: 'From Carbon Sink to Carbon Source? Why the Amazon’s Future Hangs in the Balance',
-                link: '#scrolly-telling',
+                link: '/forests/data#scrolly-telling',
                 highlight: true
             },
             {
                 label: 'The Challenge to our Global Commons',
-                link: '#challenge-to-our-global-commons',
+                link: '/forests/data#challenge-to-our-global-commons',
                 highlight: false
             },
             {
                 label: 'Dive into the Data',
-                link: '#dive-into-the-data',
+                link: '/forests/data#dive-into-the-data',
                 highlight: false
             }
         ]
     },
     {
         label: 'FRESHWATER',
+        link: '/freshwater',
         color: FRESHWATER_COLOR,
-        mainLink: '/freshwater/data',
         links: [
             {
                 label: 'The Global Commons Report',
-                link: '#',
+                link: '/freshwater',
                 highlight: false
             },
             {
                 label: 'Water Budgets: a Drop-by-Drop Guide',
-                link: '#scrolly-telling',
+                link: '/freshwater/data#scrolly-telling',
                 highlight: true
             },
             {
                 label: 'The Challenge to our Global Commons',
-                link: '#challenge-to-our-global-commons',
+                link: '/freshwater/data#challenge-to-our-global-commons',
                 highlight: false
             },
             {
                 label: 'Dive into the Data',
-                link: '#dive-into-the-data',
+                link: '/freshwater/data#dive-into-the-data',
                 highlight: false
             }
         ]
     },
     {
         label: 'OCEANS',
+        link: '/oceans',
         color: OCEANS_COLOR,
         mainLink: '/oceans/data',
         links: [
             {
                 label: 'The Global Commons Report',
-                link: '#',
+                link: '/oceans',
                 highlight: false
             },
             {
                 label: 'Towards a Sustainable Ocean Economy',
-                link: '#scrolly-telling',
+                link: '/oceans/data#scrolly-telling',
                 highlight: true
             },
             {
                 label: 'The Challenge to our Global Commons',
-                link: '#challenge-to-our-global-commons',
+                link: '/oceans/data#challenge-to-our-global-commons',
                 highlight: false
             },
             {
                 label: 'Dive into the Data',
-                link: '#dive-into-the-data',
+                link: '/oceans/data#dive-into-the-data',
                 highlight: false
             }
         ]

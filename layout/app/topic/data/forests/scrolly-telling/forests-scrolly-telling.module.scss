@@ -44,7 +44,7 @@
 
                     .chart-pulsating-dot {
                         position: relative;
-                        padding: 100px;
+                        margin: 100px;
 
                         .chart {
                             display: flex;
@@ -59,8 +59,11 @@
 
                         .pulsating-dot {
                             position: absolute;
-                            top: 33.5%;
-                            right: 14.5%;
+                            top: 29.5%;
+                            right: 7.5%;
+                            transform: translateX(-50%) translateY(-50%);
+                            width: 20px;
+                            height: 20px;
 
                             &:before {
                                 content: '';
@@ -74,6 +77,14 @@
                                 border-radius: 50%;
                                 background-color: #F35600;
                                 animation: pulse 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+                            }
+
+                            img {
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
+                                transform: translateX(-50%) translateY(-50%);
+                                z-index: 1;
                             }
 
                             @keyframes pulse {

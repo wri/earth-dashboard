@@ -78,19 +78,26 @@
   
         .topic-container {
           margin-bottom: 8 * $space;
+          list-style-type: none;
 
           .topic-title {
             font-family: 'Barlow Condensed';
             font-size: 20px;
             margin-bottom: 4 * $space;
+
+            a {
+              color: $white;
+              text-decoration: none;
+            }
           }
 
           .topic-link-list {
-            margin-left: 8 * $space;
 
             .topic-link {
               margin-bottom: 2 * $space;
               font-size: 16px;
+              list-style-type: none;
+
               a {
                 text-decoration: none;
                 color: $grey-light;
