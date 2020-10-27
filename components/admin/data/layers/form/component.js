@@ -198,7 +198,7 @@ class LayerForm extends PureComponent {
         deleteLayer(id, dataset, authorization)
           .then(() => {
             toastr.success('Success', `The layer "${id}" - "${name}" has been removed correctly`);
-            router.push(`/admin/data/datasets/${dataset}/layers`));
+            router.push(`/admin/data/datasets/${dataset}/layers`);
           })
           .catch((err) => {
             toastr.error(
