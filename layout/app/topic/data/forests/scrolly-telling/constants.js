@@ -80,7 +80,10 @@ export const FORESTS_STEPS = [
         yearValue: 2019,
         yearSubtitle: 'Main drivers of tree cover loss in the Amazon basin',
         stickyContainerElement: 
-            <div className={styles['-align-right']}>
+            <div className={classnames({
+                [styles['-align-right']]: true,
+                [styles['horizontal-bar-chart']]: true
+            })}>
                 <img src="/static/images/scrolly-telling/forests/drivers_of_tree_cover_loss_chart.png" />
             </div>
     },
