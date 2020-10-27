@@ -14,7 +14,7 @@ import {
   COMBINED_WIDGET_TYPE,
   NEWS_WIDGET_TYPE,
   DYNAMIC_TEXT_WIDGET_TYPE
-} from '../constants';
+} from 'components/admin/data/widgets/form/constants';
 
 // styles
 import styles from './widget-preview.module.scss';
