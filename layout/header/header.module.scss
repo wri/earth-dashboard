@@ -69,6 +69,16 @@
         width: 40%;
         padding-left: 110px;
         z-index: 4;
+
+        .left-links {
+          margin-top: 14 * $space;
+          list-style-type: none;
+          padding: 0px;
+
+          li {
+            margin-bottom: 6 * $space;
+          }
+        }
       }
   
       .right-container {

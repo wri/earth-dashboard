@@ -20,7 +20,7 @@ function Header(props) {
 
   return (
     <header className={styles.header}>
-      {showLogo &&
+      {showLogo && !isOpen &&
         <div className={styles['logo-container']}>
           <Link href="/">
             <a>
@@ -46,7 +46,12 @@ function Header(props) {
             />
             <div className={styles['data-containers']}>
               <div className={styles['left-container']}>
-                <ul>
+                <Link href="/">
+                  <a>
+                    <img src="/static/images/logo-light.svg" />
+                  </a>
+                </Link>
+                <ul className={styles['left-links']}>
                   <li>About</li>
                   <li>Share</li>
                 </ul>
