@@ -22,11 +22,12 @@ function Header(props) {
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(max-device-width: 1224px)'
   });
+  const showMobileVersion = isTabletOrMobile || isTabletOrMobileDevice;
 
   return (
     <header className={classnames({
       [styles.header]: true,
-      [styles['-mobile']]: isTabletOrMobile || isTabletOrMobileDevice
+      [styles['-mobile']]: showMobileVersion
     })}>
       {showLogo && !isOpen &&
         <div className={styles['logo-container']}>
@@ -52,8 +53,15 @@ function Header(props) {
               className={styles.particles}
               params={PARTICLES_DEFINITION}
             />
-            <div className={styles['data-containers']}>
-              <div className={styles['left-container']}>
+            <div className={classnames({
+              [styles['data-containers']]: true,
+              [styles['-mobile']]: showMobileVersion
+              })}
+            >
+              <div  className={classnames({
+                [styles['left-container']]: true,
+                [styles['-mobile']]: showMobileVersion
+              })}>
                 <Link href="/">
                   <a>
                     <img src="/static/images/logo-light.svg" />
@@ -61,13 +69,29 @@ function Header(props) {
                 </Link>
                 <ul className={styles['left-links']}>
                   <li>About</li>
-                  <li>Share</li>
+                  {!showMobileVersion && <li>Share</li>}
+                  {showMobileVersion && 
+                    <li>
+                      <div className={styles['share-icons-container']}>
+                        <img src="/static/images/share/email_white.svg" />
+                        <img src="/static/images/share/facebook_white.svg" />
+                        <img src="/static/images/share/twitter_white.svg" />
+                      </div>
+                    </li>
+                  }
                 </ul>
-                <div className={styles['powered-by']}>
+                <div className={classnames({
+                    [styles['powered-by']]: true,
+                    [styles['-mobile']]: showMobileVersion
+                  })}>
                   powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
                 </div>
               </div>
-              <div className={styles['right-container']}>
+              <div className={classnames({
+                  [styles['right-container']]: true,
+                  [styles['-mobile']]: showMobileVersion
+                })}
+              >
                 <ul>
                   {HEADER_TOPICS_DATA.map(topicData =>
                     <li className={styles['topic-container']}>
