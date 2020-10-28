@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
 import WidgetPreview from 'components/widgets/preview';
+import { useMediaQuery } from 'react-responsive';
 
 // utils
 import {
@@ -27,6 +28,11 @@ import { PARTICLES_DEFINITION } from 'utils/particles';
 function LayoutTopic(props) {
   const { topic, topicData, widgets } = props;
   const router = useRouter();
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 720 });
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+  });
+  const showMobileVersion = isTabletOrMobileDevice || isTabletOrMobile;
 
   const dataArray = topicData[topic]?.topicPage?.data;
 
@@ -74,60 +80,65 @@ function LayoutTopic(props) {
                   className={styles['indicator-block']}
                 >
                   <span className={styles['block-header']}>RECENT NEWS</span>
-                    <TopicNews topic={keywords} limit={numberOfElements} />
+                  <TopicNews topic={keywords} limit={numberOfElements} />
                 </div>
               );
-            }            
+            }
           })}
         </div>
       </div>
       {/* RIGHT SIDE LINK TO STORY TELLING PAGE */}
       <div
-        className={styles['right-link']}
+        className={classnames({
+          [styles['right-link']]: true,
+          [styles['-mobile']]: showMobileVersion
+        })}
         onClick={() => router.push(`/${topic}/data`)}
         style={{ backgroundColor: getColorByTopic(topic) }}
       >
-        <a>EXPLORE<br/> {topic && topic.toUpperCase()}</a>
+        <a>EXPLORE{!showMobileVersion && <br />} {topic && topic.toUpperCase()}</a>
         <img src="/static/images/arrow-right.svg" />
       </div>
       {/* LEFT MENU */}
-      <div
-        className={styles['left-menu']}
-      >
-        <Link href="/climate">
-          <a className={classnames({
-            [styles['climate-link']]: topic === CLIMATE,
-            [styles['selected-link']]: topic === CLIMATE
-          })}>
-            CLIMATE
+      {!showMobileVersion &&
+        <div
+          className={styles['left-menu']}
+        >
+          <Link href="/climate">
+            <a className={classnames({
+              [styles['climate-link']]: topic === CLIMATE,
+              [styles['selected-link']]: topic === CLIMATE
+            })}>
+              CLIMATE
           </a>
-        </Link>
-        <Link href="/forests">
-          <a className={classnames({
-            [styles['forests-link']]: topic === FORESTS,
-            [styles['selected-link']]: topic === FORESTS
-          })}>
-            FORESTS
+          </Link>
+          <Link href="/forests">
+            <a className={classnames({
+              [styles['forests-link']]: topic === FORESTS,
+              [styles['selected-link']]: topic === FORESTS
+            })}>
+              FORESTS
           </a>
-        </Link>
-        <Link href="/freshwater">
-          <a className={classnames({
-            [styles['freshwater-link']]: topic === FRESHWATER,
-            [styles['selected-link']]: topic === FRESHWATER
-          })}>
-            FRESHWATER
+          </Link>
+          <Link href="/freshwater">
+            <a className={classnames({
+              [styles['freshwater-link']]: topic === FRESHWATER,
+              [styles['selected-link']]: topic === FRESHWATER
+            })}>
+              FRESHWATER
           </a>
-        </Link>
-        <Link href="/oceans">
-          <a className={classnames({
-            [styles['oceans-link']]: topic === OCEANS,
-            [styles['selected-link']]: topic === OCEANS
-          })}>
-            OCEANS
+          </Link>
+          <Link href="/oceans">
+            <a className={classnames({
+              [styles['oceans-link']]: topic === OCEANS,
+              [styles['selected-link']]: topic === OCEANS
+            })}>
+              OCEANS
           </a>
-        </Link>
-      </div>
-      <Particles 
+          </Link>
+        </div>
+      }
+      <Particles
         className={styles.particles}
         params={PARTICLES_DEFINITION}
       />

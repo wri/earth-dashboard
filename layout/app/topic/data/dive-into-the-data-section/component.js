@@ -38,7 +38,7 @@ function DiveIntoTheDataSection({
                 key={`widget-preview-${widget.id}`}
                 className={classnames({
                   "column": true,
-                  "small-12": widget.widgetsPerColumn === 1,
+                  "small-12": true,
                   "medium-6": widget.widgetsPerColumn >= 2,
                   "large-4": widget.widgetsPerColumn === 3,
                   [styles['preview-container']]: true
