@@ -64,6 +64,21 @@
             margin-bottom: 3 * $space;
             line-height: 16px;
         }
+
+        &.-mobile {
+            top: unset;
+            bottom: 0px;
+            height: 60px;
+            width: 100%;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 16px;
+
+            a {
+                margin: 0px 3 * $space 0px 0px;
+            }
+        }
     }
 
     .indicators-row {
