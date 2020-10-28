@@ -65,12 +65,14 @@ function ForestsScrollyTelling({ topic }) {
                         <Scrollama
                             onStepEnter={onStepEnter}
                             offset={0.6}
+                            debug
                         >
                             {FORESTS_STEPS.map((step, stepIndex) => {
 
                                 return (
                                     <Step data={stepIndex} key={`step-${stepIndex}`}>
                                         <div className={styles['text-box-container']}>
+                                            <div className={styles['background']} />
                                             <TextBox text={step.textPanel.text} />
                                         </div>
                                     </Step>
