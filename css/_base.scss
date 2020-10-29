@@ -193,3 +193,29 @@ input, button, select, textarea {
     font-size: $font-size-h4;
   }
 }
+
+.external-link {
+  border-bottom: solid 2px $white;
+  text-decoration: none;
+
+  &:hover {
+    border-width: 6px;
+    text-decoration: none;
+  }
+
+  &.-forests {
+    border-bottom-color: $forests;
+  }
+
+  &.-oceans {
+    border-bottom-color: $oceans;
+  }
+
+  &.-climate {
+    border-bottom-color: $climate;
+  }
+
+  &.-freshwater {
+    border-bottom-color: $freshwater;
+  }
+}

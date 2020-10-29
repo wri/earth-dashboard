@@ -9,13 +9,12 @@ import WidgetPreview from 'components/widgets/preview';
 import styles from './widget-panel.module.scss';
 
 function WidgetPanel({ widget }) {
-    console.log('widget', widget);
     const isMap = widget?.widgetConfig?.paramsConfig?.visualizationType === 'map';
     return (
         <div className={styles['c-widget-panel']}>
             <div className={styles['panel-title']}>
                 <span className={styles.title}>
-                    {widget.name}
+                    {widget?.name}
                 </span>
                 <div className={styles['panel-actions']}>
 

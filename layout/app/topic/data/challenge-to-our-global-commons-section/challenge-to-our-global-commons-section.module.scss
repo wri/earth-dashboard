@@ -41,31 +41,6 @@
     
             a {
                 color: $white;
-                text-decoration: none;
-            }
-    
-            &.-forests {
-                a {
-                    border-bottom: solid 2px $forests;
-                }
-            }
-    
-            &.-oceans {
-                a {
-                    border-bottom: solid 2px $oceans;
-                }
-            }
-    
-            &.-climate {
-                a {
-                    border-bottom: solid 2px $climate;
-                }
-            }
-    
-            &.-freshwater {
-                a {
-                    border-bottom: solid 2px $freshwater;
-                }
             }
         }
     }

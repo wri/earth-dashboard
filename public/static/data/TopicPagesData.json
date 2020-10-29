@@ -86,6 +86,22 @@
                     "id": "241418fa-d679-4462-98e8-e8deeb84fbb2"
                 }
             ]
+        },
+        "diveIntoTheData": {
+            "data": [
+                {
+                    "id": "a85f1ea4-4344-463a-94d5-bb3b4ae91dab",
+                    "widgetsPerColumn": 1
+                },
+                {
+                    "id": "1aed112a-9561-435c-9621-569eb26bfca0",
+                    "widgetsPerColumn": 2
+                },
+                {
+                    "id": "fd6f666b-da36-497f-946d-1af871aa1535",
+                    "widgetsPerColumn": 2
+                }
+            ]
         }
     },
     "climate": {
@@ -103,6 +119,22 @@
                 {
                     "type": "widget",
                     "id": "241418fa-d679-4462-98e8-e8deeb84fbb2"
+                }
+            ]
+        },
+        "diveIntoTheData": {
+            "data": [
+                {
+                    "id": "a85f1ea4-4344-463a-94d5-bb3b4ae91dab",
+                    "widgetsPerColumn": 1
+                },
+                {
+                    "id": "1aed112a-9561-435c-9621-569eb26bfca0",
+                    "widgetsPerColumn": 2
+                },
+                {
+                    "id": "fd6f666b-da36-497f-946d-1af871aa1535",
+                    "widgetsPerColumn": 2
                 }
             ]
         }
