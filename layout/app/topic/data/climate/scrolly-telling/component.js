@@ -36,14 +36,14 @@ function ClimateScrollyTelling({ topic }) {
             <div className={styles.story}>
                 <div className={styles['sticky-container']}>
                     <div className={styles['wrapper-container']}>
-                        {currentStep.stickyContainerElement &&
+                        {/* {currentStep.stickyContainerElement &&
                             <div className={classnames({
                                 [styles['sticky-element']]: true,
                                 [styles['-mobile']]: isTabletOrMobile
                             })}>
                                 {currentStep.stickyContainerElement}
                             </div>
-                        }
+                        } */}
                         {currentStep.showYearCounter &&
                             <div className={styles['year-container']}>
                                 <div

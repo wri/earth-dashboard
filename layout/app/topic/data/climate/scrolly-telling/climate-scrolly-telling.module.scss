@@ -2,17 +2,20 @@
 
 .c-climate-scrolly-telling {
     overflow: initial;
+    padding: 33vh 0px 20vh 0px;
     background-color: $grey-lighter;
 
     .story {
 
         .sticky-container {
             position: sticky;
-            top: 0vh;
+            top: 0px;
+            left: 0px;
             height: 100vh;
 
             .wrapper-container {
                 position: relative;
+                display: flex;
                 height: 100%;
                 width: 100%;
 
@@ -26,37 +29,6 @@
                         justify-content: center;
                     }
 
-                    &:not(.-mobile){
-                        .-align-right {
-                            margin-left: 50%;
-                            margin-right: 124px;
-                        }
-                    }
-                    .-align-center {
-                        display: flex;
-                        justify-content: center;
-                        width: 100%;
-                    }
-
-                    .south-america-map {
-                        height: 100vh;
-                    }
-
-                    .chart-pulsating-dot {
-                        position: relative;
-                        margin: 100px;
-
-                        .chart {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            width: 100%;
-
-                            img {
-                                width: 100%;
-                            }
-                        }
-                    }
                 }
 
                 .year-container {
@@ -68,7 +40,7 @@
                     flex-direction: column;
                     justify-content: flex-start;
                     font-family: 'Barlow Condensed';
-                    margin: 5 * $space;
+                    padding: 5 * $space;
     
                     .year-value {
                         display: flex;
