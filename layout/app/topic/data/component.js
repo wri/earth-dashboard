@@ -16,6 +16,7 @@ import NavigationDots from 'components/ui/navigation-dots';
 import FreshWaterScrollyTelling from './freshwater/scrolly-telling';
 import ForestsScrollyTelling from './forests/scrolly-telling';
 import ClimateScrollyTelling from './climate/scrolly-telling';
+import OceansScrollyTelling from './oceans/scrolly-telling';
 
 // styles
 import styles from './topic-data.module.scss';
@@ -61,6 +62,8 @@ function LayoutTopicData(props) {
         return <ForestsScrollyTelling topic={topic} />
       case CLIMATE:
         return <ClimateScrollyTelling topic={topic} />
+      case OCEANS:
+        return <OceansScrollyTelling topic={topic} />
       default:
         return <div />;
     }

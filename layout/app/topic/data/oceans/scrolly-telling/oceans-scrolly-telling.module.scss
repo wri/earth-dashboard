@@ -1,0 +1,58 @@
+@import 'css/settings';
+
+.c-oceans-scrolly-telling {
+    overflow: initial;
+    padding: 33vh 0px 20vh 0px;
+    background-color: $grey-lighter;
+
+    .story {
+
+        .sticky-container {
+            position: sticky;
+            top: 0px;
+            left: 0px;
+            height: 100vh;
+
+            .wrapper-container {
+                position: relative;
+                display: flex;
+                height: 100%;
+                width: 100%;
+
+                .sticky-element {
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    align-items: center;
+
+                    &.-mobile {
+                        justify-content: center;
+                    }
+
+                }
+
+            }
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+
+            &.-mobile {
+                align-items: center;
+            }
+
+            .text-box-container {
+                position: relative;
+                max-width: 400px;
+                margin-bottom: 100vh;
+                margin-left: 124px;
+
+                .photo-subtitle {
+                    color: $grey-darker;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
