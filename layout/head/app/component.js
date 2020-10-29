@@ -55,6 +55,7 @@ class HeadApp extends PureComponent {
         {/* Fonts */}
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap" rel="stylesheet"/> 
       </HeadNext>
     );
   }
