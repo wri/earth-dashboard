@@ -16,6 +16,7 @@ function ChallengeToOurGlobalCommons(props) {
   const { topic } = props;
   const topicColor = getColorByTopic(topic);
   const isBrowser = typeof window !== 'undefined';
+  const data = getChallengeSectionDataByTopic(topic);
 
   return (
     <div
@@ -39,7 +40,7 @@ function ChallengeToOurGlobalCommons(props) {
                 offset={0.6}
                 onStepExit={({data}) => console.log('onStepExit', data)}
               >
-                {getChallengeSectionDataByTopic(topic)?.paragraphs.map((paragraph, index) =>
+                {data?.paragraphs?.map((paragraph, index) =>
                   <Step 
                     data={index}
                     key={`challenge-step-${index}`}
@@ -59,7 +60,7 @@ function ChallengeToOurGlobalCommons(props) {
           </div>
         </div>
         <div className={styles['photo-attribution-container']}>
-          Photo by Etienne Delorieux on Unsplash
+          {data?.photoAttribution}
         </div>
       </div>
     </div>

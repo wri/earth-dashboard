@@ -25,7 +25,8 @@ export const FORESTS_CHALLENGE_SECTION_DATA = {
             adopt new policies and business models that recognize the value of global commons. All future decisions that 
             impact forests should weigh the many benefits they deliver against the costs to people and our planet of their overuse. 
         </p>
-    ]
+    ],
+    photoAttribution: 'Photo by Etienne Delorieux on Unsplash'
 };
 
 export const FORESTS_DIVE_INTO_THE_DATA_DATA = {

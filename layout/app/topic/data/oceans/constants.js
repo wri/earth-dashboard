@@ -31,7 +31,8 @@ export const OCEANS_CHALLENGE_SECTION_DATA = {
             in order to sustain the ocean and its potential to deliver new industries, jobs and food and 
             energy security. This endeavor will be well worth the cost: <a className="external-link -oceans" href="https://oceanpanel.org/sites/default/files/2020-07/Ocean%20Panel_Economic%20Analysis_FINAL.pdf" target="_blank">every $ spent on a sustainable ocean economy could yield five times the return in benefits</a>. 
         </p>
-    ]
+    ],
+    photoAttribution: 'Photo by Francesco Ungaro on Unsplash'
 };
 
 export const OCEANS_DIVE_INTO_THE_DATA_DATA = {
