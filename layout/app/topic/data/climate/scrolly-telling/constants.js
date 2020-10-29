@@ -51,34 +51,22 @@ export const CLIMATE_STEPS = [
         yearSubtitle: 'Present time'
     },
     {
-        index: 5,
+        index: 3,
         textPanel: {
             text: 
             <>
+                <img src="" />
+                <h6>MELTING ICE</h6>
                 <p>
-                    <strong>Let’s take a look at future temperatures and what scientists think might happen.</strong>
+                    Between 1980 and 2018, glaciers lost ice equivalent to cutting a 24-meter (79-foot)
+                     thick slice of each one. Among these are Himalayan glaciers that provide
+                     water to some <strong>240 million people</strong>.
                 </p>
-                <p>
-                    Predicting the future is hard, so scientists use confidence intervals, which are minimum and maximum
-                     estimates between which the actual temperatures might fluctuate. These are represented by the gray area on the chart.
-                </p>
-                <p>
-                    The dotted orange line represents the mean values between those intervals.
-                </p>
+                <p className={styles['photo-subtitle']}>Photo by NOAA on Unsplash</p>
             </>
         },
         showYearCounter: true,
         yearValue: '2020 +1.0 °C',
         yearSubtitle: 'Present time'
     },
-    {
-        index: 5,
-        textPanel: {
-            text: 
-                <p>Let's zoom the chart to the future</p>
-        },
-        showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
-        yearSubtitle: 'Present time'
-    }
 ];
