@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
-import { useMediaQuery } from 'react-responsive';
 import classnames from 'classnames';
 
 // components
@@ -8,6 +7,7 @@ import TextBox from 'components/scrolly-telling/text-box';
 
 // utils
 import { getColorByTopic } from 'utils/topics';
+import { getShowMobileVersion } from 'utils/responsive';
 
 // constants
 import { CLIMATE_STEPS } from './constants';
@@ -18,9 +18,9 @@ import styles from './climate-scrolly-telling.module.scss';
 function ClimateScrollyTelling({ topic }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
-    const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
     const currentStep = CLIMATE_STEPS[currentStepIndex];
     const topicColor = getColorByTopic(topic);
+    const showMobileVersion = getShowMobileVersion();
 
     // This callback fires when a Step hits the offset threshold. It receives the
     // data prop of the step, which in this demo stores the index of the step.
@@ -48,7 +48,6 @@ function ClimateScrollyTelling({ topic }) {
                             <div className={styles['year-container']}>
                                 <div
                                     className={styles['year-value']}
-                                    style={{ color: topicColor }}
                                 >
                                     {currentStep.yearValue}
                                 </div>

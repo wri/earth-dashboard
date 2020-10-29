@@ -38,50 +38,12 @@ export const CLIMATE_STEPS = [
             text: 
             <>
                 <img src="" />
-                <p><strong>17% of the Amazon forest is already lost</strong>.</p>
-                <p className={styles['photo-subtitle']}>Photo: Public domain on Wikimedia Commons</p>
-            </>
-        },
-        showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
-        yearSubtitle: 'Present time'
-    },
-    {
-        index: 3,
-        textPanel: {
-            text: 
-            <>
-                <img src="" />
-                <p><strong>Permafrost across the Arctic is beginning to irreversibly thaw and release carbon dioxide and methane</strong>.</p>
-                <p className={styles['photo-subtitle']}>Photo by Boris Radosavljevic on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a></p>
-            </>
-        },
-        showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
-        yearSubtitle: 'Present time'
-    },
-    {
-        index: 4,
-        textPanel: {
-            text: 
-            <>
-                <img src="" />
-                <p><strong>The ice sheets in East and West Antarctica are melting and have probably passed their tipping points already.</strong>.</p>
-                <p className={styles['photo-subtitle']}>Photo by NASA on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a></p>
-            </>
-        },
-        showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
-        yearSubtitle: 'Present time'
-    },
-    {
-        index: 5,
-        textPanel: {
-            text: 
-            <>
-                <img src="" />
-                <p><strong>In the oceans, the Atlantic Meridional Overturning Circulation (AMOC) has weakened by about 15% since 1975.</strong>.</p>
-                <p className={styles['photo-subtitle']}>Photo: public domain by NASA</p>
+                <h6>FIRES</h6>
+                <p>
+                    In Australia, last season, fires consumed an area larger than South Korea and killed 
+                    or harmed <strong>3 billion animals</strong>.
+                </p>
+                <p className={styles['photo-subtitle']}>Photo by Peter Buschmann on Wikimedia Commons (Public domain)</p>
             </>
         },
         showYearCounter: true,
