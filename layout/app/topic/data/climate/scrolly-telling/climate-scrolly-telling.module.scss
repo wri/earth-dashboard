@@ -1,0 +1,109 @@
+@import 'css/settings';
+
+.c-climate-scrolly-telling {
+    overflow: initial;
+    background-color: $grey-lighter;
+
+    .story {
+
+        .sticky-container {
+            position: sticky;
+            top: 0vh;
+            height: 100vh;
+
+            .wrapper-container {
+                position: relative;
+                height: 100%;
+                width: 100%;
+
+                .sticky-element {
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    align-items: center;
+
+                    &.-mobile {
+                        justify-content: center;
+                    }
+
+                    &:not(.-mobile){
+                        .-align-right {
+                            margin-left: 50%;
+                            margin-right: 124px;
+                        }
+                    }
+                    .-align-center {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                    }
+
+                    .south-america-map {
+                        height: 100vh;
+                    }
+
+                    .chart-pulsating-dot {
+                        position: relative;
+                        margin: 100px;
+
+                        .chart {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 100%;
+
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+
+                .year-container {
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0px;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    font-family: 'Barlow Condensed';
+                    margin: 5 * $space;
+    
+                    .year-value {
+                        display: flex;
+                        font-size: 48px;
+                        margin-right: 2 * $space;
+                    }
+    
+                    .year-subtitle {
+                        color: $black;
+                        font-size: 24px;
+                        margin-top: -10px;
+                    }
+                }
+            }
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+
+            &.-mobile {
+                align-items: center;
+            }
+
+            .text-box-container {
+                position: relative;
+                max-width: 400px;
+                margin-bottom: 100vh;
+                margin-left: 124px;
+
+                .photo-subtitle {
+                    color: $grey-darker;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
