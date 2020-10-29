@@ -13,6 +13,7 @@ import {
   FORESTS,
   FRESHWATER
 } from 'utils/topics';
+import { breakpoints } from 'utils/responsive';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -28,9 +29,9 @@ import { PARTICLES_DEFINITION } from 'utils/particles';
 function LayoutTopic(props) {
   const { topic, topicData, widgets } = props;
   const router = useRouter();
-  const isTabletOrMobile = useMediaQuery({ maxWidth: 720 });
+  const isTabletOrMobile = useMediaQuery({ maxWidth: breakpoints.medium });
   const isTabletOrMobileDevice = useMediaQuery({
-    query: '(max-device-width: 1224px)'
+    query: `(max-device-width: ${breakpoints.large}px)`
   });
   const showMobileVersion = isTabletOrMobileDevice || isTabletOrMobile;
 

@@ -8,6 +8,7 @@ import { useMediaQuery } from 'react-responsive';
 
 // utils
 import { PARTICLES_DEFINITION } from 'utils/particles';
+import { breakpoints } from 'utils/responsive';
 
 // constants
 import { HEADER_TOPICS_DATA } from './constants';
@@ -18,11 +19,11 @@ import styles from './header.module.scss';
 function Header(props) {
   const { showLogo } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const isTabletOrMobile = useMediaQuery({ maxWidth: 720 });
+  const isTabletOrMobile = useMediaQuery({ maxWidth: breakpoints.medium });
   const isTabletOrMobileDevice = useMediaQuery({
-    query: '(max-device-width: 1224px)'
+    query: `(max-device-width: ${breakpoints.large}px)`
   });
-  const showMobileVersion = isTabletOrMobile || isTabletOrMobileDevice;
+  const showMobileVersion = isTabletOrMobileDevice || isTabletOrMobile;
 
   return (
     <header className={classnames({
