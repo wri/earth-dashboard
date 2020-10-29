@@ -3,6 +3,19 @@
 .c-text-box {
     position: relative;
     display: flex;
-    flex-direction: column;
-    padding: 8 * $space;
+
+    .content {
+        padding: 8 * $space;
+        z-index: 1;
+    }
+
+    .background {
+        opacity: 0.75;
+        border-radius: 5px;
+        top: 0px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: $white;
+    }
 }

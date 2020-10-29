@@ -103,7 +103,7 @@ export const FORESTS_STEPS = [
                 <div className={styles['chart']}>
                     <img src="/static/images/scrolly-telling/forests/tipping_point_chart.svg" />
                 </div>
-                <div className={styles['pulsating-dot']}>
+                <div className="pulsating-circle">
                     <img src="/static/images/scrolly-telling/forests/pulsating_dot.svg" />
                 </div>
             </div>

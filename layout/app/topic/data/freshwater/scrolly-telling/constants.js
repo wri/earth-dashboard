@@ -17,7 +17,7 @@ export const FRESHWATER_STEPS = [
         index: 1,
         textPanel: {
             text: <><p>On the <strong>supply side</strong>, that water comes in the form of rainfall, rivers, lakes and other groundwater sources.</p>
-            <p>That’s the amount of water that the region can naturally replenish <strong>every year</strong>. </p></>
+                <p>That’s the amount of water that the region can naturally replenish <strong>every year</strong>. </p></>
         }
         ,
         dropImage: <img src="/static/images/scrolly-telling/freshwater/drop_full.svg" />,
@@ -96,13 +96,79 @@ export const FRESHWATER_STEPS = [
             </p>
         },
         dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />
+    }
+];
+
+export const FRESHWATER_STEPS_WORLDMAP = [
+    {
+        index: 0,
+        textPanel: {
+            text:
+                <>
+                    <h6>Middle East and North Africa (MENA)</h6>
+                    <p>
+                        This region is home to 12 of the world’s 17 most water stressed countries.  Climate change will make water still scarcer by 2050 causing economic losses ranging from six to 14 percent of GDP.
+                     </p>
+                </>
+        }
     },
     {
-        index: 7,
+        index: 1,
         textPanel: {
-            text: <p>
-                Some text for the map here?
-            </p>
+            text:
+                <>
+                    <h6>Chennai, India</h6>
+                    <p>
+                        Reservoirs in <a className="external-link -freshwater" target="_blank" href="https://www.wri.org/blog/2019/06/how-does-flood-prone-city-run-out-water-inside-chennai-day-zero-crisis">Chennai</a> nearly ran dry, forcing the city’s 10 million residents to buy water or draw it from wells, further draining aquifers.  India’s water sources are being depleted and researchers say the nation faces the worst water crisis in its history.
+                     </p>
+                </>
         }
+    },
+    {
+        index: 2,
+        textPanel: {
+            text:
+                <>
+                    <h6>Cape Town, South Africa</h6>
+                    <p>
+                        Three years of drought left Cape Town facing the spectre of “Day Zero,” the day South Africa’s second largest city government would need to <a className="external-link -freshwater" target="_blank" href="https://www.nytimes.com/2018/01/30/world/africa/cape-town-day-zero.html">shut off</a> water taps for most homes and businesses. Aggressive conservation measures and rain spared the city.                     
+                    </p>
+                </>
+        }
+    },
+    {
+        index: 3,
+        textPanel: {
+            text:
+                <>
+                    <h6>Rome, Italy</h6>
+                    <p>
+                        Rome endured months with hardly any rain - a drop of 70% from previous years.  The city resorted to cutting water pressure during the night on peak days.  Some in tall buildings lost service.  The Vatican turned off its 100 fountains.                    
+                    </p>
+                </>
+        }
+    } 
+];
+
+export const FRESHWATER_WATER_DROP_LOCATIONS = [
+    {
+        index: 0,
+        top: 31.5,
+        left: 55.5
+    },
+    {
+        index: 1,
+        top: 44.5,
+        left: 68
+    },
+    {
+        index: 2,
+        top: 80,
+        left: 51.5
+    },
+    {
+        index: 3,
+        top: 24,
+        left: 50
     }
 ];
