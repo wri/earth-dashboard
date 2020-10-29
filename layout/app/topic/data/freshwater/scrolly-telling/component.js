@@ -90,7 +90,7 @@ function FreshwaterScrollyTelling(props) {
                 })}
             >
                 <div className={styles['worldmap-container']}>
-                    <img src="/static/images/scrolly-telling/freshwater/worldmap.svg" />
+                    <img className={styles['worldmap-image']} src="/static/images/scrolly-telling/freshwater/worldmap.svg" />
                     <div className={styles.locations}>
                         {FRESHWATER_WATER_DROP_LOCATIONS.map(location => {
                             const isCurrentItem = location.index === currentStepIndexWorldMap;

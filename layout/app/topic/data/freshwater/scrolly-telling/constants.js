@@ -154,21 +154,21 @@ export const FRESHWATER_WATER_DROP_LOCATIONS = [
     {
         index: 0,
         top: 31.5,
-        left: 55.5
+        left: 58
     },
     {
         index: 1,
         top: 44.5,
-        left: 68
+        left: 70.5
     },
     {
         index: 2,
         top: 80,
-        left: 51.5
+        left: 54
     },
     {
         index: 3,
         top: 24,
-        left: 50
+        left: 52.5
     }
 ];

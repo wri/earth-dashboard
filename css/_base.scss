@@ -31,6 +31,7 @@ hr {
 }
 
 a {
+  color: unset;
   text-decoration: none;
 }
 
@@ -101,11 +102,6 @@ h4 {
 p {
   margin-top: 0;
 
-  > a {
-    color: $link-font-color;
-    text-decoration: underline;
-  }
-
   &:last-child {
     margin-bottom: 0;
   }
@@ -157,28 +153,36 @@ input, button, select, textarea {
 
 // --------------------- EXTERNAL LINKS -----------------------
 .external-link {
-  border-bottom: solid 2px $white;
-  text-decoration: none;
+  position: relative;
 
-  &:hover {
-    border-width: 6px;
-    text-decoration: none;
+  &:after {
+    content: '';
+    height: 2px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: -1;
   }
 
-  &.-forests {
-    border-bottom-color: $forests;
+  &:hover:after {
+    height: 6px;
   }
 
-  &.-oceans {
-    border-bottom-color: $oceans;
+  &.-forests:after {
+    background-color: $forests;
   }
 
-  &.-climate {
-    border-bottom-color: $climate;
+  &.-oceans:after {
+    background-color: $oceans;
   }
 
-  &.-freshwater {
-    border-bottom-color: $freshwater;
+  &.-climate:after {
+    background-color: $climate;
+  }
+
+  &.-freshwater:after {
+    background-color: $freshwater;
   }
 }
 
