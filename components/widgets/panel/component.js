@@ -27,9 +27,9 @@ function WidgetPanel({ widget }) {
                 })}
             >
                 <WidgetPreview widget={widget} />
-                <div className={styles['powered-by']}>
-                    powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
-                </div>
+            </div>
+            <div className={styles['powered-by']}>
+                powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
             </div>
         </div>
     );
