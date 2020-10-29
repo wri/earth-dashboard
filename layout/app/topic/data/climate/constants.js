@@ -33,5 +33,6 @@ export const CLIMATE_CHALLENGE_SECTION_DATA = {
             Faced with this prospect, countries, corporations and citizens must work together to realize 
             a post fossil fuels era. 
         </p>
-    ]
+    ],
+    photoAttribution: 'Photo by Daniel Moqvist on Unsplash'
 }

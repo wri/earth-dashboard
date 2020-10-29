@@ -15,6 +15,7 @@ import ChallengeToOurGlobalCommons from './challenge-to-our-global-commons-secti
 import NavigationDots from 'components/ui/navigation-dots';
 import FreshWaterScrollyTelling from './freshwater/scrolly-telling';
 import ForestsScrollyTelling from './forests/scrolly-telling';
+import ClimateScrollyTelling from './climate/scrolly-telling';
 
 // styles
 import styles from './topic-data.module.scss';
@@ -31,7 +32,6 @@ import {
 function LayoutTopicData(props) {
   const { topic, topicData, widgets } = props;
   const router = useRouter();
-  const isBrowser = typeof window !== 'undefined';
   const DEFAULT_IN_VIEW_THRESHOLD = 0.3;
   const { ref: scrollyTellingRef, inView: scrollyTellingInView } = useInView({ threshold: 0.1 });
   const { ref: changeAgentsRef, inView: changeAgentsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
@@ -59,6 +59,8 @@ function LayoutTopicData(props) {
         return <FreshWaterScrollyTelling />
       case FORESTS:
         return <ForestsScrollyTelling topic={topic} />
+      case CLIMATE:
+        return <ClimateScrollyTelling topic={topic} />
       default:
         return <div />;
     }

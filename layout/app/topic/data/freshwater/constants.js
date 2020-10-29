@@ -33,7 +33,8 @@ export const FRESHWATER_CHALLENGE_SECTION_DATA = {
         <p>
             Scroll down for more on ways we can reset and rebalance our relationship with water.
         </p>
-    ]
+    ],
+    photoAttribution: 'Photo by Dan Gold on Unsplash'
 };
 
 export const FRESHWATER_DIVE_INTO_THE_DATA_DATA = {
