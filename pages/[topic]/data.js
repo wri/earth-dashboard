@@ -7,7 +7,7 @@ import { fetchWidget } from 'services/widget';
 // components
 import LayoutTopicData from 'layout/app/topic/data';
 
-function TopicDataPage() {
+function TopicDataPage({ topicData, widgets }) {
   return (<LayoutTopicData topicData={topicData} widgets={widgets} />);
 }
 
