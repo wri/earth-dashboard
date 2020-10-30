@@ -2,6 +2,7 @@ import React from 'react';
 
 // Widget Editor
 import Renderer from '@widget-editor/renderer';
+import RwAdapter from '@widget-editor/rw-adapter';
 
 // components
 import CombinedWidget from 'components/widgets/combined';
@@ -13,7 +14,7 @@ import {
   COMBINED_WIDGET_TYPE,
   NEWS_WIDGET_TYPE,
   DYNAMIC_TEXT_WIDGET_TYPE
-} from '../constants';
+} from 'components/admin/data/widgets/form/constants';
 
 // styles
 import styles from './widget-preview.module.scss';
@@ -33,7 +34,10 @@ function WidgetPreview(props) {
   return (
     <div className={styles['c-widget-preview']}>
       {useRenderer &&
-        <Renderer widgetConfig={widgetConfig} />
+        <Renderer
+          widgetConfig={widgetConfig} 
+          adapter={RwAdapter}
+        />
       }
       {isEmbed &&
         <iframe

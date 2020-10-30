@@ -6,7 +6,7 @@ import { setLocale } from 'redactions/common';
 
 import { setUser } from 'slices/user';
 
-import LayoutAdminComponent from './layout-admin-component';
+import LayoutAdminComponent from './component';
 
 export default connect(
   state => ({

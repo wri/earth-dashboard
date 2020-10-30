@@ -2,7 +2,6 @@
  * Structure:
  *
  * .l-page
- * |-.l-header
  * |-.l-content
  * |-.l-postcontent
  * |-.l-footer
@@ -26,81 +25,4 @@
     }
   }
 
-  // Header
-  .c-page-header,
-  .l-page-header {
-    background-color: $sea-blue;
-    margin: -($header-main-height-mobile + $header-secondary-height) 0 0;
-    padding: ($header-main-height-mobile + $header-secondary-height) 0 0;
-
-    @media screen and (min-width: map-get($breakpoints, medium)) {
-      margin: -($header-main-height + $header-secondary-height) 0 0;
-      padding: ($header-main-height + $header-secondary-height) 0 0;
-    }
-
-    &.-admin {
-      background-color: $sea-blue;
-    }
-
-    .page-header-content {
-      color: $alt-font-color;
-      padding: $margin-size-small 0 $margin-size-small;
-
-      h1 {
-        color: $alt-font-color;
-        margin-bottom: 0;
-      }
-
-      h3 {
-        color: $alt-font-color;
-        margin: $space * 2 0px $space * 5;
-        font-weight: $font-weight-light;
-      }
-
-      &.-with-tabs {
-        padding: $margin-size-small 0 0;
-      }
-
-      @media screen and (min-width: map-get($breakpoints, medium)) {
-        padding: $margin-size-small 0 $margin-size;
-
-        h1 {
-          margin-bottom: inherit;
-        }
-      }
-    }
-
-    .page-header-title {
-      color: $alt-font-color;
-    }
-
-    .page-header-info {
-      margin: $space * 2 0 0;
-
-      a {
-        color: inherit;
-      }
-
-      ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        list-style: none;
-
-        li {
-          margin: 0 0 0 $space * 4;
-          word-break: break-word;
-
-          &:first-child{ margin: 0; }
-
-          a {
-            color: $white;
-          }
-        }
-      }
-    }
-  }
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import d3 from 'd3';
 import Renderer from '@widget-editor/renderer';
+import RwAdapter from '@widget-editor/rw-adapter';
 
 // components
 import LayoutEmbed from 'layout/layout/layout-embed';
@@ -243,7 +244,10 @@ class LayoutEmbedWidget extends PureComponent {
           <div className="widget-content">
             {typeof window !== 'undefined' && 
             
-              <Renderer widgetConfig={widget.widgetConfig} />
+              <Renderer
+                widgetConfig={widget.widgetConfig} 
+                adapter={RwAdapter}
+              />
             }
             {modalOpened && this.getModal()}
           </div>

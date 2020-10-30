@@ -34,7 +34,7 @@
         line-height: 14px;
         font-size: 10px;
         font-weight: $font-weight-bold;
-        background: $mango;
+        background: $climate-light;
       }
   
       &:after {
@@ -46,17 +46,17 @@
         bottom: 0;
         left: 50%;
         opacity: 0;
-        background: $mango;
+        background: $climate-light;
         transform: translate(-50%,0);
         transition: all $animation-time $ease-in-out-sine;
       }
   
       &:hover {
-        color: $mango;
+        color: $climate-light;
       }
   
       &.-active {
-        color: $mango;
+        color: $climate-light;
   
         &:after {
           height: 5px;

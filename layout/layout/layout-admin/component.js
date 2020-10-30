@@ -79,15 +79,6 @@ class LayoutAdmin extends PureComponent {
       if (Progress && Progress.Component.instance) Progress.hideAll();
     };
 
-    if (window.Transifex) {
-      window.Transifex.live.onReady(() => {
-        window.Transifex.live.onTranslatePage((locale) => {
-          this.props.setLocale(locale);
-          window.location.reload();
-        });
-      });
-    }
-
     // Google Analytics
     if (!window.GA_INITIALIZED) {
       initGA();
@@ -100,7 +91,6 @@ class LayoutAdmin extends PureComponent {
     const {
       title,
       description,
-      pageHeader,
       className
     } = this.props;
     const { loggingIn, loggedIn } = this.state;
@@ -120,7 +110,7 @@ class LayoutAdmin extends PureComponent {
 
             <Progress.Component />
 
-            <Header pageHeader={pageHeader} />
+            <Header />
 
             {this.props.children}
 

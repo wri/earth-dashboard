@@ -2,89 +2,117 @@
 
 .c-freshwater-scrolly-telling {
     overflow: initial;
-    padding: 100px 200px 100px 200px;
+    padding: 33vh 0px 20vh 0px;
     background-color: $grey-lighter;
 
     .story {
-        .water-drop-container {
-            position: sticky;
-            top: 20vh;
-            margin-left: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
 
-            &.-mobile {
-                margin-left: 0px;
-            }
+        &.water-drop-story {
+            padding: 0px 15% 0px 15%;
 
-            .water-drop-elements {
-                position: relative;
+            .water-drop-container {
+                position: sticky;
+                top: 33vh;
+                margin-left: 50%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
-                .water-drop-plus-background {
+    
+                &.-mobile {
+                    margin-left: 0px;
+                }
+    
+                .water-drop-elements {
+                    position: relative;
                     display: flex;
                     justify-content: center;
                     align-items: center;
     
-                    .water-drop-background {
-                        width: 100%;
-                    }
-        
-                    .water-drop {
-                        position: absolute;
-                        top: -23%;
-                        left: 33%;
+                    .water-drop-plus-background {
                         display: flex;
                         justify-content: center;
-                        width: 33%;
+                        align-items: center;
+        
+                        .water-drop-background {
+                            width: 100%;
+                        }
+            
+                        .water-drop {
+                            position: absolute;
+                            top: -23%;
+                            left: 33%;
+                            display: flex;
+                            justify-content: center;
+                            width: 33%;
+                        }
                     }
-                }
-                
-                .arrow-container {
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-
-                    img {
-                        margin: -7% 0px 0px 70%;
-                        height: 65%;
+                    
+                    .arrow-container {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+    
+                        img {
+                            margin: -7% 0px 0px 70%;
+                            height: 65%;
+                        }
                     }
-                }
-    
-                .baseline-water-stress-container {
-                    position: absolute;
-                    display: flex;
-                    align-items: center;
-                    left: -16%;
-                    top: 10%;
-                    width: 100%;
-    
-                    .divider-container {
+        
+                    .baseline-water-stress-container {
+                        position: absolute;
                         display: flex;
-                        flex-direction: column;
-                        color: $freshwater-dark;
-                        font-size: 14px;
-                        font-family: 'Barlow Condensed';
-                    }
+                        align-items: center;
+                        left: -16%;
+                        top: 10%;
+                        width: 100%;
+        
+                        .divider-container {
+                            display: flex;
+                            flex-direction: column;
+                            color: $freshwater-dark;
+                            font-size: 14px;
+                            font-family: 'Barlow Condensed';
+                        }
+        
+                        .arrow-up-and-down-container {
+                            margin-left: 5%;
+                        }
     
-                    .arrow-up-and-down-container {
-                        margin-left: 5%;
-                    }
-
-                    &.-high-water-stress-risk {
-                        top: 30%
+                        &.-high-water-stress-risk {
+                            top: 30%
+                        }
                     }
                 }
             }
         }
+        
+        &.worldmap-story {
+            margin-top: 30vh;
 
-        .worldmap-container {
-            position: sticky;
-            top: 20vh;
-            width: 100%;
+            .worldmap-container {
+                position: sticky;
+                top: 20vh;
+                width: 100%;
+
+                .worldmap-image {
+                    width: 100%;
+                }
+
+                .water-drop-location {
+                    position: absolute;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+
+            .text-box-container {
+                margin-left: 15%;
+
+                h6 {
+                    margin: 0px 0px 15px 0px;
+                    font-size: 16px;
+                }
+            }
         }
 
         .steps {
@@ -98,7 +126,6 @@
             .text-box-container {
                 position: relative;
                 max-width: 400px;
-                background-color: $white;
                 margin-bottom: 100vh;
             }
         }

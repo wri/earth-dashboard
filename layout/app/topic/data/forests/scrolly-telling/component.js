@@ -65,6 +65,7 @@ function ForestsScrollyTelling({ topic }) {
                         <Scrollama
                             onStepEnter={onStepEnter}
                             offset={0.6}
+                            debug
                         >
                             {FORESTS_STEPS.map((step, stepIndex) => {
 

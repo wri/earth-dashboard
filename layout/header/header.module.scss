@@ -8,6 +8,11 @@
   width: 100%;
   padding-top: 4 * $space;
   z-index: 3; // because of the particles
+  
+  &.-mobile {
+    justify-content: flex-end;
+    padding: 16px;
+  }
 
   .logo-container {
     position: absolute;
@@ -24,7 +29,7 @@
     border-radius: 24px;
     background-color: $grey-darkest;
     cursor: pointer;
-    z-index: 4;
+    z-index: 5;
     transition: transform 0.4s;
 
     &:hover {
@@ -65,32 +70,94 @@
       padding: 180px 0px 100px 0px;
       display: flex;
 
+      &.-mobile {
+        flex-direction: column-reverse;
+        padding: 80px 0px 60px 0px;
+      }
+
       .left-container {
         width: 40%;
         padding-left: 110px;
         z-index: 4;
+
+        &.-mobile {
+          width: 100%;
+          padding: 45px 20px 0px 20px;
+
+          .left-links {
+            margin-top: 40px;
+          }
+        }
+
+        .left-links {
+          margin-top: 14 * $space;
+          list-style-type: none;
+          padding: 0px;
+
+          li {
+            margin-bottom: 6 * $space;
+
+            .share-icons-container {
+              img {
+                margin-right: 8 * $space;
+              }
+            }
+          }
+        }
+
+        .powered-by {
+          margin-top: 10 * $space;
+          color: $grey-darker;
+          font-size: 11px;
+
+          &.-mobile {
+            margin: 0px;
+          }
+
+          a {
+            color: $grey-darker;
+            font-family: 'Lato';
+            text-decoration: none;
+          }
+        }
       }
   
       .right-container {
         width: 60%;
         padding-right: 110px;
         z-index: 4;
+
+        &.-mobile {
+          width: 100%;
+          padding: 0px;
+
+          > ul {
+            padding: 0px 20px 0px 20px;
+          }
+        }
   
         .topic-container {
           margin-bottom: 8 * $space;
+          list-style-type: none;
 
           .topic-title {
             font-family: 'Barlow Condensed';
             font-size: 20px;
             margin-bottom: 4 * $space;
+
+            a {
+              color: $white;
+              text-decoration: none;
+            }
           }
 
           .topic-link-list {
-            margin-left: 8 * $space;
 
             .topic-link {
               margin-bottom: 2 * $space;
               font-size: 16px;
+              list-style-type: none;
+
               a {
                 text-decoration: none;
                 color: $grey-light;

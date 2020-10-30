@@ -9,7 +9,10 @@ function TextBox(props) {
 
     return (
         <div className={styles['c-text-box']}>
-            {text}
+            <div className={styles['background']} />
+            <div className={styles.content}>
+                {text}
+            </div>
         </div>
     );
 }

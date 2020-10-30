@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 // Widget editor
 import Renderer from '@widget-editor/renderer';
+import RwAdapter from '@widget-editor/rw-adapter';
 
 function WidgetChart(props) {
 
@@ -13,6 +14,7 @@ function WidgetChart(props) {
       <Renderer
         widgetConfig={widget.widgetConfig}
         thumbnail={thumbnail}
+        adapter={RwAdapter}
       />
     </div>
   );

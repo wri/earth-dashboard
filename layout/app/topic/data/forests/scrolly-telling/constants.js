@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 // styles
 import styles from './forests-scrolly-telling.module.scss';
 
@@ -11,7 +13,10 @@ export const FORESTS_STEPS = [
         },
         showYearCounter: false,
         stickyContainerElement: 
-            <div className={styles['-align-right']}>
+            <div className={classnames({
+                [styles['-align-right']]: true,
+                [styles['south-america-map']]: true
+            })}>
                 <img src="/static/images/scrolly-telling/forests/amazon_map.svg" />
             </div>
     },
@@ -75,7 +80,10 @@ export const FORESTS_STEPS = [
         yearValue: 2019,
         yearSubtitle: 'Main drivers of tree cover loss in the Amazon basin',
         stickyContainerElement: 
-            <div className={styles['-align-right']}>
+            <div className={classnames({
+                [styles['-align-right']]: true,
+                [styles['horizontal-bar-chart']]: true
+            })}>
                 <img src="/static/images/scrolly-telling/forests/drivers_of_tree_cover_loss_chart.png" />
             </div>
     },
@@ -88,8 +96,16 @@ export const FORESTS_STEPS = [
         },
         showYearCounter: false,
         stickyContainerElement: 
-            <div className={styles['-align-center']}>
-                <img src="/static/images/scrolly-telling/forests/tipping_point_chart.png" />
+            <div className={classnames({
+                [styles['-align-center']]: true,
+                [styles['chart-pulsating-dot']]: true
+            })}>
+                <div className={styles['chart']}>
+                    <img src="/static/images/scrolly-telling/forests/tipping_point_chart.svg" />
+                </div>
+                <div className="pulsating-circle">
+                    <img src="/static/images/scrolly-telling/forests/pulsating_dot.svg" />
+                </div>
             </div>
     }
 ];

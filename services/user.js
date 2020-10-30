@@ -22,6 +22,7 @@ export const checkAuth = () => {
     .then(response => response.data);
 };
 
+
 /**
  * Logs in a user based on the email + password combination
  * Check out the API docs for this endpoint {@link https://resource-watch.github.io/doc-api/index-rw.html#login-email-password|here}
@@ -33,6 +34,23 @@ export const loginUser = ({ email, password }) => {
   return controlTowerAPI
     .post('auth/login', { email, password })
     .then(response => response.data);
+};
+
+/**
+ * Logs out the user that's currently logged in (if any)
+ * Check out the API docs for this endpoint {@link https://resource-watch.github.io/doc-api/index-rw.html#login-email-password|here}
+ * @returns {Object}
+ */
+export const logoutUser = () => {
+  logger.info('Logout user');
+  return controlTowerAPI
+    .get('auth/logout')
+    .then((response) => {
+      if (response.status < 400 && !isServer) {
+        localStorage.removeItem('userToken');
+        window.location.reload();
+      } 
+    });
 };
 
 /**
@@ -107,49 +125,9 @@ export const resetPassword = ({ tokenEmail, password, repeatPassword }) => {
     });
 };
 
-/**
- * Upload user photo
- * @param {Blob} file file data
- * @param {Object} user
- */
-export const uploadPhoto = (file, user) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onload = () => {
-      const bodyObj = {
-        data: {
-          attributes: {
-            user_id: user.id,
-            avatar: reader.result
-          }
-        }
-      };
-
-      return fetch(`${process.env.WRI_API_URL}/profile`, {
-        method: 'POST',
-        body: JSON.stringify(bodyObj),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: user.token
-        }
-      })
-        .then(response => response.json())
-        .then(({ data }) => {
-          resolve(data.attributes.avatar.original);
-        });
-    };
-
-    reader.onerror = (error) => {
-      reject(error);
-    };
-  });
-
 export default {
   loginUser,
   forgotPassword,
   registerUser,
-  resetPassword,
-  uploadPhoto
+  resetPassword
 };

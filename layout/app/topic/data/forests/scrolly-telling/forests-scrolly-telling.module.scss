@@ -37,6 +37,26 @@
                         justify-content: center;
                         width: 100%;
                     }
+
+                    .south-america-map {
+                        height: 100vh;
+                    }
+
+                    .chart-pulsating-dot {
+                        position: relative;
+                        margin: 100px;
+
+                        .chart {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 100%;
+
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
                 }
 
                 .year-container {
@@ -48,7 +68,7 @@
                     justify-content: flex-start;
                     align-items: baseline;
                     font-family: 'Barlow Condensed';
-                    margin: 5 * $space;
+                    padding: 5 * $space;
     
                     .year-value {
                         display: flex;
@@ -75,7 +95,6 @@
             .text-box-container {
                 position: relative;
                 max-width: 400px;
-                background-color: $white;
                 margin-bottom: 100vh;
                 margin-left: 124px;
             }

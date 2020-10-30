@@ -1,4 +1,4 @@
 // component
-import AdminHeader from './component';
+import HeaderAdmin from './component';
 
-export default AdminHeader;
+export default HeaderAdmin;
