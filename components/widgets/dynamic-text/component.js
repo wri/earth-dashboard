@@ -14,58 +14,72 @@ function DynamicTextWidget(props) {
     const { widget } = props;
     const widgetConfig = widget && widget.widgetConfig;
     const dynamicTextWidgetConfig = widgetConfig && widgetConfig.dynamicTextWidgetConfig;
-    const { text, parameters, style } = dynamicTextWidgetConfig || {};
+    const { text, parameters, style, type } = dynamicTextWidgetConfig || {};
     const [loading, setLoading] = useState(true);
     const [textData, setTextData] = useState(null);
+    const textIsStatic = type === 'static';
 
     useEffect(() => {
-        setLoading(true);
-    
-        const promises = parameters.map(param => fetch(param.query).then(resp => resp.json()));
+        if (parameters?.length > 0) {
+            setLoading(true);
 
-        Promise.all(promises)
-            .then((responses) => {
-                setLoading(false);
-                const newValues = {};
-                responses.forEach((response) => {
-                    const data = response.data[0];
-                    const key = Object.keys(data)[0];
-                    const value = data[key];
-                    newValues[key] = value;
-                });
+            const paramRegexp = /\{\{([^\}]+)\}\}/g;
+            const splitArray = text.split(paramRegexp);
+            const paramsFound = text.match(paramRegexp)
+                .map(e => e.replace(/\{\{/g, '').replace(/\}\}/g, ''));
 
-                const paramRegexp = /\{\{([^\}]+)\}\}/g;
-                const splitArray = text.split(paramRegexp);
-                const paramsFound = text.match(paramRegexp)
-                    .map(e => e.replace(/\{\{/g, '').replace(/\}\}/g, ''));
-
+            if (textIsStatic) {
                 setTextData({
                     splitArray,
-                    paramsFound,
-                    newValues
+                    paramsFound
                 });
-            })
-            .catch(error => toastr.error(`Error fetching widget queries for ${widget.name}: ${error}`));
-      }, [widget]);
+            } else {
+                const promises = parameters.map(param => fetch(param.query).then(resp => resp.json()));
 
-    
+                Promise.all(promises)
+                    .then((responses) => {
+                        setLoading(false);
+                        const newValues = {};
+                        responses.forEach((response) => {
+                            const data = response.data[0];
+                            const key = Object.keys(data)[0];
+                            const value = data[key];
+                            newValues[key] = value;
+                        });
+
+                        setTextData({
+                            splitArray,
+                            paramsFound,
+                            newValues
+                        });
+                    })
+                    .catch(error => toastr.error(`Error fetching widget queries for ${widget.name}: ${error}`));
+            }
+        }
+    }, [widget]);
+
+
     const textElements = textData && textData.splitArray
         .map((currentStr) => {
             if (textData.paramsFound.includes(currentStr)) {
                 const currentParam = parameters.find(p => p.key === currentStr);
                 const { type, format, inputFormat, outputFormat } = currentParam;
-                const val = textData.newValues[currentStr];
                 let textValue;
 
-                if (type === 'number') {
-                    textValue = d3.format(format)(val)
-                } else if (type === 'date' ) {
-                    const parsedDate = timeParse(inputFormat)(val);
-                    textValue = timeFormat(outputFormat)(parsedDate);
+                if (textIsStatic) {
+                    textValue = currentStr;
+                } else {
+                    const val = textData.newValues[currentStr];
+                    if (type === 'number') {
+                        textValue = d3.format(format)(val)
+                    } else if (type === 'date') {
+                        const parsedDate = timeParse(inputFormat)(val);
+                        textValue = timeFormat(outputFormat)(parsedDate);
+                    }
                 }
-                
+
                 return (
-                    <span 
+                    <span
                         className={styles.parameter}
                         style={currentParam.style}
                     >
@@ -75,7 +89,7 @@ function DynamicTextWidget(props) {
                 return <span className={styles.text}>{currentStr}</span>;
             }
         });
-    
+
     return (
         <div
             className={styles['c-dynamic-text-widget']}

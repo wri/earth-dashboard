@@ -58,10 +58,10 @@ class Login extends PureComponent {
         // sign-in user
         loginUser(userSettings)
           .then((data) => {
-            setUser(data);
+            setUser(data?.data);
             localStorage.setItem('userToken', data?.data?.token);
             // redirects the user to /admin once logged-in
-            Router.push('/admin');
+            Router.push('/admin/data/datasets');
           })
           .catch((err) => {
             const { status, statusText } = err.response;

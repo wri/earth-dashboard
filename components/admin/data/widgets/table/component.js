@@ -153,12 +153,8 @@ class WidgetsTable extends PureComponent {
           input={{ placeholder: 'Search widget' }}
           link={{
             label: 'New widget',
-            route: '/admin/data',
-            params: {
-              tab: 'widgets',
-              id: 'new',
-              dataset
-            }
+            route: '/admin/data/widgets/new',
+            params: { dataset }
           }}
           onSearch={this.onSearch}
         />
@@ -174,8 +170,8 @@ class WidgetsTable extends PureComponent {
             actions={{
               show: true,
               list: [
-                { name: 'Edit', route: '/admin/data', params: { tab: 'widgets', subtab: 'edit', id: '{{id}}', dataset }, show: true, component: EditAction },
-                { name: 'Remove', route: '/admin/data', params: { tab: 'widgets', subtab: 'remove', id: '{{id}}' }, component: DeleteAction }
+                { name: 'Edit', route: '/admin/data/widgets/edit', params: { dataset }, show: true, component: EditAction },
+                { name: 'Remove', route: '/admin/data/widgets/remove', params: { }, component: DeleteAction }
               ]
             }}
             sort={{
