@@ -81,7 +81,7 @@ class LayoutAdminDataDetail extends PureComponent {
         // TO-DO: fill description
         description="Data detail..."
       >
-        <div className="c-page-header -admin">
+        <div className="c-admin-page-header">
           <div className="l-container -admin">
             <div className="row">
               <div className="column small-12">

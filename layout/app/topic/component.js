@@ -68,7 +68,7 @@ function LayoutTopic(props) {
               return (
                 <div
                   className={styles['indicator-block']}
-                  key={widgetObj.id}
+                  key={widgetObj?.id}
                 >
                   <WidgetPreview widget={widgetObj} />
                 </div>

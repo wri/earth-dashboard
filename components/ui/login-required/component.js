@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // components
 import Modal from 'components/modal';
-import LoginModal from 'components/modal/login-modal';
+import LoginModal from 'components/login';
 
 class LoginRequired extends PureComponent {
   static propTypes = {
@@ -43,7 +43,7 @@ class LoginRequired extends PureComponent {
           isOpen={isOpen}
           onRequestClose={this.closePrompt}
         >
-          <LoginModal />
+          <Login />
         </Modal>
       </Fragment>
     );

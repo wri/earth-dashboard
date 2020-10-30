@@ -225,7 +225,7 @@ class Step1 extends Component {
                     {...(elem.value === widgetType && { selected: true })}
                   >
                     {elem.label}
-                   </option>))}
+                  </option>))}
               </select>
             </div>
             <div className={styles['json-editor-container']}>
@@ -234,7 +234,9 @@ class Step1 extends Component {
                 onChange={event => this.setState({ newWidgetTypesEditorCode: event.target.value })}
                 value={newWidgetTypesEditorCode}
               />
-              <WidgetPreview widget={previewSource} />
+              <div className={styles['widget-preview-container']}>
+                <WidgetPreview widget={previewSource} />
+              </div>
             </div>
             <div className={styles['preview-actions']}>
               <button

@@ -1,28 +1,34 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import Particles from 'react-particles-js';
 
 // components
 import Layout from 'layout/layout/layout-app';
-import LoginModal from 'components/modal/login-modal';
+import Login from 'components/login';
+
+// utils
+import { PARTICLES_DEFINITION } from 'utils/particles';
 
 // styles
-import styles from './log-in.module.scss';
+import styles from './sign-in.module.scss';
 
-class SigIn extends PureComponent {
-  render() {
-    return (
-      <Layout
-        className={styles['l-log-in']}
-        title="Resource Watch Sign-in/Register"
-        description="Resource Watch Sign-in/Register"
-      >
-        <div className="l-container">
-          <div className="content">
-            <LoginModal />
-          </div>
+function SigIn() {
+  return (
+    <Layout
+      className={styles['sign-in']}
+      title="Resource Watch Sign-in/Register"
+      description="Resource Watch Sign-in/Register"
+    >
+      <Particles
+        className={styles.particles}
+        params={PARTICLES_DEFINITION}
+      />
+      <div className="l-container">
+        <div className="content">
+          <Login />
         </div>
-      </Layout>
-    );
-  }
+      </div>
+    </Layout>
+  );
 }
 
 export default SigIn;

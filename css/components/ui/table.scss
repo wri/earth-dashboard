@@ -155,8 +155,8 @@ $table-font-size: $font-size-small;
     }
 
     &.-failed {
-      color: $mango;
-      &:before { background-color: $mango; }
+      color: $climate-light;
+      &:before { background-color: $climate-light; }
     }
 
     &.-deleted {

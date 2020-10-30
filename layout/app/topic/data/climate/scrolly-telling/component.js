@@ -64,7 +64,6 @@ function ClimateScrollyTelling({ topic }) {
                         <Scrollama
                             onStepEnter={onStepEnter}
                             offset={0.6}
-                            debug
                         >
                             {CLIMATE_STEPS.map((step, stepIndex) => {
 
