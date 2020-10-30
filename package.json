@@ -134,6 +134,9 @@
     "build": "next build",
     "start": "next start"
   },
+  "engines": {
+    "node": "10.22.1"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
