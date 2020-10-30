@@ -40,8 +40,13 @@ module.exports = {
       {
         source: '/admin',
         destination: '/admin/data/datasets',
-        permanent: true,
+        permanent: true
       },
-    ]
+      {
+        source: '/admin/data',
+        destination: '/admin/data/datasets',
+        permanent: true
+      }
+    ];
   }
 };

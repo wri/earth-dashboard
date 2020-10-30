@@ -1,0 +1,18 @@
+@import 'css/settings';
+
+.c-header-admin {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: $freshwater-dark;
+    padding: 4 * $space;
+    color: $white;
+
+    .logo-container {
+        margin-left: 8 * $space;
+    }
+
+    .logout-button {
+        cursor: pointer;
+    }
+}

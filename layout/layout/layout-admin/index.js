@@ -4,7 +4,9 @@ import { toggleTooltip } from 'redactions/tooltip';
 import { updateIsLoading } from 'redactions/page';
 import { setLocale } from 'redactions/common';
 
-import LayoutAdminComponent from './layout-admin-component';
+import { setUser } from 'slices/user';
+
+import LayoutAdminComponent from './component';
 
 export default connect(
   state => ({
@@ -17,6 +19,7 @@ export default connect(
     setModalOptions,
     toggleTooltip,
     updateIsLoading,
-    setLocale
+    setLocale,
+    setUser
   }
 )(LayoutAdminComponent);

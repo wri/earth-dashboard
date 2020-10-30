@@ -35,11 +35,13 @@ export const DEFAULT_WIDGET_TYPE_OPTION = 'standard';
 export const LIST_WIDGET_TYPE = 'list';
 export const COMBINED_WIDGET_TYPE = 'combined';
 export const DYNAMIC_TEXT_WIDGET_TYPE = 'dynamic-text';
+export const STATIC_TEXT_WIDGET_TYPE = 'static-text';
 export const NEWS_WIDGET_TYPE = 'news';
 export const NEW_WIDGET_TYPES = [
   LIST_WIDGET_TYPE,
   COMBINED_WIDGET_TYPE,
   DYNAMIC_TEXT_WIDGET_TYPE,
+  STATIC_TEXT_WIDGET_TYPE,
   NEWS_WIDGET_TYPE
 ];
 
@@ -129,6 +131,28 @@ export const DYNAMIC_TEXT_WIDGET_TEMPLATE = {
   }
 };
 
+export const STATIC_TEXT_WIDGET_TEMPLATE = {
+  type: 'widget',
+  name: 'widget-name',
+  description: 'widget-description',
+  widgetConfig: {
+    type: 'static-text',
+    staticTextWidgetConfig: {
+      text: '{{2 billion hectares}} of degraded and deforested land worldwide could be restored, an area larger than South America',
+      parameters: [
+        {
+          key: '2 billion hectares',
+          style: {
+            'font-style': 'italic',
+            'font-weight': 'bold',
+            color: '#009A67'
+          }
+        }
+      ]
+    }
+  }
+};
+
 export const NEW_WIDGET_TYPES_TEMPLATES = [
   {
     id: LIST_WIDGET_TYPE,
@@ -141,6 +165,10 @@ export const NEW_WIDGET_TYPES_TEMPLATES = [
   {
     id: DYNAMIC_TEXT_WIDGET_TYPE,
     value: DYNAMIC_TEXT_WIDGET_TEMPLATE
+  },
+  {
+    id: STATIC_TEXT_WIDGET_TYPE,
+    value: STATIC_TEXT_WIDGET_TEMPLATE
   },
   {
     id: NEWS_WIDGET_TYPE,
@@ -160,6 +188,10 @@ export const NEW_WIDGET_TYPES_OPTIONS = [
   {
     label: 'Dynamic text',
     value: DYNAMIC_TEXT_WIDGET_TYPE
+  },
+  {
+    label: 'Static text',
+    value: STATIC_TEXT_WIDGET_TYPE
   },
   {
     label: 'News',

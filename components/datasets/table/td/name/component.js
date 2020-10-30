@@ -22,24 +22,20 @@ class NameTD extends PureComponent {
       linkToNewWidget
     } = this.props;
 
+    const newRoute = linkToNewWidget ? `${route}/widgets/new` : `${route}/datasets/${id}`;
+
     const params = linkToNewWidget ? 
       {
-        tab: 'widgets',
-        id: 'new',
         dataset: id,
         application: 'rw'
       } :
-      {
-        tab: 'datasets',
-        id
-      };
-
+      {};
 
     return (
       <td className="main">
         <Link href={
           {
-            pathname: route,
+            pathname: newRoute,
             query: params
           }}
         >
