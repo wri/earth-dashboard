@@ -17,10 +17,10 @@ TopicPage.getInitialProps = async (context) => {
 
   // Preload widgets data
   const dataArray = topicData?.[topic]?.topicPage?.data;
-  const widgetIDs = dataArray.filter(elem => elem.type === 'widget').map(elem => elem.id);
+  const widgetIDs = dataArray?.filter(elem => elem.type === 'widget').map(elem => elem.id);
   const widgets = [];
   console.log('widgetIDs', widgetIDs);
-  for (let i = 0; i < widgetIDs.length; i++) {
+  for (let i = 0; i < widgetIDs?.length; i++) {
     const widget = await fetchWidget(widgetIDs[i]);
     widgets.push(widget);
   }
