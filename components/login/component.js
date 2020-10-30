@@ -91,8 +91,6 @@ class Login extends PureComponent {
           <div className={styles['log-in-container']}>
             {loading && <Spinner className="-light" isLoading />}
             <h2 className="c-title">{register ? 'Sign up' : 'Sign in'}</h2>
-
-            <span>Access with your email</span>
             <form onSubmit={this.onSubmit}>
               <Field
                 ref={(c) => { if (c) FORM_ELEMENTS.elements.email = c; }}
