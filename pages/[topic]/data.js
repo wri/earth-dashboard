@@ -8,7 +8,7 @@ import { fetchWidget } from 'services/widget';
 import LayoutTopicData from 'layout/app/topic/data';
 
 function TopicDataPage() {
-  return (<LayoutTopicData  topicData={topicData} widgets={widgets} />);
+  return (<LayoutTopicData topicData={topicData} widgets={widgets} />);
 }
 
 TopicDataPage.getInitialProps = async (context) => {
@@ -19,7 +19,7 @@ TopicDataPage.getInitialProps = async (context) => {
   const dataArray = topicData?.[topic]?.diveIntoTheData?.data;
   const widgetIDs = dataArray?.map(elem => elem.id);
   const widgets = [];
-  for (let i=0; i < widgetIDs.length; i++) {
+  for (let i = 0; i < widgetIDs.length; i++) {
     const widget = await fetchWidget(widgetIDs[i]);
     widgets.push(widget);
   }

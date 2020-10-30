@@ -6,6 +6,7 @@ import { withRouter } from 'next/router'
 
 // Utils
 import { initGA, logPageView } from 'utils/analytics';
+import { checkAuth } from 'services/user';
 
 // Components
 import IconsRW from 'components/icons';
@@ -33,6 +34,11 @@ class LayoutAdmin extends PureComponent {
 
   static defaultProps = { className: null };
 
+  state = {
+    loggedIn: !!this.props.user.email,
+    loggingIn: false
+  }
+
   UNSAFE_componentWillMount() {
     // When a tooltip is shown and the router navigates to a
     // another page, the tooltip stays in place because it is
@@ -47,7 +53,22 @@ class LayoutAdmin extends PureComponent {
   }
 
   componentDidMount() {
-    const { router } = this.props;
+    const { router, setUser } = this.props;
+    const { loggedIn } = this.state;
+
+    if (!loggedIn) {
+      this.setState({ loggingIn: true });
+      checkAuth()
+        .then((response) => {
+          setUser(response);
+          this.setState({ loggingIn: false, loggedIn: true });
+        })
+        .catch(() => {
+          this.setState({ loggingIn: false });
+          router.push('/sign-in');
+        });
+    }
+
     router.onRouteChangeStart = () => {
       if (Progress && Progress.Component.instance) Progress.show();
       this.props.toggleTooltip(false);
@@ -82,22 +103,31 @@ class LayoutAdmin extends PureComponent {
       pageHeader,
       className
     } = this.props;
+    const { loggingIn, loggedIn } = this.state;
     const componentClass = classnames('l-page', { [className]: !!className });
 
     return (
       <div id="#main" className={componentClass}>
         <Head title={title} description={description} />
 
-        <Icons />
-        <IconsRW />
+        {loggingIn && (
+          <div>Logging in...</div>
+        )}
+        {!loggingIn && loggedIn && (
+          <>
+            <Icons />
+            <IconsRW />
 
-        <Progress.Component />
+            <Progress.Component />
 
-        <Header pageHeader={pageHeader} />
+            <Header pageHeader={pageHeader} />
 
-        {this.props.children}
+            {this.props.children}
 
-        <Toastr preventDuplicates transitionIn="fadeIn" transitionOut="fadeOut" />
+            <Toastr preventDuplicates transitionIn="fadeIn" transitionOut="fadeOut" />
+          </>
+        )}
+
       </div>
     );
   }

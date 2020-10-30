@@ -59,6 +59,7 @@ class LoginModal extends PureComponent {
         loginUser(userSettings)
           .then((data) => {
             setUser(data);
+            localStorage.setItem('userToken', data?.data?.token);
             // redirects the user to /admin once logged-in
             Router.push('/admin');
           })

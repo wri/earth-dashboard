@@ -2,6 +2,26 @@
 import { logger } from 'utils/logs';
 import { controlTowerAPI } from 'utils/axios';
 
+const isServer = typeof window === 'undefined';
+
+/**
+ * Logs in a user based on the email + password combination
+ * Check out the API docs for this endpoint {@link https://resource-watch.github.io/doc-api/index-rw.html#login-email-password|here}
+ * @param {Object} options
+ * @returns {Object}
+ */
+export const checkAuth = () => {
+  logger.info('Check user logged in');
+  return controlTowerAPI
+    .get('auth/check-logged', {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${!isServer && localStorage.getItem('userToken')}`
+      }
+    })
+    .then(response => response.data);
+};
+
 /**
  * Logs in a user based on the email + password combination
  * Check out the API docs for this endpoint {@link https://resource-watch.github.io/doc-api/index-rw.html#login-email-password|here}
