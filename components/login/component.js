@@ -58,7 +58,10 @@ class Login extends PureComponent {
         // sign-in user
         loginUser(userSettings)
           .then((data) => {
-            setUser(data?.data);
+            setUser({
+              ...data?.data,
+              token: `Bearer ${data?.data.token}`
+            });
             localStorage.setItem('userToken', data?.data?.token);
             // redirects the user to /admin once logged-in
             Router.push('/admin/data/datasets');

@@ -8,15 +8,16 @@ import { timeFormat, timeParse } from 'd3-time-format';
 import Spinner from 'components/ui/spinner';
 
 // styles
-import styles from './dynamic-text-widget.module.scss';
+import styles from './static-text-widget.module.scss';
 
-function DynamicTextWidget(props) {
+function StaticTextWidget(props) {
     const { widget } = props;
     const widgetConfig = widget && widget.widgetConfig;
-    const dynamicTextWidgetConfig = widgetConfig && widgetConfig.dynamicTextWidgetConfig;
-    const { text, parameters, style, type } = dynamicTextWidgetConfig || {};
+    const staticTextWidgetConfig = widgetConfig && widgetConfig.staticTextWidgetConfig;
+    const { text, parameters, style, type } = staticTextWidgetConfig || {};
     const [loading, setLoading] = useState(true);
     const [textData, setTextData] = useState(null);
+    const textIsStatic = type === 'static';
 
     useEffect(() => {
         if (parameters?.length > 0) {
@@ -27,26 +28,10 @@ function DynamicTextWidget(props) {
             const paramsFound = text.match(paramRegexp)
                 .map(e => e.replace(/\{\{/g, '').replace(/\}\}/g, ''));
 
-            const promises = parameters.map(param => fetch(param.query).then(resp => resp.json()));
-
-            Promise.all(promises)
-                .then((responses) => {
-                    setLoading(false);
-                    const newValues = {};
-                    responses.forEach((response) => {
-                        const data = response.data[0];
-                        const key = Object.keys(data)[0];
-                        const value = data[key];
-                        newValues[key] = value;
-                    });
-
-                    setTextData({
-                        splitArray,
-                        paramsFound,
-                        newValues
-                    });
-                })
-                .catch(error => toastr.error(`Error fetching widget queries for ${widget.name}: ${error}`));
+            setTextData({
+                splitArray,
+                paramsFound
+            });
 
         }
     }, [widget]);
@@ -56,16 +41,7 @@ function DynamicTextWidget(props) {
         .map((currentStr) => {
             if (textData.paramsFound.includes(currentStr)) {
                 const currentParam = parameters.find(p => p.key === currentStr);
-                const { type, format, inputFormat, outputFormat } = currentParam;
-                let textValue;
-
-                const val = textData.newValues[currentStr];
-                if (type === 'number') {
-                    textValue = d3.format(format)(val)
-                } else if (type === 'date') {
-                    const parsedDate = timeParse(inputFormat)(val);
-                    textValue = timeFormat(outputFormat)(parsedDate);
-                }
+                let textValue = currentStr;
 
                 return (
                     <span
@@ -81,7 +57,7 @@ function DynamicTextWidget(props) {
 
     return (
         <div
-            className={styles['c-dynamic-text-widget']}
+            className={styles['c-static-text-widget']}
             {...(style && { style })}
         >
             <Spinner isLoading={loading} className="-relative -light" />
@@ -92,8 +68,8 @@ function DynamicTextWidget(props) {
     );
 }
 
-DynamicTextWidget.propTypes = {
+StaticTextWidget.propTypes = {
     widget: PropTypes.object.isRequired
 };
 
-export default DynamicTextWidget;
+export default StaticTextWidget;
