@@ -45,7 +45,10 @@ function ClimateScrollyTelling({ topic }) {
                             </div>
                         } */}
                         {currentStep.showYearCounter &&
-                            <div className={styles['year-container']}>
+                            <div
+                                className={styles['year-container']}
+                                style={{ backgroundColor: currentStep.yearBackgroundColor }}
+                            >
                                 <div
                                     className={styles['year-value']}
                                 >
