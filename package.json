@@ -132,7 +132,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p $PORT"
   },
   "engines": {
     "node": "10.22.1"
