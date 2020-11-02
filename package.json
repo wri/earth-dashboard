@@ -14,6 +14,7 @@
     "@widget-editor/widget-editor": "^2.4.1",
     "autoprefixer": "^9.4.2",
     "axios": "^0.18.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "basic-auth": "1.1.0",
     "bcrypt": "^3.0.2",
     "better-npm-run": "^0.1.1",
@@ -112,7 +113,6 @@
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-eslint": "^9.0.0",
-    "babel-plugin-module-resolver": "^4.0.0",
     "babel-preset-env": "1.6.0",
     "colors": "1.1.2",
     "eslint": "^4.9.0",
