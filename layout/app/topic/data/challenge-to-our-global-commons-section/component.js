@@ -24,7 +24,6 @@ function ChallengeToOurGlobalCommons(props) {
     <div
       className={styles['c-challenge-to-our-global-commons-section']}
       id="challenge-to-our-global-commons"
-
     >
       <div
         className={styles['background-container']}
@@ -53,7 +52,8 @@ function ChallengeToOurGlobalCommons(props) {
                     <div
                       className={classnames({
                         [styles['challenge-paragraph']]: true,
-                        [styles[`-${topic}`]]: true
+                        [styles[`-${topic}`]]: true,
+                        [styles['-mobile']]: showMobileVersion
                       })}
                     >
                       {paragraph}
