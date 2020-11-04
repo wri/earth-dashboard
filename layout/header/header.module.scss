@@ -7,7 +7,7 @@
   justify-content: center;
   width: 100%;
   padding-top: 4 * $space;
-  z-index: 3; // because of the particles
+  z-index: 10; // because of navigation dots menu in story telling pages
   
   &.-mobile {
     justify-content: flex-end;
@@ -61,7 +61,9 @@
     color: $grey-light;
 
     .particles {
-        position: absolute;
+        position: fixed;
+        top: 0px;
+        left: 0px;
         height: 100%;
         width: 100%;
     }

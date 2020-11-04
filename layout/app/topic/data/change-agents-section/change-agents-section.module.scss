@@ -5,6 +5,10 @@
     width: 100%;
     padding: 110px;
 
+    &.-mobile {
+        padding: 12 * $space 6 * $space 12 * $space 6 * $space;
+    }
+
     h2 {
         font-family: 'Barlow Condensed';
         color: $white;

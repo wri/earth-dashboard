@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
-import { useMediaQuery } from 'react-responsive';
+
+// utils
+import { getShowMobileVersion } from 'utils/responsive';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -39,12 +41,7 @@ function LayoutTopicData(props) {
   const { ref: challengeRef, inView: challengeInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: creditsRef, inView: creditsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
-
-  const isTabletOrMobile = useMediaQuery({ maxWidth: 720 });
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: '(max-device-width: 1224px)'
-  });
-  const showMobileVersion = isTabletOrMobile || isTabletOrMobileDevice;
+  const showMobileVersion = getShowMobileVersion();
 
   const getSectionInView = () => {
     if (scrollyTellingInView) {

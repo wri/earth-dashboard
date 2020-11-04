@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 // utils
 import { getColorByTopic } from 'utils/topics';
+import { getShowMobileVersion } from 'utils/responsive';
 
 // styles
 import styles from './credits-resources-section.module.scss';
@@ -10,13 +12,21 @@ import styles from './credits-resources-section.module.scss';
 function CreditsResourcesSection(props) {
   const { topic } = props;
   const topicColor = getColorByTopic(topic);
+  const showMobileVersion = getShowMobileVersion();
 
   return (
     <div
       id="credits-and-resources"
-      className={styles['c-credits-resources-section']}
+      className={classnames({
+        [styles['c-credits-resources-section']]: true,
+        [styles['-mobile']]: showMobileVersion
+      })}
     >
-      <div className={styles['credits-resources-container']}>
+      <div className={classnames({
+          [styles['credits-resources-container']]: true,
+          [styles['-mobile']]: showMobileVersion
+        })}
+      >
         <h2>Credits and <span style={{ color: topicColor }}>Resources</span></h2>
         <div className={styles['credits-field']}>
           <div className={styles['field-title']}>
@@ -35,7 +45,11 @@ function CreditsResourcesSection(props) {
           </div>
         </div>
       </div>
-      <div className={styles['share-container']}>
+      <div className={classnames({
+          [styles['share-container']]: true,
+          [styles['-mobile']]: showMobileVersion
+        })}
+      >
         <div className={styles['share-title']}>
           SHARE THIS PAGE
         </div>

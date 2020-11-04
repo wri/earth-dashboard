@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
-import { useMediaQuery } from 'react-responsive';
 import classnames from 'classnames';
 
 // components
@@ -8,6 +7,7 @@ import TextBox from 'components/scrolly-telling/text-box';
 
 // utils
 import { getColorByTopic } from 'utils/topics';
+import { getShowMobileVersion } from 'utils/responsive';
 
 // constants
 import { OCEANS_STEPS } from './constants';
@@ -18,7 +18,7 @@ import styles from './oceans-scrolly-telling.module.scss';
 function OceansScrollyTelling({ topic }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
-    const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
+    const showMobileVersion = getShowMobileVersion();
     const currentStep = OCEANS_STEPS[currentStepIndex];
     const topicColor = getColorByTopic(topic);
 
@@ -39,7 +39,7 @@ function OceansScrollyTelling({ topic }) {
                         {/* {currentStep.stickyContainerElement &&
                             <div className={classnames({
                                 [styles['sticky-element']]: true,
-                                [styles['-mobile']]: isTabletOrMobile
+                                [styles['-mobile']]: showMobileVersion
                             })}>
                                 {currentStep.stickyContainerElement}
                             </div>
