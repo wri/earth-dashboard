@@ -7,6 +7,10 @@
     background-color: $grey-lightest;
     color: $black;
 
+    &.-mobile {
+        padding: 12 * $space 6 * $space 12 * $space 6 * $space;
+    }
+
     h2 {
         font-family: 'Barlow Condensed';
         font-size: 36px;

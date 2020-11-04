@@ -10,6 +10,7 @@ import {
   getColorByTopic,
   getDiveIntoTheDataDataByTopic
 } from 'utils/topics';
+import { getShowMobileVersion } from 'utils/responsive';
 
 // styles
 import styles from './dive-into-the-data-section.module.scss';
@@ -22,11 +23,15 @@ function DiveIntoTheDataSection({
   const topicColor = getColorByTopic(topic);
   const dataArray = topicData[topic].diveIntoTheData.data;
   const isBrowser = typeof window !== 'undefined';
+  const showMobileVersion = getShowMobileVersion();
 
   return (
     <div
       id="dive-into-the-data"
-      className={styles['c-dive-into-the-data-section']}
+      className={classnames({
+        [styles['c-dive-into-the-data-section']]: true,
+        [styles['-mobile']]: showMobileVersion
+      })}
     >
       <h2>Dive into the <span style={{ color: topicColor }}>Data</span></h2>
       <p className={styles.subtitle}>{getDiveIntoTheDataDataByTopic(topic)?.description}</p>
