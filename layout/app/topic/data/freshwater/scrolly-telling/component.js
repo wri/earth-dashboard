@@ -42,7 +42,8 @@ function FreshwaterScrollyTelling(props) {
             <div
                 className={classnames({
                     [styles.story]: true,
-                    [styles['water-drop-story']]: true
+                    [styles['water-drop-story']]: true,
+                    [styles['-mobile']]: showMobileVersion
                 })}
             >
                 <div className={classnames({
@@ -129,7 +130,12 @@ function FreshwaterScrollyTelling(props) {
 
                                 return (
                                     <Step data={stepIndex} key={`step-${stepIndex}`}>
-                                        <div className={styles['text-box-container']}>
+                                        <div 
+                                            className={classnames({
+                                                [styles['text-box-container']]: true,
+                                                [styles['-mobile']]: showMobileVersion
+                                            })}
+                                        >
                                             <TextBox text={step.textPanel.text} />
                                         </div>
                                     </Step>

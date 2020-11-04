@@ -8,10 +8,19 @@
     align-items: center;
     padding: 100px 110px 100px 110px;
 
+    &.-mobile {
+        padding: 12 * $space 6 * $space 12 * $space 6 * $space;
+        flex-direction: column;
+    }
+
     .credits-resources-container {
         width: 50%;
         height: 100%;
         padding-right: 110px;
+
+        &.-mobile {
+            width: 100%;
+        }
 
         h2 {
             font-size: 36px;
@@ -41,6 +50,11 @@
     .share-container {
         width: 50%;
         height: 100%;
+
+        &.-mobile {
+            width: 100%;
+            margin-top: 6 * $space;
+        }
 
         .share-title {
             font-family: 'Barlow Condensed';

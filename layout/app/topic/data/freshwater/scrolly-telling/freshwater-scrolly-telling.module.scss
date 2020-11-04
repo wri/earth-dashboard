@@ -10,6 +10,10 @@
         &.water-drop-story {
             padding: 0px 15% 0px 15%;
 
+            &.-mobile {
+                padding: 0px 16px 0px 16px;
+            }
+
             .water-drop-container {
                 position: sticky;
                 top: 33vh;
@@ -19,7 +23,7 @@
                 align-items: center;
     
                 &.-mobile {
-                    margin-left: 0px;
+                    margin: 50px;
                 }
     
                 .water-drop-elements {
