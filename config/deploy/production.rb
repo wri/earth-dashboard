@@ -6,5 +6,6 @@ set :default_env, {
   'NODE_ENV' => 'production',
   'WRI_API_URL' => 'https://api.resourcewatch.org/v1',
   'CONTROL_TOWER_URL' => 'https://api.resourcewatch.org',
-  'CALLBACK_URL' => 'https://resourcewatch.org/auth'
+  'CALLBACK_URL' => 'https://resourcewatch.org/auth',
+  'APPLICATIONS' => 'earthhq'
 }

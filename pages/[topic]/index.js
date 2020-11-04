@@ -12,16 +12,18 @@ function TopicPage({ topicData, widgets }) {
 }
 
 TopicPage.getInitialProps = async (context) => {
-  const topic = context.query.topic;
+  const topic = context?.query?.topic;
   const topicData = await fetchTopicData('/data/TopicPagesData.json');
 
   // Preload widgets data
   const dataArray = topicData?.[topic]?.topicPage?.data;
-  const widgetIDs = dataArray?.filter(elem => elem.type === 'widget').map(elem => elem.id);
+  const widgetIDs = dataArray?.filter(elem => elem?.type === 'widget')?.map(elem => elem?.id);
   const widgets = [];
-  for (let i=0; i < widgetIDs.length; i++) {
-    const widget = await fetchWidget(widgetIDs[i]);
-    widgets.push(widget);
+  if (widgetIDs) {
+    for (let i = 0; i < widgetIDs?.length; i++) {
+      const widget = await fetchWidget(widgetIDs?.[i]);
+      widgets.push(widget);
+    }
   }
 
   return { topicData, widgets };
