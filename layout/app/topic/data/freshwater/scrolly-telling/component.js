@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
-import { useMediaQuery } from 'react-responsive';
 import classnames from 'classnames';
 
 // components
 import TextBox from 'components/scrolly-telling/text-box';
 
 // utils
-import { breakpoints } from 'utils/responsive';
+import { getShowMobileVersion } from 'utils/responsive';
 
 // constants
 import {
@@ -23,11 +22,7 @@ function FreshwaterScrollyTelling(props) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [currentStepIndexWorldMap, setCurrentStepIndexWorldMap] = useState(0);
     const isBrowser = typeof window !== 'undefined';
-    const isTabletOrMobile = useMediaQuery({ maxWidth: breakpoints.medium });
-    const isTabletOrMobileDevice = useMediaQuery({
-        query: `(max-device-width: ${breakpoints.large}px)`
-    });
-    const showMobileVersion = isTabletOrMobileDevice || isTabletOrMobile;
+    const showMobileVersion = getShowMobileVersion();
 
     // This callback fires when a Step hits the offset threshold. It receives the
     // data prop of the step, which in this demo stores the index of the step.

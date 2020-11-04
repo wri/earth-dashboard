@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
 import WidgetPreview from 'components/widgets/preview';
-import { useMediaQuery } from 'react-responsive';
 
 // utils
 import {
@@ -13,7 +12,7 @@ import {
   FORESTS,
   FRESHWATER
 } from 'utils/topics';
-import { breakpoints } from 'utils/responsive';
+import { getShowMobileVersion } from 'utils/responsive';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -29,12 +28,7 @@ import { PARTICLES_DEFINITION } from 'utils/particles';
 function LayoutTopic(props) {
   const { topic, topicData, widgets } = props;
   const router = useRouter();
-  const isTabletOrMobile = useMediaQuery({ maxWidth: breakpoints.medium });
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: `(max-device-width: ${breakpoints.large}px)`
-  });
-  const showMobileVersion = isTabletOrMobileDevice || isTabletOrMobile;
-
+  const showMobileVersion = getShowMobileVersion();
   const dataArray = topicData[topic]?.topicPage?.data;
 
   return (

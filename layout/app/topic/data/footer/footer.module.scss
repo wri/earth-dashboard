@@ -7,6 +7,10 @@
     align-items: center;
     background-color: $black;
 
+    &.-mobile {
+        padding: 0px 16px 0px 16px;
+    }
+
     .main-container {
         width: 100%;
         display: flex;
@@ -19,28 +23,38 @@
 
         .topic-links {
             display: flex;
+            width: 100%;
+            justify-content: center;
 
-            a {
-                margin-left: 10 * $space;
-                color: $white;
-                border-bottom: solid 2px;
-                text-decoration: none;
-                font-family: 'Barlow Condensed';
-                font-size: 16px;
+            .link-container {
+                
+                &:not(:first-child) {
+                    margin-left: 10 * $space;
+                }
+
+                a {
+                    color: $white;
+                    border-bottom: solid 2px;
+                    text-decoration: none;
+                    font-family: 'Barlow Condensed';
+                    font-size: 16px;   
+                }
+
+                .climate-link {
+                    border-color: $climate;
+                }
+                .forests-link {
+                    border-color: $forests;
+                }
+                .freshwater-link {
+                    border-color: $freshwater;
+                }
+                .oceans-link {
+                    border-color: $oceans;
+                }
             }
 
-            .climate-link {
-                border-color: $climate;
-            }
-            .forests-link {
-                border-color: $forests;
-            }
-            .freshwater-link {
-                border-color: $freshwater;
-            }
-            .oceans-link {
-                border-color: $oceans;
-            }
+            
         }
     }
 }

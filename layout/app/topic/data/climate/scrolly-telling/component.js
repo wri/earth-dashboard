@@ -39,7 +39,7 @@ function ClimateScrollyTelling({ topic }) {
                         {/* {currentStep.stickyContainerElement &&
                             <div className={classnames({
                                 [styles['sticky-element']]: true,
-                                [styles['-mobile']]: isTabletOrMobile
+                                [styles['-mobile']]: showMobileVersion
                             })}>
                                 {currentStep.stickyContainerElement}
                             </div>
