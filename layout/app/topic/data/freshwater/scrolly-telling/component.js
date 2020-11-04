@@ -6,8 +6,11 @@ import classnames from 'classnames';
 // components
 import TextBox from 'components/scrolly-telling/text-box';
 
+// utils
+import { breakpoints } from 'utils/responsive';
+
 // constants
-import { 
+import {
     FRESHWATER_STEPS,
     FRESHWATER_STEPS_WORLDMAP,
     FRESHWATER_WATER_DROP_LOCATIONS
@@ -20,7 +23,11 @@ function FreshwaterScrollyTelling(props) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [currentStepIndexWorldMap, setCurrentStepIndexWorldMap] = useState(0);
     const isBrowser = typeof window !== 'undefined';
-    const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
+    const isTabletOrMobile = useMediaQuery({ maxWidth: breakpoints.medium });
+    const isTabletOrMobileDevice = useMediaQuery({
+        query: `(max-device-width: ${breakpoints.large}px)`
+    });
+    const showMobileVersion = isTabletOrMobileDevice || isTabletOrMobile;
 
     // This callback fires when a Step hits the offset threshold. It receives the
     // data prop of the step, which in this demo stores the index of the step.
@@ -37,7 +44,7 @@ function FreshwaterScrollyTelling(props) {
         <div
             className={styles['c-freshwater-scrolly-telling']}
         >
-            <div 
+            <div
                 className={classnames({
                     [styles.story]: true,
                     [styles['water-drop-story']]: true
@@ -45,7 +52,7 @@ function FreshwaterScrollyTelling(props) {
             >
                 <div className={classnames({
                     [styles['water-drop-container']]: true,
-                    [styles['-mobile']]: isTabletOrMobile
+                    [styles['-mobile']]: showMobileVersion
                 })}>
                     <div className={styles['water-drop-elements']}>
                         <div className={styles['water-drop-plus-background']}>
@@ -62,17 +69,21 @@ function FreshwaterScrollyTelling(props) {
                 {isBrowser &&
                     <div className={classnames({
                         [styles.steps]: true,
-                        [styles['-mobile']]: isTabletOrMobile
+                        [styles['-mobile']]: showMobileVersion
                     })}>
                         <Scrollama
                             onStepEnter={onStepEnter}
                             offset={0.5}
                         >
                             {FRESHWATER_STEPS.map((step, stepIndex) => {
-
                                 return (
                                     <Step data={stepIndex} key={`step-${stepIndex}`}>
-                                        <div className={styles['text-box-container']}>
+                                        <div 
+                                            className={classnames({
+                                                [styles['text-box-container']]: true,
+                                                [styles['-mobile']]: showMobileVersion
+                                            })}
+                                        >
                                             <TextBox text={step.textPanel.text} />
                                         </div>
                                     </Step>
@@ -83,7 +94,7 @@ function FreshwaterScrollyTelling(props) {
                     </div>
                 }
             </div>
-            <div 
+            <div
                 className={classnames({
                     [styles.story]: true,
                     [styles['worldmap-story']]: true
@@ -94,15 +105,16 @@ function FreshwaterScrollyTelling(props) {
                     <div className={styles.locations}>
                         {FRESHWATER_WATER_DROP_LOCATIONS.map(location => {
                             const isCurrentItem = location.index === currentStepIndexWorldMap;
-                            return (<div 
+                            return (<div
                                 className={classnames({
                                     [styles['water-drop-location']]: true,
                                     "pulsating-circle": isCurrentItem
                                 })}
-                                style={{ 
-                                    top: isCurrentItem ? `${location.top + 3.25}%` : `${location.top}%`, 
+                                style={{
+                                    top: isCurrentItem ? `${location.top + 3.25}%` : `${location.top}%`,
                                     left: isCurrentItem ? `${location.left + 0.85}%` : `${location.left}%`
                                 }}
+                                key={`worldmap-location-${location.index}`}
                             >
                                 <img src={`/static/images/scrolly-telling/freshwater/drop-map-marker${isCurrentItem ? '-active' : ''}.svg`} />
                             </div>);
@@ -112,7 +124,7 @@ function FreshwaterScrollyTelling(props) {
                 {isBrowser &&
                     <div className={classnames({
                         [styles.steps]: true,
-                        [styles['-mobile']]: isTabletOrMobile
+                        [styles['-mobile']]: showMobileVersion
                     })}>
                         <Scrollama
                             onStepEnter={onStepEnterWorldMap}

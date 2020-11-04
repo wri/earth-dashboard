@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
+import { useMediaQuery } from 'react-responsive';
 import classnames from 'classnames';
 
 // components
@@ -7,20 +8,19 @@ import TextBox from 'components/scrolly-telling/text-box';
 
 // utils
 import { getColorByTopic } from 'utils/topics';
-import { getShowMobileVersion } from 'utils/responsive';
 
 // constants
-import { CLIMATE_STEPS } from './constants';
+import { OCEANS_STEPS } from './constants';
 
 // styles
-import styles from './climate-scrolly-telling.module.scss';
+import styles from './oceans-scrolly-telling.module.scss';
 
-function ClimateScrollyTelling({ topic }) {
+function OceansScrollyTelling({ topic }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
-    const currentStep = CLIMATE_STEPS[currentStepIndex];
+    const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
+    const currentStep = OCEANS_STEPS[currentStepIndex];
     const topicColor = getColorByTopic(topic);
-    const showMobileVersion = getShowMobileVersion();
 
     // This callback fires when a Step hits the offset threshold. It receives the
     // data prop of the step, which in this demo stores the index of the step.
@@ -31,7 +31,7 @@ function ClimateScrollyTelling({ topic }) {
 
     return (
         <div
-            className={styles['c-climate-scrolly-telling']}
+            className={styles['c-oceans-scrolly-telling']}
         >
             <div className={styles.story}>
                 <div className={styles['sticky-container']}>
@@ -45,12 +45,10 @@ function ClimateScrollyTelling({ topic }) {
                             </div>
                         } */}
                         {currentStep.showYearCounter &&
-                            <div
-                                className={styles['year-container']}
-                                style={{ backgroundColor: currentStep.yearBackgroundColor }}
-                            >
+                            <div className={styles['year-container']}>
                                 <div
                                     className={styles['year-value']}
+                                    style={{ color: topicColor }}
                                 >
                                     {currentStep.yearValue}
                                 </div>
@@ -67,8 +65,9 @@ function ClimateScrollyTelling({ topic }) {
                         <Scrollama
                             onStepEnter={onStepEnter}
                             offset={0.6}
+                            debug
                         >
-                            {CLIMATE_STEPS.map((step, stepIndex) => {
+                            {OCEANS_STEPS.map((step, stepIndex) => {
 
                                 return (
                                     <Step data={stepIndex} key={`step-${stepIndex}`}>
@@ -87,4 +86,4 @@ function ClimateScrollyTelling({ topic }) {
     );
 }
 
-export default ClimateScrollyTelling;
+export default OceansScrollyTelling;

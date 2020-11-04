@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { useMediaQuery } from 'react-responsive';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -16,6 +16,7 @@ import NavigationDots from 'components/ui/navigation-dots';
 import FreshWaterScrollyTelling from './freshwater/scrolly-telling';
 import ForestsScrollyTelling from './forests/scrolly-telling';
 import ClimateScrollyTelling from './climate/scrolly-telling';
+import OceansScrollyTelling from './oceans/scrolly-telling';
 
 // styles
 import styles from './topic-data.module.scss';
@@ -39,6 +40,12 @@ function LayoutTopicData(props) {
   const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: creditsRef, inView: creditsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
 
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 720 });
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+  });
+  const showMobileVersion = isTabletOrMobile || isTabletOrMobileDevice;
+
   const getSectionInView = () => {
     if (scrollyTellingInView) {
       return 'scrolly-telling';
@@ -61,6 +68,8 @@ function LayoutTopicData(props) {
         return <ForestsScrollyTelling topic={topic} />
       case CLIMATE:
         return <ClimateScrollyTelling topic={topic} />
+      case OCEANS:
+        return <OceansScrollyTelling topic={topic} />
       default:
         return <div />;
     }
@@ -80,13 +89,15 @@ function LayoutTopicData(props) {
         >
           <img src="/static/images/logo-light.svg" />
         </div>
-        <div className={styles['navigation-dots']}>
-          <NavigationDots
-            items={NAVIGATION_ITEMS}
-            route={`/${topic}/data`}
-            selectedItemID={getSectionInView()}
-          />
-        </div>
+        {!showMobileVersion &&
+          <div className={styles['navigation-dots']}>
+            <NavigationDots
+              items={NAVIGATION_ITEMS}
+              route={`/${topic}/data`}
+              selectedItemID={getSectionInView()}
+            />
+          </div>
+        }
         <div
           className={styles['headline-section']}>
           <HeadlineSection topic={topic} />
@@ -105,8 +116,8 @@ function LayoutTopicData(props) {
           <ChallengeToOurGlobalCommons topic={topic} />
         </div>
         <div ref={diveIntoDataRef}>
-          <DiveIntoTheDataSection 
-            topic={topic} 
+          <DiveIntoTheDataSection
+            topic={topic}
             topicData={topicData}
             widgets={widgets}
           />

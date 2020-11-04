@@ -108,6 +108,10 @@
             .text-box-container {
                 margin-left: 15%;
 
+                &.-mobile {
+                    margin-left: 16px;
+                }
+
                 h6 {
                     margin: 0px 0px 15px 0px;
                     font-size: 16px;
