@@ -1,5 +1,6 @@
 import React from 'react';
 import Document, { Html, Main, NextScript, Head } from 'next/document';
+import { basicAuthMiddleware } from 'nextjs-basic-auth-middleware';
 
 class MyDocument extends Document {
   render() {
@@ -73,9 +74,9 @@ class MyDocument extends Document {
 }
 
 MyDocument.getInitialProps = async (ctx) => {
+  await basicAuthMiddleware(ctx.req, ctx.res);
   const initialProps = await Document.getInitialProps(ctx);
-  await basicAuthMiddleware(req, res);
   return { ...initialProps };
-}
+};
 
 export default MyDocument;
