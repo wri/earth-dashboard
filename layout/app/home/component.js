@@ -52,7 +52,7 @@ function LayoutHome() {
           <a data-tip data-for="comingSoon" className={styles['biodiversity-link']} >
             BIODIVERSITY
           </a>
-          <ReactTooltip id="comingSoon" type="dark" effect="float">
+          <ReactTooltip id="comingSoon" type="light" effect="float">
             <span>Coming soon...</span>
           </ReactTooltip>
         </div>
