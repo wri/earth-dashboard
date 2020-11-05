@@ -51,6 +51,7 @@
     "next": "^9.5.3",
     "next-progressbar": "^1.0.0",
     "next-redux-wrapper": "^6.0.2",
+    "nextjs-basic-auth-middleware": "^0.1.0",
     "normalize.css": "7.0.0",
     "numeral": "^2.0.6",
     "passport": "0.3.2",
