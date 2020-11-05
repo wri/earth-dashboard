@@ -21,7 +21,7 @@ function DiveIntoTheDataSection({
   widgets
 }) {
   const topicColor = getColorByTopic(topic);
-  const dataArray = topicData[topic].diveIntoTheData.data;
+  const dataArray = topicData[topic]?.diveIntoTheData?.data;
   const isBrowser = typeof window !== 'undefined';
   const showMobileVersion = getShowMobileVersion();
 
@@ -39,21 +39,20 @@ function DiveIntoTheDataSection({
         {isBrowser &&
           <div className="row">
             {dataArray.map(widget =>
-              <div 
+              (<div
                 key={`widget-preview-${widget.id}`}
                 className={classnames({
-                  "column": true,
-                  "small-12": true,
-                  "medium-6": widget.widgetsPerColumn >= 2,
-                  "large-4": widget.widgetsPerColumn === 3,
+                  column: true,
+                  'small-12': true,
+                  'medium-6': widget.widgetsPerColumn >= 2,
+                  'large-4': widget.widgetsPerColumn === 3,
                   [styles['preview-container']]: true
                 })}
               >
                 <WidgetPanel
-                  widget={widgets.find(w => w.id === widget.id)} 
+                  widget={widgets.find(w => w.id === widget.id)}
                 />
-              </div>
-            )}
+               </div>))}
           </div>
         }
       </div>
