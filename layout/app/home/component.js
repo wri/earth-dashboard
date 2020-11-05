@@ -2,17 +2,21 @@ import React from 'react';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
 import ReactTooltip from 'react-tooltip';
+import classnames from 'classnames';
 
 // components
 import Layout from 'layout/layout/layout-app';
 
+// utils
+import { PARTICLES_DEFINITION } from 'utils/particles';
+import { getShowMobileVersion } from 'utils/responsive';
+
 // styles
 import styles from './homepage.module.scss';
 
-// utils
-import { PARTICLES_DEFINITION } from 'utils/particles';
-
 function LayoutHome() {
+  const showMobileVersion = getShowMobileVersion();
+
   return (
     <Layout
       title="Earth Dashboard"
@@ -24,10 +28,16 @@ function LayoutHome() {
         params={PARTICLES_DEFINITION}
       />
 
-      <div className={styles['main-container']}>
-        <h1>This is not a drill.</h1>
-        <h1>This is now a <span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
-        <h5>Earth HQ provides insight and inspiration to help everyone understand and protect our home planet.</h5>
+      <div className={classnames({
+          [styles['main-container']]: true,
+          [styles['-mobile']]: showMobileVersion
+        })}
+      >
+        <h1 className={styles['first-header']}>This is not a drill.</h1>
+        <h1>This is now a {showMobileVersion && <br />}<span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
+        <h5>Earth HQ provides insight and inspiration to help
+          everyone understand and protect our home planet.
+        </h5>
         <div className={styles['topic-links']}>
           <Link href="/climate">
             <a className={styles['climate-link']}>

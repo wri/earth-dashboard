@@ -13,18 +13,16 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        width: 100%;
         z-index: 2;
 
         h1 {
             color: $white;
-            font-size: 48px;
             font-family: 'Barlow Condensed';
         }
         h5 {
             color: $grey;
-            font-size: 18px;
             font-family: 'Barlow Regular';
-            max-width: 520px;
         }
         .highlighted-text {
             padding-right: $space;
@@ -32,6 +30,35 @@
             background-color: $grey;
             color: $black;
         }
+
+        &.-mobile {
+            h1 {
+                font-size: 36px;
+                line-height: 45px;
+                
+                &.first-header {
+                    margin-bottom: 0px;
+                }
+            }
+            h5 {
+                font-size: 14px;
+                margin: 10px 15px 50px 15px;
+            }
+        }
+
+        &:not(.-mobile) {
+            h1 {
+                font-size: 48px;
+
+                &.first-header {
+                    margin-bottom: 10px;
+                }
+            }
+            h5 {
+                font-size: 18px;
+                max-width: 50%;
+            }
+        }  
 
         .topic-links {
             display: flex;
