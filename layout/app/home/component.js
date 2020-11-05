@@ -1,6 +1,7 @@
 import React from 'react';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
+import ReactTooltip from 'react-tooltip';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -12,14 +13,13 @@ import styles from './homepage.module.scss';
 import { PARTICLES_DEFINITION } from 'utils/particles';
 
 function LayoutHome() {
-
   return (
     <Layout
       title="Earth Dashboard"
       description="Earth Dashboard"
       className={styles.homepage}
     >
-      <Particles 
+      <Particles
         className={styles.particles}
         params={PARTICLES_DEFINITION}
       />
@@ -49,6 +49,12 @@ function LayoutHome() {
               OCEANS
             </a>
           </Link>
+          <a data-tip data-for="comingSoon" className={styles['biodiversity-link']} >
+            BIODIVERSITY
+          </a>
+          <ReactTooltip id="comingSoon" type="dark" effect="float">
+            <span>Coming soon...</span>
+          </ReactTooltip>
         </div>
       </div>
 
