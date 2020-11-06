@@ -5,35 +5,40 @@
     padding: 0px 0px 20vh 0px;
     background-color: $grey-lighter;
 
-    .smoke-container {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: $grey-light;
-
-        .smoke-text {
+    .climate-clock-story {
+        .smoke-container {
+            position: sticky;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100vh;
             display: flex;
             justify-content: center;
-            flex-direction: column;
-            position: absolute;
-            
-            h6, h1 {
-                text-align: center;
-                color: $white;
-                font-family: 'Barlow Condensed';
+            align-items: center;
+            background-color: $grey-light;
+    
+            .smoke-text {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                position: absolute;
+                
+                h6, h1 {
+                    text-align: center;
+                    color: $white;
+                    font-family: 'Barlow Condensed';
+                }
+    
+                h6 {
+                    font-size: 16px;
+                    margin-bottom: 0px;
+                }
             }
-
-            h6 {
-                font-size: 16px;
-                margin-bottom: 0px;
+    
+            canvas {
+                width: 100%;
+                height: 100%;
             }
-        }
-
-        canvas {
-            width: 100%;
-            height: 100%;
         }
     }
 
@@ -89,31 +94,40 @@
                 }
             }
         }
+    }
 
-        .steps {
-            display: flex;
-            flex-direction: column;
+    .steps {
+        display: flex;
+        flex-direction: column;
 
-            &.-mobile {
-                align-items: center;
+        &.-mobile {
+            align-items: center;
+        }
+
+        .text-box-container {
+            position: relative;
+            max-width: 400px;
+            margin-bottom: 100vh;
+            margin-left: 124px;
+
+            .photo-subtitle {
+                color: $grey-darker;
+                font-size: 14px;
             }
 
-            .text-box-container {
-                position: relative;
-                max-width: 400px;
-                margin-bottom: 100vh;
-                margin-left: 124px;
+            h6 {
+                margin: 0px 0px $space 0px;
+                font-size: 16px;
+                font-family: 'Barlow Condensed';
+                color: $climate-titles
+            }
 
-                .photo-subtitle {
-                    color: $grey-darker;
-                    font-size: 14px;
-                }
+            .text-card-source {
+                font-size: 12px;
+                color: $grey-darker;
 
-                h6 {
-                    margin: 0px 0px $space 0px;
-                    font-size: 16px;
-                    font-family: 'Barlow Condensed';
-                    color: $climate-titles
+                a {
+                    text-decoration: underline;
                 }
             }
         }
