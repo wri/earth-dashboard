@@ -2,8 +2,40 @@
 
 .c-climate-scrolly-telling {
     overflow: initial;
-    padding: 33vh 0px 20vh 0px;
+    padding: 0px 0px 20vh 0px;
     background-color: $grey-lighter;
+
+    .smoke-container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $grey-light;
+
+        .smoke-text {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            position: absolute;
+            
+            h6, h1 {
+                text-align: center;
+                color: $white;
+                font-family: 'Barlow Condensed';
+            }
+
+            h6 {
+                font-size: 16px;
+                margin-bottom: 0px;
+            }
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+    }
 
     .story {
 
