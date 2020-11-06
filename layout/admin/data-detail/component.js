@@ -71,7 +71,6 @@ class LayoutAdminDataDetail extends PureComponent {
     }
   }
 
-
   render() {
     const { query: { tab, dataset } } = this.props;
 

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Progress from 'react-progress-2';
-import { withRouter } from 'next/router'
+import { withRouter } from 'next/router';
 
 // Utils
 import { initGA, logPageView } from 'utils/analytics';
@@ -24,11 +24,9 @@ class LayoutAdmin extends PureComponent {
     children: PropTypes.node.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    pageHeader: PropTypes.bool,
     className: PropTypes.string,
     toggleTooltip: PropTypes.func.isRequired,
     updateIsLoading: PropTypes.func.isRequired,
-    setLocale: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired
   };
 
@@ -55,12 +53,16 @@ class LayoutAdmin extends PureComponent {
   componentDidMount() {
     const { router, setUser } = this.props;
     const { loggedIn } = this.state;
+    const isServer = typeof window === 'undefined';
 
     if (!loggedIn) {
       this.setState({ loggingIn: true });
       checkAuth()
         .then((response) => {
-          setUser(response);
+          setUser({
+            ...response,
+            token: `Bearer ${!isServer && localStorage.getItem('userToken')}`
+          });
           this.setState({ loggingIn: false, loggedIn: true });
         })
         .catch(() => {
@@ -104,17 +106,11 @@ class LayoutAdmin extends PureComponent {
           <div>Logging in...</div>
         )}
         {!loggingIn && loggedIn && (
-          <>
-            <Icons />
-            <IconsRW />
-
-            <Progress.Component />
-
-            <Header />
-
-            {this.props.children}
-
-            <Toastr preventDuplicates transitionIn="fadeIn" transitionOut="fadeOut" />
+          <>'           '<Icons />'           '<IconsRW />'
+            '<Progress.Component />'
+            '<Header />'
+            '{this.props.children}'
+            '<Toastr preventDuplicates transitionIn="fadeIn" transitionOut="fadeOut" />'         '
           </>
         )}
 
