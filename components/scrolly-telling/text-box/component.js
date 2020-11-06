@@ -5,13 +5,20 @@ import PropTypes from 'prop-types';
 import styles from './text-box.module.scss';
 
 function TextBox(props) {
-    const { text } = props;
+    const { text, imageHeader } = props;
 
     return (
         <div className={styles['c-text-box']}>
             <div className={styles['background']} />
+            {!!imageHeader && 
+                <div className={styles['image-header']}>
+                    <img src={imageHeader} />
+                </div>
+            }
             <div className={styles.content}>
-                {text}
+                <div className={styles['text-content']}>
+                    {text}
+                </div>
             </div>
         </div>
     );

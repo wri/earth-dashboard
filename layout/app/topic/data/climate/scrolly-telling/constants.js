@@ -10,10 +10,18 @@ export const CLIMATE_STEPS = [
             text:
                 <>
                     <p>
-                        Take a look at this line. This chart shows how the global surface temperatures have evolved since 1880.
-                </p>
+                        Explore this chart to see the impact of global average temperature levels in the past, 
+                        present and future. Even a half degree can make a big difference to sea level rise, 
+                        the frequency of deadly heatwaves, the spread of malaria or coral reef survival.
+                    </p>
                     <p>
-                        <strong>Current temperatures are 0.9 °C degrees warmer relative to 1951-1980 average temperatures.</strong>
+                        This narrative depicts <strong>RCP6.0</strong>, one of four different scenarios that describe possible
+                         trajectories for carbon dioxide emissions and resulting temperature increases.
+                         <strong>RCP6.0 is midway between optimistic and pessimistic projections.</strong>
+                    </p>
+                    <p>
+                        <strong>Under this scenario, countries do not continue business as usual and take some, 
+                            but not enough steps to curb emissions and mitigate climate change.</strong>
                     </p>
                 </>
         },
@@ -39,14 +47,14 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <img src="" />
                     <h6>FIRES</h6>
                     <p>
                         In Australia, last season, fires consumed an area larger than South Korea and killed
                     or harmed <strong>3 billion animals</strong>.
                 </p>
                     <p className={styles['photo-subtitle']}>Photo by Peter Buschmann on Wikimedia Commons (Public domain)</p>
-                </>
+                </>,
+            imageHeader: "/static/images/scrolly-telling/climate/fires.jpg"
         },
         showYearCounter: true,
         yearValue: '2020 +1.0 °C',
@@ -58,7 +66,6 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <img src="" />
                     <h6>MELTING ICE</h6>
                     <p>
                         Between 1980 and 2018, glaciers lost ice equivalent to cutting a 24-meter (79-foot)
@@ -66,7 +73,8 @@ export const CLIMATE_STEPS = [
                      water to some <strong>240 million people</strong>.
                 </p>
                     <p className={styles['photo-subtitle']}>Photo by NOAA on Unsplash</p>
-                </>
+                </>,
+            imageHeader: "/static/images/scrolly-telling/climate/melting-ice.jpg"
         },
         showYearCounter: true,
         yearValue: '2020 +1.0 °C',
@@ -78,14 +86,14 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <img src="" />
                     <h6>HUMAN DISPLACEMENT AND CONFLICT</h6>
                     <p>
                         According to the European Parliament, an average of <strong>26.4 million people</strong> around
                  the world have been displaced by weather events every year since 2008.
                 </p>
                     <p className={styles['photo-subtitle']}>Photo: Public Domain on Wikimedia Commons</p>
-                </>
+                </>,
+                imageHeader: "/static/images/scrolly-telling/climate/human-displacement-and-conflict.jpg"
         },
         showYearCounter: true,
         yearValue: '2020 +1.0 °C',

@@ -3,10 +3,20 @@
 .c-text-box {
     position: relative;
     display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .image-header {
+        position: relative;
+    }
 
     .content {
-        padding: 8 * $space;
-        z-index: 1;
+        position: relative;
+
+        .text-content {
+            padding: 8 * $space;
+            z-index: 1;
+        }
     }
 
     .background {
