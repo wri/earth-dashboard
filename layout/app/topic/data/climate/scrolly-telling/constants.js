@@ -155,14 +155,15 @@ export const CLIMATE_STEPS = [
                     <h6>DROUGHT</h6>
                     <p>
                         According to the IPCC, <strong>350 million more urban residents</strong> would face severe drought.
-                </p>
-                    <p>
-                        The average drought would be two months longer and
-                    <strong> 271 million more people</strong> will be exposed to water scarcity.
+                    </p>
+                        <p>
+                            The average drought would be two months longer and
+                        <strong> 271 million more people</strong> will be exposed to water scarcity.
 
-                </p>
+                    </p>
                     <p className={styles['photo-subtitle']}>Photo by Mike Erskine on Unsplash</p>
-                </>
+                </>,
+                imageHeader: '/static/images/scrolly-telling/climate/drought.jpg'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -177,10 +178,11 @@ export const CLIMATE_STEPS = [
                     <h6>BIODIVERSITY</h6>
                     <p>
                         <strong>6% of insects, 8% of plants and 4% of vertebrates</strong>
-                     are projected to lose over half of their geographic range.
-                </p>
+                        are projected to lose over half of their geographic range.
+                    </p>
                     <p className={styles['photo-subtitle']}>Photo by Ray Hennessy on Unsplash</p>
-                </>
+                </>,
+                imageHeader: '/static/images/scrolly-telling/climate/biodiversity.jpg'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -196,12 +198,13 @@ export const CLIMATE_STEPS = [
                     <p>
                         Annual flood losses from would reach <strong>$10.2 trillion</strong>
                      if no further adaptation is undertaken.
-                </p>
+                    </p>
                     <p className={styles['photo-subtitle']}>
                         Photo by Basile Morin on Wikimedia
                      Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
-                </>
+                </>,
+                imageHeader: '/static/images/scrolly-telling/climate/flooding.png'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -217,11 +220,12 @@ export const CLIMATE_STEPS = [
                     <p>
                         An estimated <strong>1.5 billion people or 13% of the projected global population</strong>
                      would be living in inhabitable climates and would have to migrate.
-                </p>
-                    <p className={styles['photo-subtitle']}>
-                        Photo by Julie Ricard on Unsplash
-                </p>
-                </>
+                    </p>
+                        <p className={styles['photo-subtitle']}>
+                            Photo by Julie Ricard on Unsplash
+                    </p>
+                </>,
+                imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-second.jpg'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -237,12 +241,12 @@ export const CLIMATE_STEPS = [
                     <p>
                         Annual losses from flood damage and sea level rise would
                      reach <strong>$11.7 trillion</strong> if no further adaptation is undertaken.
-
-                </p>
-                    <p className={styles['photo-subtitle']}>
-                        Photo by Saikiran Kesari on Unsplash
-                </p>
-                </>
+                    </p>
+                        <p className={styles['photo-subtitle']}>
+                            Photo by Saikiran Kesari on Unsplash
+                    </p>
+                </>,
+                imageHeader: '/static/images/scrolly-telling/climate/extreme-rainfall.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',

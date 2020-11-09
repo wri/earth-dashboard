@@ -4,7 +4,6 @@ import Particles from 'react-particles-js';
 import Link from 'next/link';
 import classnames from 'classnames';
 import { motion } from "framer-motion"
-import { useMediaQuery } from 'react-responsive';
 
 // utils
 import { PARTICLES_DEFINITION } from 'utils/particles';

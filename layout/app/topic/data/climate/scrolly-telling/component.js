@@ -97,7 +97,12 @@ function ClimateScrollyTelling({ topic }) {
             >
               {CLIMATE_CLOCK_STEPS.map((step, stepIndex) =>
                 (<Step data={stepIndex} key={`step-clock-${stepIndex}`}>
-                  <div className={styles['text-box-container']}>
+                  <div
+                    className={classnames({
+                      [styles['text-box-container']]: true,
+                      [styles['-mobile']]: showMobileVersion
+                    })}
+                  >
                     <TextBox text={step.textPanel.text} />
                   </div>
                 </Step>))
@@ -144,8 +149,16 @@ function ClimateScrollyTelling({ topic }) {
             >
               {CLIMATE_STEPS.map((step, stepIndex) => (
                 <Step data={stepIndex} key={`step-${stepIndex}`}>
-                  <div className={styles['text-box-container']}>
-                    <TextBox text={step.textPanel.text} imageHeader={step.textPanel.imageHeader} />
+                  <div
+                    className={classnames({
+                      [styles['text-box-container']]: true,
+                      [styles['-mobile']]: showMobileVersion
+                    })}
+                  >
+                    <TextBox
+                      text={step.textPanel.text} 
+                      imageHeader={step.textPanel.imageHeader} 
+                    />
                   </div>
                 </Step>
               ))

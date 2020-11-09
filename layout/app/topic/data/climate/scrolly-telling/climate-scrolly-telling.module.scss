@@ -110,6 +110,10 @@
             margin-bottom: 100vh;
             margin-left: 124px;
 
+            &.-mobile {
+                margin-left: 16px;
+            }
+
             .photo-subtitle {
                 color: $grey-darker;
                 font-size: 14px;
