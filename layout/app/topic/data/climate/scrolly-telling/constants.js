@@ -10,8 +10,8 @@ export const CLIMATE_STEPS = [
             text:
                 <>
                     <p>
-                        Explore this chart to see the impact of global average temperature levels in the past, 
-                        present and future. Even a half degree can make a big difference to sea level rise, 
+                        Explore this chart to see the impact of global average temperature levels in the past,
+                        present and future. Even a half degree can make a big difference to sea level rise,
                         the frequency of deadly heatwaves, the spread of malaria or coral reef survival.
                     </p>
                     <p>
@@ -20,7 +20,7 @@ export const CLIMATE_STEPS = [
                          <strong>RCP6.0 is midway between optimistic and pessimistic projections.</strong>
                     </p>
                     <p>
-                        <strong>Under this scenario, countries do not continue business as usual and take some, 
+                        <strong>Under this scenario, countries do not continue business as usual and take some,
                             but not enough steps to curb emissions and mitigate climate change.</strong>
                     </p>
                 </>
@@ -93,7 +93,7 @@ export const CLIMATE_STEPS = [
                 </p>
                     <p className={styles['photo-subtitle']}>Photo: Public Domain on Wikimedia Commons</p>
                 </>,
-                imageHeader: "/static/images/scrolly-telling/climate/human-displacement-and-conflict.jpg"
+            imageHeader: "/static/images/scrolly-telling/climate/human-displacement-and-conflict.jpg"
         },
         showYearCounter: true,
         yearValue: '2020 +1.0 °C',
@@ -156,14 +156,14 @@ export const CLIMATE_STEPS = [
                     <p>
                         According to the IPCC, <strong>350 million more urban residents</strong> would face severe drought.
                     </p>
-                        <p>
-                            The average drought would be two months longer and
+                    <p>
+                        The average drought would be two months longer and
                         <strong> 271 million more people</strong> will be exposed to water scarcity.
 
                     </p>
                     <p className={styles['photo-subtitle']}>Photo by Mike Erskine on Unsplash</p>
                 </>,
-                imageHeader: '/static/images/scrolly-telling/climate/drought.jpg'
+            imageHeader: '/static/images/scrolly-telling/climate/drought.jpg'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -182,7 +182,7 @@ export const CLIMATE_STEPS = [
                     </p>
                     <p className={styles['photo-subtitle']}>Photo by Ray Hennessy on Unsplash</p>
                 </>,
-                imageHeader: '/static/images/scrolly-telling/climate/biodiversity.jpg'
+            imageHeader: '/static/images/scrolly-telling/climate/biodiversity.jpg'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -204,7 +204,7 @@ export const CLIMATE_STEPS = [
                      Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
                 </>,
-                imageHeader: '/static/images/scrolly-telling/climate/flooding.png'
+            imageHeader: '/static/images/scrolly-telling/climate/flooding.png'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -221,11 +221,11 @@ export const CLIMATE_STEPS = [
                         An estimated <strong>1.5 billion people or 13% of the projected global population</strong>
                      would be living in inhabitable climates and would have to migrate.
                     </p>
-                        <p className={styles['photo-subtitle']}>
-                            Photo by Julie Ricard on Unsplash
+                    <p className={styles['photo-subtitle']}>
+                        Photo by Julie Ricard on Unsplash
                     </p>
                 </>,
-                imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-second.jpg'
+            imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-second.jpg'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -242,11 +242,11 @@ export const CLIMATE_STEPS = [
                         Annual losses from flood damage and sea level rise would
                      reach <strong>$11.7 trillion</strong> if no further adaptation is undertaken.
                     </p>
-                        <p className={styles['photo-subtitle']}>
-                            Photo by Saikiran Kesari on Unsplash
+                    <p className={styles['photo-subtitle']}>
+                        Photo by Saikiran Kesari on Unsplash
                     </p>
                 </>,
-                imageHeader: '/static/images/scrolly-telling/climate/extreme-rainfall.jpg'
+            imageHeader: '/static/images/scrolly-telling/climate/extreme-rainfall.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',
@@ -258,7 +258,7 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <h6>Heatwaves AND Water Scarcity</h6>
+                    <h6>HEATWAVES AND WATER SCARCITY</h6>
                     <p>
                         <strong>More than a third of the world’s population (37%)</strong> would
                      face the risk of a heatwave every 5 years.
@@ -272,7 +272,8 @@ export const CLIMATE_STEPS = [
                     <p className={styles['photo-subtitle']}>
                         Photo by Jotpe on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/heatwaves-and-water-scarcity.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',
@@ -296,7 +297,8 @@ export const CLIMATE_STEPS = [
                     <p className={styles['photo-subtitle']}>
                         Photo by Boris Radosavljevic on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
                     </p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/sea-ice-and-permafrost.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',
@@ -312,11 +314,12 @@ export const CLIMATE_STEPS = [
                     <p>
                         <strong>18% of insects, 16% of plants and 8% of vertebrates</strong>
                      are projected to lose over half of their geographic range.
-                </p>
+                    </p>
                     <p className={styles['photo-subtitle']}>
                         Photo by Edson Maciel on Unsplash
-                </p>
-                </>
+                    </p>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/biodiversity-second.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',
@@ -342,6 +345,8 @@ export const CLIMATE_STEPS = [
                         Photo by Ggia on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
                 </>
+            ,
+            imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-third.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',
@@ -406,7 +411,7 @@ export const CLIMATE_CLOCK_STEPS = [
                     </p>
                     <p className={styles['text-card-source']}>
                         Source: This clock follows the methodology from the
-                         <a href="https://www.mcc-berlin.net/en/index.html" target="_blank">Mercator Research Institute on Global Commons and Climate Change</a> (MCC) 
+                         <a href="https://www.mcc-berlin.net/en/index.html" target="_blank">Mercator Research Institute on Global Commons and Climate Change</a> (MCC)
                          using data from the IPCC Special Report on Global Warming of 1.5°C
                     </p>
                 </>
