@@ -2,9 +2,39 @@
 
 .c-oceans-scrolly-telling {
     overflow: initial;
-    padding: 20vh 0px 20vh 0px;
+    padding: 0px 0px 20vh 0px;
+    background-color: $grey-lighter;
+
+    .intro-story {
+        position: relative;
+        padding: 20vh 0px 20vh 0px;
+
+        .intro-charts-container {
+            position: sticky;
+            top: 15vh;
+            left: 0px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
 
     .story {
+
+        .coral-map {
+            position: sticky;
+            top: 0px;
+            left: 0px;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 100%;
+            }
+        }
 
         .sticky-container {
             position: sticky;
@@ -28,6 +58,21 @@
                         justify-content: center;
                     }
 
+                    
+
+                    .chart-with-title {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        h6 {
+                            color: $grey-darkest;
+                            font-size: 18px;
+                            font-family: 'Barlow Condensed';
+                            margin: 0px 0px 10px 0px;
+                        }
+                    }
                 }
             }
         }

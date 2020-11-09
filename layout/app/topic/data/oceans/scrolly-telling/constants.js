@@ -1,9 +1,7 @@
-import classnames from 'classnames';
-
 // styles
 import styles from './oceans-scrolly-telling.module.scss';
 
-export const OCEANS_STEPS = [
+export const OCEANS_STEPS_INTRO = [
     {
         index: 0,
         textPanel: {
@@ -21,9 +19,12 @@ export const OCEANS_STEPS = [
                     </p>
                 </>
         }
-    },
+    }
+];
+
+export const OCEANS_STEPS = [
     {
-        index: 1,
+        index: 0,
         textPanel: {
             text:
                 <>
@@ -32,35 +33,43 @@ export const OCEANS_STEPS = [
                     <p>
                         Tipping points are approaching for coral reef survival and ocean acidification as
                         climate change warms waters. Rising temperatures bleach the coral killing the
-                        algae that keep it alive.  At the same time
-                        <strong>the ocean’s chemistry is changing faster than at any time in the last 50 million years</strong>.
+                        algae that keep it alive.  At the same
+                         time <strong>the ocean’s chemistry is changing faster than at any time in the last 50 million years</strong>.
                          Excess carbon dioxide is lowering the water’s pH and locking up the carbonate ions
                           sea creatures need to extract to build shells and reefs.
                     </p>
                     <p className={styles['text-card-source']}>
                         Photo by NMSAS on Wikimedia Commons (Public domain)
                     </p>
-                </>
-        }
+                </>,
+            imageHeader: '/static/images/scrolly-telling/oceans/threats-to-the-ocean.jpg'
+        },
+        stickyContainerElement: 
+            <div className={styles['coral-map']}>
+                <img src="/static/images/scrolly-telling/oceans/coral-bleaching-map.png" />
+            </div>
     },
     {
-        index: 2,
+        index: 1,
         textPanel: {
             text:
                 <>
                     <h6>Threats to the Ocean</h6>
                     <h6 className={styles.subheader}>PROJECTED CORAL DEATH</h6>
                     <p>
-                        In the last 30 years, nearly half of the world’s coral has died.
-                        <strong>About 70-90% of all existing coral reefs (marked in red on the map) are expected to disappear in the next 20 years</strong> due
+                        In the last 30 years, nearly half of the world’s coral has
+                         died. <strong>About 70-90% of all existing coral reefs (marked in red on the map) are expected to disappear in the next 20 years</strong> due
                          to warming oceans, more acidic water and pollution.
                     </p>
-                </>,
-            imageHeader: '/static/images/scrolly-telling/threats-to-the-ocean.jpg'
-        }
+                </>
+        },
+        stickyContainerElement: 
+            <div className={styles['coral-map']}>
+                <img src="/static/images/scrolly-telling/oceans/coral-bleaching-map.png" />
+            </div>
     },
     {
-        index: 3,
+        index: 2,
         textPanel: {
             text:
                 <>
@@ -80,10 +89,17 @@ export const OCEANS_STEPS = [
                     </p>
                 </>,
             imageHeader: '/static/images/scrolly-telling/oceans/fisheries-under-pressure.jpg'
-        }
+        },
+        stickyContainerElement: 
+            <div className={styles['chart-with-title']}>
+                <div>
+                    <h6>Trends in Marine Fish Stocks</h6>
+                    <img src="/static/images/scrolly-telling/oceans/trends-in-marine-fish-stocks.svg" />
+                </div>
+            </div>
     },
     {
-        index: 4,
+        index: 3,
         textPanel: {
             text:
                 <>
@@ -96,10 +112,17 @@ export const OCEANS_STEPS = [
                         seabirds, sea turtles, dolphins, and sharks, driving some species to the brink of extinction.
                     </p>
                 </>
-        }
+        },
+        stickyContainerElement: 
+            <div className={styles['chart-with-title']}>
+                <div>
+                    <h6>Trends in Marine Fish Stocks</h6>
+                    <img src="/static/images/scrolly-telling/oceans/trends-in-marine-fish-stocks.svg" />
+                </div>
+            </div>
     },
     {
-        index: 5,
+        index: 4,
         textPanel: {
             text:
                 <>
@@ -114,10 +137,17 @@ export const OCEANS_STEPS = [
                         than the ocean provides us today.
                     </p>
                 </>
-        }
+        },
+        stickyContainerElement: 
+            <div className={styles['chart-with-title']}>
+                <div>
+                    <h6>Aquaculture and fisheries</h6>
+                    <img src="/static/images/scrolly-telling/oceans/aquaculture-and-fisheries.svg" />
+                </div>
+            </div>
     },
     {
-        index: 6,
+        index: 5,
         textPanel: {
             text:
                 <>
@@ -138,11 +168,11 @@ export const OCEANS_STEPS = [
                         Photo by Muntaka Chasant on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
                 </>,
-            imageHeader: '/static/images/scrolly-telling/oceans/island-of-plastic.jpg'
+            imageHeader: '/static/images/scrolly-telling/oceans/islands-of-plastic.jpg'
         }
     },
     {
-        index: 7,
+        index: 6,
         textPanel: {
             text:
                 <p>
@@ -154,7 +184,7 @@ export const OCEANS_STEPS = [
         }
     },
     {
-        index: 8,
+        index: 7,
         textPanel: {
             text:
                 <>
@@ -176,7 +206,14 @@ export const OCEANS_STEPS = [
                         Photo by Nicholas Doherty on Unsplash
                     </p>
                 </>,
-            imageHeader: '/static/images/scrolly-telling/oceans/island-of-plastic.jpg'
-        }
+            imageHeader: '/static/images/scrolly-telling/oceans/ocean-industries.jpg'
+        },
+        stickyContainerElement: 
+            <div className={styles['chart-with-title']}>
+                <div>
+                    <h6>Benefit-cost ratios for sustainable ocean interventions</h6>
+                    <img src="/static/images/scrolly-telling/oceans/benefit-cost-ratios-for-sustainable-ocean-interventions.svg" />
+                </div>
+            </div>
     }
 ];
