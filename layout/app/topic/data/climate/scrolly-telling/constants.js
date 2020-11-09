@@ -10,10 +10,18 @@ export const CLIMATE_STEPS = [
             text:
                 <>
                     <p>
-                        Take a look at this line. This chart shows how the global surface temperatures have evolved since 1880.
-                </p>
+                        Explore this chart to see the impact of global average temperature levels in the past,
+                        present and future. Even a half degree can make a big difference to sea level rise,
+                        the frequency of deadly heatwaves, the spread of malaria or coral reef survival.
+                    </p>
                     <p>
-                        <strong>Current temperatures are 0.9 °C degrees warmer relative to 1951-1980 average temperatures.</strong>
+                        This narrative depicts <strong>RCP6.0</strong>, one of four different scenarios that describe possible
+                         trajectories for carbon dioxide emissions and resulting temperature increases.
+                         <strong>RCP6.0 is midway between optimistic and pessimistic projections.</strong>
+                    </p>
+                    <p>
+                        <strong>Under this scenario, countries do not continue business as usual and take some,
+                            but not enough steps to curb emissions and mitigate climate change.</strong>
                     </p>
                 </>
         },
@@ -39,14 +47,14 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <img src="" />
                     <h6>FIRES</h6>
                     <p>
                         In Australia, last season, fires consumed an area larger than South Korea and killed
                     or harmed <strong>3 billion animals</strong>.
                 </p>
                     <p className={styles['photo-subtitle']}>Photo by Peter Buschmann on Wikimedia Commons (Public domain)</p>
-                </>
+                </>,
+            imageHeader: "/static/images/scrolly-telling/climate/fires.jpg"
         },
         showYearCounter: true,
         yearValue: '2020 +1.0 °C',
@@ -58,7 +66,6 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <img src="" />
                     <h6>MELTING ICE</h6>
                     <p>
                         Between 1980 and 2018, glaciers lost ice equivalent to cutting a 24-meter (79-foot)
@@ -66,7 +73,8 @@ export const CLIMATE_STEPS = [
                      water to some <strong>240 million people</strong>.
                 </p>
                     <p className={styles['photo-subtitle']}>Photo by NOAA on Unsplash</p>
-                </>
+                </>,
+            imageHeader: "/static/images/scrolly-telling/climate/melting-ice.jpg"
         },
         showYearCounter: true,
         yearValue: '2020 +1.0 °C',
@@ -78,14 +86,14 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <img src="" />
                     <h6>HUMAN DISPLACEMENT AND CONFLICT</h6>
                     <p>
                         According to the European Parliament, an average of <strong>26.4 million people</strong> around
                  the world have been displaced by weather events every year since 2008.
                 </p>
                     <p className={styles['photo-subtitle']}>Photo: Public Domain on Wikimedia Commons</p>
-                </>
+                </>,
+            imageHeader: "/static/images/scrolly-telling/climate/human-displacement-and-conflict.jpg"
         },
         showYearCounter: true,
         yearValue: '2020 +1.0 °C',
@@ -147,14 +155,15 @@ export const CLIMATE_STEPS = [
                     <h6>DROUGHT</h6>
                     <p>
                         According to the IPCC, <strong>350 million more urban residents</strong> would face severe drought.
-                </p>
+                    </p>
                     <p>
                         The average drought would be two months longer and
-                    <strong> 271 million more people</strong> will be exposed to water scarcity.
+                        <strong> 271 million more people</strong> will be exposed to water scarcity.
 
-                </p>
+                    </p>
                     <p className={styles['photo-subtitle']}>Photo by Mike Erskine on Unsplash</p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/drought.jpg'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -169,10 +178,11 @@ export const CLIMATE_STEPS = [
                     <h6>BIODIVERSITY</h6>
                     <p>
                         <strong>6% of insects, 8% of plants and 4% of vertebrates</strong>
-                     are projected to lose over half of their geographic range.
-                </p>
+                        are projected to lose over half of their geographic range.
+                    </p>
                     <p className={styles['photo-subtitle']}>Photo by Ray Hennessy on Unsplash</p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/biodiversity.jpg'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -188,12 +198,13 @@ export const CLIMATE_STEPS = [
                     <p>
                         Annual flood losses from would reach <strong>$10.2 trillion</strong>
                      if no further adaptation is undertaken.
-                </p>
+                    </p>
                     <p className={styles['photo-subtitle']}>
                         Photo by Basile Morin on Wikimedia
                      Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/flooding.png'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -209,11 +220,12 @@ export const CLIMATE_STEPS = [
                     <p>
                         An estimated <strong>1.5 billion people or 13% of the projected global population</strong>
                      would be living in inhabitable climates and would have to migrate.
-                </p>
+                    </p>
                     <p className={styles['photo-subtitle']}>
                         Photo by Julie Ricard on Unsplash
-                </p>
-                </>
+                    </p>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-second.jpg'
         },
         showYearCounter: true,
         yearValue: '2046 +1.5 °C',
@@ -229,12 +241,12 @@ export const CLIMATE_STEPS = [
                     <p>
                         Annual losses from flood damage and sea level rise would
                      reach <strong>$11.7 trillion</strong> if no further adaptation is undertaken.
-
-                </p>
+                    </p>
                     <p className={styles['photo-subtitle']}>
                         Photo by Saikiran Kesari on Unsplash
-                </p>
-                </>
+                    </p>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/extreme-rainfall.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',
@@ -246,7 +258,7 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <h6>Heatwaves AND Water Scarcity</h6>
+                    <h6>HEATWAVES AND WATER SCARCITY</h6>
                     <p>
                         <strong>More than a third of the world’s population (37%)</strong> would
                      face the risk of a heatwave every 5 years.
@@ -260,7 +272,8 @@ export const CLIMATE_STEPS = [
                     <p className={styles['photo-subtitle']}>
                         Photo by Jotpe on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/heatwaves-and-water-scarcity.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',
@@ -284,7 +297,8 @@ export const CLIMATE_STEPS = [
                     <p className={styles['photo-subtitle']}>
                         Photo by Boris Radosavljevic on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
                     </p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/sea-ice-and-permafrost.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',
@@ -300,11 +314,12 @@ export const CLIMATE_STEPS = [
                     <p>
                         <strong>18% of insects, 16% of plants and 8% of vertebrates</strong>
                      are projected to lose over half of their geographic range.
-                </p>
+                    </p>
                     <p className={styles['photo-subtitle']}>
                         Photo by Edson Maciel on Unsplash
-                </p>
-                </>
+                    </p>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/biodiversity-second.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',
@@ -330,6 +345,8 @@ export const CLIMATE_STEPS = [
                         Photo by Ggia on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
                 </>
+            ,
+            imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-third.jpg'
         },
         showYearCounter: true,
         yearValue: '2064 +2.0 °C',
@@ -344,12 +361,13 @@ export const CLIMATE_STEPS = [
                     <h6>SEA ICE</h6>
                     <p>
                         The likelihood of ice free summer in the arctic would rise
-                    to <strong>63% each year</strong>.
+                        to <strong>63% each year</strong>.
+                    </p>
+                        <p className={styles['photo-subtitle']}>
+                            Photo by Derek Oyen on Unsplash
                 </p>
-                    <p className={styles['photo-subtitle']}>
-                        Photo by Derek Oyen on Unsplash
-               </p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/sea-ice.jpg'
         },
         showYearCounter: true,
         yearValue: '2089 +3.0 °C',
@@ -364,12 +382,34 @@ export const CLIMATE_STEPS = [
                     <h6>HUMAN DISPLACEMENT AND CONFLICT</h6>
                     <p>
                         <strong>2-3 billion people or 30% of the projected global population</strong> would
-                     be living in inhabitable climates and would have to migrate.
-                </p>
+                        be living in inhabitable climates and would have to migrate.
+                    </p>
                     <p className={styles['photo-subtitle']}>
                         Photo by thekirbster on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
                     </p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-fourth.jpg'
+        },
+        showYearCounter: true,
+        yearValue: '2089 +3.0 °C',
+        yearSubtitle: 'In less than 70 years',
+        yearBackgroundColor: '#AD0000'
+    },
+    {
+        index: 17,
+        textPanel: {
+            text:
+                <>
+                    <h6>BIODIVERSITY</h6>
+                    <p>
+                        The suitable habitat for species would
+                        <strong>decrease on average by half</strong>.
+                    </p>
+                    <p className={styles['photo-subtitle']}>
+                        Photo: Andrés Medina on Unsplash
+                    </p>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/biodiversity-third.jpg'
         },
         showYearCounter: true,
         yearValue: '2089 +3.0 °C',
@@ -392,11 +432,6 @@ export const CLIMATE_CLOCK_STEPS = [
                         emissions rate into the future and calculates that holding emissions to 420 Gt of CO2
                         emissions gives us a 67% chance of staying within the threshold of 1.5°C.
                     </p>
-                    <p className={styles['text-card-source']}>
-                        Source: This clock follows the methodology from the
-                         <a href="https://www.mcc-berlin.net/en/index.html" target="_blank">Mercator Research Institute on Global Commons and Climate Change</a> (MCC) 
-                         using data from the IPCC Special Report on Global Warming of 1.5°C
-                    </p>
                 </>
         }
     },
@@ -413,6 +448,11 @@ export const CLIMATE_CLOCK_STEPS = [
                         which could mean we have less time than the clock says. Temperature climbs after
                         increases atmospheric CO2, so we would not feel the full impact of exceeding
                         the carbon budget right away.
+                    </p>
+                    <p className={styles['text-card-source']}>
+                        Source: This clock follows the methodology from the
+                         <a href="https://www.mcc-berlin.net/en/index.html" target="_blank">Mercator Research Institute on Global Commons and Climate Change</a> (MCC)
+                         using data from the IPCC Special Report on Global Warming of 1.5°C
                     </p>
                 </>
         }
