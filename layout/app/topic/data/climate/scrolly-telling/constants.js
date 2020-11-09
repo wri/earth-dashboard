@@ -361,12 +361,13 @@ export const CLIMATE_STEPS = [
                     <h6>SEA ICE</h6>
                     <p>
                         The likelihood of ice free summer in the arctic would rise
-                    to <strong>63% each year</strong>.
+                        to <strong>63% each year</strong>.
+                    </p>
+                        <p className={styles['photo-subtitle']}>
+                            Photo by Derek Oyen on Unsplash
                 </p>
-                    <p className={styles['photo-subtitle']}>
-                        Photo by Derek Oyen on Unsplash
-               </p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/sea-ice.jpg'
         },
         showYearCounter: true,
         yearValue: '2089 +3.0 °C',
@@ -381,12 +382,34 @@ export const CLIMATE_STEPS = [
                     <h6>HUMAN DISPLACEMENT AND CONFLICT</h6>
                     <p>
                         <strong>2-3 billion people or 30% of the projected global population</strong> would
-                     be living in inhabitable climates and would have to migrate.
-                </p>
+                        be living in inhabitable climates and would have to migrate.
+                    </p>
                     <p className={styles['photo-subtitle']}>
                         Photo by thekirbster on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
                     </p>
-                </>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-fourth.jpg'
+        },
+        showYearCounter: true,
+        yearValue: '2089 +3.0 °C',
+        yearSubtitle: 'In less than 70 years',
+        yearBackgroundColor: '#AD0000'
+    },
+    {
+        index: 17,
+        textPanel: {
+            text:
+                <>
+                    <h6>BIODIVERSITY</h6>
+                    <p>
+                        The suitable habitat for species would
+                        <strong>decrease on average by half</strong>.
+                    </p>
+                    <p className={styles['photo-subtitle']}>
+                        Photo: Andrés Medina on Unsplash
+                    </p>
+                </>,
+            imageHeader: '/static/images/scrolly-telling/climate/biodiversity-third.jpg'
         },
         showYearCounter: true,
         yearValue: '2089 +3.0 °C',
@@ -409,11 +432,6 @@ export const CLIMATE_CLOCK_STEPS = [
                         emissions rate into the future and calculates that holding emissions to 420 Gt of CO2
                         emissions gives us a 67% chance of staying within the threshold of 1.5°C.
                     </p>
-                    <p className={styles['text-card-source']}>
-                        Source: This clock follows the methodology from the
-                         <a href="https://www.mcc-berlin.net/en/index.html" target="_blank">Mercator Research Institute on Global Commons and Climate Change</a> (MCC)
-                         using data from the IPCC Special Report on Global Warming of 1.5°C
-                    </p>
                 </>
         }
     },
@@ -430,6 +448,11 @@ export const CLIMATE_CLOCK_STEPS = [
                         which could mean we have less time than the clock says. Temperature climbs after
                         increases atmospheric CO2, so we would not feel the full impact of exceeding
                         the carbon budget right away.
+                    </p>
+                    <p className={styles['text-card-source']}>
+                        Source: This clock follows the methodology from the
+                         <a href="https://www.mcc-berlin.net/en/index.html" target="_blank">Mercator Research Institute on Global Commons and Climate Change</a> (MCC)
+                         using data from the IPCC Special Report on Global Warming of 1.5°C
                     </p>
                 </>
         }
