@@ -20,6 +20,10 @@ module.exports = {
     NEXTAUTH_URL: 'https://earthhq.org'
   },
 
+  experimental: {
+    documentMiddleware: true
+  },
+
   webpack: (config) => {
     const _config = Object.assign({}, config);
 
