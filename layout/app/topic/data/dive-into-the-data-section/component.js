@@ -23,16 +23,9 @@ function DiveIntoTheDataSection({
   const topicColor = getColorByTopic(topic);
   const dataArray = topicData[topic]?.diveIntoTheData?.data;
   const isBrowser = typeof window !== 'undefined';
-  
 
-  return (
-    <div
-      id="dive-into-the-data"
-      className={classnames({
-        [styles['c-dive-into-the-data-section']]: true,
-        [styles['-mobile']]: showMobileVersion
-      })}
-    >
+  const getMainContainerContent = () =>
+    <>
       <h2>Dive into the <span style={{ color: topicColor }}>Data</span></h2>
       <p className={styles.subtitle}>{getDiveIntoTheDataDataByTopic(topic)?.description}</p>
       <div className={styles['widgets-container']}>
@@ -52,10 +45,36 @@ function DiveIntoTheDataSection({
                 <WidgetPanel
                   widget={widgets.find(w => w.id === widget.id)}
                 />
-               </div>))}
+              </div>))}
           </div>
         }
       </div>
+    </>;
+
+  return (
+    <div
+      id="dive-into-the-data"
+      className={styles['c-dive-into-the-data-section']}
+    >
+      <MediaContextProvider>
+        <Desktop>
+          <div className={classnames({
+            [styles['main-container']]: true,
+            [styles['-desktop']]: true
+          })}>
+            {getMainContainerContent()}
+          </div>
+        </Desktop>
+        <Mobile>
+          <div className={classnames({
+            [styles['main-container']]: true,
+            [styles['-mobile']]: true
+          })}>
+            {getMainContainerContent()}
+          </div>
+        </Mobile>
+      </MediaContextProvider>
+
     </div>
   );
 }

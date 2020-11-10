@@ -12,21 +12,38 @@ import styles from './change-agents-section.module.scss';
 function ChangeAgentsSection(props) {
   const { topic } = props;
   const topicColor = getColorByTopic(topic);
-  
-
-  return (
-    <div
-      className={classnames({
-        [styles['c-change-agents-section']]: true,
-        [styles['-mobile']]: showMobileVersion
-      })}
-      style={{ backgroundColor: topicColor }}
-      id="change-agents"
-    >
+  const getMainContainerContents = () =>
+    <>
       <h2>Change Agents <span>(coming soon)</span></h2>
       <div className={styles.subtitle}>
         Explore the companies, cities, governments and consumers that are having a positive impact towards solutions to our Global Commons problems.
-      </div>
+        </div>
+    </>;
+
+  return (
+    <div
+      className={styles['c-change-agents-section']}
+      style={{ backgroundColor: topicColor }}
+      id="change-agents"
+    >
+      <MediaContextProvider>
+        <Desktop>
+          <div className={classnames({
+            [styles['main-container']]: true,
+            [styles['-desktop']]: true
+          })}>
+            {getMainContainerContents()}
+          </div>
+        </Desktop>
+        <Mobile>
+          <div className={classnames({
+            [styles['main-container']]: true,
+            [styles['-mobile']]: true
+          })}>
+            {getMainContainerContents()}
+          </div>
+        </Mobile>
+      </MediaContextProvider>
     </div>
   );
 }

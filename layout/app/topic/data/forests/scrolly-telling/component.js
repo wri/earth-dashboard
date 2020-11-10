@@ -7,7 +7,7 @@ import TextBox from 'components/scrolly-telling/text-box';
 
 // utils
 import { getColorByTopic } from 'utils/topics';
-import { getShowMobileVersion } from 'utils/responsive';
+import { MediaContextProvider, Desktop, Mobile } from 'utils/responsive';
 
 // constants
 import { FORESTS_STEPS } from './constants';
@@ -18,7 +18,6 @@ import styles from './forests-scrolly-telling.module.scss';
 function ForestsScrollyTelling({ topic }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
-    const showMobileVerson = getShowMobileVersion();
     const currentStep = FORESTS_STEPS[currentStepIndex];
     const topicColor = getColorByTopic(topic);
 
@@ -36,14 +35,29 @@ function ForestsScrollyTelling({ topic }) {
             <div className={styles.story}>
                 <div className={styles['sticky-container']}>
                     <div className={styles['wrapper-container']}>
-                        {currentStep.stickyContainerElement &&
-                            <div className={classnames({
-                                [styles['sticky-element']]: true,
-                                [styles['-mobile']]: showMobileVerson
-                            })}>
-                                {currentStep.stickyContainerElement}
-                            </div>
-                        }
+                        <MediaContextProvider>
+                            <Desktop>
+                                {currentStep.stickyContainerElement &&
+                                    <div className={classnames({
+                                        [styles['sticky-element']]: true,
+                                        [styles['-desktop']]: true
+                                    })}>
+                                        {currentStep.stickyContainerElement}
+                                    </div>
+                                }
+                            </Desktop>
+                            <Mobile>
+                                {currentStep.stickyContainerElement &&
+                                    <div className={classnames({
+                                        [styles['sticky-element']]: true,
+                                        [styles['-mobile']]: true
+                                    })}>
+                                        {currentStep.stickyContainerElement}
+                                    </div>
+                                }
+                            </Mobile>
+                        </MediaContextProvider>
+
                         {currentStep.showYearCounter &&
                             <div className={styles['year-container']}>
                                 <div

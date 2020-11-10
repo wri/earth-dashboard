@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
 
 // utils
-import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
+import { Desktop, MediaContextProvider } from 'utils/responsive';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -41,7 +41,6 @@ function LayoutTopicData(props) {
   const { ref: challengeRef, inView: challengeInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: creditsRef, inView: creditsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
-  
 
   const getSectionInView = () => {
     if (scrollyTellingInView) {
@@ -86,15 +85,17 @@ function LayoutTopicData(props) {
         >
           <img src="/static/images/logo-light.svg" />
         </div>
-        {!showMobileVersion &&
-          <div className={styles['navigation-dots']}>
-            <NavigationDots
-              items={NAVIGATION_ITEMS}
-              route={`/${topic}/data`}
-              selectedItemID={getSectionInView()}
-            />
-          </div>
-        }
+        <MediaContextProvider>
+          <Desktop>
+            <div className={styles['navigation-dots']}>
+              <NavigationDots
+                items={NAVIGATION_ITEMS}
+                route={`/${topic}/data`}
+                selectedItemID={getSectionInView()}
+              />
+            </div>
+          </Desktop>
+        </MediaContextProvider>
         <div
           className={styles['headline-section']}>
           <HeadlineSection topic={topic} />

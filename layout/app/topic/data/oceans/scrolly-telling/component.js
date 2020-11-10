@@ -9,7 +9,7 @@ import TextBox from 'components/scrolly-telling/text-box';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // constants
-import {OCEANS_STEPS, OCEANS_STEPS_INTRO } from './constants';
+import { OCEANS_STEPS, OCEANS_STEPS_INTRO } from './constants';
 
 // styles
 import styles from './oceans-scrolly-telling.module.scss';
@@ -17,7 +17,7 @@ import styles from './oceans-scrolly-telling.module.scss';
 function OceansScrollyTelling({ topic }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
-    
+
     const currentStep = OCEANS_STEPS[currentStepIndex];
 
     // This callback fires when a Step hits the offset threshold. It receives the
@@ -62,14 +62,29 @@ function OceansScrollyTelling({ topic }) {
             <div className={styles.story}>
                 <div className={styles['sticky-container']}>
                     <div className={styles['wrapper-container']}>
-                        {currentStep.stickyContainerElement &&
-                            <div className={classnames({
-                                [styles['sticky-element']]: true,
-                                [styles['-mobile']]: showMobileVersion
-                            })}>
-                                {currentStep.stickyContainerElement}
-                            </div>
-                        }
+                        <MediaContextProvider>
+                            <Desktop>
+                                {currentStep.stickyContainerElement &&
+                                    <div className={classnames({
+                                        [styles['sticky-element']]: true,
+                                        [styles['-desktop']]: true
+                                    })}>
+                                        {currentStep.stickyContainerElement}
+                                    </div>
+                                }
+                            </Desktop>
+                            <Mobile>
+                                {currentStep.stickyContainerElement &&
+                                    <div className={classnames({
+                                        [styles['sticky-element']]: true,
+                                        [styles['-mobile']]: true
+                                    })}>
+                                        {currentStep.stickyContainerElement}
+                                    </div>
+                                }
+                            </Mobile>
+                        </MediaContextProvider>
+
                     </div>
                 </div>
 

@@ -18,7 +18,9 @@ function ChallengeToOurGlobalCommons(props) {
   const topicColor = getColorByTopic(topic);
   const isBrowser = typeof window !== 'undefined';
   const data = getChallengeSectionDataByTopic(topic);
-  
+
+  const getTitle = () =>
+    <h1>The <span style={{ color: topicColor }}>Challenge</span> to our Global Commons</h1>;
 
   return (
     <div
@@ -28,42 +30,72 @@ function ChallengeToOurGlobalCommons(props) {
       <div
         className={styles['background-container']}
       >
-        <div
-          className={classnames({
-            [styles['title-container']]: true,
-            [styles['-mobile']]: showMobileVersion
-          })}
-          style={{ backgroundImage: `url('/static/images/${topic}/challenge.png')` }}
-        >
-          <h1>The <span style={{ color: topicColor }}>Challenge</span> to our Global Commons</h1>
-        </div>
-        <div className={styles['paragraphs-container']}>
-          <div className={styles.paragraphs}>
-            {isBrowser &&
-              <Scrollama
-                offset={0.6}
-                onStepExit={({ data }) => console.log('onStepExit', data)}
-              >
-                {data?.paragraphs?.map((paragraph, index) =>
-                  <Step
-                    data={index}
-                    key={`challenge-step-${index}`}
-                  >
-                    <div
-                      className={classnames({
-                        [styles['challenge-paragraph']]: true,
-                        [styles[`-${topic}`]]: true,
-                        [styles['-mobile']]: showMobileVersion
-                      })}
+        <MediaContextProvider>
+          <Desktop>
+            <div
+              className={classnames({
+                [styles['title-container']]: true,
+                [styles['-desktop']]: true
+              })}
+              style={{ backgroundImage: `url('/static/images/${topic}/challenge.png')` }}
+            >
+              {getTitle()}
+            </div>
+          </Desktop>
+          <Mobile>
+            <div
+              className={classnames({
+                [styles['title-container']]: true,
+                [styles['-mobile']]: true
+              })}
+              style={{ backgroundImage: `url('/static/images/${topic}/challenge.png')` }}
+            >
+              {getTitle()}
+            </div>
+          </Mobile>
+
+          <div className={styles['paragraphs-container']}>
+            <div className={styles.paragraphs}>
+              {isBrowser &&
+                <Scrollama
+                  offset={0.6}
+                  onStepExit={({ data }) => console.log('onStepExit', data)}
+                >
+                  {data?.paragraphs?.map((paragraph, index) =>
+                    <Step
+                      data={index}
+                      key={`challenge-step-${index}`}
                     >
-                      {paragraph}
-                    </div>
-                  </Step>
-                )}
-              </Scrollama>
-            }
+                      <Desktop>
+                        <div
+                          className={classnames({
+                            [styles['challenge-paragraph']]: true,
+                            [styles[`-${topic}`]]: true,
+                            [styles['-desktop']]: true
+                          })}
+                        >
+                          {paragraph}
+                        </div>
+                      </Desktop>
+                      <Mobile>
+                        <div
+                          className={classnames({
+                            [styles['challenge-paragraph']]: true,
+                            [styles[`-${topic}`]]: true,
+                            [styles['-mobile']]: true
+                          })}
+                        >
+                          {paragraph}
+                        </div>
+                      </Mobile>
+
+                    </Step>
+                  )}
+                </Scrollama>
+              }
+            </div>
           </div>
-        </div>
+        </MediaContextProvider>
         <div className={styles['photo-attribution-container']}>
           {data?.photoAttribution}
         </div>
