@@ -1,22 +1,28 @@
-import { useMediaQuery } from 'react-responsive';
+import { createMedia } from "@artsy/fresnel";
 
 const breakpoints = {
-  small: 0,
-  medium: 780,
-  large: 1024,
-  xlarge: 1260,
-  xxlarge: 1560
+  sm: 0,
+  md: 768,
+  lg: 1024,
+  xl: 1192,
 };
 
-const getShowMobileVersion = () => {
-  const isTabletOrMobile = useMediaQuery({ maxWidth: breakpoints.medium });
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: `(max-device-width: ${breakpoints.large}px)`
-  });
-  return isTabletOrMobileDevice || isTabletOrMobile;
-}
+const EDMedia = createMedia({ breakpoints });
+const { MediaContextProvider, Media } = EDMedia;
+const mediaStyle = EDMedia.createMediaStyle();
+
+function Desktop(props) {
+  return <Media greaterThanOrEqual="md">{props.children}</Media>;
+};
+
+function Mobile(props) {
+  return <Media lessThan="md">{props.children}</Media>;
+};
 
 export {
   breakpoints,
-  getShowMobileVersion
+  Desktop,
+  Mobile,
+  MediaContextProvider,
+  mediaStyle
 };

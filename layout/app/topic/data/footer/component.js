@@ -4,14 +4,14 @@ import { useRouter } from 'next/router';
 import classnames from 'classnames';
 
 // utils
-import { getShowMobileVersion } from 'utils/responsive';
+import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // styles
 import styles from './footer.module.scss';
 
 function Footer() {
     const router = useRouter();
-    const showMobileVersion = getShowMobileVersion();
+    
 
     return (
         <div className={classnames({

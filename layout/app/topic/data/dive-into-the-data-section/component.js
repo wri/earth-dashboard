@@ -10,7 +10,7 @@ import {
   getColorByTopic,
   getDiveIntoTheDataDataByTopic
 } from 'utils/topics';
-import { getShowMobileVersion } from 'utils/responsive';
+import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // styles
 import styles from './dive-into-the-data-section.module.scss';
@@ -23,7 +23,7 @@ function DiveIntoTheDataSection({
   const topicColor = getColorByTopic(topic);
   const dataArray = topicData[topic]?.diveIntoTheData?.data;
   const isBrowser = typeof window !== 'undefined';
-  const showMobileVersion = getShowMobileVersion();
+  
 
   return (
     <div

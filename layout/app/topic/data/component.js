@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
 
 // utils
-import { getShowMobileVersion } from 'utils/responsive';
+import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -41,7 +41,7 @@ function LayoutTopicData(props) {
   const { ref: challengeRef, inView: challengeInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: creditsRef, inView: creditsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
-  const showMobileVersion = getShowMobileVersion();
+  
 
   const getSectionInView = () => {
     if (scrollyTellingInView) {

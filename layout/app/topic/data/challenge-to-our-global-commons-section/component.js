@@ -8,7 +8,7 @@ import {
   getColorByTopic,
   getChallengeSectionDataByTopic
 } from 'utils/topics';
-import { getShowMobileVersion } from 'utils/responsive';
+import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // styles
 import styles from './challenge-to-our-global-commons-section.module.scss';
@@ -18,7 +18,7 @@ function ChallengeToOurGlobalCommons(props) {
   const topicColor = getColorByTopic(topic);
   const isBrowser = typeof window !== 'undefined';
   const data = getChallengeSectionDataByTopic(topic);
-  const showMobileVersion = getShowMobileVersion();
+  
 
   return (
     <div

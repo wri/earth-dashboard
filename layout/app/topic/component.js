@@ -12,7 +12,11 @@ import {
   FORESTS,
   FRESHWATER
 } from 'utils/topics';
-import { getShowMobileVersion } from 'utils/responsive';
+import {
+  Mobile,
+  Desktop,
+  MediaContextProvider
+} from 'utils/responsive';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -28,7 +32,6 @@ import { PARTICLES_DEFINITION } from 'utils/particles';
 function LayoutTopic(props) {
   const { topic, topicData, widgets } = props;
   const router = useRouter();
-  const showMobileVersion = getShowMobileVersion();
   const dataArray = topicData[topic]?.topicPage?.data;
 
   return (
@@ -95,44 +98,46 @@ function LayoutTopic(props) {
         <img src="/static/images/arrow-right.svg" />
       </div>
       {/* LEFT MENU */}
-      {!showMobileVersion &&
-        <div
-          className={styles['left-menu']}
-        >
-          <Link href="/climate">
-            <a className={classnames({
-              [styles['climate-link']]: topic === CLIMATE,
-              [styles['selected-link']]: topic === CLIMATE
-            })}>
-              CLIMATE
+      <MediaContextProvider>
+        <Desktop>
+          <div
+            className={styles['left-menu']}
+          >
+            <Link href="/climate">
+              <a className={classnames({
+                [styles['climate-link']]: topic === CLIMATE,
+                [styles['selected-link']]: topic === CLIMATE
+              })}>
+                CLIMATE
           </a>
-          </Link>
-          <Link href="/forests">
-            <a className={classnames({
-              [styles['forests-link']]: topic === FORESTS,
-              [styles['selected-link']]: topic === FORESTS
-            })}>
-              FORESTS
+            </Link>
+            <Link href="/forests">
+              <a className={classnames({
+                [styles['forests-link']]: topic === FORESTS,
+                [styles['selected-link']]: topic === FORESTS
+              })}>
+                FORESTS
           </a>
-          </Link>
-          <Link href="/freshwater">
-            <a className={classnames({
-              [styles['freshwater-link']]: topic === FRESHWATER,
-              [styles['selected-link']]: topic === FRESHWATER
-            })}>
-              FRESHWATER
+            </Link>
+            <Link href="/freshwater">
+              <a className={classnames({
+                [styles['freshwater-link']]: topic === FRESHWATER,
+                [styles['selected-link']]: topic === FRESHWATER
+              })}>
+                FRESHWATER
           </a>
-          </Link>
-          <Link href="/oceans">
-            <a className={classnames({
-              [styles['oceans-link']]: topic === OCEANS,
-              [styles['selected-link']]: topic === OCEANS
-            })}>
-              OCEANS
+            </Link>
+            <Link href="/oceans">
+              <a className={classnames({
+                [styles['oceans-link']]: topic === OCEANS,
+                [styles['selected-link']]: topic === OCEANS
+              })}>
+                OCEANS
           </a>
-          </Link>
-        </div>
-      }
+            </Link>
+          </div>
+        </Desktop>
+      </MediaContextProvider>
       <Particles
         className={styles.particles}
         params={PARTICLES_DEFINITION}

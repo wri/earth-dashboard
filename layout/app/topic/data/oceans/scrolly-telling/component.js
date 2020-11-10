@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import TextBox from 'components/scrolly-telling/text-box';
 
 // utils
-import { getShowMobileVersion } from 'utils/responsive';
+import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // constants
 import {OCEANS_STEPS, OCEANS_STEPS_INTRO } from './constants';
@@ -17,7 +17,7 @@ import styles from './oceans-scrolly-telling.module.scss';
 function OceansScrollyTelling({ topic }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
-    const showMobileVersion = getShowMobileVersion();
+    
     const currentStep = OCEANS_STEPS[currentStepIndex];
 
     // This callback fires when a Step hits the offset threshold. It receives the

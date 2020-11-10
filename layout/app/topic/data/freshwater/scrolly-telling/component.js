@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import TextBox from 'components/scrolly-telling/text-box';
 
 // utils
-import { getShowMobileVersion } from 'utils/responsive';
+import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // constants
 import {
@@ -22,7 +22,7 @@ function FreshwaterScrollyTelling(props) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [currentStepIndexWorldMap, setCurrentStepIndexWorldMap] = useState(0);
     const isBrowser = typeof window !== 'undefined';
-    const showMobileVersion = getShowMobileVersion();
+    
 
     // This callback fires when a Step hits the offset threshold. It receives the
     // data prop of the step, which in this demo stores the index of the step.

@@ -16,7 +16,6 @@ import styles from './homepage.module.scss';
 
 function LayoutHome() {
   const showMobileVersion = getShowMobileVersion();
-
   return (
     <Layout
       title="Earth Dashboard"

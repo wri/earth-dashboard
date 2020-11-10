@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 // utils
 import { getColorByTopic } from 'utils/topics';
-import { getShowMobileVersion } from 'utils/responsive';
+import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // styles
 import styles from './change-agents-section.module.scss';
@@ -12,7 +12,7 @@ import styles from './change-agents-section.module.scss';
 function ChangeAgentsSection(props) {
   const { topic } = props;
   const topicColor = getColorByTopic(topic);
-  const showMobileVersion = getShowMobileVersion();
+  
 
   return (
     <div
