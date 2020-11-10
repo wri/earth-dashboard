@@ -80,119 +80,120 @@ function Header(props) {
 
 
   return (
-    <MediaContextProvider>
-      <Desktop>
-        <header className={classnames({
-          [styles.header]: true,
-          [styles['-desktop']]: true
-        })}>
-          {showLogo && !isOpen && getLogoContainer()}
-          <div
-            className={styles['hamburguer-button']}
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <div className={styles['hamburguer-button-image']}>
-              <img src={`/static/images/${isOpen ? 'close' : 'hamburger'}.svg`} />
+    <header className={styles.header}>
+      <MediaContextProvider>
+        <Desktop>
+          <div className={classnames({
+            [styles['main-container']]: true,
+            [styles['-desktop']]: true
+          })}>
+            {showLogo && !isOpen && getLogoContainer()}
+            <div
+              className={styles['hamburguer-button']}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <div className={styles['hamburguer-button-image']}>
+                <img src={`/static/images/${isOpen ? 'close' : 'hamburger'}.svg`} />
+              </div>
             </div>
-          </div>
-          <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
-            {isOpen &&
-              <div className={styles['menu-container']}>
-                {getParticles()}
-                <div className={classnames({
-                  [styles['data-containers']]: true,
-                  [styles['-desktop']]: true
-                })}
-                >
+            <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
+              {isOpen &&
+                <div className={styles['menu-container']}>
+                  {getParticles()}
                   <div className={classnames({
-                    [styles['left-container']]: true,
+                    [styles['data-containers']]: true,
                     [styles['-desktop']]: true
-                  })}>
-                    {getLogo()}
-                    <ul className={styles['left-links']}>
-                      <li>About</li>
-                      <li>Share</li>
-                    </ul>
+                  })}
+                  >
                     <div className={classnames({
-                      [styles['powered-by']]: true,
+                      [styles['left-container']]: true,
                       [styles['-desktop']]: true
                     })}>
-                      powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
+                      {getLogo()}
+                      <ul className={styles['left-links']}>
+                        <li>About</li>
+                        <li>Share</li>
+                      </ul>
+                      <div className={classnames({
+                        [styles['powered-by']]: true,
+                        [styles['-desktop']]: true
+                      })}>
+                        powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
+                      </div>
+                    </div>
+                    <div className={classnames({
+                      [styles['right-container']]: true,
+                      [styles['-desktop']]: true
+                    })}
+                    >
+                      {getTopicContainer()}
                     </div>
                   </div>
+                </div>
+              }
+            </motion.div>
+          </div>
+        </Desktop>
+        <Mobile>
+          <div className={classnames({
+            [styles['main-container']]: true,
+            [styles['-mobile']]: true
+          })}>
+            {showLogo && !isOpen && getLogoContainer()}
+            <div
+              className={styles['hamburguer-button']}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <div className={styles['hamburguer-button-image']}>
+                <img src={`/static/images/${isOpen ? 'close' : 'hamburger'}.svg`} />
+              </div>
+            </div>
+            <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
+              {isOpen &&
+                <div className={styles['menu-container']}>
+                  {getParticles()}
                   <div className={classnames({
-                    [styles['right-container']]: true,
-                    [styles['-desktop']]: true
+                    [styles['data-containers']]: true,
+                    [styles['-mobile']]: true
                   })}
                   >
-                    {getTopicContainer()}
-                  </div>
-                </div>
-              </div>
-            }
-          </motion.div>
-        </header>
-      </Desktop>
-      <Mobile>
-        <header className={classnames({
-          [styles.header]: true,
-          [styles['-mobile']]: true
-        })}>
-          {showLogo && !isOpen && getLogoContainer()}
-          <div
-            className={styles['hamburguer-button']}
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <div className={styles['hamburguer-button-image']}>
-              <img src={`/static/images/${isOpen ? 'close' : 'hamburger'}.svg`} />
-            </div>
-          </div>
-          <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
-            {isOpen &&
-              <div className={styles['menu-container']}>
-                {getParticles()}
-                <div className={classnames({
-                  [styles['data-containers']]: true,
-                  [styles['-mobile']]: true
-                })}
-                >
-                  <div className={classnames({
-                    [styles['left-container']]: true,
-                    [styles['-mobile']]: true
-                  })}>
-                    {getLogo()}
-                    <ul className={styles['left-links']}>
-                      <li>About</li>
-                      <li>
-                        <div className={styles['share-icons-container']}>
-                          <img src="/static/images/share/email_white.svg" />
-                          <img src="/static/images/share/facebook_white.svg" />
-                          <img src="/static/images/share/twitter_white.svg" />
-                        </div>
-                      </li>
-                    </ul>
                     <div className={classnames({
-                      [styles['powered-by']]: true,
+                      [styles['left-container']]: true,
                       [styles['-mobile']]: true
                     })}>
-                      powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
+                      {getLogo()}
+                      <ul className={styles['left-links']}>
+                        <li>About</li>
+                        <li>
+                          <div className={styles['share-icons-container']}>
+                            <img src="/static/images/share/email_white.svg" />
+                            <img src="/static/images/share/facebook_white.svg" />
+                            <img src="/static/images/share/twitter_white.svg" />
+                          </div>
+                        </li>
+                      </ul>
+                      <div className={classnames({
+                        [styles['powered-by']]: true,
+                        [styles['-mobile']]: true
+                      })}>
+                        powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
+                      </div>
+                    </div>
+                    <div className={classnames({
+                      [styles['right-container']]: true,
+                      [styles['-mobile']]: true
+                    })}
+                    >
+                      {getTopicContainer()}
                     </div>
                   </div>
-                  <div className={classnames({
-                    [styles['right-container']]: true,
-                    [styles['-mobile']]: true
-                  })}
-                  >
-                    {getTopicContainer()}
-                  </div>
                 </div>
-              </div>
-            }
-          </motion.div>
-        </header>
-      </Mobile>
-
-    </MediaContextProvider>
+              }
+            </motion.div>
+          </div>
+        </Mobile>
+      </MediaContextProvider>
+    </header>
   );
 }
 
