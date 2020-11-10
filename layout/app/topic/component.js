@@ -40,65 +40,81 @@ function LayoutTopic(props) {
       description="Earth Dashboard"
       className={styles.topic}
     >
-      <div className={classnames({
-        'row': true,
-        [styles['indicators-row']]: true
-      })}>
-        <div className={classnames({
-          [styles['indicators-container']]: true,
-          'small-8': true,
-          'medium-6': true,
-          'column': true
-        })}>
-          {/* INDICATORS HEADER */}
-          <div className={styles['indicators-header']}>
-            <span className={styles['header-title']}>THE GLOBAL COMMONS REPORT</span>
-            <span className={styles['header-subtitle']}>
-              powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
-            </span>
-          </div>
-          {dataArray && dataArray.map(block => {
-            const { type } = block;
-
-            if (type === 'widget') {
-              const widgetObj = widgets.find(w => w.id === block.id);
-              return (
-                <div
-                  className={styles['indicator-block']}
-                  key={widgetObj?.id}
-                >
-                  <WidgetPreview widget={widgetObj} />
-                </div>
-              );
-            } else if (type === 'topic-news') {
-              const { numberOfElements, keywords } = block;
-              return (
-                <div
-                  key={`topic-news-${keywords}`}
-                  className={styles['indicator-block']}
-                >
-                  <span className={styles['block-header']}>RECENT NEWS</span>
-                  <TopicNews topic={keywords} limit={numberOfElements} />
-                </div>
-              );
-            }
-          })}
-        </div>
-      </div>
-      {/* RIGHT SIDE LINK TO STORY TELLING PAGE */}
-      <div
-        className={classnames({
-          [styles['right-link']]: true,
-          [styles['-mobile']]: showMobileVersion
-        })}
-        onClick={() => router.push(`/${topic}/data`)}
-        style={{ backgroundColor: getColorByTopic(topic) }}
-      >
-        <a>EXPLORE{!showMobileVersion && <br />} {topic && topic.toUpperCase()}</a>
-        <img src="/static/images/arrow-right.svg" />
-      </div>
-      {/* LEFT MENU */}
       <MediaContextProvider>
+        <div className={classnames({
+          'row': true,
+          [styles['indicators-row']]: true
+        })}>
+          <div className={classnames({
+            [styles['indicators-container']]: true,
+            'small-8': true,
+            'medium-6': true,
+            'column': true
+          })}>
+            {/* INDICATORS HEADER */}
+            <div className={styles['indicators-header']}>
+              <span className={styles['header-title']}>THE GLOBAL COMMONS REPORT</span>
+              <span className={styles['header-subtitle']}>
+                powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
+              </span>
+            </div>
+            {dataArray && dataArray.map(block => {
+              const { type } = block;
+
+              if (type === 'widget') {
+                const widgetObj = widgets.find(w => w.id === block.id);
+                return (
+                  <div
+                    className={styles['indicator-block']}
+                    key={widgetObj?.id}
+                  >
+                    <WidgetPreview widget={widgetObj} />
+                  </div>
+                );
+              } else if (type === 'topic-news') {
+                const { numberOfElements, keywords } = block;
+                return (
+                  <div
+                    key={`topic-news-${keywords}`}
+                    className={styles['indicator-block']}
+                  >
+                    <span className={styles['block-header']}>RECENT NEWS</span>
+                    <TopicNews topic={keywords} limit={numberOfElements} />
+                  </div>
+                );
+              }
+            })}
+          </div>
+        </div>
+        {/* RIGHT SIDE LINK TO STORY TELLING PAGE */}
+        <Desktop>
+          <div
+            className={classnames({
+              [styles['right-link']]: true,
+              [styles['-desktop']]: true
+            })}
+            onClick={() => router.push(`/${topic}/data`)}
+            style={{ backgroundColor: getColorByTopic(topic) }}
+          >
+            <a>EXPLORE<br />{topic && topic.toUpperCase()}</a>
+            <img src="/static/images/arrow-right.svg" />
+          </div>
+        </Desktop>
+        <Mobile>
+          <div
+            className={classnames({
+              [styles['right-link']]: true,
+              [styles['-mobile']]: true
+            })}
+            onClick={() => router.push(`/${topic}/data`)}
+            style={{ backgroundColor: getColorByTopic(topic) }}
+          >
+            <a>EXPLORE{topic && topic.toUpperCase()}</a>
+            <img src="/static/images/arrow-right.svg" />
+          </div>
+        </Mobile>
+
+        {/* LEFT MENU */}
         <Desktop>
           <div
             className={styles['left-menu']}
