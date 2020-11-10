@@ -74,7 +74,13 @@ class MyDocument extends Document {
 }
 
 MyDocument.getInitialProps = async (ctx) => {
-  await basicAuthMiddleware(ctx.req, ctx.res, { realm: 'Protected' });
+  await basicAuthMiddleware(ctx.req, ctx.res, {
+    realm: 'Protected',
+    users: [{
+      name: process.env.ED_USERNAME,
+      password: process.env.ED_PASSWORD
+    }]
+  });
   const initialProps = await Document.getInitialProps(ctx);
   return { ...initialProps };
 };
