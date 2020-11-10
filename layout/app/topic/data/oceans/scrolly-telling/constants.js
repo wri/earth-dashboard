@@ -6,7 +6,7 @@ export const OCEANS_STEPS_INTRO = [
         index: 0,
         textPanel: {
             text:
-                <>
+                <div>
                     <h6>Ocean uses</h6>
                     <h6 className={styles.subheader}>ACCELERATING USES OF OCEAN RESOURCES</h6>
                     <p>
@@ -17,7 +17,7 @@ export const OCEANS_STEPS_INTRO = [
                         hope is that the ocean can deliver as an economic frontier, but each of
                         these pressures are increasing in isolation of one another, creating a new risk landscape
                     </p>
-                </>
+                </div>
         }
     }
 ];
@@ -27,7 +27,7 @@ export const OCEANS_STEPS = [
         index: 0,
         textPanel: {
             text:
-                <>
+                <div>
                     <h6>Threats to the Ocean</h6>
                     <h6 className={styles.subheader}>CORAL BLEACHING AND ACIDIFICATION</h6>
                     <p>
@@ -41,7 +41,7 @@ export const OCEANS_STEPS = [
                     <p className={styles['text-card-source']}>
                         Photo by NMSAS on Wikimedia Commons (Public domain)
                     </p>
-                </>,
+                </div>,
             imageHeader: '/static/images/scrolly-telling/oceans/threats-to-the-ocean.jpg'
         },
         stickyContainerElement: 
@@ -53,7 +53,7 @@ export const OCEANS_STEPS = [
         index: 1,
         textPanel: {
             text:
-                <>
+                <div>
                     <h6>Threats to the Ocean</h6>
                     <h6 className={styles.subheader}>PROJECTED CORAL DEATH</h6>
                     <p>
@@ -61,7 +61,7 @@ export const OCEANS_STEPS = [
                          died. <strong>About 70-90% of all existing coral reefs (marked in red on the map) are expected to disappear in the next 20 years</strong> due
                          to warming oceans, more acidic water and pollution.
                     </p>
-                </>
+                </div>
         },
         stickyContainerElement: 
             <div className={styles['coral-map']}>
@@ -72,7 +72,7 @@ export const OCEANS_STEPS = [
         index: 2,
         textPanel: {
             text:
-                <>
+                <div>
                     <h6>Fisheries under pressure</h6>
                     <h6 className={styles.subheader}>INCREASE IN FISHERIES AND FOOD DEMAND FROM THE OCEAN</h6>
                     <p>
@@ -87,7 +87,7 @@ export const OCEANS_STEPS = [
                     <p className={styles['text-card-source']}>
                         Photo by Ed Dunens on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
                     </p>
-                </>,
+                </div>,
             imageHeader: '/static/images/scrolly-telling/oceans/fisheries-under-pressure.jpg'
         },
         stickyContainerElement: 
@@ -102,7 +102,7 @@ export const OCEANS_STEPS = [
         index: 3,
         textPanel: {
             text:
-                <>
+                <div>
                     <p>
                         Illegal or unregulated fishing is rampant, and traps up to 26 million tons of fish
                         a year, or up to a third of high-value fish taken.
@@ -111,7 +111,7 @@ export const OCEANS_STEPS = [
                         Bycatch, the netting of unwanted sea life, kills billions of fish, along with
                         seabirds, sea turtles, dolphins, and sharks, driving some species to the brink of extinction.
                     </p>
-                </>
+                </div>
         },
         stickyContainerElement: 
             <div className={styles['chart-with-title']}>
@@ -125,7 +125,7 @@ export const OCEANS_STEPS = [
         index: 4,
         textPanel: {
             text:
-                <>
+                <div>
                     <p>
                         However, recent studies from 2020 have shown
                         that <strong>with proper management, fisheries can rebound</strong>.
@@ -136,7 +136,7 @@ export const OCEANS_STEPS = [
                         science of mariculture (ocean aquaculture) could help deliver over 6 times more food
                         than the ocean provides us today.
                     </p>
-                </>
+                </div>
         },
         stickyContainerElement: 
             <div className={styles['chart-with-title']}>
@@ -150,7 +150,7 @@ export const OCEANS_STEPS = [
         index: 5,
         textPanel: {
             text:
-                <>
+                <div>
                     <h6>Islands of plastic</h6>
                     <h6 className={styles.subheader}>PLASTIC POLLUTION</h6>
                     <p>
@@ -167,7 +167,7 @@ export const OCEANS_STEPS = [
                     <p className={styles['text-card-source']}>
                         Photo by Muntaka Chasant on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
-                </>,
+                </div>,
             imageHeader: '/static/images/scrolly-telling/oceans/islands-of-plastic.jpg'
         }
     },
@@ -187,7 +187,7 @@ export const OCEANS_STEPS = [
         index: 7,
         textPanel: {
             text:
-                <>
+                <div>
                     <h6>Ocean Industries</h6>
                     <h6 className={styles.subheader}>BENEFITS OF SUSTAINABLE INTERVENTIONS</h6>
                     <p>
@@ -205,7 +205,7 @@ export const OCEANS_STEPS = [
                     <p className={styles['text-card-source']}>
                         Photo by Nicholas Doherty on Unsplash
                     </p>
-                </>,
+                </div>,
             imageHeader: '/static/images/scrolly-telling/oceans/ocean-industries.jpg'
         },
         stickyContainerElement: 

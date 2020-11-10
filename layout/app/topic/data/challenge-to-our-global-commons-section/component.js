@@ -66,29 +66,30 @@ function ChallengeToOurGlobalCommons(props) {
                       data={index}
                       key={`challenge-step-${index}`}
                     >
-                      <Desktop>
-                        <div
-                          className={classnames({
-                            [styles['challenge-paragraph']]: true,
-                            [styles[`-${topic}`]]: true,
-                            [styles['-desktop']]: true
-                          })}
-                        >
-                          {paragraph}
-                        </div>
-                      </Desktop>
-                      <Mobile>
-                        <div
-                          className={classnames({
-                            [styles['challenge-paragraph']]: true,
-                            [styles[`-${topic}`]]: true,
-                            [styles['-mobile']]: true
-                          })}
-                        >
-                          {paragraph}
-                        </div>
-                      </Mobile>
-
+                      <div>
+                        <Desktop>
+                          <div
+                            className={classnames({
+                              [styles['challenge-paragraph']]: true,
+                              [styles[`-${topic}`]]: true,
+                              [styles['-desktop']]: true
+                            })}
+                          >
+                            {paragraph}
+                          </div>
+                        </Desktop>
+                        <Mobile>
+                          <div
+                            className={classnames({
+                              [styles['challenge-paragraph']]: true,
+                              [styles[`-${topic}`]]: true,
+                              [styles['-mobile']]: true
+                            })}
+                          >
+                            {paragraph}
+                          </div>
+                        </Mobile>
+                      </div>
                     </Step>
                   )}
                 </Scrollama>

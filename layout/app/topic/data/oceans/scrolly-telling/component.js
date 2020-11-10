@@ -31,38 +31,37 @@ function OceansScrollyTelling({ topic }) {
         <div
             className={styles['c-oceans-scrolly-telling']}
         >
-            <div className={styles['intro-story']}>
-                <div className={styles['intro-charts-container']}>
-                    <img src="/static/images/scrolly-telling/oceans/oceans-resources-charts.svg" />
-                </div>
-                {isBrowser &&
-                    <div className={styles.steps}>
-                        <Scrollama
-                            onStepEnter={onStepEnter}
-                            offset={0.6}
-                        >
-                            {OCEANS_STEPS_INTRO.map((step, stepIndex) => {
-
-                                return (
-                                    <Step data={stepIndex} key={`step-intro-${stepIndex}`}>
-                                        <div className={styles['text-box-container']}>
-                                            <TextBox
-                                                text={step.textPanel.text}
-                                                imageHeader={step.textPanel.imageHeader}
-                                            />
-                                        </div>
-                                    </Step>
-                                );
-                            })
-                            }
-                        </Scrollama>
+            <MediaContextProvider>
+                <div className={styles['intro-story']}>
+                    <div className={styles['intro-charts-container']}>
+                        <img src="/static/images/scrolly-telling/oceans/oceans-resources-charts.svg" />
                     </div>
-                }
-            </div>
-            <div className={styles.story}>
-                <div className={styles['sticky-container']}>
-                    <div className={styles['wrapper-container']}>
-                        <MediaContextProvider>
+                    {isBrowser &&
+                        <div className={styles.steps}>
+                            <Scrollama
+                                onStepEnter={onStepEnter}
+                                offset={0.6}
+                            >
+                                {OCEANS_STEPS_INTRO.map((step, stepIndex) => {
+                                    return (
+                                        <Step data={stepIndex} key={`step-intro-${stepIndex}`}>
+                                            <div className={styles['text-box-container']}>
+                                                <TextBox
+                                                    text={step.textPanel.text}
+                                                    imageHeader={step.textPanel.imageHeader}
+                                                />
+                                            </div>
+                                        </Step>
+                                    );
+                                })
+                                }
+                            </Scrollama>
+                        </div>
+                    }
+                </div>
+                <div className={styles.story}>
+                    <div className={styles['sticky-container']}>
+                        <div className={styles['wrapper-container']}>
                             <Desktop>
                                 {currentStep.stickyContainerElement &&
                                     <div className={classnames({
@@ -83,35 +82,33 @@ function OceansScrollyTelling({ topic }) {
                                     </div>
                                 }
                             </Mobile>
-                        </MediaContextProvider>
 
+                        </div>
                     </div>
+                    {isBrowser &&
+                        <div className={styles.steps}>
+                            <Scrollama
+                                onStepEnter={onStepEnter}
+                                offset={0.6}
+                            >
+                                {OCEANS_STEPS.map((step, stepIndex) => {
+                                    return (
+                                        <Step data={stepIndex} key={`step-${stepIndex}`}>
+                                            <div className={styles['text-box-container']}>
+                                                <TextBox
+                                                    text={step.textPanel.text}
+                                                    imageHeader={step.textPanel.imageHeader}
+                                                />
+                                            </div>
+                                        </Step>
+                                    );
+                                })
+                                }
+                            </Scrollama>
+                        </div>
+                    }
                 </div>
-
-                {isBrowser &&
-                    <div className={styles.steps}>
-                        <Scrollama
-                            onStepEnter={onStepEnter}
-                            offset={0.6}
-                        >
-                            {OCEANS_STEPS.map((step, stepIndex) => {
-
-                                return (
-                                    <Step data={stepIndex} key={`step-${stepIndex}`}>
-                                        <div className={styles['text-box-container']}>
-                                            <TextBox
-                                                text={step.textPanel.text}
-                                                imageHeader={step.textPanel.imageHeader}
-                                            />
-                                        </div>
-                                    </Step>
-                                );
-                            })
-                            }
-                        </Scrollama>
-                    </div>
-                }
-            </div>
+            </MediaContextProvider>
         </div >
     );
 }
