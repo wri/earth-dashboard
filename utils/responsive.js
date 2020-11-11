@@ -12,11 +12,21 @@ const { MediaContextProvider, Media } = EDMedia;
 const mediaStyle = EDMedia.createMediaStyle();
 
 function Desktop(props) {
-  return <Media greaterThanOrEqual="md">{props.children}</Media>;
+  return (
+    <Media
+      greaterThanOrEqual="md"
+      className={props.className}>
+      {props.children}
+    </Media>);
 };
 
 function Mobile(props) {
-  return <Media lessThan="md">{props.children}</Media>;
+  return (
+    <Media
+      lessThan="md"
+      className={props.className}>
+      {props.children}
+    </Media>);
 };
 
 export {

@@ -44,7 +44,9 @@ export const OCEANS_STEPS = [
                 </div>,
             imageHeader: '/static/images/scrolly-telling/oceans/threats-to-the-ocean.jpg'
         },
-        stickyContainerElement: <div className={styles['coral-map']} />
+        stickyContainerElement: <div className={styles['coral-map']}>
+            <div className={styles['coral-map-background']} />
+        </div>
     },
     {
         index: 1,
@@ -60,7 +62,9 @@ export const OCEANS_STEPS = [
                     </p>
                 </div>
         },
-        stickyContainerElement: <div className={styles['coral-map']} />
+        stickyContainerElement: <div className={styles['coral-map']}>
+            <div className={styles['coral-map-background']} />
+        </div>
     },
     {
         index: 2,

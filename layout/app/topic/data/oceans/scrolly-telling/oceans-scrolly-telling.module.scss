@@ -43,21 +43,29 @@
                         position: sticky;
                         top: 0px;
                         left: 0px;
-                        height: 100vh;
-                        width: 100vw;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .coral-map-background {
+                            height: 100vh;
+                            width: 100vw;
+                        }
                     }
 
                     &.-desktop {
                         .coral-map {
-                            background: url('/static/images/scrolly-telling/oceans/coral-bleaching-map-2x.png') no-repeat;
+                            .coral-map-background {
+                                background: url('/static/images/scrolly-telling/oceans/coral-bleaching-map-2x.png') no-repeat;
+                            }
                         }
                     }
 
                     &.-mobile {
-                        justify-content: center;
-
                         .coral-map {
-                            background: url('/static/images/scrolly-telling/oceans/coral-bleaching-map.png') no-repeat;
+                            .coral-map-background {
+                                background: url('/static/images/scrolly-telling/oceans/coral-bleaching-map.png') no-repeat;
+                            }
                         }
                     }
 
@@ -66,6 +74,7 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        margin: 0px 124px 0px 124px;
 
                         h6 {
                             color: $grey-darkest;

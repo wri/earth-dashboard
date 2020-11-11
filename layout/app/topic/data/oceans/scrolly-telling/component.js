@@ -84,19 +84,22 @@ function OceansScrollyTelling({ topic }) {
                 </div>
                 <div className={styles.story}>
                     <div className={styles['sticky-container']}>
-                        <div className={styles['wrapper-container']}>
-                            <Desktop>
-                                {currentStep.stickyContainerElement && 
-                                    getStickyContainerElement(false, currentStep.stickyContainerElement)
-                                }
-                            </Desktop>
-                            <Mobile>
-                                {currentStep.stickyContainerElement && 
-                                    getStickyContainerElement(true, currentStep.stickyContainerElement)
-                                }
-                            </Mobile>
-
-                        </div>
+                        {currentStep.stickyContainerElement &&
+                            <div className={styles['wrapper-container']}>
+                                <Desktop className={classnames({
+                                    [styles['sticky-element']]: true,
+                                    [styles['-desktop']]: true
+                                })}>
+                                    {currentStep.stickyContainerElement}
+                                </Desktop>
+                                <Mobile className={classnames({
+                                    [styles['sticky-element']]: true,
+                                    [styles['-desktop']]: true
+                                })}>
+                                    {currentStep.stickyContainerElement}
+                                </Mobile>
+                            </div>
+                        }
                     </div>
                     {isBrowser &&
                         <div className={styles.steps}>
