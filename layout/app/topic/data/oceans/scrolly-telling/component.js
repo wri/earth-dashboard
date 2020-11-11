@@ -39,14 +39,14 @@ function OceansScrollyTelling({ topic }) {
             />
         </div>;
 
-    const getStickyContainerElement = (mobile = false, container) =>
-        <div className={classnames({
-            [styles['sticky-element']]: true,
-            [styles['-desktop']]: !mobile,
-            [styles['-mobile']]: mobile,
-        })}>
-            {container}
-        </div>;
+    // const getStickyContainerElement = (mobile = false, container) =>
+    //     <div className={classnames({
+    //         [styles['sticky-element']]: true,
+    //         [styles['-desktop']]: !mobile,
+    //         [styles['-mobile']]: mobile,
+    //     })}>
+    //         {container}
+    //     </div>;
 
     return (
         <div
