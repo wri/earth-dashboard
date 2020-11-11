@@ -8,7 +8,7 @@ import WidgetsShow from 'components/admin/data/widgets/pages/show';
 class WidgetsTab extends PureComponent {
   static propTypes = {
     user: PropTypes.object.isRequired,
-    query: PropTypes.string.isRequired
+    query: PropTypes.object.isRequired
   }
 
   static defaultProps = { id: null }
