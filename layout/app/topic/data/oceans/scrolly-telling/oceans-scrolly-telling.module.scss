@@ -89,10 +89,12 @@
 
         .text-box-container {
             position: relative;
-            max-width: 400px;
             margin: 0px 0px 100vh 124px;
+            max-width: 400px;
+            display: flex;
 
             &.-mobile {
+                justify-content: center;
                 margin: 0px 16px 100vh 16px;
             }
 

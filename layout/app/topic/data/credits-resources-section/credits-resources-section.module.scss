@@ -6,60 +6,63 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 100px 110px 100px 110px;
 
-    &.-mobile {
-        padding: 12 * $space 6 * $space 12 * $space 6 * $space;
-        flex-direction: column;
-    }
-
-    .credits-resources-container {
-        width: 50%;
-        height: 100%;
-        padding-right: 110px;
-
+    .main-container {
+        padding: 100px 110px 100px 110px;
+        
         &.-mobile {
-            width: 100%;
+            padding: 12 * $space 6 * $space 12 * $space 6 * $space;
+            flex-direction: column;
         }
-
-        h2 {
-            font-size: 36px;
-            font-family: 'Barlow Condensed';
-
-            span {
-                font-style: italic;
+    
+        .credits-resources-container {
+            width: 50%;
+            height: 100%;
+            padding-right: 110px;
+    
+            &.-mobile {
+                width: 100%;
+            }
+    
+            h2 {
+                font-size: 36px;
+                font-family: 'Barlow Condensed';
+    
+                span {
+                    font-style: italic;
+                }
+            }
+    
+            .credits-field {
+                margin-top: 6 * $space;
+    
+                .field-title {
+                    font-family: 'Barlow Condensed';
+                    color: $grey-darker;
+                }
+    
+                .field-content {
+                    margin-top: 5 * $space;
+                    font-size: 16px;
+                    color: $grey-darkest;
+                }
             }
         }
-
-        .credits-field {
-            margin-top: 6 * $space;
-
-            .field-title {
+    
+        .share-container {
+            width: 50%;
+            height: 100%;
+    
+            &.-mobile {
+                width: 100%;
+                margin-top: 6 * $space;
+            }
+    
+            .share-title {
                 font-family: 'Barlow Condensed';
                 color: $grey-darker;
-            }
-
-            .field-content {
-                margin-top: 5 * $space;
                 font-size: 16px;
-                color: $grey-darkest;
             }
-        }
-    }
-
-    .share-container {
-        width: 50%;
-        height: 100%;
-
-        &.-mobile {
-            width: 100%;
-            margin-top: 6 * $space;
-        }
-
-        .share-title {
-            font-family: 'Barlow Condensed';
-            color: $grey-darker;
-            font-size: 16px;
         }
     }
 }
