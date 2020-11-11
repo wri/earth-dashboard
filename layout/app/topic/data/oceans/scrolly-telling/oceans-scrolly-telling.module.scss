@@ -20,22 +20,7 @@
     }
 
     .story {
-
-        .coral-map {
-            position: sticky;
-            top: 0px;
-            left: 0px;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            img {
-                width: 100%;
-            }
-        }
-
+        
         .sticky-container {
             position: sticky;
             top: 0px;
@@ -53,18 +38,44 @@
                     width: 100%;
                     height: 100%;
                     align-items: center;
-
-                    &.-mobile {
+ 
+                    .coral-map {
+                        position: sticky;
+                        top: 0px;
+                        left: 0px;
+                        width: 100%;
+                        display: flex;
                         justify-content: center;
+                        align-items: center;
+
+                        .coral-map-background {
+                            height: 100vh;
+                            width: 100vw;
+                        }
                     }
 
-                    
+                    &.-desktop {
+                        .coral-map {
+                            .coral-map-background {
+                                background: url('/static/images/scrolly-telling/oceans/coral-bleaching-map-2x.png') no-repeat;
+                            }
+                        }
+                    }
+
+                    &.-mobile {
+                        .coral-map {
+                            .coral-map-background {
+                                background: url('/static/images/scrolly-telling/oceans/coral-bleaching-map.png') no-repeat;
+                            }
+                        }
+                    }
 
                     .chart-with-title {
                         width: 100%;
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        margin: 0px 124px 0px 124px;
 
                         h6 {
                             color: $grey-darkest;
@@ -88,12 +99,13 @@
 
         .text-box-container {
             position: relative;
+            margin: 0px 0px 100vh 124px;
             max-width: 400px;
-            margin-bottom: 100vh;
-            margin-left: 124px;
+            display: flex;
 
             &.-mobile {
-                margin-left: 16px;
+                justify-content: center;
+                margin: 0px 16px 100vh 16px;
             }
 
             .photo-subtitle {

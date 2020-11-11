@@ -2,20 +2,20 @@
 
 .c-topic-data-footer {
     height: 125px;
-    padding: 0px 110px 0px 110px;
     display: flex;
     align-items: center;
     background-color: $black;
-
-    &.-mobile {
-        padding: 0px 16px 0px 16px;
-    }
 
     .main-container {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 0px 110px 0px 110px;
+
+        &.-mobile {
+            padding: 0px 16px 0px 16px;
+        }
 
         .logo-container {
             cursor: pointer;

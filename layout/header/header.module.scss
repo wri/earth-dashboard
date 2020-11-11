@@ -3,170 +3,177 @@
 .header {
   position: fixed;
   top: 0px;
-  display: flex;
-  justify-content: center;
   width: 100%;
-  padding-top: 4 * $space;
   z-index: 10; // because of navigation dots menu in story telling pages
-  
-  &.-mobile {
-    justify-content: flex-end;
-    padding: 16px;
-  }
 
-  .logo-container {
-    position: absolute;
-    left: 5 * $space;
-    top: 3 * $space;
-  }
-
-  .hamburguer-button {
+  .main-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 24px;
-    background-color: $grey-darkest;
-    cursor: pointer;
-    z-index: 5;
-    transition: transform 0.4s;
+    width: 100%;
 
-    &:hover {
-      transform: scale(1.2);
+    &.-desktop {
+      padding-top: 4 * $space;
     }
 
-    .hamburguer-button-image {
+    &.-mobile {
+      justify-content: flex-end;
+      padding: 16px;
+    }
+  
+    .logo-container {
+      position: absolute;
+      left: 5 * $space;
+      top: 3 * $space;
+    }
+  
+    .hamburguer-button {
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+      background-color: $grey-darkest;
+      cursor: pointer;
+      z-index: 5;
       transition: transform 0.4s;
-      width: 100%;
-      height: 100%;
-
+  
       &:hover {
-        transform: scale(0.8);
+        transform: scale(1.2);
       }
-    }
-  }
-
-  .menu-container {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 100vh;
-    width: 100%;
-    overflow: auto;
-    background-color: $black;
-    color: $grey-light;
-
-    .particles {
-        position: fixed;
-        top: 0px;
-        left: 0px;
-        height: 100%;
+  
+      .hamburguer-button-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.4s;
         width: 100%;
-    }
-
-    .data-containers {
-      padding: 180px 0px 100px 0px;
-      display: flex;
-
-      &.-mobile {
-        flex-direction: column-reverse;
-        padding: 80px 0px 60px 0px;
-      }
-
-      .left-container {
-        width: 40%;
-        padding-left: 110px;
-        z-index: 4;
-
-        &.-mobile {
-          width: 100%;
-          padding: 45px 20px 0px 20px;
-
-          .left-links {
-            margin-top: 40px;
-          }
+        height: 100%;
+  
+        &:hover {
+          transform: scale(0.8);
         }
-
-        .left-links {
-          margin-top: 14 * $space;
-          list-style-type: none;
-          padding: 0px;
-
-          li {
-            margin-bottom: 6 * $space;
-
-            .share-icons-container {
-              img {
-                margin-right: 8 * $space;
+      }
+    }
+  
+    .menu-container {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 100vh;
+      width: 100%;
+      overflow: auto;
+      background-color: $black;
+      color: $grey-light;
+  
+      .particles {
+          position: fixed;
+          top: 0px;
+          left: 0px;
+          height: 100%;
+          width: 100%;
+      }
+  
+      .data-containers {
+        padding: 180px 0px 100px 0px;
+        display: flex;
+  
+        &.-mobile {
+          flex-direction: column-reverse;
+          padding: 80px 0px 60px 0px;
+        }
+  
+        .left-container {
+          width: 40%;
+          padding-left: 110px;
+          z-index: 4;
+  
+          &.-mobile {
+            width: 100%;
+            padding: 45px 20px 0px 20px;
+  
+            .left-links {
+              margin-top: 40px;
+            }
+          }
+  
+          .left-links {
+            margin-top: 14 * $space;
+            list-style-type: none;
+            padding: 0px;
+  
+            li {
+              margin-bottom: 6 * $space;
+  
+              .share-icons-container {
+                img {
+                  margin-right: 8 * $space;
+                }
               }
             }
           }
-        }
-
-        .powered-by {
-          margin-top: 10 * $space;
-          color: $grey-darker;
-          font-size: 11px;
-
-          &.-mobile {
-            margin: 0px;
-          }
-
-          a {
+  
+          .powered-by {
+            margin-top: 10 * $space;
             color: $grey-darker;
-            font-family: 'Lato';
-            text-decoration: none;
-          }
-        }
-      }
+            font-size: 11px;
   
-      .right-container {
-        width: 60%;
-        padding-right: 110px;
-        z-index: 4;
-
-        &.-mobile {
-          width: 100%;
-          padding: 0px;
-
-          > ul {
-            padding: 0px 20px 0px 20px;
-          }
-        }
+            &.-mobile {
+              margin: 0px;
+            }
   
-        .topic-container {
-          margin-bottom: 8 * $space;
-          list-style-type: none;
-
-          .topic-title {
-            font-family: 'Barlow Condensed';
-            font-size: 20px;
-            margin-bottom: 4 * $space;
-
             a {
-              color: $white;
+              color: $grey-darker;
+              font-family: 'Lato';
               text-decoration: none;
             }
           }
-
-          .topic-link-list {
-
-            .topic-link {
-              margin-bottom: 2 * $space;
-              font-size: 16px;
-              list-style-type: none;
-
+        }
+    
+        .right-container {
+          width: 60%;
+          padding-right: 110px;
+          z-index: 4;
+  
+          &.-mobile {
+            width: 100%;
+            padding: 0px;
+  
+            > ul {
+              padding: 0px 20px 0px 20px;
+            }
+          }
+    
+          .topic-container {
+            margin-bottom: 8 * $space;
+            list-style-type: none;
+  
+            .topic-title {
+              font-family: 'Barlow Condensed';
+              font-size: 20px;
+              margin-bottom: 4 * $space;
+  
               a {
+                color: $white;
                 text-decoration: none;
-                color: $grey-light;
-
-                &.-highlighted-link {
-                  color: $white;
-                  font-weight: bold;
+              }
+            }
+  
+            .topic-link-list {
+  
+              .topic-link {
+                margin-bottom: 2 * $space;
+                font-size: 16px;
+                list-style-type: none;
+  
+                a {
+                  text-decoration: none;
+                  color: $grey-light;
+  
+                  &.-highlighted-link {
+                    color: $white;
+                    font-weight: bold;
+                  }
                 }
               }
             }

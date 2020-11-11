@@ -6,16 +6,11 @@ import classnames from 'classnames';
 import { initGA, logPageView } from 'utils/analytics';
 import { browserSupported } from 'utils/browser';
 
-// vizzuality-components
-import { Icons } from 'vizzuality-components';
-
 // Components
 import HeadApp from 'layout/head/app';
 import Header from 'layout/header';
-import Footer from 'layout/footer';
 
 import Toastr from 'react-redux-toastr';
-import NoBrowserSupport from 'components/app/common/browser';
 
 class LayoutApp extends Component {
   static propTypes = {

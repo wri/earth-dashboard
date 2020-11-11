@@ -3,25 +3,28 @@
 .c-change-agents-section {
     height: 100%;
     width: 100%;
-    padding: 110px;
 
-    &.-mobile {
-        padding: 12 * $space 6 * $space 12 * $space 6 * $space;
-    }
+    .main-container {
+        padding: 110px;
 
-    h2 {
-        font-family: 'Barlow Condensed';
-        color: $white;
-        font-style: italic;
-        font-size: 36px;
-
-        span {
-            font-style: normal;
-            color: $black;
+        &.-mobile {
+            padding: 12 * $space 6 * $space 12 * $space 6 * $space;
         }
-    }
     
-    .subtitle {
-        color: $white;
+        h2 {
+            font-family: 'Barlow Condensed';
+            color: $white;
+            font-style: italic;
+            font-size: 36px;
+    
+            span {
+                font-style: normal;
+                color: $black;
+            }
+        }
+        
+        .subtitle {
+            color: $white;
+        }
     }
 }

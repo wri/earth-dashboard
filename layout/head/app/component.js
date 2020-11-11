@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import HeadNext from 'next/head';
 
+// utils
+import { mediaStyle } from 'utils/responsive';
+
 class HeadApp extends PureComponent {
   static propTypes = {
     title: PropTypes.string,
@@ -15,7 +18,7 @@ class HeadApp extends PureComponent {
   static defaultProps = {
     title: null,
     description: null,
-    thumbnail: 'https://resourcewatch.org/static/images/social-big.jpg',
+    thumbnail: null,
     explicitHostname: null
   }
 
@@ -56,6 +59,8 @@ class HeadApp extends PureComponent {
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap" rel="stylesheet"/> 
+        { /* Artsy - fresnel: for SSR*/}
+        <style type="text/css">${mediaStyle}</style>
       </HeadNext>
     );
   }

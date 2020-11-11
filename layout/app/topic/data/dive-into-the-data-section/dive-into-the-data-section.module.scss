@@ -1,34 +1,36 @@
 @import 'css/settings';
 
 .c-dive-into-the-data-section {
-    height: 100%;
-    width: 100%;
-    padding: 110px 135px 110px 135px;
-    background-color: $grey-lightest;
-    color: $black;
-
-    &.-mobile {
-        padding: 12 * $space 6 * $space 12 * $space 6 * $space;
-    }
-
-    h2 {
-        font-family: 'Barlow Condensed';
-        font-size: 36px;
-
-        span {
-            font-style: italic;
-        }
-    }
+    .main-container {
+        height: 100%;
+        width: 100%;
+        padding: 110px 135px 110px 135px;
+        background-color: $grey-lightest;
+        color: $black;
     
-    .subtitle {
-        max-width: 520px;
-    }
-
-    .widgets-container {
-        .preview-container {
-            height: 500px;
-            margin-bottom: 8 * $space;
-            position: relative;
+        &.-mobile {
+            padding: 12 * $space 6 * $space 12 * $space 6 * $space;
+        }
+    
+        h2 {
+            font-family: 'Barlow Condensed';
+            font-size: 36px;
+    
+            span {
+                font-style: italic;
+            }
+        }
+        
+        .subtitle {
+            max-width: 520px;
+        }
+    
+        .widgets-container {
+            .preview-container {
+                height: 500px;
+                margin-bottom: 8 * $space;
+                position: relative;
+            }
         }
     }
 }

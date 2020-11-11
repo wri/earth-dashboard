@@ -8,7 +8,7 @@ import TextBox from 'components/scrolly-telling/text-box';
 
 // utils
 import { getColorByTopic } from 'utils/topics';
-import { getShowMobileVersion } from 'utils/responsive';
+import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // constants
 import { CLIMATE_STEPS, CLIMATE_CLOCK_STEPS } from './constants';
@@ -21,7 +21,7 @@ function ClimateScrollyTelling({ topic }) {
   const isBrowser = typeof window !== 'undefined';
   const currentStep = CLIMATE_STEPS[currentStepIndex];
   const topicColor = getColorByTopic(topic);
-  const showMobileVersion = getShowMobileVersion();
+
   const [counterData, setCounterData] = useState({
     seconds: 15,
     minutes: 19,
@@ -64,7 +64,8 @@ function ClimateScrollyTelling({ topic }) {
       setCounterData({
         tones: counterData.tones - (Math.round(Math.random() * 100) % 30),
         seconds: newSeconds,
-        minutes: newMinutes
+        minutes: newMinutes,
+        hours
       });
     }, 1000);
     return () => {
@@ -73,49 +74,62 @@ function ClimateScrollyTelling({ topic }) {
   }, [counterData]);
   // -------------------------------------
 
+  const getStepContent = (mobile = false, step) =>
+    <div className={classnames({
+      [styles['text-box-container']]: true,
+      [styles['-desktop']]: !mobile,
+      [styles['-mobile']]: mobile,
+    })}>
+      <TextBox
+        text={step.textPanel.text}
+        imageHeader={step.textPanel.imageHeader}
+      />
+    </div>;
+
 
   return (
     <div
       className={styles['c-climate-scrolly-telling']}
     >
-      {/* ----------------------- CLIMATE CLOCK ------------------------ */}
-      <div className={styles['climate-clock-story']}>
-        <div className={styles['smoke-container']}>
-          <div className={styles['smoke-text']}>
-            <h6>Time left until CO<sub>2</sub> budget depleted</h6>
-            <h1>7y 1m 26d {hours}h {minutes}' {seconds}''</h1>
-            <h6>CO<sub>2</sub> budget left</h6>
-            <h1>{d3.format(',')(tones)} tons</h1>
+      <MediaContextProvider>
+        {/* ----------------------- CLIMATE CLOCK ------------------------ */}
+        <div className={styles['climate-clock-story']}>
+          <div className={styles['smoke-container']}>
+            <div className={styles['smoke-text']}>
+              <h6>Time left until CO<sub>2</sub> budget depleted</h6>
+              <h1>7y 1m 26d {hours}h {minutes}' {seconds}''</h1>
+              <h6>CO<sub>2</sub> budget left</h6>
+              <h1>{d3.format(',')(tones)} tons</h1>
+            </div>
+            <canvas id="smoke-canvas" />
           </div>
-          <canvas id="smoke-canvas" />
+          {isBrowser &&
+            <div className={styles.steps}>
+              <Scrollama
+                onStepEnter={onStepEnter}
+                offset={0.6}
+              >
+                {CLIMATE_CLOCK_STEPS.map((step, stepIndex) =>
+                  (<Step data={stepIndex} key={`step-clock-${stepIndex}`}>
+                    <div>
+                      <Desktop>
+                        {getStepContent(false, step)}
+                      </Desktop>
+                      <Mobile>
+                        {getStepContent(true, step)}
+                      </Mobile>
+                    </div>
+                  </Step>))
+                }
+              </Scrollama>
+            </div>
+          }
         </div>
-        {isBrowser &&
-          <div className={styles.steps}>
-            <Scrollama
-              onStepEnter={onStepEnter}
-              offset={0.6}
-            >
-              {CLIMATE_CLOCK_STEPS.map((step, stepIndex) =>
-                (<Step data={stepIndex} key={`step-clock-${stepIndex}`}>
-                  <div
-                    className={classnames({
-                      [styles['text-box-container']]: true,
-                      [styles['-mobile']]: showMobileVersion
-                    })}
-                  >
-                    <TextBox text={step.textPanel.text} />
-                  </div>
-                </Step>))
-              }
-            </Scrollama>
-          </div>
-        }
-      </div>
-      {/* ---------------------- MAIN STORY ----------------------- */}
-      <div className={styles.story}>
-        <div className={styles['sticky-container']}>
-          <div className={styles['wrapper-container']}>
-            {/* {currentStep.stickyContainerElement &&
+        {/* ---------------------- MAIN STORY ----------------------- */}
+        <div className={styles.story}>
+          <div className={styles['sticky-container']}>
+            <div className={styles['wrapper-container']}>
+              {/* {currentStep.stickyContainerElement &&
                             <div className={classnames({
                                 [styles['sticky-element']]: true,
                                 [styles['-mobile']]: showMobileVersion
@@ -123,50 +137,48 @@ function ClimateScrollyTelling({ topic }) {
                                 {currentStep.stickyContainerElement}
                             </div>
                         } */}
-            {currentStep.showYearCounter &&
-              <div
-                className={styles['year-container']}
-                style={{ backgroundColor: currentStep.yearBackgroundColor }}
-              >
+              {currentStep.showYearCounter &&
                 <div
-                  className={styles['year-value']}
+                  className={styles['year-container']}
+                  style={{ backgroundColor: currentStep.yearBackgroundColor }}
                 >
-                  {currentStep.yearValue}
-                </div>
-                <div className={styles['year-subtitle']}>
-                  {currentStep.yearSubtitle}
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-
-        {isBrowser &&
-          <div className={styles.steps}>
-            <Scrollama
-              onStepEnter={onStepEnter}
-              offset={0.6}
-            >
-              {CLIMATE_STEPS.map((step, stepIndex) => (
-                <Step data={stepIndex} key={`step-${stepIndex}`}>
                   <div
-                    className={classnames({
-                      [styles['text-box-container']]: true,
-                      [styles['-mobile']]: showMobileVersion
-                    })}
+                    className={styles['year-value']}
                   >
-                    <TextBox
-                      text={step.textPanel.text} 
-                      imageHeader={step.textPanel.imageHeader} 
-                    />
+                    {currentStep.yearValue}
                   </div>
-                </Step>
-              ))
+                  <div className={styles['year-subtitle']}>
+                    {currentStep.yearSubtitle}
+                  </div>
+                </div>
               }
-            </Scrollama>
+            </div>
           </div>
-        }
-      </div>
+
+          {isBrowser &&
+            <div className={styles.steps}>
+              <Scrollama
+                onStepEnter={onStepEnter}
+                offset={0.6}
+              >
+                {CLIMATE_STEPS.map((step, stepIndex) => (
+                  <Step data={stepIndex} key={`step-${stepIndex}`}>
+                    <div>
+                      <Desktop>
+                        {getStepContent(false, step)}
+                      </Desktop>
+                      <Mobile>
+                        {getStepContent(true, step)}
+                      </Mobile>
+                    </div>
+                  </Step>
+                ))
+                }
+              </Scrollama>
+            </div>
+          }
+        </div>
+      </MediaContextProvider>
     </div >
   );
 }
