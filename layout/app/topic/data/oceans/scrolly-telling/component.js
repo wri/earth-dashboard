@@ -27,6 +27,27 @@ function OceansScrollyTelling({ topic }) {
         console.log('onStepEnter!', data);
     };
 
+    const getStepContent = (mobile = false, step) =>
+        <div className={classnames({
+            [styles['text-box-container']]: true,
+            [styles['-desktop']]: !mobile,
+            [styles['-mobile']]: mobile,
+        })}>
+            <TextBox
+                text={step.textPanel.text}
+                imageHeader={step.textPanel.imageHeader}
+            />
+        </div>;
+
+    const getStickyContainerElement = (mobile = false, container) =>
+        <div className={classnames({
+            [styles['sticky-element']]: true,
+            [styles['-desktop']]: !mobile,
+            [styles['-mobile']]: mobile,
+        })}>
+            {container}
+        </div>;
+
     return (
         <div
             className={styles['c-oceans-scrolly-telling']}
@@ -45,11 +66,13 @@ function OceansScrollyTelling({ topic }) {
                                 {OCEANS_STEPS_INTRO.map((step, stepIndex) => {
                                     return (
                                         <Step data={stepIndex} key={`step-intro-${stepIndex}`}>
-                                            <div className={styles['text-box-container']}>
-                                                <TextBox
-                                                    text={step.textPanel.text}
-                                                    imageHeader={step.textPanel.imageHeader}
-                                                />
+                                            <div>
+                                                <Desktop>
+                                                    {getStepContent(false, step)}
+                                                </Desktop>
+                                                <Mobile>
+                                                    {getStepContent(true, step)}
+                                                </Mobile>
                                             </div>
                                         </Step>
                                     );
@@ -63,23 +86,13 @@ function OceansScrollyTelling({ topic }) {
                     <div className={styles['sticky-container']}>
                         <div className={styles['wrapper-container']}>
                             <Desktop>
-                                {currentStep.stickyContainerElement &&
-                                    <div className={classnames({
-                                        [styles['sticky-element']]: true,
-                                        [styles['-desktop']]: true
-                                    })}>
-                                        {currentStep.stickyContainerElement}
-                                    </div>
+                                {currentStep.stickyContainerElement && 
+                                    getStickyContainerElement(false, currentStep.stickyContainerElement)
                                 }
                             </Desktop>
                             <Mobile>
-                                {currentStep.stickyContainerElement &&
-                                    <div className={classnames({
-                                        [styles['sticky-element']]: true,
-                                        [styles['-mobile']]: true
-                                    })}>
-                                        {currentStep.stickyContainerElement}
-                                    </div>
+                                {currentStep.stickyContainerElement && 
+                                    getStickyContainerElement(true, currentStep.stickyContainerElement)
                                 }
                             </Mobile>
 
@@ -94,11 +107,13 @@ function OceansScrollyTelling({ topic }) {
                                 {OCEANS_STEPS.map((step, stepIndex) => {
                                     return (
                                         <Step data={stepIndex} key={`step-${stepIndex}`}>
-                                            <div className={styles['text-box-container']}>
-                                                <TextBox
-                                                    text={step.textPanel.text}
-                                                    imageHeader={step.textPanel.imageHeader}
-                                                />
+                                            <div>
+                                                <Desktop>
+                                                    {getStepContent(false, step)}
+                                                </Desktop>
+                                                <Mobile>
+                                                    {getStepContent(true, step)}
+                                                </Mobile>
                                             </div>
                                         </Step>
                                     );
