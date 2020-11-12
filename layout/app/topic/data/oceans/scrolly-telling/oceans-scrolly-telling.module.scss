@@ -97,11 +97,21 @@
                         justify-content: center;
                         align-items: center;
 
+                        &.-pacific {
+                            .map-image {
+                                transform: scale(3);
+                            }
+                        }
+
                         .map-image {
                             padding-right: 10%;
                             width: 100%;
                             height: 100%;
                         }
+                    }
+
+                    .plastic-world-map-pacific {
+
                     }
                 }
             }

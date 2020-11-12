@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 // components
 import OceanCurrentBox from './ocean-current-box';
 
@@ -234,7 +236,17 @@ export const OCEANS_STEPS = [
                      known as the Pacific trash vortex, the garbage patch is actually two distinct collections of
                      debris bounded by the massive North Pacific Subtropical Gyre.
                 </p>
-        }
+        }, 
+        stickyContainerElement:
+            <div className={classnames({
+                    [styles['plastic-world-map']]: true,
+                    [styles['-pacific']]: true
+            })}>
+                <img
+                    className={styles['map-image']}
+                    src="/static/images/scrolly-telling/oceans/world-map.svg"
+                />
+            </div>
     },
     {
         index: 7,
