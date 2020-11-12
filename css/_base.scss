@@ -51,6 +51,41 @@ button {
   background: none;
   border: none;
   outline: none;
+  font-family: 'Barlow';
+  border-radius: 4px;
+  cursor: pointer;
+
+  &.-forests {
+    background-color: $forests;
+
+    &:hover {
+      background-color: $forests-dark;
+    }
+  }
+
+  &.-oceans {
+    background-color: $oceans;
+
+    &:hover {
+      background-color: $oceans-dark;
+    }
+  }
+
+  &.-climate {
+    background-color: $climate;
+
+    &:hover {
+      background-color: $climate-dark;
+    }
+  }
+
+  &.-freshwater {
+    background-color: $freshwater;
+
+    &:hover {
+      background-color: $freshwater-dark;
+    }
+  }
 }
 
 h1, h2, h3, h4 {

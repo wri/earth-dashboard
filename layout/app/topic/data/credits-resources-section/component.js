@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+// components
+import ShareBox from 'components/share/share-box';
+
 // utils
 import { getColorByTopic } from 'utils/topics';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
@@ -12,22 +15,22 @@ import styles from './credits-resources-section.module.scss';
 function CreditsResourcesSection(props) {
   const { topic } = props;
   const topicColor = getColorByTopic(topic);
+  const isServer = typeof window === 'undefined';
 
   const getCreditsAndResourcesContent = () =>
     <>
-      <h2>Credits and <span style={{ color: topicColor }}>Resources</span></h2>
       <div className={styles['credits-field']}>
         <div className={styles['field-title']}>
           AUTHORS
-          </div>
+        </div>
         <div className={styles['field-content']}>
           Polly Ghazy, Emily Nilson, Liz Sacoccia and Jessica Ertel.
-          </div>
+        </div>
       </div>
       <div className={styles['credits-field']}>
         <div className={styles['field-title']}>
           METHODOLOGY
-          </div>
+        </div>
         <div className={styles['field-content']}>
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
           </div>
@@ -45,20 +48,27 @@ function CreditsResourcesSection(props) {
             [styles['main-container']]: true,
             [styles['-desktop']]: true
           })}>
+            <h2>Credits and <span style={{ color: topicColor }}>Resources</span></h2>
             <div className={classnames({
-              [styles['credits-resources-container']]: true,
+              [styles['main-container-content']]: true,
               [styles['-desktop']]: true
-            })}
-            >
-              {getCreditsAndResourcesContent()}
-            </div>
-            <div className={classnames({
-              [styles['share-container']]: true,
-              [styles['-desktop']]: true
-            })}
-            >
-              <div className={styles['share-title']}>
-                SHARE THIS PAGE
+            })}>
+              <div className={classnames({
+                [styles['credits-resources-container']]: true,
+                [styles['-desktop']]: true
+              })}
+              >
+                {getCreditsAndResourcesContent()}
+              </div>
+              <div className={classnames({
+                [styles['share-container']]: true,
+                [styles['-desktop']]: true
+              })}
+              >
+                <div className={styles['field-title']}>
+                  SHARE THIS PAGE
+                </div>
+                <ShareBox topic={topic} url={isServer ? '' : window.location.href} />
               </div>
             </div>
           </div>

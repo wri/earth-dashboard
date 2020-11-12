@@ -58,6 +58,18 @@ export function getColorByTopic(topicSt) {
     }
 }
 
+const SHARE_ICONS_COMMON_PATH = '/static/images/share';
+
+export function getEmailIconPerTopic(topicSt) {
+    return `${SHARE_ICONS_COMMON_PATH}/email_${topicSt}.svg`;
+}
+export function getFacebookIconPerTopic(topicSt) {
+    return `${SHARE_ICONS_COMMON_PATH}/facebook_${topicSt}.svg`;
+}
+export function getTwitterIconPerTopic(topicSt) {
+    return `${SHARE_ICONS_COMMON_PATH}/twitter_${topicSt}.svg`;
+}
+
 export function getSecondaryColorByTopic(topicSt) {
     switch (topicSt) {
         case CLIMATE:

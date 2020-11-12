@@ -106,11 +106,13 @@ class LayoutAdmin extends PureComponent {
           <div>Logging in...</div>
         )}
         {!loggingIn && loggedIn && (
-          <>'           '<Icons />'           '<IconsRW />'
-            '<Progress.Component />'
-            '<Header />'
-            '{this.props.children}'
-            '<Toastr preventDuplicates transitionIn="fadeIn" transitionOut="fadeOut" />'         '
+          <>
+            <Icons />
+            <IconsRW />
+            <Progress.Component />
+            <Header />
+            {this.props.children}
+            <Toastr preventDuplicates transitionIn="fadeIn" transitionOut="fadeOut" />
           </>
         )}
 
