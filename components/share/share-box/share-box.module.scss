@@ -41,7 +41,7 @@
 
     .copy-link-button {
         height: 36px;
-        width: 140px;
+        min-width: 80px;
         color: $white;
         font-family: 'Barlow';
     }
