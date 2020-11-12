@@ -71,21 +71,27 @@
                     }
 
                     .chart-with-title {
-                        width: 100%;
+                        width: 100vw;
+                        height: 100vh;
                         display: flex;
+                        flex-direction: column;
                         justify-content: center;
                         align-items: center;
-                        margin: 0px 124px 0px 124px;
+                        padding: 5% 5% 5% 10%;
 
                         h6 {
+                            width: 100%;
                             color: $grey-darkest;
                             font-size: 18px;
                             font-family: 'Barlow Condensed';
                             margin: 0px 0px 10px 0px;
                         }
 
+                        img {
+                            width: 100%;
+                        }
+
                         &.-mobile {
-                            margin: unset;
                             padding: 0px 0px 0px 20px;
                         }
                     }
