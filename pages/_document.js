@@ -10,7 +10,10 @@ class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta name="author" content="Vizzuality" />
-          <link rel="icon" href="/static/favicon.ico" />
+          <link rel="icon" href="/static/cropped-favicon-32x32.png" sizes="32x32" />
+          <link rel="icon" href="/static/cropped-favicon-192x192.png" sizes="192x192" />
+          <link rel="apple-touch-icon" href="/static/cropped-favicon-180x180.png" />
+          <meta name="msapplication-TileImage" content="/static/cropped-favicon-270x270.png" />
           <link
             rel="stylesheet"
             media="screen"
@@ -55,8 +58,7 @@ class MyDocument extends Document {
 
           {/* Google API */}
           <script
-            src={`https://maps.googleapis.com/maps/api/js?v=weekly&key=${
-              process.env.RW_GOGGLE_API_TOKEN_SHORTENER
+            src={`https://maps.googleapis.com/maps/api/js?v=weekly&key=${process.env.RW_GOGGLE_API_TOKEN_SHORTENER
               }&libraries=places`}
           />
 
