@@ -3,8 +3,34 @@ import classnames from 'classnames';
 // components
 import OceanCurrentBox from './ocean-current-box';
 
+// utils
+import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
+
 // styles
 import styles from './oceans-scrolly-telling.module.scss';
+
+const getTrendsInMarineFishStock = () =>
+    <MediaContextProvider>
+        <Desktop>
+            <div className={styles['chart-with-title']}>
+                <div>
+                    <h6>Trends in Marine Fish Stocks</h6>
+                    <img src="/static/images/scrolly-telling/oceans/trends-in-marine-fish-stocks.svg" />
+                </div>
+            </div>
+        </Desktop>
+        <Mobile>
+            <div className={classnames({
+                [styles['chart-with-title']]: true,
+                [styles['-mobile']]: true
+            })}>
+                <div>
+                    <h6>Trends in Marine Fish Stocks</h6>
+                    <img src="/static/images/scrolly-telling/oceans/trends-in-marine-fish-stocks.svg" />
+                </div>
+            </div>
+        </Mobile>
+    </MediaContextProvider>;
 
 export const OCEANS_STEPS_INTRO = [
     {
@@ -93,13 +119,9 @@ export const OCEANS_STEPS = [
                 </div>,
             imageHeader: '/static/images/scrolly-telling/oceans/fisheries-under-pressure.jpg'
         },
-        stickyContainerElement:
-            <div className={styles['chart-with-title']}>
-                <div>
-                    <h6>Trends in Marine Fish Stocks</h6>
-                    <img src="/static/images/scrolly-telling/oceans/trends-in-marine-fish-stocks.svg" />
-                </div>
-            </div>
+        stickyContainerElement: getTrendsInMarineFishStock()
+
+
     },
     {
         index: 3,
@@ -116,13 +138,7 @@ export const OCEANS_STEPS = [
                     </p>
                 </div>
         },
-        stickyContainerElement:
-            <div className={styles['chart-with-title']}>
-                <div>
-                    <h6>Trends in Marine Fish Stocks</h6>
-                    <img src="/static/images/scrolly-telling/oceans/trends-in-marine-fish-stocks.svg" />
-                </div>
-            </div>
+        stickyContainerElement: getTrendsInMarineFishStock()
     },
     {
         index: 4,
@@ -142,12 +158,27 @@ export const OCEANS_STEPS = [
                 </div>
         },
         stickyContainerElement:
-            <div className={styles['chart-with-title']}>
-                <div>
-                    <h6>Aquaculture and fisheries</h6>
-                    <img src="/static/images/scrolly-telling/oceans/aquaculture-and-fisheries.svg" />
-                </div>
-            </div>
+            <MediaContextProvider>
+                <Desktop>
+                    <div className={styles['chart-with-title']}>
+                        <div>
+                            <h6>Aquaculture and fisheries</h6>
+                            <img src="/static/images/scrolly-telling/oceans/aquaculture-and-fisheries.svg" />
+                        </div>
+                    </div>
+                </Desktop>
+                <Mobile>
+                    <div className={classnames({
+                        [styles['chart-with-title']]: true,
+                        [styles['-mobile']]: true
+                    })}>
+                        <div>
+                            <h6>Aquaculture and fisheries</h6>
+                            <img src="/static/images/scrolly-telling/oceans/aquaculture-and-fisheries.svg" />
+                        </div>
+                    </div>
+                </Mobile>
+            </MediaContextProvider>
     },
     {
         index: 5,
@@ -236,11 +267,11 @@ export const OCEANS_STEPS = [
                      known as the Pacific trash vortex, the garbage patch is actually two distinct collections of
                      debris bounded by the massive North Pacific Subtropical Gyre.
                 </p>
-        }, 
+        },
         stickyContainerElement:
             <div className={classnames({
-                    [styles['plastic-world-map']]: true,
-                    [styles['-pacific']]: true
+                [styles['plastic-world-map']]: true,
+                [styles['-pacific']]: true
             })}>
                 <img
                     className={styles['map-image']}

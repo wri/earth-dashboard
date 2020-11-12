@@ -83,6 +83,11 @@
                             font-family: 'Barlow Condensed';
                             margin: 0px 0px 10px 0px;
                         }
+
+                        &.-mobile {
+                            margin: unset;
+                            padding: 0px 0px 0px 20px;
+                        }
                     }
 
                     .plastic-world-map {
@@ -98,6 +103,8 @@
                         align-items: center;
 
                         &.-pacific {
+                            overflow: hidden;
+
                             .map-image {
                                 transform: scale(3);
                             }
