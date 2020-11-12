@@ -184,7 +184,7 @@ export const OCEANS_STEPS = [
                         position: 'absolute',
                         top: '32%',
                         left: '46%',
-                        height: '100px'
+                        height: '12%'
                     }} />
                 <OceanCurrentBox
                     title="Indian Ocean Gyre"
@@ -193,7 +193,7 @@ export const OCEANS_STEPS = [
                         position: 'absolute',
                         top: '61%',
                         left: '20%',
-                        height: '100px'
+                        height: '10%'
                     }} />
                 <OceanCurrentBox
                     title="South Pacific Gyre"
@@ -202,7 +202,7 @@ export const OCEANS_STEPS = [
                         position: 'absolute',
                         top: '61%',
                         left: '61%',
-                        height: '100px'
+                        height: '10%'
                     }} />
                 <OceanCurrentBox
                     title="North Atlantic Gyre"
@@ -211,7 +211,7 @@ export const OCEANS_STEPS = [
                         position: 'absolute',
                         top: '32%',
                         left: '80%',
-                        height: '100px'
+                        height: '9%'
                     }} />
                 <OceanCurrentBox
                     title="South Atlantic Gyre"
@@ -220,7 +220,7 @@ export const OCEANS_STEPS = [
                         position: 'absolute',
                         top: '65%',
                         left: '86%',
-                        height: '84px'
+                        height: '8%'
                     }} />
             </div>
     },
