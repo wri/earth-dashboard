@@ -1,3 +1,6 @@
+// components
+import OceanCurrentBox from './ocean-current-box';
+
 // styles
 import styles from './oceans-scrolly-telling.module.scss';
 
@@ -88,7 +91,7 @@ export const OCEANS_STEPS = [
                 </div>,
             imageHeader: '/static/images/scrolly-telling/oceans/fisheries-under-pressure.jpg'
         },
-        stickyContainerElement: 
+        stickyContainerElement:
             <div className={styles['chart-with-title']}>
                 <div>
                     <h6>Trends in Marine Fish Stocks</h6>
@@ -111,7 +114,7 @@ export const OCEANS_STEPS = [
                     </p>
                 </div>
         },
-        stickyContainerElement: 
+        stickyContainerElement:
             <div className={styles['chart-with-title']}>
                 <div>
                     <h6>Trends in Marine Fish Stocks</h6>
@@ -136,7 +139,7 @@ export const OCEANS_STEPS = [
                     </p>
                 </div>
         },
-        stickyContainerElement: 
+        stickyContainerElement:
             <div className={styles['chart-with-title']}>
                 <div>
                     <h6>Aquaculture and fisheries</h6>
@@ -167,7 +170,59 @@ export const OCEANS_STEPS = [
                     </p>
                 </div>,
             imageHeader: '/static/images/scrolly-telling/oceans/islands-of-plastic.jpg'
-        }
+        },
+        stickyContainerElement:
+            <div className={styles['plastic-world-map']}>
+                <img
+                    className={styles['map-image']}
+                    src="/static/images/scrolly-telling/oceans/world-map.svg"
+                />
+                <OceanCurrentBox
+                    title="North Pacific Gyre"
+                    direction="north"
+                    style={{
+                        position: 'absolute',
+                        top: '32%',
+                        left: '46%',
+                        height: '100px'
+                    }} />
+                <OceanCurrentBox
+                    title="Indian Ocean Gyre"
+                    direction="south"
+                    style={{
+                        position: 'absolute',
+                        top: '61%',
+                        left: '20%',
+                        height: '100px'
+                    }} />
+                <OceanCurrentBox
+                    title="South Pacific Gyre"
+                    direction="south"
+                    style={{
+                        position: 'absolute',
+                        top: '61%',
+                        left: '61%',
+                        height: '100px'
+                    }} />
+                <OceanCurrentBox
+                    title="North Atlantic Gyre"
+                    direction="north"
+                    style={{
+                        position: 'absolute',
+                        top: '32%',
+                        left: '80%',
+                        height: '100px'
+                    }} />
+                <OceanCurrentBox
+                    title="South Atlantic Gyre"
+                    direction="south"
+                    style={{
+                        position: 'absolute',
+                        top: '65%',
+                        left: '86%',
+                        height: '84px'
+                    }} />
+            </div>
     },
     {
         index: 6,
@@ -175,8 +230,8 @@ export const OCEANS_STEPS = [
             text:
                 <p>
                     <strong>The Great Pacific Garbage Patch</strong> is a collection of marine debris
-                     in the North Pacific Ocean. It is <strong>three times the size of France</strong>. Also 
-                     known as the Pacific trash vortex, the garbage patch is actually two distinct collections of 
+                     in the North Pacific Ocean. It is <strong>three times the size of France</strong>. Also
+                     known as the Pacific trash vortex, the garbage patch is actually two distinct collections of
                      debris bounded by the massive North Pacific Subtropical Gyre.
                 </p>
         }
@@ -192,13 +247,13 @@ export const OCEANS_STEPS = [
                         Governments, companies and citizens must act with urgency to protect our planet’s oceans.
                     </p>
                     <p>
-                        Investing sustainably can preserve biodiversity critical ecosystems and build ocean-based 
+                        Investing sustainably can preserve biodiversity critical ecosystems and build ocean-based
                         industries needed to provide jobs, energy, and food for a growing population.
                     </p>
                     <p>
                         Such investments would be enormously cost-effective: on average, the benefits would be
-                         five times greater than the costs. As shown here, benefit/cost ratios would vary,
-                          ranging from 3-to-1 to more than 12-to-1.
+                        five times greater than the costs. As shown here, benefit/cost ratios would vary,
+                        ranging from 3-to-1 to more than 12-to-1.
                     </p>
                     <p className={styles['text-card-source']}>
                         Photo by Nicholas Doherty on Unsplash
@@ -206,7 +261,7 @@ export const OCEANS_STEPS = [
                 </div>,
             imageHeader: '/static/images/scrolly-telling/oceans/ocean-industries.jpg'
         },
-        stickyContainerElement: 
+        stickyContainerElement:
             <div className={styles['chart-with-title']}>
                 <div>
                     <h6>Benefit-cost ratios for sustainable ocean interventions</h6>

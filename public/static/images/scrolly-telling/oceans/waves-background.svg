@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="13px" viewBox="0 0 25 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>98EE058D-50B0-4392-96D6-DD8B231AA5BB</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="25" height="13"></rect>
+    </defs>
+    <g id="UI-kit" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Earth-Dashboard-UI-kit---Ocean" transform="translate(-1155.000000, -3474.000000)">
+            <g id="waves-background" transform="translate(1155.000000, 3474.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Rectangle"></g>
+                <path d="M-15,6 C-6.85294596,6 -5,1 0,1 C5,1 7.5,6 12.5,6 C17.5,6 20,1 25,1 C30,1 34.3746745,6 40,6" id="Line" stroke-opacity="0.253032124" stroke="#31A9BF" stroke-width="0.5" stroke-linecap="square" mask="url(#mask-2)" transform="translate(12.500000, 3.500000) scale(1, -1) translate(-12.500000, -3.500000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
