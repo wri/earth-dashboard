@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import WidgetEditor from '@widget-editor/widget-editor';
 import RwAdapter from '@widget-editor/rw-adapter';
 import classnames from 'classnames';
+import { toastr } from 'react-redux-toastr';
 
 // Redux
 import { connect } from 'react-redux';
@@ -16,6 +17,7 @@ import Select from 'components/form/SelectInput';
 import Checkbox from 'components/form/checkbox';
 import RadioGroup from 'components/form/RadioGroup';
 import WidgetPreview from 'components/widgets/preview';
+import ErrorBoundary from 'components/ui/error-boundary';
 
 // styles
 import styles from './widget-form-preview-step.module.scss';
@@ -228,27 +230,34 @@ class Step1 extends Component {
                   </option>))}
               </select>
             </div>
-            <div className={styles['json-editor-container']}>
-              <textarea
-                className={styles['json-editor']}
-                onChange={event => this.setState({ newWidgetTypesEditorCode: event.target.value })}
-                value={newWidgetTypesEditorCode}
-              />
-              <div className={styles['widget-preview-container']}>
-                <WidgetPreview widget={previewSource} />
+            <ErrorBoundary>
+              <div className={styles['json-editor-container']}>
+                <textarea
+                  className={styles['json-editor']}
+                  onChange={event => this.setState({ newWidgetTypesEditorCode: event.target.value })}
+                  value={newWidgetTypesEditorCode}
+                />
+                <div className={styles['widget-preview-container']}>
+                  <WidgetPreview widget={previewSource} />
+                </div>
               </div>
-            </div>
-            <div className={styles['preview-actions']}>
-              <button
-                className="c-button -primary"
-                type="button"
-                onClick={() => {
-                  this.setState({ previewSource: JSON.parse(newWidgetTypesEditorCode) });
-                }}
-              >
-                Refresh
-              </button>
-            </div>
+              <div className={styles['preview-actions']}>
+                <button
+                  className="c-button -primary"
+                  type="button"
+                  onClick={() => {
+                    try {
+                      const parsedContent = JSON.parse(newWidgetTypesEditorCode)
+                      this.setState({ previewSource: parsedContent });
+                    } catch (e) {
+                      toastr.error(`Error generating preview: ${e.message}`);
+                    }
+                  }}
+                >
+                  Refresh
+                </button>
+              </div>
+            </ErrorBoundary>
             <div className={styles['buttons-container']}>
               <button
                 className="c-button -primary"

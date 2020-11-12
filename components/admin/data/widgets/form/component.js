@@ -71,7 +71,6 @@ function WidgetForm(props) {
   }, [id]);
 
   const loadWidget = (id) => {
-    console.log('loadWidget', id);
     fetchWidget(id, { includes: 'metadata' })
       .then((widgetResponse) => {
         setWidget(widgetResponse);
