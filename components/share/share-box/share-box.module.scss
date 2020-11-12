@@ -18,6 +18,12 @@
         white-space: nowrap;
         width: 100%;
         margin-right: 40px;
+
+        input {
+            border: none;
+            background-color: unset;
+            cursor: text;
+        }
     }
 
     .share-buttons {
@@ -30,7 +36,6 @@
             justify-content: center;
             align-items: center;
             width: 25px;
-            cursor: pointer;
     
             img {
                 width: 100%;
