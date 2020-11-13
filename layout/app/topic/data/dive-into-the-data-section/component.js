@@ -44,6 +44,7 @@ function DiveIntoTheDataSection({
               >
                 <WidgetPanel
                   widget={widgets.find(w => w.id === widget.id)}
+                  topic={topic}
                 />
               </div>))}
           </div>
