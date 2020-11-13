@@ -7,7 +7,6 @@ import classnames from 'classnames';
 import TextBox from 'components/scrolly-telling/text-box';
 
 // utils
-import { getColorByTopic } from 'utils/topics';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // constants
@@ -20,7 +19,7 @@ function ClimateScrollyTelling({ topic }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const isBrowser = typeof window !== 'undefined';
   const currentStep = CLIMATE_STEPS[currentStepIndex];
-  const topicColor = getColorByTopic(topic);
+  const [currentYear, setCurrentYear] = useState(2000);
 
   const [counterData, setCounterData] = useState({
     seconds: 15,

@@ -42,10 +42,11 @@
                         height: 100vh;
                     }
 
-                    .south-america-map-dissolved {
+                    .south-america-map-dissolved { 
                         .map-image {
                             position: absolute;
                             top: 0px;
+                            height: 100vh;
 
                             animation-name: move-map;
                             animation-duration: 3s;
