@@ -45,6 +45,8 @@ class LayoutApp extends Component {
     //   window.GA_INITIALIZED = true;
     // }
     // logPageView();
+    // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
+    Modal.setAppElement(document.getElementById('#main'));
   }
 
   render() {
@@ -60,14 +62,10 @@ class LayoutApp extends Component {
     const componentClass = classnames(
       { [className]: !!className }
     );
-
-
-    // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-    Modal.setAppElement('#main')
-
+    
     return (
       <div
-        id="main"
+        id="#main"
         className={componentClass}
       >
         <HeadApp

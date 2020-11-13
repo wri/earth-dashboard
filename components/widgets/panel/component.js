@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ReactCardFlip from 'react-card-flip';
+import Modal from 'react-modal';
+import ShareModal from 'components/share/share-modal';
 
 // components
 import WidgetPreview from 'components/widgets/preview';
@@ -9,8 +11,9 @@ import WidgetPreview from 'components/widgets/preview';
 // styles
 import styles from './widget-panel.module.scss';
 
-function WidgetPanel({ widget }) {
+function WidgetPanel({ widget, topic }) {
     const [flipCardOpen, setFlipCardOpen] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
     const { description } = widget;
     const metadata = widget?.metadata && widget.metadata[0];
     const caption = metadata?.info?.caption;
@@ -24,7 +27,10 @@ function WidgetPanel({ widget }) {
                     {widget?.name}
                 </span>
                 <div className={styles['panel-actions']}>
-                    <button className={styles['share-button']} />
+                    <button 
+                        className={styles['share-button']} 
+                        onClick={() => setIsOpen(true)}
+                    />
                     {!flipCardOpen &&
                         <button
                             className={styles['info-button']}
@@ -85,7 +91,12 @@ function WidgetPanel({ widget }) {
                     }
                 </div>
             </ReactCardFlip>
-
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={() => setIsOpen(false)}
+            >
+                <ShareModal topic={topic} />
+            </Modal>
             <div className={styles['powered-by']}>
                 powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
             </div>
