@@ -42,6 +42,30 @@
                         height: 100vh;
                     }
 
+                    .south-america-map-dissolved {
+                        .map-image {
+                            position: absolute;
+                            top: 0px;
+
+                            animation-name: move-map;
+                            animation-duration: 3s;
+                            animation-fill-mode: forwards;
+                            
+                            @keyframes move-map {
+                                0% {
+                                    opacity: 1;
+                                }
+                                50% {
+                                    transform: translate(-13%, 19%);
+                                }
+                                100% {
+                                    opacity: 0;
+                                    transform: translate(-13%, 19%);
+                                }
+                            }
+                        }
+                    }
+
                     .chart-pulsating-dot {
                         position: relative;
                         margin: 100px;

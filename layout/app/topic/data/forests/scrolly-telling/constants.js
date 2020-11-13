@@ -30,7 +30,11 @@ export const FORESTS_STEPS = [
         showYearCounter: true,
         yearValue: 2000,
         stickyContainerElement: 
-            <div className={styles['-align-right']}>
+            <div className={classnames({
+                [styles['-align-right']]: true,
+                [styles['south-america-map-dissolved']]: true
+            })}>
+                <img className={styles['map-image']} src="/static/images/scrolly-telling/forests/amazon_map.svg" />
                 <img src="/static/images/scrolly-telling/forests/trees1.svg" />
             </div>
     },
