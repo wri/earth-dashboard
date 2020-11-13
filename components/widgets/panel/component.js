@@ -20,6 +20,17 @@ function WidgetPanel({ widget, topic }) {
     const widgetLinks = metadata?.info?.widgetLinks;
     const isMap = widget?.widgetConfig?.paramsConfig?.visualizationType === 'map';
 
+    const modalCustomStyles = {
+        content : {
+          top                   : '50%',
+          left                  : '50%',
+          right                 : 'auto',
+          bottom                : 'auto',
+          marginRight           : '-50%',
+          transform             : 'translate(-50%, -50%)'
+        }
+      };
+
     return (
         <div className={styles['c-widget-panel']}>
             <div className={styles['panel-title']}>
@@ -94,6 +105,7 @@ function WidgetPanel({ widget, topic }) {
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={() => setIsOpen(false)}
+                style={modalCustomStyles}
             >
                 <ShareModal topic={topic} />
             </Modal>
