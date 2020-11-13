@@ -1,6 +1,7 @@
 @import 'css/settings';
 
 .c-share-modal {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -10,5 +11,19 @@
 
     h5 {
         margin-bottom: 10px;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 21px;
+        height: 21px;
+
+        background-image: url('/static/images/close-no-background.svg');
+
+        &:hover {
+            background-image: url('/static/images/close-no-background-hover.svg');
+        }
     }
 }

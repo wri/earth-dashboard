@@ -107,7 +107,10 @@ function WidgetPanel({ widget, topic }) {
                 onRequestClose={() => setIsOpen(false)}
                 style={modalCustomStyles}
             >
-                <ShareModal topic={topic} />
+                <ShareModal
+                    topic={topic}
+                    onClose={() => setIsOpen(false)}
+                />
             </Modal>
             <div className={styles['powered-by']}>
                 powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
