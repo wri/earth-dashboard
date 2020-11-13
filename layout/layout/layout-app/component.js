@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import Modal from 'react-modal';
 
 // Utils
 import { initGA, logPageView } from 'utils/analytics';
@@ -60,9 +61,13 @@ class LayoutApp extends Component {
       { [className]: !!className }
     );
 
+
+    // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
+    Modal.setAppElement('#main')
+
     return (
       <div
-        id="#main"
+        id="main"
         className={componentClass}
       >
         <HeadApp
