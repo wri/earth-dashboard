@@ -70,6 +70,7 @@
     "rc-tooltip": "^3.7.0",
     "react": "^16.10.2",
     "react-ace": "6.0.0",
+    "react-card-flip": "^1.0.11",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dates": "^18.2.2",
     "react-dom": "^16.10.2",
