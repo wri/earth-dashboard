@@ -26,9 +26,11 @@ function ForestsScrollyTelling({ topic }) {
     // data prop of the step, which in this demo stores the index of the step.
     const onStepEnter = ({ data }) => {
         setCurrentStepIndex(data);
+
         const step = FORESTS_STEPS[data];
         const { showYearCounter, yearValue, previousYearValue } = step;
 
+        // ------ YEAR COUNTER COUNT UP EFFECT ------------------
         if (showYearCounter) {
             if (previousYearValue && yearValue) {
                 for(let i=previousYearValue, j=0; i<= yearValue; i++, j++) {
@@ -40,6 +42,7 @@ function ForestsScrollyTelling({ topic }) {
                 setCurrentYear(yearValue);
             }
         }
+        // ------------------------------------------------------
     };
 
     const getStepContent = (mobile = false, step) =>

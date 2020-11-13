@@ -19,7 +19,8 @@ function ClimateScrollyTelling({ topic }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const isBrowser = typeof window !== 'undefined';
   const currentStep = CLIMATE_STEPS[currentStepIndex];
-  const [currentYear, setCurrentYear] = useState(2000);
+  const [currentYear, setCurrentYear] = useState(2020);
+  const [currentDegrees, setCurrentDegrees] = useState(1.0);
 
   const [counterData, setCounterData] = useState({
     seconds: 15,
@@ -34,6 +35,36 @@ function ClimateScrollyTelling({ topic }) {
   const onStepEnter = ({ data }) => {
     setCurrentStepIndex(data);
     console.log('onStepEnter!', data);
+
+    const step = CLIMATE_STEPS[data];
+    const {
+      showYearCounter, 
+      yearValue,
+      previousYearValue, 
+      degrees, 
+      previousDegrees 
+    } = step;
+
+    // ------ YEAR COUNTER COUNT UP EFFECT ------------------
+    if (showYearCounter) {
+      if (previousYearValue && yearValue) {
+        for (let i = previousYearValue, j = 0; i <= yearValue; i++, j++) {
+          setTimeout(() => {
+            setCurrentYear(i)
+          }, j * 50);
+        }
+
+        // for (let i = previousDegrees, j = 0; i <= degrees; i = Math.round((i + 0.1) * 10) / 10, j++) {
+        //   setTimeout(() => {
+        //     setCurrentDegrees(i)
+        //   }, j * 100);
+        // }
+      } else if (yearValue) {
+        setCurrentYear(yearValue);
+        setCurrentDegrees(degrees);
+      }
+    }
+    // ------------------------------------------------------
   };
 
   // ------------- SMOKE GENERATOR -----------------------
@@ -144,7 +175,7 @@ function ClimateScrollyTelling({ topic }) {
                   <div
                     className={styles['year-value']}
                   >
-                    {currentStep.yearValue}
+                    {currentYear}<span> + {currentDegrees} °C</span>
                   </div>
                   <div className={styles['year-subtitle']}>
                     {currentStep.yearSubtitle}
