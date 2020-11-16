@@ -14,7 +14,7 @@ import styles from './widget-panel.module.scss';
 function WidgetPanel({ widget, topic }) {
     const [flipCardOpen, setFlipCardOpen] = useState(false);
     const [modalIsOpen, setIsOpen] = useState(false);
-    const { description } = widget;
+    const description = widget?.description;
     const metadata = widget?.metadata && widget.metadata[0];
     const caption = metadata?.info?.caption;
     const widgetLinks = metadata?.info?.widgetLinks;
@@ -71,8 +71,7 @@ function WidgetPanel({ widget, topic }) {
                         [styles['-chart']]: !isMap
                     })}
                 >
-
-                    <WidgetPreview widget={widget} />
+                    {widget && <WidgetPreview widget={widget} />}
                 </div>
                 <div className={styles['info-container']}>
                     {description && 
