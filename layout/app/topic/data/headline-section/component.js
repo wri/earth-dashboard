@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 // utils
 import {
@@ -35,7 +36,13 @@ function HeadlineSection(props) {
           className={styles['scroll-to-explore']}
           style={{ color: topicSecondaryColor }}
         >
-          <span>SCROLL TO EXPLORE</span>
+          <span className={classnames({
+              [styles['scroll-text']]: true,
+              [styles[`-${topic}`]]: true
+            })}
+          >
+            SCROLL TO EXPLORE
+          </span>
           <img src={`/static/images/arrow-down-${topic}.svg`} />
         </div>
       </div>

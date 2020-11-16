@@ -30,7 +30,11 @@ export const FORESTS_STEPS = [
         showYearCounter: true,
         yearValue: 2000,
         stickyContainerElement: 
-            <div className={styles['-align-right']}>
+            <div className={classnames({
+                [styles['-align-right']]: true,
+                [styles['south-america-map-dissolved']]: true
+            })}>
+                <img className={styles['map-image']} src="/static/images/scrolly-telling/forests/amazon_map.svg" />
                 <img src="/static/images/scrolly-telling/forests/trees1.svg" />
             </div>
     },
@@ -56,6 +60,7 @@ export const FORESTS_STEPS = [
                 Let’s fast forward to 2019. This is how much of that 2000 tree cover is left. In these nineteen years, <strong>the Amazon has lost an area equivalent to the size of 9 Switzerlands since 2000</strong>.            </p>
         },
         showYearCounter: true,
+        previousYearValue: 2000,
         yearValue: 2019,
         yearSubtitle: '494,9 Mha of tree cover in the Amazon basin',
         stickyContainerElement: 

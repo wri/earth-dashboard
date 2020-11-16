@@ -4,6 +4,7 @@ import classnames from 'classnames';
 
 // components
 import WidgetPanel from 'components/widgets/panel';
+import ErrorBoundary from 'components/ui/error-boundary';
 
 // utils
 import {
@@ -30,24 +31,26 @@ function DiveIntoTheDataSection({
       <p className={styles.subtitle}>{getDiveIntoTheDataDataByTopic(topic)?.description}</p>
       <div className={styles['widgets-container']}>
         {isBrowser &&
-          <div className="row">
-            {dataArray.map(widget =>
-              (<div
-                key={`widget-preview-${widget.id}`}
-                className={classnames({
-                  column: true,
-                  'small-12': true,
-                  'medium-6': widget.widgetsPerColumn >= 2,
-                  'large-4': widget.widgetsPerColumn === 3,
-                  [styles['preview-container']]: true
-                })}
-              >
-                <WidgetPanel
-                  widget={widgets.find(w => w.id === widget.id)}
-                  topic={topic}
-                />
-              </div>))}
-          </div>
+          <ErrorBoundary>
+            <div className="row">
+              {dataArray.map(widget =>
+                (<div
+                  key={`widget-preview-${widget.id}`}
+                  className={classnames({
+                    column: true,
+                    'small-12': true,
+                    'medium-6': widget.widgetsPerColumn >= 2,
+                    'large-4': widget.widgetsPerColumn === 3,
+                    [styles['preview-container']]: true
+                  })}
+                >
+                  <WidgetPanel
+                    widget={widgets.find(w => w.id === widget.id)}
+                    topic={topic}
+                  />
+                </div>))}
+            </div>
+          </ErrorBoundary>
         }
       </div>
     </>;

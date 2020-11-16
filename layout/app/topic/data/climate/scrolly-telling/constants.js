@@ -26,7 +26,8 @@ export const CLIMATE_STEPS = [
                 </>
         },
         showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
+        yearValue: 2020,
+        degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)'
     },
@@ -38,7 +39,8 @@ export const CLIMATE_STEPS = [
             </p>
         },
         showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
+        yearValue: 2020,
+        degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)'
     },
@@ -57,7 +59,8 @@ export const CLIMATE_STEPS = [
             imageHeader: "/static/images/scrolly-telling/climate/fires.jpg"
         },
         showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
+        yearValue: 2020,
+        degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)'
     },
@@ -77,7 +80,8 @@ export const CLIMATE_STEPS = [
             imageHeader: "/static/images/scrolly-telling/climate/melting-ice.jpg"
         },
         showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
+        yearValue: 2020,
+        degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)'
     },
@@ -96,7 +100,8 @@ export const CLIMATE_STEPS = [
             imageHeader: "/static/images/scrolly-telling/climate/human-displacement-and-conflict.jpg"
         },
         showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
+        yearValue: 2020,
+        degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)'
     },
@@ -119,7 +124,8 @@ export const CLIMATE_STEPS = [
                 </>
         },
         showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
+        yearValue: 2020,
+        degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)'
     },
@@ -143,7 +149,8 @@ export const CLIMATE_STEPS = [
                 </>
         },
         showYearCounter: true,
-        yearValue: '2020 +1.0 °C',
+        yearValue: 2020,
+        degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)'
     },
@@ -166,7 +173,10 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/drought.jpg'
         },
         showYearCounter: true,
-        yearValue: '2046 +1.5 °C',
+        previousYearValue: 2020,
+        yearValue: 2046,
+        previousDegrees: 1,
+        degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)'
     },
@@ -185,7 +195,8 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/biodiversity.jpg'
         },
         showYearCounter: true,
-        yearValue: '2046 +1.5 °C',
+        yearValue: 2046,
+        degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)'
     },
@@ -207,7 +218,8 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/flooding.png'
         },
         showYearCounter: true,
-        yearValue: '2046 +1.5 °C',
+        yearValue: 2046,
+        degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)'
     },
@@ -228,7 +240,8 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-second.jpg'
         },
         showYearCounter: true,
-        yearValue: '2046 +1.5 °C',
+        yearValue: 2046,
+        degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)'
     },
@@ -249,7 +262,10 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/extreme-rainfall.jpg'
         },
         showYearCounter: true,
-        yearValue: '2064 +2.0 °C',
+        previousYearValue: 2046,
+        yearValue: 2064,
+        previousDegrees: 1.5,
+        degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600'
     },
@@ -276,7 +292,8 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/heatwaves-and-water-scarcity.jpg'
         },
         showYearCounter: true,
-        yearValue: '2064 +2.0 °C',
+        yearValue: 2064,
+        degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600'
     },
@@ -301,7 +318,8 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/sea-ice-and-permafrost.jpg'
         },
         showYearCounter: true,
-        yearValue: '2064 +2.0 °C',
+        yearValue: 2064,
+        degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600'
     },
@@ -322,7 +340,8 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/biodiversity-second.jpg'
         },
         showYearCounter: true,
-        yearValue: '2064 +2.0 °C',
+        yearValue: 2064,
+        degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600'
     },
@@ -349,7 +368,8 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-third.jpg'
         },
         showYearCounter: true,
-        yearValue: '2064 +2.0 °C',
+        yearValue: 2064,
+        degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600'
     },
@@ -370,7 +390,10 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/sea-ice.jpg'
         },
         showYearCounter: true,
-        yearValue: '2089 +3.0 °C',
+        previousYearValue: 2064,
+        yearValue: 2089,
+        previousDegrees: 2.0,
+        degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
         yearBackgroundColor: '#AD0000'
     },
@@ -391,7 +414,8 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-fourth.jpg'
         },
         showYearCounter: true,
-        yearValue: '2089 +3.0 °C',
+        yearValue: 2089,
+        degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
         yearBackgroundColor: '#AD0000'
     },
@@ -412,7 +436,8 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/biodiversity-third.jpg'
         },
         showYearCounter: true,
-        yearValue: '2089 +3.0 °C',
+        yearValue: 2089,
+        degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
         yearBackgroundColor: '#AD0000'
     }

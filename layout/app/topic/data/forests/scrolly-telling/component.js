@@ -17,6 +17,7 @@ import styles from './forests-scrolly-telling.module.scss';
 
 function ForestsScrollyTelling({ topic }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
+    const [currentYear, setCurrentYear] = useState(2000);
     const isBrowser = typeof window !== 'undefined';
     const currentStep = FORESTS_STEPS[currentStepIndex];
     const topicColor = getColorByTopic(topic);
@@ -25,7 +26,23 @@ function ForestsScrollyTelling({ topic }) {
     // data prop of the step, which in this demo stores the index of the step.
     const onStepEnter = ({ data }) => {
         setCurrentStepIndex(data);
-        console.log('onStepEnter!', data);
+
+        const step = FORESTS_STEPS[data];
+        const { showYearCounter, yearValue, previousYearValue } = step;
+
+        // ------ YEAR COUNTER COUNT UP EFFECT ------------------
+        if (showYearCounter) {
+            if (previousYearValue && yearValue) {
+                for(let i=previousYearValue, j=0; i<= yearValue; i++, j++) {
+                    setTimeout(() => {
+                        setCurrentYear(i)
+                    }, j * 50);
+                }
+            } else if (yearValue) {
+                setCurrentYear(yearValue);
+            }
+        }
+        // ------------------------------------------------------
     };
 
     const getStepContent = (mobile = false, step) =>
@@ -74,7 +91,7 @@ function ForestsScrollyTelling({ topic }) {
                                         className={styles['year-value']}
                                         style={{ color: topicColor }}
                                     >
-                                        {currentStep.yearValue}
+                                        {currentYear}
                                     </div>
                                     <div className={styles['year-subtitle']}>
                                         {currentStep.yearSubtitle}

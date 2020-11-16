@@ -39,7 +39,6 @@ export const OCEANS_SECONDARY_COLOR = '#31A9BF';
 export const FORESTS_COLOR = '#009A67';
 export const FORESTS_SECONDARY_COLOR = '#004D33';
 
-
 export const MONGABAY_CLIMATE = 'climate';
 export const MONGABAY_FRESHWATER = 'water';
 export const MONGABAY_OCEANS = 'oceans';
