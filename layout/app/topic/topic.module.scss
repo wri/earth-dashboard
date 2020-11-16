@@ -82,7 +82,10 @@
     }
 
     .indicators-row {
+        position: relative;
+        display: flex;
         justify-content: center;
+        z-index: 2;
 
         .indicators-container {
             margin-top: 116px;
@@ -120,12 +123,17 @@
                 .block-header {
                     color: $grey-light;
                 }
+
+                &.-widget-indicator {
+                    font-size: 20px;
+                    font-family: 'Barlow Condensed';
+                }
             }
         }
     }
 
     .particles {
-        position: absolute;
+        position: fixed;
         top: 0px;
         left: 0px;
         height: 100%;

@@ -69,7 +69,17 @@ export const LIST_WIDGET_TEMPLATE = {
       query: 'https://api.resourcewatch.org/v1/query/47dc1a1b-2c91-4d69-b04e-ea8c4561e2b5?sql=SELECT date as key , no_smoothing as value FROM cli_044_global_land_temperature ORDER BY no_smoothing desc LIMIT 5',
       format: '0.2s',
       bullets: false,
-      numbers: true
+      numbers: true,
+      source: {
+        prefix: {
+          label: "Dataset name",
+          link: "https://... "
+        },
+        suffix: {
+          label: "Source name",
+          link: "https://...."
+        }
+      }
     }
   }
 };
@@ -89,7 +99,17 @@ export const COMBINED_WIDGET_TEMPLATE = {
         id: 'ID of the second widget',
         percentage: 50
       },
-      direction: 'choose betweem the values row/column'
+      direction: 'choose betweem the values row/column',
+      source: {
+        prefix: {
+          label: "Dataset name",
+          link: "https://... "
+        },
+        suffix: {
+          label: "Source name",
+          link: "https://...."
+        }
+      }
     }
   }
 };
@@ -126,7 +146,17 @@ export const DYNAMIC_TEXT_WIDGET_TEMPLATE = {
             'text-decoration': 'underline'
           }
         }
-      ]
+      ],
+      source: {
+        prefix: {
+          label: "Dataset name",
+          link: "https://... "
+        },
+        suffix: {
+          label: "Source name",
+          link: "https://...."
+        }
+      }
     }
   }
 };
@@ -148,7 +178,17 @@ export const STATIC_TEXT_WIDGET_TEMPLATE = {
             color: '#009A67'
           }
         }
-      ]
+      ],
+      source: {
+        prefix: {
+          label: "Dataset name",
+          link: "https://... "
+        },
+        suffix: {
+          label: "Source name",
+          link: "https://...."
+        }
+      }
     }
   }
 };

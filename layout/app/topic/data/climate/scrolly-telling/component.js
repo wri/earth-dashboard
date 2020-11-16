@@ -57,7 +57,7 @@ function ClimateScrollyTelling({ topic }) {
         for (let i = previousDegrees, j = 0; i <= degrees; i = Math.round((i + 0.1) * 10) / 10, j++) {
           setTimeout(() => {
             setCurrentDegrees(i)
-          }, j * 600);
+          }, j * 200);
         }
       } else if (yearValue) {
         setCurrentYear(yearValue);

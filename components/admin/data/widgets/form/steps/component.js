@@ -238,7 +238,7 @@ class Step1 extends Component {
                   value={newWidgetTypesEditorCode}
                 />
                 <div className={styles['widget-preview-container']}>
-                  <WidgetPreview widget={previewSource} />
+                  <WidgetPreview widget={previewSource} showSource={true} />
                 </div>
               </div>
               <div className={styles['preview-actions']}>
