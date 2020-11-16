@@ -17,22 +17,22 @@ import {
   Desktop,
   MediaContextProvider
 } from 'utils/responsive';
+import { PARTICLES_DEFINITION } from 'utils/particles';
 
 // components
 import Layout from 'layout/layout/layout-app';
 import TopicNews from './news';
+import Globe from '../home/globe';
 
 // styles
 import styles from './topic.module.scss';
 import { useRouter } from 'next/router';
 
-// utils
-import { PARTICLES_DEFINITION } from 'utils/particles';
-
 function LayoutTopic(props) {
   const { topic, topicData, widgets } = props;
   const router = useRouter();
   const dataArray = topicData[topic]?.topicPage?.data;
+  const isServer = typeof window === 'undefined';
 
   return (
     <Layout
@@ -41,6 +41,21 @@ function LayoutTopic(props) {
       className={styles.topic}
     >
       <MediaContextProvider>
+        {/* ----- LEFT GLOBE ON DESKTOP VERSION -------- */}
+        <Desktop>
+          {!isServer &&
+            <Globe 
+              width="100vh"
+              height="70vh"
+              style={{ left: '-55%' }}
+              options={{
+                ambientLightColor: getColorByTopic(topic),
+                // ambientLightIntensity: 0.1
+              }}
+            />
+          }
+        </Desktop>
+        {/* -------------------------------------------- */}
         <div className={classnames({
           'row': true,
           [styles['indicators-row']]: true

@@ -8,11 +8,14 @@ if (typeof window !== 'undefined') {
 // styles
 import styles from './globe.module.scss';
 
-function Globe({ width, height }) {
+function Globe({ width, height, style, options }) {
     const isServer = typeof window === 'undefined';
 
     return (
-        <div className={styles['c-globe']}>
+        <div 
+            className={styles['c-globe']}
+            {...(!!style && { style })}
+        >
             {!isServer &&
                 <ReactGlobe
                     globeTexture="/static/images/world-map-dots.jpg"
@@ -23,7 +26,8 @@ function Globe({ width, height }) {
                     height={height}
                     options={{
                         cameraAutoRotateSpeed: 1.5,
-                        globeGlowCoefficient: 0
+                        globeGlowCoefficient: 0,
+                        ...options
                     }}
                 />
             }
@@ -33,12 +37,15 @@ function Globe({ width, height }) {
 
 Globe.propTypes = {
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired
+    height: PropTypes.number.isRequired,
+    style: PropTypes.object,
+    options: PropTypes.object
 };
 
 Globe.defaultProps = {
     width: '100vw',
-    height: '70vh'
+    height: '70vh',
+    options: {}
 };
 
 export default Globe;

@@ -16,8 +16,13 @@ export const FRESHWATER_STEPS = [
     {
         index: 1,
         textPanel: {
-            text: <><p>On the <strong>supply side</strong>, that water comes in the form of rainfall, rivers, lakes and other groundwater sources.</p>
-                <p>That’s the amount of water that the region can naturally replenish <strong>every year</strong>. </p></>
+            text: <>
+            <h6>FRESHWATER SUPPLIES</h6>
+            <p>On the <strong>supply side</strong>, that water comes in the form of rainfall, rivers, lakes and other groundwater sources.</p>
+                <p>That’s the amount of water that the region can naturally replenish <strong>every year</strong>. </p>
+                <p className={styles['photo-subtitle']}>Photo by Kevin Dooley on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a></p>
+                </>,
+                imageHeader: '/static/images/scrolly-telling/freshwater/freshwater-supplies.jpg'
         }
         ,
         dropImage: <img src="/static/images/scrolly-telling/freshwater/drop_full.svg" />,
@@ -29,7 +34,15 @@ export const FRESHWATER_STEPS = [
     {
         index: 2,
         textPanel: {
-            text: <p>From that budget, <strong>people withdraw water</strong> to use it in their homes, to run factories, to irrigate fields and for the livestock they raise.</p>
+            text: <>
+                <h6>FRESHWATER WITHDRAWALS</h6>
+                <p>
+                    From that budget, <strong>people withdraw water</strong> to use it in their homes, to 
+                    run factories, to irrigate fields and for the livestock they raise.
+                </p>
+                <p className={styles['photo-subtitle']}>Photo by Ken Figlioli on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a></p>
+            </>,
+            imageHeader: '/static/images/scrolly-telling/freshwater/freshwater-withdrawals.jpg'
         },
         dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />,
         extraElement:
@@ -63,14 +76,18 @@ export const FRESHWATER_STEPS = [
         index: 4,
         textPanel: {
             text: <>
-                <p>If a region overspends its budget, we say it has a <span style={{ color: HIGHLIGHT_ORANGE_COLOR }}><strong>high water stress risk</strong></span>. Among the consequences are:</p>
+                <h6>WATER STRESS RISK</h6>
+                <p>If a region overspends its budget, we say it has a <strong>high water stress risk</strong>. Among the consequences are:</p>
                 <ul>
                     <li>It has to <strong>import water</strong> from other regions</li>
                     <li>It has to <strong>use non-renewable</strong> groundwater sources, which run the risk of depletion</li>
                     <li><strong>Build reservoir infrastructures</strong> with high ecological impact</li>
                     <li><strong>Be less resilient to natural hazards</strong> such as droughts, desertification, etc.</li>
                 </ul>
-            </>
+                <p className={styles['photo-subtitle']}>Photo by John Gibbons on Unsplash</p>
+            </>,
+            imageHeader: '/static/images/scrolly-telling/freshwater/water-stress-risks.jpg'
+
         },
         dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />,
         extraElement:
