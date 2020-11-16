@@ -117,8 +117,13 @@
                 }
 
                 h6 {
-                    margin: 0px 0px 15px 0px;
+                    margin: 0px 0px $space 0px;
                     font-size: 16px;
+                }
+
+                .photo-subtitle {
+                    color: $grey-darker;
+                    font-size: 14px;
                 }
             }
         }
@@ -135,6 +140,22 @@
                 position: relative;
                 max-width: 400px;
                 margin-bottom: 100vh;
+
+                h6 {
+                    margin: 0px 0px $space 0px;
+                    font-size: 16px;
+                    font-family: 'Barlow Condensed';
+                    color: $freshwater
+                }
+
+                .photo-subtitle {
+                    color: $grey-darker;
+                    font-size: 14px;
+                }
+
+                a {
+                    text-decoration: underline;
+                }
             }
         }
     }

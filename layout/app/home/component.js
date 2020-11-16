@@ -6,6 +6,7 @@ import classnames from 'classnames';
 
 // components
 import Layout from 'layout/layout/layout-app';
+import Globe from './globe';
 
 // utils
 import { PARTICLES_DEFINITION } from 'utils/particles';
@@ -15,6 +16,8 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 import styles from './homepage.module.scss';
 
 function LayoutHome() {
+  const isServer = typeof window === 'undefined';
+
   const getTopicLinks = () =>
     <div className={styles['topic-links']}>
       <Link href="/climate">
@@ -60,6 +63,7 @@ function LayoutHome() {
         className={styles.particles}
         params={PARTICLES_DEFINITION}
       />
+
       <MediaContextProvider>
         <Desktop>
           <div className={classnames({
@@ -67,6 +71,9 @@ function LayoutHome() {
             [styles['-desktop']]: true
           })}
           >
+            {!isServer &&
+              <Globe width="100vw" height="70vh" style={{ zIndex: -1 }} />
+            }
             <h1 className={styles['first-header']}>This is not a drill.</h1>
             <h1>This is now a <span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
             {getSubtitle()}
@@ -79,6 +86,9 @@ function LayoutHome() {
             [styles['-mobile']]: true
           })}
           >
+            {!isServer &&
+              <Globe width="100vw" height="50vh" style={{ zIndex: -1 }} />
+            }
             <h1 className={styles['first-header']}>This is not a drill.</h1>
             <h1>This is now a <br /><span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
             {getSubtitle()}
