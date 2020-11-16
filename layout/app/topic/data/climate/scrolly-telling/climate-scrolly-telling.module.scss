@@ -83,8 +83,13 @@
     
                     .year-value {
                         display: flex;
+                        align-items: baseline;
                         font-size: 48px;
                         margin-top: -2 * $space;
+
+                        .degrees-container {
+                            margin-left: 10px;
+                        }
                     }
     
                     .year-subtitle {

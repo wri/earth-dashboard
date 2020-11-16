@@ -54,11 +54,11 @@ function ClimateScrollyTelling({ topic }) {
           }, j * 50);
         }
 
-        // for (let i = previousDegrees, j = 0; i <= degrees; i = Math.round((i + 0.1) * 10) / 10, j++) {
-        //   setTimeout(() => {
-        //     setCurrentDegrees(i)
-        //   }, j * 100);
-        // }
+        for (let i = previousDegrees, j = 0; i <= degrees; i = Math.round((i + 0.1) * 10) / 10, j++) {
+          setTimeout(() => {
+            setCurrentDegrees(i)
+          }, j * 600);
+        }
       } else if (yearValue) {
         setCurrentYear(yearValue);
         setCurrentDegrees(degrees);
@@ -175,7 +175,7 @@ function ClimateScrollyTelling({ topic }) {
                   <div
                     className={styles['year-value']}
                   >
-                    {currentYear}<span> + {currentDegrees} °C</span>
+                    {currentYear}<div className={styles['degrees-container']}> + {d3.format('.2n')(currentDegrees)} °C</div>
                   </div>
                   <div className={styles['year-subtitle']}>
                     {currentStep.yearSubtitle}
