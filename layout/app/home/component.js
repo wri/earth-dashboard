@@ -63,17 +63,17 @@ function LayoutHome() {
         className={styles.particles}
         params={PARTICLES_DEFINITION}
       />
-      
+
       <MediaContextProvider>
         <Desktop>
-
           <div className={classnames({
             [styles['main-container']]: true,
             [styles['-desktop']]: true
           })}
-          >{!isServer &&
-            <Globe />
-          }
+          >
+            {!isServer &&
+              <Globe width="100vw" height="70vh" />
+            }
             <h1 className={styles['first-header']}>This is not a drill.</h1>
             <h1>This is now a <span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
             {getSubtitle()}
@@ -86,6 +86,9 @@ function LayoutHome() {
             [styles['-mobile']]: true
           })}
           >
+            {!isServer &&
+              <Globe width="100vw" height="50vh" />
+            }
             <h1 className={styles['first-header']}>This is not a drill.</h1>
             <h1>This is now a <br /><span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
             {getSubtitle()}
