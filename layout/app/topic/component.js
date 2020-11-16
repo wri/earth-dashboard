@@ -50,7 +50,7 @@ function LayoutTopic(props) {
               style={{ left: '-55%' }}
               options={{
                 ambientLightColor: getColorByTopic(topic),
-                // ambientLightIntensity: 0.1
+                ambientLightIntensity: 0.3
               }}
             />
           }
