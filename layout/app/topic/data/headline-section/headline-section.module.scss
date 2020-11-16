@@ -48,6 +48,21 @@
             img {
                 margin-top: 2 * $space;
             }
+
+            .scroll-text {
+                &.-forests {
+                    color:  #004D33;
+                }
+                &.-oceans {
+                    color: #611940;
+                }
+                &.-freshwater {
+                    color: #003E85;
+                }
+                &.-climate {
+                    color: #611B00;
+                }
+            }
         }
     }
 }

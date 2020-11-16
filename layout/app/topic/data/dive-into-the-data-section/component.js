@@ -24,7 +24,6 @@ function DiveIntoTheDataSection({
   const topicColor = getColorByTopic(topic);
   const dataArray = topicData[topic]?.diveIntoTheData?.data;
   const isBrowser = typeof window !== 'undefined';
-  console.log('widgets', widgets);
 
   const getMainContainerContent = () =>
     <>
