@@ -80,7 +80,10 @@ function LayoutTopic(props) {
                 const widgetObj = widgets.find(w => w.id === block.id);
                 return (
                   <div
-                    className={styles['indicator-block']}
+                    className={classnames({
+                      [styles['indicator-block']]: true,
+                      [styles['-widget-indicator']]: true
+                    })}
                     key={widgetObj?.id}
                   >
                     <WidgetPreview widget={widgetObj} showSource={true} />

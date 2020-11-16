@@ -62,14 +62,14 @@ function StaticTextWidget({ widget, showSource }) {
             <div className={styles['text-container']}>
                 {textElements}
             </div>
-            { showSource && <SourceBox source={source} /> }
+            {showSource && <SourceBox source={source} />}
         </div>
     );
 }
 
 StaticTextWidget.propTypes = {
-  widget: PropTypes.object.isRequired,
-  showSource: PropTypes.bool
+    widget: PropTypes.object.isRequired,
+    showSource: PropTypes.bool
 };
 
 StaticTextWidget.defaultProps = { showSource: false };
