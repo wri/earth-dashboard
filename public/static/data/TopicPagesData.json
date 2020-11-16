@@ -7,13 +7,25 @@
                     "id": "dcaee0b1-8f71-4665-ae82-c15409662cc1"
                 },
                 {
-                    "type": "topic-news",
-                    "keywords": "forests",
-                    "numberOfElements": 3
+                    "type": "widget",
+                    "id": "078014f8-a95c-41bc-90c3-7643da9527ee"
                 },
                 {
                     "type": "widget",
-                    "id": "d1019eb4-6b4c-4fb6-963e-54ac362f8dfd"
+                    "id": "3032d3d5-ea9b-4a2a-98f8-d1046c5080f7"
+                },
+                {
+                    "type": "widget",
+                    "id": "5576a53c-5027-470f-85a2-6283760944a5"
+                },
+                {
+                    "type": "widget",
+                    "id": "478a1818-39ca-42ad-bbe7-9a32684867e0"
+                },
+                {
+                    "type": "topic-news",
+                    "keywords": "forests",
+                    "numberOfElements": 3
                 }
             ]
         },
