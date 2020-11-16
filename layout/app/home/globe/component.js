@@ -22,7 +22,7 @@ function Globe() {
                     height="70vh"
                     options={{
                         cameraAutoRotateSpeed: 1.5,
-                        globeGlowRadiusScale: 0
+                        globeGlowCoefficient: 0
                     }}
                 />
             }
