@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 // components
 import Spinner from 'components/ui/spinner';
 import WidgetPreview from 'components/widgets/preview';
+import SourceBox from 'components/widgets/source-box';
 
 // services
 import { fetchWidget } from 'services/widget';
@@ -13,15 +14,14 @@ import { fetchWidget } from 'services/widget';
 // styles
 import styles from './combined-widget.module.scss';
 
-function CombinedWidget(props) {
-  const { widget } = props;
+function CombinedWidget({ widget, showSource }) {
   const combinedWidgetConfig = widget && widget.widgetConfig &&
-        widget.widgetConfig.combinedWidgetConfig;
+    widget.widgetConfig.combinedWidgetConfig;
   const direction = combinedWidgetConfig.direction;
   const directionIsRow = direction === 'row';
   const widget1 = combinedWidgetConfig && combinedWidgetConfig.widget1;
   const widget2 = combinedWidgetConfig && combinedWidgetConfig.widget2;
-
+  const source = combinedWidgetConfig?.source;
 
   const [loading, setLoading] = useState(true);
   const [widgets, setWidgets] = useState(null);
@@ -63,36 +63,42 @@ function CombinedWidget(props) {
         <div
           className={styles['widget1-container']}
           style={directionIsRow ? {
-                        'min-width': `${widget1.percentage}%`,
-                        'max-width': `${widget1.percentage}%`
-                    } :
-                    {
-                        'min-height': `${widget1.percentage}%`,
-                        'max-height': `${widget1.percentage}%`
-                    }}
+            'min-width': `${widget1.percentage}%`,
+            'max-width': `${widget1.percentage}%`
+          } :
+            {
+              'min-height': `${widget1.percentage}%`,
+              'max-height': `${widget1.percentage}%`
+            }}
         >
           <WidgetPreview widget={widgets.widget1} />
         </div>
-            }
+      }
       {widgets && widgets.widget2 &&
         <div
           className={styles['widget2-container']}
           style={directionIsRow ? {
-                        'min-width': `${widget2.percentage}%`,
-                        'max-width': `${widget2.percentage}%`
-                    } :
-                    {
-                        'min-height': `${widget2.percentage}%`,
-                        'max-height': `${widget2.percentage}%`
-                    }}
+            'min-width': `${widget2.percentage}%`,
+            'max-width': `${widget2.percentage}%`
+          } :
+            {
+              'min-height': `${widget2.percentage}%`,
+              'max-height': `${widget2.percentage}%`
+            }}
         >
           <WidgetPreview widget={widgets.widget2} />
         </div>
-            }
+      }
+      { showSource && <SourceBox source={source} /> }
     </div>
   );
 }
 
-CombinedWidget.propTypes = { widget: PropTypes.object.isRequired };
+CombinedWidget.propTypes = {
+  widget: PropTypes.object.isRequired,
+  showSource: PropTypes.bool
+};
+
+CombinedWidget.defaultProps = { showSource: false };
 
 export default CombinedWidget;

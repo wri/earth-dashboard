@@ -6,15 +6,17 @@ import { timeFormat, timeParse } from 'd3-time-format';
 
 // components
 import Spinner from 'components/ui/spinner';
+import SourceBox from 'components/widgets/source-box';
 
 // styles
 import styles from './dynamic-text-widget.module.scss';
 
-function DynamicTextWidget(props) {
-    const { widget } = props;
+function DynamicTextWidget({ widget, showSource }) {
     const widgetConfig = widget && widget.widgetConfig;
     const dynamicTextWidgetConfig = widgetConfig && widgetConfig.dynamicTextWidgetConfig;
     const { text, parameters, style, type } = dynamicTextWidgetConfig || {};
+    const source = dynamicTextWidgetConfig?.source;
+
     const [loading, setLoading] = useState(true);
     const [textData, setTextData] = useState(null);
 
@@ -88,12 +90,16 @@ function DynamicTextWidget(props) {
             <div className={styles['text-container']}>
                 {textElements}
             </div>
+            { showSource && <SourceBox source={source} /> }
         </div>
     );
 }
 
 DynamicTextWidget.propTypes = {
-    widget: PropTypes.object.isRequired
+    widget: PropTypes.object.isRequired,
+    showSource: PropTypes.bool
 };
+
+DynamicTextWidget.defaultProps = { showSource: false };
 
 export default DynamicTextWidget;

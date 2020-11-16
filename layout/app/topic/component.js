@@ -83,7 +83,7 @@ function LayoutTopic(props) {
                     className={styles['indicator-block']}
                     key={widgetObj?.id}
                   >
-                    <WidgetPreview widget={widgetObj} />
+                    <WidgetPreview widget={widgetObj} showSource={true} />
                   </div>
                 );
               } else if (type === 'topic-news') {

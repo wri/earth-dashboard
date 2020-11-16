@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { toastr } from 'react-redux-toastr';
-import d3 from 'd3';
-import { timeFormat, timeParse } from 'd3-time-format';
 
 // components
 import Spinner from 'components/ui/spinner';
+import SourceBox from 'components/widgets/source-box';
 
 // styles
 import styles from './static-text-widget.module.scss';
 
-function StaticTextWidget(props) {
-    const { widget } = props;
+function StaticTextWidget({ widget, showSource }) {
     const widgetConfig = widget && widget.widgetConfig;
     const staticTextWidgetConfig = widgetConfig && widgetConfig.staticTextWidgetConfig;
     const { text, parameters, style, type } = staticTextWidgetConfig || {};
+    const source = staticTextWidgetConfig?.source;
+
     const [loading, setLoading] = useState(true);
     const [textData, setTextData] = useState(null);
-    const textIsStatic = type === 'static';
 
     useEffect(() => {
         if (parameters?.length > 0) {
@@ -64,12 +62,16 @@ function StaticTextWidget(props) {
             <div className={styles['text-container']}>
                 {textElements}
             </div>
+            { showSource && <SourceBox source={source} /> }
         </div>
     );
 }
 
 StaticTextWidget.propTypes = {
-    widget: PropTypes.object.isRequired
+  widget: PropTypes.object.isRequired,
+  showSource: PropTypes.bool
 };
+
+StaticTextWidget.defaultProps = { showSource: false };
 
 export default StaticTextWidget;
