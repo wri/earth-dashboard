@@ -16,6 +16,7 @@ function Globe() {
                 <ReactGlobe
                     globeTexture="/static/images/world-map-dots.jpg"
                     globeBackgroundTexture={null}
+                    globeCloudsTexture={null}
                     backgroundColor="#1A2129"
                     width="70vw"
                     height="70vh"
