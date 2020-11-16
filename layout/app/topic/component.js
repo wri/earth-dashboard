@@ -23,6 +23,7 @@ import { PARTICLES_DEFINITION } from 'utils/particles';
 import Layout from 'layout/layout/layout-app';
 import TopicNews from './news';
 import Globe from '../home/globe';
+import ErrorBoundary from 'components/ui/error-boundary';
 
 // styles
 import styles from './topic.module.scss';
@@ -44,7 +45,7 @@ function LayoutTopic(props) {
         {/* ----- LEFT GLOBE ON DESKTOP VERSION -------- */}
         <Desktop>
           {!isServer &&
-            <Globe 
+            <Globe
               width="100vh"
               height="70vh"
               style={{ left: '-55%' }}
@@ -66,42 +67,44 @@ function LayoutTopic(props) {
             'medium-6': true,
             'column': true
           })}>
-            {/* INDICATORS HEADER */}
-            <div className={styles['indicators-header']}>
-              <span className={styles['header-title']}>THE GLOBAL COMMONS REPORT</span>
-              <span className={styles['header-subtitle']}>
-                powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
-              </span>
-            </div>
-            {dataArray && dataArray.map(block => {
-              const { type } = block;
+            <ErrorBoundary>
+              {/* INDICATORS HEADER */}
+              <div className={styles['indicators-header']}>
+                <span className={styles['header-title']}>THE GLOBAL COMMONS REPORT</span>
+                <span className={styles['header-subtitle']}>
+                  powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
+                </span>
+              </div>
+              {dataArray && dataArray.map(block => {
+                const { type } = block;
 
-              if (type === 'widget') {
-                const widgetObj = widgets.find(w => w.id === block.id);
-                return (
-                  <div
-                    className={classnames({
-                      [styles['indicator-block']]: true,
-                      [styles['-widget-indicator']]: true
-                    })}
-                    key={widgetObj?.id}
-                  >
-                    <WidgetPreview widget={widgetObj} showSource={true} />
-                  </div>
-                );
-              } else if (type === 'topic-news') {
-                const { numberOfElements, keywords } = block;
-                return (
-                  <div
-                    key={`topic-news-${keywords}`}
-                    className={styles['indicator-block']}
-                  >
-                    <span className={styles['block-header']}>RECENT NEWS</span>
-                    <TopicNews topic={keywords} limit={numberOfElements} />
-                  </div>
-                );
-              }
-            })}
+                if (type === 'widget') {
+                  const widgetObj = widgets.find(w => w.id === block.id);
+                  return (
+                    <div
+                      className={classnames({
+                        [styles['indicator-block']]: true,
+                        [styles['-widget-indicator']]: true
+                      })}
+                      key={widgetObj?.id}
+                    >
+                      <WidgetPreview widget={widgetObj} showSource={true} />
+                    </div>
+                  );
+                } else if (type === 'topic-news') {
+                  const { numberOfElements, keywords } = block;
+                  return (
+                    <div
+                      key={`topic-news-${keywords}`}
+                      className={styles['indicator-block']}
+                    >
+                      <span className={styles['block-header']}>RECENT NEWS</span>
+                      <TopicNews topic={keywords} limit={numberOfElements} />
+                    </div>
+                  );
+                }
+              })}
+            </ErrorBoundary>
           </div>
         </div>
         {/* RIGHT SIDE LINK TO STORY TELLING PAGE */}

@@ -36,8 +36,8 @@ function Globe({ width, height, style, options }) {
 }
 
 Globe.propTypes = {
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    width: PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired,
     style: PropTypes.object,
     options: PropTypes.object
 };
