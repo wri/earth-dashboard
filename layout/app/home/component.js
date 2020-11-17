@@ -72,7 +72,15 @@ function LayoutHome() {
           })}
           >
             {!isServer &&
-              <Globe width="100vw" height="70vh" style={{ zIndex: -1 }} />
+              <Globe 
+                width="100vw"
+                height="70vh"
+                style={{ zIndex: -1 }} 
+                options={{
+                  ambientLightIntensity: 0.2,
+                  ambientLightColor: '#fff'
+                }}
+              />
             }
             <h1 className={styles['first-header']}>This is not a drill.</h1>
             <h1>This is now a <span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
