@@ -21,8 +21,12 @@ TopicPage.getInitialProps = async (context) => {
   const widgets = [];
   if (widgetIDs) {
     for (let i = 0; i < widgetIDs?.length; i++) {
-      const widget = await fetchWidget(widgetIDs?.[i], { includes: 'metadata' });
-      widgets.push(widget);
+      try {
+        const widget = await fetchWidget(widgetIDs?.[i], { includes: 'metadata' });
+        widgets.push(widget);
+      } catch(error) {
+        console.error(error);
+      }
     }
   }
 

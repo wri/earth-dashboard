@@ -20,10 +20,10 @@ import {
 import styles from './news-widget.module.scss';
 
 function NewsWidget(props) {
-    const { widget } = props;
+    const { widget, showSource } = props;
     const widgetConfig = widget && widget.widgetConfig;
     const newsWidgetConfig = widgetConfig && widgetConfig.newsWidgetConfig;
-    const { url, type, showDescription, showThumbnail } = newsWidgetConfig || {};
+    const { url, type, showDescription, showThumbnail, source} = newsWidgetConfig || {};
     const [loading, setLoading] = useState(true);
     const [item, setItem] = useState(null);
 
