@@ -5,7 +5,8 @@ import {
     FILL_UP_ANIMATION,
     EMPTY_HALF_OUT_ANIMATION,
     BASELINE_WATER_STRESS_ANIMATION,
-    WATER_STRESS_RISK_ANIMATION
+    WATER_STRESS_RISK_ANIMATION,
+    WATER_STRESS_RISK_FINAL
 } from './water-drop/constants';
 
 // styles
@@ -117,7 +118,22 @@ export const FRESHWATER_STEPS = [
             text: <p>
                 Let's explore some regions in the world with extremely high <span style={{ color: HIGHLIGHT_ORANGE_COLOR }}><strong>water stress risk</strong></span> ({'>'}80%)
             </p>
-        }
+        },
+        dropAnimation: WATER_STRESS_RISK_FINAL,
+        extraElement:
+            <div className={classnames({
+                [styles['baseline-water-stress-container']]: true,
+                [styles['-high-water-stress-risk']]: true
+            })}>
+                <div className={styles['divider-container']}>
+                    <span>withdrawals</span>
+                    <img src="/static/images/scrolly-telling/freshwater/divider.svg" />
+                    <span>supplies</span>
+                </div>
+                <div className={styles['arrow-up-and-down-container']}>
+                    <img src="/static/images/scrolly-telling/freshwater/arrow_up_and_down.svg" />
+                </div>
+            </div>
     }
 ];
 

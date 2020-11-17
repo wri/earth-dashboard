@@ -31,25 +31,6 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-    
-                    .water-drop-plus-background {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-        
-                        .water-drop-background {
-                            width: 100%;
-                        }
-            
-                        .water-drop {
-                            position: absolute;
-                            top: -23%;
-                            left: 33%;
-                            display: flex;
-                            justify-content: center;
-                            width: 33%;
-                        }
-                    }
                     
                     .arrow-container {
                         position: absolute;

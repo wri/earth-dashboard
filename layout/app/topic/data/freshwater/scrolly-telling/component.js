@@ -38,14 +38,7 @@ function FreshwaterScrollyTelling() {
 
     const getWaterDropElements = () =>
         <div className={styles['water-drop-elements']}>
-            <div className={styles['water-drop-plus-background']}>
-                <div className={styles['water-drop-background']}>
-                    <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.svg" />
-                </div>
-                <div className={styles['water-drop']}>
-                    <WaterDrop mode={FRESHWATER_STEPS[currentStepIndex].dropAnimation} />
-                </div>
-            </div>
+            <WaterDrop mode={FRESHWATER_STEPS[currentStepIndex].dropAnimation} />
             {FRESHWATER_STEPS[currentStepIndex].extraElement}
         </div>;
 
