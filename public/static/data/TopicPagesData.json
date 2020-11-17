@@ -51,16 +51,24 @@
             "data": [
                 {
                     "type": "widget",
-                    "id": "8383ea30-1166-415d-879f-51e0e8e353c6"
+                    "id": "c9b10fd4-56fb-4eb1-bf83-7e858d6bbeae"
+                },
+                {
+                    "type": "widget",
+                    "id": "793cb9c4-929a-49f9-a331-f630dd6d9863"
+                },
+                {
+                    "type": "widget",
+                    "id": "c3193d82-46e8-4886-bfe7-673d6d606d66"
+                },
+                {
+                    "type": "widget",
+                    "id": "37bcc8d9-8b8b-4805-9535-3e0a8aa9a7f8"
                 },
                 {
                     "type": "topic-news",
                     "keywords": "freshwater",
                     "number-of-elements": 3
-                },
-                {
-                    "type": "widget",
-                    "id": "241418fa-d679-4462-98e8-e8deeb84fbb2"
                 }
             ]
         },
@@ -94,16 +102,20 @@
             "data": [
                 {
                     "type": "widget",
-                    "id": "8383ea30-1166-415d-879f-51e0e8e353c6"
+                    "id": "4991c93e-b036-4eb7-9143-39d2d34bc685"
+                },
+                {
+                    "type": "widget",
+                    "id": "f32976cc-ef27-46cc-90a2-ae3ddd9ee7ab"
+                },
+                {
+                    "type": "widget",
+                    "id": "b294e361-1f23-49d5-8dc8-48ff274337c3"
                 },
                 {
                     "type": "topic-news",
                     "keywords": "oceans",
                     "number-of-elements": 3
-                },
-                {
-                    "type": "widget",
-                    "id": "241418fa-d679-4462-98e8-e8deeb84fbb2"
                 }
             ]
         },
@@ -141,16 +153,24 @@
             "data": [
                 {
                     "type": "widget",
-                    "id": "8383ea30-1166-415d-879f-51e0e8e353c6"
+                    "id": "3bd6cb63-b9da-487c-915e-1ec8b41a1f4"
+                },
+                {
+                    "type": "widget",
+                    "id": "4ccd8d00-a11e-46ae-b788-13214f34abe9"
+                },
+                {
+                    "type": "widget",
+                    "id": "98f7b50f-7197-4b71-b474-79f1efad99ba"
+                },
+                {
+                    "type": "widget",
+                    "id": "8d2f2f4f-576b-405f-b3a3-9ba5c4451ca0"
                 },
                 {
                     "type": "topic-news",
                     "keywords": "climate",
                     "number-of-elements": 3
-                },
-                {
-                    "type": "widget",
-                    "id": "241418fa-d679-4462-98e8-e8deeb84fbb2"
                 }
             ]
         },
