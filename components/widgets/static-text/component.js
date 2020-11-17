@@ -45,11 +45,16 @@ function StaticTextWidget({ widget, showSource }) {
                     <span
                         className={styles.parameter}
                         style={currentParam.style}
+                        key={`param-${textValue}`}
                     >
                         {textValue}
                     </span>);
             } else {
-                return <span className={styles.text}>{currentStr}</span>;
+                return (
+                    <span key={`param-${currentStr}`} className={styles.text}>
+                        {currentStr}
+                    </span>
+                );
             }
         });
 
@@ -62,7 +67,7 @@ function StaticTextWidget({ widget, showSource }) {
             <div className={styles['text-container']}>
                 {textElements}
             </div>
-            {showSource && <SourceBox source={source} />}
+            {showSource && source && <SourceBox source={source} />}
         </div>
     );
 }

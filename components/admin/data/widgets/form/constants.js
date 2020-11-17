@@ -99,14 +99,17 @@ export const STATIC_LIST_WIDGET_TEMPLATE = {
         {
           label: 'Element 1',
           style: {
-            'fontWeight': 800,
+            fontWeight: 800,
             color: 'green',
-            'fontSize': 17
+            fontSize: 17
           }
         },
         {
           label: 'Element 2',
-          link: 'http://.....'
+          link: 'http://.....',
+          style: {
+            textDecoration: 'underline'
+          }
         },
         {
           label: 'Element 3'
