@@ -1,0 +1,192 @@
+@import 'css/settings';
+
+// WATER DROP CSS TRANSITION EXAMPLE: https://codepen.io/focus-style/pen/oNbxVBX
+
+.c-water-drop {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .background {
+        width: 100%;
+
+        &.-desktop {
+            width: 400px;
+        }
+    }
+
+    .water-drop {
+        position: absolute;
+        top: -45%;
+        left: 25%;
+
+        .shape {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border-top-right-radius: 0;
+            transform: rotate(-45deg);
+            float: left;
+            margin-top: 50px;
+            margin-left: 20px;
+            border: 5px solid #003E85;
+            overflow: hidden;
+            position: relative;
+    
+            .frame {
+                position: absolute;
+                transform: rotate(45deg);
+                background-color: #003E85;
+                bottom: -8px;
+                left: 15px;
+                right: 0;
+                height: 245px;
+                width: 200px;
+    
+                .wave {
+                    position: absolute;
+                    top: 70%;
+                    left: 0;
+                    width: 200%;
+                    height: 200%;
+                    transform: translate(-25%, 0);
+                    background: $freshwater;
+    
+                    &:before, &:after {
+                        content: '';
+                        position: absolute;
+                        width: 90%;
+                        height: 70%;
+                        top: 0;
+                        left: 50%;
+                        transform: translate(-50%, -75%);
+                        background: $white;
+                    }
+    
+                    &:before {
+                        border-radius: 45%;
+                        background: rgba(1, 88, 113, 1);
+                    }
+                    
+                    &:after {
+                        border-radius: 40%;
+                        background: $white;
+                    }
+    
+                    // ------------------------- FILL UP ANIMATION ---------------------------
+                    &.-fill-up {
+                        animation: fill-up 10s ease;
+                        animation-fill-mode: forwards;
+    
+                        &:before {
+                            animation: animate 3s linear infinite;
+                        }
+                        
+                        &:after {
+                            animation: animate 3s linear infinite;
+                        }
+    
+                        @keyframes fill-up {
+                            to {
+                              top: -20%;
+                            }
+                        }
+                    }     
+                    // -------------------------------------------------------------------------
+                    
+                    // -------------------- EMPTY HALF OUT ANIMATION ---------------------------
+                    &.-empty-half-out {
+                        animation: empty-half-out 10s ease;
+                        animation-fill-mode: forwards;
+                        top: -10%;
+    
+                        &:before {
+                            animation: animate 5s linear infinite;
+                        }
+                        
+                        &:after {
+                            animation: animate 5s linear infinite;
+                        }
+    
+                        @keyframes empty-half-out {
+                            to {
+                              top: 40%;
+                            }
+                        }
+                    }
+                    // -------------------------------------------------------------------------
+    
+                    // ----------------- BASELINE WATER STRESS ANIMATION ------------------------
+                    &.-baseline-water-stress {
+                        animation-fill-mode: forwards;
+                        top: 40%;
+    
+                        &:before {
+                            animation: animate 8s linear infinite;
+                        }
+                        
+                        &:after {
+                            animation: animate 8s linear infinite;
+                        }
+                    }
+                    // -------------------------------------------------------------------------
+    
+                    // ----------------- WATER STRESS RISK ANIMATION ------------------------
+                    &.-water-stress-risk {
+                        animation: water-stress-risk 7s ease, orange-background 4s ease;
+                        animation-fill-mode: forwards;
+                        top: 40%;
+    
+                        &:before {
+                            animation: animate 8s linear infinite;
+                        }
+                        
+                        &:after {
+                            animation: animate 8s linear infinite;
+                        }
+    
+                        @keyframes orange-background {
+                           to {
+                                background: $climate;
+                            }
+                        }
+    
+                        @keyframes water-stress-risk {
+                            to {
+                                top: 57%;
+                            }
+                        }
+                    }
+                    // -------------------------------------------------------------------------
+    
+                    // ----------------- WATER STRESS RISK FINAL ------------------------
+                    &.-water-stress-risk-final {
+                        top: 57%;
+                        background: $climate;
+    
+                        &:before {
+                            animation: animate 8s linear infinite;
+                        }
+                        
+                        &:after {
+                            animation: animate 8s linear infinite;
+                        }
+                    }
+                    // -------------------------------------------------------------------------
+    
+    
+                    @keyframes animate {
+                        0% {
+                            transform: translate(-50%, -75%) rotate(0deg);
+                        }
+                        100% {
+                            transform: translate(-50%, -75%) rotate(360deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

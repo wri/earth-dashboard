@@ -33,12 +33,14 @@ export const WIDGET_TYPE_OPTIONS = [
 export const DEFAULT_WIDGET_TYPE_OPTION = 'standard';
 
 export const LIST_WIDGET_TYPE = 'list';
+export const STATIC_LIST_WIDGET_TYPE = "static-list";
 export const COMBINED_WIDGET_TYPE = 'combined';
 export const DYNAMIC_TEXT_WIDGET_TYPE = 'dynamic-text';
 export const STATIC_TEXT_WIDGET_TYPE = 'static-text';
 export const NEWS_WIDGET_TYPE = 'news';
 export const NEW_WIDGET_TYPES = [
   LIST_WIDGET_TYPE,
+  STATIC_LIST_WIDGET_TYPE,
   COMBINED_WIDGET_TYPE,
   DYNAMIC_TEXT_WIDGET_TYPE,
   STATIC_TEXT_WIDGET_TYPE,
@@ -70,6 +72,52 @@ export const LIST_WIDGET_TEMPLATE = {
       format: '0.2s',
       bullets: false,
       numbers: true,
+      source: {
+        prefix: {
+          label: "Dataset name",
+          link: "https://... "
+        },
+        suffix: {
+          label: "Source name",
+          link: "https://...."
+        }
+      }
+    }
+  }
+};
+
+export const STATIC_LIST_WIDGET_TEMPLATE = {
+  type: 'widget',
+  name: 'Test widget static list',
+  description: 'widget-description',
+  widgetConfig: {
+    type: 'static-list',
+    staticListWidgetConfig: {
+      bullets: false,
+      numbers: true,
+      values: [
+        {
+          label: 'Element 1',
+          style: {
+            'fontWeight': 800,
+            color: 'green',
+            'fontSize': 17
+          }
+        },
+        {
+          label: 'Element 2',
+          link: 'http://.....'
+        },
+        {
+          label: 'Element 3'
+        },
+        {
+          label: 'Element 4'
+        },
+        {
+          label: 'Element 5'
+        }
+      ],
       source: {
         prefix: {
           label: "Dataset name",
@@ -130,10 +178,9 @@ export const DYNAMIC_TEXT_WIDGET_TEMPLATE = {
           inputFormat: '%Y-%m-%d',
           type: 'date',
           style: {
-            'font-weight': 800,
+            'fontWeight': 800,
             color: 'blue',
-            'font-size': 28,
-            'text-shadow': '4px 4px 5px #afcfdb'
+            'fontSize': 28
           }
         },
         {
@@ -142,8 +189,8 @@ export const DYNAMIC_TEXT_WIDGET_TEMPLATE = {
           format: '.^20',
           type: 'number',
           style: {
-            'font-style': 'italic',
-            'text-decoration': 'underline'
+            'fontStyle': 'italic',
+            'textDecoration': 'underline'
           }
         }
       ],
@@ -173,8 +220,8 @@ export const STATIC_TEXT_WIDGET_TEMPLATE = {
         {
           key: '2 billion hectares',
           style: {
-            'font-style': 'italic',
-            'font-weight': 'bold',
+            'fontStyle': 'italic',
+            'fontWeight': 'bold',
             color: '#009A67'
           }
         }
@@ -199,6 +246,10 @@ export const NEW_WIDGET_TYPES_TEMPLATES = [
     value: LIST_WIDGET_TEMPLATE
   },
   {
+    id: STATIC_LIST_WIDGET_TYPE,
+    value: STATIC_LIST_WIDGET_TEMPLATE
+  },
+  {
     id: COMBINED_WIDGET_TYPE,
     value: COMBINED_WIDGET_TEMPLATE
   },
@@ -220,6 +271,10 @@ export const NEW_WIDGET_TYPES_OPTIONS = [
   {
     label: 'List',
     value: LIST_WIDGET_TYPE
+  },
+  {
+    label: 'Static list',
+    value: STATIC_LIST_WIDGET_TYPE
   },
   {
     label: 'Combined',

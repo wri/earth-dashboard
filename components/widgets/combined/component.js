@@ -52,8 +52,8 @@ function CombinedWidget({ widget, showSource }) {
 
   const mainClassname = classnames({
     [styles['c-combined-widget']]: true,
-    '-row': directionIsRow,
-    '-column': !directionIsRow
+    [styles['-row']]: directionIsRow,
+    [styles['-column']]: !directionIsRow
   });
 
   return (

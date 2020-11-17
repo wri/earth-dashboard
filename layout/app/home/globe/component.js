@@ -18,15 +18,15 @@ function Globe({ width, height, style, options }) {
         >
             {!isServer &&
                 <ReactGlobe
-                    globeTexture="/static/images/world-map-dots.jpg"
+                    globeTexture="/static/images/world-map-dots.svg"
                     globeBackgroundTexture={null}
                     globeCloudsTexture={null}
                     backgroundColor="#1A2129"
                     width={width}
                     height={height}
                     options={{
-                        cameraAutoRotateSpeed: 1.5,
-                        globeGlowCoefficient: 0,
+                        cameraAutoRotateSpeed: 1.3,
+                        enableGlobeGlow: false,
                         ...options
                     }}
                 />

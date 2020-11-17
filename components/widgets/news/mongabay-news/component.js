@@ -4,29 +4,46 @@ import PropTypes from 'prop-types';
 // styles
 import styles from './mongabay-news.module.scss';
 
-function MongabayNews(props){
-    const { item } = props;
-    const { link, title, enclosure: { url: imageURL }, contentSnippet: description} = item;
+function MongabayNews({ item, showThumbnail, showDescription }) {
+    const {
+        link,
+        title,
+        enclosure: { url: imageURL },
+        contentSnippet: description,
+        pubDate 
+    } = item;
 
     return (
         <div className={styles['c-mongabay-news']}>
-            <div className={styles['image-container']}>
-                <img src={imageURL} />
-            </div>
-            <div className={styles['text-container']}>
-                <h3>
+            {showThumbnail &&
+                <div className={styles['image-container']}>
                     <a href={link} target="_blank">
-                        {title}
+                        <img src={imageURL} />
                     </a>
-                </h3>
-                <p>{description}</p>
+                </div>
+            }
+            <div className={styles['text-container']}>
+                <a href={link} target="_blank">
+                    <h5>{title}</h5>
+                </a>
+                {showDescription &&
+                    <p>{description}</p>
+                }
+                <span className={styles['news-date']}>{pubDate} - Mongabay</span>
             </div>
         </div>
     );
 }
 
 MongabayNews.propTypes = {
-    item: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired,
+    showThumbnail: PropTypes.bool,
+    showDescription: PropTypes.bool
 };
+
+MongabayNews.propTypes = {
+    showDescription: true,
+    showThumbnail: true
+}
 
 export default MongabayNews;

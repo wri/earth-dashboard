@@ -4,6 +4,7 @@ import classnames from 'classnames';
 
 // components
 import TextBox from 'components/scrolly-telling/text-box';
+import WaterDrop from './water-drop';
 
 // utils
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
@@ -37,14 +38,7 @@ function FreshwaterScrollyTelling() {
 
     const getWaterDropElements = () =>
         <div className={styles['water-drop-elements']}>
-            <div className={styles['water-drop-plus-background']}>
-                <div className={styles['water-drop-background']}>
-                    <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.svg" />
-                </div>
-                <div className={styles['water-drop']}>
-                    {FRESHWATER_STEPS[currentStepIndex].dropImage}
-                </div>
-            </div>
+            <WaterDrop mode={FRESHWATER_STEPS[currentStepIndex].dropAnimation} />
             {FRESHWATER_STEPS[currentStepIndex].extraElement}
         </div>;
 

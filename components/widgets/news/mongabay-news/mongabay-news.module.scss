@@ -2,4 +2,28 @@
 
 .c-mongabay-news {
     
+    .image-container {
+        height: 100px;
+        width: 100%;
+        max-width: 160px;
+    }
+
+    .text-container {
+        padding: 4 * $space;
+
+        h5 {
+            margin: 0px;
+
+            a {
+                font-size: 18px;
+                color: $grey-dark;
+                text-decoration: none;
+            }
+        }
+
+        .news-date {
+            color: $grey-darker;
+            font-size: 12px;
+        }
+    }
 }

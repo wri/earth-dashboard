@@ -1,5 +1,14 @@
 import classnames from 'classnames';
 
+// constants
+import {
+    FILL_UP_ANIMATION,
+    EMPTY_HALF_OUT_ANIMATION,
+    BASELINE_WATER_STRESS_ANIMATION,
+    WATER_STRESS_RISK_ANIMATION,
+    WATER_STRESS_RISK_FINAL
+} from './water-drop/constants';
+
 // styles
 import styles from './freshwater-scrolly-telling.module.scss';
 
@@ -10,8 +19,7 @@ export const FRESHWATER_STEPS = [
         index: 0,
         textPanel: {
             text: <p>Every region in the world has a <strong>yearly renewable water budget</strong>, available to the people, plants and animals living on it. It is represented by that big drop of water.</p>
-        },
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />
+        }
     },
     {
         index: 1,
@@ -23,9 +31,8 @@ export const FRESHWATER_STEPS = [
                 <p className={styles['photo-subtitle']}>Photo by Kevin Dooley on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a></p>
                 </>,
                 imageHeader: '/static/images/scrolly-telling/freshwater/freshwater-supplies.jpg'
-        }
-        ,
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop_full.svg" />,
+        },
+        dropAnimation: FILL_UP_ANIMATION,
         extraElement:
             <div className={styles['arrow-container']}>
                 <img src="/static/images/scrolly-telling/freshwater/arrow_up.svg" />
@@ -44,7 +51,7 @@ export const FRESHWATER_STEPS = [
             </>,
             imageHeader: '/static/images/scrolly-telling/freshwater/freshwater-withdrawals.jpg'
         },
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />,
+        dropAnimation: EMPTY_HALF_OUT_ANIMATION,
         extraElement:
             <div className={styles['arrow-container']}>
                 <img src="/static/images/scrolly-telling/freshwater/arrow_down.svg" />
@@ -59,7 +66,7 @@ export const FRESHWATER_STEPS = [
                 <p>It is expressed as a percentage.  These risk scores range from low water stress ({'<'}10%) to extremely high water stress ({'>'}80%)</p>
             </>
         },
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />,
+        dropAnimation: BASELINE_WATER_STRESS_ANIMATION,
         extraElement:
             <div className={styles['baseline-water-stress-container']}>
                 <div className={styles['divider-container']}>
@@ -89,7 +96,7 @@ export const FRESHWATER_STEPS = [
             imageHeader: '/static/images/scrolly-telling/freshwater/water-stress-risks.jpg'
 
         },
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />,
+        dropAnimation: WATER_STRESS_RISK_ANIMATION,
         extraElement:
             <div className={classnames({
                 [styles['baseline-water-stress-container']]: true,
@@ -112,7 +119,21 @@ export const FRESHWATER_STEPS = [
                 Let's explore some regions in the world with extremely high <span style={{ color: HIGHLIGHT_ORANGE_COLOR }}><strong>water stress risk</strong></span> ({'>'}80%)
             </p>
         },
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />
+        dropAnimation: WATER_STRESS_RISK_FINAL,
+        extraElement:
+            <div className={classnames({
+                [styles['baseline-water-stress-container']]: true,
+                [styles['-high-water-stress-risk']]: true
+            })}>
+                <div className={styles['divider-container']}>
+                    <span>withdrawals</span>
+                    <img src="/static/images/scrolly-telling/freshwater/divider.svg" />
+                    <span>supplies</span>
+                </div>
+                <div className={styles['arrow-up-and-down-container']}>
+                    <img src="/static/images/scrolly-telling/freshwater/arrow_up_and_down.svg" />
+                </div>
+            </div>
     }
 ];
 
