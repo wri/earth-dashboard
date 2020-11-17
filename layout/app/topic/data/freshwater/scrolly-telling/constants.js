@@ -1,5 +1,10 @@
 import classnames from 'classnames';
 
+// constants
+import {
+    FILL_UP_ANIMATION
+} from './water-drop/constants';
+
 // styles
 import styles from './freshwater-scrolly-telling.module.scss';
 
@@ -10,8 +15,7 @@ export const FRESHWATER_STEPS = [
         index: 0,
         textPanel: {
             text: <p>Every region in the world has a <strong>yearly renewable water budget</strong>, available to the people, plants and animals living on it. It is represented by that big drop of water.</p>
-        },
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />
+        }
     },
     {
         index: 1,
@@ -23,9 +27,8 @@ export const FRESHWATER_STEPS = [
                 <p className={styles['photo-subtitle']}>Photo by Kevin Dooley on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a></p>
                 </>,
                 imageHeader: '/static/images/scrolly-telling/freshwater/freshwater-supplies.jpg'
-        }
-        ,
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop_full.svg" />,
+        },
+        dropAnimation: FILL_UP_ANIMATION,
         extraElement:
             <div className={styles['arrow-container']}>
                 <img src="/static/images/scrolly-telling/freshwater/arrow_up.svg" />
