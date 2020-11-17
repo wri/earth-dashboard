@@ -5,24 +5,31 @@ import PropTypes from 'prop-types';
 import styles from './mongabay-news.module.scss';
 
 function MongabayNews({ item, showThumbnail, showDescription }) {
-    const { link, title, enclosure: { url: imageURL }, contentSnippet: description } = item;
+    const {
+        link,
+        title,
+        enclosure: { url: imageURL },
+        contentSnippet: description,
+        pubDate 
+    } = item;
 
     return (
         <div className={styles['c-mongabay-news']}>
             {showThumbnail &&
                 <div className={styles['image-container']}>
-                    <img src={imageURL} />
+                    <a href={link} target="_blank">
+                        <img src={imageURL} />
+                    </a>
                 </div>
             }
             <div className={styles['text-container']}>
-                <h3>
-                    <a href={link} target="_blank">
-                        {title}
-                    </a>
-                </h3>
+                <a href={link} target="_blank">
+                    <h5>{title}</h5>
+                </a>
                 {showDescription &&
                     <p>{description}</p>
                 }
+                <span className={styles['news-date']}>{pubDate} - Mongabay</span>
             </div>
         </div>
     );
