@@ -8,10 +8,10 @@ import SourceBox from 'components/widgets/source-box';
 import styles from './static-list-widget.module.scss';
 
 function StaticListWidget(props) {
-  const { widget } = props;
+  const { widget, showSource } = props;
   const widgetConfig = widget && widget.widgetConfig;
   const staticListWidgetConfig = widgetConfig && widgetConfig.staticListWidgetConfig;
-  const { numbers, bullets, values } = staticListWidgetConfig || {};
+  const { numbers, bullets, values, source } = staticListWidgetConfig || {};
   const ListTag = numbers ? 'ol' : (bullets ? 'ul' : 'ol');
 
   return (
@@ -39,6 +39,10 @@ function StaticListWidget(props) {
 StaticListWidget.propTypes = { 
   widget: PropTypes.object.isRequired,
   showSource: PropTypes.bool
+};
+
+StaticListWidget.defaultProps = { 
+  showSource: true
 };
 
 export default StaticListWidget;
