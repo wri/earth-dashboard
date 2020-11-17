@@ -90,7 +90,7 @@ function DynamicTextWidget({ widget, showSource }) {
             <div className={styles['text-container']}>
                 {textElements}
             </div>
-            { showSource && <SourceBox source={source} /> }
+            { showSource && source && <SourceBox source={source} /> }
         </div>
     );
 }

@@ -80,7 +80,14 @@ function NewsWidget(props) {
 }
 
 NewsWidget.propTypes = {
-    widget: PropTypes.object.isRequired
+    widget: PropTypes.object.isRequired,
+    showThumbnail: PropTypes.bool,
+    showDescription: PropTypes.bool
 };
+
+NewsWidget.defaultProps = {
+    showDescription: false,
+    showThumbnail: true
+}
 
 export default NewsWidget;

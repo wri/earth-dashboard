@@ -13,6 +13,8 @@ function MongabayNews({ item, showThumbnail, showDescription }) {
         pubDate 
     } = item;
 
+    console.log('showThumbnail', showThumbnail);
+
     return (
         <div className={styles['c-mongabay-news']}>
             {showThumbnail &&
@@ -41,7 +43,7 @@ MongabayNews.propTypes = {
     showDescription: PropTypes.bool
 };
 
-MongabayNews.propTypes = {
+MongabayNews.defaultProps = {
     showDescription: true,
     showThumbnail: true
 }

@@ -89,7 +89,7 @@ function CombinedWidget({ widget, showSource }) {
           <WidgetPreview widget={widgets.widget2} />
         </div>
       }
-      { showSource && <SourceBox source={source} /> }
+      { showSource && source && <SourceBox source={source} /> }
     </div>
   );
 }
