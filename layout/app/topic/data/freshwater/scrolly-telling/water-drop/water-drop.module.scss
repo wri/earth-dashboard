@@ -19,12 +19,12 @@
 
     .water-drop {
         position: absolute;
-        top: -50%;
-        left: 20%;
-        
+        top: -45%;
+        left: 25%;
+
         .shape {
-            width: 200px;
-            height: 200px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             border-top-right-radius: 0;
             transform: rotate(-45deg);
@@ -90,7 +90,7 @@
     
                         @keyframes fill-up {
                             to {
-                              top: -60%;
+                              top: -20%;
                             }
                         }
                     }     
@@ -100,7 +100,7 @@
                     &.-empty-half-out {
                         animation: empty-half-out 10s ease;
                         animation-fill-mode: forwards;
-                        top: -30%;
+                        top: -10%;
     
                         &:before {
                             animation: animate 5s linear infinite;
@@ -112,7 +112,7 @@
     
                         @keyframes empty-half-out {
                             to {
-                              top: 30%;
+                              top: 40%;
                             }
                         }
                     }
@@ -121,7 +121,7 @@
                     // ----------------- BASELINE WATER STRESS ANIMATION ------------------------
                     &.-baseline-water-stress {
                         animation-fill-mode: forwards;
-                        top: 30%;
+                        top: 40%;
     
                         &:before {
                             animation: animate 8s linear infinite;
@@ -137,7 +137,7 @@
                     &.-water-stress-risk {
                         animation: water-stress-risk 7s ease, orange-background 4s ease;
                         animation-fill-mode: forwards;
-                        top: 30%;
+                        top: 40%;
     
                         &:before {
                             animation: animate 8s linear infinite;
@@ -155,7 +155,7 @@
     
                         @keyframes water-stress-risk {
                             to {
-                                top: 50%;
+                                top: 57%;
                             }
                         }
                     }
@@ -163,7 +163,7 @@
     
                     // ----------------- WATER STRESS RISK FINAL ------------------------
                     &.-water-stress-risk-final {
-                        top: 50%;
+                        top: 57%;
                         background: $climate;
     
                         &:before {
