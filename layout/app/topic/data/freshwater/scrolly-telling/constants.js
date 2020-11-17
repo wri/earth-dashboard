@@ -4,7 +4,8 @@ import classnames from 'classnames';
 import {
     FILL_UP_ANIMATION,
     EMPTY_HALF_OUT_ANIMATION,
-    BASELINE_WATER_STRESS_ANIMATION
+    BASELINE_WATER_STRESS_ANIMATION,
+    WATER_STRESS_RISK_ANIMATION
 } from './water-drop/constants';
 
 // styles
@@ -94,6 +95,7 @@ export const FRESHWATER_STEPS = [
             imageHeader: '/static/images/scrolly-telling/freshwater/water-stress-risks.jpg'
 
         },
+        dropAnimation: WATER_STRESS_RISK_ANIMATION,
         extraElement:
             <div className={classnames({
                 [styles['baseline-water-stress-container']]: true,

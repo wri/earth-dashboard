@@ -33,7 +33,7 @@
 
             .wave {
                 position: absolute;
-                top: 50%;
+                top: 70%;
                 left: 0;
                 width: 200%;
                 height: 200%;
@@ -43,8 +43,8 @@
                 &:before, &:after {
                     content: '';
                     position: absolute;
-                    width: 100%;
-                    height: 100%;
+                    width: 90%;
+                    height: 70%;
                     top: 0;
                     left: 50%;
                     transform: translate(-50%, -75%);
@@ -110,11 +110,39 @@
                     top: 30%;
 
                     &:before {
-                        animation: animate 10s linear infinite;
+                        animation: animate 8s linear infinite;
                     }
                     
                     &:after {
-                        animation: animate 10s linear infinite;
+                        animation: animate 8s linear infinite;
+                    }
+                }
+                // -------------------------------------------------------------------------
+
+                // ----------------- BASELINE WATER STRESS ANIMATION ------------------------
+                &.-water-stress-risk {
+                    animation: water-stress-risk 7s ease;
+                    animation-fill-mode: forwards;
+                    top: 30%;
+
+                    &:before {
+                        animation: animate 8s linear infinite, orange-background 4s;
+                    }
+                    
+                    &:after {
+                        animation: animate 8s linear infinite;
+                    }
+
+                    @keyframes orange-background {
+                       to {
+                            background: $climate;
+                        }
+                    }
+
+                    @keyframes water-stress-risk {
+                        to {
+                            top: 20%;
+                        }
                     }
                 }
                 // -------------------------------------------------------------------------

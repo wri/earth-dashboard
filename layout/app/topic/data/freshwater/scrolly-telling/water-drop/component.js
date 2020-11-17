@@ -6,7 +6,8 @@ import classnames from 'classnames';
 import {
     FILL_UP_ANIMATION,
     EMPTY_HALF_OUT_ANIMATION,
-    BASELINE_WATER_STRESS_ANIMATION
+    BASELINE_WATER_STRESS_ANIMATION,
+    WATER_STRESS_RISK_ANIMATION
 } from './constants';
 
 // styles 
@@ -22,7 +23,8 @@ function WaterDrop(props) {
                         [styles.wave]: true,
                         [styles['-fill-up']]: mode === FILL_UP_ANIMATION,
                         [styles['-empty-half-out']]: mode === EMPTY_HALF_OUT_ANIMATION,
-                        [styles['-baseline-water-stress']]: mode === BASELINE_WATER_STRESS_ANIMATION
+                        [styles['-baseline-water-stress']]: mode === BASELINE_WATER_STRESS_ANIMATION,
+                        [styles['-water-stress-risk']]: mode === WATER_STRESS_RISK_ANIMATION
                     })} />
                 </div>
             </div>
