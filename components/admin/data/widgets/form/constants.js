@@ -92,7 +92,7 @@ export const STATIC_LIST_WIDGET_TEMPLATE = {
   description: 'widget-description',
   widgetConfig: {
     type: 'static-list',
-    listWidgetConfig: {
+    staticListWidgetConfig: {
       bullets: false,
       numbers: true,
       values: [
