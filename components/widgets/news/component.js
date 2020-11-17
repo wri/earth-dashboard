@@ -22,7 +22,7 @@ function NewsWidget(props) {
     const { widget } = props;
     const widgetConfig = widget && widget.widgetConfig;
     const newsWidgetConfig = widgetConfig && widgetConfig.newsWidgetConfig;
-    const { url, type } = newsWidgetConfig || {};
+    const { url, type, showDescription, showThumbnail } = newsWidgetConfig || {};
     const [loading, setLoading] = useState(true);
     const [item, setItem] = useState(null);
 
@@ -66,7 +66,11 @@ function NewsWidget(props) {
         <div className={styles['c-news-widget']}>
             <Spinner isLoading={loading} className="-relative -light" />
             {item && type === MONGABAY_NEWS_TYPE &&
-                <MongabayNews item={item} />
+                <MongabayNews 
+                    item={item}
+                    showDescription={showDescription}
+                    showThumbnail={showThumbnail}
+                />
             }
             {item && type === GUARDIAN_NEWS_TYPE &&
                 <GuardianNews item={item} />
