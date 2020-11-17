@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// components
+import SourceBox from 'components/widgets/source-box';
+
 // styles
 import styles from './static-list-widget.module.scss';
 
@@ -28,10 +31,14 @@ function StaticListWidget(props) {
           </li>
         )}
       </ListTag>
+      { showSource && source && <SourceBox source={source} /> }
     </div>
   );
 }
 
-StaticListWidget.propTypes = { widget: PropTypes.object.isRequired };
+StaticListWidget.propTypes = { 
+  widget: PropTypes.object.isRequired,
+  showSource: PropTypes.bool
+};
 
 export default StaticListWidget;

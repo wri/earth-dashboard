@@ -7,6 +7,7 @@ import Parser from 'rss-parser';
 import Spinner from 'components/ui/spinner';
 import MongabayNews from './mongabay-news';
 import GuardianNews from './guardian-news';
+import SourceBox from 'components/widgets/source-box';
 
 // constants
 import { 
@@ -75,6 +76,7 @@ function NewsWidget(props) {
             {item && type === GUARDIAN_NEWS_TYPE &&
                 <GuardianNews item={item} />
             }
+            { showSource && source && <SourceBox source={source} /> }
         </div>
     );
 }
