@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // styles
-import styles from './list-widget.module.scss';
+import styles from './static-list-widget.module.scss';
 
 function StaticListWidget(props) {
   const { widget } = props;
@@ -22,9 +22,9 @@ function StaticListWidget(props) {
                 target="_blank" 
                 style={elem.style}
               >
-                {elem.value}
+                {elem.label}
               </a>}
-            {!elem.link && <span style={elem.style}>{elem.value}</span>}
+            {!elem.link && <span style={elem.style}>{elem.label}</span>}
           </li>
         )}
       </ListTag>

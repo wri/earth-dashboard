@@ -8,11 +8,13 @@ import RwAdapter from '@widget-editor/rw-adapter';
 // components
 import CombinedWidget from 'components/widgets/combined';
 import ListWidget from 'components/widgets/list';
+import StaticListWidget from 'components/widgets/static-list';
 import DynamicTextWidget from 'components/widgets/dynamic-text';
 import StaticTextWidget from 'components/widgets/static-text';
 import NewsWidget from 'components/widgets/news';
 import {
   LIST_WIDGET_TYPE,
+  STATIC_LIST_WIDGET_TYPE,
   COMBINED_WIDGET_TYPE,
   NEWS_WIDGET_TYPE,
   DYNAMIC_TEXT_WIDGET_TYPE,
@@ -29,6 +31,7 @@ function WidgetPreview({ widget, showSource }) {
   const isEmbed = widgetType === 'embed';
   const isCombined = widgetType === COMBINED_WIDGET_TYPE;
   const isList = widgetType === LIST_WIDGET_TYPE;
+  const isStaticList = widgetType === STATIC_LIST_WIDGET_TYPE;
   const isNews = widgetType === NEWS_WIDGET_TYPE;
   const isDynamicText = widgetType === DYNAMIC_TEXT_WIDGET_TYPE;
   const isStaticText = widgetType === STATIC_TEXT_WIDGET_TYPE;
@@ -59,6 +62,12 @@ function WidgetPreview({ widget, showSource }) {
       }
       {isList &&
         <ListWidget
+          widget={widget}
+          showSource={showSource}
+        />
+      }
+      {isStaticList &&
+        <StaticListWidget
           widget={widget}
           showSource={showSource}
         />
