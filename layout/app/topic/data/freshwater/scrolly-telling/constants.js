@@ -2,7 +2,9 @@ import classnames from 'classnames';
 
 // constants
 import {
-    FILL_UP_ANIMATION
+    FILL_UP_ANIMATION,
+    EMPTY_HALF_OUT_ANIMATION,
+    BASELINE_WATER_STRESS_ANIMATION
 } from './water-drop/constants';
 
 // styles
@@ -47,7 +49,7 @@ export const FRESHWATER_STEPS = [
             </>,
             imageHeader: '/static/images/scrolly-telling/freshwater/freshwater-withdrawals.jpg'
         },
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />,
+        dropAnimation: EMPTY_HALF_OUT_ANIMATION,
         extraElement:
             <div className={styles['arrow-container']}>
                 <img src="/static/images/scrolly-telling/freshwater/arrow_down.svg" />
@@ -62,7 +64,7 @@ export const FRESHWATER_STEPS = [
                 <p>It is expressed as a percentage.  These risk scores range from low water stress ({'<'}10%) to extremely high water stress ({'>'}80%)</p>
             </>
         },
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />,
+        dropAnimation: BASELINE_WATER_STRESS_ANIMATION,
         extraElement:
             <div className={styles['baseline-water-stress-container']}>
                 <div className={styles['divider-container']}>
@@ -92,7 +94,6 @@ export const FRESHWATER_STEPS = [
             imageHeader: '/static/images/scrolly-telling/freshwater/water-stress-risks.jpg'
 
         },
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />,
         extraElement:
             <div className={classnames({
                 [styles['baseline-water-stress-container']]: true,
@@ -114,8 +115,7 @@ export const FRESHWATER_STEPS = [
             text: <p>
                 Let's explore some regions in the world with extremely high <span style={{ color: HIGHLIGHT_ORANGE_COLOR }}><strong>water stress risk</strong></span> ({'>'}80%)
             </p>
-        },
-        dropImage: <img src="/static/images/scrolly-telling/freshwater/drop.svg" />
+        }
     }
 ];
 

@@ -5,7 +5,8 @@ import classnames from 'classnames';
 // constants
 import {
     FILL_UP_ANIMATION,
-    EMPTY_OUT_ANIMATION
+    EMPTY_HALF_OUT_ANIMATION,
+    BASELINE_WATER_STRESS_ANIMATION
 } from './constants';
 
 // styles 
@@ -20,7 +21,8 @@ function WaterDrop(props) {
                     <div className={classnames({
                         [styles.wave]: true,
                         [styles['-fill-up']]: mode === FILL_UP_ANIMATION,
-                        [styles['-empty-out']]: mode === EMPTY_OUT_ANIMATION
+                        [styles['-empty-half-out']]: mode === EMPTY_HALF_OUT_ANIMATION,
+                        [styles['-baseline-water-stress']]: mode === BASELINE_WATER_STRESS_ANIMATION
                     })} />
                 </div>
             </div>

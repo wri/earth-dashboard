@@ -1,2 +1,3 @@
 export const FILL_UP_ANIMATION = 'fill-up';
-export const EMPTY_OUT_ANIMATION = 'empty-out';
+export const EMPTY_HALF_OUT_ANIMATION = 'empty-half-out';
+export const BASELINE_WATER_STRESS_ANIMATION = 'baseline-water-stress';

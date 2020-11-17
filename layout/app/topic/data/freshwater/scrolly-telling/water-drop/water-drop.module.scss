@@ -1,5 +1,7 @@
 @import 'css/settings';
 
+// WATER DROP CSS TRANSITION EXAMPLE: https://codepen.io/focus-style/pen/oNbxVBX
+
 .c-water-drop {
     position: relative;
     width: 700px;
@@ -49,28 +51,27 @@
                     background: $white;
                 }
 
+                &:before {
+                    border-radius: 45%;
+                    background: rgba(1, 88, 113, 1);
+                }
+                
+                &:after {
+                    border-radius: 40%;
+                    background: $white;
+                }
+
+                // ------------------------- FILL UP ANIMATION ---------------------------
                 &.-fill-up {
-                    animation: fill-up 15s ease;
+                    animation: fill-up 10s ease;
+                    animation-fill-mode: forwards;
 
                     &:before {
-                        border-radius: 45%;
-                        background: rgba(1, 88, 113, 1);
                         animation: animate 3s linear infinite;
                     }
                     
                     &:after {
-                        border-radius: 40%;
-                        background: $white;
                         animation: animate 3s linear infinite;
-                    }
-                    
-                    @keyframes animate {
-                        0% {
-                            transform: translate(-50%, -75%) rotate(0deg);
-                        }
-                        100% {
-                            transform: translate(-50%, -75%) rotate(360deg);
-                        }
                     }
 
                     @keyframes fill-up {
@@ -78,7 +79,55 @@
                           top: -60%;
                         }
                     }
-                }                
+                }     
+                // -------------------------------------------------------------------------
+                
+                // -------------------- EMPTY HALF OUT ANIMATION ---------------------------
+                &.-empty-half-out {
+                    animation: empty-half-out 10s ease;
+                    animation-fill-mode: forwards;
+                    top: -60%;
+
+                    &:before {
+                        animation: animate 5s linear infinite;
+                    }
+                    
+                    &:after {
+                        animation: animate 5s linear infinite;
+                    }
+
+                    @keyframes empty-half-out {
+                        to {
+                          top: 30%;
+                        }
+                    }
+                }
+                // -------------------------------------------------------------------------
+
+                // ----------------- BASELINE WATER STRESS ANIMATION ------------------------
+                &.-baseline-water-stress {
+                    animation-fill-mode: forwards;
+                    top: 30%;
+
+                    &:before {
+                        animation: animate 10s linear infinite;
+                    }
+                    
+                    &:after {
+                        animation: animate 10s linear infinite;
+                    }
+                }
+                // -------------------------------------------------------------------------
+
+
+                @keyframes animate {
+                    0% {
+                        transform: translate(-50%, -75%) rotate(0deg);
+                    }
+                    100% {
+                        transform: translate(-50%, -75%) rotate(360deg);
+                    }
+                }
             }
         }
     }
