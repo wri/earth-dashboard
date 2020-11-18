@@ -20,8 +20,14 @@ function WidgetPanel({ widget, topic }) {
     const isMap = widget?.widgetConfig?.paramsConfig?.visualizationType === 'map';
     const isServer = typeof window === 'undefined';
 
+    const urlWithoutHash = !isServer && window.location.href.split('#')[0];
+    const shareModalURL = !isServer && `${urlWithoutHash}#${widget?.id}`;
+
     return (
-        <div className={styles['c-widget-panel']}>
+        <div
+            className={styles['c-widget-panel']}
+            id={widget?.id}
+        >
             <div className={styles['panel-title']}>
                 <span className={styles.title}>
                     {widget?.name}
@@ -92,7 +98,7 @@ function WidgetPanel({ widget, topic }) {
             </ReactCardFlip>
             <ShareModal
                 topic={topic}
-                url={!isServer && window.location.href}
+                url={shareModalURL}
                 onClose={() => setShareModalIsOpen(false)}
                 isOpen={shareModalIsOpen}
             />

@@ -31,7 +31,7 @@ class LayoutApp extends Component {
     title: null,
     description: null,
     className: null,
-    thumbnail: 'https://resourcewatch.org/static/images/social-big.jpg',
+    thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.png',
     explicitHostname: null,
     showHeaderLogo: true,
   }
