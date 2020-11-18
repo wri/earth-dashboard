@@ -21,6 +21,9 @@ class MyDocument extends Document {
           />
           <link rel="shortcut icon" href="/static/cropped-favicon-32x32.png"></link>
 
+          {/* IMPORTANT!!! THIS IS ONLY TEMPORARY IT NEEDS TO BE REMOVED BEFORE LAUNCH!! */}
+          <meta name="robots" content="noindex" />
+
           {/* Mobile address background */}
           {/* Chrome, Firefox OS and Opera */}
           <meta name="theme-color" content="#c32d7b" />
