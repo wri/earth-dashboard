@@ -22,6 +22,9 @@ function WidgetPanel({ widget, topic }) {
 
     const urlWithoutHash = !isServer && window.location.href.split('#')[0];
     const shareModalURL = !isServer && `${urlWithoutHash}#${widget?.id}`;
+    const commontRWEmbedURL = 'https://resourcewatch.org/embed';
+    const shareEmbedURL = `${commontRWEmbedURL}/${isMap ? 'map' : 'widget'}/${widget?.id}`;
+    const embedTag = `<iframe src="${shareEmbedURL}" width="100%" height="500px" frameBorder="0" />`;
 
     return (
         <div
@@ -99,6 +102,7 @@ function WidgetPanel({ widget, topic }) {
             <ShareModal
                 topic={topic}
                 url={shareModalURL}
+                embedTag={embedTag}
                 onClose={() => setShareModalIsOpen(false)}
                 isOpen={shareModalIsOpen}
             />
