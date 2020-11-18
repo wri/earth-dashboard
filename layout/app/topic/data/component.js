@@ -81,6 +81,7 @@ function LayoutTopicData(props) {
       thumbnail={pageMetadata.thumbnail}
       className={styles.topic}
       showHeaderLogo={false}
+      showHeader={!isEmbed}
     >
       <div className={styles['topic-data']}>
         <div
@@ -134,19 +135,19 @@ function LayoutTopicData(props) {
             />
           </div>
         }
-        {!isEmbed && 
-        <>
-        <div ref={changeAgentsRef}>
-            <ChangeAgentsSection topic={topic} />
-          </div>
-          <div
-            className={styles['credits-resources-section']}
-            ref={creditsRef}
-          >
-            <CreditsResourcesSection topic={topic} />
-          </div>
-          <Footer />
-        </> 
+        {!isEmbed &&
+          <>
+            <div ref={changeAgentsRef}>
+              <ChangeAgentsSection topic={topic} />
+            </div>
+            <div
+              className={styles['credits-resources-section']}
+              ref={creditsRef}
+            >
+              <CreditsResourcesSection topic={topic} />
+            </div>
+            <Footer />
+          </>
         }
       </div>
     </Layout >
