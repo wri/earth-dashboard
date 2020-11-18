@@ -5,12 +5,21 @@ import Link from 'next/link';
 import classnames from 'classnames';
 import { motion } from "framer-motion"
 
+// components
+import About from './about';
+import ShareBox from 'components/share/share-box';
+
 // utils
 import { PARTICLES_DEFINITION } from 'utils/particles';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // constants
-import { HEADER_TOPICS_DATA } from './constants';
+import {
+  HEADER_TOPICS_DATA,
+  SHARE_HEADER_TAB,
+  SITE_NAVIGATION_HEADER_TAB,
+  ABOUT_HEADER_TAB
+} from './constants';
 
 // styles
 import styles from './header.module.scss';
@@ -18,6 +27,8 @@ import styles from './header.module.scss';
 function Header(props) {
   const { showLogo } = props;
   const [isOpen, setIsOpen] = useState(false);
+  const [tab, setTab] = useState(SITE_NAVIGATION_HEADER_TAB);
+  const isServer = typeof window === 'undefined';
 
   const getParticles = () =>
     <Particles
@@ -26,14 +37,13 @@ function Header(props) {
     />;
 
   const getTopicContainer = () =>
-    <ul>
+    <ul className={styles['topics-container']}>
       {HEADER_TOPICS_DATA.map(topicData =>
         <li
           key={topicData.label}
           className={styles['topic-container']}
         >
-          <
-            div className={styles['topic-title']}
+          <div className={styles['topic-title']}
             onClick={() => setIsOpen(false)}
           >
             <Link href={topicData.link}>
@@ -64,6 +74,26 @@ function Header(props) {
         </li>
       )}
     </ul>;
+
+  const getRightContainer = () => {
+    switch (tab) {
+      case SITE_NAVIGATION_HEADER_TAB:
+        return getTopicContainer();
+      case ABOUT_HEADER_TAB:
+        return (
+          <About />
+        );
+      case SHARE_HEADER_TAB:
+        return (
+          <div className={styles['share-container']}>
+            <ShareBox 
+              url={isServer ? '' : window.location.href}
+              style={{ borderColor: '#1A2129' }}
+            />
+          </div>
+        );
+    }
+  };
 
   const getLogo = () =>
     <Link href="/">
@@ -111,22 +141,43 @@ function Header(props) {
                     })}>
                       {getLogo()}
                       <ul className={styles['left-links']}>
-                        <li>About</li>
-                        <li>Share</li>
+                        <li
+                          className={classnames({
+                            [styles['-active']]: tab === SITE_NAVIGATION_HEADER_TAB
+                          })}
+                          onClick={() => setTab(SITE_NAVIGATION_HEADER_TAB)}
+                        >
+                          <a>SITE NAVIGATION</a>
+                        </li>
+                        <li
+                          className={classnames({
+                            [styles['-active']]: tab === ABOUT_HEADER_TAB
+                          })}
+                          onClick={() => setTab(ABOUT_HEADER_TAB)}
+                        >
+                          <a>ABOUT</a>
+                        </li>
+                        <li className={classnames({
+                          [styles['-active']]: tab === SHARE_HEADER_TAB
+                        })}
+                          onClick={() => setTab(SHARE_HEADER_TAB)}
+                        >
+                          <a>SHARE</a>
+                        </li>
                       </ul>
-                      <div className={classnames({
+                      {/* <div className={classnames({
                         [styles['powered-by']]: true,
                         [styles['-desktop']]: true
                       })}>
                         powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
-                      </div>
+                      </div> */}
                     </div>
                     <div className={classnames({
                       [styles['right-container']]: true,
                       [styles['-desktop']]: true
                     })}
                     >
-                      {getTopicContainer()}
+                      {getRightContainer()}
                     </div>
                   </div>
                 </div>

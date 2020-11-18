@@ -60,13 +60,25 @@ export function getColorByTopic(topicSt) {
 const SHARE_ICONS_COMMON_PATH = '/static/images/share';
 
 export function getEmailIconPerTopic(topicSt) {
-    return `${SHARE_ICONS_COMMON_PATH}/email_${topicSt}.svg`;
+    if (topicSt) {
+        return `${SHARE_ICONS_COMMON_PATH}/email_${topicSt}.svg`;
+    } else {
+        return `${SHARE_ICONS_COMMON_PATH}/email_white.svg`;
+    }
 }
 export function getFacebookIconPerTopic(topicSt) {
-    return `${SHARE_ICONS_COMMON_PATH}/facebook_${topicSt}.svg`;
+    if (topicSt) {
+        return `${SHARE_ICONS_COMMON_PATH}/facebook_${topicSt}.svg`;
+    } else {
+        return `${SHARE_ICONS_COMMON_PATH}/facebook_white.svg`;
+    }
 }
 export function getTwitterIconPerTopic(topicSt) {
-    return `${SHARE_ICONS_COMMON_PATH}/twitter_${topicSt}.svg`;
+    if (topicSt) {
+        return `${SHARE_ICONS_COMMON_PATH}/twitter_${topicSt}.svg`;
+    } else {
+        return `${SHARE_ICONS_COMMON_PATH}/twitter_white.svg`;
+    }
 }
 
 export function getSecondaryColorByTopic(topicSt) {

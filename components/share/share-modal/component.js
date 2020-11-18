@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import Modal from 'react-modal';
 
 // components
 import ShareBox from '../share-box';
@@ -12,9 +13,25 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 // styles
 import styles from './share-modal.module.scss';
 
-function ShareModal({ topic, onClose, url }) {
+function ShareModal({ topic, onClose, url, isOpen }) {
+    const [isOpenFlag, setIsOpenFlag] = useState(isOpen);
 
-    const getContent = (mobile=false) =>
+    useEffect(() => {
+        setIsOpenFlag(isOpen);
+    }, [isOpen]);
+
+    const modalCustomStyles = {
+        content : {
+          top                   : '50%',
+          left                  : '50%',
+          right                 : 'auto',
+          bottom                : 'auto',
+          marginRight           : '-50%',
+          transform             : 'translate(-50%, -50%)'
+        }
+      };
+
+    const getContent = (mobile = false) =>
         <div className={classnames({
             [styles['main-container']]: true,
             [styles['-mobile']]: mobile,
@@ -27,22 +44,38 @@ function ShareModal({ topic, onClose, url }) {
         </div>;
 
     return (
-        <div className={styles['c-share-modal']}>
-            <MediaContextProvider>
-                <Desktop>
-                    {getContent(false)}
-                </Desktop>
-                <Mobile>
-                    {getContent(true)}
-                </Mobile>
-            </MediaContextProvider>
-        </div>
+        <Modal
+            isOpen={isOpenFlag}
+            onRequestClose={() => {
+                setIsOpenFlag(false);
+                onClose();
+            }}
+            style={modalCustomStyles}
+        >
+            <div className={styles['c-share-modal']}>
+                <MediaContextProvider>
+                    <Desktop>
+                        {getContent(false)}
+                    </Desktop>
+                    <Mobile>
+                        {getContent(true)}
+                    </Mobile>
+                </MediaContextProvider>
+            </div>
+        </Modal>
+
     );
 }
 
 ShareModal.propTypes = {
     topic: PropTypes.string.isRequired,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    url: PropTypes.string.isRequired,
+    isOpen: PropTypes.bool
+};
+
+ShareModal.defaultProps = {
+    isOpen: false
 };
 
 export default ShareModal;

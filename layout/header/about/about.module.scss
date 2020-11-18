@@ -1,0 +1,32 @@
+@import 'css/settings';
+
+.c-about {
+    font-size: 18px;
+    color: $grey;
+    animation: fade-in 1s forwards;
+
+    a {
+        color: $white;
+    }
+
+    .logos-container {
+        margin-top: 100px;
+        padding: 0px 10% 0px 10%;
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+}

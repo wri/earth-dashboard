@@ -18,11 +18,11 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 // styles
 import styles from './share-box.module.scss';
 
-function ShareBox({ url, topic }) {
+function ShareBox({ url, topic, style }) {
     const isServer = typeof window === 'undefined';
 
     const getContent = (mobile = false) =>
-        <div className={styles['main-container']}>
+        <div className={styles['main-container']} style={style}>
             <div className={classnames({
                 [styles['url-container']]: true,
                 [styles['-mobile']]: mobile,
@@ -105,7 +105,8 @@ function ShareBox({ url, topic }) {
 
 ShareBox.propTypes = {
     url: PropTypes.string.isRequired,
-    topic: PropTypes.string.isRequired
+    topic: PropTypes.string.isRequired,
+    style: PropTypes.object
 };
 
 export default ShareBox;

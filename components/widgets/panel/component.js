@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ReactCardFlip from 'react-card-flip';
-import Modal from 'react-modal';
 import ShareModal from 'components/share/share-modal';
 
 // components
@@ -13,24 +12,13 @@ import styles from './widget-panel.module.scss';
 
 function WidgetPanel({ widget, topic }) {
     const [flipCardOpen, setFlipCardOpen] = useState(false);
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [shareModalIsOpen, setShareModalIsOpen] = useState(false);
     const description = widget?.description;
     const metadata = widget?.metadata && widget.metadata[0];
     const caption = metadata?.info?.caption;
     const widgetLinks = metadata?.info?.widgetLinks;
     const isMap = widget?.widgetConfig?.paramsConfig?.visualizationType === 'map';
     const isServer = typeof window === 'undefined';
-
-    const modalCustomStyles = {
-        content : {
-          top                   : '50%',
-          left                  : '50%',
-          right                 : 'auto',
-          bottom                : 'auto',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)'
-        }
-      };
 
     return (
         <div className={styles['c-widget-panel']}>
@@ -39,9 +27,9 @@ function WidgetPanel({ widget, topic }) {
                     {widget?.name}
                 </span>
                 <div className={styles['panel-actions']}>
-                    <button 
-                        className={styles['share-button']} 
-                        onClick={() => setIsOpen(true)}
+                    <button
+                        className={styles['share-button']}
+                        onClick={() => setShareModalIsOpen(true)}
                     />
                     {!flipCardOpen &&
                         <button
@@ -75,13 +63,13 @@ function WidgetPanel({ widget, topic }) {
                     {widget && <WidgetPreview widget={widget} />}
                 </div>
                 <div className={styles['info-container']}>
-                    {description && 
+                    {description &&
                         <div>
                             <h5>Description</h5>
                             <p>{description}</p>
                         </div>
                     }
-                    {widgetLinks && 
+                    {widgetLinks &&
                         <div>
                             <h5>Links</h5>
                             <ul>
@@ -102,17 +90,12 @@ function WidgetPanel({ widget, topic }) {
                     }
                 </div>
             </ReactCardFlip>
-            <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={() => setIsOpen(false)}
-                style={modalCustomStyles}
-            >
-                <ShareModal
-                    topic={topic}
-                    onClose={() => setIsOpen(false)}
-                    url={!isServer && window.location.href}
-                />
-            </Modal>
+            <ShareModal
+                topic={topic}
+                url={!isServer && window.location.href}
+                onClose={() => setShareModalIsOpen(false)}
+                isOpen={shareModalIsOpen}
+            />
             <div className={styles['powered-by']}>
                 powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
             </div>

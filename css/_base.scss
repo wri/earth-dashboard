@@ -198,6 +198,7 @@ input, button, select, textarea {
     left: 0px;
     width: 100%;
     z-index: -1;
+    background-color: $white;
   }
 
   &:hover:after {

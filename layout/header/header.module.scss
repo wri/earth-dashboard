@@ -84,6 +84,7 @@
         }
   
         .left-container {
+          position: fixed;
           width: 40%;
           padding-left: 110px;
           z-index: 4;
@@ -101,9 +102,19 @@
             margin-top: 14 * $space;
             list-style-type: none;
             padding: 0px;
-  
+            font-family: 'Barlow Condensed';
+            font-size: 20px;
+
             li {
               margin-bottom: 6 * $space;
+              cursor: pointer;
+
+              &.-active {
+                a {
+                  color: $white;
+                  border-bottom: 2px solid $grey-dark;
+                }
+              }
   
               .share-icons-container {
                 img {
@@ -131,8 +142,8 @@
         }
     
         .right-container {
-          width: 60%;
-          padding-right: 110px;
+          width: 100%;
+          margin: 0px 110px 0px 40%;
           z-index: 4;
   
           &.-mobile {
@@ -143,40 +154,69 @@
               padding: 0px 20px 0px 20px;
             }
           }
+
+          .topics-container {
+            animation: fade-in 1s forwards;
+
+            .topic-container {
+              margin-bottom: 8 * $space;
+              list-style-type: none;
     
-          .topic-container {
-            margin-bottom: 8 * $space;
-            list-style-type: none;
-  
-            .topic-title {
-              font-family: 'Barlow Condensed';
-              font-size: 20px;
-              margin-bottom: 4 * $space;
-  
-              a {
-                color: $white;
-                text-decoration: none;
-              }
-            }
-  
-            .topic-link-list {
-  
-              .topic-link {
-                margin-bottom: 2 * $space;
-                font-size: 16px;
-                list-style-type: none;
-  
+              .topic-title {
+                font-family: 'Barlow Condensed';
+                font-size: 20px;
+                margin-bottom: 4 * $space;
+    
                 a {
+                  color: $white;
                   text-decoration: none;
-                  color: $grey-light;
-  
-                  &.-highlighted-link {
-                    color: $white;
-                    font-weight: bold;
+                }
+              }
+    
+              .topic-link-list {
+    
+                .topic-link {
+                  margin-bottom: 2 * $space;
+                  font-size: 16px;
+                  list-style-type: none;
+    
+                  a {
+                    text-decoration: none;
+                    color: $grey-light;
+    
+                    &.-highlighted-link {
+                      color: $white;
+                      font-weight: bold;
+                    }
                   }
                 }
               }
             }
+
+            
+          }
+
+          .share-container {
+            animation: fade-in 1s forwards;
+            background-color: $grey-darkest;
+
+            input { 
+              color: $grey-lightest;
+            }
+
+            button {
+              background-color: $grey-darker;
+              color: $white;
+            }
+          }
+        }
+
+        @keyframes fade-in {
+          from {
+              opacity: 0;
+          }
+          to {
+              opacity: 1;
           }
         }
       }
