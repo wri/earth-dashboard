@@ -84,6 +84,7 @@
         }
   
         .left-container {
+          position: fixed;
           width: 40%;
           padding-left: 110px;
           z-index: 4;
@@ -101,9 +102,19 @@
             margin-top: 14 * $space;
             list-style-type: none;
             padding: 0px;
-  
+            font-family: 'Barlow Condensed';
+            font-size: 20px;
+
             li {
               margin-bottom: 6 * $space;
+              cursor: pointer;
+
+              &.-active {
+                a {
+                  color: $white;
+                  border-bottom: 2px solid $grey-dark;
+                }
+              }
   
               .share-icons-container {
                 img {
@@ -131,8 +142,8 @@
         }
     
         .right-container {
-          width: 60%;
-          padding-right: 110px;
+          width: 100%;
+          margin: 0px 110px 0px 40%;
           z-index: 4;
   
           &.-mobile {

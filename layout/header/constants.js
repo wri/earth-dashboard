@@ -5,6 +5,10 @@ import {
     FORESTS_COLOR
 } from 'utils/topics';
 
+export const SITE_NAVIGATION_HEADER_TAB = 'site-navigation';
+export const ABOUT_HEADER_TAB = 'about';
+export const SHARE_HEADER_TAB = 'share';
+
 export const HEADER_TOPICS_DATA = [
     {
         label: 'CLIMATE',

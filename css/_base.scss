@@ -202,6 +202,7 @@ input, button, select, textarea {
 
   &:hover:after {
     height: 6px;
+    background-color: $white;
   }
 
   &.-forests:after {
