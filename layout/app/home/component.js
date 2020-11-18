@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
 import ReactTooltip from 'react-tooltip';
@@ -16,6 +16,7 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 import styles from './homepage.module.scss';
 
 function LayoutHome() {
+  const [globeLoaded, setGlobeLoaded] = useState(false);
   const isServer = typeof window === 'undefined';
 
   const getTopicLinks = () =>
@@ -72,15 +73,24 @@ function LayoutHome() {
           })}
           >
             {!isServer &&
-              <Globe 
-                width="100vw"
-                height="70vh"
-                style={{ zIndex: -1 }} 
-                options={{
-                  ambientLightIntensity: 0.2,
-                  ambientLightColor: '#fff'
-                }}
-              />
+              <div className={classnames({
+                [styles.globe]: true,
+                [styles['-loaded']]: globeLoaded
+              })}>
+                <Globe
+                  width="100vw"
+                  height="70vh"
+                  style={{
+                    zIndex: -1,
+                    opacity: globeLoaded ? 1 : 0
+                  }}
+                  onLoad={() => setGlobeLoaded(true)}
+                  options={{
+                    ambientLightIntensity: 0.2,
+                    ambientLightColor: '#fff'
+                  }}
+                />
+              </div>
             }
             <h1 className={styles['first-header']}>This is not a drill.</h1>
             <h1>This is now a <span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
