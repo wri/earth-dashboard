@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Parser from 'rss-parser';
-import { toastr } from 'react-redux-toastr';
 
 // components
 import Spinner from 'components/ui/spinner';
@@ -32,7 +31,7 @@ function TopicNews(props) {
                 setLoading(false);
             })
             .catch((error) => {
-                toastr.error(`There was an error loading the news ${urlWithProxy}: ${error}`);
+                console.error(`There was an error loading the news ${urlWithProxy}: ${error}`);
                 setLoading(false);
             });
     }, [topic]);
