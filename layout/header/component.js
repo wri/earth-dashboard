@@ -35,7 +35,7 @@ function Header(props) {
     />;
 
   const getTopicContainer = () =>
-    <ul>
+    <ul className={styles['topics-container']}>
       {HEADER_TOPICS_DATA.map(topicData =>
         <li
           key={topicData.label}
