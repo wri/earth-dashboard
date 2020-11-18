@@ -13,6 +13,7 @@ import {
     FRESHWATER,
     OCEANS
 } from 'utils/topics';
+import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // styles
 import styles from './share-box.module.scss';
@@ -20,25 +21,41 @@ import styles from './share-box.module.scss';
 function ShareBox({ url, topic }) {
     const isServer = typeof window === 'undefined';
 
-    return (
-        <div className={styles['c-share-box']}>
-            <div className={styles.['url-container']}>
+    const getContent = (mobile = false) =>
+        <div className={styles['main-container']}>
+            <div className={classnames({
+                [styles['url-container']]: true,
+                [styles['-mobile']]: mobile,
+                [styles['-desktop']]: !mobile
+            })}>
                 <input
                     type="text"
                     value={url}
                     disabled
                 />
             </div>
-            <div className={styles['share-buttons']}>
+            <div className={classnames({
+                [styles['share-buttons']]: true,
+                [styles['-mobile']]: mobile,
+                [styles['-desktop']]: !mobile
+            })}>
                 <a href={`mailto:?subject=Shared from Earth Dashboard&body= I thought you'd be interested in what I found on Earth Dashboard: ${url}`}>
-                    <div className={styles['share-button']}>
+                    <div className={classnames({
+                        [styles['share-button']]: true,
+                        [styles['-mobile']]: mobile,
+                        [styles['-desktop']]: !mobile
+                    })}>
                         <img src={getEmailIconPerTopic(topic)} />
                     </div>
                 </a>
                 <a href={`http://www.facebook.com/sharer/sharer.php?u=${url}`}
                     target="_blank"
                     rel="noopener noreferrer">
-                    <div className={styles['share-button']}>
+                    <div className={classnames({
+                        [styles['share-button']]: true,
+                        [styles['-mobile']]: mobile,
+                        [styles['-desktop']]: !mobile
+                    })}>
                         <img src={getFacebookIconPerTopic(topic)} />
                     </div>
                 </a>
@@ -47,7 +64,11 @@ function ShareBox({ url, topic }) {
                 )}`}
                     target="_blank"
                     rel="noopener noreferrer">
-                    <div className={styles['share-button']}>
+                    <div className={classnames({
+                        [styles['share-button']]: true,
+                        [styles['-mobile']]: mobile,
+                        [styles['-desktop']]: !mobile
+                    })}>
                         <img src={getTwitterIconPerTopic(topic)} />
                     </div>
                 </a>
@@ -65,6 +86,19 @@ function ShareBox({ url, topic }) {
                     Copy link
                 </button>
             </CopyToClipboard>
+        </div>;
+
+    return (
+        <div className={styles['c-share-box']}>
+            <MediaContextProvider>
+                <Desktop>
+                    {getContent(false)}
+                </Desktop>
+                <Mobile>
+                    {getContent(true)}
+                </Mobile>
+            </MediaContextProvider>
+
         </div>
     );
 }

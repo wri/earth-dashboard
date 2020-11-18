@@ -12,7 +12,7 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 // styles
 import styles from './share-modal.module.scss';
 
-function ShareModal({ topic, onClose }) {
+function ShareModal({ topic, onClose, url }) {
 
     const getContent = (mobile=false) =>
         <div className={classnames({
@@ -22,7 +22,7 @@ function ShareModal({ topic, onClose }) {
         })}>
             <h2 style={{ color: getColorByTopic(topic) }}>Share</h2>
             <h5>Public url to share</h5>
-            <ShareBox url="to be defined..." topic={topic} />
+            <ShareBox url={url} topic={topic} />
             <button className={styles['close-button']} onClick={() => onClose()} />
         </div>;
 
