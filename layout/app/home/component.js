@@ -54,6 +54,26 @@ function LayoutHome() {
     everyone understand and protect our home planet.
     </h5>;
 
+  const getGlobe = (mobile = false) =>
+    <div className={classnames({
+      [styles.globe]: true,
+      [styles['-loaded']]: globeLoaded
+    })}>
+      <Globe
+        width="100vw"
+        height={mobile ? '70vh' : '90vh'}
+        style={{
+          zIndex: -1,
+          opacity: globeLoaded ? 1 : 0
+        }}
+        onLoad={() => setGlobeLoaded(true)}
+        options={{
+          ambientLightIntensity: 0.2,
+          ambientLightColor: '#fff'
+        }}
+      />
+    </div>;
+
   return (
     <Layout
       title="Earth Dashboard"
@@ -72,26 +92,7 @@ function LayoutHome() {
             [styles['-desktop']]: true
           })}
           >
-            {!isServer &&
-              <div className={classnames({
-                [styles.globe]: true,
-                [styles['-loaded']]: globeLoaded
-              })}>
-                <Globe
-                  width="100vw"
-                  height="70vh"
-                  style={{
-                    zIndex: -1,
-                    opacity: globeLoaded ? 1 : 0
-                  }}
-                  onLoad={() => setGlobeLoaded(true)}
-                  options={{
-                    ambientLightIntensity: 0.2,
-                    ambientLightColor: '#fff'
-                  }}
-                />
-              </div>
-            }
+            {!isServer && getGlobe(false)}
             <h1 className={styles['first-header']}>This is not a drill.</h1>
             <h1>This is now a <span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
             {getSubtitle()}
@@ -104,9 +105,7 @@ function LayoutHome() {
             [styles['-mobile']]: true
           })}
           >
-            {!isServer &&
-              <Globe width="100vw" height="50vh" style={{ zIndex: -1 }} />
-            }
+            {!isServer && getGlobe(true)}
             <h1 className={styles['first-header']}>This is not a drill.</h1>
             <h1>This is now a <br /><span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
             {getSubtitle()}
