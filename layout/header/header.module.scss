@@ -198,6 +198,16 @@
 
           .share-container {
             animation: fade-in 1s forwards;
+            background-color: $grey-darkest;
+
+            input { 
+              color: $grey-lightest;
+            }
+
+            button {
+              background-color: $grey-darker;
+              color: $white;
+            }
           }
         }
 

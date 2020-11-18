@@ -86,7 +86,10 @@ function Header(props) {
       case SHARE_HEADER_TAB:
         return (
           <div className={styles['share-container']}>
-            <ShareBox url={isServer ? '' : window.location.href} />
+            <ShareBox 
+              url={isServer ? '' : window.location.href}
+              style={{ borderColor: '#1A2129' }}
+            />
           </div>
         );
     }
