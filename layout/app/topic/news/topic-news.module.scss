@@ -3,6 +3,7 @@
 .c-topic-news {
     .news-item {
         display: flex;
+        align-items: center;
         margin-top: 5 * $space;
 
         .news-picture {
