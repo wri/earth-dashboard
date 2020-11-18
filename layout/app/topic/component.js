@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
@@ -31,6 +31,7 @@ import { useRouter } from 'next/router';
 
 function LayoutTopic(props) {
   const { topic, topicData, widgets } = props;
+  const [globeLoaded, setGlobeLoaded] = useState(false);
   const router = useRouter();
   const dataArray = topicData[topic]?.topicPage?.data;
   const isServer = typeof window === 'undefined';
@@ -45,15 +46,20 @@ function LayoutTopic(props) {
         {/* ----- LEFT GLOBE ON DESKTOP VERSION -------- */}
         <Desktop>
           {!isServer &&
-            <Globe
-              width="100vh"
-              height="70vh"
-              style={{ left: '-55%' }}
-              options={{
-                ambientLightColor: getColorByTopic(topic),
-                ambientLightIntensity: 0.3
-              }}
-            />
+            <div className={classnames({
+              [styles.globe]: true,
+              [styles['-loaded']]: globeLoaded
+            })}>
+              <Globe
+                width="100vh"
+                height="70vh"
+                options={{
+                  ambientLightColor: getColorByTopic(topic),
+                  ambientLightIntensity: 0.3
+                }}
+                onLoad={() => setGlobeLoaded(true)}
+              />
+            </div>
           }
         </Desktop>
         {/* -------------------------------------------- */}

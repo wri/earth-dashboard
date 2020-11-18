@@ -19,6 +19,10 @@ class MyDocument extends Document {
             media="screen"
             href="https://fonts.googleapis.com/css?family=Lato:400,300,700"
           />
+          <link rel="shortcut icon" href="/static/cropped-favicon-32x32.png"></link>
+
+          {/* IMPORTANT!!! THIS IS ONLY TEMPORARY IT NEEDS TO BE REMOVED BEFORE LAUNCH!! */}
+          <meta name="robots" content="noindex" />
 
           {/* Mobile address background */}
           {/* Chrome, Firefox OS and Opera */}

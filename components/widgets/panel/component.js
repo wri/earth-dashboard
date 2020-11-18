@@ -19,6 +19,7 @@ function WidgetPanel({ widget, topic }) {
     const caption = metadata?.info?.caption;
     const widgetLinks = metadata?.info?.widgetLinks;
     const isMap = widget?.widgetConfig?.paramsConfig?.visualizationType === 'map';
+    const isServer = typeof window === 'undefined';
 
     const modalCustomStyles = {
         content : {
@@ -109,6 +110,7 @@ function WidgetPanel({ widget, topic }) {
                 <ShareModal
                     topic={topic}
                     onClose={() => setIsOpen(false)}
+                    url={!isServer && window.location.href}
                 />
             </Modal>
             <div className={styles['powered-by']}>
