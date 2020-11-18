@@ -34,7 +34,7 @@ import {
 import { getPageMetadataByTopic } from 'utils/share';
 
 function LayoutTopicData(props) {
-  const { topic, topicData, widgets } = props;
+  const { topic, topicData, widgets, embed, embeddedSection } = props;
   const router = useRouter();
   const DEFAULT_IN_VIEW_THRESHOLD = 0.3;
   const { ref: scrollyTellingRef, inView: scrollyTellingInView } = useInView({ threshold: 0.1 });
@@ -43,6 +43,7 @@ function LayoutTopicData(props) {
   const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: creditsRef, inView: creditsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const pageMetadata = getPageMetadataByTopic(topic) || {};
+  const isEmbed = embed === 'true';
 
   const getSectionInView = () => {
     if (scrollyTellingInView) {
@@ -80,6 +81,7 @@ function LayoutTopicData(props) {
       thumbnail={pageMetadata.thumbnail}
       className={styles.topic}
       showHeaderLogo={false}
+      showHeader={!isEmbed}
     >
       <div className={styles['topic-data']}>
         <div
@@ -88,53 +90,67 @@ function LayoutTopicData(props) {
         >
           <img src="/static/images/logo-light.svg" />
         </div>
-        <MediaContextProvider>
-          <Desktop>
-            <div className={styles['navigation-dots']}>
-              <NavigationDots
-                items={NAVIGATION_ITEMS}
-                route={`/${topic}/data`}
-                selectedItemID={getSectionInView()}
-              />
+        {!isEmbed &&
+          <>
+            <MediaContextProvider>
+              <Desktop>
+                <div className={styles['navigation-dots']}>
+                  <NavigationDots
+                    items={NAVIGATION_ITEMS}
+                    route={`/${topic}/data`}
+                    selectedItemID={getSectionInView()}
+                  />
+                </div>
+              </Desktop>
+            </MediaContextProvider>
+            <div
+              className={styles['headline-section']}>
+              <HeadlineSection topic={topic} />
             </div>
-          </Desktop>
-        </MediaContextProvider>
-        <div
-          className={styles['headline-section']}>
-          <HeadlineSection topic={topic} />
-        </div>
-        <div
-          id="scrolly-telling"
-          ref={scrollyTellingRef}
-        >
-          {getScrollyTelling()}
-        </div>
-        <div
-          id="challenge-to-our-global-commons"
-          ref={challengeRef}
-          className={styles['challenge-to-our-global-commons-section']}
-        >
-          <ChallengeToOurGlobalCommons topic={topic} />
-        </div>
-        <div ref={diveIntoDataRef}>
-          <DiveIntoTheDataSection
-            topic={topic}
-            topicData={topicData}
-            widgets={widgets}
-          />
-        </div>
-        <div ref={changeAgentsRef}>
-          <ChangeAgentsSection topic={topic} />
-        </div>
-        <div
-          className={styles['credits-resources-section']}
-          ref={creditsRef}
-        >
-          <CreditsResourcesSection topic={topic} />
-        </div>
-        <Footer />
+          </>
+        }
+        {(!isEmbed || (isEmbed && embeddedSection === 'scrolly-telling')) &&
+          < div
+            id="scrolly-telling"
+            ref={scrollyTellingRef}
+          >
+            {getScrollyTelling()}
+          </div>
+        }
+        {!isEmbed &&
+          <div
+            id="challenge-to-our-global-commons"
+            ref={challengeRef}
+            className={styles['challenge-to-our-global-commons-section']}
+          >
+            <ChallengeToOurGlobalCommons topic={topic} />
+          </div>
+        }
+        {(!isEmbed || (isEmbed && embeddedSection === 'dive-into-the-data')) &&
+          <div ref={diveIntoDataRef}>
+            <DiveIntoTheDataSection
+              topic={topic}
+              topicData={topicData}
+              widgets={widgets}
+            />
+          </div>
+        }
+        {!isEmbed &&
+          <>
+            <div ref={changeAgentsRef}>
+              <ChangeAgentsSection topic={topic} />
+            </div>
+            <div
+              className={styles['credits-resources-section']}
+              ref={creditsRef}
+            >
+              <CreditsResourcesSection topic={topic} />
+            </div>
+            <Footer />
+          </>
+        }
       </div>
-    </Layout>
+    </Layout >
   );
 }
 

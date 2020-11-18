@@ -19,6 +19,7 @@ class LayoutApp extends Component {
     title: PropTypes.string,
     description: PropTypes.string,
     showHeaderLogo: PropTypes.bool,
+    showHeader: PropTypes.bool,
     className: PropTypes.string,
     user: PropTypes.object.isRequired,
     thumbnail: PropTypes.string,
@@ -34,6 +35,7 @@ class LayoutApp extends Component {
     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.png',
     explicitHostname: null,
     showHeaderLogo: true,
+    showHeader: true
   }
 
   state = { modalOpen: false }
@@ -57,7 +59,8 @@ class LayoutApp extends Component {
       thumbnail,
       children,
       explicitHostname,
-      showHeaderLogo
+      showHeaderLogo,
+      showHeader
     } = this.props;
     const componentClass = classnames(
       { [className]: !!className }
@@ -76,7 +79,7 @@ class LayoutApp extends Component {
           {...thumbnail && { thumbnail }}
         />
 
-        <Header showLogo={showHeaderLogo} />
+        {showHeader && <Header showLogo={showHeaderLogo} />}
 
         {children}
 

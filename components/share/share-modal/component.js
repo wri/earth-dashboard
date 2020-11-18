@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 
 // components
 import ShareBox from '../share-box';
+import EmbedBox from '../embed-box';
 
 // utils
 import { getColorByTopic } from 'utils/topics';
@@ -13,7 +14,7 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 // styles
 import styles from './share-modal.module.scss';
 
-function ShareModal({ topic, onClose, url, isOpen }) {
+function ShareModal({ topic, onClose, url, embedTag, isOpen }) {
     const [isOpenFlag, setIsOpenFlag] = useState(isOpen);
 
     useEffect(() => {
@@ -40,6 +41,8 @@ function ShareModal({ topic, onClose, url, isOpen }) {
             <h2 style={{ color: getColorByTopic(topic) }}>Share</h2>
             <h5>Public url to share</h5>
             <ShareBox url={url} topic={topic} />
+            <h5>Code to embed</h5>
+            <EmbedBox url={embedTag} topic={topic} />
             <button className={styles['close-button']} onClick={() => onClose()} />
         </div>;
 
@@ -71,6 +74,7 @@ ShareModal.propTypes = {
     topic: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     url: PropTypes.string.isRequired,
+    embedTag: PropTypes.string.isRequired,
     isOpen: PropTypes.bool
 };
 
