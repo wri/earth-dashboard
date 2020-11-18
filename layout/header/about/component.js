@@ -51,7 +51,7 @@ function About() {
                     'column small-12 medium-6': true
                 })}>
                     <a target="_blank" href="https://news.mongabay.com/">
-                        <img src="/static/images/about/logo-mongabay.svg" />
+                        <img src="/static/images/about/logo-mongabay.png" />
                     </a>
                 </div>
                 <div className={classnames({

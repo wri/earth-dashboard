@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 
 // components
 import About from './about';
+import ShareBox from 'components/share/share-box';
 
 // utils
 import { PARTICLES_DEFINITION } from 'utils/particles';
@@ -27,6 +28,7 @@ function Header(props) {
   const { showLogo } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [tab, setTab] = useState(SITE_NAVIGATION_HEADER_TAB);
+  const isServer = typeof window === 'undefined';
 
   const getParticles = () =>
     <Particles
@@ -83,8 +85,8 @@ function Header(props) {
         );
       case SHARE_HEADER_TAB:
         return (
-          <div>
-
+          <div className={styles['share-container']}>
+            <ShareBox url={isServer ? '' : window.location.href} />
           </div>
         );
     }
