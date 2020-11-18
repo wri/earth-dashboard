@@ -77,7 +77,8 @@ function LayoutHome() {
   return (
     <Layout
       title="Earth Dashboard"
-      description="Earth Dashboard"
+      description="Earth HQ provides insight and inspiration to help everyone understand and protect our home planet."
+      thubmnail="https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.png"
       className={styles.homepage}
     >
       <Particles

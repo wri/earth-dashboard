@@ -31,6 +31,7 @@ import {
   FRESHWATER,
   OCEANS
 } from 'utils/topics';
+import { getPageMetadataByTopic } from 'utils/share';
 
 function LayoutTopicData(props) {
   const { topic, topicData, widgets } = props;
@@ -41,6 +42,7 @@ function LayoutTopicData(props) {
   const { ref: challengeRef, inView: challengeInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: creditsRef, inView: creditsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
+  const pageMetadata = getPageMetadataByTopic(topic) || {};
 
   const getSectionInView = () => {
     if (scrollyTellingInView) {
@@ -73,8 +75,9 @@ function LayoutTopicData(props) {
 
   return (
     <Layout
-      title="Earth Dashboard"
-      description="Earth Dashboard"
+      title={pageMetadata.title}
+      description={pageMetadata.description}
+      thumbnail={pageMetadata.thumbnail}
       className={styles.topic}
       showHeaderLogo={false}
     >

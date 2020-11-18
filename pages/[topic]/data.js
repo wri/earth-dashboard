@@ -8,7 +8,10 @@ import { fetchWidget } from 'services/widget';
 import LayoutTopicData from 'layout/app/topic/data';
 
 function TopicDataPage({ topicData, widgets }) {
-  return (<LayoutTopicData topicData={topicData} widgets={widgets} />);
+  return (<LayoutTopicData 
+    topicData={topicData} 
+    widgets={widgets} 
+  />);
 }
 
 TopicDataPage.getInitialProps = async (context) => {

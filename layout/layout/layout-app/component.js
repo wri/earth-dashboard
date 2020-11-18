@@ -62,6 +62,7 @@ class LayoutApp extends Component {
     const componentClass = classnames(
       { [className]: !!className }
     );
+    const isServer = typeof window === 'undefined';
     
     return (
       <div
@@ -71,7 +72,7 @@ class LayoutApp extends Component {
         <HeadApp
           title={title}
           description={description}
-          explicitHostname={explicitHostname}
+          explicitHostname={!isServer && window.location.href}
           {...thumbnail && { thumbnail }}
         />
 

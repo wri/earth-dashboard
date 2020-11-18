@@ -18,6 +18,7 @@ import {
   MediaContextProvider
 } from 'utils/responsive';
 import { PARTICLES_DEFINITION } from 'utils/particles';
+import { getPageMetadataByTopic } from 'utils/share';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -35,11 +36,13 @@ function LayoutTopic(props) {
   const router = useRouter();
   const dataArray = topicData[topic]?.topicPage?.data;
   const isServer = typeof window === 'undefined';
+  const pageMetadata = getPageMetadataByTopic(topic) || {};
 
   return (
     <Layout
-      title="Earth Dashboard"
-      description="Earth Dashboard"
+      title={pageMetadata.title}
+      description={pageMetadata.description}
+      thumbnail={pageMetadata.thumbnail}
       className={styles.topic}
     >
       <MediaContextProvider>
