@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+// components
+import Arrow from './arrow';
+
 // constants
 import {
     FILL_UP_ANIMATION,
@@ -19,6 +22,19 @@ import styles from './water-drop.module.scss';
 
 function WaterDrop(props) {
     const { mode } = props;
+    let arrowDirection;
+    switch (mode) {
+        case FILL_UP_ANIMATION:
+            arrowDirection = 'up';
+            break;
+        case EMPTY_HALF_OUT_ANIMATION:
+            arrowDirection = 'down';
+            break;
+        case BASELINE_WATER_STRESS_ANIMATION:
+            arrowDirection = 'up-and-down';
+            break;
+    }
+
     return (
         <div className={styles['c-water-drop']}>
             <MediaContextProvider>
@@ -43,6 +59,11 @@ function WaterDrop(props) {
                             </div>
                         </div>
                     </div>
+                    {arrowDirection &&
+                        <div className={styles['arrows-container']}>
+                            <Arrow direction={arrowDirection} />
+                        </div>
+                    }
                 </Desktop>
                 <Mobile>
 

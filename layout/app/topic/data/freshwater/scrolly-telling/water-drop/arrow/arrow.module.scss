@@ -1,0 +1,80 @@
+@import 'css/settings';
+
+.c-arrow {
+    height: 100%;
+    max-height: 150px;
+    position: relative;
+    overflow: hidden;
+
+    .arrow-up {
+        display: flex;
+
+        .first-arrow-up {
+            position: absolute;
+            top: 0px;
+            animation: go-up-1 2s linear infinite;
+
+            @keyframes go-up-1 {
+                from { top: 0px; opacity: 1; }
+                to { top: -100%; opacity: 0; }
+            }
+        }
+        .second-arrow-up {
+            position: absolute;
+            top: 100%;
+            animation: go-up-2 2s linear infinite;
+
+            @keyframes go-up-2 {
+                from { top: 100%;  opacity: 0; }
+                to { top: 0px; opacity: 1; }
+            }
+        } 
+    }
+
+    .arrow-down {
+        display: flex;
+
+        .first-arrow-down {
+            position: absolute;
+            top: 0px;
+            animation: go-down-1 2s linear infinite;
+
+            @keyframes go-down-1 {
+                from { top: 0px; opacity: 1; }
+                to { top: 100%; opacity: 0; }
+            }
+        }
+        .second-arrow-down {
+            position: absolute;
+            top: -100%;
+            animation: go-down-2 2s linear infinite;
+
+            @keyframes go-down-2 {
+                from { top: -100%;  opacity: 0; }
+                to { top: 0px; opacity: 1; }
+            }
+        }
+    }
+
+    .arrow-up-and-down {
+        display: flex;
+
+        .arrow {
+            position: absolute;
+            top: 30%;
+            animation: go-up-and-down 3s ease infinite;
+
+            @keyframes go-up-and-down {
+                0% {
+                    top: 25%
+                }
+                50% {
+                    top: 35%
+                }
+                100% {
+                    top: 25%
+                }
+            }
+        }
+    }
+}
