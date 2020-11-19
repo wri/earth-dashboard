@@ -11,7 +11,7 @@ import {
     CLIMATE,
     FORESTS,
     FRESHWATER,
-    OCEANS
+    OCEAN
 } from 'utils/topics';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
@@ -77,7 +77,7 @@ function ShareBox({ url, topic, style }) {
                 <button
                     className={classnames({
                         '-forests': topic === FORESTS,
-                        '-oceans': topic === OCEANS,
+                        '-ocean': topic === OCEAN,
                         '-climate': topic === CLIMATE,
                         '-freshwater': topic === FRESHWATER,
                         [styles['copy-link-button']]: true

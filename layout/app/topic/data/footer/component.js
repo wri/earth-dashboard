@@ -45,9 +45,9 @@ function Footer() {
                     </Link>
                 </div>
                 <div className={styles['link-container']}>
-                    <Link href="/oceans/data">
-                        <a className={styles['oceans-link']}>
-                            OCEANS
+                    <Link href="/ocean/data">
+                        <a className={styles['ocean-link']}>
+                            OCEAN
                             </a>
                     </Link>
                 </div>

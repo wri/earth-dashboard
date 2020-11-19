@@ -13,18 +13,18 @@ function OceanCurrentBox({ title, style, direction }) {
             </div>
             <div className={styles['current-container']}>
                 <div className={styles.bottle}>
-                    <img src="/static/images/scrolly-telling/oceans/bottle.svg" />
+                    <img src="/static/images/scrolly-telling/ocean/bottle.svg" />
                 </div>
                 {direction === 'south' &&
                     <img
                         className={styles['south-arrow']}
-                        src="/static/images/scrolly-telling/oceans/arrow-south-anticlockwise.svg"
+                        src="/static/images/scrolly-telling/ocean/arrow-south-anticlockwise.svg"
                     />
                 }
                 {direction === 'north' &&
                     <img
                         className={styles['north-arrow']}
-                        src="/static/images/scrolly-telling/oceans/arrow-north-clockwise.svg"
+                        src="/static/images/scrolly-telling/ocean/arrow-north-clockwise.svg"
                     />
                 }
             </div>

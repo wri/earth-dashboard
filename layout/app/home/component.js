@@ -37,9 +37,9 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
           FRESHWATER
         </a>
       </Link>
-      <Link href="/oceans">
-        <a className={styles['oceans-link']}>
-          OCEANS
+      <Link href="/ocean">
+        <a className={styles['ocean-link']}>
+          OCEAN
         </a>
       </Link>
       <a data-tip data-for="comingSoon" className={styles['biodiversity-link']} >

@@ -7,7 +7,7 @@ import OceanCurrentBox from './ocean-current-box';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // styles
-import styles from './oceans-scrolly-telling.module.scss';
+import styles from './ocean-scrolly-telling.module.scss';
 
 const getTrendsInMarineFishStock = () =>
     <MediaContextProvider>
@@ -15,7 +15,7 @@ const getTrendsInMarineFishStock = () =>
             <div className={styles['chart-with-title']}>
                 <div>
                     <h6>Trends in Marine Fish Stocks</h6>
-                    <img src="/static/images/scrolly-telling/oceans/trends-in-marine-fish-stocks.svg" />
+                    <img src="/static/images/scrolly-telling/ocean/trends-in-marine-fish-stocks.svg" />
                 </div>
             </div>
         </Desktop>
@@ -26,13 +26,13 @@ const getTrendsInMarineFishStock = () =>
             })}>
                 <div>
                     <h6>Trends in Marine Fish Stocks</h6>
-                    <img src="/static/images/scrolly-telling/oceans/trends-in-marine-fish-stocks.svg" />
+                    <img src="/static/images/scrolly-telling/ocean/trends-in-marine-fish-stocks.svg" />
                 </div>
             </div>
         </Mobile>
     </MediaContextProvider>;
 
-export const OCEANS_STEPS_INTRO = [
+export const OCEAN_STEPS_INTRO = [
     {
         index: 0,
         textPanel: {
@@ -53,7 +53,7 @@ export const OCEANS_STEPS_INTRO = [
     }
 ];
 
-export const OCEANS_STEPS = [
+export const OCEAN_STEPS = [
     {
         index: 0,
         textPanel: {
@@ -73,7 +73,7 @@ export const OCEANS_STEPS = [
                         Photo by NMSAS on Wikimedia Commons (Public domain)
                     </p>
                 </div>,
-            imageHeader: '/static/images/scrolly-telling/oceans/threats-to-the-ocean.jpg'
+            imageHeader: '/static/images/scrolly-telling/ocean/threats-to-the-ocean.jpg'
         },
         stickyContainerElement: <div className={styles['coral-map']}>
             <div className={styles['coral-map-background']} />
@@ -89,7 +89,7 @@ export const OCEANS_STEPS = [
                     <p>
                         In the last 30 years, nearly half of the world’s coral has
                          died. <strong>About 70-90% of all existing coral reefs (marked in red on the map) are expected to disappear in the next 20 years</strong> due
-                         to warming oceans, more acidic water and pollution.
+                         to warming ocean, more acidic water and pollution.
                     </p>
                 </div>
         },
@@ -117,7 +117,7 @@ export const OCEANS_STEPS = [
                         Photo by Ed Dunens on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
                     </p>
                 </div>,
-            imageHeader: '/static/images/scrolly-telling/oceans/fisheries-under-pressure.jpg'
+            imageHeader: '/static/images/scrolly-telling/ocean/fisheries-under-pressure.jpg'
         },
         stickyContainerElement: getTrendsInMarineFishStock()
 
@@ -163,7 +163,7 @@ export const OCEANS_STEPS = [
                     <div className={styles['chart-with-title']}>
                         <div>
                             <h6>Aquaculture and fisheries</h6>
-                            <img src="/static/images/scrolly-telling/oceans/aquaculture-and-fisheries.svg" />
+                            <img src="/static/images/scrolly-telling/ocean/aquaculture-and-fisheries.svg" />
                         </div>
                     </div>
                 </Desktop>
@@ -174,7 +174,7 @@ export const OCEANS_STEPS = [
                     })}>
                         <div>
                             <h6>Aquaculture and fisheries</h6>
-                            <img src="/static/images/scrolly-telling/oceans/aquaculture-and-fisheries.svg" />
+                            <img src="/static/images/scrolly-telling/ocean/aquaculture-and-fisheries.svg" />
                         </div>
                     </div>
                 </Mobile>
@@ -190,7 +190,7 @@ export const OCEANS_STEPS = [
                     <p>
                         <strong>A garbage truck's worth of plastic enters the ocean every minute</strong>, harming
                         marine life with unknown consequences. Even though plastic comes from rivers it floats
-                        throughout the oceans, swirling with the currents into islands of plastic as large
+                        throughout the ocean, swirling with the currents into islands of plastic as large
                         as millions of km across.
                     </p>
                     <p>
@@ -202,13 +202,13 @@ export const OCEANS_STEPS = [
                         Photo by Muntaka Chasant on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
                 </div>,
-            imageHeader: '/static/images/scrolly-telling/oceans/islands-of-plastic.jpg'
+            imageHeader: '/static/images/scrolly-telling/ocean/islands-of-plastic.jpg'
         },
         stickyContainerElement:
             <div className={styles['plastic-world-map']}>
                 <img
                     className={styles['map-image']}
-                    src="/static/images/scrolly-telling/oceans/world-map.svg"
+                    src="/static/images/scrolly-telling/ocean/world-map.svg"
                 />
                 <OceanCurrentBox
                     title="North Pacific Gyre"
@@ -275,7 +275,7 @@ export const OCEANS_STEPS = [
             })}>
                 <img
                     className={styles['map-image']}
-                    src="/static/images/scrolly-telling/oceans/world-map.svg"
+                    src="/static/images/scrolly-telling/ocean/world-map.svg"
                 />
             </div>
     },
@@ -287,7 +287,7 @@ export const OCEANS_STEPS = [
                     <h6>Ocean Industries</h6>
                     <h6 className={styles.subheader}>BENEFITS OF SUSTAINABLE INTERVENTIONS</h6>
                     <p>
-                        Governments, companies and citizens must act with urgency to protect our planet’s oceans.
+                        Governments, companies and citizens must act with urgency to protect our planet’s ocean.
                     </p>
                     <p>
                         Investing sustainably can preserve biodiversity critical ecosystems and build ocean-based
@@ -302,13 +302,13 @@ export const OCEANS_STEPS = [
                         Photo by Nicholas Doherty on Unsplash
                     </p>
                 </div>,
-            imageHeader: '/static/images/scrolly-telling/oceans/ocean-industries.jpg'
+            imageHeader: '/static/images/scrolly-telling/ocean/ocean-industries.jpg'
         },
         stickyContainerElement:
             <div className={styles['chart-with-title']}>
                 <div>
                     <h6>Benefit-cost ratios for sustainable ocean interventions</h6>
-                    <img src="/static/images/scrolly-telling/oceans/benefit-cost-ratios-for-sustainable-ocean-interventions.svg" />
+                    <img src="/static/images/scrolly-telling/ocean/benefit-cost-ratios-for-sustainable-ocean-interventions.svg" />
                 </div>
             </div>
     }

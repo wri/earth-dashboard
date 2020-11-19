@@ -101,7 +101,7 @@
             ]
         }
     },
-    "oceans": {
+    "ocean": {
         "topicPage": {
             "data": [
                 {
@@ -118,7 +118,7 @@
                 },
                 {
                     "type": "topic-news",
-                    "keywords": "oceans",
+                    "keywords": "ocean",
                     "number-of-elements": 3
                 }
             ]
