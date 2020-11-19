@@ -2,7 +2,7 @@
 import {
     CLIMATE,
     FORESTS,
-    OCEANS,
+    OCEAN,
     FRESHWATER
 } from './topics';
 
@@ -50,18 +50,18 @@ export function getPageMetadataByTopic(topicSt, isDataPage = false) {
                     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/freshwater.png'
                 };
             }
-        case OCEANS:
+        case OCEAN:
             if (!isDataPage) {
                 return {
                     title: 'Charting the Threat Multiplier Effect of Climate Change',
                     description: 'Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. These threats intensify with each half degree that temperatures climb.',
-                    thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/oceans.png'
+                    thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/ocean.png'
                 };
             } else {
                 return {
                     title: 'Earth Dashboard - Oceans',
                     description: 'Earth Dashbarod - Oceans desc.',
-                    thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/oceans.png'
+                    thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/ocean.png'
                 };
             }
     }

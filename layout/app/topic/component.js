@@ -8,7 +8,7 @@ import WidgetPreview from 'components/widgets/preview';
 import {
   getColorByTopic,
   CLIMATE,
-  OCEANS,
+  OCEAN,
   FORESTS,
   FRESHWATER
 } from 'utils/topics';
@@ -173,12 +173,12 @@ function LayoutTopic(props) {
                 FRESHWATER
           </a>
             </Link>
-            <Link href="/oceans">
+            <Link href="/ocean">
               <a className={classnames({
-                [styles['oceans-link']]: topic === OCEANS,
-                [styles['selected-link']]: topic === OCEANS
+                [styles['ocean-link']]: topic === OCEAN,
+                [styles['selected-link']]: topic === OCEAN
               })}>
-                OCEANS
+                OCEAN
           </a>
             </Link>
           </div>

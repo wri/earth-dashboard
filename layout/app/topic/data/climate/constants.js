@@ -10,7 +10,7 @@ export const CLIMATE_DIVE_INTO_THE_DATA_DATA = {
 export const CLIMATE_CHALLENGE_SECTION_DATA = {
     paragraphs: [
         <p>
-            Climate change is triggering rising sea levels, acidified oceans, deadly heat waves, 
+            Climate change is triggering rising sea levels, acidified ocean, deadly heat waves, 
             fiercer droughts and storms and unprecedented <a className="external-link -climate" href="https://www.nytimes.com/2020/03/04/climate/australia-wildfires-climate-change.html" target="_blank">wildfires</a>. 
             The world is inching <a className="external-link -climate" href="https://www.nature.com/articles/d41586-019-03595-0" target="_blank">closer to nine irreversible climate tipping points</a>, 
             among them survival of the Amazon and boreal forests, large-scale ice loss in the 

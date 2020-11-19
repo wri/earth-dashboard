@@ -63,11 +63,11 @@ button {
     }
   }
 
-  &.-oceans {
-    background-color: $oceans;
+  &.-ocean {
+    background-color: $ocean;
 
     &:hover {
-      background-color: $oceans-dark;
+      background-color: $ocean-dark;
     }
   }
 
@@ -209,8 +209,8 @@ input, button, select, textarea {
     background-color: $forests;
   }
 
-  &.-oceans:after {
-    background-color: $oceans;
+  &.-ocean:after {
+    background-color: $ocean;
   }
 
   &.-climate:after {

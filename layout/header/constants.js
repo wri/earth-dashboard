@@ -1,7 +1,7 @@
 import { 
     CLIMATE_COLOR,
     FRESHWATER_COLOR,
-    OCEANS_COLOR,
+    OCEAN_COLOR,
     FORESTS_COLOR
 } from 'utils/topics';
 
@@ -92,29 +92,29 @@ export const HEADER_TOPICS_DATA = [
         ]
     },
     {
-        label: 'OCEANS',
-        link: '/oceans',
-        color: OCEANS_COLOR,
-        mainLink: '/oceans/data',
+        label: 'OCEAN',
+        link: '/ocean',
+        color: OCEAN_COLOR,
+        mainLink: '/ocean/data',
         links: [
             {
                 label: 'The Global Commons Report',
-                link: '/oceans',
+                link: '/ocean',
                 highlight: false
             },
             {
                 label: 'Towards a Sustainable Ocean Economy',
-                link: '/oceans/data#scrolly-telling',
+                link: '/ocean/data#scrolly-telling',
                 highlight: true
             },
             {
                 label: 'The Challenge to our Global Commons',
-                link: '/oceans/data#challenge-to-our-global-commons',
+                link: '/ocean/data#challenge-to-our-global-commons',
                 highlight: false
             },
             {
                 label: 'Dive into the Data',
-                link: '/oceans/data#dive-into-the-data',
+                link: '/ocean/data#dive-into-the-data',
                 highlight: false
             }
         ]

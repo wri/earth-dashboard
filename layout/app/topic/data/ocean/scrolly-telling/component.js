@@ -9,16 +9,16 @@ import TextBox from 'components/scrolly-telling/text-box';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // constants
-import { OCEANS_STEPS, OCEANS_STEPS_INTRO } from './constants';
+import { OCEAN_STEPS, OCEAN_STEPS_INTRO } from './constants';
 
 // styles
-import styles from './oceans-scrolly-telling.module.scss';
+import styles from './ocean-scrolly-telling.module.scss';
 
 function OceansScrollyTelling({ topic }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const isBrowser = typeof window !== 'undefined';
 
-    const currentStep = OCEANS_STEPS[currentStepIndex];
+    const currentStep = OCEAN_STEPS[currentStepIndex];
 
     // This callback fires when a Step hits the offset threshold. It receives the
     // data prop of the step, which in this demo stores the index of the step.
@@ -50,12 +50,12 @@ function OceansScrollyTelling({ topic }) {
 
     return (
         <div
-            className={styles['c-oceans-scrolly-telling']}
+            className={styles['c-ocean-scrolly-telling']}
         >
             <MediaContextProvider>
                 <div className={styles['intro-story']}>
                     <div className={styles['intro-charts-container']}>
-                        <img src="/static/images/scrolly-telling/oceans/oceans-resources-charts.svg" />
+                        <img src="/static/images/scrolly-telling/ocean/ocean-resources-charts.svg" />
                     </div>
                     {isBrowser &&
                         <div className={styles.steps}>
@@ -63,7 +63,7 @@ function OceansScrollyTelling({ topic }) {
                                 onStepEnter={onStepEnter}
                                 offset={0.6}
                             >
-                                {OCEANS_STEPS_INTRO.map((step, stepIndex) => {
+                                {OCEAN_STEPS_INTRO.map((step, stepIndex) => {
                                     return (
                                         <Step data={stepIndex} key={`step-intro-${stepIndex}`}>
                                             <div>
@@ -107,7 +107,7 @@ function OceansScrollyTelling({ topic }) {
                                 onStepEnter={onStepEnter}
                                 offset={0.6}
                             >
-                                {OCEANS_STEPS.map((step, stepIndex) => {
+                                {OCEAN_STEPS.map((step, stepIndex) => {
                                     return (
                                         <Step data={stepIndex} key={`step-${stepIndex}`}>
                                             <div>

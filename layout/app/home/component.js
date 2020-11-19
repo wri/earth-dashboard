@@ -37,9 +37,9 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
           FRESHWATER
         </a>
       </Link>
-      <Link href="/oceans">
-        <a className={styles['oceans-link']}>
-          OCEANS
+      <Link href="/ocean">
+        <a className={styles['ocean-link']}>
+          OCEAN
         </a>
       </Link>
       <a data-tip data-for="comingSoon" className={styles['biodiversity-link']} >
@@ -125,7 +125,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
 
 LayoutHome.propTypes = { 
   openHeaderMenu: PropTypes.bool,
-  headerTabSelected: PropTypes.bool
+  headerTabSelected: PropTypes.string
 };
 
 LayoutHome.defaultProps = {

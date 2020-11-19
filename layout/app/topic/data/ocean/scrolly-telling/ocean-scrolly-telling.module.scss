@@ -1,6 +1,6 @@
 @import 'css/settings';
 
-.c-oceans-scrolly-telling {
+.c-ocean-scrolly-telling {
     overflow: initial;
     padding: 0px 0px 20vh 0px;
     background-color: $grey-lighter;
@@ -57,7 +57,7 @@
                     &.-desktop {
                         .coral-map {
                             .coral-map-background {
-                                background: url('/static/images/scrolly-telling/oceans/coral-bleaching-map-2x.png') no-repeat;
+                                background: url('/static/images/scrolly-telling/ocean/coral-bleaching-map-2x.png') no-repeat;
                             }
                         }
                     }
@@ -65,7 +65,7 @@
                     &.-mobile {
                         .coral-map {
                             .coral-map-background {
-                                background: url('/static/images/scrolly-telling/oceans/coral-bleaching-map.png') no-repeat;
+                                background: url('/static/images/scrolly-telling/ocean/coral-bleaching-map.png') no-repeat;
                             }
                         }
                     }
@@ -97,7 +97,7 @@
                     }
 
                     .plastic-world-map {
-                        background: url('/static/images/scrolly-telling/oceans/waves-background.svg');
+                        background: url('/static/images/scrolly-telling/ocean/waves-background.svg');
                         background-size: 23px 13px;
                         position: sticky;
                         top: 0px;
@@ -159,11 +159,11 @@
                 margin: 0px 0px $space 0px;
                 font-size: 16px;
                 font-family: 'Barlow Condensed';
-                color: $oceans
+                color: $ocean
             }
 
             .subheader {
-                color: $oceans;
+                color: $ocean;
                 font-size: 16px;
                 font-family: 'Barlow Condensed';
             }
