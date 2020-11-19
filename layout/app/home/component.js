@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
 import ReactTooltip from 'react-tooltip';
@@ -15,7 +16,7 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 // styles
 import styles from './homepage.module.scss';
 
-function LayoutHome() {
+function LayoutHome({ openHeaderMenu, headerTabSelected }) {
   const [globeLoaded, setGlobeLoaded] = useState(false);
   const isServer = typeof window === 'undefined';
 
@@ -80,6 +81,8 @@ function LayoutHome() {
       description="Earth HQ provides insight and inspiration to help everyone understand and protect our home planet."
       thumbnail="https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.png"
       className={styles.homepage}
+      openHeaderMenu={openHeaderMenu}
+      headerTabSelected={headerTabSelected}
     >
       <Particles
         className={styles.particles}
@@ -117,5 +120,15 @@ function LayoutHome() {
     </Layout>
   );
 }
+
+LayoutHome.propTypes = { 
+  openHeaderMenu: PropTypes.bool,
+  headerTabSelected: PropTypes.bool
+};
+
+LayoutHome.defaultProps = {
+  openHeaderMenu: false,
+  headerTabSelected: 'site-navigation'
+};
 
 export default LayoutHome;

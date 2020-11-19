@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Modal from 'react-modal';
+import Toastr from 'react-redux-toastr';
 
 // Utils
 import { initGA, logPageView } from 'utils/analytics';
@@ -11,36 +12,21 @@ import { browserSupported } from 'utils/browser';
 import HeadApp from 'layout/head/app';
 import Header from 'layout/header';
 
-import Toastr from 'react-redux-toastr';
+function LayoutApp(props) {
+  const {
+    title,
+    description,
+    className,
+    thumbnail,
+    children,
+    showHeaderLogo,
+    showHeader,
+    openHeaderMenu,
+    headerTabSelected
+  } = props;
+  const isServer = typeof window === 'undefined';
 
-class LayoutApp extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    showHeaderLogo: PropTypes.bool,
-    showHeader: PropTypes.bool,
-    className: PropTypes.string,
-    user: PropTypes.object.isRequired,
-    thumbnail: PropTypes.string,
-    isFullScreen: PropTypes.bool.isRequired,
-    updateIsLoading: PropTypes.func.isRequired,
-    explicitHostname: PropTypes.string
-  };
-
-  static defaultProps = {
-    title: null,
-    description: null,
-    className: null,
-    thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.png',
-    explicitHostname: null,
-    showHeaderLogo: true,
-    showHeader: true
-  }
-
-  state = { modalOpen: false }
-
-  componentDidMount() {
+  useEffect(() => {
     // // Google Analytics
     // if (!window.GA_INITIALIZED) {
     //   initGA();
@@ -49,49 +35,63 @@ class LayoutApp extends Component {
     // logPageView();
     // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
     Modal.setAppElement(document.getElementById('#main'));
-  }
+  }, []);
 
-  render() {
-    const {
-      title,
-      description,
-      className,
-      thumbnail,
-      children,
-      explicitHostname,
-      showHeaderLogo,
-      showHeader
-    } = this.props;
-    const componentClass = classnames(
-      { [className]: !!className }
-    );
-    const isServer = typeof window === 'undefined';
-    
-    return (
-      <div
-        id="#main"
-        className={componentClass}
-      >
-        <HeadApp
-          title={title}
-          description={description}
-          explicitHostname={!isServer && window.location.href}
-          {...thumbnail && { thumbnail }}
+  return (
+    <div
+      id="#main"
+      className={classnames(
+        { [className]: !!className }
+      )}
+    >
+      <HeadApp
+        title={title}
+        description={description}
+        explicitHostname={!isServer && window.location.href}
+        {...thumbnail && { thumbnail }}
+      />
+
+      {showHeader && 
+        <Header 
+          showLogo={showHeaderLogo} 
+          selectedTab={headerTabSelected}
+          openMenu={openHeaderMenu}
         />
+      }
 
-        {showHeader && <Header showLogo={showHeaderLogo} />}
+      {children}
 
-        {children}
+      <Toastr
+        preventDuplicates
+        transitionIn="fadeIn"
+        transitionOut="fadeOut"
+      />
+    </div>
+  );
 
-        <Toastr
-          preventDuplicates
-          transitionIn="fadeIn"
-          transitionOut="fadeOut"
-        />
-
-      </div>
-    );
-  }
 }
+
+LayoutApp.propTypes = {
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  showHeaderLogo: PropTypes.bool,
+  showHeader: PropTypes.bool,
+  className: PropTypes.string,
+  user: PropTypes.object.isRequired,
+  thumbnail: PropTypes.string,
+  isFullScreen: PropTypes.bool.isRequired,
+  updateIsLoading: PropTypes.func.isRequired,
+  explicitHostname: PropTypes.string
+};
+
+LayoutApp.defaultProps = {
+  title: null,
+  description: null,
+  className: null,
+  thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.png',
+  showHeaderLogo: true,
+  showHeader: true
+};
 
 export default LayoutApp;
