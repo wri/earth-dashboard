@@ -25,7 +25,7 @@ function Globe({ width, height, style, options, onLoad }) {
                     width={width}
                     height={height}
                     options={{
-                        cameraAutoRotateSpeed: 1.3,
+                        cameraAutoRotateSpeed: 0.5,
                         enableGlobeGlow: false,
                         ...options
                     }}

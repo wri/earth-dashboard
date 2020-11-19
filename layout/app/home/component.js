@@ -45,7 +45,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
       <a data-tip data-for="comingSoon" className={styles['biodiversity-link']} >
         BIODIVERSITY
       </a>
-      <ReactTooltip id="comingSoon" type="light" effect="float">
+      <ReactTooltip className={styles['biodiversity-tooltip']} id="comingSoon" type="light" effect="float">
         <span>Coming soon...</span>
       </ReactTooltip>
     </div>;
@@ -69,8 +69,10 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
         }}
         onLoad={() => setGlobeLoaded(true)}
         options={{
-          ambientLightIntensity: 0.2,
+          // pointLightIntensity: 0.8,
+          ambientLightIntensity: 1,
           ambientLightColor: '#fff'
+          // pointLightColor: '#fff'
         }}
       />
     </div>;
