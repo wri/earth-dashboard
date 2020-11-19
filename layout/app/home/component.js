@@ -62,7 +62,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
     })}>
       <Globe
         width="100vw"
-        height={mobile ? '70vh' : '90vh'}
+        height={mobile ? '70vh' : '85vh'}
         style={{
           zIndex: -1,
           opacity: globeLoaded ? 1 : 0
