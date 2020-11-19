@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
@@ -25,10 +25,19 @@ import {
 import styles from './header.module.scss';
 
 function Header(props) {
-  const { showLogo } = props;
-  const [isOpen, setIsOpen] = useState(false);
-  const [tab, setTab] = useState(SITE_NAVIGATION_HEADER_TAB);
+  const { showLogo, openMenu, selectedTab } = props;
+  const [isOpen, setIsOpen] = useState(openMenu);
+  const [tab, setTab] = useState(selectedTab);
   const isServer = typeof window === 'undefined';
+
+  useEffect(() => {
+    if (openMenu != isOpen) {
+      setIsOpen(openMenu);
+    }
+    if (selectedTab != tab) {
+      setTab(selectedTab);
+    }
+  }, [openMenu, selectedTab]);
 
   const getParticles = () =>
     <Particles
@@ -106,8 +115,6 @@ function Header(props) {
     <div className={styles['logo-container']}>
       {getLogo()}
     </div>;
-
-
 
   return (
     <header className={styles.header}>
@@ -248,7 +255,15 @@ function Header(props) {
   );
 }
 
-Header.propTypes = { showLogo: PropTypes.bool.isRequired };
-Header.defaultProps = { showLogo: true };
+Header.propTypes = { 
+  showLogo: PropTypes.bool.isRequired,
+  openMenu: PropTypes.bool,
+  selectedTab: PropTypes.string
+};
+Header.defaultProps = { 
+  showLogo: true,
+  selectedTab: SITE_NAVIGATION_HEADER_TAB,
+  openMenu: false
+};
 
 export default Header;
