@@ -4,19 +4,19 @@
             "data": [
                 {
                     "type": "widget",
-                    "id": "dcaee0b1-8f71-4665-ae82-c15409662cc1"
+                    "id": "0eb9d296-27a7-486e-ab37-8dc01d5cbb94"
                 },
                 {
                     "type": "widget",
-                    "id": "078014f8-a95c-41bc-90c3-7643da9527ee"
-                },
-                {
-                    "type": "widget",
-                    "id": "3032d3d5-ea9b-4a2a-98f8-d1046c5080f7"
+                    "id": "6d31da71-1fbb-493b-b385-0625123443b7"
                 },
                 {
                     "type": "widget",
                     "id": "478a1818-39ca-42ad-bbe7-9a32684867e0"
+                },
+                {
+                    "type": "widget",
+                    "id": "347d0008-e0f6-4996-a624-84863e404568"
                 },
                 {
                     "type": "topic-news",
@@ -55,15 +55,19 @@
             "data": [
                 {
                     "type": "widget",
+                    "id": "4ff58679-559a-4f0c-a5e0-748ed5f4c202"
+                },
+                {
+                    "type": "widget",
                     "id": "c9b10fd4-56fb-4eb1-bf83-7e858d6bbeae"
                 },
                 {
                     "type": "widget",
-                    "id": "793cb9c4-929a-49f9-a331-f630dd6d9863"
+                    "id": "c3193d82-46e8-4886-bfe7-673d6d606d66"
                 },
                 {
                     "type": "widget",
-                    "id": "c3193d82-46e8-4886-bfe7-673d6d606d66"
+                    "id": "793cb9c4-929a-49f9-a331-f630dd6d9863"
                 },
                 {
                     "type": "widget",
@@ -110,7 +114,11 @@
                 },
                 {
                     "type": "widget",
-                    "id": "f32976cc-ef27-46cc-90a2-ae3ddd9ee7ab"
+                    "id": "1f0d588f-b880-4696-80be-4affa3951b5b"
+                },
+                {
+                    "type": "widget",
+                    "id": "3b8b1231-4dca-4c03-b264-7cd11a57204a"
                 },
                 {
                     "type": "widget",
@@ -161,7 +169,7 @@
             "data": [
                 {
                     "type": "widget",
-                    "id": "3bd6cb63-b9da-487c-915e-1ec8b41a1f4"
+                    "id": "3bd6cb63-b9da-487c-915e-1ec8b41a1f4f"
                 },
                 {
                     "type": "widget",
