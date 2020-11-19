@@ -125,7 +125,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
 
 LayoutHome.propTypes = { 
   openHeaderMenu: PropTypes.bool,
-  headerTabSelected: PropTypes.bool
+  headerTabSelected: PropTypes.string
 };
 
 LayoutHome.defaultProps = {
