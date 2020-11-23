@@ -77,6 +77,20 @@
                 top: 10%;
                 right: -20px;
             }
+
+            .withdrawals-text, .supplies-text {
+                position: absolute;
+                font-size: 14px;
+                color: $freshwater-dark;
+            }
+
+            .withdrawals-text {
+                top: 16%;
+            }
+
+            .supplies-text {
+                top: 60%;
+            }
     
             .divider {
                 position: absolute;
