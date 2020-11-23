@@ -59,17 +59,6 @@ export const FRESHWATER_STEPS = [
             </>
         },
         dropAnimation: BASELINE_WATER_STRESS_ANIMATION
-        // extraElement:
-        //     <div className={styles['baseline-water-stress-container']}>
-        //         <div className={styles['divider-container']}>
-        //             <span>withdrawals</span>
-        //             <img src="/static/images/scrolly-telling/freshwater/divider.svg" />
-        //             <span>supplies</span>
-        //         </div>
-        //         <div className={styles['arrow-up-and-down-container']}>
-        //             <img src="/static/images/scrolly-telling/freshwater/arrow_up_and_down.svg" />
-        //         </div>
-        //     </div>
     },
     {
         index: 4,
@@ -88,21 +77,7 @@ export const FRESHWATER_STEPS = [
             imageHeader: '/static/images/scrolly-telling/freshwater/water-stress-risks.jpg'
 
         },
-        dropAnimation: WATER_STRESS_RISK_ANIMATION,
-        extraElement:
-            <div className={classnames({
-                [styles['baseline-water-stress-container']]: true,
-                [styles['-high-water-stress-risk']]: true
-            })}>
-                <div className={styles['divider-container']}>
-                    <span>withdrawals</span>
-                    <img src="/static/images/scrolly-telling/freshwater/divider.svg" />
-                    <span>supplies</span>
-                </div>
-                <div className={styles['arrow-up-and-down-container']}>
-                    <img src="/static/images/scrolly-telling/freshwater/arrow_up_and_down.svg" />
-                </div>
-            </div>
+        dropAnimation: WATER_STRESS_RISK_ANIMATION
     },
     {
         index: 5,
@@ -111,21 +86,7 @@ export const FRESHWATER_STEPS = [
                 Let's explore some regions in the world with extremely high <span style={{ color: HIGHLIGHT_ORANGE_COLOR }}><strong>water stress risk</strong></span> ({'>'}80%)
             </p>
         },
-        dropAnimation: WATER_STRESS_RISK_FINAL,
-        extraElement:
-            <div className={classnames({
-                [styles['baseline-water-stress-container']]: true,
-                [styles['-high-water-stress-risk']]: true
-            })}>
-                <div className={styles['divider-container']}>
-                    <span>withdrawals</span>
-                    <img src="/static/images/scrolly-telling/freshwater/divider.svg" />
-                    <span>supplies</span>
-                </div>
-                <div className={styles['arrow-up-and-down-container']}>
-                    <img src="/static/images/scrolly-telling/freshwater/arrow_up_and_down.svg" />
-                </div>
-            </div>
+        dropAnimation: WATER_STRESS_RISK_FINAL
     }
 ];
 

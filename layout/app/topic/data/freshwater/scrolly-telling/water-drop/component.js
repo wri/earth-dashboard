@@ -33,6 +33,9 @@ function WaterDrop(props) {
         case BASELINE_WATER_STRESS_ANIMATION:
             arrowDirection = 'up-and-down';
             break;
+        case WATER_STRESS_RISK_ANIMATION:
+            arrowDirection= 'up-and-down-low';
+            break;
     }
 
     return (

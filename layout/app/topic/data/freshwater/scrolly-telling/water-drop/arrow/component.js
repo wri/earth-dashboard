@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import styles from './arrow.module.scss';
 
 function Arrow({ direction }) {
-    const overflowShown = direction === 'up-and-down';
+    const overflowShown = (direction === 'up-and-down' || direction === 'up-and-down-low');
 
     return (
         <div className={classnames({
@@ -28,6 +28,19 @@ function Arrow({ direction }) {
             {direction === 'up-and-down' &&
                 <div className={styles['arrow-up-and-down']}>
                     <div className={styles['container']}>
+                        <img className={styles['arrow']} src="/static/images/scrolly-telling/freshwater/arrow_up_and_down.svg" />
+                        <span className={styles['withdrawals-text']}>withdrawals</span>
+                        <img className={styles['divider']} src="/static/images/scrolly-telling/freshwater/divider.svg" />
+                        <span className={styles['supplies-text']}>supplies</span>
+                    </div>
+                </div>
+            }
+            {direction === 'up-and-down-low' &&
+                <div className={styles['arrow-up-and-down']}>
+                    <div className={classnames({
+                        [styles['container']]: true,
+                        [styles['-low']]: true
+                    })}>
                         <img className={styles['arrow']} src="/static/images/scrolly-telling/freshwater/arrow_up_and_down.svg" />
                         <span className={styles['withdrawals-text']}>withdrawals</span>
                         <img className={styles['divider']} src="/static/images/scrolly-telling/freshwater/divider.svg" />

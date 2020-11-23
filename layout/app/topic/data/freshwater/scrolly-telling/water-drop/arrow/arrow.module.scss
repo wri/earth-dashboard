@@ -7,6 +7,10 @@
     position: relative;
     overflow: hidden;
 
+    &.-overflow-shown {
+        overflow: unset;
+    }
+
     .arrow-up {
         display: flex;
         padding-left: 350px;
@@ -72,6 +76,14 @@
             animation: go-up-and-down 3s ease infinite;
             position: absolute;
 
+            &.-low {
+                animation: go-up-and-down-low 3s ease infinite;
+
+                .withdrawals-text, .supplies-text {
+                    animation: change-to-orange 3s ease forwards;
+                }
+            }
+
             .arrow {
                 position: absolute;
                 top: 10%;
@@ -98,6 +110,11 @@
                 width: 95%;
             }
 
+            @keyframes change-to-orange {
+               from { color: $freshwater-dark; } 
+               to { color: $climate; }
+            }
+
             @keyframes go-up-and-down  {
                 0% {
                     top: 50%
@@ -107,6 +124,17 @@
                 }
                 100% {
                     top: 50%
+                }
+            }
+            @keyframes go-up-and-down-low  {
+                0% {
+                    top: 90%
+                }
+                50% {
+                    top: 100%
+                }
+                100% {
+                    top: 90%
                 }
             }
         }
