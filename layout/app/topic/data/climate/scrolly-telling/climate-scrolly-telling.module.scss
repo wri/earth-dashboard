@@ -3,7 +3,19 @@
 .c-climate-scrolly-telling {
     overflow: initial;
     padding: 0px 0px 20vh 0px;
-    background-color: $grey-lighter;
+
+    .share-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: $climate;
+        border-color: $climate;
+
+        &:hover {
+            color: $white;
+            background-color: $climate;
+        }
+    }
 
     .climate-clock-story {
         .smoke-container {

@@ -121,6 +121,9 @@ function ClimateScrollyTelling({ topic }) {
     <div
       className={styles['c-climate-scrolly-telling']}
     >
+      <button className={styles['share-button']}>
+        Share
+      </button>
       <MediaContextProvider>
         {/* ----------------------- CLIMATE CLOCK ------------------------ */}
         <div className={styles['climate-clock-story']}>
