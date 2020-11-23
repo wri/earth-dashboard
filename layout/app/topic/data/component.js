@@ -113,6 +113,7 @@ function LayoutTopicData(props) {
           < div
             id="scrolly-telling"
             ref={scrollyTellingRef}
+            className={styles['scrolly-telling-container']}
           >
             {getScrollyTelling()}
           </div>

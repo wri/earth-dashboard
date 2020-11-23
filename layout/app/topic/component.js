@@ -147,23 +147,25 @@ function LayoutTopic(props) {
               <div
                 className={classnames({
                   [styles['right-link']]: true,
-                  [styles['-desktop']]: true
+                  [styles['-desktop']]: true,
+                  [styles[`-${topic}`]]: true
                 })}
                 onClick={() => router.push(`/${topic}/data`)}
-                style={{ backgroundColor: getColorByTopic(topic) }}
               >
                 <a>EXPLORE<br />{topic && topic.toUpperCase()}</a>
-                <img src="/static/images/arrow-right.svg" />
+                <div className={styles['arrow-container']}>
+                  <img className={styles.arrow} src="/static/images/arrow-right.svg" />
+                </div>
               </div>
             </Desktop>
             <Mobile>
               <div
                 className={classnames({
                   [styles['right-link']]: true,
-                  [styles['-mobile']]: true
+                  [styles['-mobile']]: true,
+                  [styles[`-${topic}`]]: true
                 })}
                 onClick={() => router.push(`/${topic}/data`)}
-                style={{ backgroundColor: getColorByTopic(topic) }}
               >
                 <a>EXPLORE{topic && topic.toUpperCase()}</a>
                 <img src="/static/images/arrow-right.svg" />
