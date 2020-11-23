@@ -84,6 +84,14 @@
                 }
             }
 
+            &.-final {
+                animation: go-up-and-down-low 3s ease infinite;
+                
+                .withdrawals-text, .supplies-text {
+                    color: $climate;
+                }
+            }
+
             .arrow {
                 position: absolute;
                 top: 10%;

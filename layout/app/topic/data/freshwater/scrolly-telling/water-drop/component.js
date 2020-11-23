@@ -34,7 +34,10 @@ function WaterDrop(props) {
             arrowDirection = 'up-and-down';
             break;
         case WATER_STRESS_RISK_ANIMATION:
-            arrowDirection= 'up-and-down-low';
+            arrowDirection = 'up-and-down-low';
+            break;
+        case WATER_STRESS_RISK_FINAL:
+            arrowDirection = 'up-and-down-low-final'
             break;
     }
 
