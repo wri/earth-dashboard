@@ -31,31 +31,6 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-        
-                    .baseline-water-stress-container {
-                        position: absolute;
-                        display: flex;
-                        align-items: center;
-                        left: -16%;
-                        top: 10%;
-                        width: 100%;
-        
-                        .divider-container {
-                            display: flex;
-                            flex-direction: column;
-                            color: $freshwater-dark;
-                            font-size: 14px;
-                            font-family: 'Barlow Condensed';
-                        }
-        
-                        .arrow-up-and-down-container {
-                            margin-left: 5%;
-                        }
-    
-                        &.-high-water-stress-risk {
-                            top: 30%
-                        }
-                    }
                 }
             }
         }
