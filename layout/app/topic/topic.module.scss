@@ -38,6 +38,7 @@
         z-index: 2; // because of particles
 
         > a {
+            position: relative;
             font-family: 'Barlow Condensed';
             color: $grey-darker;
             margin-bottom: 8 * $space;
@@ -53,17 +54,41 @@
             }
         }
 
-        .climate-link {
-            border-bottom: solid 2px $climate;
+        .climate-link:after {
+            content: '';
+            height: 2px;
+            position: absolute;
+            bottom: -3px;
+            left: 0px;
+            width: 100%;
+            background-color: $climate;
         }
-        .forests-link {
-            border-bottom: solid 2px $forests;
+        .forests-link:after {
+            content: '';
+            height: 2px;
+            position: absolute;
+            bottom: -3px;
+            left: 0px;
+            width: 100%;
+            background-color: $forests;
         }
-        .freshwater-link {
-            border-bottom: solid 2px $freshwater;
+        .freshwater-link:after {
+            content: '';
+            height: 2px;
+            position: absolute;
+            bottom: -3px;
+            left: 0px;
+            width: 100%;
+            background-color: $freshwater;
         }
-        .ocean-link {
-            border-bottom: solid 2px $ocean;
+        .ocean-link:after {
+            content: '';
+            height: 2px;
+            position: absolute;
+            bottom: -3px;
+            left: 0px;
+            width: 100%;
+            background-color: $ocean;
         }
     }
 
