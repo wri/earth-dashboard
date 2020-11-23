@@ -132,6 +132,7 @@
             }
 
             .indicator-block {
+                position: relative;
                 width: 100%;
                 margin-top: 4 * $space;
                 padding-bottom: 6 * $space;
@@ -145,6 +146,19 @@
                 &.-widget-indicator {
                     font-size: 20px;
                     font-family: 'Barlow Condensed';
+                }
+
+                .share-button {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    width: 18px;
+                    height: 18px;
+                    background-image: url('/static/images/share/share.svg');
+        
+                    &:hover {
+                        background-image: url('/static/images/share/share-hover.svg');
+                    }
                 }
             }
         }

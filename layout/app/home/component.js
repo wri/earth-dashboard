@@ -69,10 +69,8 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
         }}
         onLoad={() => setGlobeLoaded(true)}
         options={{
-          // pointLightIntensity: 0.8,
           ambientLightIntensity: 1,
           ambientLightColor: '#fff'
-          // pointLightColor: '#fff'
         }}
       />
     </div>;
