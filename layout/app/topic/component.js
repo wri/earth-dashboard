@@ -25,6 +25,7 @@ import Layout from 'layout/layout/layout-app';
 import TopicNews from './news';
 import Globe from '../home/globe';
 import ErrorBoundary from 'components/ui/error-boundary';
+import ShareModal from 'components/share/share-modal';
 
 // styles
 import styles from './topic.module.scss';
@@ -33,6 +34,12 @@ import { useRouter } from 'next/router';
 function LayoutTopic(props) {
   const { topic, topicData, widgets } = props;
   const [globeLoaded, setGlobeLoaded] = useState(false);
+  const [shareModalIsOpen, setShareModalIsOpen] = useState(false);
+  const [shareData, setSharedata] = useState({
+    url: '',
+    embedTag: '',
+    showEmbed: false
+  });
   const router = useRouter();
   const dataArray = topicData[topic]?.topicPage?.data;
   const isServer = typeof window === 'undefined';
@@ -96,8 +103,20 @@ function LayoutTopic(props) {
                         [styles['-widget-indicator']]: true
                       })}
                       key={widgetObj?.id}
+                      id={widgetObj?.id}
                     >
                       <WidgetPreview widget={widgetObj} showSource={true} />
+                      <button
+                        className={styles['share-button']}
+                        onClick={() => {
+                          setSharedata({
+                            url: `${window.location.href.split('#')[0]}#${widgetObj?.id}`,
+                            embedTag: null,
+                            showEmbed: false
+                          })
+                          setShareModalIsOpen(true);
+                        }}
+                      />
                     </div>
                   );
                 } else if (type === 'topic-news') {
@@ -183,6 +202,14 @@ function LayoutTopic(props) {
             </Link>
           </div>
         </Desktop>
+        <ShareModal
+          topic={topic}
+          url={shareData.url}
+          embedTag={shareData.embedTag}
+          onClose={() => setShareModalIsOpen(false)}
+          isOpen={shareModalIsOpen}
+          showEmbed={shareData.showEmbed}
+        />
       </MediaContextProvider>
       <Particles
         className={styles.particles}
