@@ -42,6 +42,11 @@
             color: $grey-darker;
             margin-bottom: 8 * $space;
             text-decoration: none;
+            line-height: 1.2;
+            
+            &:hover {
+                color: $white;
+            }
 
             &.selected-link {
                 color: $white;
@@ -67,7 +72,7 @@
         top: 0px;
         right: 0px;
         height: 100vh;
-        width: 120px;
+        width: 100px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -75,7 +80,34 @@
         cursor: pointer;
         z-index: 2; // because of particles
 
+        &.-forests {
+            background-color: $forests;
+            &:hover {
+                background-color: $forests-dark;
+            }
+        }
+        &.-ocean {
+            background-color: $ocean;
+            &:hover {
+                background-color: $ocean-dark;
+            }
+        }
+        &.-climate {
+            background-color: $climate;
+            &:hover {
+                background-color: $climate-dark;
+            }
+        }
+        &.-freshwater {
+            background-color: $freshwater;
+            &:hover {
+                background-color: $freshwater-dark;
+            }
+        }
+
+
         a {
+            text-align: center;
             font-family: 'Barlow Condensed';
             text-decoration: none;
             color: $white;
@@ -136,7 +168,7 @@
                 width: 100%;
                 margin-top: 4 * $space;
                 padding-bottom: 6 * $space;
-                border-bottom: solid 2px $grey-light;
+                border-bottom: solid 1px $grey-light;
                 color: $white;
 
                 .block-header {
