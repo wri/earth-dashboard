@@ -104,6 +104,7 @@
         flex-direction: column;
         cursor: pointer;
         z-index: 2; // because of particles
+        animation: shrink-width 1s forwards;
 
         &.-forests {
             background-color: $forests;
@@ -153,6 +154,8 @@
         }
 
         &:hover {
+            animation: grow-width 1s forwards;
+
             .arrow {
                 animation: bounce 2s ease infinite, fade-in 2s infinite;
 
@@ -168,6 +171,15 @@
                     from { opacity: 0.2; }
                     to { opacity: 1; }
                 }
+            }
+
+            @keyframes grow-width {
+                from { width: 100px; }
+                to { width: 110px; }
+            }
+            @keyframes shrink-width {
+                from { width: 110px; }
+                to { width: 100px; }
             }
         }
     }
