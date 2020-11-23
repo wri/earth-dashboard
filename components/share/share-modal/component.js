@@ -14,7 +14,7 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 // styles
 import styles from './share-modal.module.scss';
 
-function ShareModal({ topic, onClose, url, embedTag, isOpen }) {
+function ShareModal({ topic, onClose, url, embedTag, isOpen, showEmbed }) {
     const [isOpenFlag, setIsOpenFlag] = useState(isOpen);
 
     useEffect(() => {
@@ -22,15 +22,16 @@ function ShareModal({ topic, onClose, url, embedTag, isOpen }) {
     }, [isOpen]);
 
     const modalCustomStyles = {
-        content : {
-          top                   : '50%',
-          left                  : '50%',
-          right                 : 'auto',
-          bottom                : 'auto',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)'
-        }
-      };
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)'
+        },
+        overlay: { zIndex: 1000 }
+    };
 
     const getContent = (mobile = false) =>
         <div className={classnames({
@@ -41,8 +42,12 @@ function ShareModal({ topic, onClose, url, embedTag, isOpen }) {
             <h2 style={{ color: getColorByTopic(topic) }}>Share</h2>
             <h5>Public url to share</h5>
             <ShareBox url={url} topic={topic} />
-            <h5>Code to embed</h5>
-            <EmbedBox url={embedTag} topic={topic} />
+            {showEmbed &&
+                <>
+                    <h5>Code to embed</h5>
+                    <EmbedBox url={embedTag} topic={topic} />
+                </>
+            }
             <button className={styles['close-button']} onClick={() => onClose()} />
         </div>;
 
@@ -75,11 +80,13 @@ ShareModal.propTypes = {
     onClose: PropTypes.func.isRequired,
     url: PropTypes.string.isRequired,
     embedTag: PropTypes.string.isRequired,
+    showEmbed: PropTypes.bool,
     isOpen: PropTypes.bool
 };
 
 ShareModal.defaultProps = {
-    isOpen: false
+    isOpen: false,
+    showEmbed: true
 };
 
 export default ShareModal;

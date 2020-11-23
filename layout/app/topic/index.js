@@ -3,7 +3,8 @@ import TopicComponent from './component';
 
 export default connect(
     state => ({
-      topic: state.routes.query.topic
+      topic: state.routes.query.topic,
+      embed: state.routes.query.embed
     }),
     null
   )(TopicComponent);

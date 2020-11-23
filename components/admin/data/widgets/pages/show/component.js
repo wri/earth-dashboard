@@ -19,12 +19,7 @@ function WidgetsShow(props) {
 
   const handleSubmit = (widget) => {
     if (widget) {
-      router.push({
-        pathname: `/admin/data/widgets/${widget.id}/edit`, 
-        query: {
-          dataset: widget.dataset
-        }
-      });
+      router.reload();
     } else {
       router.push('/admin/data/widgets');
     }
