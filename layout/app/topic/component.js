@@ -68,7 +68,7 @@ function LayoutTopic(props) {
                   height="70vh"
                   options={{
                     ambientLightColor: getColorByTopic(topic),
-                    ambientLightIntensity: 0.3
+                    ambientLightIntensity: 0.7
                   }}
                   onLoad={() => setGlobeLoaded(true)}
                 />
