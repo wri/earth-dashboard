@@ -107,27 +107,15 @@
 
         &.-forests {
             background-color: $forests;
-            &:hover {
-                background-color: $forests-dark;
-            }
         }
         &.-ocean {
             background-color: $ocean;
-            &:hover {
-                background-color: $ocean-dark;
-            }
         }
         &.-climate {
             background-color: $climate;
-            &:hover {
-                background-color: $climate-dark;
-            }
         }
         &.-freshwater {
             background-color: $freshwater;
-            &:hover {
-                background-color: $freshwater-dark;
-            }
         }
 
         .arrow-container {
