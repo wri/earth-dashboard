@@ -153,7 +153,9 @@ function LayoutTopic(props) {
                 onClick={() => router.push(`/${topic}/data`)}
               >
                 <a>EXPLORE<br />{topic && topic.toUpperCase()}</a>
-                <img src="/static/images/arrow-right.svg" />
+                <div className={styles['arrow-container']}>
+                  <img className={styles.arrow} src="/static/images/arrow-right.svg" />
+                </div>
               </div>
             </Desktop>
             <Mobile>

@@ -105,6 +105,15 @@
             }
         }
 
+        .arrow-container {
+            position: relative;
+            width: 100%;
+
+            .arrow {
+                position: absolute;
+                left: 40%;
+            }
+        }
 
         a {
             text-align: center;
@@ -127,6 +136,25 @@
 
             a {
                 margin: 0px 3 * $space 0px 0px;
+            }
+        }
+
+        &:hover {
+            .arrow {
+                animation: bounce 2s ease infinite, fade-in 2s infinite;
+
+                @keyframes bounce {
+                    0% { left: 25%; }
+                    20% { left: 45%; }
+                    40% { left: 35%; }
+                    60% { left: 43%; }
+                    80% { left: 39%; }
+                    100% { left: 42%; }
+                }
+                @keyframes fade-in {
+                    from { opacity: 0.2; }
+                    to { opacity: 1; }
+                }
             }
         }
     }
