@@ -106,7 +106,7 @@ function ClimateScrollyTelling({ topic }) {
 
   const getStepContent = (mobile = false, step) =>
     <div className={classnames({
-      [styles['text-box-container']]: true,
+      'text-box-container': true,
       [styles['-desktop']]: !mobile,
       [styles['-mobile']]: mobile,
     })}>
