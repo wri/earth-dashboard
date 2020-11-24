@@ -89,7 +89,7 @@ LayoutApp.defaultProps = {
   title: null,
   description: null,
   className: null,
-  thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.png',
+  thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.jpg',
   showHeaderLogo: true,
   showHeader: true
 };
