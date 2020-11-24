@@ -23,12 +23,12 @@ function Arrow({ direction }) {
                     [styles['arrow-down']]: direction === 'down'
                 })}>
                     <div className={styles['divider-container']}>
-                        {direction === 'up' &&
-                            <span className={styles['supplies-text']}>⭡ supplies</span>
-                        }
-                        <img className={styles['divider']} src="/static/images/scrolly-telling/freshwater/divider.svg" />
                         {direction === 'down' &&
                             <span className={styles['withdrawals-text']}>withdrawals ⭣</span>
+                        }
+                        <img className={styles['divider']} src="/static/images/scrolly-telling/freshwater/divider.svg" />
+                        {direction === 'up' &&
+                            <span className={styles['supplies-text']}>⭡ supplies</span>
                         }
                     </div>
                     <div className={styles['arrows-container']}>
@@ -58,7 +58,12 @@ function Arrow({ direction }) {
                         [styles['-low']]: direction === 'up-and-down-low',
                         [styles['-final']]: direction === 'up-and-down-low-final'
                     })}>
-                        <img className={styles['arrow']} src="/static/images/scrolly-telling/freshwater/arrow_up_and_down.svg" />
+                        <div className={styles.arrow}>
+                            <img className={styles['arrow-down-short']} src="/static/images/scrolly-telling/freshwater/arrow-down-short.svg" />
+                            {direction === 'up-and-down' &&
+                                <img className={styles['arrow-up-short']} src="/static/images/scrolly-telling/freshwater/arrow-up-short.svg" />
+                            }
+                        </div>
                         <div className={styles['divider-container']}>
                             {direction === 'up-and-down' &&
                                 <span className={styles['supplies-text']}>⭡ supplies</span>
