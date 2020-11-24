@@ -192,6 +192,7 @@ input, button, select, textarea {
   background-position: center bottom;
   background-size: 100% 2px;
   background-repeat: no-repeat;
+  transition: background-size 0.3s;
 
   &:hover {
     background-size: 100% 6px;
