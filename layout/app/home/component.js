@@ -79,7 +79,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
     <Layout
       title="Earth Dashboard"
       description="Earth HQ provides insight and inspiration to help everyone understand and protect our home planet."
-      thumbnail="https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.png"
+      thumbnail="https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.jpg"
       className={styles.homepage}
       openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
