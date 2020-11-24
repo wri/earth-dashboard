@@ -5,60 +5,127 @@
     height: 100%;
     max-height: 170px;
     position: relative;
-    overflow: hidden;
-
-    &.-overflow-shown {
-        overflow: unset;
-    }
 
     .arrow-up {
         display: flex;
-        padding-left: 350px;
+        position: relative;
+        width: 300px;
+        height: 145px;
+        margin-left: 13%;
 
-        .first-arrow-up {
+        .divider-container {
             position: absolute;
-            top: 0px;
-            animation: go-up-1 2s linear infinite;
+            top: 80%;
+            width: 95%;
+            display: flex;
+            flex-direction: column;
 
-            @keyframes go-up-1 {
-                from { top: 0px; opacity: 1; }
-                to { top: -100%; opacity: 0; }
+            .divider {
+                margin: 5px 0px 5px 0px;
+            }
+            animation: go-up-divider 6s ease forwards;
+
+            @keyframes go-up-divider {
+                from { top: 80%; }
+                to { top: -10%; }
             }
         }
-        .second-arrow-up {
-            position: absolute;
-            top: 100%;
-            animation: go-up-2 2s linear infinite;
 
-            @keyframes go-up-2 {
-                from { top: 100%;  opacity: 0; }
-                to { top: 0px; opacity: 1; }
+        .arrows-container {
+            position: absolute;
+            right: -20px;
+            top: 10px;
+
+            .relative-container {
+                position: relative;
+                overflow: hidden;
+                height: 140px;
+                width: 30px;
+
+                .first-arrow-up {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    animation: go-up-1 2s linear infinite;
+        
+                    @keyframes go-up-1 {
+                        from { top: 0px; opacity: 1; }
+                        to { top: -100%; opacity: 0; }
+                    }
+                }
+                .second-arrow-up {
+                    position: absolute;
+                    top: 100%;
+                    right: 0px;
+                    animation: go-up-2 2s linear infinite;
+        
+                    @keyframes go-up-2 {
+                        from { top: 100%;  opacity: 0; }
+                        to { top: 0px; opacity: 1; }
+                    }
+                } 
             }
-        } 
+        }
     }
 
     .arrow-down {
         display: flex;
-        padding-left: 350px;
+        position: relative;
+        width: 300px;
+        height: 145px;
+        margin-left: 13%;
 
-        .first-arrow-down {
+        .divider-container {
             position: absolute;
-            top: 0px;
-            animation: go-down-1 2s linear infinite;
+            top: -10%;
+            width: 95%;
+            display: flex;
+            flex-direction: column;
 
-            @keyframes go-down-1 {
-                from { top: 0px; opacity: 1; }
-                to { top: 100%; opacity: 0; }
+            .divider {
+                margin: 5px 0px 5px 0px;
+            }
+            animation: go-down-divider 8s ease forwards;
+
+            @keyframes go-down-divider {
+                from { top: -10%; }
+                to { top: 50%; }
             }
         }
-        .second-arrow-down {
-            position: absolute;
-            top: -100%;
-            animation: go-down-2 2s linear infinite;
 
-            @keyframes go-down-2 {
-                from { top: -100%;  opacity: 0; }
-                to { top: 0px; opacity: 1; }
+        .arrows-container {
+            position: absolute;
+            right: -20px;
+            top: 10px;
+
+            .relative-container {
+                position: relative;
+                overflow: hidden;
+                height: 140px;
+                width: 30px;
+
+                .first-arrow-down {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    animation: go-down-1 2s linear infinite;
+        
+                    @keyframes go-down-1 {
+                        from { top: 0px; opacity: 1; }
+                        to { top: 100%; opacity: 0; }
+                    }
+                }
+                .second-arrow-down {
+                    position: absolute;
+                    top: 100%;
+                    right: 0px;
+                    animation: go-down-2 2s linear infinite;
+        
+                    @keyframes go-down-2 {
+                        from { top: -100%;  opacity: 0; }
+                        to { top: 0px; opacity: 1; }
+                    }
+                } 
             }
         }
     }
@@ -78,30 +145,22 @@
 
             &.-low {
                 animation: move-down 3s ease-in forwards, go-up-and-down-low 3s 3s ease infinite;
-
-                .withdrawals-text, .supplies-text {
-                    animation: change-to-orange 3s ease forwards;
-                }
             }
 
             &.-final {
                 animation: go-up-and-down-low 3s ease infinite;
-                
-                .withdrawals-text, .supplies-text {
-                    color: $climate;
-                }
             }
 
             .arrow {
                 position: absolute;
-                top: 10%;
+                display: flex;
+                flex-direction: column;
+                top: -14%;
                 right: -20px;
             }
 
             .withdrawals-text, .supplies-text {
                 position: absolute;
-                font-size: 14px;
-                color: $freshwater-dark;
             }
 
             .withdrawals-text {
@@ -121,11 +180,6 @@
             @keyframes move-down {
                 from { top: 50% }
                 to { top: 90% }
-            }
-
-            @keyframes change-to-orange {
-               from { color: $freshwater-dark; } 
-               to { color: $climate; }
             }
 
             @keyframes go-up-and-down  {
@@ -151,5 +205,10 @@
                 }
             }
         }
+    }
+
+    .withdrawals-text, .supplies-text {
+        font-size: 14px;
+        color: $freshwater-dark;
     }
 }
