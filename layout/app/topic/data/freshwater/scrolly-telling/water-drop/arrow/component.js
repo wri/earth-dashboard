@@ -59,9 +59,13 @@ function Arrow({ direction }) {
                         [styles['-final']]: direction === 'up-and-down-low-final'
                     })}>
                         <img className={styles['arrow']} src="/static/images/scrolly-telling/freshwater/arrow_up_and_down.svg" />
-                        <span className={styles['withdrawals-text']}>withdrawals</span>
-                        <img className={styles['divider']} src="/static/images/scrolly-telling/freshwater/divider.svg" />
-                        <span className={styles['supplies-text']}>supplies</span>
+                        <div className={styles['divider-container']}>
+                            {direction === 'up-and-down' &&
+                                <span className={styles['supplies-text']}>⭡ supplies</span>
+                            }
+                            <img className={styles['divider']} src="/static/images/scrolly-telling/freshwater/divider.svg" />
+                            <span className={styles['withdrawals-text']}>⭣ withdrawals</span>
+                        </div>
                     </div>
                 </div>
             }

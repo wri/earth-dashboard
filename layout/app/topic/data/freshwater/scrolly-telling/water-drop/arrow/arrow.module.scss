@@ -145,18 +145,10 @@
 
             &.-low {
                 animation: move-down 3s ease-in forwards, go-up-and-down-low 3s 3s ease infinite;
-
-                .withdrawals-text, .supplies-text {
-                    animation: change-to-orange 3s ease forwards;
-                }
             }
 
             &.-final {
                 animation: go-up-and-down-low 3s ease infinite;
-                
-                .withdrawals-text, .supplies-text {
-                    color: $climate;
-                }
             }
 
             .arrow {
@@ -188,11 +180,6 @@
             @keyframes move-down {
                 from { top: 50% }
                 to { top: 90% }
-            }
-
-            @keyframes change-to-orange {
-               from { color: $freshwater-dark; } 
-               to { color: $climate; }
             }
 
             @keyframes go-up-and-down  {
