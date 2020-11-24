@@ -41,4 +41,8 @@ export const FRESHWATER_DIVE_INTO_THE_DATA_DATA = {
     description: `Use the interactive maps below to explore high water stress hotspots and how these compare with the world’s food basket regions.`
 }
 
-export const FRESHWATER_METHODOLOGY_DATA = <p></p>;
+export const FRESHWATER_METHODOLOGY_DATA = <p>
+    The water droplet visualizations and accompanying text were inspired by <a className="external-link -freshwater" href="https://www.wri.org/publication/aqueduct-30" target="_blank">Aqueduct’s global water risk framework</a>, 
+    which combines 13 water risk indicators into a composite overall risk score. The map of high water
+     stress regions draws on content from <a className="external-link -freshwater" href="https://www.wri.org/blog/2019/08/17-countries-home-one-quarter-world-population-face-extremely-high-water-stress" target="_blank">Rutger et al</a>.
+</p>;
