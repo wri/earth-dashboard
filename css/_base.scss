@@ -213,6 +213,10 @@ input, button, select, textarea {
   &.-freshwater {
     background-image: linear-gradient(to bottom, $freshwater, $freshwater);
   }
+
+  &.-white {
+    background-image: linear-gradient(to bottom, $white, $white);
+  }
 }
 
 // -----------------PULSATING CIRCLE-----------------------
