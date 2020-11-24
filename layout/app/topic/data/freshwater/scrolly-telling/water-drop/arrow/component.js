@@ -34,15 +34,18 @@ function Arrow({ direction }) {
                     <div className={styles['arrows-container']}>
                         <div className={styles['relative-container']}>
                             <img
-                                className={styles['first-arrow-up']}
-                                src="/static/images/scrolly-telling/freshwater/arrow_up.svg"
+                                className={classnames({
+                                    [styles['first-arrow-up']]: direction === 'up',
+                                    [styles['first-arrow-down']]: direction === 'down'
+                                })}
+                                src={`/static/images/scrolly-telling/freshwater/arrow_${direction === 'up' ? 'up' : 'down'}.svg`}
                             />
                             <img
                                 className={classnames({
                                     [styles['second-arrow-up']]: direction === 'up',
                                     [styles['second-arrow-down']]: direction === 'down'
                                 })}
-                                src="/static/images/scrolly-telling/freshwater/arrow_up.svg"
+                                src={`/static/images/scrolly-telling/freshwater/arrow_${direction === 'up' ? 'up' : 'down'}.svg`}
                             />
                         </div>
                     </div>
