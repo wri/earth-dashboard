@@ -27,7 +27,7 @@ export const FORESTS_STEPS = [
         index: 1,
         textPanel: {
             text: <p>
-                The tiny trees here represent the estimated 514 Mha of <strong>tree cover present in the Amazon in the year 2000</strong>. That would be a tree cover area equivalent to <strong>12.5 Californias</strong>
+                The tiny trees here represent the estimated <strong>514 million hectares of tree cover present in the Amazon in the year 2000</strong>. That is an area the size of 12.5 Californias.
             </p>
         },
         showYearCounter: true,
@@ -45,7 +45,7 @@ export const FORESTS_STEPS = [
         index: 2,
         textPanel: {
             text: <p>
-                To get an idea of the scale, <strong>one tree</strong> represents 4.2 million Ha of tree cover, equivalent to <strong>an area the size of Switzerland</strong>
+                Each tree represents <strong>an area the size of Switzerland</strong> (4.2 million hectares of tree cover).
             </p>
         },
         showYearCounter: true,
@@ -60,7 +60,8 @@ export const FORESTS_STEPS = [
         index: 3,
         textPanel: {
             text: <p>
-                Let’s fast forward to 2019. This is how much of that 2000 tree cover is left. In these nineteen years, <strong>the Amazon has lost an area equivalent to the size of 9 Switzerlands since 2000</strong>.            </p>
+                    Let’s fast forward to 2019. The saws represent <strong>how much of that tree cover has been lost</strong>. In these 19 years, <strong>the Amazon has lost an area equivalent to the size of 9 Switzerlands</strong>.
+                </p>
         },
         showYearCounter: true,
         previousYearValue: 2000,
@@ -76,11 +77,9 @@ export const FORESTS_STEPS = [
         textPanel: {
             text: 
                 <>
+                <h6 className="forests">Drivers of Tree Cover Loss</h6>
                 <p>
-                    But what have been the <strong>main drivers</strong> of tree cover loss in the Amazon in these 19 years? 
-                </p>
-                <p>
-                    According to the available data, we see that the main driver is commodity driven deforestation, which includes activities like industrial mining, oil extraction and shifting agriculture.
+                    The main driver of tree cover loss in the Amazon is commodity driven deforestation, which includes activities like oil extraction, industrial mining, ranching, farming, and fires set to clear land.
                 </p>
             </>
         },
@@ -99,7 +98,7 @@ export const FORESTS_STEPS = [
         index: 5,
         textPanel: {
             text: <p>
-                If current trends continue, <strong>the Amazon rainforest will become a net carbon emitter in 2035</strong>. That means it won’t be a carbon sink anymore, but will turn into a carbon source.
+                If current trends continue, <strong>the remaining intact Amazon rainforest may become a net carbon emitter in 2035</strong>. That means it  won’t be a carbon sink anymore, but will turn into a <strong>carbon source</strong>. This trend is dominated by the drier parts of the Amazon; wetter forests may remain sinks for much longer.
             </p>
         },
         showYearCounter: false,
