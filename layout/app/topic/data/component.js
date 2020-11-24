@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 
 // utils
 import { Desktop, MediaContextProvider } from 'utils/responsive';
+import { getColorByTopic } from 'utils/topics';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -82,6 +83,7 @@ function LayoutTopicData(props) {
       className={styles.topic}
       showHeaderLogo={false}
       showHeader={!isEmbed}
+      themeColor={getColorByTopic(topic)}
     >
       <div className={styles['topic-data']}>
         <div

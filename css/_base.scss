@@ -188,37 +188,34 @@ input, button, select, textarea {
 
 // --------------------- EXTERNAL LINKS -----------------------
 .external-link {
-  position: relative;
+  background-image: linear-gradient(to bottom, $black, $black);
+  background-position: center bottom;
+  background-size: 100% 2px;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s;
 
-  &:after {
-    content: '';
-    height: 2px;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    z-index: -1;
-    background-color: $white;
+  &:hover {
+    background-size: 100% 6px;
   }
 
-  &:hover:after {
-    height: 6px;
+  &.-forests {
+    background-image: linear-gradient(to bottom, $forests, $forests);
   }
 
-  &.-forests:after {
-    background-color: $forests;
+  &.-ocean {
+    background-image: linear-gradient(to bottom, $ocean, $ocean);
   }
 
-  &.-ocean:after {
-    background-color: $ocean;
+  &.-climate {
+    background-image: linear-gradient(to bottom, $climate, $climate);
   }
 
-  &.-climate:after {
-    background-color: $climate;
+  &.-freshwater {
+    background-image: linear-gradient(to bottom, $freshwater, $freshwater);
   }
 
-  &.-freshwater:after {
-    background-color: $freshwater;
+  &.-white {
+    background-image: linear-gradient(to bottom, $white, $white);
   }
 }
 
@@ -270,4 +267,21 @@ input, button, select, textarea {
   h1 {
     color: $white;
   }
+}
+
+// ------------------ TOPIC COLORS CLASSES ----------------------
+.forests {
+  color: $forests;
+}
+
+.ocean {
+  color: $ocean;
+}
+
+.climate {
+  color: $climate;
+}
+
+.freshwater {
+  color: $freshwater;
 }

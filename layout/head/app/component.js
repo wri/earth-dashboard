@@ -12,14 +12,16 @@ class HeadApp extends PureComponent {
     thumbnail: PropTypes.string,
     routes: PropTypes.object.isRequired,
     hostname: PropTypes.string.isRequired,
-    explicitHostname: PropTypes.string
+    explicitHostname: PropTypes.string,
+    themeColor: PropTypes.string
   };
 
   static defaultProps = {
     title: null,
     description: null,
     thumbnail: null,
-    explicitHostname: null
+    explicitHostname: null,
+    themeColor: null
   }
 
   render() {
@@ -28,7 +30,8 @@ class HeadApp extends PureComponent {
       description,
       thumbnail,
       hostname,
-      explicitHostname
+      explicitHostname,
+      themeColor
     } = this.props;
     return (
       <HeadNext>
@@ -41,6 +44,9 @@ class HeadApp extends PureComponent {
         <meta name="og:image" content={thumbnail} />
         <meta property="og:image:secure_url" content={thumbnail} />
         <meta name="og:image:alt" content={`${title}_widget`} />
+
+        {/* Theme color */}
+        {themeColor && <meta name="theme-color" content={themeColor} />}
 
         {/* leaflet styles */}
         {/* Leaflet styles are here to allow our chunk css (custom styles) override them */}

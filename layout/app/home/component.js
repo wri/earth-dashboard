@@ -83,6 +83,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
       className={styles.homepage}
       openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
+      themeColor="#1a2128"
     >
       <Particles
         className={styles.particles}

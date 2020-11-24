@@ -2,22 +2,27 @@
 import {
     FORESTS_HEADLINE_SECTION_DATA,
     FORESTS_CHALLENGE_SECTION_DATA,
-    FORESTS_DIVE_INTO_THE_DATA_DATA
+    FORESTS_DIVE_INTO_THE_DATA_DATA,
+    FORESTS_METHODOLOGY_DATA
 } from 'layout/app/topic/data/forests/constants';
 import {
     FRESHWATER_HEADLINE_SECTION_DATA,
     FRESHWATER_CHALLENGE_SECTION_DATA,
-    FRESHWATER_DIVE_INTO_THE_DATA_DATA
+    FRESHWATER_DIVE_INTO_THE_DATA_DATA,
+    FRESHWATER_METHODOLOGY_DATA
 } from 'layout/app/topic/data/freshwater/constants';
 import {
     OCEAN_HEADLINE_SECTION_DATA,
     OCEAN_CHALLENGE_SECTION_DATA,
-    OCEAN_DIVE_INTO_THE_DATA_DATA
+    OCEAN_DIVE_INTO_THE_DATA_DATA,
+    OCEAN_METHODOLOGY_DATA
 } from 'layout/app/topic/data/ocean/constants';
+import { func } from 'prop-types';
 import { 
     CLIMATE_CHALLENGE_SECTION_DATA,
     CLIMATE_HEADLINE_SECTION_DATA,
-    CLIMATE_DIVE_INTO_THE_DATA_DATA
+    CLIMATE_DIVE_INTO_THE_DATA_DATA,
+    CLIMATE_METHODOLOTY_DATA
 } from '../layout/app/topic/data/climate/constants';
 
 // -------- TOPICS ----------
@@ -151,6 +156,21 @@ export function getDiveIntoTheDataDataByTopic(topic) {
             return CLIMATE_DIVE_INTO_THE_DATA_DATA;
         case OCEAN:
             return OCEAN_DIVE_INTO_THE_DATA_DATA;
+        default:
+            return null;
+    }
+}
+
+export function getMethodologyDataByTopic(topic) {
+    switch (topic) {
+        case FORESTS:
+            return FORESTS_METHODOLOGY_DATA;
+        case FRESHWATER:
+            return FRESHWATER_METHODOLOGY_DATA;
+        case CLIMATE:
+            return CLIMATE_METHODOLOGY_DATA;
+        case OCEAN:
+            return OCEAN_METHODOLOGY_DATA;
         default:
             return null;
     }

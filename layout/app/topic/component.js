@@ -53,6 +53,7 @@ function LayoutTopic(props) {
       thumbnail={pageMetadata.thumbnail}
       className={styles.topic}
       showHeader={!isEmbed}
+      themeColor={getColorByTopic(topic)}
     >
       <MediaContextProvider>
         {/* ----- LEFT GLOBE ON DESKTOP VERSION -------- */}
