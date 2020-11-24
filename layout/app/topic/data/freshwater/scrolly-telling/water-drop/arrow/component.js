@@ -11,29 +11,41 @@ function Arrow({ direction }) {
         'up-and-down',
         'up-and-down-low',
         'up-and-down-low-final'];
-    const overflowShown = secondGroup.includes(direction);
 
     return (
         <div className={classnames({
             [styles['c-arrow']]: true,
-            [styles['-overflow-shown']]: overflowShown
+            [styles['-overflow-shown']]: true
         })}>
             {firstGroup.includes(direction) &&
                 <div className={classnames({
                     [styles['arrow-up']]: direction === 'up',
                     [styles['arrow-down']]: direction === 'down'
                 })}>
-                    <img
-                        className={styles['first-arrow-up']}
-                        src="/static/images/scrolly-telling/freshwater/arrow_up.svg"
-                    />
-                    <img
-                        className={classnames({
-                            [styles['second-arrow-up']]: direction === 'up',
-                            [styles['second-arrow-down']]: direction === 'down'
-                        })}
-                        src="/static/images/scrolly-telling/freshwater/arrow_up.svg"
-                    />
+                    <div className={styles['divider-container']}>
+                        {direction === 'up' &&
+                            <span className={styles['supplies-text']}>⭡ supplies</span>
+                        }
+                        <img className={styles['divider']} src="/static/images/scrolly-telling/freshwater/divider.svg" />
+                        {direction === 'down' &&
+                            <span className={styles['withdrawals-text']}>withdrawals ⭣</span>
+                        }
+                    </div>
+                    <div className={styles['arrows-container']}>
+                        <div className={styles['relative-container']}>
+                            <img
+                                className={styles['first-arrow-up']}
+                                src="/static/images/scrolly-telling/freshwater/arrow_up.svg"
+                            />
+                            <img
+                                className={classnames({
+                                    [styles['second-arrow-up']]: direction === 'up',
+                                    [styles['second-arrow-down']]: direction === 'down'
+                                })}
+                                src="/static/images/scrolly-telling/freshwater/arrow_up.svg"
+                            />
+                        </div>
+                    </div>
                 </div>
             }
             {secondGroup.includes(direction) &&
