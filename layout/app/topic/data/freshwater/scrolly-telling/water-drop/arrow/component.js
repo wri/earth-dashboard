@@ -24,7 +24,7 @@ function Arrow({ direction }) {
                 })}>
                     <div className={styles['divider-container']}>
                         {direction === 'down' &&
-                            <span className={styles['withdrawals-text']}>withdrawals ⭣</span>
+                            <span className={styles['withdrawals-text']}>⭣ withdrawals</span>
                         }
                         <img className={styles['divider']} src="/static/images/scrolly-telling/freshwater/divider.svg" />
                         {direction === 'up' &&
