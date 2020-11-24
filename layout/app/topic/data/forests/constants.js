@@ -1,6 +1,13 @@
 export const FORESTS_HEADLINE_SECTION_DATA = {
-    mainTitle: <h1>From Carbon <span>Sink</span> to Carbon <span>Source</span>? Why the Amazon’s Future Hangs in the Balance</h1>,
-    subtitle: 'The Amazon covers 5 million sq km across nine countries and harbors 16,000 tree species. Scroll to learn how fast and why this majestic primary forest is shrinking and degrading.'
+    mainTitle: <h1>The Amazon’s Future Hangs in the <span>Balance</span></h1>,
+    subtitle: <p>
+        Tree cover loss, especially in irreplaceable primary forests rich in species 
+        and carbon, is a planetary emergency. In 2019, tropical rainforests vanished 
+        at the rate of one football pitch (soccer field) every six seconds (Source: <a className="external-link" href="https://blog.globalforestwatch.org/data-and-research/global-tree-cover-loss-data-2019" target="_blank">GFW</a>). 
+        But forests face a double threat. Climate change can bring droughts to rainforests, 
+        reducing their ability to store carbon.  The Amazon is on course to transform from a 
+        carbon sink to source as soon as 2035. 
+    </p>
 };
 
 export const FORESTS_CHALLENGE_SECTION_DATA = {

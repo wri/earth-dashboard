@@ -15,7 +15,7 @@
 
             .water-drop-container {
                 position: sticky;
-                top: 33vh;
+                top: 40vh;
                 margin-left: 50%;
                 display: flex;
                 justify-content: center;
@@ -45,24 +45,6 @@
                     height: 25px;
                 }
             }
-
-            .text-box-container {
-                margin-left: 15%;
-
-                &.-mobile {
-                    margin-left: 16px;
-                }
-
-                h6 {
-                    margin: 0px 0px $space 0px;
-                    font-size: 16px;
-                }
-
-                .photo-subtitle {
-                    color: $grey-darker;
-                    font-size: 14px;
-                }
-            }
         }
 
         .steps {
@@ -71,28 +53,6 @@
 
             &.-mobile {
                 align-items: center;
-            }
-
-            .text-box-container {
-                position: relative;
-                max-width: 400px;
-                margin-bottom: 100vh;
-
-                h6 {
-                    margin: 0px 0px $space 0px;
-                    font-size: 16px;
-                    font-family: 'Barlow Condensed';
-                    color: $freshwater
-                }
-
-                .photo-subtitle {
-                    color: $grey-darker;
-                    font-size: 14px;
-                }
-
-                a {
-                    text-decoration: underline;
-                }
             }
         }
     }

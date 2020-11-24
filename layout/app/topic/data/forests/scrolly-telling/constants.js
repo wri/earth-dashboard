@@ -7,9 +7,12 @@ export const FORESTS_STEPS = [
     {
         index: 0,
         textPanel: {
-            text: <p>
-                This is a map of the Amazon region in South America. The <strong>Amazon rainforest</strong> covers 597 Mha across nine countries and harbors 16,000 tree species.
-            </p>
+            text: <>
+                <h6 className="forests">The Amazon Rainforest</h6>
+                <p>
+                    The Amazon rainforest covers <a className="external-link -forests" href="https://www.nature.com/articles/d41586-020-00508-4" target="_blank"><strong>597 Mha across nine countries and harbors 16,000 tree species</strong></a>.
+                </p>
+            </>
         },
         showYearCounter: false,
         stickyContainerElement: 
