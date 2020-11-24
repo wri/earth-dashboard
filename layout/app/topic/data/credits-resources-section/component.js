@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import ShareBox from 'components/share/share-box';
 
 // utils
-import { getColorByTopic } from 'utils/topics';
+import { getColorByTopic, getMethodologyDataByTopic } from 'utils/topics';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // styles
@@ -32,8 +32,8 @@ function CreditsResourcesSection(props) {
           METHODOLOGY
         </div>
         <div className={styles['field-content']}>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-          </div>
+          {getMethodologyDataByTopic(topic)}
+        </div>
       </div>
     </>;
 

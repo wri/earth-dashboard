@@ -36,3 +36,5 @@ export const CLIMATE_CHALLENGE_SECTION_DATA = {
     ],
     photoAttribution: 'Photo by Daniel Moqvist on Unsplash'
 }
+
+export const CLIMATE_METHODOLOGY_DATA = <p></p>;
