@@ -7,9 +7,12 @@ export const FORESTS_STEPS = [
     {
         index: 0,
         textPanel: {
-            text: <p>
-                This is a map of the Amazon region in South America. The <strong>Amazon rainforest</strong> covers 597 Mha across nine countries and harbors 16,000 tree species.
-            </p>
+            text: <>
+                <h6 className="forests">The Amazon Rainforest</h6>
+                <p>
+                    The Amazon rainforest covers <a className="external-link -forests" href="https://www.nature.com/articles/d41586-020-00508-4" target="_blank"><span className="bold">597 Mha across nine countries and harbors 16,000 tree species</span></a>.
+                </p>
+            </>
         },
         showYearCounter: false,
         stickyContainerElement: 
@@ -24,7 +27,7 @@ export const FORESTS_STEPS = [
         index: 1,
         textPanel: {
             text: <p>
-                The tiny trees here represent the estimated 514 Mha of <strong>tree cover present in the Amazon in the year 2000</strong>. That would be a tree cover area equivalent to <strong>12.5 Californias</strong>
+                The tiny trees here represent the estimated <span className="bold">514 million hectares of tree cover present in the Amazon in the year 2000</span>. That is an area the size of 12.5 Californias.
             </p>
         },
         showYearCounter: true,
@@ -42,7 +45,7 @@ export const FORESTS_STEPS = [
         index: 2,
         textPanel: {
             text: <p>
-                To get an idea of the scale, <strong>one tree</strong> represents 4.2 million Ha of tree cover, equivalent to <strong>an area the size of Switzerland</strong>
+                Each tree represents <span className="bold">an area the size of Switzerland</span> (4.2 million hectares of tree cover).
             </p>
         },
         showYearCounter: true,
@@ -57,7 +60,8 @@ export const FORESTS_STEPS = [
         index: 3,
         textPanel: {
             text: <p>
-                Let’s fast forward to 2019. This is how much of that 2000 tree cover is left. In these nineteen years, <strong>the Amazon has lost an area equivalent to the size of 9 Switzerlands since 2000</strong>.            </p>
+                    Let’s fast forward to 2019. The saws represent <span className="bold">how much of that tree cover has been lost</span>. In these 19 years, <span className="bold">the Amazon has lost an area equivalent to the size of 9 Switzerlands</span>.
+                </p>
         },
         showYearCounter: true,
         previousYearValue: 2000,
@@ -73,11 +77,9 @@ export const FORESTS_STEPS = [
         textPanel: {
             text: 
                 <>
+                <h6 className="forests">Drivers of Tree Cover Loss</h6>
                 <p>
-                    But what have been the <strong>main drivers</strong> of tree cover loss in the Amazon in these 19 years? 
-                </p>
-                <p>
-                    According to the available data, we see that the main driver is commodity driven deforestation, which includes activities like industrial mining, oil extraction and shifting agriculture.
+                    The main driver of tree cover loss in the Amazon is commodity driven deforestation, which includes activities like oil extraction, industrial mining, ranching, farming, and fires set to clear land.
                 </p>
             </>
         },
@@ -96,7 +98,7 @@ export const FORESTS_STEPS = [
         index: 5,
         textPanel: {
             text: <p>
-                If current trends continue, <strong>the Amazon rainforest will become a net carbon emitter in 2035</strong>. That means it won’t be a carbon sink anymore, but will turn into a carbon source.
+                If current trends continue, <span className="bold">the remaining intact Amazon rainforest may become a net carbon emitter in 2035</span>. That means it  won’t be a carbon sink anymore, but will turn into a <span className="bold">carbon source</span>. This trend is dominated by the drier parts of the Amazon; wetter forests may remain sinks for much longer.
             </p>
         },
         showYearCounter: false,

@@ -12,10 +12,9 @@
     .main-container {
         position: relative;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        text-align: center;
-        width: 100%;
+        width: 100vw;
         z-index: 2;
 
         .globe {
@@ -37,86 +36,112 @@
             }
         }
 
-        h1 {
-            color: $white;
-            font-family: 'Barlow Condensed';
-        }
-        h5 {
-            margin: 0px 0px 100px 0px;
-            color: $grey;
-            font-family: 'Barlow Regular';
-        }
-        .highlighted-text {
-            padding-right: $space;
-            font-style: italic;
-            background-color: $grey;
-            color: $black;
-        }
-
-        &.-mobile {
-            h1 {
-                font-size: 36px;
-                line-height: 45px;
-                
-                &.first-header {
-                    margin-bottom: 0px;
-                }
-            }
-            h5 {
-                font-size: 14px;
-                margin: 10px 15px 50px 15px;
-            }
-        }
-
-        &:not(.-mobile) {
-            h1 {
-                font-size: 48px;
-
-                &.first-header {
-                    margin-bottom: 10px;
-                }
-            }
-            h5 {
-                font-size: 18px;
-                max-width: 50%;
-            }
-        }  
-
-        .topic-links {
+        .text-container {
             display: flex;
-            justify-content: space-around;
-            width: 100%;
-            max-width: 520px;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 50%;
+            max-width: 600px;
 
-            >a {
+            h1 {
                 color: $white;
-                border-bottom: solid 2px;
-                text-decoration: none;
-                font-family: 'Barlow Condensed';
-                font-size: 20px;
-                cursor: pointer;
+                
+                &.second-header {
+                    margin-bottom: 47px;
+                }
             }
-
-            .climate-link {
-                border-color: $climate;
+            h3 {
+                margin: 0px 0px 106px 0px;
+                color: $grey;
             }
-            .forests-link {
-                border-color: $forests;
+            .highlighted-text {
+                padding-right: $space;
+                font-style: italic;
+                background-color: $grey;
+                color: $black;
             }
-            .freshwater-link {
-                border-color: $freshwater;
+    
+            &.-mobile {
+                h1 {
+                    font-size: 36px;
+                    line-height: 45px;
+                    
+                    &.first-header {
+                        margin-bottom: 0px;
+                    }
+                }
+                h5 {
+                    font-size: 14px;
+                    margin: 10px 15px 50px 15px;
+                }
             }
-            .ocean-link {
-                border-color: $ocean;
-            }
-            .biodiversity-link {
-                color: $grey-darker;
-                border-color: $grey-darker;
-            }
-
-            .biodiversity-tooltip {
-                color: $white;
-                background-color: $black;
+    
+            &:not(.-mobile) {
+                h1 {
+                    &.first-header {
+                        margin-bottom: 10px;
+                    }
+                }
+                h5 {
+                    max-width: 50%;
+                }
+            }  
+    
+            .topic-links {
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+    
+                >a {
+                    position: relative;
+                    color: $white;
+                    text-decoration: none;
+                    font-family: 'Barlow Condensed';
+                    font-size: 20px;
+                    cursor: pointer;
+                    
+                    &:after {
+                        content: '';
+                        height: 2px;
+                        width: 100%;
+                        position: absolute;
+                        bottom: 1px;
+                        left: 0px;
+                    }
+                }
+    
+                .climate-link {
+                    &:after {
+                        background-color: $climate;
+                    }
+                }
+                .forests-link {
+                    &:after {
+                        background-color: $forests;
+                    }
+                }
+                .freshwater-link {
+                    &:after {
+                        background-color: $freshwater;
+                    }
+                }
+                .ocean-link {
+                    &:after {
+                        background-color: $ocean;
+                    }
+                }
+                .biodiversity-link {
+                    color: $grey-darker;
+                    &:after {
+                        background-color: $grey-darker;
+                    }
+                }
+    
+                .biodiversity-tooltip {
+                    color: $white;
+                    background-color: $black;
+                }
             }
         }
     }

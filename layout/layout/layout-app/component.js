@@ -22,7 +22,8 @@ function LayoutApp(props) {
     showHeaderLogo,
     showHeader,
     openHeaderMenu,
-    headerTabSelected
+    headerTabSelected,
+    themeColor
   } = props;
   const isServer = typeof window === 'undefined';
 
@@ -49,6 +50,7 @@ function LayoutApp(props) {
         description={description}
         explicitHostname={!isServer && window.location.href}
         {...thumbnail && { thumbnail }}
+        themeColor={themeColor}
       />
 
       {showHeader && 
@@ -82,16 +84,18 @@ LayoutApp.propTypes = {
   thumbnail: PropTypes.string,
   isFullScreen: PropTypes.bool.isRequired,
   updateIsLoading: PropTypes.func.isRequired,
-  explicitHostname: PropTypes.string
+  explicitHostname: PropTypes.string,
+  themeColor: PropTypes.string
 };
 
 LayoutApp.defaultProps = {
   title: null,
   description: null,
   className: null,
-  thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.png',
+  thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.jpg',
   showHeaderLogo: true,
-  showHeader: true
+  showHeader: true,
+  themeColor: '#1a2128'
 };
 
 export default LayoutApp;

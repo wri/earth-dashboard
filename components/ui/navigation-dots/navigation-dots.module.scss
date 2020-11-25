@@ -13,20 +13,20 @@
                 width: 10px;
                 height: 10px;
                 border-radius: 5px;
-                background-color: $grey;
                 margin-left: 8px;
                 cursor: pointer;
+                opacity: 0.5;
+
+                &.-selected {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 10px;
+                    opacity: 1;
+                }
             }
 
             a {
                 text-decoration: none;
-            }
-
-            &.-selected {
-                width: 20px;
-                height: 20px;
-                border-radius: 10px;
-                background-color: $grey-darker;
             }
 
             &.label {

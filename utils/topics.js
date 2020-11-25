@@ -2,22 +2,27 @@
 import {
     FORESTS_HEADLINE_SECTION_DATA,
     FORESTS_CHALLENGE_SECTION_DATA,
-    FORESTS_DIVE_INTO_THE_DATA_DATA
+    FORESTS_DIVE_INTO_THE_DATA_DATA,
+    FORESTS_METHODOLOGY_DATA
 } from 'layout/app/topic/data/forests/constants';
 import {
     FRESHWATER_HEADLINE_SECTION_DATA,
     FRESHWATER_CHALLENGE_SECTION_DATA,
-    FRESHWATER_DIVE_INTO_THE_DATA_DATA
+    FRESHWATER_DIVE_INTO_THE_DATA_DATA,
+    FRESHWATER_METHODOLOGY_DATA
 } from 'layout/app/topic/data/freshwater/constants';
 import {
     OCEAN_HEADLINE_SECTION_DATA,
     OCEAN_CHALLENGE_SECTION_DATA,
-    OCEAN_DIVE_INTO_THE_DATA_DATA
+    OCEAN_DIVE_INTO_THE_DATA_DATA,
+    OCEAN_METHODOLOGY_DATA
 } from 'layout/app/topic/data/ocean/constants';
+import { func } from 'prop-types';
 import { 
     CLIMATE_CHALLENGE_SECTION_DATA,
     CLIMATE_HEADLINE_SECTION_DATA,
-    CLIMATE_DIVE_INTO_THE_DATA_DATA
+    CLIMATE_DIVE_INTO_THE_DATA_DATA,
+    CLIMATE_METHODOLOGY_DATA
 } from '../layout/app/topic/data/climate/constants';
 
 // -------- TOPICS ----------
@@ -28,15 +33,19 @@ export const FORESTS = 'forests';
 
 // ------- TOPIC COLORS -------
 export const CLIMATE_COLOR = '#F35600';
+export const CLIMATE_DARK_COLOR = '#752900';
 export const CLIMATE_SECONDARY_COLOR = '#D85D44';
 
 export const FRESHWATER_COLOR = '#1F88FF';
+export const FRESHWATER_DARK_COLOR = '#003E85';
 export const FRESHWATER_SECONDARY_COLOR = '#11466E';
 
 export const OCEAN_COLOR = '#31A9BF';
+export const OCEAN_DARK_COLOR = '#174F59';
 export const OCEAN_SECONDARY_COLOR = '#31A9BF';
 
 export const FORESTS_COLOR = '#009A67';
+export const FORESTS_DARK_COLOR = '#004D33';
 export const FORESTS_SECONDARY_COLOR = '#004D33';
 
 export const MONGABAY_CLIMATE = 'climate';
@@ -44,16 +53,31 @@ export const MONGABAY_FRESHWATER = 'water';
 export const MONGABAY_OCEAN = 'ocean';
 export const MONGABAY_FORESTS = 'forests';
 
-export function getColorByTopic(topicSt) {
+export function getColorByTopic(topicSt, darkOption=false) {
     switch (topicSt) {
         case CLIMATE:
-            return CLIMATE_COLOR;
+            return darkOption ? CLIMATE_COLOR : CLIMATE_COLOR;
         case FRESHWATER:
-            return FRESHWATER_COLOR;
+            return darkOption ? FRESHWATER_COLOR : FRESHWATER_COLOR;
         case OCEAN:
-            return OCEAN_COLOR;
+            return darkOption ? OCEAN_COLOR : OCEAN_COLOR;
         case FORESTS:
-            return FORESTS_COLOR;
+            return darkOption ? FORESTS_COLOR : FORESTS_COLOR;
+    }
+}
+
+export function getNavigationDotsColorByTopic(topicSt) {
+    switch (topicSt) {
+        case CLIMATE:
+            return '#6E2517';
+        case FRESHWATER:
+            return '#11466E';
+        case OCEAN:
+            return '#174F59';
+        case FORESTS:
+            return '#004D33';
+        case 'default':
+            return '#7C90A2';
     }
 }
 
@@ -147,6 +171,21 @@ export function getDiveIntoTheDataDataByTopic(topic) {
             return CLIMATE_DIVE_INTO_THE_DATA_DATA;
         case OCEAN:
             return OCEAN_DIVE_INTO_THE_DATA_DATA;
+        default:
+            return null;
+    }
+}
+
+export function getMethodologyDataByTopic(topic) {
+    switch (topic) {
+        case FORESTS:
+            return FORESTS_METHODOLOGY_DATA;
+        case FRESHWATER:
+            return FRESHWATER_METHODOLOGY_DATA;
+        case CLIMATE:
+            return CLIMATE_METHODOLOGY_DATA;
+        case OCEAN:
+            return OCEAN_METHODOLOGY_DATA;
         default:
             return null;
     }

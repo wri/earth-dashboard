@@ -25,14 +25,22 @@ import Layout from 'layout/layout/layout-app';
 import TopicNews from './news';
 import Globe from '../home/globe';
 import ErrorBoundary from 'components/ui/error-boundary';
+import ShareModal from 'components/share/share-modal';
 
 // styles
 import styles from './topic.module.scss';
 import { useRouter } from 'next/router';
 
 function LayoutTopic(props) {
-  const { topic, topicData, widgets } = props;
+  const { topic, topicData, widgets, embed } = props;
   const [globeLoaded, setGlobeLoaded] = useState(false);
+  const [shareModalIsOpen, setShareModalIsOpen] = useState(false);
+  const [shareData, setSharedata] = useState({
+    url: '',
+    embedTag: '',
+    showEmbed: false
+  });
+  const isEmbed = embed === 'true';
   const router = useRouter();
   const dataArray = topicData[topic]?.topicPage?.data;
   const isServer = typeof window === 'undefined';
@@ -44,28 +52,33 @@ function LayoutTopic(props) {
       description={pageMetadata.description}
       thumbnail={pageMetadata.thumbnail}
       className={styles.topic}
+      showHeader={!isEmbed}
+      themeColor={getColorByTopic(topic)}
     >
       <MediaContextProvider>
         {/* ----- LEFT GLOBE ON DESKTOP VERSION -------- */}
-        <Desktop>
-          {!isServer &&
-            <div className={classnames({
-              [styles.globe]: true,
-              [styles['-loaded']]: globeLoaded
-            })}>
-              <Globe
-                width="100vh"
-                height="70vh"
-                options={{
-                  ambientLightColor: getColorByTopic(topic),
-                  ambientLightIntensity: 0.3
-                }}
-                onLoad={() => setGlobeLoaded(true)}
-              />
-            </div>
-          }
-        </Desktop>
+        {!isEmbed &&
+          <Desktop>
+            {!isServer &&
+              <div className={classnames({
+                [styles.globe]: true,
+                [styles['-loaded']]: globeLoaded
+              })}>
+                <Globe
+                  width="100vh"
+                  height="70vh"
+                  options={{
+                    ambientLightColor: getColorByTopic(topic),
+                    ambientLightIntensity: 0.7
+                  }}
+                  onLoad={() => setGlobeLoaded(true)}
+                />
+              </div>
+            }
+          </Desktop>
+        }
         {/* -------------------------------------------- */}
+
         <div className={classnames({
           'row': true,
           [styles['indicators-row']]: true
@@ -96,8 +109,20 @@ function LayoutTopic(props) {
                         [styles['-widget-indicator']]: true
                       })}
                       key={widgetObj?.id}
+                      id={widgetObj?.id}
                     >
                       <WidgetPreview widget={widgetObj} showSource={true} />
+                      <button
+                        className={styles['share-button']}
+                        onClick={() => {
+                          setSharedata({
+                            url: `${window.location.href.split('#')[0]}#${widgetObj?.id}`,
+                            embedTag: null,
+                            showEmbed: false
+                          })
+                          setShareModalIsOpen(true);
+                        }}
+                      />
                     </div>
                   );
                 } else if (type === 'topic-news') {
@@ -117,78 +142,92 @@ function LayoutTopic(props) {
           </div>
         </div>
         {/* RIGHT SIDE LINK TO STORY TELLING PAGE */}
-        <Desktop>
-          <div
-            className={classnames({
-              [styles['right-link']]: true,
-              [styles['-desktop']]: true
-            })}
-            onClick={() => router.push(`/${topic}/data`)}
-            style={{ backgroundColor: getColorByTopic(topic) }}
-          >
-            <a>EXPLORE<br />{topic && topic.toUpperCase()}</a>
-            <img src="/static/images/arrow-right.svg" />
-          </div>
-        </Desktop>
-        <Mobile>
-          <div
-            className={classnames({
-              [styles['right-link']]: true,
-              [styles['-mobile']]: true
-            })}
-            onClick={() => router.push(`/${topic}/data`)}
-            style={{ backgroundColor: getColorByTopic(topic) }}
-          >
-            <a>EXPLORE{topic && topic.toUpperCase()}</a>
-            <img src="/static/images/arrow-right.svg" />
-          </div>
-        </Mobile>
+        {!isEmbed &&
+          <>
+            <Desktop>
+              <div
+                className={classnames({
+                  [styles['right-link']]: true,
+                  [styles['-desktop']]: true,
+                  [styles[`-${topic}`]]: true
+                })}
+                onClick={() => router.push(`/${topic}/data`)}
+              >
+                <a>EXPLORE<br />{topic && topic.toUpperCase()}</a>
+                <div className={styles['arrow-container']}>
+                  <img className={styles.arrow} src="/static/images/arrow-right.svg" />
+                </div>
+              </div>
+            </Desktop>
+            <Mobile>
+              <div
+                className={classnames({
+                  [styles['right-link']]: true,
+                  [styles['-mobile']]: true,
+                  [styles[`-${topic}`]]: true
+                })}
+                onClick={() => router.push(`/${topic}/data`)}
+              >
+                <a>EXPLORE {topic && topic.toUpperCase()}</a>
+                <img src="/static/images/arrow-right.svg" />
+              </div>
+            </Mobile>
 
-        {/* LEFT MENU */}
-        <Desktop>
-          <div
-            className={styles['left-menu']}
-          >
-            <Link href="/climate">
-              <a className={classnames({
-                [styles['climate-link']]: topic === CLIMATE,
-                [styles['selected-link']]: topic === CLIMATE
-              })}>
-                CLIMATE
-          </a>
-            </Link>
-            <Link href="/forests">
-              <a className={classnames({
-                [styles['forests-link']]: topic === FORESTS,
-                [styles['selected-link']]: topic === FORESTS
-              })}>
-                FORESTS
-          </a>
-            </Link>
-            <Link href="/freshwater">
-              <a className={classnames({
-                [styles['freshwater-link']]: topic === FRESHWATER,
-                [styles['selected-link']]: topic === FRESHWATER
-              })}>
-                FRESHWATER
-          </a>
-            </Link>
-            <Link href="/ocean">
-              <a className={classnames({
-                [styles['ocean-link']]: topic === OCEAN,
-                [styles['selected-link']]: topic === OCEAN
-              })}>
-                OCEAN
-          </a>
-            </Link>
-          </div>
-        </Desktop>
+            {/* LEFT MENU */}
+            <Desktop>
+              <div
+                className={styles['left-menu']}
+              >
+                <Link href="/climate">
+                  <a className={classnames({
+                    [styles['climate-link']]: topic === CLIMATE,
+                    [styles['selected-link']]: topic === CLIMATE
+                  })}>
+                    CLIMATE
+                  </a>
+                </Link>
+                <Link href="/forests">
+                  <a className={classnames({
+                    [styles['forests-link']]: topic === FORESTS,
+                    [styles['selected-link']]: topic === FORESTS
+                  })}>
+                    FORESTS
+                  </a>
+                </Link>
+                <Link href="/freshwater">
+                  <a className={classnames({
+                    [styles['freshwater-link']]: topic === FRESHWATER,
+                    [styles['selected-link']]: topic === FRESHWATER
+                  })}>
+                    FRESHWATER
+                  </a>
+                </Link>
+                <Link href="/ocean">
+                  <a className={classnames({
+                    [styles['ocean-link']]: topic === OCEAN,
+                    [styles['selected-link']]: topic === OCEAN
+                  })}>
+                    OCEAN
+                  </a>
+                </Link>
+              </div>
+            </Desktop>
+          </>
+        }
+        <ShareModal
+          topic={topic}
+          url={shareData.url}
+          embedTag={shareData.embedTag}
+          onClose={() => setShareModalIsOpen(false)}
+          isOpen={shareModalIsOpen}
+          showEmbed={shareData.showEmbed}
+        />
       </MediaContextProvider>
       <Particles
         className={styles.particles}
         params={PARTICLES_DEFINITION}
       />
-    </Layout>
+    </Layout >
   );
 }
 
