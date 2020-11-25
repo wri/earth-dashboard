@@ -127,31 +127,31 @@
             "data": [
                 {
                     "id": "37fffec7-df6b-407f-8c1b-a2c53c5fad7c",
-                    "widgetsPerColumn": 3
+                    "widgetsPerColumn": 2
                 },
                 {
                     "id": "13850e42-8391-412b-bb09-17750b8a00f0",
-                    "widgetsPerColumn": 3
+                    "widgetsPerColumn": 2
                 },
                 {
                     "id": "e1333165-ba2c-4d14-8678-2c18feeefd4c",
-                    "widgetsPerColumn": 3
+                    "widgetsPerColumn": 2
                 },
                 {
                     "id": "fa32cab6-6edb-48eb-9c95-972293d85ea7",
-                    "widgetsPerColumn": 3
+                    "widgetsPerColumn": 2
                 },
                 {
                     "id": "08930633-b94b-4983-9cd3-6e46ce1e8ad4",
-                    "widgetsPerColumn": 3
+                    "widgetsPerColumn": 2
                 },
                 {
                     "id": "3d9a223b-51f9-4e80-b110-5426cfabf452",
-                    "widgetsPerColumn": 3
+                    "widgetsPerColumn": 2
                 },
                 {
                     "id": "629e8e4d-e517-45c2-8b9b-26fbcca4fccf",
-                    "widgetsPerColumn": 1
+                    "widgetsPerColumn": 2
                 }
             ]
         }
@@ -197,7 +197,7 @@
                     "widgetsPerColumn": 2
                 },
                 {
-                    "id": "3dac9a26-f9e2-4d81-84e3-ba8de988b201",
+                    "id": "826e24ed-ec3f-4257-8fef-f75f5d224aee",
                     "widgetsPerColumn": 2
                 }
             ]
