@@ -99,14 +99,13 @@ function LayoutTopicData(props) {
         >
           <img src="/static/images/logo-light.svg" />
         </div>
-        {showShareButton &&
-          <button className={classnames({
-            [styles['share-button']]: true,
-            [styles[`-${topic}`]]: true
-          })}>
-            Share
-          </button>
-        }
+        <button className={classnames({
+          [styles['share-button']]: true,
+          [styles[`-${topic}`]]: true,
+          [styles['-hidden']]: !showShareButton
+        })}>
+          Share
+        </button>
         {!isEmbed &&
           <>
             <MediaContextProvider>
