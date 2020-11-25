@@ -141,14 +141,10 @@ export const OCEAN_STEPS = [
             text:
                 <div>
                     <p>
-                        However, recent studies from 2020 have shown
-                        that <strong>with proper management, fisheries can rebound</strong>.
+                        However, recent studies from 2020 have shown that, <a className="external-link -ocean" href="https://www.pnas.org/content/117/4/2218" target="_blank"><strong>regulated properly, fisheries can rebound</strong></a>.
                     </p>
                     <p>
-                        With intensive management, fisheries have recovered, and fish are twice as abundant
-                        fish stocks as they are with no management and research suggests the emerging
-                        science of mariculture (ocean aquaculture) could help deliver over 6 times more food
-                        than the ocean provides us today.
+                        With intensive management, fisheries have recovered, and fish are twice as abundant as they are where they are not managed.
                     </p>
                 </div>
         },
@@ -181,17 +177,14 @@ export const OCEAN_STEPS = [
             text:
                 <div>
                     <h6 className="subheader">Islands of plastic</h6>
-                    <h6 className="ocean">PLASTIC POLLUTION</h6>
+                    <h6 className="ocean">Plastic Pollution</h6>
                     <p>
-                        <strong>A garbage truck's worth of plastic enters the ocean every minute</strong>, harming
-                        marine life with unknown consequences. Even though plastic comes from rivers it floats
-                        throughout the ocean, swirling with the currents into islands of plastic as large
-                        as millions of km across.
+                        <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank"><strong>A garbage truck's worth of plastic enters the ocean every minute</strong></a>. Carried out to sea by rivers, it 
+                        floats throughout them, swirling with the currents into islands of plastic, some up to 
+                        millions of kilometers in diameter.
                     </p>
                     <p>
-                        If this continues, <strong>by 2025 there could be one ton of plastic in the ocean for every three tons of fish</strong>.
-                        Plastic bags fishing nets, and other debris choke, strangle and poison, seabirds,
-                        sea turtles and fish. Micro-plastic particles they ingest also pose a threat to humans.
+                        The largest, <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank"><strong>the Pacific Garbage Patch is three times the size of France</strong></a>.
                     </p>
                     <p className="text-card-source">
                         Photo by Muntaka Chasant on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
@@ -257,9 +250,8 @@ export const OCEAN_STEPS = [
         textPanel: {
             text:
                 <p>
-                    <strong>The Great Pacific Garbage Patch</strong> is a collection of marine debris
-                     in the North Pacific Ocean. It is <strong>three times the size of France</strong>. Also
-                     known as the Pacific trash vortex, the garbage patch is actually two distinct collections of
+                    The <a className="external-link -ocean" href="https://www.nationalgeographic.org/encyclopedia/great-pacific-garbage-patch/" target="_blank"><strong>Great Pacific Garbage Patch</strong></a> is a collection of marine debris in the North Pacific Ocean. Also 
+                    known as the Pacific trash vortex, the garbage patch is actually two distinct collections of
                      debris bounded by the massive North Pacific Subtropical Gyre.
                 </p>
         },
@@ -280,18 +272,16 @@ export const OCEAN_STEPS = [
             text:
                 <div>
                     <h6 className="subheader">Ocean Industries</h6>
-                    <h6 className="ocean">BENEFITS OF SUSTAINABLE INTERVENTIONS</h6>
+                    <h6 className="ocean">Benefits of Sustainable Interventions</h6>
                     <p>
-                        Governments, companies and citizens must act with urgency to protect our planet’s ocean.
+                        Governments, companies and citizens must act with urgency to protect our planet’s oceans.
+                         Investing sustainably can preserve biodiversity critical ecosystems and build the ocean-based
+                          industries needed to provide jobs, energy, and food for a growing population. 
+                          Such investments would be enormously cost-effective: <strong>on average, the benefits would be five times greater than the costs</strong>. 
                     </p>
                     <p>
-                        Investing sustainably can preserve biodiversity critical ecosystems and build ocean-based
-                        industries needed to provide jobs, energy, and food for a growing population.
-                    </p>
-                    <p>
-                        Such investments would be enormously cost-effective: on average, the benefits would be
-                        five times greater than the costs. As shown here, benefit/cost ratios would vary,
-                        ranging from 3-to-1 to more than 12-to-1.
+                        This chart provides a summary of benefit-cost ratios for <a className="external-link -ocean" href="https://oceanpanel.org/sites/default/files/2020-07/Ocean%20Panel_Economic%20Analysis_FINAL.pdf" target="_blank"><strong>four action areas over a 30-year horizon</strong></a>. 
+                        The benefit-cost ratios would vary, ranging from 3-to-1 to more than 12-to-1. 
                     </p>
                     <p className="text-card-source">
                         Photo by Nicholas Doherty on Unsplash
