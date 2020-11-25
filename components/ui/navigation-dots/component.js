@@ -7,7 +7,7 @@ import classnames from 'classnames';
 import styles from './navigation-dots.module.scss';
 
 function NavigationDots(props) {
-    const { items, route, selectedItemID } = props;
+    const { items, route, selectedItemID, color, selectedColor } = props;
     const [selectedItem, setSelectedItem] = useState(items.find(item => item.id === selectedItemID));
 
     useEffect(() => {
@@ -22,25 +22,35 @@ function NavigationDots(props) {
     return (
         <nav className={styles['c-navigation-dots']}>
             <ul className={styles.dots}>
-                {items.map(item => (
-                    <Link 
-                        key={`link-${item.id}`}
-                        href={`${route}#${item.id}`}
-                    >
-                        <li
-                            key={`link-li-${item.id}`}
-                            className={classnames({
-                                [styles.dot]: true,
-                                [styles['-selected']]: selectedItem?.id === item.id
-                            })}
-                            onClick={() => setSelectedItem(item)}
+                {items.map(item => {
+                    const isSelected = selectedItem?.id === item.id;
+                    return (
+                        <Link
+                            key={`link-${item.id}`}
+                            href={`${route}#${item.id}`}
                         >
-                            <a />
-                        </li>
-                    </Link>
-                ))}
+                            <li
+                                key={`link-li-${item.id}`}
+                                className={classnames({
+                                    [styles.dot]: true,
+                                    [styles['-selected']]: isSelected
+                                })}
+                                onClick={() => setSelectedItem(item)}
+                                {...(isSelected && color && { style: { backgroundColor: color }})}
+                                {...(!isSelected && color && { style: { backgroundColor: color }})}
+                            >
+                                <a />
+                            </li>
+                        </Link>
+                    );
+                })}
                 <li className={styles.label}>
-                    <span className={styles['label-text']}>{selectedItem?.label}</span>
+                    <span 
+                        className={styles['label-text']}
+                        {...(color && { style: { color }})}
+                    >
+                        {selectedItem?.label}
+                    </span>
                 </li>
             </ul>
         </nav>
@@ -49,7 +59,12 @@ function NavigationDots(props) {
 
 NavigationDots.propTypes = {
     items: PropTypes.array.isRequired,
-    selectedItemID: PropTypes.string
+    selectedItemID: PropTypes.string,
+    color: PropTypes.string
 };
+
+NavigationDots.defaultProps = {
+    color: '#7C90A2'
+}
 
 export default NavigationDots;

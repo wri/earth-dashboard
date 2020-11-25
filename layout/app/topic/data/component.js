@@ -30,7 +30,8 @@ import {
   CLIMATE,
   FORESTS,
   FRESHWATER,
-  OCEAN
+  OCEAN,
+  getNavigationDotsColorByTopic
 } from 'utils/topics';
 import { getPageMetadataByTopic } from 'utils/share';
 
@@ -38,13 +39,17 @@ function LayoutTopicData(props) {
   const { topic, topicData, widgets, embed, embeddedSection } = props;
   const router = useRouter();
   const DEFAULT_IN_VIEW_THRESHOLD = 0.3;
+  const { ref: headlineRef, inView: headlineInView } = useInView({ threshold: 0.5 });
   const { ref: scrollyTellingRef, inView: scrollyTellingInView } = useInView({ threshold: 0.1 });
-  const { ref: changeAgentsRef, inView: changeAgentsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
+  const { ref: changeAgentsRef, inView: changeAgentsInView } = useInView({ threshold: 0.8 });
   const { ref: challengeRef, inView: challengeInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: creditsRef, inView: creditsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const pageMetadata = getPageMetadataByTopic(topic) || {};
   const isEmbed = embed === 'true';
+  const navigationDotsColor = (headlineInView || changeAgentsInView) ? 
+    getNavigationDotsColorByTopic(topic) :
+    getNavigationDotsColorByTopic('default'); 
 
   const getSectionInView = () => {
     if (scrollyTellingInView) {
@@ -101,12 +106,15 @@ function LayoutTopicData(props) {
                     items={NAVIGATION_ITEMS}
                     route={`/${topic}/data`}
                     selectedItemID={getSectionInView()}
+                    color={navigationDotsColor}
                   />
                 </div>
               </Desktop>
             </MediaContextProvider>
             <div
-              className={styles['headline-section']}>
+              className={styles['headline-section']}
+              ref={headlineRef}
+            >
               <HeadlineSection topic={topic} />
             </div>
           </>
