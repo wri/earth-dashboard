@@ -10,7 +10,7 @@ export const FORESTS_STEPS = [
             text: <>
                 <h6 className="forests">The Amazon Rainforest</h6>
                 <p>
-                    The Amazon rainforest covers <a className="external-link -forests" href="https://www.nature.com/articles/d41586-020-00508-4" target="_blank"><strong>597 Mha across nine countries and harbors 16,000 tree species</strong></a>.
+                    The Amazon rainforest covers <a className="external-link -forests" href="https://www.nature.com/articles/d41586-020-00508-4" target="_blank"><span className="bold">597 Mha across nine countries and harbors 16,000 tree species</span></a>.
                 </p>
             </>
         },
@@ -27,7 +27,7 @@ export const FORESTS_STEPS = [
         index: 1,
         textPanel: {
             text: <p>
-                The tiny trees here represent the estimated <strong>514 million hectares of tree cover present in the Amazon in the year 2000</strong>. That is an area the size of 12.5 Californias.
+                The tiny trees here represent the estimated <span className="bold">514 million hectares of tree cover present in the Amazon in the year 2000</span>. That is an area the size of 12.5 Californias.
             </p>
         },
         showYearCounter: true,
@@ -45,7 +45,7 @@ export const FORESTS_STEPS = [
         index: 2,
         textPanel: {
             text: <p>
-                Each tree represents <strong>an area the size of Switzerland</strong> (4.2 million hectares of tree cover).
+                Each tree represents <span className="bold">an area the size of Switzerland</span> (4.2 million hectares of tree cover).
             </p>
         },
         showYearCounter: true,
@@ -60,7 +60,7 @@ export const FORESTS_STEPS = [
         index: 3,
         textPanel: {
             text: <p>
-                    Let’s fast forward to 2019. The saws represent <strong>how much of that tree cover has been lost</strong>. In these 19 years, <strong>the Amazon has lost an area equivalent to the size of 9 Switzerlands</strong>.
+                    Let’s fast forward to 2019. The saws represent <span className="bold">how much of that tree cover has been lost</span>. In these 19 years, <span className="bold">the Amazon has lost an area equivalent to the size of 9 Switzerlands</span>.
                 </p>
         },
         showYearCounter: true,
@@ -98,7 +98,7 @@ export const FORESTS_STEPS = [
         index: 5,
         textPanel: {
             text: <p>
-                If current trends continue, <strong>the remaining intact Amazon rainforest may become a net carbon emitter in 2035</strong>. That means it  won’t be a carbon sink anymore, but will turn into a <strong>carbon source</strong>. This trend is dominated by the drier parts of the Amazon; wetter forests may remain sinks for much longer.
+                If current trends continue, <span className="bold">the remaining intact Amazon rainforest may become a net carbon emitter in 2035</span>. That means it  won’t be a carbon sink anymore, but will turn into a <span className="bold">carbon source</span>. This trend is dominated by the drier parts of the Amazon; wetter forests may remain sinks for much longer.
             </p>
         },
         showYearCounter: false,

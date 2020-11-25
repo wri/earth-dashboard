@@ -17,9 +17,7 @@
     }
 
     h6 {
-        margin: 0px 0px $space 0px;
-        font-size: 16px;
-        font-family: 'Barlow Condensed';
+        margin: 0px 0px 26px 0px;
 
         &:not(.subheader) {
             text-transform: uppercase;
@@ -28,8 +26,6 @@
 
     .subheader {
         color: $climate;
-        font-size: 16px;
-        font-family: 'Barlow Condensed';
     }
 
     .text-card-source {

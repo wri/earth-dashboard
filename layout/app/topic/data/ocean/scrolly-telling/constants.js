@@ -60,10 +60,10 @@ export const OCEAN_STEPS = [
                     <h6 className="subheader">Threats to the Ocean</h6>
                     <h6 className="ocean">Coral Bleaching and Acidification</h6>
                     <p>
-                        <strong>Tipping points are approaching for coral reefs</strong> threatened by ocean acidification and warmer water
+                        <span className="bold">Tipping points are approaching for coral reefs</span> threatened by ocean acidification and warmer water
                          caused by climate change.  Rising temperatures bleach the coral killing the algae that keep
-                         it alive. At the same time <strong>the ocean’s chemistry is changing faster than at any time in the last
-                          50 million years</strong>. Excess carbon dioxide absorbed by ocean water is lowering its pH and locking
+                         it alive. At the same time <span className="bold">the ocean’s chemistry is changing faster than at any time in the last
+                          50 million years</span>. Excess carbon dioxide absorbed by ocean water is lowering its pH and locking
                          up the carbonate ions sea creatures need to extract to build shells and reefs.
                     </p>
                     <p className="text-card-source">
@@ -84,7 +84,7 @@ export const OCEAN_STEPS = [
                     <h6 className="subheader">Threats to the Ocean</h6>
                     <h6 className="ocean">Projected Coral Death</h6>
                     <p>
-                        <strong>About 70-90% of all existing coral reefs are expected to disappear in the next 20 years</strong> due to
+                        <span className="bold">About 70-90% of all existing coral reefs are expected to disappear in the next 20 years</span> due to
                         warming oceans, more acidic water and pollution.
                     </p>
                 </div>
@@ -102,7 +102,7 @@ export const OCEAN_STEPS = [
                     <h6 className="ocean">Increase in Food Demand from the Ocean</h6>
                     <p>
                         Between 1970 and 2012, populations of fish and other marine vertebrates such as mammals, reptiles
-                        and birds <a className="external-link -ocean" href="http://ocean.panda.org.s3.amazonaws.com/media/Living_Blue_Planet_Report_2015_08_31.pdf" target="_blank">fell by half</a> (Source: Living Blue Planet Report). <strong>Overfishing is a key reason</strong>.
+                        and birds <a className="external-link -ocean" href="http://ocean.panda.org.s3.amazonaws.com/media/Living_Blue_Planet_Report_2015_08_31.pdf" target="_blank">fell by half</a> (Source: Living Blue Planet Report). <span className="bold">Overfishing is a key reason</span>.
                     </p>
                     <p>
                         In 1974, only one in ten UN-monitored fish stocks were harvested beyond sustainable levels. Today more
@@ -124,7 +124,7 @@ export const OCEAN_STEPS = [
             text:
                 <div>
                     <p>
-                        <a className="external-link -ocean" href="https://news.mongabay.com/2019/10/commitments-worth-63-billion-pledged-for-ocean-protection/" target="_blank"><strong>Illegal or unregulated fishing is rampant</strong></a>, and traps up to 26 million tons of fish a year, or
+                        <a className="external-link -ocean" href="https://news.mongabay.com/2019/10/commitments-worth-63-billion-pledged-for-ocean-protection/" target="_blank"><span className="bold">Illegal or unregulated fishing is rampant</span></a>, and traps up to 26 million tons of fish a year, or
                         up to a third of high-value fish taken.
                     </p>
                     <p>
@@ -141,7 +141,7 @@ export const OCEAN_STEPS = [
             text:
                 <div>
                     <p>
-                        However, recent studies from 2020 have shown that, <a className="external-link -ocean" href="https://www.pnas.org/content/117/4/2218" target="_blank"><strong>regulated properly, fisheries can rebound</strong></a>.
+                        However, recent studies from 2020 have shown that, <a className="external-link -ocean" href="https://www.pnas.org/content/117/4/2218" target="_blank"><span className="bold">regulated properly, fisheries can rebound</span></a>.
                     </p>
                     <p>
                         With intensive management, fisheries have recovered, and fish are twice as abundant as they are where they are not managed.
@@ -179,12 +179,12 @@ export const OCEAN_STEPS = [
                     <h6 className="subheader">Islands of plastic</h6>
                     <h6 className="ocean">Plastic Pollution</h6>
                     <p>
-                        <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank"><strong>A garbage truck's worth of plastic enters the ocean every minute</strong></a>. Carried out to sea by rivers, it 
+                        <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank"><span className="bold">A garbage truck's worth of plastic enters the ocean every minute</span></a>. Carried out to sea by rivers, it 
                         floats throughout them, swirling with the currents into islands of plastic, some up to 
                         millions of kilometers in diameter.
                     </p>
                     <p>
-                        The largest, <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank"><strong>the Pacific Garbage Patch is three times the size of France</strong></a>.
+                        The largest, <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank"><span className="bold">the Pacific Garbage Patch is three times the size of France</span></a>.
                     </p>
                     <p className="text-card-source">
                         Photo by Muntaka Chasant on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
@@ -250,7 +250,7 @@ export const OCEAN_STEPS = [
         textPanel: {
             text:
                 <p>
-                    The <a className="external-link -ocean" href="https://www.nationalgeographic.org/encyclopedia/great-pacific-garbage-patch/" target="_blank"><strong>Great Pacific Garbage Patch</strong></a> is a collection of marine debris in the North Pacific Ocean. Also 
+                    The <a className="external-link -ocean" href="https://www.nationalgeographic.org/encyclopedia/great-pacific-garbage-patch/" target="_blank"><span className="bold">Great Pacific Garbage Patch</span></a> is a collection of marine debris in the North Pacific Ocean. Also 
                     known as the Pacific trash vortex, the garbage patch is actually two distinct collections of
                      debris bounded by the massive North Pacific Subtropical Gyre.
                 </p>
@@ -277,10 +277,10 @@ export const OCEAN_STEPS = [
                         Governments, companies and citizens must act with urgency to protect our planet’s oceans.
                          Investing sustainably can preserve biodiversity critical ecosystems and build the ocean-based
                           industries needed to provide jobs, energy, and food for a growing population. 
-                          Such investments would be enormously cost-effective: <strong>on average, the benefits would be five times greater than the costs</strong>. 
+                          Such investments would be enormously cost-effective: <span className="bold">on average, the benefits would be five times greater than the costs</span>. 
                     </p>
                     <p>
-                        This chart provides a summary of benefit-cost ratios for <a className="external-link -ocean" href="https://oceanpanel.org/sites/default/files/2020-07/Ocean%20Panel_Economic%20Analysis_FINAL.pdf" target="_blank"><strong>four action areas over a 30-year horizon</strong></a>. 
+                        This chart provides a summary of benefit-cost ratios for <a className="external-link -ocean" href="https://oceanpanel.org/sites/default/files/2020-07/Ocean%20Panel_Economic%20Analysis_FINAL.pdf" target="_blank"><span className="bold">four action areas over a 30-year horizon</span></a>. 
                         The benefit-cost ratios would vary, ranging from 3-to-1 to more than 12-to-1. 
                     </p>
                     <p className="text-card-source">

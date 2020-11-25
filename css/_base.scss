@@ -51,7 +51,6 @@ button {
   background: none;
   border: none;
   outline: none;
-  font-family: 'Barlow';
   border-radius: 4px;
   cursor: pointer;
 
@@ -91,12 +90,12 @@ button {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   color: $header-font-color;
+  font-family: 'Barlow Condensed';
 }
 
 h1 {
   font-size: $font-size-h1;
   line-height: $line-height-h1;
-  font-family: 'Barlow Condensed';
   font-weight: 400;
 }
 h2 {
@@ -276,4 +275,8 @@ input, button, select, textarea {
 
 .__react_component_tooltip.place-bottom::after {
   border-bottom: 8px solid #1a2128 !important;
+}
+
+.bold {
+  font-weight: 500;
 }

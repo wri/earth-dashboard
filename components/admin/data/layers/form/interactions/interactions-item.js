@@ -54,7 +54,7 @@ const InteractionsItem = (props) => {
     >
       <InteractionsHandler />
 
-      {custom && <p className="c-interactions__warning"><strong>Custom interaction</strong> Make sure the data matches the format you want. Otherwise it wont display correctly.</p>}
+      {custom && <p className="c-interactions__warning"><span className="bold">Custom interaction</span> Make sure the data matches the format you want. Otherwise it wont display correctly.</p>}
 
       {['Field', 'Label', 'Prefix', 'Suffix'].map((label) => {
       const validations = label === 'Label' ? ['required'] : [];
