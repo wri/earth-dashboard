@@ -44,9 +44,8 @@ export const CLIMATE_CHALLENGE_SECTION_DATA = {
 }
 
 export const CLIMATE_METHODOLOGY_DATA = <p>
-    Data for historical temperature anomalies and future projections are taken from Figure 12.5 of 
-    <a className="external-link -climate" href="https://www.ipcc.ch/site/assets/uploads/2018/02/WG1AR5_Chapter12_FINAL.pdf" target="_blank">IPCC report AR5 Climate Change 2013</a>. The original baseline of the figure (1986- 2005) was modified
-     to account for pre-industrial warming (since 1850-1900) by adding 0.65ºC to all values, following 
-     <a className="external-link -climate" href="https://pdfs.semanticscholar.org/3024/6fe51fca5cd4f25eb56999b9dbe163e53014.pdf?_ga=2.229101076.980227755.1605691335-447938515.1605691335" target="_blank">Schurer et al. (2017)</a>. The climate scenario shown is RCP 6.0 where the solid line represents the
+    Data for historical temperature anomalies and future projections are taken from Figure 12.5 of <a className="external-link -climate" href="https://www.ipcc.ch/site/assets/uploads/2018/02/WG1AR5_Chapter12_FINAL.pdf" target="_blank">IPCC report AR5 Climate Change 2013</a>. The 
+    original baseline of the figure (1986- 2005) was modified to account for pre-industrial warming
+     (since 1850-1900) by adding 0.65ºC to all values, following <a className="external-link -climate" href="https://pdfs.semanticscholar.org/3024/6fe51fca5cd4f25eb56999b9dbe163e53014.pdf?_ga=2.229101076.980227755.1605691335-447938515.1605691335" target="_blank">Schurer et al. (2017)</a>. The climate scenario shown is RCP 6.0 where the solid line represents the
       multi-model mean and the shadowed areas represent the 5 to 95% range (±1.64 standard deviation).
 </p>;

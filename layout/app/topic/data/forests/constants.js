@@ -45,8 +45,8 @@ export const FORESTS_DIVE_INTO_THE_DATA_DATA = {
 export const FORESTS_METHODOLOGY_DATA = <p>
     The map of the Amazon was created using <a className="external-link -forests" href="https://data.apps.fao.org/aquamaps/" target="_blank">FAO Aquamaps</a> Major 
     Hydrological Basins dataset. Visualizations of tree cover loss and associated drivers drew on global 
-    tree cover data from <a className="external-link -forests" href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7#citations" target="_blank">Hansen et al</a>. and 
-    <a className="external-link -forests" href="https://glad.umd.edu/dataset/global-2010-tree-cover-30-m" target="_blank">University of Maryland GLAD</a> laboratory. 
+    tree cover data from <a className="external-link -forests" href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7#citations" target="_blank">Hansen et al</a>. 
+    and <a className="external-link -forests" href="https://glad.umd.edu/dataset/global-2010-tree-cover-30-m" target="_blank">University of Maryland GLAD</a> laboratory. 
     The Amazon carbon sink to source line chart was inspired by Figure 3 of <a className="external-link -forests" href="https://www.nature.com/articles/s41586-020-2035-0" target="_blank">Hubau et al (2019)</a> with 
     certain modifications made to the aesthetic to allow for wider interpretability. 
 </p>;
