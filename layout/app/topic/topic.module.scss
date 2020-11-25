@@ -104,7 +104,10 @@
         flex-direction: column;
         cursor: pointer;
         z-index: 2; // because of particles
-        animation: shrink-width 0.2s forwards;
+
+        &.-desktop {
+            animation: shrink-width 0.2s forwards;
+        }
 
         &.-forests {
             background-color: $forests;
@@ -142,19 +145,21 @@
             top: unset;
             bottom: 0px;
             height: 60px;
-            width: 100%;
+            min-width: 100%;
             flex-direction: row;
             justify-content: flex-end;
             align-items: center;
             padding: 16px;
 
             a {
-                margin: 0px 3 * $space 0px 0px;
+                margin: 0px 16px 0px 0px;
             }
         }
 
         &:hover {
-            animation: grow-width 0.2s forwards;
+            &.-desktop {
+                animation: grow-width 0.2s forwards;
+            }
 
             .arrow {
                 animation: bounce 2s ease infinite, fade-in 2s infinite;
