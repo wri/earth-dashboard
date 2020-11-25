@@ -13,15 +13,12 @@
         z-index: 10;
         animation: fade-in 1s forwards;
 
-        &:hover {
-            color: $white;
-        }
-
         &.-forests {
             color: $forests;
             border-color: $forests;
             &:hover {
                 background-color: $forests;
+                color: $white;
             }
         }
         &.-climate {
@@ -29,6 +26,7 @@
             border-color: $climate;
             &:hover {
                 background-color: $climate;
+                color: $white;
             }
         }
         &.-ocean {
@@ -36,12 +34,14 @@
             border-color: $ocean;
             &:hover {
                 background-color: $ocean;
+                color: $white;
             }
         }
         &.-freshwater {
             border-color: $freshwater;
             &:hover {
                 background-color: $freshwater;
+                color: $white;
             }
         }
 
