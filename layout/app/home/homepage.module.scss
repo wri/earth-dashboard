@@ -39,9 +39,13 @@
 
         h1 {
             color: $white;
+            
+            &.second-header {
+                margin-bottom: 47px;
+            }
         }
         h3 {
-            margin: 0px 0px 100px 0px;
+            margin: 0px 0px 106px 0px;
             color: $grey;
         }
         .highlighted-text {

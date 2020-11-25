@@ -99,7 +99,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
           >
             {!isServer && getGlobe(false)}
             <h1 className={styles['first-header']}>The Science is in. This is not a drill.</h1>
-            <h1>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</h1>
+            <h1 className={styles['second-header']}>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</h1>
             {getSubtitle()}
             {getTopicLinks()}
           </div>
