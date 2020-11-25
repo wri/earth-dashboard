@@ -73,7 +73,7 @@ export function getNavigationDotsColorByTopic(topicSt) {
         case FRESHWATER:
             return '#11466E';
         case OCEAN:
-            return '#611940';
+            return '#174F59';
         case FORESTS:
             return '#004D33';
         case 'default':

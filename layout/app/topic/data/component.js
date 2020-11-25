@@ -39,7 +39,7 @@ function LayoutTopicData(props) {
   const { topic, topicData, widgets, embed, embeddedSection } = props;
   const router = useRouter();
   const DEFAULT_IN_VIEW_THRESHOLD = 0.3;
-  const { ref: headlineRef, inView: headlineInView } = useInView({ threshold: 0.5 });
+  const { ref: headlineRef, inView: headlineInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: scrollyTellingRef, inView: scrollyTellingInView } = useInView({ threshold: 0.1 });
   const { ref: changeAgentsRef, inView: changeAgentsInView } = useInView({ threshold: 0.8 });
   const { ref: challengeRef, inView: challengeInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
