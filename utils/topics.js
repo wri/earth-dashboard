@@ -66,6 +66,21 @@ export function getColorByTopic(topicSt, darkOption=false) {
     }
 }
 
+export function getNavigationDotsColorByTopic(topicSt) {
+    switch (topicSt) {
+        case CLIMATE:
+            return '#6E2517';
+        case FRESHWATER:
+            return '#11466E';
+        case OCEAN:
+            return '#174F59';
+        case FORESTS:
+            return '#004D33';
+        case 'default':
+            return '#7C90A2';
+    }
+}
+
 const SHARE_ICONS_COMMON_PATH = '/static/images/share';
 
 export function getEmailIconPerTopic(topicSt) {

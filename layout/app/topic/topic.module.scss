@@ -104,7 +104,7 @@
         flex-direction: column;
         cursor: pointer;
         z-index: 2; // because of particles
-        animation: shrink-width 1s forwards;
+        animation: shrink-width 0.2s forwards;
 
         &.-forests {
             background-color: $forests;
@@ -154,7 +154,7 @@
         }
 
         &:hover {
-            animation: grow-width 1s forwards;
+            animation: grow-width 0.2s forwards;
 
             .arrow {
                 animation: bounce 2s ease infinite, fade-in 2s infinite;
