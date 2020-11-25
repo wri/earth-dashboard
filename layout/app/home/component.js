@@ -51,7 +51,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
     </div>;
 
   const getSubtitle = () =>
-    <h3>Earth HQ: Situation Room For the Planet.
+    <h3>Earth HQ: Situation Room For the Planet.<br/>
     Real Facts. Sound Science. Serious Solutions.
     </h3>;
 
