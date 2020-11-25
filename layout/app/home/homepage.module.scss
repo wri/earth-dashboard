@@ -39,12 +39,10 @@
 
         h1 {
             color: $white;
-            font-family: 'Barlow Condensed';
         }
-        h5 {
+        h3 {
             margin: 0px 0px 100px 0px;
             color: $grey;
-            font-family: 'Barlow Regular';
         }
         .highlighted-text {
             padding-right: $space;
@@ -70,14 +68,11 @@
 
         &:not(.-mobile) {
             h1 {
-                font-size: 48px;
-
                 &.first-header {
                     margin-bottom: 10px;
                 }
             }
             h5 {
-                font-size: 18px;
                 max-width: 50%;
             }
         }  

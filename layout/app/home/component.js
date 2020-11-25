@@ -51,9 +51,9 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
     </div>;
 
   const getSubtitle = () =>
-    <h5>Earth HQ provides insight and inspiration to help
-    everyone understand and protect our home planet.
-    </h5>;
+    <h3>Earth HQ: Situation Room For the Planet.
+    Real Facts. Sound Science. Serious Solutions.
+    </h3>;
 
   const getGlobe = (mobile = false) =>
     <div className={classnames({
@@ -98,8 +98,8 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
           })}
           >
             {!isServer && getGlobe(false)}
-            <h1 className={styles['first-header']}>This is not a drill.</h1>
-            <h1>This is now a <span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
+            <h1 className={styles['first-header']}>The Science is in. This is not a drill.</h1>
+            <h1>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</h1>
             {getSubtitle()}
             {getTopicLinks()}
           </div>
