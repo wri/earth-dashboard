@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
+import classnames from 'classnames';
 
 // utils
 import { Desktop, MediaContextProvider } from 'utils/responsive';
@@ -40,16 +41,17 @@ function LayoutTopicData(props) {
   const router = useRouter();
   const DEFAULT_IN_VIEW_THRESHOLD = 0.3;
   const { ref: headlineRef, inView: headlineInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
-  const { ref: scrollyTellingRef, inView: scrollyTellingInView } = useInView({ threshold: 0.1 });
+  const { ref: scrollyTellingRef, inView: scrollyTellingInView } = useInView({ threshold: 0.01 });
   const { ref: changeAgentsRef, inView: changeAgentsInView } = useInView({ threshold: 0.8 });
   const { ref: challengeRef, inView: challengeInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: creditsRef, inView: creditsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const pageMetadata = getPageMetadataByTopic(topic) || {};
   const isEmbed = embed === 'true';
-  const navigationDotsColor = (headlineInView || changeAgentsInView) ? 
+  const navigationDotsColor = (headlineInView || changeAgentsInView) ?
     getNavigationDotsColorByTopic(topic) :
-    getNavigationDotsColorByTopic('default'); 
+    getNavigationDotsColorByTopic('default');
+  const showShareButton = (scrollyTellingInView || diveIntoDataInView);
 
   const getSectionInView = () => {
     if (scrollyTellingInView) {
@@ -97,6 +99,14 @@ function LayoutTopicData(props) {
         >
           <img src="/static/images/logo-light.svg" />
         </div>
+        {showShareButton &&
+          <button className={classnames({
+            [styles['share-button']]: true,
+            [styles[`-${topic}`]]: true
+          })}>
+            Share
+          </button>
+        }
         {!isEmbed &&
           <>
             <MediaContextProvider>
@@ -120,10 +130,10 @@ function LayoutTopicData(props) {
           </>
         }
         {(!isEmbed || (isEmbed && embeddedSection === 'scrolly-telling')) &&
-          < div
+          <div
             id="scrolly-telling"
-            ref={scrollyTellingRef}
             className={styles['scrolly-telling-container']}
+            ref={scrollyTellingRef}
           >
             {getScrollyTelling()}
           </div>

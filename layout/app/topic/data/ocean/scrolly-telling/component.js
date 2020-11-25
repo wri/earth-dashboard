@@ -30,8 +30,8 @@ function OceansScrollyTelling({ topic }) {
     const getStepContent = (mobile = false, step) =>
         <div className={classnames({
             'text-box-container': true,
-            [styles['-desktop']]: !mobile,
-            [styles['-mobile']]: mobile,
+            '-desktop': !mobile,
+            '-mobile': mobile,
         })}>
             <TextBox
                 text={step.textPanel.text}
