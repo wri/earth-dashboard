@@ -22,7 +22,7 @@ import {
     CLIMATE_CHALLENGE_SECTION_DATA,
     CLIMATE_HEADLINE_SECTION_DATA,
     CLIMATE_DIVE_INTO_THE_DATA_DATA,
-    CLIMATE_METHODOLOTY_DATA
+    CLIMATE_METHODOLOGY_DATA
 } from '../layout/app/topic/data/climate/constants';
 
 // -------- TOPICS ----------
