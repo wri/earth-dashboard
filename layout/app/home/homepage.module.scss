@@ -84,29 +84,48 @@
             max-width: 520px;
 
             >a {
+                position: relative;
                 color: $white;
-                border-bottom: solid 2px;
                 text-decoration: none;
                 font-family: 'Barlow Condensed';
                 font-size: 20px;
                 cursor: pointer;
+                
+                &:after {
+                    content: '';
+                    height: 2px;
+                    width: 100%;
+                    position: absolute;
+                    bottom: 1px;
+                    left: 0px;
+                }
             }
 
             .climate-link {
-                border-color: $climate;
+                &:after {
+                    background-color: $climate;
+                }
             }
             .forests-link {
-                border-color: $forests;
+                &:after {
+                    background-color: $forests;
+                }
             }
             .freshwater-link {
-                border-color: $freshwater;
+                &:after {
+                    background-color: $freshwater;
+                }
             }
             .ocean-link {
-                border-color: $ocean;
+                &:after {
+                    background-color: $ocean;
+                }
             }
             .biodiversity-link {
                 color: $grey-darker;
-                border-color: $grey-darker;
+                &:after {
+                    background-color: $grey-darker;
+                }
             }
 
             .biodiversity-tooltip {
