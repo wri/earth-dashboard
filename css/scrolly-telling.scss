@@ -20,11 +20,14 @@
         margin: 0px 0px $space 0px;
         font-size: 16px;
         font-family: 'Barlow Condensed';
-        text-transform: uppercase;
+
+        &:not(.subheader) {
+            text-transform: uppercase;
+        }
     }
 
     .subheader {
-        color: $ocean;
+        color: $climate;
         font-size: 16px;
         font-family: 'Barlow Condensed';
     }

@@ -14,7 +14,7 @@ const getTrendsInMarineFishStock = () =>
         <Desktop>
             <div className={styles['chart-with-title']}>
                 <div>
-                    <h6>Trends in Marine Fish Stocks</h6>
+                    <h6 className="ocean">Trends in Marine Fish Stocks</h6>
                     <img src="/static/images/scrolly-telling/ocean/trends-in-marine-fish-stocks.svg" />
                 </div>
             </div>
@@ -25,7 +25,7 @@ const getTrendsInMarineFishStock = () =>
                 [styles['-mobile']]: true
             })}>
                 <div>
-                    <h6>Trends in Marine Fish Stocks</h6>
+                    <h6 className="ocean">Trends in Marine Fish Stocks</h6>
                     <img src="/static/images/scrolly-telling/ocean/trends-in-marine-fish-stocks.svg" />
                 </div>
             </div>
@@ -38,15 +38,13 @@ export const OCEAN_STEPS_INTRO = [
         textPanel: {
             text:
                 <div>
-                    <h6>Ocean uses</h6>
-                    <h6 className={styles.subheader}>ACCELERATING USES OF OCEAN RESOURCES</h6>
+                    <h6 className="subheader">Ocean Uses</h6>
+                    <h6 className="ocean">Accelerating Uses of Ocean Resources</h6>
                     <p>
-                        The ocean is relied upon for a diversity of uses, all of which area increasing at an unprecedented rate.
-                    </p>
-                    <p>
-                        <strong>Human impacts on the ocean have been increasing since 1970</strong>. The
-                        hope is that the ocean can deliver as an economic frontier, but each of
-                        these pressures are increasing in isolation of one another, creating a new risk landscape
+                        Humans are using the oceans and exploiting their resources in a variety of ways and at an
+                        unprecedented pace. Human impacts have surged since 1970, along with the hope that the
+                        ocean can deliver as an economic frontier, but accumulating pressures on fragile and finite
+                        resources are creating mounting risks.
                     </p>
                 </div>
         }
@@ -59,17 +57,16 @@ export const OCEAN_STEPS = [
         textPanel: {
             text:
                 <div>
-                    <h6>Threats to the Ocean</h6>
-                    <h6 className={styles.subheader}>CORAL BLEACHING AND ACIDIFICATION</h6>
+                    <h6 className="subheader">Threats to the Ocean</h6>
+                    <h6 className="ocean">Coral Bleaching and Acidification</h6>
                     <p>
-                        Tipping points are approaching for coral reef survival and ocean acidification as
-                        climate change warms waters. Rising temperatures bleach the coral killing the
-                        algae that keep it alive.  At the same
-                         time <strong>the ocean’s chemistry is changing faster than at any time in the last 50 million years</strong>.
-                         Excess carbon dioxide is lowering the water’s pH and locking up the carbonate ions
-                          sea creatures need to extract to build shells and reefs.
+                        <strong>Tipping points are approaching for coral reefs</strong> threatened by ocean acidification and warmer water
+                         caused by climate change.  Rising temperatures bleach the coral killing the algae that keep
+                         it alive. At the same time <strong>the ocean’s chemistry is changing faster than at any time in the last
+                          50 million years</strong>. Excess carbon dioxide absorbed by ocean water is lowering its pH and locking
+                         up the carbonate ions sea creatures need to extract to build shells and reefs.
                     </p>
-                    <p className={styles['text-card-source']}>
+                    <p className="text-card-source">
                         Photo by NMSAS on Wikimedia Commons (Public domain)
                     </p>
                 </div>,
@@ -84,12 +81,11 @@ export const OCEAN_STEPS = [
         textPanel: {
             text:
                 <div>
-                    <h6>Threats to the Ocean</h6>
-                    <h6 className={styles.subheader}>PROJECTED CORAL DEATH</h6>
+                    <h6 className="subheader">Threats to the Ocean</h6>
+                    <h6 className="ocean">Projected Coral Death</h6>
                     <p>
-                        In the last 30 years, nearly half of the world’s coral has
-                         died. <strong>About 70-90% of all existing coral reefs (marked in red on the map) are expected to disappear in the next 20 years</strong> due
-                         to warming ocean, more acidic water and pollution.
+                        <strong>About 70-90% of all existing coral reefs are expected to disappear in the next 20 years</strong> due to
+                        warming oceans, more acidic water and pollution.
                     </p>
                 </div>
         },
@@ -102,18 +98,17 @@ export const OCEAN_STEPS = [
         textPanel: {
             text:
                 <div>
-                    <h6>Fisheries under pressure</h6>
-                    <h6 className={styles.subheader}>INCREASE IN FISHERIES AND FOOD DEMAND FROM THE OCEAN</h6>
+                    <h6 className="subheader">Fisheries Under Pressure</h6>
+                    <h6 className="ocean">Increase in Food Demand from the Ocean</h6>
                     <p>
-                        Between 1970 and 2012, populations of fish and other marine vertebrates such
-                        as mammals, reptiles and birds fell by half. Overfishing is a key reason.
+                        Between 1970 and 2012, populations of fish and other marine vertebrates such as mammals, reptiles
+                        and birds <a className="external-link -ocean" href="http://ocean.panda.org.s3.amazonaws.com/media/Living_Blue_Planet_Report_2015_08_31.pdf" target="_blank">fell by half</a> (Source: Living Blue Planet Report). <strong>Overfishing is a key reason</strong>.
                     </p>
                     <p>
-                        In 1974, only one out of ten UN-monitored fish stocks are were harvested beyond
-                         sustainable levels. <strong>Today, that number has climbed to a third</strong>. This
-                         means that they cannot reproduce as fast as they are being killed.
+                        In 1974, only one in ten UN-monitored fish stocks were harvested beyond sustainable levels. Today more
+                         than one in three are. This means that they <a className="external-link -ocean" href="http://www.fao.org/state-of-fisheries-aquaculture/en/" target="_blank">cannot reproduce as fast as they are being killed</a>.
                     </p>
-                    <p className={styles['text-card-source']}>
+                    <p className="text-card-source">
                         Photo by Ed Dunens on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
                     </p>
                 </div>,
@@ -129,12 +124,12 @@ export const OCEAN_STEPS = [
             text:
                 <div>
                     <p>
-                        Illegal or unregulated fishing is rampant, and traps up to 26 million tons of fish
-                        a year, or up to a third of high-value fish taken.
+                        <a className="external-link -ocean" href="https://news.mongabay.com/2019/10/commitments-worth-63-billion-pledged-for-ocean-protection/" target="_blank"><strong>Illegal or unregulated fishing is rampant</strong></a>, and traps up to 26 million tons of fish a year, or
+                        up to a third of high-value fish taken.
                     </p>
                     <p>
-                        Bycatch, the netting of unwanted sea life, kills billions of fish, along with
-                        seabirds, sea turtles, dolphins, and sharks, driving some species to the brink of extinction.
+                        Bycatch, the netting of unwanted sea life, kills billions of fish, along with seabirds, sea turtles,
+                        dolphins, and sharks, driving some species to the brink of extinction.
                     </p>
                 </div>
         },
@@ -162,7 +157,7 @@ export const OCEAN_STEPS = [
                 <Desktop>
                     <div className={styles['chart-with-title']}>
                         <div>
-                            <h6>Aquaculture and fisheries</h6>
+                            <h6 className="ocean">Aquaculture and fisheries</h6>
                             <img src="/static/images/scrolly-telling/ocean/aquaculture-and-fisheries.svg" />
                         </div>
                     </div>
@@ -173,7 +168,7 @@ export const OCEAN_STEPS = [
                         [styles['-mobile']]: true
                     })}>
                         <div>
-                            <h6>Aquaculture and fisheries</h6>
+                            <h6 className="ocean">Aquaculture and fisheries</h6>
                             <img src="/static/images/scrolly-telling/ocean/aquaculture-and-fisheries.svg" />
                         </div>
                     </div>
@@ -185,8 +180,8 @@ export const OCEAN_STEPS = [
         textPanel: {
             text:
                 <div>
-                    <h6>Islands of plastic</h6>
-                    <h6 className={styles.subheader}>PLASTIC POLLUTION</h6>
+                    <h6 className="subheader">Islands of plastic</h6>
+                    <h6 className="ocean">PLASTIC POLLUTION</h6>
                     <p>
                         <strong>A garbage truck's worth of plastic enters the ocean every minute</strong>, harming
                         marine life with unknown consequences. Even though plastic comes from rivers it floats
@@ -198,7 +193,7 @@ export const OCEAN_STEPS = [
                         Plastic bags fishing nets, and other debris choke, strangle and poison, seabirds,
                         sea turtles and fish. Micro-plastic particles they ingest also pose a threat to humans.
                     </p>
-                    <p className={styles['text-card-source']}>
+                    <p className="text-card-source">
                         Photo by Muntaka Chasant on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
                 </div>,
@@ -284,8 +279,8 @@ export const OCEAN_STEPS = [
         textPanel: {
             text:
                 <div>
-                    <h6>Ocean Industries</h6>
-                    <h6 className={styles.subheader}>BENEFITS OF SUSTAINABLE INTERVENTIONS</h6>
+                    <h6 className="subheader">Ocean Industries</h6>
+                    <h6 className="ocean">BENEFITS OF SUSTAINABLE INTERVENTIONS</h6>
                     <p>
                         Governments, companies and citizens must act with urgency to protect our planet’s ocean.
                     </p>
@@ -298,7 +293,7 @@ export const OCEAN_STEPS = [
                         five times greater than the costs. As shown here, benefit/cost ratios would vary,
                         ranging from 3-to-1 to more than 12-to-1.
                     </p>
-                    <p className={styles['text-card-source']}>
+                    <p className="text-card-source">
                         Photo by Nicholas Doherty on Unsplash
                     </p>
                 </div>,
@@ -307,7 +302,7 @@ export const OCEAN_STEPS = [
         stickyContainerElement:
             <div className={styles['chart-with-title']}>
                 <div>
-                    <h6>Benefit-cost ratios for sustainable ocean interventions</h6>
+                    <h6 className="ocean">Benefit-cost ratios for sustainable ocean interventions</h6>
                     <img src="/static/images/scrolly-telling/ocean/benefit-cost-ratios-for-sustainable-ocean-interventions.svg" />
                 </div>
             </div>
