@@ -51,7 +51,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
     </div>;
 
   const getSubtitle = () =>
-    <h3>Earth HQ: Situation Room For the Planet.<br/>
+    <h3>Earth HQ: Situation Room For the Planet.<br />
     Real Facts. Sound Science. Serious Solutions.
     </h3>;
 
@@ -97,11 +97,17 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
             [styles['-desktop']]: true
           })}
           >
-            {!isServer && getGlobe(false)}
-            <h1 className={styles['first-header']}>The Science is in. This is not a drill.</h1>
-            <h1 className={styles['second-header']}>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</h1>
-            {getSubtitle()}
-            {getTopicLinks()}
+            {!isServer &&
+              <>
+                {getGlobe(false)}
+                <div className={styles['text-container']}>
+                  <h1 className={styles['first-header']}>The Science is in. This is not a drill.</h1>
+                  <h1 className={styles['second-header']}>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</h1>
+                  {getSubtitle()}
+                  {getTopicLinks()}
+                </div>
+              </>
+            }
           </div>
         </Desktop>
         <Mobile>
@@ -110,19 +116,25 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
             [styles['-mobile']]: true
           })}
           >
-            {!isServer && getGlobe(true)}
-            <h1 className={styles['first-header']}>This is not a drill.</h1>
-            <h1>This is now a <br /><span className={styles['highlighted-text']}>planetary emergency</span>.</h1>
-            {getSubtitle()}
-            {getTopicLinks()}
+            {!isServer &&
+              <>
+                {getGlobe(false)}
+                <div className={styles['text-container']}>
+                  <h1 className={styles['first-header']}>The Science is in. This is not a drill.</h1>
+                  <h1 className={styles['second-header']}>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</h1>
+                  {getSubtitle()}
+                  {getTopicLinks()}
+                </div>
+              </>
+            }
           </div>
         </Mobile>
       </MediaContextProvider>
-    </Layout>
+    </Layout >
   );
 }
 
-LayoutHome.propTypes = { 
+LayoutHome.propTypes = {
   openHeaderMenu: PropTypes.bool,
   headerTabSelected: PropTypes.string
 };

@@ -12,10 +12,9 @@
     .main-container {
         position: relative;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        text-align: center;
-        width: 100%;
+        width: 100vw;
         z-index: 2;
 
         .globe {
@@ -37,103 +36,112 @@
             }
         }
 
-        h1 {
-            color: $white;
-            
-            &.second-header {
-                margin-bottom: 47px;
-            }
-        }
-        h3 {
-            margin: 0px 0px 106px 0px;
-            color: $grey;
-        }
-        .highlighted-text {
-            padding-right: $space;
-            font-style: italic;
-            background-color: $grey;
-            color: $black;
-        }
-
-        &.-mobile {
-            h1 {
-                font-size: 36px;
-                line-height: 45px;
-                
-                &.first-header {
-                    margin-bottom: 0px;
-                }
-            }
-            h5 {
-                font-size: 14px;
-                margin: 10px 15px 50px 15px;
-            }
-        }
-
-        &:not(.-mobile) {
-            h1 {
-                &.first-header {
-                    margin-bottom: 10px;
-                }
-            }
-            h5 {
-                max-width: 50%;
-            }
-        }  
-
-        .topic-links {
+        .text-container {
             display: flex;
-            justify-content: space-around;
-            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 50%;
+            max-width: 600px;
 
-            >a {
-                position: relative;
+            h1 {
                 color: $white;
-                text-decoration: none;
-                font-family: 'Barlow Condensed';
-                font-size: 20px;
-                cursor: pointer;
                 
-                &:after {
-                    content: '';
-                    height: 2px;
-                    width: 100%;
-                    position: absolute;
-                    bottom: 1px;
-                    left: 0px;
+                &.second-header {
+                    margin-bottom: 47px;
                 }
             }
-
-            .climate-link {
-                &:after {
-                    background-color: $climate;
+            h3 {
+                margin: 0px 0px 106px 0px;
+                color: $grey;
+            }
+            .highlighted-text {
+                padding-right: $space;
+                font-style: italic;
+                background-color: $grey;
+                color: $black;
+            }
+    
+            &.-mobile {
+                h1 {
+                    font-size: 36px;
+                    line-height: 45px;
+                    
+                    &.first-header {
+                        margin-bottom: 0px;
+                    }
+                }
+                h5 {
+                    font-size: 14px;
+                    margin: 10px 15px 50px 15px;
                 }
             }
-            .forests-link {
-                &:after {
-                    background-color: $forests;
+    
+            &:not(.-mobile) {
+                h1 {
+                    &.first-header {
+                        margin-bottom: 10px;
+                    }
                 }
-            }
-            .freshwater-link {
-                &:after {
-                    background-color: $freshwater;
+                h5 {
+                    max-width: 50%;
                 }
-            }
-            .ocean-link {
-                &:after {
-                    background-color: $ocean;
+            }  
+    
+            .topic-links {
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+    
+                >a {
+                    position: relative;
+                    color: $white;
+                    text-decoration: none;
+                    font-family: 'Barlow Condensed';
+                    font-size: 20px;
+                    cursor: pointer;
+                    
+                    &:after {
+                        content: '';
+                        height: 2px;
+                        width: 100%;
+                        position: absolute;
+                        bottom: 1px;
+                        left: 0px;
+                    }
                 }
-            }
-            .biodiversity-link {
-                color: $grey-darker;
-                &:after {
-                    background-color: $grey-darker;
+    
+                .climate-link {
+                    &:after {
+                        background-color: $climate;
+                    }
                 }
-            }
-
-            .biodiversity-tooltip {
-                color: $white;
-                background-color: $black;
+                .forests-link {
+                    &:after {
+                        background-color: $forests;
+                    }
+                }
+                .freshwater-link {
+                    &:after {
+                        background-color: $freshwater;
+                    }
+                }
+                .ocean-link {
+                    &:after {
+                        background-color: $ocean;
+                    }
+                }
+                .biodiversity-link {
+                    color: $grey-darker;
+                    &:after {
+                        background-color: $grey-darker;
+                    }
+                }
+    
+                .biodiversity-tooltip {
+                    color: $white;
+                    background-color: $black;
+                }
             }
         }
     }
