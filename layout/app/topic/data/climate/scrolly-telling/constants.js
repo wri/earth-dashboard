@@ -366,16 +366,14 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <h6 className="climate">HUMAN DISPLACEMENT AND CONFLICT</h6>
+                    <h6 className="climate">Human Displacement and Conflict</h6>
                     <p>
-                        Climate has contributed to between 3% and 20% of armed conflicts over
-                        the last century and will likely fuel many more conflicts in the future.
-                </p>
+                        Climate has played a role in between 3 and 20 percent of armed conflicts
+                         over the last century and that share will climb.
+                    </p>
                     <p>
-                        Even in a scenario of 2 degrees Celsius of warming beyond preindustrial
-                     levels —the stated goal of the Paris Climate Agreement— <strong>the influence
-                      of climate on conflicts would more than double</strong>, rising to a 13% chance.
-                </p>
+                        At 2°C of warming <strong>the likelihood of climate contributing to conflicts would more than double</strong>.
+                    </p>
                     <p className="photo-subtitle">
                         Photo by Ggia on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
                     </p>
@@ -394,10 +392,9 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <h6 className="climate">SEA ICE</h6>
+                    <h6 className="climate">Sea ice</h6>
                     <p>
-                        The likelihood of ice free summer in the arctic would rise
-                        to <strong>63% each year</strong>.
+                        The likelihood of ice free summer in the arctic would rise to <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank"><strong>63% each year</strong></a>.
                     </p>
                     <p className="photo-subtitle">
                         Photo by Derek Oyen on Unsplash
@@ -418,10 +415,10 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <h6 className="climate">HUMAN DISPLACEMENT AND CONFLICT</h6>
+                    <h6 className="climate">Human Migration and Conflict</h6>
                     <p>
-                        <strong>2-3 billion people or 30% of the projected global population</strong> would
-                        be living in inhabitable climates and would have to migrate.
+                        Three out of 10 people in the world (2-3 billion) would be living in uninhabitable
+                         climates and would have to migrate.
                     </p>
                     <p className="photo-subtitle">
                         Photo by thekirbster on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
@@ -440,10 +437,9 @@ export const CLIMATE_STEPS = [
         textPanel: {
             text:
                 <>
-                    <h6 className="climate">BIODIVERSITY</h6>
+                    <h6 className="climate">Biodiversity</h6>
                     <p>
-                        The suitable habitat for species would
-                        <strong>decrease on average by half</strong>.
+                        The suitable habitat for species would <a className="external-link -climate" href="https://link.springer.com/article/10.1007/s10584-019-02420-x#:~:text=For%20example%2C%20at%203%20%C2%B0,rise%20in%20global%20mean%20temperature " target="_blank"><strong>plummet on average by half</strong></a>.
                     </p>
                     <p className="photo-subtitle">
                         Photo: Andrés Medina on Unsplash
