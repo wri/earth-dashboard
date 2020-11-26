@@ -14,6 +14,7 @@ import { CLIMATE_STEPS, CLIMATE_CLOCK_STEPS } from './constants';
 
 // styles
 import styles from './climate-scrolly-telling.module.scss';
+import PulsatingItem from '../../../../../../components/ui/pulsating-item/component';
 
 function ClimateScrollyTelling({ topic }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -174,6 +175,19 @@ function ClimateScrollyTelling({ topic }) {
                     {currentStep.stickyContainerElement}
                   </Mobile>
                 </>
+              }
+              {currentStep.showPulsatingDot &&
+                <div
+                  className={styles.marker}
+                  style={{
+                    top: currentStep.pulsatingDotCoordinates.top,
+                    left: currentStep.pulsatingDotCoordinates.left,
+                  }}
+                >
+                  <PulsatingItem
+                    level={currentStep.pulsatingDotLevel}
+                  />
+                </div>
               }
               {currentStep.showYearCounter &&
                 <div
