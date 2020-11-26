@@ -180,14 +180,12 @@ function ClimateScrollyTelling({ topic }) {
                   className={styles['year-container']}
                   style={{ backgroundColor: currentStep.yearBackgroundColor }}
                 >
-                  <div
-                    className={styles['year-value']}
-                  >
-                    {currentYear}<div className={styles['degrees-container']}> + {d3.format('.2n')(currentDegrees)} °C</div>
-                  </div>
-                  <div className={styles['year-subtitle']}>
+                  <h1 className={styles['year-value']}>
+                    {currentYear}<span className={styles['degrees-container']}> + {d3.format('.2n')(currentDegrees)} °C</span>
+                  </h1>
+                  <h2 className={styles['year-subtitle']}>
                     {currentStep.yearSubtitle}
-                  </div>
+                  </h2>
                 </div>
               }
             </div>
