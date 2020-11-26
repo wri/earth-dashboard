@@ -4,7 +4,7 @@ export const CLIMATE_HEADLINE_SECTION_DATA = {
 };
 
 export const CLIMATE_DIVE_INTO_THE_DATA_DATA = {
-    description: `Use the interactive maps below to explore high water stress hotspots and how these compare with the world’s food basket regions.`
+    description: `Use the interactive maps below to explore greenhouse gas emissions, renewable energy consumption and declining sea ice extent in the Arctic.`
 }
 
 export const CLIMATE_CHALLENGE_SECTION_DATA = {

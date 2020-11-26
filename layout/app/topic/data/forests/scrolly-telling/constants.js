@@ -10,7 +10,7 @@ export const FORESTS_STEPS = [
             text: <>
                 <h6 className="forests">The Amazon Rainforest</h6>
                 <p>
-                    The Amazon rainforest covers <a className="external-link -forests" href="https://www.nature.com/articles/d41586-020-00508-4" target="_blank"><span className="bold">597 Mha across nine countries and harbors 16,000 tree species</span></a>.
+                    The Amazon rainforest covers <a className="external-link -forests" href="https://www.nature.com/articles/d41586-020-00508-4" target="_blank"><span className="bold">597 Mha across nine countries</span></a> and <a className="external-link -forests" href="https://data.apps.fao.org/aquamaps/" target="_blank"><span className="bold">harbors 16,000 tree species</span></a>.
                 </p>
             </>
         },
@@ -27,7 +27,7 @@ export const FORESTS_STEPS = [
         index: 1,
         textPanel: {
             text: <p>
-                The tiny trees here represent the estimated <span className="bold">514 million hectares of tree cover present in the Amazon in the year 2000</span>. That is an area the size of 12.5 Californias.
+                The tiny trees here represent the estimated <a className="external-link -forests" href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7" target="_blank"><span className="bold">514 million hectares of tree cover present in the Amazon in the year 2000</span></a>. That is an area the size of 12.5 Californias.
             </p>
         },
         showYearCounter: true,
@@ -60,7 +60,7 @@ export const FORESTS_STEPS = [
         index: 3,
         textPanel: {
             text: <p>
-                    Let’s fast forward to 2019. The saws represent <span className="bold">how much of that tree cover has been lost</span>. In these 19 years, <span className="bold">the Amazon has lost an area equivalent to the size of 9 Switzerlands</span>.
+                    Let’s fast forward to 2019. The saws represent <span className="bold">how much of that tree cover has been lost</span>. In these 19 years, <span className="bold">the Amazon has lost <a className="external-link -forests" href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7" target="_blank">an area equivalent to the size of 9 Switzerlands</a></span>.
                 </p>
         },
         showYearCounter: true,
@@ -79,7 +79,7 @@ export const FORESTS_STEPS = [
                 <>
                 <h6 className="forests">Drivers of Tree Cover Loss</h6>
                 <p>
-                    The main driver of tree cover loss in the Amazon is commodity driven deforestation, which includes activities like oil extraction, industrial mining, ranching, farming, and fires set to clear land.
+                    The main driver of tree cover loss in the Amazon is <a className="external-link -forests" href="https://science.sciencemag.org/content/361/6407/1108" target="_blank">commodity driven deforestation</a>, which includes activities like oil extraction, industrial mining, ranching, farming, and fires set to clear land.
                 </p>
             </>
         },
@@ -98,7 +98,7 @@ export const FORESTS_STEPS = [
         index: 5,
         textPanel: {
             text: <p>
-                If current trends continue, <span className="bold">the remaining intact Amazon rainforest may become a net carbon emitter in 2035</span>. That means it  won’t be a carbon sink anymore, but will turn into a <span className="bold">carbon source</span>. This trend is dominated by the drier parts of the Amazon; wetter forests may remain sinks for much longer.
+                If current trends continue, <span className="bold">the remaining intact Amazon rainforest may become a <a className="external-link -forests" href="https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1203&context=natlpark" target="_blank">net carbon emitter in 2035</a></span>. That means it  won’t be a carbon sink anymore, but will turn into a <span className="bold">carbon source</span>. This trend is dominated by the drier parts of the Amazon; wetter forests may remain sinks for much longer.
             </p>
         },
         showYearCounter: false,

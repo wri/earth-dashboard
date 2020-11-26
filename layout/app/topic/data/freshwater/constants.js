@@ -38,7 +38,7 @@ export const FRESHWATER_CHALLENGE_SECTION_DATA = {
 };
 
 export const FRESHWATER_DIVE_INTO_THE_DATA_DATA = {
-    description: `Use the interactive maps below to explore high water stress hotspots and how these compare with the world’s food basket regions.`
+    description: `Use the interactive maps below to explore projected water stress hotspots, groundwater table decline and water-related conflict.`
 }
 
 export const FRESHWATER_METHODOLOGY_DATA = <p>
