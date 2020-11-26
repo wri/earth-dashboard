@@ -44,7 +44,7 @@ function ShareModal({ topic, onClose, url, embedTag, isOpen, showEmbed }) {
             <ShareBox url={url} topic={topic} />
             {showEmbed &&
                 <>
-                    <h5>Code to embed</h5>
+                    <h5 className={styles['embed-title']}>Code to embed</h5>
                     <EmbedBox url={embedTag} topic={topic} />
                 </>
             }
