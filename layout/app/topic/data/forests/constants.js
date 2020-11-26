@@ -39,7 +39,7 @@ export const FORESTS_CHALLENGE_SECTION_DATA = {
 };
 
 export const FORESTS_DIVE_INTO_THE_DATA_DATA = {
-    description: `Use the interactive maps below to explore high water stress hotspots and how these compare with the world’s food basket regions.`
+    description: `Use the interactive maps below to explore tree cover loss, forest fires and regions around the world where biodiversity conservation is most urgent.`
 };
 
 export const FORESTS_METHODOLOGY_DATA = <p>

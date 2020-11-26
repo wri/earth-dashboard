@@ -28,7 +28,7 @@ export const OCEAN_CHALLENGE_SECTION_DATA = {
 };
 
 export const OCEAN_DIVE_INTO_THE_DATA_DATA = {
-    description: `Explore the ocean’s state of health around the world. The score evaluates yearly since 2012 the current state of food provision, artisanal fishing opportunities, natural products, carbon storage, coastal protection,tourism & recreation, coastal livelihoods and economies, sense of place, clean waters,biodiversity.`
+    description: `Use the interactive maps below to explore plastic pollution, projected coral reef bleaching and the location of marine protected areas.`
 }
 
 export const OCEAN_METHODOLOGY_DATA = <p>
