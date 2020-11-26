@@ -162,34 +162,41 @@ input, button, select, textarea {
 
 // --------------------- EXTERNAL LINKS -----------------------
 .external-link {
-  background-image: linear-gradient(to bottom, $black, $black);
-  background-position: center bottom;
-  background-size: 100% 2px;
-  background-repeat: no-repeat;
-  transition: background-size 0.3s;
-
-  &:hover {
-    background-size: 100% 6px;
-  }
+  transition: box-shadow 0.2s ease;
 
   &.-forests {
-    background-image: linear-gradient(to bottom, $forests, $forests);
+    box-shadow: inset 0 -0.125em $forests;
+    &:hover{
+      box-shadow: inset 0 -0.25em $forests;
+    }
   }
 
   &.-ocean {
-    background-image: linear-gradient(to bottom, $ocean, $ocean);
+    box-shadow: inset 0 -0.125em $ocean;
+    &:hover{
+      box-shadow: inset 0 -0.25em $ocean;
+    }
   }
 
   &.-climate {
-    background-image: linear-gradient(to bottom, $climate, $climate);
+    box-shadow: inset 0 -0.125em $climate;
+    &:hover{
+      box-shadow: inset 0 -0.25em $climate;
+    }
   }
 
   &.-freshwater {
-    background-image: linear-gradient(to bottom, $freshwater, $freshwater);
+    box-shadow: inset 0 -0.125em $freshwater;
+    &:hover{
+      box-shadow: inset 0 -0.25em $freshwater;
+    }
   }
 
   &.-white {
-    background-image: linear-gradient(to bottom, $white, $white);
+    box-shadow: inset 0 -0.125em $white;
+    &:hover{
+      box-shadow: inset 0 -0.25em $white;
+    }
   }
 }
 
