@@ -20,6 +20,24 @@ function Desktop(props) {
     </Media>);
 };
 
+function DesktopLarge(props) {
+  return (
+    <Media
+      greaterThanOrEqual="lg"
+      className={props.className}>
+      {props.children}
+    </Media>);
+};
+
+function DesktopXLarge(props) {
+  return (
+    <Media
+      lessThan="xl"
+      className={props.className}>
+      {props.children}
+    </Media>);
+};
+
 function Mobile(props) {
   return (
     <Media
@@ -32,6 +50,8 @@ function Mobile(props) {
 export {
   breakpoints,
   Desktop,
+  DesktopLarge,
+  DesktopXLarge,
   Mobile,
   MediaContextProvider,
   mediaStyle

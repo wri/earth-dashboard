@@ -1,5 +1,11 @@
 import classnames from 'classnames';
 
+// components
+import PulsatingItem from 'components/ui/pulsating-item';
+
+// utils
+import { Desktop, MediaContextProvider } from 'utils/responsive';
+
 // styles
 import styles from './climate-scrolly-telling.module.scss';
 
@@ -7,22 +13,39 @@ import styles from './climate-scrolly-telling.module.scss';
 import { CHART_AXES_1, CHART_AXES_2, CHART_AXES_3 } from './data';
 
 const getChartAxes = (number) => {
-    switch(number) {
+    switch (number) {
         case 1: return CHART_AXES_1;
         case 2: return CHART_AXES_2;
         case 3: return CHART_AXES_3;
     }
 }
-const getClimateChart = (number) =>
-    <div className={styles['climate-chart']}>
-        {getChartAxes(number)}
-        <img className={classnames({
-            [styles['confidence-shape']]: true,
-            [styles[`-scenario-${number}`]]: true
-        })}
-            src={`/static/images/scrolly-telling/climate/confidence-${number}.svg`}
-        />
-    </div>;
+const getClimateChart = (number, pulsatingItemData,) =>
+    <MediaContextProvider>
+        <Desktop className={classnames({
+            [styles['climate-chart']]: true,
+            [styles['-desktop']]: true
+        })}>
+            {getChartAxes(number)}
+            <img className={classnames({
+                [styles['confidence-shape']]: true,
+                [styles[`-scenario-${number}`]]: true
+            })}
+                src={`/static/images/scrolly-telling/climate/confidence-${number}.svg`}
+            />
+            {pulsatingItemData?.show &&
+                <div
+                    className={styles.marker}
+                    style={{
+                        top: pulsatingItemData?.top,
+                        left: pulsatingItemData?.left,
+                    }}
+                >
+                    <PulsatingItem level={pulsatingItemData?.level} />
+                </div>
+            }
+        </Desktop>
+    </MediaContextProvider>
+    ;
 
 
 export const CLIMATE_STEPS = [
@@ -53,10 +76,12 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 1,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        stickyContainerElement: getClimateChart(1, {
+            show: true,
+            level: 1,
+            top: '274px',
+            left: '537px'
+        })
     },
     {
         index: 1,
@@ -71,10 +96,12 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 1,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        stickyContainerElement: getClimateChart(1, {
+            show: true,
+            level: 1,
+            top: '274px',
+            left: '537px'
+        })
     },
     {
         index: 2,
@@ -95,10 +122,12 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 1,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        stickyContainerElement: getClimateChart(1, {
+            show: true,
+            level: 1,
+            top: '274px',
+            left: '537px'
+        })
     },
     {
         index: 3,
@@ -119,10 +148,12 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 1,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        stickyContainerElement: getClimateChart(1, {
+            show: true,
+            level: 1,
+            top: '274px',
+            left: '537px'
+        })
     },
     {
         index: 4,
@@ -143,10 +174,12 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 1,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        stickyContainerElement: getClimateChart(1, {
+            show: true,
+            level: 1,
+            top: '274px',
+            left: '537px'
+        })
     },
     {
         index: 5,
@@ -167,10 +200,12 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(2),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 1,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        stickyContainerElement: getClimateChart(2, {
+            show: true,
+            level: 1,
+            top: '274px',
+            left: '537px'
+        })
     },
     {
         index: 6,
@@ -187,10 +222,12 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(2),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 1,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        stickyContainerElement: getClimateChart(2, {
+            show: true,
+            level: 1,
+            top: '274px',
+            left: '537px'
+        })
     },
     {
         index: 7,
@@ -217,10 +254,12 @@ export const CLIMATE_STEPS = [
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 2,
-        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 2,
+            top: '262px',
+            left: '366px'
+        })
     },
     {
         index: 8,
@@ -241,10 +280,12 @@ export const CLIMATE_STEPS = [
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 2,
-        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 2,
+            top: '262px',
+            left: '366px'
+        })
     },
     {
         index: 9,
@@ -267,10 +308,12 @@ export const CLIMATE_STEPS = [
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 2,
-        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 2,
+            top: '262px',
+            left: '366px'
+        })
     },
     {
         index: 10,
@@ -293,10 +336,12 @@ export const CLIMATE_STEPS = [
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 2,
-        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 2,
+            top: '262px',
+            left: '366px'
+        })
     },
     {
         index: 11,
@@ -319,10 +364,12 @@ export const CLIMATE_STEPS = [
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 2,
-        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 2,
+            top: '262px',
+            left: '366px'
+        })
     },
     {
         index: 12,
@@ -347,10 +394,12 @@ export const CLIMATE_STEPS = [
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 3,
-        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 3,
+            top: '240px',
+            left: '510px'
+        })
     },
     {
         index: 13,
@@ -379,10 +428,12 @@ export const CLIMATE_STEPS = [
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 3,
-        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 3,
+            top: '240px',
+            left: '510px'
+        })
     },
     {
         index: 14,
@@ -410,10 +461,12 @@ export const CLIMATE_STEPS = [
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 3,
-        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 3,
+            top: '240px',
+            left: '510px'
+        })
     },
     {
         index: 15,
@@ -436,10 +489,12 @@ export const CLIMATE_STEPS = [
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 3,
-        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 3,
+            top: '240px',
+            left: '510px'
+        })
     },
     {
         index: 16,
@@ -466,10 +521,12 @@ export const CLIMATE_STEPS = [
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 3,
-        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 3,
+            top: '240px',
+            left: '510px'
+        })
     },
     {
         index: 17,
@@ -493,10 +550,12 @@ export const CLIMATE_STEPS = [
         degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
         yearBackgroundColor: '#AD0000',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 4,
-        pulsatingDotCoordinates: { top: '27.5%', left: '85%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 4,
+            top: '200px',
+            left: '680px'
+        })
     },
     {
         index: 18,
@@ -519,10 +578,12 @@ export const CLIMATE_STEPS = [
         degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
         yearBackgroundColor: '#AD0000',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 4,
-        pulsatingDotCoordinates: { top: '27.5%', left: '85%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 4,
+            top: '200px',
+            left: '680px'
+        })
     },
     {
         index: 19,
@@ -544,10 +605,12 @@ export const CLIMATE_STEPS = [
         degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
         yearBackgroundColor: '#AD0000',
-        stickyContainerElement: getClimateChart(3),
-        showPulsatingDot: true,
-        pulsatingDotLevel: 4,
-        pulsatingDotCoordinates: { top: '27.5%', left: '85%' }
+        stickyContainerElement: getClimateChart(3, {
+            show: true,
+            level: 4,
+            top: '200px',
+            left: '680px'
+        })
     }
 ];
 
