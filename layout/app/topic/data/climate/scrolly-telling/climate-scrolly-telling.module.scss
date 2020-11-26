@@ -70,9 +70,11 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        width: calc(100vw - 60px);
 
                         .chart-axes {
-                            width: calc(100vw - 60px);
+                            min-width: 100%;
+                            animation: fade-in 1s forwards;
                         }
 
                         .confidence-shape {
@@ -86,12 +88,13 @@
 
                             &.-scenario-2 {
                                 width: 95%;
-                                transition: width 1s;
+                                animation: fade-in 1s forwards;
                             }
 
                             &.-scenario-3 {
+                                width: 95%;
                                 bottom: 34%;
-                                transition: bottom 1.5s;
+                                animation: fade-in 1s forwards;
                             }
                         }
                     }
@@ -126,6 +129,7 @@
 
                 .marker {
                     position: absolute;
+                    transition: all 1s;
                 }
             }
         }
@@ -139,4 +143,9 @@
             align-items: center;
         }
     }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

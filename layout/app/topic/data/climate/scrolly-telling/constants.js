@@ -220,7 +220,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 2,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
     },
     {
         index: 8,
@@ -244,7 +244,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 2,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
     },
     {
         index: 9,
@@ -270,7 +270,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 2,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
     },
     {
         index: 10,
@@ -296,7 +296,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 2,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
     },
     {
         index: 11,
@@ -322,7 +322,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 2,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
     },
     {
         index: 12,
@@ -350,7 +350,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 3,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
     },
     {
         index: 13,
@@ -382,7 +382,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 3,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
     },
     {
         index: 14,
@@ -413,7 +413,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 3,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
     },
     {
         index: 15,
@@ -439,7 +439,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 3,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
     },
     {
         index: 16,
@@ -469,7 +469,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 3,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
     },
     {
         index: 17,
@@ -496,7 +496,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 4,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '27.5%', left: '85%' }
     },
     {
         index: 18,
@@ -522,7 +522,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 4,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '27.5%', left: '85%' }
     },
     {
         index: 19,
@@ -547,7 +547,7 @@ export const CLIMATE_STEPS = [
         stickyContainerElement: getClimateChart(3),
         showPulsatingDot: true,
         pulsatingDotLevel: 4,
-        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
+        pulsatingDotCoordinates: { top: '27.5%', left: '85%' }
     }
 ];
 
