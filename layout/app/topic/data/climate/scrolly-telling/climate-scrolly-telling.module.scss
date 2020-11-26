@@ -67,9 +67,12 @@
 
                     .climate-chart {
                         position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
 
                         .chart-axes {
-
+                            width: calc(100vw - 60px);
                         }
 
                         .confidence-shape {

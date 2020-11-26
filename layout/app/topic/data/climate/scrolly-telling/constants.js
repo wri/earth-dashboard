@@ -3,14 +3,24 @@ import classnames from 'classnames';
 // styles
 import styles from './climate-scrolly-telling.module.scss';
 
+// data
+import { CHART_AXES_1, CHART_AXES_2, CHART_AXES_3 } from './data';
+
+const getChartAxes = (number) => {
+    switch(number) {
+        case 1: return CHART_AXES_1;
+        case 2: return CHART_AXES_2;
+        case 3: return CHART_AXES_3;
+    }
+}
 const getClimateChart = (number) =>
     <div className={styles['climate-chart']}>
-        <img className={styles['chart-axes']} src={`/static/images/scrolly-telling/climate/chart-axis-${number}.svg`} />
+        {getChartAxes(number)}
         <img className={classnames({
-                [styles['confidence-shape']]: true,
-                [styles[`-scenario-${number}`]]: true
-            })} 
-            src={`/static/images/scrolly-telling/climate/confidence-${number}.svg`} 
+            [styles['confidence-shape']]: true,
+            [styles[`-scenario-${number}`]]: true
+        })}
+            src={`/static/images/scrolly-telling/climate/confidence-${number}.svg`}
         />
     </div>;
 
@@ -520,4 +530,4 @@ export const CLIMATE_CLOCK_STEPS = [
                 </>
         }
     }
-]
+];
