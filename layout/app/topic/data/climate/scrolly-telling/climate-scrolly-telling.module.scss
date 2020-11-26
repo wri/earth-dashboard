@@ -57,13 +57,41 @@
                 .sticky-element {
                     display: flex;
                     width: 100%;
-                    height: 100%;
                     align-items: center;
+                    justify-content: center;
+                    margin: 0px 30px 100px 20px;
 
                     &.-mobile {
                         justify-content: center;
                     }
 
+                    .climate-chart {
+                        position: relative;
+
+                        .chart-axes {
+
+                        }
+
+                        .confidence-shape {
+                            position: absolute;
+                            bottom: 9%;
+                            left: 4.2%;
+
+                            &.-scenario-1 {
+                                width: 65%;
+                            }
+
+                            &.-scenario-2 {
+                                width: 95%;
+                                transition: width 1s;
+                            }
+
+                            &.-scenario-3 {
+                                bottom: 34%;
+                                transition: bottom 1.5s;
+                            }
+                        }
+                    }
                 }
 
                 .year-container {

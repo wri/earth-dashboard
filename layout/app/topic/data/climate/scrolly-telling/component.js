@@ -38,11 +38,11 @@ function ClimateScrollyTelling({ topic }) {
 
     const step = CLIMATE_STEPS[data];
     const {
-      showYearCounter, 
+      showYearCounter,
       yearValue,
-      previousYearValue, 
-      degrees, 
-      previousDegrees 
+      previousYearValue,
+      degrees,
+      previousDegrees
     } = step;
 
     // ------ YEAR COUNTER COUNT UP EFFECT ------------------
@@ -159,14 +159,22 @@ function ClimateScrollyTelling({ topic }) {
         <div className={styles.story}>
           <div className={styles['sticky-container']}>
             <div className={styles['wrapper-container']}>
-              {/* {currentStep.stickyContainerElement &&
-                            <div className={classnames({
-                                [styles['sticky-element']]: true,
-                                [styles['-mobile']]: showMobileVersion
-                            })}>
-                                {currentStep.stickyContainerElement}
-                            </div>
-                        } */}
+              {currentStep.stickyContainerElement &&
+                <>
+                  <Desktop className={classnames({
+                    [styles['sticky-element']]: true,
+                    [styles['-desktop']]: true
+                  })}>
+                    {currentStep.stickyContainerElement}
+                  </Desktop>
+                  <Mobile className={classnames({
+                    [styles['sticky-element']]: true,
+                    [styles['-mobile']]: true
+                  })}>
+                    {currentStep.stickyContainerElement}
+                  </Mobile>
+                </>
+              }
               {currentStep.showYearCounter &&
                 <div
                   className={styles['year-container']}
