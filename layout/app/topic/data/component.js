@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
@@ -21,6 +21,7 @@ import FreshWaterScrollyTelling from './freshwater/scrolly-telling';
 import ForestsScrollyTelling from './forests/scrolly-telling';
 import ClimateScrollyTelling from './climate/scrolly-telling';
 import OceansScrollyTelling from './ocean/scrolly-telling';
+import ShareModal from 'components/share/share-modal';
 
 // styles
 import styles from './topic-data.module.scss';
@@ -38,6 +39,7 @@ import { getPageMetadataByTopic } from 'utils/share';
 
 function LayoutTopicData(props) {
   const { topic, topicData, widgets, embed, embeddedSection } = props;
+  const [shareModalIsOpen, setShareModalIsOpen] = useState(false);
   const router = useRouter();
   const DEFAULT_IN_VIEW_THRESHOLD = 0.3;
   const { ref: headlineRef, inView: headlineInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
@@ -52,6 +54,13 @@ function LayoutTopicData(props) {
     getNavigationDotsColorByTopic(topic) :
     getNavigationDotsColorByTopic('default');
   const showShareButton = (scrollyTellingInView || diveIntoDataInView);
+  const hostURL = 'https://earthhq.org/';
+  const shareModalURL = scrollyTellingInView ?
+    `${hostURL}${topic}/data#scrolly-telling` :
+    `${hostURL}${topic}/data#dive-into-the-data`;
+  const shareEmbedTag = scrollyTellingInView ?
+    `<iframe src="${hostURL}${topic}/data?embed=true&embeddedSection=scrolly-telling" width="100%" height="500px" frameBorder="0" />` :
+    `<iframe src="${hostURL}${topic}/data?embed=true&embeddedSection=dive-into-the-data" width="100%" height="500px" frameBorder="0" />`;
 
   const getSectionInView = () => {
     if (scrollyTellingInView) {
@@ -99,13 +108,29 @@ function LayoutTopicData(props) {
         >
           <img src="/static/images/logo-light.svg" />
         </div>
-        <button className={classnames({
-          [styles['share-button']]: true,
-          [styles[`-${topic}`]]: true,
-          [styles['-hidden']]: !showShareButton
-        })}>
-          Share
-        </button>
+        {/* ------------- SHARE BUTTON + MODAL --------------- */}
+        {!isEmbed &&
+          <>
+            <button className={classnames({
+              [styles['share-button']]: true,
+              [styles[`-${topic}`]]: true,
+              [styles['-hidden']]: !showShareButton
+            })}
+              onClick={() => setShareModalIsOpen(true)}
+            >
+              Share
+            </button>
+            <ShareModal
+              topic={topic}
+              url={shareModalURL}
+              embedTag={shareEmbedTag}
+              onClose={() => setShareModalIsOpen(false)}
+              isOpen={shareModalIsOpen}
+              showEmbed={true}
+            />
+          </>
+        }
+        {/* --------------------------------------------------- */}
         {!isEmbed &&
           <>
             <MediaContextProvider>
