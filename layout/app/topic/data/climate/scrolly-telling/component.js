@@ -14,6 +14,7 @@ import { CLIMATE_STEPS, CLIMATE_CLOCK_STEPS } from './constants';
 
 // styles
 import styles from './climate-scrolly-telling.module.scss';
+import PulsatingItem from '../../../../../../components/ui/pulsating-item/component';
 
 function ClimateScrollyTelling({ topic }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -38,11 +39,11 @@ function ClimateScrollyTelling({ topic }) {
 
     const step = CLIMATE_STEPS[data];
     const {
-      showYearCounter, 
+      showYearCounter,
       yearValue,
-      previousYearValue, 
-      degrees, 
-      previousDegrees 
+      previousYearValue,
+      degrees,
+      previousDegrees
     } = step;
 
     // ------ YEAR COUNTER COUNT UP EFFECT ------------------
@@ -159,27 +160,46 @@ function ClimateScrollyTelling({ topic }) {
         <div className={styles.story}>
           <div className={styles['sticky-container']}>
             <div className={styles['wrapper-container']}>
-              {/* {currentStep.stickyContainerElement &&
-                            <div className={classnames({
-                                [styles['sticky-element']]: true,
-                                [styles['-mobile']]: showMobileVersion
-                            })}>
-                                {currentStep.stickyContainerElement}
-                            </div>
-                        } */}
+              {currentStep.stickyContainerElement &&
+                <>
+                  <Desktop className={classnames({
+                    [styles['sticky-element']]: true,
+                    [styles['-desktop']]: true
+                  })}>
+                    {currentStep.stickyContainerElement}
+                  </Desktop>
+                  <Mobile className={classnames({
+                    [styles['sticky-element']]: true,
+                    [styles['-mobile']]: true
+                  })}>
+                    {currentStep.stickyContainerElement}
+                  </Mobile>
+                </>
+              }
+              {currentStep.showPulsatingDot &&
+                <div
+                  className={styles.marker}
+                  style={{
+                    top: currentStep.pulsatingDotCoordinates.top,
+                    left: currentStep.pulsatingDotCoordinates.left,
+                  }}
+                >
+                  <PulsatingItem
+                    level={currentStep.pulsatingDotLevel}
+                  />
+                </div>
+              }
               {currentStep.showYearCounter &&
                 <div
                   className={styles['year-container']}
                   style={{ backgroundColor: currentStep.yearBackgroundColor }}
                 >
-                  <div
-                    className={styles['year-value']}
-                  >
-                    {currentYear}<div className={styles['degrees-container']}> + {d3.format('.2n')(currentDegrees)} °C</div>
-                  </div>
-                  <div className={styles['year-subtitle']}>
+                  <h1 className={styles['year-value']}>
+                    {currentYear}<span className={styles['degrees-container']}> + {d3.format('.2n')(currentDegrees)} °C</span>
+                  </h1>
+                  <h2 className={styles['year-subtitle']}>
                     {currentStep.yearSubtitle}
-                  </div>
+                  </h2>
                 </div>
               }
             </div>

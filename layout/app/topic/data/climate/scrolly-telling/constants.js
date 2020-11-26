@@ -3,6 +3,28 @@ import classnames from 'classnames';
 // styles
 import styles from './climate-scrolly-telling.module.scss';
 
+// data
+import { CHART_AXES_1, CHART_AXES_2, CHART_AXES_3 } from './data';
+
+const getChartAxes = (number) => {
+    switch(number) {
+        case 1: return CHART_AXES_1;
+        case 2: return CHART_AXES_2;
+        case 3: return CHART_AXES_3;
+    }
+}
+const getClimateChart = (number) =>
+    <div className={styles['climate-chart']}>
+        {getChartAxes(number)}
+        <img className={classnames({
+            [styles['confidence-shape']]: true,
+            [styles[`-scenario-${number}`]]: true
+        })}
+            src={`/static/images/scrolly-telling/climate/confidence-${number}.svg`}
+        />
+    </div>;
+
+
 export const CLIMATE_STEPS = [
     {
         index: 0,
@@ -30,7 +52,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2020,
         degrees: 1,
         yearSubtitle: 'Present time',
-        yearBackgroundColor: 'hsl(41, 100%, 48%)'
+        yearBackgroundColor: 'hsl(41, 100%, 48%)',
+        stickyContainerElement: getClimateChart(1),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 1,
+        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
     },
     {
         index: 1,
@@ -44,7 +70,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2020,
         degrees: 1,
         yearSubtitle: 'Present time',
-        yearBackgroundColor: 'hsl(41, 100%, 48%)'
+        yearBackgroundColor: 'hsl(41, 100%, 48%)',
+        stickyContainerElement: getClimateChart(1),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 1,
+        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
     },
     {
         index: 2,
@@ -64,7 +94,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2020,
         degrees: 1,
         yearSubtitle: 'Present time',
-        yearBackgroundColor: 'hsl(41, 100%, 48%)'
+        yearBackgroundColor: 'hsl(41, 100%, 48%)',
+        stickyContainerElement: getClimateChart(1),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 1,
+        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
     },
     {
         index: 3,
@@ -84,7 +118,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2020,
         degrees: 1,
         yearSubtitle: 'Present time',
-        yearBackgroundColor: 'hsl(41, 100%, 48%)'
+        yearBackgroundColor: 'hsl(41, 100%, 48%)',
+        stickyContainerElement: getClimateChart(1),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 1,
+        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
     },
     {
         index: 4,
@@ -104,7 +142,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2020,
         degrees: 1,
         yearSubtitle: 'Present time',
-        yearBackgroundColor: 'hsl(41, 100%, 48%)'
+        yearBackgroundColor: 'hsl(41, 100%, 48%)',
+        stickyContainerElement: getClimateChart(1),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 1,
+        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
     },
     {
         index: 5,
@@ -113,8 +155,8 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Projecting Into the Future</h6>
                     <p>
-                        Predicting the future is hard, so scientists use <span className="bold">confidence intervals</span>, which are minimum 
-                        and maximum estimates between which the actual temperatures might fluctuate. 
+                        Predicting the future is hard, so scientists use <span className="bold">confidence intervals</span>, which are minimum
+                        and maximum estimates between which the actual temperatures might fluctuate.
                         These are represented by the gray area on the chart. The dotted orange line represents
                          the mean values between those intervals.
                     </p>
@@ -124,7 +166,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2020,
         degrees: 1,
         yearSubtitle: 'Present time',
-        yearBackgroundColor: 'hsl(41, 100%, 48%)'
+        yearBackgroundColor: 'hsl(41, 100%, 48%)',
+        stickyContainerElement: getClimateChart(2),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 1,
+        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
     },
     {
         index: 6,
@@ -132,13 +178,7 @@ export const CLIMATE_STEPS = [
             text:
                 <>
                     <p>
-                        <span className="bold">Let’s zoom into the future...</span>.
-                    </p>
-                    <p>
-                        At current rates of warming the world will reach 1.5°C above pre-industrial levels <span className="bold">between
-                         2023 and 2055</span>. Keeping it from rising more would require us to cut carbon emissions
-                         sharply beginning now and zero them out by the middle of this century. <span className="bold">An increase
-                         of 2°C is more likely</span>.
+                        <span className="bold">Let’s look at the impacts of a warmer climate...</span>.
                     </p>
                 </>
         },
@@ -146,7 +186,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2020,
         degrees: 1,
         yearSubtitle: 'Present time',
-        yearBackgroundColor: 'hsl(41, 100%, 48%)'
+        yearBackgroundColor: 'hsl(41, 100%, 48%)',
+        stickyContainerElement: getClimateChart(2),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 1,
+        pulsatingDotCoordinates: { top: '44.5%', left: '66.7%' }
     },
     {
         index: 7,
@@ -158,7 +202,7 @@ export const CLIMATE_STEPS = [
                         According to the IPCC, <a className="external-link -climate" href="https://www.nytimes.com/2018/10/07/climate/ipcc-climate-report-2040.html" target="_blank"><span className="bold">350 million more urban residents would face severe drought</span></a>.
                     </p>
                     <p>
-                        The average drought would be two months longer 
+                        The average drought would be two months longer
                         and <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank"><span className="bold">271 million more people will be exposed to water scarcity</span></a>.
 
                     </p>
@@ -172,7 +216,11 @@ export const CLIMATE_STEPS = [
         previousDegrees: 1,
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
-        yearBackgroundColor: 'hsl(20, 100%, 48%)'
+        yearBackgroundColor: 'hsl(20, 100%, 48%)',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 2,
+        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
     },
     {
         index: 8,
@@ -181,7 +229,7 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Biodiversity</h6>
                     <p>
-                        At 1.5°C, <span className="bold">6% of insects, 8% of plants and 4% of vertebrates</span> are projected 
+                        At 1.5°C, <span className="bold">6% of insects, 8% of plants and 4% of vertebrates</span> are projected
                         to lose over half of their geographic range.
                     </p>
                     <p className="photo-subtitle">Photo by Ray Hennessy on Unsplash</p>
@@ -192,7 +240,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2046,
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
-        yearBackgroundColor: 'hsl(20, 100%, 48%)'
+        yearBackgroundColor: 'hsl(20, 100%, 48%)',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 2,
+        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
     },
     {
         index: 9,
@@ -214,7 +266,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2046,
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
-        yearBackgroundColor: 'hsl(20, 100%, 48%)'
+        yearBackgroundColor: 'hsl(20, 100%, 48%)',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 2,
+        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
     },
     {
         index: 10,
@@ -223,7 +279,7 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Human Displacement and Conflict</h6>
                     <p>
-                        An estimated 1.5 billion people or <a className="external-link -climate" href="https://www.pnas.org/content/117/21/11350" target="_blank"><span className="bold">13% of the projected global population would be living in inhabitable climates</span></a> and 
+                        An estimated 1.5 billion people or <a className="external-link -climate" href="https://www.pnas.org/content/117/21/11350" target="_blank"><span className="bold">13% of the projected global population would be living in inhabitable climates</span></a> and
                         would have to migrate.
                     </p>
                     <p className="photo-subtitle">
@@ -236,7 +292,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2046,
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
-        yearBackgroundColor: 'hsl(20, 100%, 48%)'
+        yearBackgroundColor: 'hsl(20, 100%, 48%)',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 2,
+        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
     },
     {
         index: 11,
@@ -245,7 +305,7 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Coral Reefs</h6>
                     <p>
-                        Ocean warming, acidification and more intense storms would 
+                        Ocean warming, acidification and more intense storms would
                         cause <a className="external-link -climate" href="https://climate.nasa.gov/news/2865/a-degree-of-concern-why-global-temperatures-matter/#:~:text=If%20warming%20reaches%202%20degrees,on%20humans%20and%20ecological%20systems" target="_blank"><span className="bold">coral reefs to decline by 70 to 90 percent</span></a>.
                     </p>
                     <p className="photo-subtitle">
@@ -258,7 +318,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2046,
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
-        yearBackgroundColor: 'hsl(20, 100%, 48%)'
+        yearBackgroundColor: 'hsl(20, 100%, 48%)',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 2,
+        pulsatingDotCoordinates: { top: '39.5%', left: '48%' }
     },
     {
         index: 12,
@@ -267,7 +331,7 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Extreme rainfall</h6>
                     <p>
-                        Annual losses from flood damage and sea level rise would 
+                        Annual losses from flood damage and sea level rise would
                         reach <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank"><span className="bold">$11.7 trillion</span></a> if no further adaptation is undertaken.
                     </p>
                     <p className="photo-subtitle">
@@ -282,7 +346,11 @@ export const CLIMATE_STEPS = [
         previousDegrees: 1.5,
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
-        yearBackgroundColor: '#DB1600'
+        yearBackgroundColor: '#DB1600',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 3,
+        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
     },
     {
         index: 13,
@@ -291,7 +359,7 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Heatwaves and Water Scarcity</h6>
                     <p>
-                        More than a third of the world’s population would face the risk of 
+                        More than a third of the world’s population would face the risk of
                         a <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank"><span className="bold">heatwave every 5 years</span></a>.
                     </p>
                     <p>
@@ -310,7 +378,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2064,
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
-        yearBackgroundColor: '#DB1600'
+        yearBackgroundColor: '#DB1600',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 3,
+        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
     },
     {
         index: 14,
@@ -337,7 +409,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2064,
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
-        yearBackgroundColor: '#DB1600'
+        yearBackgroundColor: '#DB1600',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 3,
+        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
     },
     {
         index: 15,
@@ -346,7 +422,7 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Biodiversity</h6>
                     <p>
-                        A projected <a className="external-link -climate" href="https://www.ipcc.ch/sr15/chapter/spm/" target="_blank"><span className="bold">18% of insects, 16% of plants and 8% of vertebrates</span></a> would 
+                        A projected <a className="external-link -climate" href="https://www.ipcc.ch/sr15/chapter/spm/" target="_blank"><span className="bold">18% of insects, 16% of plants and 8% of vertebrates</span></a> would
                         lose over half of their geographic range.
                     </p>
                     <p className="photo-subtitle">
@@ -359,7 +435,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2064,
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
-        yearBackgroundColor: '#DB1600'
+        yearBackgroundColor: '#DB1600',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 3,
+        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
     },
     {
         index: 16,
@@ -369,7 +449,7 @@ export const CLIMATE_STEPS = [
                     <h6 className="climate">Human Displacement and Conflict</h6>
                     <p>
                         Climate has played a role in between 3 and 20 percent of armed conflicts
-                         over the last century and that share will climb.
+                        over the last century and that share will climb.
                     </p>
                     <p>
                         At 2°C of warming <span className="bold">the likelihood of climate contributing to conflicts would more than double</span>.
@@ -385,7 +465,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2064,
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
-        yearBackgroundColor: '#DB1600'
+        yearBackgroundColor: '#DB1600',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 3,
+        pulsatingDotCoordinates: { top: '35.5%', left: '63%' }
     },
     {
         index: 17,
@@ -408,7 +492,11 @@ export const CLIMATE_STEPS = [
         previousDegrees: 2.0,
         degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
-        yearBackgroundColor: '#AD0000'
+        yearBackgroundColor: '#AD0000',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 4,
+        pulsatingDotCoordinates: { top: '27.5%', left: '85%' }
     },
     {
         index: 18,
@@ -418,7 +506,7 @@ export const CLIMATE_STEPS = [
                     <h6 className="climate">Human Migration and Conflict</h6>
                     <p>
                         Three out of 10 people in the world (2-3 billion) would be living in uninhabitable
-                         climates and would have to migrate.
+                        climates and would have to migrate.
                     </p>
                     <p className="photo-subtitle">
                         Photo by thekirbster on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
@@ -430,7 +518,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2089,
         degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
-        yearBackgroundColor: '#AD0000'
+        yearBackgroundColor: '#AD0000',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 4,
+        pulsatingDotCoordinates: { top: '27.5%', left: '85%' }
     },
     {
         index: 19,
@@ -451,7 +543,11 @@ export const CLIMATE_STEPS = [
         yearValue: 2089,
         degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
-        yearBackgroundColor: '#AD0000'
+        yearBackgroundColor: '#AD0000',
+        stickyContainerElement: getClimateChart(3),
+        showPulsatingDot: true,
+        pulsatingDotLevel: 4,
+        pulsatingDotCoordinates: { top: '27.5%', left: '85%' }
     }
 ];
 
@@ -481,7 +577,7 @@ export const CLIMATE_CLOCK_STEPS = [
                         The warming rate may not be linear.  Uncertainties explain why climate scientists see only
                         a 67% likelihood of staying at 1.5°C. Melting permafrost and ice sheets, degraded forests,
                         and disrupted ocean currents, could create tipping points that could change the climate
-                          dramatically and irreversibly. 
+                        dramatically and irreversibly.
                     </p>
                     <p><span className="bold">Emissions have risen since 2017, which could mean we have
                           less time</span> than the clock says. Temperature climbs after increases in atmospheric CO2,
@@ -497,4 +593,4 @@ export const CLIMATE_CLOCK_STEPS = [
                 </>
         }
     }
-]
+];

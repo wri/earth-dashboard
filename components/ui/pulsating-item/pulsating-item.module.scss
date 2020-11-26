@@ -1,0 +1,71 @@
+@import 'css/settings';
+
+.c-pulsating-item {
+    position: relative;
+
+    .pulsating-container {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 20px;
+        height: 20px;
+    
+        &:before {
+            content: '';
+            position: relative;
+            display: block;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+            margin-left: -50px;
+            margin-top: -50px;
+            border-radius: 50%;
+            animation: pulse 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        &.-level-1:before {
+            background-color: #F3A600;
+        }
+        &.-level-2:before {
+            background-color: #F35600;
+        }
+        &.-level-3:before {
+            background-color: #DB1600;
+        }
+        &.-level-4:before {
+            background-color: #AD0000;
+        }
+    }
+
+    .dot {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 20px;
+        height: 20px;
+        border: solid 1px $black;
+        border-radius: 50%;
+
+        &.-level-1 {
+            background-color: #F3A600;
+        }
+        &.-level-2 {
+            background-color: #F35600;
+        }
+        &.-level-3 {
+            background-color: #DB1600;
+        }
+        &.-level-4 {
+            background-color: #AD0000;
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(.33);
+    }
+    80%, 100% {
+        opacity: 0;
+    }
+}
