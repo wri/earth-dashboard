@@ -16,8 +16,8 @@ function Desktop({ children, className, includeBiggerScreens = true }) {
     <Media
       greaterThanOrEqual="md"
       {...(!includeBiggerScreens && { lessThan: 'lg' })}
-      className={props.className}>
-      {props.children}
+      className={className}>
+      {children}
     </Media>);
 };
 

@@ -43,7 +43,8 @@ class HeadApp extends PureComponent {
         <meta property="og:description" content={description} />
         <meta name="og:image" content={thumbnail} />
         <meta property="og:image:secure_url" content={thumbnail} />
-        <meta name="og:image:alt" content={`${title}_widget`} />
+        <meta name="og:image:alt" content={title} />
+        <meta property="og:site_name" content="Earth Dashboard"></meta>
 
         {/* Theme color */}
         {themeColor && <meta name="theme-color" content={themeColor} />}
