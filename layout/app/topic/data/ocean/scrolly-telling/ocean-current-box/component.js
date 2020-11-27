@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 // styles
 import styles from './ocean-current-box.module.scss';
 
-function OceanCurrentBox({ title, style, direction }) {
+function OceanCurrentBox({ title, style, direction, className }) {
 
     return (
-        <div className={styles['c-ocean-current-box']} style={style}>
+        <div className={classnames({
+                [styles['c-ocean-current-box']]: true,
+                [className]: !!className
+            })}
+            style={style}
+        >
             <div className={styles.title}>
                 {title}
             </div>
@@ -32,6 +38,11 @@ function OceanCurrentBox({ title, style, direction }) {
     );
 }
 
-OceanCurrentBox.propTypes = { title: PropTypes.string.isRequired };
+OceanCurrentBox.propTypes = {
+    title: PropTypes.string.isRequired,
+    style: PropTypes.object,
+    direction: PropTypes.string.isRequired,
+    className: PropTypes.string
+};
 
 export default OceanCurrentBox;
