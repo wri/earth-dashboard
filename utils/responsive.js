@@ -11,28 +11,30 @@ const EDMedia = createMedia({ breakpoints });
 const { MediaContextProvider, Media } = EDMedia;
 const mediaStyle = EDMedia.createMediaStyle();
 
-function Desktop(props) {
+function Desktop({ children, className, includeBiggerScreens = true }) {
   return (
     <Media
       greaterThanOrEqual="md"
+      {...(!includeBiggerScreens && { lessThan: 'lg' })}
       className={props.className}>
       {props.children}
     </Media>);
 };
 
-function DesktopLarge(props) {
+function DesktopLarge({ children, className, includeBiggerScreens = true }) {
   return (
     <Media
       greaterThanOrEqual="lg"
-      className={props.className}>
-      {props.children}
+      {...(!includeBiggerScreens && { lessThan: 'xl' })}
+      className={className}>
+      {children}
     </Media>);
 };
 
 function DesktopXLarge(props) {
   return (
     <Media
-      lessThan="xl"
+      greaterThanOrEqual="xl"
       className={props.className}>
       {props.children}
     </Media>);
