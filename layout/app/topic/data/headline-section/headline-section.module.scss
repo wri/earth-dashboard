@@ -45,8 +45,9 @@
             font-size: 12px;
             font-family: 'Barlow Condensed';
 
-            img {
-                margin-top: 2 * $space;
+            .arrow {
+                margin-top: 3 * $space;
+                animation: arrow_down 1.5s infinite ease;
             }
 
             .scroll-text {
@@ -65,4 +66,10 @@
             }
         }
     }
+}
+
+@keyframes arrow_down {
+    0% { transform: translateY(-12px); opacity: 0; }
+    15%, 85% { opacity: 1; }
+    100% { transform: translateY(12px); opacity: 0; }
 }

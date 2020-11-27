@@ -37,13 +37,15 @@ function HeadlineSection(props) {
           style={{ color: topicSecondaryColor }}
         >
           <span className={classnames({
-              [styles['scroll-text']]: true,
-              [styles[`-${topic}`]]: true
-            })}
+            [styles['scroll-text']]: true,
+            [styles[`-${topic}`]]: true
+          })}
           >
             SCROLL TO EXPLORE
           </span>
-          <img src={`/static/images/arrow-down-${topic}.svg`} />
+          <div className={styles.arrow}>
+            <img src={`/static/images/arrow-down-${topic}.svg`} />
+          </div>
         </div>
       </div>
     </div>
