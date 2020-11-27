@@ -18,7 +18,7 @@ function StaticListWidget(props) {
     <div className={styles['c-static-list-widget']}>
       <ListTag>
         {values.map(elem =>
-          <li>
+          <li key={`list-elem-${elem.label}`}>
             {elem.link && 
               <a 
                 href={elem.link} 

@@ -162,19 +162,12 @@
             }
 
             .arrow {
-                animation: bounce 2s ease infinite, fade-in 2s infinite;
-
-                @keyframes bounce {
-                    0% { left: 25%; }
-                    20% { left: 45%; }
-                    40% { left: 35%; }
-                    60% { left: 43%; }
-                    80% { left: 39%; }
-                    100% { left: 42%; }
-                }
-                @keyframes fade-in {
-                    from { opacity: 0.2; }
-                    to { opacity: 1; }
+                animation: arrow_right 1.5s infinite ease;
+                
+                @keyframes arrow_right {
+                    0% { transform: translateX(-12px); opacity: 0; }
+                    15%, 85% { opacity: 1; }
+                    100% { transform: translateX(12px); opacity: 0; }
                 }
             }
 
