@@ -12,6 +12,7 @@
 
     .map-container {
         position: relative;
+        padding: 30px;
 
         // ----------------------- MAP ----------------------
         .map {
@@ -20,13 +21,16 @@
 
             }
             &.-desktop {
-                width: 750px;
+                min-width: 690px;
+                max-width: 690px;
             }
             &.-desktop-large {
-                width: 1000px;
+                min-width: 960px;
+                max-width: 960px;
             }
             &.-desktop-x-large {
-                width: 1180px;
+                min-width: 1120px;
+                max-width: 1120px;
             }
         }
 
@@ -38,18 +42,18 @@
                 
             }
             &.-desktop {
-                top: 52px;
-                left: 363px;
-                height: 100px;
+                top: 80px;
+                left: 360px;
+                height: 90px;
             }
             &.-desktop-large {
-                top: 52px;
-                left: 363px;
+                top: 108px;
+                left: 520px;
                 height: 100px;
             }
             &.-desktop-x-large {
-                top: 52px;
-                left: 363px;
+                top: 82px;
+                left: 393px;
                 height: 100px;
             }
         }
@@ -60,18 +64,18 @@
                 
             }
             &.-desktop {
-                top: 180px;
+                top: 200px;
                 left: 466px;
-                height: 95px;
+                height: 85px;
             }
             &.-desktop-large {
-                top: 180px;
-                left: 466px;
+                top: 280px;
+                left: 665px;
                 height: 95px;
             }
             &.-desktop-x-large {
-                top: 180px;
-                left: 466px;
+                top: 210px;
+                left: 496px;
                 height: 95px;
             }
         }
@@ -82,19 +86,19 @@
                 
             }
             &.-desktop {
-                top: 300px;
-                left: 440px;
-                height: 100px;
+                top: 185px;
+                left: 165px;
+                height: 80px;
             }
             &.-desktop-large {
-                top: 300px;
-                left: 440px;
-                height: 100px;
+                top: 260px;
+                left: 232px;
+                height: 90px;
             }
             &.-desktop-x-large {
-                top: 300px;
-                left: 440px;
-                height: 100px;
+                top: 195px;
+                left: 195px;
+                height: 90px;
             }
         }
         .north-atlantic-gyre {
@@ -104,19 +108,19 @@
                 
             }
             &.-desktop {
-                top: 300px;
-                left: 440px;
-                height: 100px;
+                top: 68px;
+                left: 614px;
+                height: 65px;
             }
             &.-desktop-large {
-                top: 300px;
-                left: 440px;
-                height: 100px;
+                top: 95px;
+                left: 860px;
+                height: 75px;
             }
             &.-desktop-x-large {
-                top: 300px;
-                left: 440px;
-                height: 100px;
+                top: 72px;
+                left: 674px;
+                height: 75px;
             }
         }
         .south-atlantic-gyre {
@@ -126,19 +130,19 @@
                 
             }
             &.-desktop {
-                top: 300px;
-                left: 440px;
-                height: 100px;
+                top: 218px;
+                left: 652px;
+                height: 65px;
             }
             &.-desktop-large {
-                top: 300px;
-                left: 440px;
-                height: 100px;
+                top: 325px;
+                left: 906px;
+                height: 70px;
             }
             &.-desktop-x-large {
-                top: 300px;
-                left: 440px;
-                height: 100px;
+                top: 265px;
+                left: 718px;
+                height: 70px;
             }
         }
     }
