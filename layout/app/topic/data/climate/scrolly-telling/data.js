@@ -3,12 +3,46 @@ import classnames from 'classnames';
 // styles
 import styles from './climate-scrolly-telling.module.scss';
 
-export const getChartLine = (animate) =>
+export const getChartLineProjection = (animate) =>
     <svg className={classnames({
-            [styles['chart-line']]: true,
-            [styles['-line']]: true,
-            [styles['-animate']]: animate
-        })}
+        [styles['chart-line']]: true,
+        [styles['-line-projection']]: true,
+        [styles['-animate']]: animate
+    })}
+        width="937" height="192" viewBox="0 0 937 192">
+        <defs>
+            <linearGradient id="chart-3---line-projection-a" x1="0%" x2="99.138%" y1="51.796%" y2="47.98%">
+                <stop offset="0%" stop-color="#F3A600" />
+                <stop offset="18.676%" stop-color="#F35600" />
+                <stop offset="49.19%" stop-color="#F33900" />
+                <stop offset="100%" stop-color="#BD0000" />
+            </linearGradient>
+        </defs>
+        <path fill="none" stroke="url(#chart-3---line-projection-a)" stroke-dasharray="0 6" stroke-linecap="round" stroke-width="3" d="M370.148891,872.624205 L381.110658,871.051527 L404.783792,867.655157 L416.482588,864.343023 L428.181384,861.599846 L439.88018,859.75074 L451.578976,856.814523 L463.277765,852.618476 L474.97656,849.164104 L486.675356,848.859306 L498.374152,850.657612 L510.072948,845.018856 L521.771744,845.689411 L533.47054,847.061 L545.169336,838.419988 L556.868132,840.446892 L568.566928,840.446892 L580.265717,833.314629 L591.964513,828.315948 L603.663309,826.837681 L615.362104,828.407387 L627.0609,824.109741 L650.458492,820.797607 L662.157288,818.410026 L673.856084,815.199492 L697.253669,811.887358 L708.952465,809.733455 L720.651261,806.421321 L755.747648,801.188963 L767.446444,798.902982 L779.14524,797.246915 L790.844036,792.746069 L802.542825,794.696775 L814.241621,793.040708 L837.639213,785.491887 L849.338009,782.738549 L861.036805,781.082482 L872.735601,776.500359 L884.434397,778.156426 L896.133192,776.551157 L907.831981,772.096033 L919.530777,766.116921 L931.229573,762.804787 L942.928369,761.108079 L954.627165,759.698391 L966.325961,758.456341 L978.024757,750.653523 L989.723553,747.625866 L1024.81993,742.657666 L1036.51873,740.427564 L1048.21753,736.023238 L1059.91632,732.467266 L1083.31391,724.319011 L1095.01271,721.291355 L1118.4103,717.979221 L1130.10909,712.919581 L1141.80789,711.250813 L1153.50668,709.963045 L1176.90427,706.650911 L1188.60307,703.836612 L1200.30187,698.868411 L1212.00066,695.165122 L1223.69946,700.361921 L1235.39825,695.911875 L1247.09704,693.189017 L1258.79584,689.876883 L1270.49463,689.572085 L1282.19343,688.345276 L1293.89223,686.920347 L1305.59102,684.624205" transform="translate(-368 -683)" />
+    </svg>;
+
+export const getChartLineHistorical = (animate) =>
+    <svg className={classnames({
+        [styles['chart-line']]: true,
+        [styles['-line-historical']]: true,
+        [styles['-animate']]: animate
+    })}
+        width="238" height="43" viewBox="0 0 238 43">
+        <defs>
+            <linearGradient id="chart-3---line-historical-a" x1="0%" x2="99.138%" y1="51.438%" y2="48.562%">
+                <stop offset="0%" stop-color="#C2A414" />
+                <stop offset="100%" stop-color="#F3A600" />
+            </linearGradient>
+        </defs>
+        <polyline fill="none" stroke="url(#chart-3---line-historical-a)" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" points="135.905 912.346 147.41 908.903 159.109 904.239 170.808 900.867 182.507 900.371 194.205 899.574 205.904 897.578 217.603 892.521 229.302 891.063 264.398 890.96 276.097 887.588 287.796 885.587 299.495 884.323 311.193 881.352 322.892 878.885 334.591 877.621 346.29 876.109 370.149 872.624" transform="translate(-134 -871)" />
+    </svg>;
+
+export const getChartLinePresent = (animate) =>
+    <svg className={classnames({
+        [styles['chart-line']]: true,
+        [styles['-line-present']]: true,
+        [styles['-animate']]: animate
+    })}
         width="803" height="154" viewBox="0 0 803 154">
         <defs>
             <linearGradient id="chart-1---line-a" x1="0%" x2="145.435%" y1="51.563%" y2="45.006%">
@@ -25,10 +59,10 @@ export const getChartLine = (animate) =>
 
 export const getChartLineFuture = (animate) =>
     <svg className={classnames({
-            [styles['chart-line']]: true,
-            [styles['-line-future']]: true,
-            [styles['-animate']]: animate
-        })}
+        [styles['chart-line']]: true,
+        [styles['-line-future']]: true,
+        [styles['-animate']]: animate
+    })}
         width="371" height="188" viewBox="0 0 371 188">
         <defs>
             <linearGradient id="chart-2---line-future-a" x1="0%" x2="99.138%" y1="61.148%" y2="37.467%">

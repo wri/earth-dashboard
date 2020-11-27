@@ -78,8 +78,6 @@
 
                         .chart-line {
                             position: absolute;
-                            stroke-dasharray: 1000;
-                            stroke-dashoffset: 1000;
                         }
 
                         .confidence-shape {
@@ -91,18 +89,52 @@
 
                             .chart-line {
 
-                                &.-line {
+                                &.-line-present {
                                     bottom: 127px;
                                     left: 34px;
                                     width: 520px;
-                                    animation: dash 3s linear forwards;
+
+                                    &.-animate {
+                                        stroke-dasharray: 1000;
+                                        stroke-dashoffset: 1000;
+                                        animation: dash 3s linear forwards;
+                                    }
                                 }
 
                                 &.-line-future {
-                                    bottom: 127px;
+                                    bottom: 219px;
+                                    left: 554px;
+                                    width: 240px;
+
+                                    &.-animate {
+                                        stroke-dasharray: 1000;
+                                        stroke-dashoffset: 1000;
+                                        animation: dash 3s linear alternate forwards;
+                                    }
+                                }
+
+                                &.-line-historical {
+                                    bottom: 187px;
                                     left: 34px;
-                                    width: 520px;
-                                    animation: dash 3s linear forwards;
+                                    width: 154px;
+
+                                    &.-animate {
+                                        stroke-dasharray: 300;
+                                        stroke-dashoffset: 300;
+                                        animation: dash 3s linear forwards;
+                                    }
+                                }
+
+                                &.-line-projection {
+                                    bottom: 187px;
+                                    left: 188px;
+                                    width: 607px;
+
+                                    &.-animate {
+                                        stroke-dasharray: 1000;
+                                        stroke-dashoffset: 1000;
+                                        animation: dash 3s 3s linear forwards;
+                                    }
                                 }
                             }
 
@@ -156,7 +188,7 @@
 
                 .marker {
                     position: absolute;
-                    transition: all 1s;
+                    transition: all 2s;
                 }
             }
         }
