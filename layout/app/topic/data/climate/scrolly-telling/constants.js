@@ -10,7 +10,15 @@ import { Desktop, MediaContextProvider } from 'utils/responsive';
 import styles from './climate-scrolly-telling.module.scss';
 
 // data
-import { CHART_AXES_1, CHART_AXES_2, CHART_AXES_3 } from './data';
+import {
+    CHART_AXES_1,
+    CHART_AXES_2,
+    CHART_AXES_3,
+    getChartLinePresent,
+    getChartLineFuture,
+    getChartLineHistorical,
+    getChartLineProjection
+} from './data';
 
 const getChartAxes = (number) => {
     switch (number) {
@@ -19,7 +27,7 @@ const getChartAxes = (number) => {
         case 3: return CHART_AXES_3;
     }
 }
-const getClimateChart = (number, pulsatingItemData,) =>
+const getClimateChart = (number, pulsatingItemData, linesData) =>
     <MediaContextProvider>
         <Desktop className={classnames({
             [styles['climate-chart']]: true,
@@ -32,6 +40,10 @@ const getClimateChart = (number, pulsatingItemData,) =>
             })}
                 src={`/static/images/scrolly-telling/climate/confidence-${number}.svg`}
             />
+            {linesData?.linePresent?.show && getChartLinePresent(linesData?.linePresent?.animate)}
+            {linesData?.lineFuture?.show && getChartLineFuture(linesData?.lineFuture?.animate)}
+            {linesData?.lineHistorical?.show && getChartLineHistorical(linesData?.lineHistorical?.animate)}
+            {linesData?.lineProjection?.show && getChartLineProjection(linesData?.lineProjection?.animate)}
             {pulsatingItemData?.show &&
                 <div
                     className={styles.marker}
@@ -76,12 +88,19 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(1,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                linePresent: { show: true, animate: true },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: false, animate: false },
+                lineProjection: { show: false, animate: false }
+            })
     },
     {
         index: 1,
@@ -96,12 +115,19 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(1,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                linePresent: { show: true, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: false, animate: false },
+                lineProjection: { show: false, animate: false }
+            })
     },
     {
         index: 2,
@@ -122,12 +148,19 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(1,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                linePresent: { show: true, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: false, animate: false },
+                lineProjection: { show: false, animate: false }
+            })
     },
     {
         index: 3,
@@ -148,12 +181,19 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(1,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                linePresent: { show: true, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: false, animate: false },
+                lineProjection: { show: false, animate: false }
+            })
     },
     {
         index: 4,
@@ -174,12 +214,19 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(1,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                linePresent: { show: true, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: false, animate: false },
+                lineProjection: { show: false, animate: false }
+            })
     },
     {
         index: 5,
@@ -200,12 +247,19 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(2, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(2,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                linePresent: { show: true, animate: false },
+                lineFuture: { show: true, animate: true },
+                lineHistorical: { show: false, animate: false },
+                lineProjection: { show: false, animate: false }
+            })
     },
     {
         index: 6,
@@ -222,12 +276,19 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(2, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(2,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                linePresent: { show: true, animate: false },
+                lineFuture: { show: true, animate: true },
+                lineHistorical: { show: false, animate: false },
+                lineProjection: { show: false, animate: false }
+            })
     },
     {
         index: 7,
@@ -254,12 +315,19 @@ export const CLIMATE_STEPS = [
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 2,
-            top: '262px',
-            left: '366px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 2,
+                top: '269px',
+                left: '366px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 8,
@@ -280,12 +348,19 @@ export const CLIMATE_STEPS = [
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 2,
-            top: '262px',
-            left: '366px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 2,
+                top: '269px',
+                left: '366px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 9,
@@ -308,12 +383,19 @@ export const CLIMATE_STEPS = [
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 2,
-            top: '262px',
-            left: '366px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 2,
+                top: '269px',
+                left: '366px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 10,
@@ -336,12 +418,19 @@ export const CLIMATE_STEPS = [
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 2,
-            top: '262px',
-            left: '366px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 2,
+                top: '269px',
+                left: '366px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 11,
@@ -364,12 +453,19 @@ export const CLIMATE_STEPS = [
         degrees: 1.5,
         yearSubtitle: 'In less than 30 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 2,
-            top: '262px',
-            left: '366px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 2,
+                top: '269px',
+                left: '366px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 12,
@@ -394,12 +490,19 @@ export const CLIMATE_STEPS = [
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 3,
-            top: '240px',
-            left: '510px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 3,
+                top: '240px',
+                left: '510px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 13,
@@ -428,12 +531,19 @@ export const CLIMATE_STEPS = [
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 3,
-            top: '240px',
-            left: '510px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 3,
+                top: '240px',
+                left: '510px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 14,
@@ -461,12 +571,19 @@ export const CLIMATE_STEPS = [
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 3,
-            top: '240px',
-            left: '510px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 3,
+                top: '240px',
+                left: '510px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 15,
@@ -489,12 +606,19 @@ export const CLIMATE_STEPS = [
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 3,
-            top: '240px',
-            left: '510px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 3,
+                top: '240px',
+                left: '510px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 16,
@@ -521,12 +645,19 @@ export const CLIMATE_STEPS = [
         degrees: 2.0,
         yearSubtitle: 'In less than 50 years',
         yearBackgroundColor: '#DB1600',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 3,
-            top: '240px',
-            left: '510px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 3,
+                top: '240px',
+                left: '510px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 17,
@@ -550,12 +681,19 @@ export const CLIMATE_STEPS = [
         degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
         yearBackgroundColor: '#AD0000',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 4,
-            top: '200px',
-            left: '680px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 4,
+                top: '200px',
+                left: '680px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 18,
@@ -578,12 +716,19 @@ export const CLIMATE_STEPS = [
         degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
         yearBackgroundColor: '#AD0000',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 4,
-            top: '200px',
-            left: '680px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 4,
+                top: '200px',
+                left: '680px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     },
     {
         index: 19,
@@ -605,12 +750,19 @@ export const CLIMATE_STEPS = [
         degrees: 3.0,
         yearSubtitle: 'In less than 70 years',
         yearBackgroundColor: '#AD0000',
-        stickyContainerElement: getClimateChart(3, {
-            show: true,
-            level: 4,
-            top: '200px',
-            left: '680px'
-        })
+        stickyContainerElement: getClimateChart(3,
+            {
+                show: true,
+                level: 4,
+                top: '200px',
+                left: '680px'
+            },
+            {
+                linePresent: { show: false, animate: false },
+                lineFuture: { show: false, animate: false },
+                lineHistorical: { show: true, animate: true },
+                lineProjection: { show: true, animate: true }
+            })
     }
 ];
 
