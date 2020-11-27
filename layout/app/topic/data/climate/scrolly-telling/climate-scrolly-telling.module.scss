@@ -76,12 +76,35 @@
                             animation: fade-in 1s forwards;
                         }
 
+                        .chart-line {
+                            position: absolute;
+                            stroke-dasharray: 1000;
+                            stroke-dashoffset: 1000;
+                        }
+
                         .confidence-shape {
                             position: absolute;
                         }
 
                         &.-desktop {
                             width: 800px;
+
+                            .chart-line {
+
+                                &.-line {
+                                    bottom: 127px;
+                                    left: 34px;
+                                    width: 520px;
+                                    animation: dash 3s linear forwards;
+                                }
+
+                                &.-line-future {
+                                    bottom: 127px;
+                                    left: 34px;
+                                    width: 520px;
+                                    animation: dash 3s linear forwards;
+                                }
+                            }
 
                             .confidence-shape {
                                 bottom: 127px;
@@ -152,4 +175,8 @@
 @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+@keyframes dash {
+    to { stroke-dashoffset: 0; }
 }

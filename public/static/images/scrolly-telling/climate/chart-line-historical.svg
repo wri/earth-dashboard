@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="238" height="43" viewBox="0 0 238 43">
+  <defs>
+    <linearGradient id="chart-3---line-historical-a" x1="0%" x2="99.138%" y1="51.438%" y2="48.562%">
+      <stop offset="0%" stop-color="#C2A414"/>
+      <stop offset="100%" stop-color="#F3A600"/>
+    </linearGradient>
+  </defs>
+  <polyline fill="none" stroke="url(#chart-3---line-historical-a)" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" points="135.905 912.346 147.41 908.903 159.109 904.239 170.808 900.867 182.507 900.371 194.205 899.574 205.904 897.578 217.603 892.521 229.302 891.063 264.398 890.96 276.097 887.588 287.796 885.587 299.495 884.323 311.193 881.352 322.892 878.885 334.591 877.621 346.29 876.109 370.149 872.624" transform="translate(-134 -871)"/>
+</svg>

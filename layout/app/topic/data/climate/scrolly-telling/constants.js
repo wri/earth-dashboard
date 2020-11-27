@@ -10,7 +10,13 @@ import { Desktop, MediaContextProvider } from 'utils/responsive';
 import styles from './climate-scrolly-telling.module.scss';
 
 // data
-import { CHART_AXES_1, CHART_AXES_2, CHART_AXES_3 } from './data';
+import {
+    CHART_AXES_1,
+    CHART_AXES_2,
+    CHART_AXES_3,
+    getChartLine,
+    getChartLineFuture
+} from './data';
 
 const getChartAxes = (number) => {
     switch (number) {
@@ -19,7 +25,7 @@ const getChartAxes = (number) => {
         case 3: return CHART_AXES_3;
     }
 }
-const getClimateChart = (number, pulsatingItemData,) =>
+const getClimateChart = (number, pulsatingItemData, linesData) =>
     <MediaContextProvider>
         <Desktop className={classnames({
             [styles['climate-chart']]: true,
@@ -32,6 +38,8 @@ const getClimateChart = (number, pulsatingItemData,) =>
             })}
                 src={`/static/images/scrolly-telling/climate/confidence-${number}.svg`}
             />
+            {linesData?.line?.show && getChartLine(linesData?.line?.animate)}
+            {linesData?.lineFuture?.show && getChartLineFuture(linesData?.lineFuture?.animate)}
             {pulsatingItemData?.show &&
                 <div
                     className={styles.marker}
@@ -76,12 +84,17 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(1,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                line: { show: true, animate: true },
+                lineFuture: { show: false, animate: false }
+            })
     },
     {
         index: 1,
@@ -96,12 +109,17 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(1,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                line: { show: true, animate: false },
+                lineFuture: { show: false, animate: false }
+            })
     },
     {
         index: 2,
@@ -122,12 +140,17 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(1,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                line: { show: true, animate: false },
+                lineFuture: { show: false, animate: false }
+            })
     },
     {
         index: 3,
@@ -148,12 +171,17 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(1,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                line: { show: true, animate: false },
+                lineFuture: { show: false, animate: false }
+            })
     },
     {
         index: 4,
@@ -174,12 +202,17 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(1, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(1,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                line: { show: true, animate: false },
+                lineFuture: { show: false, animate: false }
+            })
     },
     {
         index: 5,
@@ -200,12 +233,17 @@ export const CLIMATE_STEPS = [
         degrees: 1,
         yearSubtitle: 'Present time',
         yearBackgroundColor: 'hsl(41, 100%, 48%)',
-        stickyContainerElement: getClimateChart(2, {
-            show: true,
-            level: 1,
-            top: '274px',
-            left: '537px'
-        })
+        stickyContainerElement: getClimateChart(2,
+            {
+                show: true,
+                level: 1,
+                top: '274px',
+                left: '537px'
+            },
+            {
+                line: { show: true, animate: false },
+                lineFuture: { show: true, animate: true }
+            })
     },
     {
         index: 6,
