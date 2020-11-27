@@ -60,6 +60,29 @@ export const NEWS_WIDGET_TEMPLATE = {
   }
 };
 
+const SOURCE_TEMPLATE =  [
+  {
+    prefix: {
+      label: "Dataset name (source 1)",
+      link: "https://... "
+    },
+    suffix: {
+      label: "Source name (source 1)",
+      link: "https://...."
+    }
+  },
+  {
+    prefix: {
+      label: "Dataset name (source 2)",
+      link: "https://... "
+    },
+    suffix: {
+      label: "Source name (source 2)",
+      link: "https://...."
+    }
+  }
+];
+
 export const LIST_WIDGET_TEMPLATE = {
   type: 'widget',
   name: 'Test widget list',
@@ -72,16 +95,7 @@ export const LIST_WIDGET_TEMPLATE = {
       format: '0.2s',
       bullets: false,
       numbers: true,
-      source: {
-        prefix: {
-          label: "Dataset name",
-          link: "https://... "
-        },
-        suffix: {
-          label: "Source name",
-          link: "https://...."
-        }
-      }
+      source: SOURCE_TEMPLATE
     }
   }
 };
@@ -121,16 +135,7 @@ export const STATIC_LIST_WIDGET_TEMPLATE = {
           label: 'Element 5'
         }
       ],
-      source: {
-        prefix: {
-          label: "Dataset name",
-          link: "https://... "
-        },
-        suffix: {
-          label: "Source name",
-          link: "https://...."
-        }
-      }
+      source: SOURCE_TEMPLATE
     }
   }
 };
@@ -151,16 +156,7 @@ export const COMBINED_WIDGET_TEMPLATE = {
         percentage: 50
       },
       direction: 'choose betweem the values row/column',
-      source: {
-        prefix: {
-          label: "Dataset name",
-          link: "https://... "
-        },
-        suffix: {
-          label: "Source name",
-          link: "https://...."
-        }
-      }
+      source: SOURCE_TEMPLATE
     }
   }
 };
@@ -197,16 +193,7 @@ export const DYNAMIC_TEXT_WIDGET_TEMPLATE = {
           }
         }
       ],
-      source: {
-        prefix: {
-          label: "Dataset name",
-          link: "https://... "
-        },
-        suffix: {
-          label: "Source name",
-          link: "https://...."
-        }
-      }
+      source: SOURCE_TEMPLATE
     }
   }
 };
@@ -229,16 +216,7 @@ export const STATIC_TEXT_WIDGET_TEMPLATE = {
           }
         }
       ],
-      source: {
-        prefix: {
-          label: "Dataset name",
-          link: "https://... "
-        },
-        suffix: {
-          label: "Source name",
-          link: "https://...."
-        }
-      }
+      source: SOURCE_TEMPLATE
     }
   }
 };
