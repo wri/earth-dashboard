@@ -37,13 +37,13 @@ class HeadApp extends PureComponent {
       <HeadNext>
         <title>{title}</title>
 
-        <meta property="og:url" content={explicitHostname ? explicitHostname : hostname} />
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta name="og:image" content={thumbnail} />
+        <meta name="url" property="og:url" content={explicitHostname ? explicitHostname : hostname} />
+        <meta name="description" property="description" content={description} />
+        <meta name="title" property="og:title" content={title} />
+        <meta name="description" property="og:description" content={description} />
+        <meta name="image" proptery="og:image" content={thumbnail} />
         <meta property="og:image:secure_url" content={thumbnail} />
-        <meta name="og:image:alt" content={title} />
+        <meta property="og:image:alt" content={title} />
         <meta property="og:site_name" content="Earth Dashboard"></meta>
 
         {/* Theme color */}
