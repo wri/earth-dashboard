@@ -2,6 +2,7 @@ import classnames from 'classnames';
 
 // components
 import OceanCurrentBox from './ocean-current-box';
+import IslandsOfPlastic from './islands-of-plastic';
 
 // utils
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
@@ -192,58 +193,7 @@ export const OCEAN_STEPS = [
                 </div>,
             imageHeader: '/static/images/scrolly-telling/ocean/islands-of-plastic.jpg'
         },
-        stickyContainerElement:
-            <div className={styles['plastic-world-map']}>
-                <img
-                    className={styles['map-image']}
-                    src="/static/images/scrolly-telling/ocean/world-map.svg"
-                />
-                <OceanCurrentBox
-                    title="North Pacific Gyre"
-                    direction="north"
-                    style={{
-                        position: 'absolute',
-                        top: '32%',
-                        left: '46%',
-                        height: '12%'
-                    }} />
-                <OceanCurrentBox
-                    title="Indian Ocean Gyre"
-                    direction="south"
-                    style={{
-                        position: 'absolute',
-                        top: '61%',
-                        left: '20%',
-                        height: '10%'
-                    }} />
-                <OceanCurrentBox
-                    title="South Pacific Gyre"
-                    direction="south"
-                    style={{
-                        position: 'absolute',
-                        top: '61%',
-                        left: '61%',
-                        height: '10%'
-                    }} />
-                <OceanCurrentBox
-                    title="North Atlantic Gyre"
-                    direction="north"
-                    style={{
-                        position: 'absolute',
-                        top: '32%',
-                        left: '80%',
-                        height: '9%'
-                    }} />
-                <OceanCurrentBox
-                    title="South Atlantic Gyre"
-                    direction="south"
-                    style={{
-                        position: 'absolute',
-                        top: '65%',
-                        left: '86%',
-                        height: '8%'
-                    }} />
-            </div>
+        stickyContainerElement: <IslandsOfPlastic />
     },
     {
         index: 6,
