@@ -20,17 +20,17 @@ function CreditsResourcesSection(props) {
   const getCreditsAndResourcesContent = () =>
     <>
       <div className={styles['credits-field']}>
-        <div className={styles['field-title']}>
+        <h6 className={styles['field-title']}>
           AUTHORS
-        </div>
+        </h6>
         <div className={styles['field-content']}>
           Polly Ghazy, Emily Nilson, Liz Sacoccia and Jessica Ertel.
         </div>
       </div>
       <div className={styles['credits-field']}>
-        <div className={styles['field-title']}>
+        <h6 className={styles['field-title']}>
           METHODOLOGY
-        </div>
+        </h6>
         <div className={styles['field-content']}>
           {getMethodologyDataByTopic(topic)}
         </div>
@@ -65,9 +65,9 @@ function CreditsResourcesSection(props) {
                 [styles['-desktop']]: true
               })}
               >
-                <div className={styles['field-title']}>
+                <h6 className={styles['field-title']}>
                   SHARE THIS PAGE
-                </div>
+                </h6>
                 <ShareBox topic={topic} url={isServer ? '' : window.location.href} />
               </div>
             </div>
@@ -78,6 +78,7 @@ function CreditsResourcesSection(props) {
             [styles['main-container']]: true,
             [styles['-mobile']]: true
           })}>
+            <h3>Credits and <span style={{ color: topicColor }}>Resources</span></h3>
             <div className={classnames({
               [styles['credits-resources-container']]: true,
               [styles['-mobile']]: true
@@ -90,9 +91,9 @@ function CreditsResourcesSection(props) {
               [styles['-mobile']]: true
             })}
             >
-              <div className={styles['share-title']}>
+              <h6 className={styles['field-title']}>
                 SHARE THIS PAGE
-              </div>
+              </h6>
             </div>
           </div>
         </Mobile>

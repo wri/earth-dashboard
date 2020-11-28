@@ -20,9 +20,9 @@ TopicDataPage.getInitialProps = async (context) => {
 
   // Preload widgets data
   const dataArray = topicData?.[topic]?.diveIntoTheData?.data;
-  const widgetIDs = dataArray?.map(elem => elem.id);
+  const widgetIDs = dataArray?.map(elem => elem?.id);
   const widgets = [];
-  for (let i = 0; i < widgetIDs.length; i++) {
+  for (let i = 0; i < widgetIDs?.length; i++) {
     const widget = await fetchWidget(widgetIDs[i], { includes: 'metadata' });
     widgets.push(widget);
   }
