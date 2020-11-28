@@ -11,7 +11,7 @@
         color: $black;
     
         &.-mobile {
-            padding: 12 * $space 6 * $space 12 * $space 6 * $space;
+            padding: 44px 16px 36px 16px;
         }
     
         h2 {
@@ -32,6 +32,10 @@
                 height: 500px;
                 margin-bottom: 8 * $space;
                 position: relative;
+
+                &.-mobile {
+                    padding: 0px;
+                }
             }
         }
     }

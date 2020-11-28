@@ -8,14 +8,12 @@
         padding: 110px;
 
         &.-mobile {
-            padding: 12 * $space 6 * $space 12 * $space 6 * $space;
+            padding: 64px 16px 64px 16px;
         }
     
-        h2 {
-            font-family: 'Barlow Condensed';
+        h2, h3 {
             color: $white;
             font-style: italic;
-            font-size: 36px;
     
             span {
                 font-style: normal;
