@@ -5,6 +5,7 @@ import classnames from 'classnames';
 // components
 import TextBox from 'components/scrolly-telling/text-box';
 import WaterDrop from './water-drop';
+import WaterDropLocations from './water-drop-locations';
 
 // utils
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
@@ -146,8 +147,11 @@ function FreshwaterScrollyTelling() {
                     })}
                 >
                     <div className={styles['worldmap-container']}>
-                        <img className={styles['worldmap-image']} src="/static/images/scrolly-telling/freshwater/worldmap.svg" />
-                        <div className={styles.locations}>
+                        <WaterDropLocations index={currentStepIndexWorldMap} />
+
+                        {/* <img className={styles['worldmap-image']} 
+                        src="/static/images/scrolly-telling/freshwater/worldmap.svg" /> */}
+                        {/* <div className={styles.locations}>
                             {FRESHWATER_WATER_DROP_LOCATIONS.map(location => {
                                 const isCurrentItem = location.index === currentStepIndexWorldMap;
                                 return (<div
@@ -164,7 +168,7 @@ function FreshwaterScrollyTelling() {
                                     <img src={`/static/images/scrolly-telling/freshwater/drop-map-marker${isCurrentItem ? '-active' : ''}.svg`} />
                                 </div>);
                             })}
-                        </div>
+                        </div> */}
                     </div>
                     {isBrowser &&
                         <>
