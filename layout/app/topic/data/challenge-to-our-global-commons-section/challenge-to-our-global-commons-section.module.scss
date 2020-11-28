@@ -3,43 +3,55 @@
 .c-challenge-to-our-global-commons-section {
     position: relative;
     width: 100%;
-    padding: 200px 100px 200px 100px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 
-    h1 {
-        color: $white;
-        padding-bottom: 52px;
-
-        span {
-            font-style: italic;
+    .main-container {
+        &.-desktop {
+            padding: 200px 100px 200px 100px;
         }
-    }
+        &.-mobile {
+            padding: 134px 16px 174px 16px;
+        }
 
-    .paragraphs-container {
-        .challenge-paragraph{
-            max-width: 50%;
-            padding-bottom: 40px;
-            color: $grey;
+        h1, h3 {
+            color: $white;
+            span {
+                font-style: italic;
+            }
+        }
     
-            a {
-                color: $white;
-            }
-
-            &.-mobile {
-                max-width: 100%;
-                padding: 0px 16px 30px 16px;
+        h1 {
+            padding-bottom: 52px;
+        }
+        h3 {
+            margin-bottom: 30px;
+        }
+    
+        .paragraphs-container {
+            .challenge-paragraph{
+                max-width: 50%;
+                padding-bottom: 40px;
+                color: $grey;
+        
+                a {
+                    color: $white;
+                }
+    
+                &.-mobile {
+                    max-width: 100%;
+                }
             }
         }
-    }
-
-    .photo-attribution-container{
-        position: absolute;
-        left: 4 * $space;
-        bottom: 4 * $space;
-        color: $grey-darker;
-        font-family: 'Barlow Condensed';
-        font-size: 12px;
+    
+        .photo-attribution-container{
+            position: absolute;
+            left: 4 * $space;
+            bottom: 4 * $space;
+            color: $grey-darker;
+            font-family: 'Barlow Condensed';
+            font-size: 12px;
+        }
     }
 }

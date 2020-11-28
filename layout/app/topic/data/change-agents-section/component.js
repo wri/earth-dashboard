@@ -12,11 +12,12 @@ import styles from './change-agents-section.module.scss';
 function ChangeAgentsSection(props) {
   const { topic } = props;
   const topicColor = getColorByTopic(topic);
-  const getMainContainerContents = () =>
+  const getMainContainerContents = (mobile) =>
     <>
-      <h2>Change Agents <span>(coming soon)</span></h2>
+      {!mobile && <h2>Change Agents <span>(coming soon)</span></h2>}
+      {mobile && <h3>Change Agents <span>(coming soon)</span></h3>}
       <div className={styles.subtitle}>
-        Explore the companies, cities, governments and consumers that are having a positive impact towards solutions to our Global Commons problems.
+        Explore the <span className="bold">companies, cities, governments</span> and <span className="bold">consumers</span> that are having a positive impact towards solutions to our Global Commons problems.
         </div>
     </>;
 
@@ -32,7 +33,7 @@ function ChangeAgentsSection(props) {
             [styles['main-container']]: true,
             [styles['-desktop']]: true
           })}>
-            {getMainContainerContents()}
+            {getMainContainerContents(false)}
           </div>
         </Desktop>
         <Mobile>
@@ -40,7 +41,7 @@ function ChangeAgentsSection(props) {
             [styles['main-container']]: true,
             [styles['-mobile']]: true
           })}>
-            {getMainContainerContents()}
+            {getMainContainerContents(true)}
           </div>
         </Mobile>
       </MediaContextProvider>

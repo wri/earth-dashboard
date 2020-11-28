@@ -17,13 +17,17 @@ function CreditsResourcesSection(props) {
   const topicColor = getColorByTopic(topic);
   const isServer = typeof window === 'undefined';
 
-  const getCreditsAndResourcesContent = () =>
+  const getCreditsAndResourcesContent = (mobile) =>
     <>
       <div className={styles['credits-field']}>
         <h6 className={styles['field-title']}>
           AUTHORS
         </h6>
-        <div className={styles['field-content']}>
+        <div className={classnames({
+          [styles['field-content']]: true,
+          [styles['-desktop']]: !mobile,
+          [styles['-mobile']]: mobile
+        })}>
           Polly Ghazy, Emily Nilson, Liz Sacoccia and Jessica Ertel.
         </div>
       </div>
@@ -31,7 +35,11 @@ function CreditsResourcesSection(props) {
         <h6 className={styles['field-title']}>
           METHODOLOGY
         </h6>
-        <div className={styles['field-content']}>
+        <div className={classnames({
+          [styles['field-content']]: true,
+          [styles['-desktop']]: !mobile,
+          [styles['-mobile']]: mobile
+        })}>
           {getMethodologyDataByTopic(topic)}
         </div>
       </div>
@@ -58,7 +66,7 @@ function CreditsResourcesSection(props) {
                 [styles['-desktop']]: true
               })}
               >
-                {getCreditsAndResourcesContent()}
+                {getCreditsAndResourcesContent(false)}
               </div>
               <div className={classnames({
                 [styles['share-container']]: true,
@@ -84,7 +92,7 @@ function CreditsResourcesSection(props) {
               [styles['-mobile']]: true
             })}
             >
-              {getCreditsAndResourcesContent()}
+              {getCreditsAndResourcesContent(true)}
             </div>
             <div className={classnames({
               [styles['share-container']]: true,

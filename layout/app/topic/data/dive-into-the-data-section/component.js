@@ -25,11 +25,17 @@ function DiveIntoTheDataSection({
   const dataArray = topicData[topic]?.diveIntoTheData?.data;
   const isBrowser = typeof window !== 'undefined';
 
-  const getMainContainerContent = () =>
+  const getMainContainerContent = (mobile) =>
     <>
-      <h2>Dive into the <span style={{ color: topicColor }}>Data</span></h2>
+      {!mobile && <h2>Dive into the <span style={{ color: topicColor }}>Data</span></h2>}
+      {mobile && <h3>Dive into the <span style={{ color: topicColor }}>Data</span></h3>}
       <p className={styles.subtitle}>{getDiveIntoTheDataDataByTopic(topic)?.description}</p>
-      <div className={styles['widgets-container']}>
+      <div
+        className={classnames({
+          [styles['widgets-container']]: true,
+          [styles['-desktop']]: !mobile,
+          [styles['-mobile']]: mobile
+        })}>
         {isBrowser &&
           <ErrorBoundary>
             <div className="row">
@@ -41,7 +47,9 @@ function DiveIntoTheDataSection({
                     'small-12': true,
                     'medium-6': widget.widgetsPerColumn >= 2,
                     'large-4': widget.widgetsPerColumn === 3,
-                    [styles['preview-container']]: true
+                    [styles['preview-container']]: true,
+                    [styles['-desktop']]: !mobile,
+                    [styles['-mobile']]: mobile
                   })}
                 >
                   <WidgetPanel
@@ -66,7 +74,7 @@ function DiveIntoTheDataSection({
             [styles['main-container']]: true,
             [styles['-desktop']]: true
           })}>
-            {getMainContainerContent()}
+            {getMainContainerContent(false)}
           </div>
         </Desktop>
         <Mobile>
@@ -74,7 +82,7 @@ function DiveIntoTheDataSection({
             [styles['main-container']]: true,
             [styles['-mobile']]: true
           })}>
-            {getMainContainerContent()}
+            {getMainContainerContent(true)}
           </div>
         </Mobile>
       </MediaContextProvider>
