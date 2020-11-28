@@ -51,7 +51,10 @@ function WaterDrop(props) {
                 <img src="/static/images/scrolly-telling/freshwater/isometric_terrain.svg" />
             </div>
             <div className={styles['water-drop']}>
-                <div className={styles.shape}>
+                <div className={classnames({
+                    [styles.shape]: true,
+                    [styles['-mobile']]: mobile
+                })}>
                     <div className={styles.frame}>
                         <div className={classnames({
                             [styles.wave]: true,
