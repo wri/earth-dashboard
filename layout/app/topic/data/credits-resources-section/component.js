@@ -94,6 +94,12 @@ function CreditsResourcesSection(props) {
               <h6 className={styles['field-title']}>
                 SHARE THIS PAGE
               </h6>
+              <ShareBox 
+                topic={topic}
+                url={isServer ? '' : window.location.href}
+                showInput={false}
+                showBorder={false}
+              />
             </div>
           </div>
         </Mobile>

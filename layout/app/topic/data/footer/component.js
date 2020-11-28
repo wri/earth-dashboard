@@ -12,16 +12,14 @@ import styles from './footer.module.scss';
 function Footer() {
     const router = useRouter();
 
-    const getMainContainerContent = (mobile = false) =>
+    const getMainContainerContent = () =>
         <>
-            {!mobile &&
-                <div
-                    className={styles['logo-container']}
-                    onClick={() => router.push('/')}
-                >
-                    <img src="/static/images/logo-light.svg" />
-                </div>
-            }
+            <div
+                className={styles['logo-container']}
+                onClick={() => router.push('/')}
+            >
+                <img src="/static/images/logo-light.svg" />
+            </div>
             <div className={styles['topic-links']}>
                 <div className={styles['link-container']}>
                     <Link href="/climate/data">
@@ -57,25 +55,21 @@ function Footer() {
     return (
         <div className={styles['c-topic-data-footer']}>
             <MediaContextProvider>
-                <Desktop>
-                    <div className={classnames({
-                        [styles['main-container']]: true,
-                        [styles['-desktop']]: true
-                    })}>
-                        {getMainContainerContent(false)}
-                    </div>
+                <Desktop className={classnames({
+                    [styles['main-container']]: true,
+                    [styles['-desktop']]: true
+                })}>
+                    {getMainContainerContent()}
                 </Desktop>
-                <Mobile>
-                <div className={classnames({
-                        [styles['main-container']]: true,
-                        [styles['-mobile']]: true
-                    })}>
-                        {getMainContainerContent(true)}
-                    </div>
+                <Mobile className={classnames({
+                    [styles['main-container']]: true,
+                    [styles['-mobile']]: true
+                })}>
+                    {getMainContainerContent()}
                 </Mobile>
             </MediaContextProvider>
 
-        </div>
+        </div >
     );
 }
 

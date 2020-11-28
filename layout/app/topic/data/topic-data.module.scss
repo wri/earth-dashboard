@@ -47,6 +47,7 @@
 
         &.-hidden {
             animation: fade-out 1s forwards;
+            pointer-events: none;
         }
 
         @keyframes fade-in {

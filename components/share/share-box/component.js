@@ -18,22 +18,30 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 // styles
 import styles from './share-box.module.scss';
 
-function ShareBox({ url, topic, style }) {
+function ShareBox({ url, topic, style, showInput, showBorder }) {
     const isServer = typeof window === 'undefined';
 
     const getContent = (mobile = false) =>
-        <div className={styles['main-container']} style={style}>
-            <div className={classnames({
-                [styles['url-container']]: true,
-                [styles['-mobile']]: mobile,
-                [styles['-desktop']]: !mobile
-            })}>
-                <input
-                    type="text"
-                    value={url}
-                    disabled
-                />
-            </div>
+        <div 
+            className={classnames({
+                [styles['main-container']]: true,
+                [styles['-with-border']]: showBorder
+            })}
+            style={style}
+        >
+            {showInput &&
+                <div className={classnames({
+                    [styles['url-container']]: true,
+                    [styles['-mobile']]: mobile,
+                    [styles['-desktop']]: !mobile
+                })}>
+                    <input
+                        type="text"
+                        value={url}
+                        disabled
+                    />
+                </div>
+            }
             <div className={classnames({
                 [styles['share-buttons']]: true,
                 [styles['-mobile']]: mobile,
@@ -43,7 +51,8 @@ function ShareBox({ url, topic, style }) {
                     <div className={classnames({
                         [styles['share-button']]: true,
                         [styles['-mobile']]: mobile,
-                        [styles['-desktop']]: !mobile
+                        [styles['-desktop']]: !mobile,
+                        [styles['-extra-margin']]: !showBorder
                     })}>
                         <img src={getEmailIconPerTopic(topic)} />
                     </div>
@@ -54,7 +63,8 @@ function ShareBox({ url, topic, style }) {
                     <div className={classnames({
                         [styles['share-button']]: true,
                         [styles['-mobile']]: mobile,
-                        [styles['-desktop']]: !mobile
+                        [styles['-desktop']]: !mobile,
+                        [styles['-extra-margin']]: !showBorder
                     })}>
                         <img src={getFacebookIconPerTopic(topic)} />
                     </div>
@@ -67,25 +77,28 @@ function ShareBox({ url, topic, style }) {
                     <div className={classnames({
                         [styles['share-button']]: true,
                         [styles['-mobile']]: mobile,
-                        [styles['-desktop']]: !mobile
+                        [styles['-desktop']]: !mobile,
+                        [styles['-extra-margin']]: !showBorder
                     })}>
                         <img src={getTwitterIconPerTopic(topic)} />
                     </div>
                 </a>
             </div>
-            <CopyToClipboard text={url}>
-                <button
-                    className={classnames({
-                        '-forests': topic === FORESTS,
-                        '-ocean': topic === OCEAN,
-                        '-climate': topic === CLIMATE,
-                        '-freshwater': topic === FRESHWATER,
-                        [styles['copy-link-button']]: true
-                    })}
-                >
-                    Copy link
-                </button>
-            </CopyToClipboard>
+            {showInput &&
+                <CopyToClipboard text={url}>
+                    <button
+                        className={classnames({
+                            '-forests': topic === FORESTS,
+                            '-ocean': topic === OCEAN,
+                            '-climate': topic === CLIMATE,
+                            '-freshwater': topic === FRESHWATER,
+                            [styles['copy-link-button']]: true
+                        })}
+                    >
+                        Copy link
+                    </button>
+                </CopyToClipboard>
+            }
         </div>;
 
     return (
@@ -106,7 +119,14 @@ function ShareBox({ url, topic, style }) {
 ShareBox.propTypes = {
     url: PropTypes.string.isRequired,
     topic: PropTypes.string.isRequired,
-    style: PropTypes.object
+    style: PropTypes.object,
+    showInput: PropTypes.bool,
+    showBorder: PropTypes.bool
 };
+
+ShareBox.defaultProps = {
+    showInput: true,
+    showBorder: true
+}
 
 export default ShareBox;
