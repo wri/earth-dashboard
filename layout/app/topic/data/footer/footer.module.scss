@@ -1,24 +1,39 @@
 @import 'css/settings';
 
 .c-topic-data-footer {
-    height: 125px;
     display: flex;
     align-items: center;
     background-color: $black;
 
     .main-container {
+        height: 125px;
         width: 100%;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
         padding: 0px 110px 0px 110px;
 
-        &.-mobile {
-            padding: 0px 16px 0px 16px;
+        .logo-container {
+            width: 100%;
+            cursor: pointer;
         }
 
-        .logo-container {
-            cursor: pointer;
+        &.-desktop {
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &.-mobile {
+            height: 200px;
+            padding: 0px 16px 0px 16px;
+            flex-direction: column;
+
+            .logo-container {
+                margin-top: 43px;
+            }
+
+            .topic-links {
+                margin-top: 35px;
+                justify-content: space-between;
+            }
         }
 
         .topic-links {

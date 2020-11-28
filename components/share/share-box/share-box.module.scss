@@ -4,10 +4,13 @@
     .main-container {
         display: flex;
         align-items: center;
-        border: solid 1px $grey;
-        border-radius: 3px;
-        padding: 12px;    
         height: 60px;
+
+        &.-with-border {
+            border: solid 1px $grey;
+            border-radius: 3px;
+            padding: 12px;  
+        }
     
         .url-container {
             display: flex;
@@ -50,6 +53,10 @@
     
                 &.-mobile {
                     margin-right: 6px;
+                }
+
+                &.-extra-margin {
+                    margin-right: 40px;
                 }
             }
         }
