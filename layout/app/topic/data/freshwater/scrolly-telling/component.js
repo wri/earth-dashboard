@@ -13,8 +13,7 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 // constants
 import {
     FRESHWATER_STEPS,
-    FRESHWATER_STEPS_WORLDMAP,
-    FRESHWATER_WATER_DROP_LOCATIONS
+    FRESHWATER_STEPS_WORLDMAP
 } from './constants';
 
 // styles
@@ -147,28 +146,7 @@ function FreshwaterScrollyTelling() {
                     })}
                 >
                     <div className={styles['worldmap-container']}>
-                        <WaterDropLocations index={currentStepIndexWorldMap} />
-
-                        {/* <img className={styles['worldmap-image']} 
-                        src="/static/images/scrolly-telling/freshwater/worldmap.svg" /> */}
-                        {/* <div className={styles.locations}>
-                            {FRESHWATER_WATER_DROP_LOCATIONS.map(location => {
-                                const isCurrentItem = location.index === currentStepIndexWorldMap;
-                                return (<div
-                                    className={classnames({
-                                        [styles['water-drop-location']]: true,
-                                        "pulsating-circle": isCurrentItem
-                                    })}
-                                    style={{
-                                        top: isCurrentItem ? `${location.top + 3.25}%` : `${location.top}%`,
-                                        left: isCurrentItem ? `${location.left + 0.85}%` : `${location.left}%`
-                                    }}
-                                    key={`worldmap-location-${location.index}`}
-                                >
-                                    <img src={`/static/images/scrolly-telling/freshwater/drop-map-marker${isCurrentItem ? '-active' : ''}.svg`} />
-                                </div>);
-                            })}
-                        </div> */}
+                        <WaterDropLocations activeIndex={currentStepIndexWorldMap} />
                     </div>
                     {isBrowser &&
                         <>

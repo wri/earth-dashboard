@@ -2,10 +2,24 @@
 
 .c-water-drop-locations {
 
-    .worldmap-image {
+    .main-container {
+        position: relative;
+        display: flex;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
 
-        .-mobile {
-            width: 600px;
-        }
+        .map-container {
+            position: relative;
+            display: flex;
+
+            .worldmap-image {
+
+                &.-mobile {
+                    min-width: 350px;
+                    max-width: 350px;
+                }
+            }
+        }        
     }
 }
