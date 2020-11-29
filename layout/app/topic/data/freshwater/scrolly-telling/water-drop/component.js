@@ -68,7 +68,11 @@ function WaterDrop(props) {
                 </div>
             </div>
             {arrowDirection &&
-                <div className={styles['arrows-container']}>
+                <div className={classnames({
+                    [styles['arrows-container']]: true,
+                    [styles['-mobile']]: mobile,
+                    [styles['-desktop']]: !mobile
+                })}>
                     <Arrow direction={arrowDirection} />
                 </div>
             }
