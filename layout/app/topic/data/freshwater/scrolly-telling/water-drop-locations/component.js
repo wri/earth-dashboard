@@ -31,7 +31,8 @@ function WaterDropLocations({ activeIndex }) {
                 return (
                     <div style={{
                         position: 'absolute',
-                        ...(mode === 'mobile' && { top: location.top, left: location.left })
+                        top: location[mode].top,
+                        left: location[mode].left
                     }}>
                         <PulsatingItem
                             active={isCurrentItem}

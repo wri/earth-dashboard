@@ -153,22 +153,46 @@ export const FRESHWATER_STEPS_WORLDMAP = [
 export const FRESHWATER_WATER_DROP_LOCATIONS = [
     {
         index: 0,
-        top: '34px',
-        left: '197px'
+        mobile: {
+            top: '34px',
+            left: '197px'
+        },
+        desktop: {
+            top: '94px',
+            left: '431px'
+        }
     },
     {
         index: 1,
-        top: '50px',
-        left: '245px'
+        mobile: {
+            top: '50px',
+            left: '245px'
+        },
+        desktop: {
+            top: '134px',
+            left: '532px'
+        }
     },
     {
         index: 2,
-        top: '103px',
-        left: '173px'
+        mobile: {
+            top: '103px',
+            left: '173px'
+        },
+        desktop: {
+            top: '239px',
+            left: '401px'
+        }
     },
     {
         index: 3,
-        top: '24px',
-        left: '175px'
+        mobile: {
+            top: '24px',
+            left: '175px'
+        },
+        desktop: {
+            top: '66px',
+            left: '385px'
+        }
     }
 ];
