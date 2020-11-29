@@ -57,7 +57,7 @@ export const FRESHWATER_STEPS = [
                 <p>
                     Ideally, no region should withdraw more water than it can naturally replenish. <span className="bold">Baseline water stress</span> measures
                      the ratio of total water withdrawals to available renewable surface and groundwater 
-                    supplies. It is expressed as a percentage. <a className="external-link -freshwater" href="https://resourcewatch.org/data/explore/wat050-Aqueduct-Baseline-Water-Stress" target="_blank">These risk scores range from low water stress
+                    supplies. It is expressed as a percentage. <a className="external-link -freshwater bold" href="https://resourcewatch.org/data/explore/wat050-Aqueduct-Baseline-Water-Stress" target="_blank">These risk scores range from low water stress
                      (&lt;10%) to extremely high water stress (&gt;80%)</a>.
                 </p>
         },
@@ -153,22 +153,46 @@ export const FRESHWATER_STEPS_WORLDMAP = [
 export const FRESHWATER_WATER_DROP_LOCATIONS = [
     {
         index: 0,
-        top: 31.5,
-        left: 58
+        mobile: {
+            top: '34px',
+            left: '197px'
+        },
+        desktop: {
+            top: '94px',
+            left: '431px'
+        }
     },
     {
         index: 1,
-        top: 44.5,
-        left: 70.5
+        mobile: {
+            top: '50px',
+            left: '245px'
+        },
+        desktop: {
+            top: '134px',
+            left: '532px'
+        }
     },
     {
         index: 2,
-        top: 80,
-        left: 54
+        mobile: {
+            top: '103px',
+            left: '173px'
+        },
+        desktop: {
+            top: '239px',
+            left: '401px'
+        }
     },
     {
         index: 3,
-        top: 24,
-        left: 52.5
+        mobile: {
+            top: '24px',
+            left: '175px'
+        },
+        desktop: {
+            top: '66px',
+            left: '385px'
+        }
     }
 ];
