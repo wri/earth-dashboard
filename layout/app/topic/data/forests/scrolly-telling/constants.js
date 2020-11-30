@@ -6,6 +6,9 @@ import TippingPointChart from './tipping-point-chart';
 // styles
 import styles from './forests-scrolly-telling.module.scss';
 
+// data
+import { TREES_WITH_SAWS_SVG } from './data';
+
 export const FORESTS_STEPS = [
     {
         index: 0,
@@ -72,7 +75,7 @@ export const FORESTS_STEPS = [
         yearSubtitle: '494,9 Mha of tree cover in the Amazon basin',
         stickyContainerElement: 
             <div className={styles['-align-right']}>
-                <img src="/static/images/scrolly-telling/forests/trees3.svg" />
+                {TREES_WITH_SAWS_SVG}
             </div>
     },
     {

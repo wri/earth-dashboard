@@ -4,7 +4,6 @@
     overflow: initial;
 
     .story {
-
         .sticky-container {
             position: sticky;
             top: 0vh;
@@ -65,22 +64,6 @@
                             }
                         }
                     }
-
-                    .chart-pulsating-dot {
-                        position: relative;
-                        padding: 20px;
-
-                        .chart {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            width: 100%;
-
-                            img {
-                                width: 100%;
-                            }
-                        }
-                    }
                 }
 
                 .year-container {
@@ -115,6 +98,16 @@
             &.-mobile {
                 align-items: center;
             }
+        }
+    }
+
+    .saw-icon {
+        animation: saw-animation 2s infinite;
+
+        @keyframes saw-animation {
+            0% { transform: translate(-3px, 3px); }
+            50% { transform: translate(0px, 0px); }
+            100% { transform: translate(-3px, 3px); }
         }
     }
 }
