@@ -1,11 +1,19 @@
 import classnames from 'classnames';
 
 // components
-import OceanCurrentBox from './ocean-current-box';
 import IslandsOfPlastic from './islands-of-plastic';
 
+// constants
+import { PACIFIC_GARBAGE_PATCH_SVG } from './data';
+
 // utils
-import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
+import { 
+    Mobile,
+    Desktop,
+    DesktopLarge,
+    DesktopXLarge,
+    MediaContextProvider
+} from 'utils/responsive';
 
 // styles
 import styles from './ocean-scrolly-telling.module.scss';
@@ -31,6 +39,36 @@ const getTrendsInMarineFishStock = () =>
                 </div>
             </div>
         </Mobile>
+    </MediaContextProvider>;
+
+const getGreatPacificGarbagePatchMap = (mode) =>
+    <div className={classnames({
+        [styles['plastic-world-map-pacific']]: true,
+        [styles['-desktop']]: mode === 'desktop',
+        [styles['-mobile']]: mode === 'mobile',
+        [styles['-desktop-large']]: mode === 'desktop-large',
+        [styles['-desktop-x-large']]: mode === 'desktop-x-large'
+    })}>
+        <div className={styles['pacific-garbage-patch-container']}>
+            <h6 className="ocean">North Pacific Gyre</h6>
+            {PACIFIC_GARBAGE_PATCH_SVG}
+        </div>
+    </div>;
+
+const getGreatPacificGarbagePatch = () =>
+    <MediaContextProvider>
+        <Desktop includeBiggerScreens={false}>
+            {getGreatPacificGarbagePatchMap('desktop')}
+        </Desktop>
+        <Mobile>
+            {getGreatPacificGarbagePatchMap('mobile')}
+        </Mobile>
+        <DesktopLarge includeBiggerScreens={false}>
+            {getGreatPacificGarbagePatchMap('desktop-large')}
+        </DesktopLarge>
+        <DesktopXLarge>
+            {getGreatPacificGarbagePatchMap('desktop-x-large')}
+        </DesktopXLarge>
     </MediaContextProvider>;
 
 export const OCEAN_STEPS_INTRO = [
@@ -180,8 +218,8 @@ export const OCEAN_STEPS = [
                     <h6 className="subheader">Islands of plastic</h6>
                     <h6 className="ocean">Plastic Pollution</h6>
                     <p>
-                        <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank"><span className="bold">A garbage truck's worth of plastic enters the ocean every minute</span></a>. Carried out to sea by rivers, it 
-                        floats throughout them, swirling with the currents into islands of plastic, some up to 
+                        <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank"><span className="bold">A garbage truck's worth of plastic enters the ocean every minute</span></a>. Carried out to sea by rivers, it
+                        floats throughout them, swirling with the currents into islands of plastic, some up to
                         millions of kilometers in diameter.
                     </p>
                     <p>
@@ -200,21 +238,12 @@ export const OCEAN_STEPS = [
         textPanel: {
             text:
                 <p>
-                    The <a className="external-link -ocean" href="https://www.nationalgeographic.org/encyclopedia/great-pacific-garbage-patch/" target="_blank"><span className="bold">Great Pacific Garbage Patch</span></a> is a collection of marine debris in the North Pacific Ocean. Also 
+                    The <a className="external-link -ocean" href="https://www.nationalgeographic.org/encyclopedia/great-pacific-garbage-patch/" target="_blank"><span className="bold">Great Pacific Garbage Patch</span></a> is a collection of marine debris in the North Pacific Ocean. Also
                     known as the Pacific trash vortex, the garbage patch is actually two distinct collections of
                      debris bounded by the massive North Pacific Subtropical Gyre.
                 </p>
         },
-        stickyContainerElement:
-            <div className={classnames({
-                [styles['plastic-world-map']]: true,
-                [styles['-pacific']]: true
-            })}>
-                <img
-                    className={styles['map-image']}
-                    src="/static/images/scrolly-telling/ocean/world-map.svg"
-                />
-            </div>
+        stickyContainerElement: getGreatPacificGarbagePatch()
     },
     {
         index: 7,
@@ -225,13 +254,13 @@ export const OCEAN_STEPS = [
                     <h6 className="ocean">Benefits of Sustainable Interventions</h6>
                     <p>
                         Governments, companies and citizens must act with urgency to protect our planet’s oceans.
-                         Investing sustainably can preserve biodiversity critical ecosystems and build the ocean-based
-                          industries needed to provide jobs, energy, and food for a growing population. 
-                          Such investments would be enormously cost-effective: <span className="bold">on average, the benefits would be five times greater than the costs</span>. 
+                        Investing sustainably can preserve biodiversity critical ecosystems and build the ocean-based
+                        industries needed to provide jobs, energy, and food for a growing population.
+                          Such investments would be enormously cost-effective: <span className="bold">on average, the benefits would be five times greater than the costs</span>.
                     </p>
                     <p>
-                        This chart provides a summary of benefit-cost ratios for <a className="external-link -ocean" href="https://oceanpanel.org/sites/default/files/2020-07/Ocean%20Panel_Economic%20Analysis_FINAL.pdf" target="_blank"><span className="bold">four action areas over a 30-year horizon</span></a>. 
-                        The benefit-cost ratios would vary, ranging from 3-to-1 to more than 12-to-1. 
+                        This chart provides a summary of benefit-cost ratios for <a className="external-link -ocean" href="https://oceanpanel.org/sites/default/files/2020-07/Ocean%20Panel_Economic%20Analysis_FINAL.pdf" target="_blank"><span className="bold">four action areas over a 30-year horizon</span></a>.
+                        The benefit-cost ratios would vary, ranging from 3-to-1 to more than 12-to-1.
                     </p>
                     <p className="text-card-source">
                         Photo by Nicholas Doherty on Unsplash
