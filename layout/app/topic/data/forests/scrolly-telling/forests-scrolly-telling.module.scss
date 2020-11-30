@@ -101,13 +101,82 @@
         }
     }
 
+    // ----------------------- SVG ANIMATION WITH TREES AND SAWS --------------------------
+
     .saw-icon {
-        animation: saw-animation 2s infinite;
+        opacity: 0;
+
+        &.-show {
+            &.-saw-1 { animation: appear 0.5s forwards, saw-animation 2s 0.5s infinite }
+            &.-saw-2 { animation: appear 0.5s 0.5s forwards, saw-animation 2s 1s infinite }
+            &.-saw-3 { animation: appear 0.5s 1s forwards, saw-animation 2s 1.5s infinite }
+            &.-saw-4 { animation: appear 0.5s 1.5s forwards, saw-animation 2s 2s infinite }
+            &.-saw-5 { animation: appear 0.5s 2s forwards, saw-animation 2s 2.5s infinite }
+            &.-saw-6 { animation: appear 0.5s 2.5s forwards, saw-animation 2s 3s infinite }
+            &.-saw-7 { animation: appear 0.5s 3s forwards, saw-animation 2s 3.5s infinite }
+            &.-saw-8 { animation: appear 0.5s 3.5s forwards, saw-animation 2s 5s infinite }
+            &.-saw-9 { animation: appear 0.5s 4s forwards, saw-animation 2s 4.5s infinite }
+            &.-saw-10 { animation: appear 0.5s 4.5s forwards, saw-animation 2s 5s infinite }
+        }
 
         @keyframes saw-animation {
             0% { transform: translate(-3px, 3px); }
             50% { transform: translate(0px, 0px); }
             100% { transform: translate(-3px, 3px); }
         }
+    }
+
+    .tree-lost {
+        &.-make-disappear {
+            &.-tree-1 { 
+                animation: disappear 1s forwards; 
+                * { animation: disappear 1s forwards; }
+            }
+            &.-tree-2 { 
+                animation: disappear 1s 0.5s forwards; 
+                * { animation: disappear 1s 0.5s forwards; }
+            }
+            &.-tree-3 { 
+                animation: disappear 1s 1s forwards; 
+                * { animation: disappear 1s 1s forwards; }
+            }
+            &.-tree-4 { 
+                animation: disappear 1s 1.5s forwards; 
+                * { animation: disappear 1s 1.5s forwards; }
+            }
+            &.-tree-5 { 
+                animation: disappear 1s 2s forwards; 
+                * { animation: disappear 1s 2s forwards; }
+            }
+            &.-tree-6 { 
+                animation: disappear 1s 2.5s forwards; 
+                * { animation: disappear 1s 2.5s forwards; }
+            }
+            &.-tree-7 { 
+                animation: disappear 1s 3s forwards; 
+                * { animation: disappear 1s 3s forwards; }
+            }
+            &.-tree-8 { 
+                animation: disappear 1s 3.5s forwards; 
+                * { animation: disappear 1s 3.5s forwards; }
+            }
+            &.-tree-9 { 
+                animation: disappear 1s 4s forwards; 
+                * { animation: disappear 1s 4s forwards; }
+            }
+            &.-tree-10 { 
+                animation: disappear 1s 4.5s forwards; 
+                * { animation: disappear 1s 4.5s forwards; }
+            }
+        }
+    }
+
+    @keyframes appear {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes disappear {
+        0% { opacity: 1;}
+        100% { opacity: 0; }
     }
 }

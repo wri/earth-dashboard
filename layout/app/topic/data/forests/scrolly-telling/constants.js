@@ -7,7 +7,7 @@ import TippingPointChart from './tipping-point-chart';
 import styles from './forests-scrolly-telling.module.scss';
 
 // data
-import { TREES_WITH_SAWS_SVG } from './data';
+import { getTreesSVG } from './data';
 
 export const FORESTS_STEPS = [
     {
@@ -44,7 +44,7 @@ export const FORESTS_STEPS = [
                 [styles['south-america-map-dissolved']]: true
             })}>
                 <img className={styles['map-image']} src="/static/images/scrolly-telling/forests/amazon_map.svg" />
-                <img src="/static/images/scrolly-telling/forests/trees1.svg" />
+                {getTreesSVG('trees')}
             </div>
     },
     {
@@ -59,7 +59,7 @@ export const FORESTS_STEPS = [
         yearSubtitle: '513.8 Mha of tree cover in the Amazon basin',
         stickyContainerElement: 
             <div className={styles['-align-right']}>
-                <img src="/static/images/scrolly-telling/forests/trees2.svg" />
+                {getTreesSVG('one-tree')}
             </div>
     },
     {
@@ -75,7 +75,7 @@ export const FORESTS_STEPS = [
         yearSubtitle: '494,9 Mha of tree cover in the Amazon basin',
         stickyContainerElement: 
             <div className={styles['-align-right']}>
-                {TREES_WITH_SAWS_SVG}
+                {getTreesSVG('saws')}
             </div>
     },
     {
