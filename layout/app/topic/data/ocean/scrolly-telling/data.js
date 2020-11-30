@@ -16,3 +16,4 @@ export const PACIFIC_GARBAGE_PATCH_SVG =
             </g>
         </g>
     </svg>;
+    

@@ -141,11 +141,11 @@ export const OCEAN_STEPS = [
                     <h6 className="ocean">Increase in Food Demand from the Ocean</h6>
                     <p>
                         Between 1970 and 2012, populations of fish and other marine vertebrates such as mammals, reptiles
-                        and birds <a className="external-link -ocean" href="http://ocean.panda.org.s3.amazonaws.com/media/Living_Blue_Planet_Report_2015_08_31.pdf" target="_blank">fell by half</a> (Source: Living Blue Planet Report). <span className="bold">Overfishing is a key reason</span>.
+                        and birds <a className="external-link -ocean bold" href="http://ocean.panda.org.s3.amazonaws.com/media/Living_Blue_Planet_Report_2015_08_31.pdf" target="_blank">fell by half</a> (Source: Living Blue Planet Report). <span className="bold">Overfishing is a key reason</span>.
                     </p>
                     <p>
                         In 1974, only one in ten UN-monitored fish stocks were harvested beyond sustainable levels. Today more
-                         than one in three are. This means that they <a className="external-link -ocean" href="http://www.fao.org/state-of-fisheries-aquaculture/en/" target="_blank">cannot reproduce as fast as they are being killed</a>.
+                         than one in three are. This means that they <a className="external-link -ocean bold" href="http://www.fao.org/state-of-fisheries-aquaculture/en/" target="_blank">cannot reproduce as fast as they are being killed</a>.
                     </p>
                     <p className="text-card-source">
                         Photo by Ed Dunens on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
