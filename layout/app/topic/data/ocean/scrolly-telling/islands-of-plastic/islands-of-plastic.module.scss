@@ -13,12 +13,15 @@
     .map-container {
         position: relative;
         padding: 30px;
+        display: flex;
+        align-items: center;
 
         // ----------------------- MAP ----------------------
         .map {
                 
             &.-mobile {
-
+                min-width: 300px;
+                max-width: 300px;
             }
             &.-desktop {
                 min-width: 670px;
@@ -39,7 +42,9 @@
             position: absolute;
             
             &.-mobile {
-                
+                top: 32px;
+                left: 163px;
+                height: 50px;
             }
             &.-desktop {
                 top: 80px;
@@ -61,7 +66,9 @@
             position: absolute;
             
             &.-mobile {
-                
+                top: 96px;
+                left: 204px;
+                height: 45px;
             }
             &.-desktop {
                 top: 200px;
@@ -83,7 +90,9 @@
             position: absolute;
             
             &.-mobile {
-                
+                top: 78px;
+                left: 75px;
+                height: 45px;
             }
             &.-desktop {
                 top: 185px;
@@ -105,7 +114,9 @@
             position: absolute;
             
             &.-mobile {
-                
+                top: 28px;
+                left: 277px;
+                height: 45px;
             }
             &.-desktop {
                 top: 68px;
@@ -127,7 +138,9 @@
             position: absolute;
             
             &.-mobile {
-                
+                top: 95px;
+                left: 282px;
+                height: 40px;
             }
             &.-desktop {
                 top: 218px;
