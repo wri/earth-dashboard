@@ -44,10 +44,13 @@ class HeadApp extends PureComponent {
         <meta name="image" proptery="og:image" content={thumbnail} />
         <meta property="og:image:secure_url" content={thumbnail} />
         <meta property="og:image:alt" content={title} />
-        <meta property="og:site_name" content="Earth Dashboard"></meta>
+        <meta property="og:site_name" content="Earth Dashboard"/>
 
         {/* Theme color */}
-        {themeColor && <meta name="theme-color" content={themeColor} />}
+        {/* Chrome, Firefox OS and Opera */}
+        {!!themeColor && <meta name="theme-color" content={themeColor} />}
+        {/* Windows Phone */}
+        {!!themeColor && <meta name="msapplication-navbutton-color" content={themeColor} />}
 
         {/* leaflet styles */}
         {/* Leaflet styles are here to allow our chunk css (custom styles) override them */}

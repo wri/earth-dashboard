@@ -23,11 +23,6 @@ class MyDocument extends Document {
           {/* IMPORTANT!!! THIS IS ONLY TEMPORARY IT NEEDS TO BE REMOVED BEFORE LAUNCH!! */}
           <meta name="robots" content="noindex" />
 
-          {/* Mobile address background */}
-          {/* Chrome, Firefox OS and Opera */}
-          <meta name="theme-color" content="#c32d7b" />
-          {/* Windows Phone */}
-          <meta name="msapplication-navbutton-color" content="#c32d7b" />
           {/* iOS Safari */}
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
