@@ -39,7 +39,7 @@ function DiveIntoTheDataSection({
         {isBrowser &&
           <ErrorBoundary>
             <div className="row">
-              {dataArray.map(widget =>
+              {dataArray?.map(widget =>
                 (<div
                   key={`widget-preview-${widget.id}`}
                   className={classnames({
