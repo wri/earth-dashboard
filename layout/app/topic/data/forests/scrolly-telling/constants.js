@@ -1,5 +1,8 @@
 import classnames from 'classnames';
 
+// components
+import TippingPointChart from './tipping-point-chart';
+
 // styles
 import styles from './forests-scrolly-telling.module.scss';
 
@@ -79,7 +82,7 @@ export const FORESTS_STEPS = [
                 <>
                 <h6 className="forests">Drivers of Tree Cover Loss</h6>
                 <p>
-                    The main driver of tree cover loss in the Amazon is <a className="external-link -forests" href="https://science.sciencemag.org/content/361/6407/1108" target="_blank">commodity driven deforestation</a>, which includes activities like oil extraction, industrial mining, ranching, farming, and fires set to clear land.
+                    The main driver of tree cover loss in the Amazon is <a className="external-link -forests bold" href="https://science.sciencemag.org/content/361/6407/1108" target="_blank">commodity driven deforestation</a>, which includes activities like oil extraction, industrial mining, ranching, farming, and fires set to clear land.
                 </p>
             </>
         },
@@ -102,17 +105,6 @@ export const FORESTS_STEPS = [
             </p>
         },
         showYearCounter: false,
-        stickyContainerElement: 
-            <div className={classnames({
-                [styles['-align-center']]: true,
-                [styles['chart-pulsating-dot']]: true
-            })}>
-                <div className={styles['chart']}>
-                    <img src="/static/images/scrolly-telling/forests/tipping_point_chart.svg" />
-                </div>
-                <div className="pulsating-circle">
-                    <img src="/static/images/scrolly-telling/forests/pulsating_dot.svg" />
-                </div>
-            </div>
+        stickyContainerElement: <TippingPointChart />
     }
 ];
