@@ -515,7 +515,7 @@ export const CLIMATE_STEPS = [
                         a <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank"><span className="bold">heatwave every 5 years</span></a>.
                     </p>
                     <p>
-                        The deadly heat waves like what India and Pakistan endured in 2015 <a className="external-link -climate" href="https://climate.nasa.gov/news/2865/a-degree-of-concern-why-global-temperatures-matter/#:~:text=If%20warming%20reaches%202%20degrees,on%20humans%20and%20ecological%20systems." target="_blank">could occur annually</a>.
+                        The deadly heat waves like what India and Pakistan endured in 2015 <a className="external-link -climate bold" href="https://climate.nasa.gov/news/2865/a-degree-of-concern-why-global-temperatures-matter/#:~:text=If%20warming%20reaches%202%20degrees,on%20humans%20and%20ecological%20systems." target="_blank">could occur annually</a>.
                     </p>
                     <p>
                         <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank"><span className="bold">Water scarcity would threaten 388 million more people</span></a> around the world
@@ -552,13 +552,13 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Sea Ice and Permafrost</h6>
                     <p>
-                        The Arctic Ocean would be <a className="external-link -climate" href="https://climate.nasa.gov/news/2865/a-degree-of-concern-why-global-temperatures-matter/#:~:text=If%20warming%20reaches%202%20degrees,on%20humans%20and%20ecological%20systems." target="_blank">sea ice-free one summer per decade</a>.
+                        The Arctic Ocean would be <a className="external-link -climate bold" href="https://climate.nasa.gov/news/2865/a-degree-of-concern-why-global-temperatures-matter/#:~:text=If%20warming%20reaches%202%20degrees,on%20humans%20and%20ecological%20systems." target="_blank">sea ice-free one summer per decade</a>.
                     </p>
                     <p>
                         An estimated <a className="external-link -climate" href="https://www.nature.com/articles/s41467-020-16357-8 " target="_blank"><span className="bold">40% of permafrost area would thaw, releasing its carbon and methane</span></a> into the atmosphere.
                     </p>
                     <p>
-                        <a className="external-link -climate" href="https://e360.yale.edu/features/how-melting-permafrost-is-beginning-to-transform-the-arctic" target="_blank">Permafrost stores twice as much carbon</a> as currently contained in the atmosphere.
+                        <a className="external-link -climate bold" href="https://e360.yale.edu/features/how-melting-permafrost-is-beginning-to-transform-the-arctic" target="_blank">Permafrost stores twice as much carbon</a> as currently contained in the atmosphere.
                     </p>
                     <p className="photo-subtitle">
                         Photo by Boris Radosavljevic on Flickr <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">(cc-by-2.0)</a>
@@ -798,7 +798,7 @@ export const CLIMATE_CLOCK_STEPS = [
                           less time</span> than the clock says. Temperature climbs after increases in atmospheric CO2,
                           so we would not feel the full impact of exceeding the carbon budget right away.
                            This clock follows the methodology from the Mercator Research Institute on Global Commons
-                            and Climate Change (<a className="external-link -climate" href="https://www.mcc-berlin.net/en/index.html" target="_blank">MCC</a>) using data from the IPCC Special Report on Global Warming of 1.5°C .
+                            and Climate Change (<a className="external-link -climate bold" href="https://www.mcc-berlin.net/en/index.html" target="_blank">MCC</a>) using data from the IPCC Special Report on Global Warming of 1.5°C .
                     </p>
                     {/* <p className={styles['text-card-source']}>
                         Source: This clock follows the methodology from the

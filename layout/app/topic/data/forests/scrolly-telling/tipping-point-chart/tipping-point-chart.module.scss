@@ -1,0 +1,46 @@
+@import 'css/settings';
+
+.c-tipping-point-chart {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .chart-container {
+        position: relative;
+
+        .chart {
+            &.-mobile {
+                svg { width: 350px; }
+            }
+            &.-desktop {
+                svg { width: 700px; }
+            }
+            &.-desktop-large {
+                svg { width: 980px; }
+            }
+            &.-desktop-x-large {
+                svg { width: 1150px; }
+            }
+        }
+        .marker {
+            position: absolute;
+    
+            &.-mobile {
+                top: 148px;
+                right: 51px;
+            }
+            &.-desktop {
+                top: 121px;
+                right: 85px;
+            }
+            &.-desktop-large {
+                top: 100px;
+                right: 114px;
+            }
+            &.-desktop-x-large {
+                top: 96px;
+                right: 180px;
+            }
+        }
+    }
+}

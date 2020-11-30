@@ -128,8 +128,8 @@ function ClimateScrollyTelling({ topic }) {
             <div className={styles['smoke-text']}>
               <h6>Time left until CO<sub>2</sub> budget depleted</h6>
               <h1>7y 1m 26d {hours}h {minutes}' {seconds}''</h1>
-              <h6>CO<sub>2</sub> budget left</h6>
-              <h1>{d3.format(',')(tones)} tons</h1>
+              {/* <h6>CO<sub>2</sub> budget left</h6>
+              <h1>{d3.format(',')(tones)} tons</h1> */}
             </div>
             <canvas id="smoke-canvas" />
           </div>

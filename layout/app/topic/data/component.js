@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import classnames from 'classnames';
 
 // utils
-import { Desktop, MediaContextProvider } from 'utils/responsive';
+import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 import { getColorByTopic } from 'utils/topics';
 
 // components
@@ -91,6 +91,19 @@ function LayoutTopicData(props) {
     }
   }
 
+  const getShareButton = (mobile) =>
+    <button className={classnames({
+      [styles['share-button']]: true,
+      [styles[`-${topic}`]]: true,
+      [styles['-hidden']]: !showShareButton,
+      [styles['-mobile']]: mobile,
+      [styles['-desktop']]: !mobile
+    })}
+      onClick={() => setShareModalIsOpen(true)}
+    >
+      Share
+    </button>;
+
   return (
     <Layout
       title={pageMetadata.title}
@@ -111,15 +124,10 @@ function LayoutTopicData(props) {
         {/* ------------- SHARE BUTTON + MODAL --------------- */}
         {!isEmbed &&
           <>
-            <button className={classnames({
-              [styles['share-button']]: true,
-              [styles[`-${topic}`]]: true,
-              [styles['-hidden']]: !showShareButton
-            })}
-              onClick={() => setShareModalIsOpen(true)}
-            >
-              Share
-            </button>
+            <MediaContextProvider>
+              <Desktop>{getShareButton(false)}</Desktop>
+              <Mobile>{getShareButton(true)}</Mobile>
+            </MediaContextProvider>
             <ShareModal
               topic={topic}
               url={shareModalURL}

@@ -14,55 +14,55 @@
                     <rect id="Rectangle" fill="#7C90A2" fill-rule="nonzero" x="33" y="0" width="1" height="351"></rect>
                     <rect id="Rectangle" fill="#D5DCE1" fill-rule="nonzero" x="442" y="0" width="1" height="351"></rect>
                     <rect id="Rectangle" fill="#D5DCE1" fill-rule="nonzero" x="952" y="10" width="1" height="341"></rect>
-                    <text id="1990" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#38444F">
+                    <text id="1990" font-family="Barlow Condensed" font-size="14" fill="#38444F">
                         <tspan x="25" y="372">1990</tspan>
                     </text>
-                    <text id="+1.0" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#38444F">
+                    <text id="+1.0" font-family="Barlow Condensed" font-size="14" fill="#38444F">
                         <tspan x="2.352" y="313">+1.0</tspan>
                     </text>
-                    <text id="+0.5" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" line-spacing="17.5" fill="#38444F">
+                    <text id="+0.5" font-family="Barlow Condensed" font-size="14" line-spacing="17.5" fill="#38444F">
                         <tspan x="0.21" y="213.5">+0.5</tspan>
                     </text>
-                    <text id="0.0" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#38444F">
+                    <text id="0.0" font-family="Barlow Condensed" font-size="14" fill="#38444F">
                         <tspan x="5.908" y="115">0.0</tspan>
                     </text>
-                    <text id="-0.5" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#38444F">
+                    <text id="-0.5" font-family="Barlow Condensed" font-size="14" fill="#38444F">
                         <tspan x="2.016" y="16">-0.5</tspan>
                     </text>
-                    <text id="2000" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#38444F">
+                    <text id="2000" font-family="Barlow Condensed" font-size="14" fill="#38444F">
                         <tspan x="207" y="372">2000</tspan>
                     </text>
-                    <text id="2010" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#38444F">
+                    <text id="2010" font-family="Barlow Condensed" font-size="14" fill="#38444F">
                         <tspan x="392" y="372">2010</tspan>
                     </text>
-                    <text id="2020" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#38444F">
+                    <text id="2020" font-family="Barlow Condensed" font-size="14" fill="#38444F">
                         <tspan x="574" y="372">2020</tspan>
                     </text>
-                    <text id="2030" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#38444F">
+                    <text id="2030" font-family="Barlow Condensed" font-size="14" fill="#38444F">
                         <tspan x="758" y="372">2030</tspan>
                     </text>
-                    <text id="2040" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#38444F">
+                    <text id="2040" font-family="Barlow Condensed" font-size="14" fill="#38444F">
                         <tspan x="942" y="372">2040</tspan>
                     </text>
                 </g>
                 <path id="Line-2" d="M33.5,122 L33.5,174 L39.5,174 L32.5,188 L25.5,174 L31.5,174 L31.5,122 L33.5,122 Z" fill="#009A67" fill-rule="nonzero"></path>
-                <text id="historical-data" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#7C90A2">
+                <text id="historical-data" font-family="Barlow Condensed" font-size="14" fill="#7C90A2">
                     <tspan x="420" y="16">historical data</tspan>
                 </text>
-                <text id="carbon-sink" transform="translate(8.500000, 157.000000) rotate(-90.000000) translate(-8.500000, -157.000000) " font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#009A67">
+                <text id="carbon-sink" transform="translate(8.500000, 157.000000) rotate(-90.000000) translate(-8.500000, -157.000000) " font-family="Barlow Condensed" font-size="14" fill="#009A67">
                     <tspan x="-19.5" y="162.5">carbon sink</tspan>
                 </text>
                 <path id="Line-2" d="M32.5,27 L39.5,41 L33.5,41 L33.5,93 L31.5,93 L31.5,41 L25.5,41 L32.5,27 Z" fill="#F35600" fill-rule="nonzero"></path>
-                <text id="carbon-source" transform="translate(8.500000, 59.500000) rotate(-90.000000) translate(-8.500000, -59.500000) " font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#F35600">
+                <text id="carbon-source" transform="translate(8.500000, 59.500000) rotate(-90.000000) translate(-8.500000, -59.500000) " font-family="Barlow Condensed" font-size="14" fill="#F35600">
                     <tspan x="-26" y="65">carbon source</tspan>
                 </text>
-                <text id="projections" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#7C90A2">
+                <text id="projections" font-family="Barlow Condensed" font-size="14" fill="#7C90A2">
                     <tspan x="513" y="16">projections</tspan>
                 </text>
-                <text id="2035" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="48" font-style="condensed" font-weight="normal" line-spacing="48.2" fill="#F35600">
+                <text id="2035" font-family="Barlow Condensed" font-size="48" line-spacing="48.2" fill="#F35600">
                     <tspan x="881" y="69">2035</tspan>
                 </text>
-                <text id="Tipping-point-for-th" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="18" font-style="condensed" font-weight="normal" fill="#1A2129">
+                <text id="Tipping-point-for-th" font-family="Barlow Condensed" font-size="18" fill="#1A2129">
                     <tspan x="832" y="173.2">Tipping point for the Amazon </tspan>
                     <tspan x="832" y="195.2">to turn into a carbon source</tspan>
                 </text>

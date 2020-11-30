@@ -33,9 +33,9 @@ export const OCEAN_DIVE_INTO_THE_DATA_DATA = {
 
 export const OCEAN_METHODOLOGY_DATA = <p>
     The visualizations and statistics regarding global trends in the accelerating uses of ocean resources
-     were sourced from Figure 2: The Blue Acceleration of <a className="external-link -ocean" href="https://www.sciencedirect.com/science/article/pii/S2590332219302751" target="_blank">Jouffrey et al</a>. The map illustrating
-      climate model projections of the year in which coral bleaching will occur draws on <a className="external-link -ocean" href="https://coralreefwatch.noaa.gov/climate/projections/downscaled_bleaching_4km/index.php" target="_blank">NOAA</a> datasets. 
+     were sourced from Figure 2: The Blue Acceleration of <a className="external-link -ocean bold" href="https://www.sciencedirect.com/science/article/pii/S2590332219302751" target="_blank">Jouffrey et al</a>. The map illustrating
+      climate model projections of the year in which coral bleaching will occur draws on <a className="external-link -ocean bold" href="https://coralreefwatch.noaa.gov/climate/projections/downscaled_bleaching_4km/index.php" target="_blank">NOAA</a> datasets. 
       The charts illustrating trends in marine stocks and 2018 aquaculture and fishery
-     production are sourced from FAO’s <a className="external-link -ocean" href="http://www.fao.org/state-of-fisheries-aquaculture" target="_blank">The State of World Fisheries and Aquaculture 2020</a> report 
-     using data prepared by the <a className="external-link -ocean" href="http://www.fao.org/fishery/statistics/en" target="_blank">FAO Fisheries Division</a>.
+     production are sourced from FAO’s <a className="external-link -ocean bold" href="http://www.fao.org/state-of-fisheries-aquaculture" target="_blank">The State of World Fisheries and Aquaculture 2020</a> report 
+     using data prepared by the <a className="external-link -ocean bold" href="http://www.fao.org/fishery/statistics/en" target="_blank">FAO Fisheries Division</a>.
 </p>;

@@ -5,13 +5,17 @@
 
     .share-button {
         position: fixed;
-        bottom: 20px;
+        top: 24px;
         right: 20px;
         height: 36px;
         width: 76px;
         border: solid 1px;
         z-index: 9;
         animation: fade-in 1s forwards;
+
+        &.-mobile {
+            right: 80px;
+        }
 
         &.-forests {
             color: $forests;
