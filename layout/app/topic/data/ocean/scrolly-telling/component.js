@@ -45,8 +45,70 @@ function OceansScrollyTelling({ topic }) {
         >
             <MediaContextProvider>
                 <div className={styles['intro-story']}>
-                    <div className={styles['intro-charts-container']}>
-                        <img src="/static/images/scrolly-telling/ocean/ocean-resources-charts.svg" />
+                    <div className={classnames({
+                        [styles['intro-charts-container']]: true,
+                        'row': true
+                    })}>
+                        <div className={classnames({
+                            'column small-12 medium-6': true,
+                            [styles['image-container']]: true
+                        })}>
+                            <img src="/static/images/scrolly-telling/ocean/marine-aquaculture.svg" />
+                        </div>
+                        <div className={classnames({
+                            'column small-12 medium-6': true,
+                            [styles['image-container']]: true
+                        })}>
+                            <img src="/static/images/scrolly-telling/ocean/cruise-tourism.svg" />
+                        </div>
+                        <div className={classnames({
+                            'column small-12 medium-6': true,
+                            [styles['image-container']]: true
+                        })}>
+                            <img src="/static/images/scrolly-telling/ocean/deep-hydrocarbons.svg" />
+                        </div>
+                        <div className={classnames({
+                            'column small-12 medium-6': true,
+                            [styles['image-container']]: true
+                        })}>
+                            <img src="/static/images/scrolly-telling/ocean/deep-sea-minerals.svg" />
+                        </div>
+                        <div className={classnames({
+                            'column small-12 medium-6': true,
+                            [styles['image-container']]: true
+                        })}>
+                            <img src="/static/images/scrolly-telling/ocean/offshore-windfarms.svg" />
+                        </div>
+                        <div className={classnames({
+                            'column small-12 medium-6': true,
+                            [styles['image-container']]: true
+                        })}>
+                            <img src="/static/images/scrolly-telling/ocean/shipping.svg" />
+                        </div>
+                        <div className={classnames({
+                            'column small-12 medium-6': true,
+                            [styles['image-container']]: true
+                        })}>
+                            <img src="/static/images/scrolly-telling/ocean/desalinated-seawater.svg" />
+                        </div>
+                        <div className={classnames({
+                            'column small-12 medium-6': true,
+                            [styles['image-container']]: true
+                        })}>
+                            <img src="/static/images/scrolly-telling/ocean/submarine-cables.svg" />
+                        </div>
+                        <div className={classnames({
+                            'column small-12 medium-6': true,
+                            [styles['image-container']]: true
+                        })}>
+                            <img src="/static/images/scrolly-telling/ocean/marine-protected-areas.svg" />
+                        </div>
+                        <div className={classnames({
+                            'column small-12 medium-6': true,
+                            [styles['image-container']]: true
+                        })}>
+                            <img src="/static/images/scrolly-telling/ocean/marine-genetic-resources.svg" />
+                        </div>
                     </div>
                     {isBrowser &&
                         <div className={styles.steps}>
