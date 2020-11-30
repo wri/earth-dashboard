@@ -50,10 +50,14 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
       </ReactTooltip>
     </div>;
 
-  const getSubtitle = () =>
-    <h3>Earth HQ: Situation Room For the Planet.<br />
-    Real Facts. Sound Science. Serious Solutions.
-    </h3>;
+  const getSubtitle = (mobile) => {
+    const CustomTag = mobile ? 'h7' : 'h3';
+    return (
+      <CustomTag>Earth HQ: Situation Room For the Planet.<br />
+        Real Facts. Sound Science. Serious Solutions.
+      </CustomTag>
+    );
+  }
 
   const getGlobe = (mobile = false) =>
     <div className={classnames({
@@ -75,6 +79,34 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
       />
     </div>;
 
+  const getMainContainer = (mobile) => {
+    const CustomHeaderTag = mobile ? 'h2' : 'h1';
+    return (
+      <div className={classnames({
+        [styles['main-container']]: true,
+        [styles['-desktop']]: !mobile,
+        [styles['-mobile']]: mobile,
+      })}
+      >
+        {!isServer &&
+          <>
+            {getGlobe(false)}
+            <div className={classnames({
+              [styles['text-container']]: true,
+              [styles['-desktop']]: !mobile,
+              [styles['-mobile']]: mobile,
+            })}
+            >
+              <CustomHeaderTag className={styles['first-header']}>The Science is in.{mobile && <br />} This is not a drill.</CustomHeaderTag>
+              <CustomHeaderTag className={styles['second-header']}>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</CustomHeaderTag>
+              {getSubtitle(mobile)}
+              {getTopicLinks()}
+            </div>
+          </>
+        }
+      </div>);
+  };
+
   return (
     <Layout
       title="Earth Dashboard"
@@ -92,42 +124,10 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
 
       <MediaContextProvider>
         <Desktop>
-          <div className={classnames({
-            [styles['main-container']]: true,
-            [styles['-desktop']]: true
-          })}
-          >
-            {!isServer &&
-              <>
-                {getGlobe(false)}
-                <div className={styles['text-container']}>
-                  <h1 className={styles['first-header']}>The Science is in. This is not a drill.</h1>
-                  <h1 className={styles['second-header']}>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</h1>
-                  {getSubtitle()}
-                  {getTopicLinks()}
-                </div>
-              </>
-            }
-          </div>
+          {getMainContainer(false)}
         </Desktop>
         <Mobile>
-          <div className={classnames({
-            [styles['main-container']]: true,
-            [styles['-mobile']]: true
-          })}
-          >
-            {!isServer &&
-              <>
-                {getGlobe(false)}
-                <div className={styles['text-container']}>
-                  <h1 className={styles['first-header']}>The Science is in. This is not a drill.</h1>
-                  <h1 className={styles['second-header']}>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</h1>
-                  {getSubtitle()}
-                  {getTopicLinks()}
-                </div>
-              </>
-            }
-          </div>
+          {getMainContainer(true)}
         </Mobile>
       </MediaContextProvider>
     </Layout >

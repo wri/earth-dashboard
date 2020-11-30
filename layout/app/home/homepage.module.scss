@@ -3,7 +3,7 @@
 .homepage {
     position: relative;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     background-color: $black;
     display: flex;
     justify-content: center;
@@ -41,17 +41,28 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            width: 50%;
             max-width: 600px;
 
-            h1 {
+            &.-desktop {
+                width: 50%;
+            }
+            &.-mobile {
+                padding: 0px 30px 0px 30px;
+
+                h3 {
+                    font-size: 14px;
+                    line-height: 21px;
+                }
+            }
+
+            h1, h2 {
                 color: $white;
                 
                 &.second-header {
                     margin-bottom: 47px;
                 }
             }
-            h3 {
+            h3, h7 {
                 margin: 0px 0px 106px 0px;
                 color: $grey;
             }
