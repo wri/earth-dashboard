@@ -39,15 +39,6 @@ function OceansScrollyTelling({ topic }) {
             />
         </div>;
 
-    // const getStickyContainerElement = (mobile = false, container) =>
-    //     <div className={classnames({
-    //         [styles['sticky-element']]: true,
-    //         [styles['-desktop']]: !mobile,
-    //         [styles['-mobile']]: mobile,
-    //     })}>
-    //         {container}
-    //     </div>;
-
     return (
         <div
             className={styles['c-ocean-scrolly-telling']}
@@ -94,7 +85,7 @@ function OceansScrollyTelling({ topic }) {
                                 </Desktop>
                                 <Mobile className={classnames({
                                     [styles['sticky-element']]: true,
-                                    [styles['-desktop']]: true
+                                    [styles['-mobile']]: true
                                 })}>
                                     {currentStep.stickyContainerElement}
                                 </Mobile>
