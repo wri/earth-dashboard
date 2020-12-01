@@ -5,9 +5,6 @@ import Modal from 'components/modal';
 import ShareModal from 'components/modal/share-modal';
 import Icon from 'components/ui/icon';
 
-// utils
-import { logEvent } from 'utils/analytics';
-
 // styles
 import './share-control.module.scss';
 
@@ -43,12 +40,6 @@ class ShareControls extends PureComponent {
               links={{
                 link: location && location.href,
                 embed: location && `${location.origin}/embed${location.pathname}${location.search}`
-              }}
-              analytics={{
-                facebook: () => logEvent('Share', 'Share explore', 'Facebook'),
-                twitter: () => logEvent('Share', 'Share explore', 'Twitter'),
-                email: () => logEvent('Share', 'Share explore', 'Email'),
-                copy: type => logEvent('Share', 'Share explore', `Copy ${type}`)
               }}
             />
           </Modal>

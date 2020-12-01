@@ -5,7 +5,6 @@ import Progress from 'react-progress-2';
 import { withRouter } from 'next/router';
 
 // Utils
-import { initGA, logPageView } from 'utils/analytics';
 import { checkAuth } from 'services/user';
 
 // Components
@@ -80,13 +79,6 @@ class LayoutAdmin extends PureComponent {
       this.props.updateIsLoading(false);
       if (Progress && Progress.Component.instance) Progress.hideAll();
     };
-
-    // Google Analytics
-    if (!window.GA_INITIALIZED) {
-      initGA();
-      window.GA_INITIALIZED = true;
-    }
-    logPageView();
   }
 
   render() {

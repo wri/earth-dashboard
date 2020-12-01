@@ -57,6 +57,26 @@ class MyDocument extends Document {
           {/* Polifyll */}
           {/* TO-DO: remove once axios is completely implemented */}
           <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
+
+          
+          {/* GOOGLE ANALYTICS */}
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=G-CSQTS8BFK6`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-CSQTS8BFK6', {
+                page_path: window.location.pathname,
+              });
+              `
+            }}
+          />
         </Head>
         <body>
           <Main />

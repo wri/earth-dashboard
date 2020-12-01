@@ -20,7 +20,6 @@ import Step1 from 'components/datasets/form/steps';
 import Spinner from 'components/ui/spinner';
 
 // utils
-import { logEvent } from 'utils/analytics';
 import { sortLayers } from 'utils/layers';
 import { getFieldUrl, getFields } from 'utils/fields';
 
@@ -121,7 +120,6 @@ class DatasetsForm extends PureComponent {
         // if we are in the last step we will submit the form
         if (this.state.step === this.state.stepLength && !this.state.submitting) {
           const { form, layers } = this.state;
-          logEvent('My RW', 'Add New Dataset', form.name);
 
           // Start the submitting
           this.setState({ submitting: true });
