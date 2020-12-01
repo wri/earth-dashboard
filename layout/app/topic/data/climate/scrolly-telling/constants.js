@@ -75,7 +75,7 @@ export const CLIMATE_STEPS = [
                     <p>
                         This narrative depicts RCP 6.0, one of four different scenarios or “Representative Concentration
                         Pathways,“ that describe possible trajectories for carbon dioxide emissions and resulting
-                         temperature increases. <span className="bold">RCP 6.0 is midway between optimistic and pessimistic projections</span>.
+                         temperature increases. <span className="bold">RCP 6.0 is <a className="external-link -climate bold" href="https://link.springer.com/article/10.1007/s10584-011-0148-z" target="_blank">midway between optimistic and pessimistic projections</a></span>.
                     </p>
                     <p>
                         Under this scenario, <span className="bold">countries do not continue business as usual and take some, but not enough,
@@ -169,8 +169,8 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Melting Ice</h6>
                     <p>
-                        Between 1980 and 2018, glaciers lost ice equivalent to cutting a 24-meter (79-foot) thick slice of
-                         each one. Among these are Himalayan <span className="bold">glaciers that provide water to some 240 million people</span>.
+                        <a className="external-link -climate bold" href="https://www.climate.gov/news-features/understanding-climate/climate-change-glacier-mass-balance" target="_blank">Between 1980 and 2018, glaciers lost ice equivalent to cutting a 24-meter</a> (79-foot) thick slice of
+                         each one. Among these are Himalayan <span className="bold">glaciers that provide water to some <a className="external-link -climate bold" href="https://www.nationalgeographic.com/environment/2019/02/himalaya-mountain-climate-change-report/" target="_blank">240 million people</a></span>.
                     </p>
                     <p className="photo-subtitle">Photo by NOAA on Unsplash</p>
                 </>,
@@ -202,8 +202,8 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Human Displacement and Conflict</h6>
                     <p>
-                        According to the European Parliament, an average of <span className="bold">26.4 million people around the world have
-                        been displaced</span> by weather events every year since 2008.
+                        According to the European Parliament, an average of <a className="external-link -climate bold" href="https://www.internal-displacement.org/publications/global-estimates-2015-people-displaced-by-disasters" target="_blank">26.4 million people around the world have
+                        been displaced</a> by weather events every year since 2008.
                     </p>
                     <p className="photo-subtitle">Photo: Public Domain on Wikimedia Commons</p>
                 </>,
@@ -301,7 +301,7 @@ export const CLIMATE_STEPS = [
                     </p>
                     <p>
                         The average drought would be two months longer
-                        and <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank"><span className="bold">271 million more people will be exposed to water scarcity</span></a>.
+                        and <a className="external-link -climate bold" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank">271 million more people</a><span className="bold"> will be exposed to water scarcity</span>.
 
                     </p>
                     <p className="photo-subtitle">Photo by Mike Erskine on Unsplash</p>
@@ -336,7 +336,7 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Biodiversity</h6>
                     <p>
-                        At 1.5°C, <span className="bold">6% of insects, 8% of plants and 4% of vertebrates</span> are projected
+                        At 1.5°C, <a className="external-link -climate bold" href="https://www.insider.com/australia-fires-burned-twice-land-area-as-2019-amazon-fires-2020-1 https://www.bbc.com/news/world-australia-53549936#:~:text=Nearly%20three%20billion%20animals%20were," target="_blank">6% of insects, 8% of plants and 4% of vertebrates</a> are projected
                         to lose over half of their geographic range.
                     </p>
                     <p className="photo-subtitle">Photo by Ray Hennessy on Unsplash</p>
@@ -440,7 +440,7 @@ export const CLIMATE_STEPS = [
                     <h6 className="climate">Coral Reefs</h6>
                     <p>
                         Ocean warming, acidification and more intense storms would
-                        cause <a className="external-link -climate" href="https://climate.nasa.gov/news/2865/a-degree-of-concern-why-global-temperatures-matter/#:~:text=If%20warming%20reaches%202%20degrees,on%20humans%20and%20ecological%20systems" target="_blank"><span className="bold">coral reefs to decline by 70 to 90 percent</span></a>.
+                        cause <span className="bold">coral reefs to decline by </span><a className="external-link -climate bold" href="https://climate.nasa.gov/news/2865/a-degree-of-concern-why-global-temperatures-matter/#:~:text=If%20warming%20reaches%202%20degrees,on%20humans%20and%20ecological%20systems" target="_blank">70 to 90 percent</a>.
                     </p>
                     <p className="photo-subtitle">
                         Photo by Julie Ricard on Unsplash
@@ -474,8 +474,8 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Extreme rainfall</h6>
                     <p>
-                        Annual losses from flood damage and sea level rise would
-                        reach <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank"><span className="bold">$11.7 trillion</span></a> if no further adaptation is undertaken.
+                    <a className="external-link -climate bold" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank">Annual losses from flood damage and sea level rise would
+                        reach $11.7 trillion</a> if no further adaptation is undertaken.
                     </p>
                     <p className="photo-subtitle">
                         Photo by Saikiran Kesari on Unsplash
@@ -511,14 +511,14 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Heatwaves and Water Scarcity</h6>
                     <p>
-                        More than a third of the world’s population would face the risk of
-                        a <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank"><span className="bold">heatwave every 5 years</span></a>.
+                        <a className="external-link -climate bold" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank">More than a third of the world’s population</a> would face the risk of
+                        a <span className="bold">heatwave every 5 years</span>.
                     </p>
                     <p>
                         The deadly heat waves like what India and Pakistan endured in 2015 <a className="external-link -climate bold" href="https://climate.nasa.gov/news/2865/a-degree-of-concern-why-global-temperatures-matter/#:~:text=If%20warming%20reaches%202%20degrees,on%20humans%20and%20ecological%20systems." target="_blank">could occur annually</a>.
                     </p>
                     <p>
-                        <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank"><span className="bold">Water scarcity would threaten 388 million more people</span></a> around the world
+                        <span className="bold">Water scarcity would threaten <a className="external-link -climate" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank">388 million more people</a></span> around the world
                     </p>
                     <p className="photo-subtitle">
                         Photo by Jotpe on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
@@ -552,10 +552,10 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Sea Ice and Permafrost</h6>
                     <p>
-                        The Arctic Ocean would be <a className="external-link -climate bold" href="https://climate.nasa.gov/news/2865/a-degree-of-concern-why-global-temperatures-matter/#:~:text=If%20warming%20reaches%202%20degrees,on%20humans%20and%20ecological%20systems." target="_blank">sea ice-free one summer per decade</a>.
+                        The Arctic Ocean would be sea <a className="external-link -climate bold" href="https://climate.nasa.gov/news/2865/a-degree-of-concern-why-global-temperatures-matter/#:~:text=If%20warming%20reaches%202%20degrees,on%20humans%20and%20ecological%20systems." target="_blank">ice-free one summer per decade</a>.
                     </p>
                     <p>
-                        An estimated <a className="external-link -climate" href="https://www.nature.com/articles/s41467-020-16357-8 " target="_blank"><span className="bold">40% of permafrost area would thaw, releasing its carbon and methane</span></a> into the atmosphere.
+                        An estimated <span className="bold"><a className="external-link -climate" href="https://www.nature.com/articles/s41467-020-16357-8 " target="_blank">40% of permafrost area would thaw</a>, releasing its carbon and methane</span> into the atmosphere.
                     </p>
                     <p>
                         <a className="external-link -climate bold" href="https://e360.yale.edu/features/how-melting-permafrost-is-beginning-to-transform-the-arctic" target="_blank">Permafrost stores twice as much carbon</a> as currently contained in the atmosphere.
@@ -627,11 +627,11 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Human Displacement and Conflict</h6>
                     <p>
-                        Climate has played a role in between 3 and 20 percent of armed conflicts
+                        Climate has played a role in between <a className="external-link -climate bold" href="https://news.stanford.edu/2019/06/12/climate-change-cause-armed-conflict/" target="_blank">3 and 20 percent of armed conflicts</a>
                         over the last century and that share will climb.
                     </p>
                     <p>
-                        At 2°C of warming <span className="bold">the likelihood of climate contributing to conflicts would more than double</span>.
+                        At 2°C of warming <span className="bold">the likelihood of climate contributing to <a className="external-link -climate" href="https://news.stanford.edu/2019/06/12/climate-change-cause-armed-conflict/" target="_blank">conflicts would more than double</a></span>.
                     </p>
                     <p className="photo-subtitle">
                         Photo by Ggia on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>
@@ -777,8 +777,8 @@ export const CLIMATE_CLOCK_STEPS = [
                         The Climate Clock shows a timer, <span className="bold">counting down how long it will take to burn
                         through our “carbon budget”</span> — the amount of CO2 that can still be released
                         into the atmosphere while limiting global warming to 1.5°C (or 34.7 °F) above pre-industrial
-                         levels.  It projects a 2017 emissions rate into the future and calculates that holding
-                          emissions to 420 Gt of CO2 emissions gives us a <span className="bold">67% chance of staying within the threshold of 1.5°C</span>.
+                         levels.  It projects a 2017 emissions rate into the future and calculates that <a className="bold external-link -climate" href="https://www.mcc-berlin.net/en/index.html" target="_blank">holding
+                          emissions to 420 Gt of CO2 emissions gives us a 67% chance of staying within the threshold of 1.5°C</a>.
                     </p>
                 </>
         }
@@ -797,8 +797,8 @@ export const CLIMATE_CLOCK_STEPS = [
                     <p><span className="bold">Emissions have risen since 2017, which could mean we have
                           less time</span> than the clock says. Temperature climbs after increases in atmospheric CO2,
                           so we would not feel the full impact of exceeding the carbon budget right away.
-                           This clock follows the methodology from the Mercator Research Institute on Global Commons
-                            and Climate Change (<a className="external-link -climate bold" href="https://www.mcc-berlin.net/en/index.html" target="_blank">MCC</a>) using data from the IPCC Special Report on Global Warming of 1.5°C .
+                           This clock follows the <a className="external-link -climate bold" href="https://www.mcc-berlin.net/en/index.html" target="_blank">methodology from the Mercator Research Institute on Global Commons
+                            and Climate Change (MCC)</a> using data from the <a className="external-link -climate bold" href="https://www.ipcc.ch/sr15/" target="_blank">IPCC Special Report on Global Warming of 1.5°C</a>.
                     </p>
                     {/* <p className={styles['text-card-source']}>
                         Source: This clock follows the methodology from the
