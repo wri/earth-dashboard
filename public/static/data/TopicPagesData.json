@@ -20,7 +20,13 @@
                 },
                 {
                     "type": "topic-news",
-                    "keywords": "forests",
+                    "keywords": [
+                        "Forests", 
+                        "Rainforests", 
+                        "Deforestation", 
+                        "Tropical Forests", 
+                        "Rainforest Destruction"
+                    ],
                     "numberOfElements": 3
                 }
             ]
@@ -75,7 +81,14 @@
                 },
                 {
                     "type": "topic-news",
-                    "keywords": "freshwater",
+                    "keywords": [
+                        "freshwater",
+                        "Water Pollution",
+                        "Rivers",
+                        "Water",
+                        "Drought",
+                        "Flooding"
+                    ],
                     "number-of-elements": 3
                 }
             ]
@@ -126,7 +139,13 @@
                 },
                 {
                     "type": "topic-news",
-                    "keywords": "ocean",
+                    "keywords": [
+                        "Oceans",
+                        "Marine Conservation",
+                        "Marine Ecosystems",
+                        "Fisheries",
+                        "Marine"
+                    ],
                     "number-of-elements": 3
                 }
             ]
@@ -185,7 +204,14 @@
                 },
                 {
                     "type": "topic-news",
-                    "keywords": "climate",
+                    "keywords": [
+                        "climate",
+                        "Climate Change",
+                        "Impact Of Climate Change",
+                        "Carbon Emissions",
+                        "Global Warming",
+                        "Greenhouse Gas Emissions"
+                    ],
                     "number-of-elements": 3
                 }
             ]
