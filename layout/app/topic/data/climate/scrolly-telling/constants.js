@@ -702,7 +702,7 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Human Migration and Conflict</h6>
                     <p>
-                        Three out of 10 people in the world (2-3 billion) would be living in uninhabitable
+                        <a className="external-link -climate bold" href="https://www.pnas.org/content/117/21/11350" target="_blank">Three out of 10 people</a> in the world (2-3 billion) would be living in uninhabitable
                         climates and would have to migrate.
                     </p>
                     <p className="photo-subtitle">
@@ -737,7 +737,7 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Biodiversity</h6>
                     <p>
-                        The suitable habitat for species would <a className="external-link -climate" href="https://link.springer.com/article/10.1007/s10584-019-02420-x#:~:text=For%20example%2C%20at%203%20%C2%B0,rise%20in%20global%20mean%20temperature " target="_blank"><span className="bold">plummet on average by half</span></a>.
+                        The suitable habitat for <a className="external-link -climate bold" href="https://link.springer.com/article/10.1007/s10584-019-02420-x#:~:text=For%20example%2C%20at%203%20%C2%B0,rise%20in%20global%20mean%20temperature " target="_blank">species would plummet on average by half</a>.
                     </p>
                     <p className="photo-subtitle">
                         Photo: Andrés Medina on Unsplash
