@@ -127,6 +127,8 @@
     }
 
     .tree-lost {
+        animation: appear 3s forwards;
+
         &.-make-disappear {
             &.-tree-1 { 
                 animation: disappear 1s forwards; 
@@ -169,6 +171,26 @@
                 * { animation: disappear 1s 4.5s forwards; }
             }
         }
+
+        &.-dim {
+            animation: dim 1s forwards;
+            * { animation: dim 1s forwards; }
+        }
+    }
+
+    .-normal-tree {
+        &.-dim {
+            animation: dim 1s forwards;
+            * { animation: dim 1s forwards; }
+        }
+        &.-brigthen {
+            animation: brighten 1s forwards;
+            * { animation: brighten 1s forwards; }
+        }
+    }
+
+    .one-tree-text {
+        animation: appear 2s forwards;
     }
 
     @keyframes appear {
@@ -178,5 +200,13 @@
     @keyframes disappear {
         0% { opacity: 1;}
         100% { opacity: 0; }
+    }
+    @keyframes dim {
+        from { opacity: 1; }
+        to { opacity: 0.5; }
+    }
+    @keyframes brighten {
+        from { opacity: 0.5; }
+        to { opacity: 1; }
     }
 }
