@@ -4,7 +4,10 @@ import React from 'react';
 import LayoutHome from 'layout/app/home';
 
 function HomePage() {
-  return (<LayoutHome />);
+  return (<LayoutHome
+    title="The Earth Dashboard"
+    description="The Science is in. This is not a drill. It's a Planetary Emergency."
+  />);
 }
 
 export default HomePage;

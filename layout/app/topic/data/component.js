@@ -48,7 +48,7 @@ function LayoutTopicData(props) {
   const { ref: challengeRef, inView: challengeInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: creditsRef, inView: creditsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
-  const pageMetadata = getPageMetadataByTopic(topic) || {};
+  const pageMetadata = getPageMetadataByTopic(topic, true) || {};
   const isEmbed = embed === 'true';
   const navigationDotsColor = (headlineInView || changeAgentsInView) ?
     getNavigationDotsColorByTopic(topic) :

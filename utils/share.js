@@ -11,56 +11,56 @@ export function getPageMetadataByTopic(topicSt, isDataPage = false) {
         case CLIMATE:
             if (!isDataPage) {
                 return {
-                    title: 'Charting the Threat Multiplier Effect of Climate Change',
-                    description: 'Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. These threats intensify with each half degree that temperatures climb.',
+                    title: 'Climate: The Global Commons Report',
+                    description: 'The latest datasets, statistics and news stories about the state of the climate from trusted sources.',
                     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/climate.jpg'
                 };
             } else {
                 return {
-                    title: 'Earth Dashboard - Climate',
-                    description: 'Earth Dashbarod - Climate desc.',
+                    title: 'Charting the Threat Multiplier Effect of Climate Change',
+                    description: 'Rising global temperatures pose a threat to every corner of the globe and most aspects of human life.',
                     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/climate.jpg'
                 };
             }
         case FORESTS:
             if (!isDataPage) {
                 return {
-                    title: 'From Carbon Sink to Carbon Source? Why the Amazon’s Future Hangs in the Balance',
-                    description: 'Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. These threats intensify with each half degree that temperatures climb.',
+                    title: 'Forests: The Global Commons Report',
+                    description: 'The latest datasets, statistics and news stories about the state of forests from trusted sources.',
                     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/forests.jpg'
                 };
             } else {
                 return {
-                    title: 'Earth Dashboard - Forests',
-                    description: 'Earth Dashbarod - Forests desc.',
+                    title: 'The Amazon’s Future Hangs in the Balance',
+                    description: 'Tree cover loss, especially in irreplaceable primary forests rich in species and carbon, is a planetary emergency.',
                     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/forests.jpg'
                 };
             }
         case FRESHWATER:
             if (!isDataPage) {
                 return {
-                    title: 'Charting the Threat Multiplier Effect of Climate Change',
-                    description: 'Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. These threats intensify with each half degree that temperatures climb.',
+                    title: 'Freshwater: The Global Commons Report',
+                    description: 'The latest datasets, statistics and news stories about the state of freshwater from trusted sources.',
                     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/freshwater.jpg'
                 };
             } else {
                 return {
-                    title: 'Earth Dashboard - Freshwater',
-                    description: 'Earth Dashbarod - Freshwater desc.',
+                    title: 'Water Budgets: A Drop-by-Drop Guide',
+                    description: 'Scroll down to understand how a water budget works, and how it affects human wellbeing when a region overspends.',
                     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/freshwater.jpg'
                 };
             }
         case OCEAN:
             if (!isDataPage) {
                 return {
-                    title: 'Charting the Threat Multiplier Effect of Climate Change',
-                    description: 'Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. These threats intensify with each half degree that temperatures climb.',
+                    title: 'Ocean: The Global Commons Report',
+                    description: 'The latest datasets, statistics and news stories about the state of the ocean from trusted sources.',
                     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/ocean.jpg'
                 };
             } else {
                 return {
-                    title: 'Earth Dashboard - Oceans',
-                    description: 'Earth Dashbarod - Oceans desc.',
+                    title: 'Towards a Sustainable Ocean Economy',
+                    description: 'A healthy ocean is critical to a sustainable global economy and stable climate.',
                     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/ocean.jpg'
                 };
             }
