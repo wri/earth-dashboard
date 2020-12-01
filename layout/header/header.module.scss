@@ -141,9 +141,15 @@
             width: 100%;
             padding: 0px;
             margin: 130px 0px 0px 0px;
+            padding: 0px 16px 0px 16px;
   
             > ul {
-              padding: 0px 20px 0px 20px;
+              padding: 0px;
+            }
+
+            .logo-footer {
+              padding-top: 40px;
+              border-top: solid 1px $grey-light;
             }
           }
 
@@ -184,13 +190,14 @@
                 }
               }
             }
-
-            
           }
 
           .share-container {
             animation: fade-in 1s forwards;
-            background-color: $grey-darkest;
+
+            &.-desktop {
+              background-color: $grey-darkest;
+            }
 
             input { 
               color: $grey-lightest;

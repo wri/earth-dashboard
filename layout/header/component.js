@@ -84,7 +84,7 @@ function Header(props) {
       )}
     </ul>;
 
-  const getRightContainer = () => {
+  const getRightContainer = (mobile) => {
     switch (tab) {
       case SITE_NAVIGATION_HEADER_TAB:
         return getTopicContainer();
@@ -94,10 +94,17 @@ function Header(props) {
         );
       case SHARE_HEADER_TAB:
         return (
-          <div className={styles['share-container']}>
+          <div className={classnames({
+              [styles['share-container']]: true,
+              [styles['-desktop']]: !mobile,
+              [styles['-mobile']]: mobile
+            })}
+          >
             <ShareBox
               url={isServer ? '' : window.location.href}
               style={{ borderColor: '#1A2129' }}
+              showBorder={!mobile}
+              showInput={false}
             />
           </div>
         );
@@ -186,7 +193,7 @@ function Header(props) {
                       [styles['-desktop']]: true
                     })}
                     >
-                      {getRightContainer()}
+                      {getRightContainer(false)}
                     </div>
                   </div>
                 </div>
@@ -228,7 +235,10 @@ function Header(props) {
                       [styles['-mobile']]: true
                     })}
                     >
-                      {getTopicContainer()}
+                      {getRightContainer(true)}
+                      <div className={styles['logo-footer']}>
+                        {getLogo()}
+                      </div>
                     </div>
                   </div>
                 </div>
