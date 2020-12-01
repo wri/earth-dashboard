@@ -50,6 +50,9 @@ class HeadApp extends PureComponent {
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={thumbnail} />
 
         {/* Theme color */}
         {/* Chrome, Firefox OS and Opera */}
