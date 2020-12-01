@@ -101,7 +101,7 @@ export const FRESHWATER_STEPS_WORLDMAP = [
                 <>
                     <h6 className="freshwater">Middle East and North Africa (MENA)</h6>
                     <p>
-                        <span className="bold">This region is home to 12 of the world’s 17 most water stressed countries</span>. Climate change will make water still scarcer by 2050 causing economic losses ranging from six to 14 percent of GDP.
+                        <span className="bold">This region is home to <a className="external-link -freshwater" href="https://www.wri.org/blog/2019/08/17-countries-home-one-quarter-world-population-face-extremely-high-water-stress" target="_blank">12 of the world’s 17 most water stressed countries</a></span>. Climate change will make water still scarcer by 2050 causing economic losses ranging from <a className="bold external-link -freshwater" href="https://www.wri.org/blog/2019/08/17-countries-home-one-quarter-world-population-face-extremely-high-water-stress" target="_blank">six to 14 percent of GDP</a>.
                      </p>
                 </>
         }
@@ -113,7 +113,7 @@ export const FRESHWATER_STEPS_WORLDMAP = [
                 <>
                     <h6 className="freshwater">Chennai, India</h6>
                     <p>
-                    <a className="external-link -freshwater" href="https://www.wri.org/blog/2019/06/how-does-flood-prone-city-run-out-water-inside-chennai-day-zero-crisis" target="_blank">Reservoirs in Chennai nearly ran dry</a>, forcing the city’s 10 million residents to buy water or draw it 
+                    <a className="external-link -freshwater bold" href="https://www.wri.org/blog/2019/06/how-does-flood-prone-city-run-out-water-inside-chennai-day-zero-crisis" target="_blank">Reservoirs in Chennai nearly ran dry</a>, forcing the city’s 10 million residents to buy water or draw it 
                     from wells, further draining aquifers.  India’s water sources are being depleted and researchers 
                     say <span className="bold">the nation faces the worst water crisis in its history</span>. 
                      </p>
@@ -128,7 +128,7 @@ export const FRESHWATER_STEPS_WORLDMAP = [
                     <h6 className="freshwater">Cape Town, South Africa</h6>
                     <p>
                     <span className="bold">Three years of drought</span> left Cape Town facing the spectre of “Day Zero,” the day South 
-                    Africa’s second largest city government would need to <a className="external-link -freshwater" href="https://www.nytimes.com/2018/01/30/world/africa/cape-town-day-zero.html" target="_blank">shut off water taps</a> for 
+                    Africa’s second largest city government would need to <a className="external-link -freshwater bold" href="https://www.nytimes.com/2018/01/30/world/africa/cape-town-day-zero.html" target="_blank">shut off water taps</a> for 
                     most homes and businesses. Aggressive conservation measures and rain spared the city.
                     </p>
                 </>
@@ -141,7 +141,7 @@ export const FRESHWATER_STEPS_WORLDMAP = [
                 <>
                     <h6 className="freshwater">Rome, Italy</h6>
                     <p>
-                        Rome endured months with hardly any rain - <span className="bold">a drop of 70%</span> from previous years. 
+                        Rome endured months with hardly any rain - <a className="bold external-link -freshwater" href="https://www.wri.org/blog/2019/08/17-countries-home-one-quarter-world-population-face-extremely-high-water-stress" target="_blank">a drop of 70% from previous years</a>. 
                         The city resorted to cutting water pressure during the night on peak days. Some in 
                         tall buildings lost service. The Vatican turned off its 100 fountains.  
                     </p>

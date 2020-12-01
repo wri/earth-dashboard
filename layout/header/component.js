@@ -84,7 +84,7 @@ function Header(props) {
       )}
     </ul>;
 
-  const getRightContainer = () => {
+  const getRightContainer = (mobile) => {
     switch (tab) {
       case SITE_NAVIGATION_HEADER_TAB:
         return getTopicContainer();
@@ -94,10 +94,17 @@ function Header(props) {
         );
       case SHARE_HEADER_TAB:
         return (
-          <div className={styles['share-container']}>
-            <ShareBox 
+          <div className={classnames({
+              [styles['share-container']]: true,
+              [styles['-desktop']]: !mobile,
+              [styles['-mobile']]: mobile
+            })}
+          >
+            <ShareBox
               url={isServer ? '' : window.location.href}
               style={{ borderColor: '#1A2129' }}
+              showBorder={!mobile}
+              showInput={!mobile}
             />
           </div>
         );
@@ -115,6 +122,38 @@ function Header(props) {
     <div className={styles['logo-container']}>
       {getLogo()}
     </div>;
+
+  const getNavigationTags = (mobile) =>
+    <ul className={classnames({
+        [styles['navigation-tabs']]: true,
+        [styles['-desktop']]: !mobile,
+        [styles['-mobile']]: mobile
+      })}
+    >
+      <li
+        className={classnames({
+          [styles['-active']]: tab === SITE_NAVIGATION_HEADER_TAB
+        })}
+        onClick={() => setTab(SITE_NAVIGATION_HEADER_TAB)}
+      >
+        <a>SITE NAVIGATION</a>
+      </li>
+      <li
+        className={classnames({
+          [styles['-active']]: tab === ABOUT_HEADER_TAB
+        })}
+        onClick={() => setTab(ABOUT_HEADER_TAB)}
+      >
+        <a>ABOUT</a>
+      </li>
+      <li className={classnames({
+        [styles['-active']]: tab === SHARE_HEADER_TAB
+      })}
+        onClick={() => setTab(SHARE_HEADER_TAB)}
+      >
+        <a>SHARE</a>
+      </li>
+    </ul>;
 
   return (
     <header className={styles.header}>
@@ -147,44 +186,14 @@ function Header(props) {
                       [styles['-desktop']]: true
                     })}>
                       {getLogo()}
-                      <ul className={styles['left-links']}>
-                        <li
-                          className={classnames({
-                            [styles['-active']]: tab === SITE_NAVIGATION_HEADER_TAB
-                          })}
-                          onClick={() => setTab(SITE_NAVIGATION_HEADER_TAB)}
-                        >
-                          <a>SITE NAVIGATION</a>
-                        </li>
-                        <li
-                          className={classnames({
-                            [styles['-active']]: tab === ABOUT_HEADER_TAB
-                          })}
-                          onClick={() => setTab(ABOUT_HEADER_TAB)}
-                        >
-                          <a>ABOUT</a>
-                        </li>
-                        <li className={classnames({
-                          [styles['-active']]: tab === SHARE_HEADER_TAB
-                        })}
-                          onClick={() => setTab(SHARE_HEADER_TAB)}
-                        >
-                          <a>SHARE</a>
-                        </li>
-                      </ul>
-                      {/* <div className={classnames({
-                        [styles['powered-by']]: true,
-                        [styles['-desktop']]: true
-                      })}>
-                        powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
-                      </div> */}
+                      {getNavigationTags(false)}
                     </div>
                     <div className={classnames({
                       [styles['right-container']]: true,
                       [styles['-desktop']]: true
                     })}
                     >
-                      {getRightContainer()}
+                      {getRightContainer(false)}
                     </div>
                   </div>
                 </div>
@@ -219,30 +228,17 @@ function Header(props) {
                       [styles['left-container']]: true,
                       [styles['-mobile']]: true
                     })}>
-                      {getLogo()}
-                      <ul className={styles['left-links']}>
-                        <li>About</li>
-                        <li>
-                          <div className={styles['share-icons-container']}>
-                            <img src="/static/images/share/email_white.svg" />
-                            <img src="/static/images/share/facebook_white.svg" />
-                            <img src="/static/images/share/twitter_white.svg" />
-                          </div>
-                        </li>
-                      </ul>
-                      <div className={classnames({
-                        [styles['powered-by']]: true,
-                        [styles['-mobile']]: true
-                      })}>
-                        powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
-                      </div>
+                      {getNavigationTags(true)}
                     </div>
                     <div className={classnames({
                       [styles['right-container']]: true,
                       [styles['-mobile']]: true
                     })}
                     >
-                      {getTopicContainer()}
+                      {getRightContainer(true)}
+                      <div className={styles['logo-footer']}>
+                        {getLogo()}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -255,12 +251,12 @@ function Header(props) {
   );
 }
 
-Header.propTypes = { 
+Header.propTypes = {
   showLogo: PropTypes.bool.isRequired,
   openMenu: PropTypes.bool,
   selectedTab: PropTypes.string
 };
-Header.defaultProps = { 
+Header.defaultProps = {
   showLogo: true,
   selectedTab: SITE_NAVIGATION_HEADER_TAB,
   openMenu: false
