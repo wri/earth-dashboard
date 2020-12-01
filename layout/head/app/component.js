@@ -48,6 +48,9 @@ class HeadApp extends PureComponent {
         <meta property="og:image:alt" content={title} />
         <meta property="og:site_name" content="Earth Dashboard"/>
 
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+
         {/* Theme color */}
         {/* Chrome, Firefox OS and Opera */}
         {!!themeColor && <meta name="theme-color" content={themeColor} />}
