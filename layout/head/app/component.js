@@ -37,11 +37,12 @@ class HeadApp extends PureComponent {
       <HeadNext>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <meta name="title" content={title} />
 
-        <meta name="title" property="og:title" content={title} />
         <meta name="description" property="og:description" content={description} />
         <meta name="url" property="og:url" content={explicitHostname ? explicitHostname : hostname} />
         <meta name="image" proptery="og:image" content={thumbnail} />
+        <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
         <meta property="og:image:secure_url" content={thumbnail} />
         <meta property="og:image:alt" content={title} />
