@@ -81,15 +81,6 @@ class HeadApp extends PureComponent {
         
         { /* Artsy - fresnel: for SSR*/}
         <style type="text/css">${mediaStyle}</style>
-
-        {/* GOOGLE ANALYTICS */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-CSQTS8BFK6"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-CSQTS8BFK6');
-        </script>
       </HeadNext>
     );
   }
