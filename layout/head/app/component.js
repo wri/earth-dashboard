@@ -39,10 +39,10 @@ class HeadApp extends PureComponent {
         <meta name="description" content={description} />
         <meta name="title" content={title} />
 
-        <meta name="description" property="og:description" content={description} />
-        <meta name="url" property="og:url" content={explicitHostname ? explicitHostname : hostname} />
-        <meta name="image" proptery="og:image" content={thumbnail} />
+        {/* Open Graph meta tags */}
         <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={explicitHostname ? explicitHostname : hostname} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={thumbnail} />
         <meta property="og:image:secure_url" content={thumbnail} />
