@@ -5,9 +5,6 @@ import Link from 'next/link';
 // components
 import ErrorHead from 'layout/head/error';
 
-// utils
-import { initGA, logPageView } from 'utils/analytics';
-
 class Error extends PureComponent {
   static propTypes = { statusCode: PropTypes.number }
 
@@ -17,15 +14,6 @@ class Error extends PureComponent {
     const { res } = context;
 
     return { ...res && { statusCode: res.statusCode } };
-  }
-
-  componentDidMount() {
-    // Google Analytics
-    if (!window.GA_INITIALIZED) {
-      initGA();
-      window.GA_INITIALIZED = true;
-    }
-    logPageView();
   }
 
   render() {

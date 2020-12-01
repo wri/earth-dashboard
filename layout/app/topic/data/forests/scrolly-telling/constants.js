@@ -6,6 +6,9 @@ import TippingPointChart from './tipping-point-chart';
 // styles
 import styles from './forests-scrolly-telling.module.scss';
 
+// data
+import { getTreesSVG } from './data';
+
 export const FORESTS_STEPS = [
     {
         index: 0,
@@ -15,7 +18,8 @@ export const FORESTS_STEPS = [
                 <p>
                     The Amazon rainforest covers <a className="external-link -forests" href="https://www.nature.com/articles/d41586-020-00508-4" target="_blank"><span className="bold">597 Mha across nine countries</span></a> and <a className="external-link -forests" href="https://data.apps.fao.org/aquamaps/" target="_blank"><span className="bold">harbors 16,000 tree species</span></a>.
                 </p>
-            </>
+            </>,
+            imageHeader: '/static/images/scrolly-telling/forests/the-amazon-basin.jpg'
         },
         showYearCounter: false,
         stickyContainerElement: 
@@ -31,7 +35,8 @@ export const FORESTS_STEPS = [
         textPanel: {
             text: <p>
                 The tiny trees here represent the estimated <a className="external-link -forests" href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7" target="_blank"><span className="bold">514 million hectares of tree cover present in the Amazon in the year 2000</span></a>. That is an area the size of 12.5 Californias.
-            </p>
+            </p>,
+            imageHeader: '/static/images/scrolly-telling/forests/tree-cover.jpg'
         },
         showYearCounter: true,
         yearValue: 2000,
@@ -41,7 +46,7 @@ export const FORESTS_STEPS = [
                 [styles['south-america-map-dissolved']]: true
             })}>
                 <img className={styles['map-image']} src="/static/images/scrolly-telling/forests/amazon_map.svg" />
-                <img src="/static/images/scrolly-telling/forests/trees1.svg" />
+                {getTreesSVG('trees')}
             </div>
     },
     {
@@ -56,7 +61,7 @@ export const FORESTS_STEPS = [
         yearSubtitle: '513.8 Mha of tree cover in the Amazon basin',
         stickyContainerElement: 
             <div className={styles['-align-right']}>
-                <img src="/static/images/scrolly-telling/forests/trees2.svg" />
+                {getTreesSVG('one-tree')}
             </div>
     },
     {
@@ -72,7 +77,7 @@ export const FORESTS_STEPS = [
         yearSubtitle: '494,9 Mha of tree cover in the Amazon basin',
         stickyContainerElement: 
             <div className={styles['-align-right']}>
-                <img src="/static/images/scrolly-telling/forests/trees3.svg" />
+                {getTreesSVG('saws')}
             </div>
     },
     {
@@ -84,7 +89,8 @@ export const FORESTS_STEPS = [
                 <p>
                     The main driver of tree cover loss in the Amazon is <a className="external-link -forests bold" href="https://science.sciencemag.org/content/361/6407/1108" target="_blank">commodity driven deforestation</a>, which includes activities like oil extraction, industrial mining, ranching, farming, and fires set to clear land.
                 </p>
-            </>
+            </>,
+            imageHeader: '/static/images/scrolly-telling/forests/tree-cover-loss.jpg'
         },
         showYearCounter: true,
         yearValue: 2019,

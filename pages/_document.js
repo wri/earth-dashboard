@@ -1,6 +1,9 @@
 import React from 'react';
 import Document, { Html, Main, NextScript, Head } from 'next/document';
 
+// utils
+import { GA_TRACKING_ID } from "utils/gtag";
+
 class MyDocument extends Document {
   render() {
     return (
@@ -57,6 +60,30 @@ class MyDocument extends Document {
           {/* Polifyll */}
           {/* TO-DO: remove once axios is completely implemented */}
           <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
+
+
+          {/* GOOGLE ANALYTICS */}
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          {process.env.ED_NODE_ENV === 'production' &&
+            <>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });
+          `
+                }}
+              />
+            </>
+          }
         </Head>
         <body>
           <Main />

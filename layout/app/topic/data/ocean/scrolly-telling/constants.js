@@ -218,12 +218,10 @@ export const OCEAN_STEPS = [
                     <h6 className="subheader">Islands of plastic</h6>
                     <h6 className="ocean">Plastic Pollution</h6>
                     <p>
-                        <span className="bold">A garbage truck's worth of plastic <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank">enters the ocean every minute</a></span>. Carried out to sea by rivers, it
-                        floats throughout them, swirling with the currents into islands of plastic, some up 
-                        to <a className="external-link -ocean bold" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank">millions of kilometers in diameter</a>.
-                    </p>
-                    <p>
-                        The largest, <span className="bold">the Pacific Garbage Patch <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank">is three times the size of France</a></span>.
+                        <span className="bold">A garbage truck's worth of plastic <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank">enters the ocean every minute</a></span>.
+                        Rivers carry plastic out to the ocean, where it accumulates far from coastlines, making it 
+                        hard to track the origin of the debris. The largest accumulation zone is known as 
+                        the <span className="bold">Pacific Garbage Patch, estimated to be <a className="external-link -ocean" href="https://www.nature.com/articles/s41598-018-22939-w" target="_blank">three times the size of France</a></span>.
                     </p>
                     <p className="text-card-source">
                         Photo by Muntaka Chasant on Wikimedia Commons <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">(cc-by-4.0)</a>

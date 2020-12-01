@@ -5,9 +5,6 @@ import Geosuggest from 'react-geosuggest';
 // components
 import Icon from 'components/ui/icon';
 
-// utils
-import { logEvent } from 'utils/analytics';
-
 // styles
 import styles from './search-control.module.scss';
 
@@ -34,8 +31,6 @@ class SearchControls extends PureComponent {
           zoom: 7
         });
       }
-
-      if ('label' in e) logEvent('Explore map', ' Search for a place', e.label);
 
       this.handleSearchInput(false);
     }

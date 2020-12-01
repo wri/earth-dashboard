@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // store
 import { wrapper } from 'store';
@@ -10,8 +10,24 @@ import 'css/index.scss';
 import { setRouter } from 'slices/routes';
 import { setUser } from 'slices/user';
 import { setHostname } from 'slices/common';
+import { useRouter } from "next/router";
+
+// utils
+import * as gtag from "utils/gtag";
 
 function EDApp({ Component, pageProps }){
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <Component {...pageProps} />
   );

@@ -104,7 +104,7 @@ function Header(props) {
               url={isServer ? '' : window.location.href}
               style={{ borderColor: '#1A2129' }}
               showBorder={!mobile}
-              showInput={false}
+              showInput={!mobile}
             />
           </div>
         );

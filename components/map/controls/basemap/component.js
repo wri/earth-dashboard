@@ -10,9 +10,6 @@ import Checkbox from 'components/form/checkbox';
 // constants
 import { BASEMAPS, LABELS } from 'components/map/constants';
 
-// Utils
-import { logEvent } from 'utils/analytics';
-
 // styles
 import styles from './basemap-control.module.scss';
 
@@ -54,7 +51,6 @@ class BasemapControls extends PureComponent {
   }
 
   onBasemapChange = (basemap) => {
-    logEvent('Explore Map', 'change basemap', basemap);
     this.props.onChangeBasemap(BASEMAPS[basemap]);
   }
 
