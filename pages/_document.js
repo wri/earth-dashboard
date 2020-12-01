@@ -27,12 +27,6 @@ class MyDocument extends Document {
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-          {/* Social metadata */}
-          <meta property="og:type" content="website" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@resource_watch" />
-          <meta property="fb:app_id" content="Resource Watch" />
-
           {/* Leaflet CDN */}
           {/* leaflet script necessary for the Widget Editor */}
           <script
