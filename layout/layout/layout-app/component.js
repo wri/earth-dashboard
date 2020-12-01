@@ -5,7 +5,6 @@ import Modal from 'react-modal';
 import Toastr from 'react-redux-toastr';
 
 // Utils
-import { initGA, logPageView } from 'utils/analytics';
 import { browserSupported } from 'utils/browser';
 
 // Components
@@ -28,12 +27,6 @@ function LayoutApp(props) {
   const isServer = typeof window === 'undefined';
 
   useEffect(() => {
-    // // Google Analytics
-    // if (!window.GA_INITIALIZED) {
-    //   initGA();
-    //   window.GA_INITIALIZED = true;
-    // }
-    // logPageView();
     // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
     Modal.setAppElement(document.getElementById('#main'));
   }, []);

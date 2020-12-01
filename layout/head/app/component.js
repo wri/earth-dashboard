@@ -74,9 +74,11 @@ class HeadApp extends PureComponent {
           href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css"
           crossOrigin=""
         />
+
         {/* Fonts */}
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,400&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+        
         { /* Artsy - fresnel: for SSR*/}
         <style type="text/css">${mediaStyle}</style>
       </HeadNext>
