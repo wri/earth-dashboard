@@ -16,7 +16,7 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 // styles
 import styles from './homepage.module.scss';
 
-function LayoutHome({ openHeaderMenu, headerTabSelected }) {
+function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   const [globeLoaded, setGlobeLoaded] = useState(false);
   const isServer = typeof window === 'undefined';
 
@@ -109,8 +109,8 @@ function LayoutHome({ openHeaderMenu, headerTabSelected }) {
 
   return (
     <Layout
-      title="Earth Dashboard"
-      description="Earth HQ provides insight and inspiration to help everyone understand and protect our home planet."
+      title={title}
+      description={description}
       thumbnail="https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.jpg"
       className={styles.homepage}
       openHeaderMenu={openHeaderMenu}
