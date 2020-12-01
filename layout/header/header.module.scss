@@ -199,6 +199,10 @@
               background-color: $grey-darkest;
             }
 
+            &.-mobile {
+              margin-bottom: 200px;
+            }
+
             input { 
               color: $grey-lightest;
             }
