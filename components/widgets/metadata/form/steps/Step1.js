@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 // components
 import Field from 'components/form/Field';
 import Input from 'components/form/Input';
 import Checkbox from 'components/form/checkbox';
+
+// styles
+import styles from './step-widget-metadata-form.module.scss';
 
 // constants
 import { FORM_ELEMENTS } from 'components/widgets/metadata/form/constants';
@@ -82,7 +86,7 @@ class Step1 extends React.Component {
     const { info } = form;
 
     return (
-      <div>
+      <div className={styles['c-step-widget-metadata-form']}>
         <fieldset className="c-field-container">
           <h4>
             Edit metadata
@@ -91,10 +95,10 @@ class Step1 extends React.Component {
           <Field
             ref={(c) => { if (c) FORM_ELEMENTS.elements.caption = c; }}
             onChange={value => this.props.onChange(
-              { 
+              {
                 info: {
                   ...this.state.form.info,
-                  caption: value 
+                  caption: value
                 }
               }
             )}
@@ -113,7 +117,7 @@ class Step1 extends React.Component {
           <Field
             ref={(c) => { if (c) FORM_ELEMENTS.elements.highlighted = c; }}
             onChange={value => this.props.onChange(
-              { 
+              {
                 info: {
                   ...this.state.form.info,
                   highlighted: value.checked
@@ -132,7 +136,7 @@ class Step1 extends React.Component {
           <Field
             ref={(c) => { if (c) FORM_ELEMENTS.elements.archived = c; }}
             onChange={value => this.props.onChange(
-              { 
+              {
                 info: {
                   ...this.state.form.info,
                   archived: value.checked
@@ -152,7 +156,7 @@ class Step1 extends React.Component {
           ****************** WIDGET LINKS *********************
           *****************************************************
           */}
-          <div className="widget-links-container">
+          <div className={styles['widget-links-container']}>
             <Field
               ref={(c) => { if (c) FORM_ELEMENTS.elements.widget_links = c; }}
               onChange={value => this.onWidgetLinksCheckboxChange(value.checked)}
@@ -167,7 +171,7 @@ class Step1 extends React.Component {
             {widgetLinksSelected &&
               <div>
                 {
-                  this.state.form.info.widgetLinks.map(elem => (
+                  this.state.form.info.widgetLinks.map((elem, index) => (
                     <div
                       className="c-field-row"
                       key={elem.id}
@@ -177,9 +181,9 @@ class Step1 extends React.Component {
                           <Field
                             ref={(c) => { if (c) FORM_ELEMENTS.elements.widgetLinkName = c; }}
                             onChange={value => this.onWidgetLinkChange({
-                                name: value,
-                                id: elem.id
-                              })}
+                              name: value,
+                              id: elem.id
+                            })}
                             validations={['required']}
                             className="-fluid"
                             properties={{
@@ -210,14 +214,17 @@ class Step1 extends React.Component {
                             {Input}
                           </Field>
                         </div>
-                        <div className="column small-3 remove-widget-link-container">
+                        <div className={classnames({
+                          'column small-3': true,
+                          [styles['remove-widget-link-container']]: true
+                        })}>
                           <button
                             type="button"
                             className="c-button -secondary -fullwidth"
                             onClick={() => this.handleRemoveWidgetLink(elem.id)}
-                            disabled={this.state.form.info.widgetLinks.length === 1}
+                            disabled={this.state.form.info.widgetLinks.length > 1 && index === 0}
                           >
-                              Remove
+                            Remove
                           </button>
                         </div>
                       </div>
@@ -226,7 +233,10 @@ class Step1 extends React.Component {
                 }
                 <div className="c-field-row">
                   <div className="l-row row">
-                    <div className="column small-12 add-widget-link-container">
+                    <div className={classnames({
+                      'column small-12': true,
+                      [styles['add-widget-link-container']]: true
+                    })}>
                       <button
                         type="button"
                         className="c-button -secondary -fullwidth"
