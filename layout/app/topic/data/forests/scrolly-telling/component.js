@@ -33,7 +33,7 @@ function ForestsScrollyTelling({ topic }) {
         // ------ YEAR COUNTER COUNT UP EFFECT ------------------
         if (showYearCounter) {
             if (previousYearValue && yearValue) {
-                for(let i=previousYearValue, j=0; i<= yearValue; i++, j++) {
+                for (let i = previousYearValue, j = 0; i <= yearValue; i++, j++) {
                     setTimeout(() => {
                         setCurrentYear(i)
                     }, j * 50);
@@ -57,6 +57,24 @@ function ForestsScrollyTelling({ topic }) {
             />
         </div>;
 
+    const getVisualSources = (mobile) =>
+        <div className={classnames({
+            [styles['visual-sources']]: true,
+            [styles['-mobile']]: mobile,
+            [styles['-desktop']]: !mobile
+        })}>
+            {currentStep.visualSource &&
+                <div className={styles.source}>
+                    Source: {currentStep.visualSource}
+                </div>
+            }
+            {currentStep.visualDataset &&
+                <div className={styles.dataset}>
+                    Dataset: {currentStep.visualDataset}
+                </div>
+            }
+        </div>
+
     return (
         <div
             className={styles['c-forests-scrolly-telling']}
@@ -74,6 +92,7 @@ function ForestsScrollyTelling({ topic }) {
                                         {currentStep.stickyContainerElement}
                                     </div>
                                 }
+                                {getVisualSources(false)}
                             </Desktop>
                             <Mobile>
                                 {currentStep.stickyContainerElement &&
@@ -84,6 +103,7 @@ function ForestsScrollyTelling({ topic }) {
                                         {currentStep.stickyContainerElement}
                                     </div>
                                 }
+                                {getVisualSources(true)}
                             </Mobile>
                             {currentStep.showYearCounter &&
                                 <div className={styles['year-container']}>

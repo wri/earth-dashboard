@@ -22,13 +22,21 @@ export const FORESTS_STEPS = [
             imageHeader: '/static/images/scrolly-telling/forests/the-amazon-basin.jpg'
         },
         showYearCounter: false,
-        stickyContainerElement: 
+        stickyContainerElement:
             <div className={classnames({
                 [styles['-align-right']]: true,
                 [styles['south-america-map']]: true
             })}>
                 <img src="/static/images/scrolly-telling/forests/amazon_map.svg" />
-            </div>
+            </div>,
+        visualSource:
+            <a href="https://github.com/Vizzuality/earth-dashboard-data/blob/main/processing/Forests.ipynb" target="_blank">
+                Methodology for calculating boundaries
+            </a>,
+        visualDataset:
+            <a href="https://data.apps.fao.org/aquamaps/" target="_blank">
+                FAO AQUAMAPS
+            </a>
     },
     {
         index: 1,
@@ -40,14 +48,21 @@ export const FORESTS_STEPS = [
         },
         showYearCounter: true,
         yearValue: 2000,
-        stickyContainerElement: 
+        stickyContainerElement:
             <div className={classnames({
                 [styles['-align-right']]: true,
                 [styles['south-america-map-dissolved']]: true
             })}>
                 <img className={styles['map-image']} src="/static/images/scrolly-telling/forests/amazon_map.svg" />
                 {getTreesSVG('trees')}
-            </div>
+            </div>,
+        visualSource: null,
+        visualDataset:
+            <>
+                <a href="https://bit.ly/3fij5rG" target="_blank">Tree Cover</a> +
+                <a href="https://bit.ly/36AdbzY" target="_blank">Tree Cover Loss</a>.
+                (from <a href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7" target="_blank">Hansen et al.</a>)
+            </>
     },
     {
         index: 2,
@@ -59,49 +74,69 @@ export const FORESTS_STEPS = [
         showYearCounter: true,
         yearValue: 2000,
         yearSubtitle: '513.8 Mha of tree cover in the Amazon basin',
-        stickyContainerElement: 
+        stickyContainerElement:
             <div className={styles['-align-right']}>
                 {getTreesSVG('one-tree')}
-            </div>
+            </div>,
+        visualSource: null,
+        visualDataset:
+            <>
+                <a href="https://bit.ly/3fij5rG" target="_blank">Tree Cover</a> +
+                <a href="https://bit.ly/36AdbzY" target="_blank">Tree Cover Loss</a>.
+                (from <a href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7" target="_blank">Hansen et al.</a>)
+            </>
     },
     {
         index: 3,
         textPanel: {
             text: <p>
-                    Let’s fast forward to 2019. The saws represent <span className="bold">how much of that tree cover has been lost</span>. In these 19 years, <span className="bold">the Amazon has lost <a className="external-link -forests" href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7" target="_blank">an area equivalent to the size of 9 Switzerlands</a></span>.
+                Let’s fast forward to 2019. The saws represent <span className="bold">how much of that tree cover has been lost</span>. In these 19 years, <span className="bold">the Amazon has lost <a className="external-link -forests" href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7" target="_blank">an area equivalent to the size of 9 Switzerlands</a></span>.
                 </p>
         },
         showYearCounter: true,
         previousYearValue: 2000,
         yearValue: 2019,
         yearSubtitle: '494,9 Mha of tree cover in the Amazon basin',
-        stickyContainerElement: 
+        stickyContainerElement:
             <div className={styles['-align-right']}>
                 {getTreesSVG('saws')}
-            </div>
+            </div>,
+        visualSource: null,
+        visualDataset:
+            <>
+                <a href="https://bit.ly/3fij5rG" target="_blank">Tree Cover</a> +
+                <a href="https://bit.ly/36AdbzY" target="_blank">Tree Cover Loss</a>.
+                (from <a href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7" target="_blank">Hansen et al.</a>)
+            </>
     },
     {
         index: 4,
         textPanel: {
-            text: 
+            text:
                 <>
-                <h6 className="forests">Drivers of Tree Cover Loss</h6>
-                <p>
-                    The main driver of tree cover loss in the Amazon is <a className="external-link -forests bold" href="https://science.sciencemag.org/content/361/6407/1108" target="_blank">commodity driven deforestation</a>, which includes activities like oil extraction, industrial mining, ranching, farming, and fires set to clear land.
+                    <h6 className="forests">Drivers of Tree Cover Loss</h6>
+                    <p>
+                        The main driver of tree cover loss in the Amazon is <a className="external-link -forests bold" href="https://science.sciencemag.org/content/361/6407/1108" target="_blank">commodity driven deforestation</a>, which includes activities like oil extraction, industrial mining, ranching, farming, and fires set to clear land.
                 </p>
-            </>,
+                </>,
             imageHeader: '/static/images/scrolly-telling/forests/tree-cover-loss.jpg'
         },
         showYearCounter: true,
         yearValue: 2019,
         yearSubtitle: 'Main drivers of tree cover loss in the Amazon basin',
-        stickyContainerElement: 
+        stickyContainerElement:
             <div className={classnames({
                 [styles['-align-right']]: true,
                 [styles['horizontal-bar-chart']]: true
             })}>
                 <img src="/static/images/scrolly-telling/forests/drivers_of_tree_cover_loss_chart.png" />
-            </div>
+            </div>,
+        visualSource:
+            <>
+                <a href="https://science.sciencemag.org/content/361/6407/1108" target="_blank">Science</a>,
+                Vizzuality data: <a href="https://nbviewer.jupyter.org/github/Vizzuality/earth-dashboard-data/blob/main/processing/Forests.ipynb" target="_blank">ipynb</a>
+            </>,
+        visualDataset: <a href="https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2019_v1_7" target="_blank">Hansen et al.</a>
     },
     {
         index: 5,
@@ -111,6 +146,11 @@ export const FORESTS_STEPS = [
             </p>
         },
         showYearCounter: false,
-        stickyContainerElement: <TippingPointChart />
+        stickyContainerElement: <TippingPointChart />,
+        visualSource:
+            <>
+                <a href="https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1203&context=natlpark" target="_blank">Asynchronous carbon sink saturation in African and Amazonian tropical forests</a>, Hubau and Lewis, 2020.
+            </>,
+        visualDataset: 'Personal communication'
     }
 ];
