@@ -14,12 +14,13 @@ function StaticTextWidget({ widget, showSource }) {
     const staticTextWidgetConfig = widgetConfig && widgetConfig.staticTextWidgetConfig;
     const { text, parameters, style, className } = staticTextWidgetConfig || {};
     const source = staticTextWidgetConfig?.source;
+    const isInsightTitle = className === 'insight-title';
 
     const [loading, setLoading] = useState(true);
     const [textData, setTextData] = useState(null);
 
     useEffect(() => {
-        if (parameters?.length > 0) {
+        if (!isInsightTitle && parameters?.length > 0) {
             setLoading(true);
 
             const paramRegexp = /\{\{([^\}]+)\}\}/g;
@@ -73,7 +74,8 @@ function StaticTextWidget({ widget, showSource }) {
                 [styles['-headline']]: className === 'headline',
                 [styles['-insight-title']]: className === 'insight-title'
             })}>
-                {textElements}
+                {!isInsightTitle && textElements}
+                {isInsightTitle && text}
             </div>
             {showSource && source && <SourceBox source={source} />}
         </div>
