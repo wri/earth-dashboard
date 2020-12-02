@@ -56,40 +56,46 @@ function CombinedWidget({ widget, showSource }) {
     [styles['-column']]: !directionIsRow
   });
 
+  const widget1Style = directionIsRow ? {
+    'min-width': `${widget1.percentage}%`,
+    'max-width': `${widget1.percentage}%`
+  } :
+    {
+      'min-height': `${widget1.percentage}%`,
+      'max-height': `${widget1.percentage}%`
+    };
+
+  const widget2Style = directionIsRow ? {
+    'min-width': `${widget2.percentage}%`,
+    'max-width': `${widget2.percentage}%`
+  } :
+    {
+      'min-height': `${widget2.percentage}%`,
+      'max-height': `${widget2.percentage}%`
+    };
+
   return (
     <div className={mainClassname}>
       {loading && <Spinner isLoading={loading} className="-relative -light" />}
-      {widgets && widgets.widget1 &&
-        <div
-          className={styles['widget1-container']}
-          style={directionIsRow ? {
-            'min-width': `${widget1.percentage}%`,
-            'max-width': `${widget1.percentage}%`
-          } :
-            {
-              'min-height': `${widget1.percentage}%`,
-              'max-height': `${widget1.percentage}%`
-            }}
-        >
-          <WidgetPreview widget={widgets.widget1} />
-        </div>
-      }
-      {widgets && widgets.widget2 &&
-        <div
-          className={styles['widget2-container']}
-          style={directionIsRow ? {
-            'min-width': `${widget2.percentage}%`,
-            'max-width': `${widget2.percentage}%`
-          } :
-            {
-              'min-height': `${widget2.percentage}%`,
-              'max-height': `${widget2.percentage}%`
-            }}
-        >
-          <WidgetPreview widget={widgets.widget2} />
-        </div>
-      }
-      { showSource && source && <SourceBox source={source} /> }
+      <div className={styles['widgets-container']}>
+        {widgets && widgets.widget1 &&
+          <div
+            className={styles['widget1-container']}
+            {...(widget1.percentage && { style: widget1Style })}
+          >
+            <WidgetPreview widget={widgets.widget1} />
+          </div>
+        }
+        {widgets && widgets.widget2 &&
+          <div
+            className={styles['widget2-container']}
+            {...(widget2.percentage && { style: widget2Style })}
+          >
+            <WidgetPreview widget={widgets.widget2} />
+          </div>
+        }
+      </div>
+      { showSource && source && <SourceBox source={source} />}
     </div>
   );
 }

@@ -7,7 +7,6 @@ export const pageview = (url) => {
     window.gtag("config", GA_TRACKING_ID, {
       page_path: url
     });
-    console.log('window.gtag', window.gtag, 'pageView called');
   }
 };
 
