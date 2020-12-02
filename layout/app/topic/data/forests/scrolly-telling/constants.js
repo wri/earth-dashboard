@@ -28,7 +28,11 @@ export const FORESTS_STEPS = [
                 [styles['south-america-map']]: true
             })}>
                 <img src="/static/images/scrolly-telling/forests/amazon_map.svg" />
-            </div>
+            </div>,
+        visualSource: null,
+        visualDataset: <a href="https://github.com/Vizzuality/earth-dashboard-data/blob/main/processing/Forests.ipynb" target="_blank">
+            Methodology for calculating boundaries
+        </a>
     },
     {
         index: 1,

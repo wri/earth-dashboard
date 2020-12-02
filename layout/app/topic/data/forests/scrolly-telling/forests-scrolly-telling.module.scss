@@ -66,6 +66,23 @@
                     }
                 }
 
+                .visual-sources {
+                    position: absolute;
+                    bottom: 16px;
+                    right: 16px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    font-family: 'Barlow';
+                    font-size: 12px;
+                    line-height: 18px;
+                    color: $grey-darker;
+
+                    a {
+                        text-decoration: underline;
+                    }
+                }
+
                 .year-container {
                     position: absolute;
                     bottom: 0px;
