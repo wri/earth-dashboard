@@ -57,7 +57,7 @@ function WidgetsShow(props) {
                 application={process.env.APPLICATIONS}
                 authorization={token}
                 widget={id}
-                onSubmit={() => { Router.pushRoute('/admin/data', { tab: 'widgets', id, subtab: 'edit' }); }}
+                onSubmit={() => router.push(`/admin/data/widgets/${id}/edit`)}
               />)}
           </div>
 

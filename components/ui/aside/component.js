@@ -31,20 +31,17 @@ class Aside extends PureComponent {
         <nav>
           <ul>
             {items.filter(i => i.params).map((s) => {
-              const active = (s.params || {}).subtab === selected;
+              const { route, params, label } = s;
+              const { tab, subtab, id } = params;
+              const active = (params || {}).subtab === selected;
               const activeClass = classnames({ '-active': active });
 
               return (
                 <li key={s.value}>
-                  <Link href={
-                    {
-                      pathname: s.route,
-                      query: s.params
-                    }}
-                  >
+                  <Link href={`${route}/${tab}/${id}/${subtab}`}>
                     <a className={activeClass}>
                       {active && <Icon className="c-icon -tiny" name="icon-arrow-right-2" />}
-                      {s.label}
+                      {label}
                     </a>
                   </Link>
                 </li>
