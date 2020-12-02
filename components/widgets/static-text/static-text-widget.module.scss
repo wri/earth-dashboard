@@ -6,5 +6,25 @@
     align-items: flex-start;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+
+    .text-container {
+
+        &.-headline {
+            font-family: 'Barlow Condensed';
+            font-size: $font-size-h2;
+            line-height: $line-height-h2;
+            font-weight: 400;
+        }
+
+        &.-insight-title {
+            font-family: 'Barlow Condensed';
+            font-size: $font-size-h5;
+            line-height: $line-height-h5;
+            font-weight: 400;
+        }
+
+        .parameter {
+            font-style: italic;
+        }
+    }
 }
