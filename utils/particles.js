@@ -9,10 +9,10 @@ export const PARTICLES_DEFINITION = {
       },
       color: {
         value: [
-          "#009A67",
-          "#C83384",
-          "#D85D44",
-          "#238CDD"
+          "#F35600",
+          "#1F88FF",
+          "#31A9BF",
+          "#009A67"
         ]
       },
       shape: {
