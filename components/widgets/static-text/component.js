@@ -70,7 +70,8 @@ function StaticTextWidget({ widget, showSource }) {
             <Spinner isLoading={loading} className="-relative -light" />
             <div className={classnames({
                 [styles['text-container']]: true,
-                [styles['-headline']]: className === 'headline'
+                [styles['-headline']]: className === 'headline',
+                [styles['-insight-title']]: className === 'insight-title'
             })}>
                 {textElements}
             </div>
