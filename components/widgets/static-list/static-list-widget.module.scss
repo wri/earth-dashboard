@@ -7,12 +7,9 @@
     position: relative;
 
     ul, ol {
-        list-style: circle inside;   
-    }
-
-    li {
-        display: list-item;
-        margin-left: 5 * $space;
+        list-style: circle inside;  
+        padding: 0px; 
+        margin: 0px;
     }
 
     ol {
@@ -21,5 +18,16 @@
 
     ul {
         list-style-type: circle;
+    }
+
+    li {
+        display: list-item;
+
+        .list-element-label {
+            font-family: 'Barlow Condensed';
+            font-size: $font-size-h2;
+            line-height: $line-height-h2;
+            font-weight: 400;
+        }
     }
 }
