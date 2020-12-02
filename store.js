@@ -19,7 +19,7 @@ const makeStore = (context) => {
   const store = configureStore({
     reducer,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(WEmiddleware),
-    devTools: process.env.NODE_ENV !== 'production',
+    devTools: process.env.ED_NODE_ENV !== 'production',
     preloadedState: {}
   });
 
