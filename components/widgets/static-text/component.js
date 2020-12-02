@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 // components
 import Spinner from 'components/ui/spinner';
@@ -11,7 +12,7 @@ import styles from './static-text-widget.module.scss';
 function StaticTextWidget({ widget, showSource }) {
     const widgetConfig = widget && widget.widgetConfig;
     const staticTextWidgetConfig = widgetConfig && widgetConfig.staticTextWidgetConfig;
-    const { text, parameters, style, type } = staticTextWidgetConfig || {};
+    const { text, parameters, style, className } = staticTextWidgetConfig || {};
     const source = staticTextWidgetConfig?.source;
 
     const [loading, setLoading] = useState(true);
@@ -43,7 +44,10 @@ function StaticTextWidget({ widget, showSource }) {
 
                 return (
                     <span
-                        className={styles.parameter}
+                        className={classnames({
+                            [styles.parameter]: true,
+                            [currentParam.topic]: true
+                        })}
                         style={currentParam.style}
                         key={`param-${textValue}`}
                     >
@@ -64,7 +68,10 @@ function StaticTextWidget({ widget, showSource }) {
             {...(style && { style })}
         >
             <Spinner isLoading={loading} className="-relative -light" />
-            <div className={styles['text-container']}>
+            <div className={classnames({
+                [styles['text-container']]: true,
+                [styles['-headline']]: className === 'headline'
+            })}>
                 {textElements}
             </div>
             {showSource && source && <SourceBox source={source} />}

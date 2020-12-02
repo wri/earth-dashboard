@@ -216,6 +216,7 @@ export const STATIC_TEXT_WIDGET_TEMPLATE = {
           }
         }
       ],
+      className:"headline/insight-title/value-unit",
       source: SOURCE_TEMPLATE
     }
   }
