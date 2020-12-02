@@ -70,7 +70,7 @@ function ForestsScrollyTelling({ topic }) {
             }
             {currentStep.visualDataset &&
                 <div className={styles.dataset}>
-                    Source: {currentStep.visualDataset}
+                    Dataset: {currentStep.visualDataset}
                 </div>
             }
         </div>
