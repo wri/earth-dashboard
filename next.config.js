@@ -1,11 +1,11 @@
 require('dotenv').load();
 
-const { BundleAnalyzerPlugin } = (process.env.ED_NODE_ENV === 'production' && process.env.BUNDLE_ANALYZER) ?
+const { BundleAnalyzerPlugin } = (process.env.NODE_ENV === 'production' && process.env.BUNDLE_ANALYZER) ?
   require('webpack-bundle-analyzer') : {};
 
 module.exports = {
   env: {
-    ED_NODE_ENV: process.env.ED_NODE_ENV || 'development',
+    NODE_ENV: process.env.NODE_ENV || 'development',
     APPLICATIONS: 'earthhq',
     BASEMAP_TILE_URL: process.env.BASEMAP_TILE_URL,
     CALLBACK_URL: process.env.CALLBACK_URL,

@@ -64,7 +64,7 @@ class MyDocument extends Document {
 
           {/* GOOGLE ANALYTICS */}
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          {process.env.ED_NODE_ENV === 'production' &&
+          {process.env.NODE_ENV === 'production' &&
             <>
               <script
                 async
