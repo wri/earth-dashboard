@@ -21,7 +21,8 @@ export const FRESHWATER_STEPS = [
             text: <p>
                 <span className="bold">Every region in the world has a yearly renewable water budget</span>, available to people, plants and animals living on it. It is represented by this big water droplet. 
                 </p>
-        }
+        },
+        visualSource: <a href="https://www.vizzuality.com/" target="_blank">Vizzuality</a>
     },
     {
         index: 1,
@@ -33,7 +34,8 @@ export const FRESHWATER_STEPS = [
                 </>,
                 imageHeader: '/static/images/scrolly-telling/freshwater/freshwater-supplies.jpg'
         },
-        dropAnimation: FILL_UP_ANIMATION
+        dropAnimation: FILL_UP_ANIMATION,
+        visualSource: <a href="https://www.vizzuality.com/" target="_blank">Vizzuality</a>
     },
     {
         index: 2,
@@ -48,7 +50,8 @@ export const FRESHWATER_STEPS = [
             </>,
             imageHeader: '/static/images/scrolly-telling/freshwater/freshwater-withdrawals.jpg'
         },
-        dropAnimation: EMPTY_HALF_OUT_ANIMATION
+        dropAnimation: EMPTY_HALF_OUT_ANIMATION,
+        visualSource: <a href="https://www.vizzuality.com/" target="_blank">Vizzuality</a>
     },
     {
         index: 3,
@@ -61,7 +64,8 @@ export const FRESHWATER_STEPS = [
                      (&lt;10%) to extremely high water stress (&gt;80%)</a>.
                 </p>
         },
-        dropAnimation: BASELINE_WATER_STRESS_ANIMATION
+        dropAnimation: BASELINE_WATER_STRESS_ANIMATION,
+        visualSource: <a href="https://www.vizzuality.com/" target="_blank">Vizzuality</a>
     },
     {
         index: 4,
@@ -80,7 +84,8 @@ export const FRESHWATER_STEPS = [
             imageHeader: '/static/images/scrolly-telling/freshwater/water-stress-risks.jpg'
 
         },
-        dropAnimation: WATER_STRESS_RISK_ANIMATION
+        dropAnimation: WATER_STRESS_RISK_ANIMATION,
+        visualSource: <a href="https://www.vizzuality.com/" target="_blank">Vizzuality</a>
     },
     {
         index: 5,
@@ -89,7 +94,8 @@ export const FRESHWATER_STEPS = [
                 Let’s explore some regions of the work with <span className="bold">extremely high water stress risk</span> (&gt;80%)
             </p>
         },
-        dropAnimation: WATER_STRESS_RISK_FINAL
+        dropAnimation: WATER_STRESS_RISK_FINAL,
+        visualSource: <a href="https://www.vizzuality.com/" target="_blank">Vizzuality</a>
     }
 ];
 
@@ -104,7 +110,9 @@ export const FRESHWATER_STEPS_WORLDMAP = [
                         <span className="bold">This region is home to <a className="external-link -freshwater" href="https://www.wri.org/blog/2019/08/17-countries-home-one-quarter-world-population-face-extremely-high-water-stress" target="_blank">12 of the world’s 17 most water stressed countries</a></span>. Climate change will make water still scarcer by 2050 causing economic losses ranging from <a className="bold external-link -freshwater" href="https://www.wri.org/blog/2019/08/17-countries-home-one-quarter-world-population-face-extremely-high-water-stress" target="_blank">six to 14 percent of GDP</a>.
                      </p>
                 </>
-        }
+        }, 
+        visualSource: <a href="https://www.wri.org/blog/2019/08/17-countries-home-one-quarter-world-population-face-extremely-high-water-stress" target="_blank">WRI Aqueduct</a>,
+        visualDataset: <a href="https://bit.ly/2Pd2Dyy" target="_blank">Aqueduct Baseline Water Stress</a>
     },
     {
         index: 1,
@@ -118,7 +126,9 @@ export const FRESHWATER_STEPS_WORLDMAP = [
                     say <span className="bold">the nation faces the worst water crisis in its history</span>. 
                      </p>
                 </>
-        }
+        }, 
+        visualSource: <a href="https://www.wri.org/blog/2019/08/17-countries-home-one-quarter-world-population-face-extremely-high-water-stress" target="_blank">WRI Aqueduct</a>,
+        visualDataset: <a href="https://bit.ly/2Pd2Dyy" target="_blank">Aqueduct Baseline Water Stress</a>
     },
     {
         index: 2,
@@ -132,7 +142,9 @@ export const FRESHWATER_STEPS_WORLDMAP = [
                     most homes and businesses. Aggressive conservation measures and rain spared the city.
                     </p>
                 </>
-        }
+        }, 
+        visualSource: <a href="https://www.wri.org/blog/2019/08/17-countries-home-one-quarter-world-population-face-extremely-high-water-stress" target="_blank">WRI Aqueduct</a>,
+        visualDataset: <a href="https://bit.ly/2Pd2Dyy" target="_blank">Aqueduct Baseline Water Stress</a>
     },
     {
         index: 3,
@@ -146,7 +158,9 @@ export const FRESHWATER_STEPS_WORLDMAP = [
                         tall buildings lost service. The Vatican turned off its 100 fountains.  
                     </p>
                 </>
-        }
+        }, 
+        visualSource: <a href="https://www.wri.org/blog/2019/08/17-countries-home-one-quarter-world-population-face-extremely-high-water-stress" target="_blank">WRI Aqueduct</a>,
+        visualDataset: <a href="https://bit.ly/2Pd2Dyy" target="_blank">Aqueduct Baseline Water Stress</a>
     } 
 ];
 

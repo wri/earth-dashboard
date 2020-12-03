@@ -92,6 +92,29 @@ function FreshwaterScrollyTelling() {
             )}
         </Scrollama>;
 
+    const getVisualSources = (mobile, worldmapStory) => {
+        const currentStep = worldmapStory ? FRESHWATER_STEPS_WORLDMAP[currentStepIndexWorldMap] :
+            FRESHWATER_STEPS[currentStepIndex];
+        return (
+            <div className={classnames({
+                [styles['visual-sources']]: true,
+                [styles['-mobile']]: mobile,
+                [styles['-desktop']]: !mobile
+            })}>
+                {currentStep.visualSource &&
+                    <div className={styles.source}>
+                        Source: {currentStep.visualSource}
+                    </div>
+                }
+                {currentStep.visualDataset &&
+                    <div className={styles.dataset}>
+                        Dataset: {currentStep.visualDataset}
+                    </div>
+                }
+            </div>
+        );
+    };
+
     return (
         <div
             className={styles['c-freshwater-scrolly-telling']}
@@ -108,6 +131,7 @@ function FreshwaterScrollyTelling() {
                         [styles['-desktop']]: true
                     })}>
                         {getWaterDropElements()}
+                        {getVisualSources(false, false)}
                     </div>
                     {isBrowser &&
                         <div className={classnames({
@@ -129,6 +153,7 @@ function FreshwaterScrollyTelling() {
                         [styles['-mobile']]: true
                     })}>
                         {getWaterDropElements()}
+                        {getVisualSources(true, false)}
                     </div>
                     {isBrowser &&
                         <div className={classnames({
@@ -147,6 +172,7 @@ function FreshwaterScrollyTelling() {
                 >
                     <div className={styles['worldmap-container']}>
                         <WaterDropLocations activeIndex={currentStepIndexWorldMap} />
+                        {getVisualSources(false, true)}
                     </div>
                     {isBrowser &&
                         <>
