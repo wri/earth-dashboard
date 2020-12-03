@@ -95,8 +95,9 @@ export const FORESTS_STEPS = [
         },
         showYearCounter: true,
         previousYearValue: 2000,
+        yearValuePrefix: '2001-',
         yearValue: 2019,
-        yearSubtitle: '494,9 Mha of tree cover in the Amazon basin',
+        yearSubtitle: '18.9 Mha of tree cover loss in the Amazon basin',
         stickyContainerElement:
             <div className={styles['-align-right']}>
                 {getTreesSVG('saws')}
