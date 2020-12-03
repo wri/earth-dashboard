@@ -5,7 +5,18 @@ import Document, { Html, Main, NextScript, Head } from 'next/document';
 import { GA_TRACKING_ID } from "utils/gtag";
 
 class MyDocument extends Document {
+
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx)
+    return { 
+      ...initialProps, 
+      includeGA: !ctx.asPath.startsWith('/admin') && !ctx.asPath.startsWith('/sign-in')
+    }
+  }
+
   render() {
+    const { includeGA } = this.props;
+
     return (
       <Html lang="en">
         <Head>
@@ -64,7 +75,7 @@ class MyDocument extends Document {
 
           {/* GOOGLE ANALYTICS */}
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          {process.env.ED_NODE_ENV === 'production' &&
+          {process.env.ED_NODE_ENV === 'production' && includeGA &&
             <>
               <script
                 async
