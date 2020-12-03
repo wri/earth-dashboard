@@ -11,7 +11,7 @@ export const pageview = (url) => {
 };
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const event = ({ action, category, label, value }) => {
+export const logEvent = ({ action, category, label, value }) => {
   if (process.env.ED_NODE_ENV === 'production') {
     window.gtag("event", action, {
       event_category: category,

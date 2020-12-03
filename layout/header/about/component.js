@@ -1,10 +1,20 @@
 import React from 'react';
 import classnames from 'classnames';
 
+// utils
+import { logEvent } from 'utils/gtag';
+
 // styles
 import styles from './about.module.scss';
 
 function About() {
+    const logPartnerClick = (partnerURL) =>
+        logEvent({
+            category: 'Outbound traffic - Partners',
+            action: 'click',
+            label: partnerURL
+        });
+
     return (
         <div className={styles['c-about']}>
             <p>
@@ -42,7 +52,11 @@ function About() {
                     [styles['logo']]: true,
                     'column small-12 medium-6': true
                 })}>
-                    <a target="_blank" href="https://resourcewatch.org/">
+                    <a
+                         target="_blank"
+                         href="https://resourcewatch.org/"
+                         onClick={() => logPartnerClick('https://resourcewatch.org/')}
+                    >
                         <img src="/static/images/about/logo_RW.svg" />
                     </a>
                 </div>
