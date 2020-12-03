@@ -8,12 +8,12 @@ import { logEvent } from 'utils/gtag';
 import styles from './about.module.scss';
 
 function About() {
-    const logPartnerClick = (partnerURL) =>
-        logEvent({
-            category: 'Outbound traffic - Partners',
-            action: 'click',
-            label: partnerURL
-        });
+    // const logPartnerClick = (partnerURL) =>
+    //     logEvent({
+    //         category: 'Outbound traffic - Partners',
+    //         action: 'click',
+    //         label: partnerURL
+    //     });
 
     return (
         <div className={styles['c-about']}>
@@ -52,11 +52,7 @@ function About() {
                     [styles['logo']]: true,
                     'column small-12 medium-6': true
                 })}>
-                    <a
-                         target="_blank"
-                         href="https://resourcewatch.org/"
-                         onClick={() => logPartnerClick('https://resourcewatch.org/')}
-                    >
+                    <a target="_blank" href="https://resourcewatch.org/">
                         <img src="/static/images/about/logo_RW.svg" />
                     </a>
                 </div>

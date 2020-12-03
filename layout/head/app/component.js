@@ -49,6 +49,9 @@ class HeadApp extends PureComponent {
         <meta property="og:image:alt" content={title} />
         <meta property="og:site_name" content="Earth Dashboard"/>
 
+        {/* Facebook */}
+        <meta property="fb:app_id" content="717221095898870" />
+
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
