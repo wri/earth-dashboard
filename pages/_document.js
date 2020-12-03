@@ -34,9 +34,6 @@ class MyDocument extends Document {
           />
           <link rel="shortcut icon" href="/static/cropped-favicon-32x32.png"></link>
 
-          {/* IMPORTANT!!! THIS IS ONLY TEMPORARY IT NEEDS TO BE REMOVED BEFORE LAUNCH!! */}
-          <meta name="robots" content="noindex" />
-
           {/* iOS Safari */}
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
