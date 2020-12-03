@@ -56,8 +56,14 @@ const getClimateChart = (number, pulsatingItemData, linesData) =>
                 </div>
             }
         </Desktop>
-    </MediaContextProvider>
-    ;
+    </MediaContextProvider>;
+
+const getVisualSource = () =>
+    <>
+        <a href="https://www.ipcc.ch/site/assets/uploads/2018/02/WG1AR5_Chapter12_FINAL.pdf" target="_blank">IPCC</a>,
+        <a href="https://pdfs.semanticscholar.org/3024/6fe51fca5cd4f25eb56999b9dbe163e53014.pdf?_ga=2.229101076.980227755.1605691335-447938515.1605691335" target="_blank">Schurer et al.</a>
+    </>;
+const getVisualDataset = () => <a href="https://www.ipcc.ch/site/assets/uploads/2018/02/WG1AR5_Chapter12_FINAL.pdf" target="_blank">Figure 12.5 IPCC</a>
 
 
 export const CLIMATE_STEPS = [
@@ -100,7 +106,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: false, animate: false },
                 lineProjection: { show: false, animate: false }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 1,
@@ -127,7 +135,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: false, animate: false },
                 lineProjection: { show: false, animate: false }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 2,
@@ -160,7 +170,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: false, animate: false },
                 lineProjection: { show: false, animate: false }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 3,
@@ -193,7 +205,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: false, animate: false },
                 lineProjection: { show: false, animate: false }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 4,
@@ -226,7 +240,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: false, animate: false },
                 lineProjection: { show: false, animate: false }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 5,
@@ -259,7 +275,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: true, animate: true },
                 lineHistorical: { show: false, animate: false },
                 lineProjection: { show: false, animate: false }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 6,
@@ -288,7 +306,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: true, animate: true },
                 lineHistorical: { show: false, animate: false },
                 lineProjection: { show: false, animate: false }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 7,
@@ -327,7 +347,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 8,
@@ -360,7 +382,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 9,
@@ -395,7 +419,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 10,
@@ -430,7 +456,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 11,
@@ -465,7 +493,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 12,
@@ -474,7 +504,7 @@ export const CLIMATE_STEPS = [
                 <>
                     <h6 className="climate">Extreme rainfall</h6>
                     <p>
-                    <a className="external-link -climate bold" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank">Annual losses from flood damage and sea level rise would
+                        <a className="external-link -climate bold" href="https://interactive.carbonbrief.org/impacts-climate-change-one-point-five-degrees-two-degrees/?utm_source=web&utm_campaign=Redirect" target="_blank">Annual losses from flood damage and sea level rise would
                         reach $11.7 trillion</a> if no further adaptation is undertaken.
                     </p>
                     <p className="photo-subtitle">
@@ -502,7 +532,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 13,
@@ -543,7 +575,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 14,
@@ -583,7 +617,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 15,
@@ -618,7 +654,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 16,
@@ -657,7 +695,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 17,
@@ -693,7 +733,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 18,
@@ -728,7 +770,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     },
     {
         index: 19,
@@ -762,7 +806,9 @@ export const CLIMATE_STEPS = [
                 lineFuture: { show: false, animate: false },
                 lineHistorical: { show: true, animate: true },
                 lineProjection: { show: true, animate: true }
-            })
+            }),
+        visualSource: getVisualSource(),
+        visualDataset: getVisualDataset()
     }
 ];
 
@@ -781,7 +827,9 @@ export const CLIMATE_CLOCK_STEPS = [
                           emissions to 420 Gt of CO2 emissions gives us a 67% chance of staying within the threshold of 1.5°C</a>.
                     </p>
                 </>
-        }
+        },
+        visualSource: <a href="https://www.mcc-berlin.net/en/research/co2-budget.html" target="_blank">MCC</a>,
+        visualDataset: <a href="https://www.ipcc.ch/sr15/" target="_blank">IPCC</a>
     },
     {
         index: 1,
@@ -806,6 +854,8 @@ export const CLIMATE_CLOCK_STEPS = [
                          using data from the IPCC Special Report on Global Warming of 1.5°C
                     </p> */}
                 </>
-        }
+        },
+        visualSource: <a href="https://www.mcc-berlin.net/en/research/co2-budget.html" target="_blank">MCC</a>,
+        visualDataset: <a href="https://www.ipcc.ch/sr15/" target="_blank">IPCC</a>
     }
 ];

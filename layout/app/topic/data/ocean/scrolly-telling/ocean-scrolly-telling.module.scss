@@ -10,17 +10,21 @@
 
         .intro-charts-container {
             position: sticky;
-            top: 15vh;
+            top: 20vh;
             left: 0px;
             width: 100%;
             display: flex;
             justify-content: center;
             padding: 0px 16px 0px 16px;
 
-            .image-container {
-                display: flex;
-                justify-content: center;
-                width: 100%;
+            .wrapper {
+                position: relative;
+                .image-container {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                }
             }
         }
     }
@@ -77,7 +81,7 @@
                     }
 
                     .chart-with-title {
-                        width: 100vw;
+                        width: calc(100vw - 20px);
                         height: 100vh;
                         display: flex;
                         flex-direction: column;
@@ -171,6 +175,31 @@
 
         &.-mobile {
             align-items: center;
+        }
+    }
+
+    .visual-sources {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-family: 'Barlow';
+        font-size: 12px;
+        line-height: 18px;
+        color: $grey-darker;
+        z-index: 1;
+
+        &:not(.-intro) {
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+        }
+
+        &.-intro {
+            margin-top: 50px;
+        }
+
+        a {
+            text-decoration: underline;
         }
     }
 }

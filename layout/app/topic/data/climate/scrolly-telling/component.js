@@ -17,8 +17,10 @@ import styles from './climate-scrolly-telling.module.scss';
 
 function ClimateScrollyTelling({ topic }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [currentStepIndexClock, setCurrentStepIndexClock] = useState(0);
   const isBrowser = typeof window !== 'undefined';
   const currentStep = CLIMATE_STEPS[currentStepIndex];
+  const currentStepClock = CLIMATE_CLOCK_STEPS[currentStepIndexClock];
   const [currentYear, setCurrentYear] = useState(2020);
   const [currentDegrees, setCurrentDegrees] = useState(1.0);
 
@@ -116,6 +118,28 @@ function ClimateScrollyTelling({ topic }) {
       />
     </div>;
 
+  const getVisualSources = (mobile, clockStory) => {
+    const currentStepValue = clockStory ? currentStepClock : currentStep;
+    return (
+      <div className={classnames({
+        [styles['visual-sources']]: true,
+        [styles['-mobile']]: mobile,
+        [styles['-desktop']]: !mobile,
+        [styles['-climate-story']]: !clockStory
+      })}>
+        {currentStepValue.visualSource &&
+          <div className={styles.source}>
+            Source: {currentStepValue.visualSource}
+          </div>
+        }
+        {currentStepValue.visualDataset &&
+          <div className={styles.dataset}>
+            Dataset: {currentStepValue.visualDataset}
+          </div>
+        }
+      </div>
+    );
+  }
 
   return (
     <div
@@ -132,11 +156,13 @@ function ClimateScrollyTelling({ topic }) {
               <h1>{d3.format(',')(tones)} tons</h1> */}
             </div>
             <canvas id="smoke-canvas" />
+            <Desktop>{getVisualSources(false, true)}</Desktop>
+            <Mobile>{getVisualSources(true, true)}</Mobile>
           </div>
           {isBrowser &&
             <div className={styles.steps}>
               <Scrollama
-                onStepEnter={onStepEnter}
+                onStepEnter={({ data }) => setCurrentStepIndexClock(data)}
                 offset={0.6}
               >
                 {CLIMATE_CLOCK_STEPS.map((step, stepIndex) =>
@@ -166,12 +192,14 @@ function ClimateScrollyTelling({ topic }) {
                     [styles['-desktop']]: true
                   })}>
                     {currentStep.stickyContainerElement}
+                    {getVisualSources(false, false)}
                   </Desktop>
                   <Mobile className={classnames({
                     [styles['sticky-element']]: true,
                     [styles['-mobile']]: true
                   })}>
                     {currentStep.stickyContainerElement}
+                    {getVisualSources(true, false)}
                   </Mobile>
                 </>
               }

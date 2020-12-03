@@ -202,6 +202,28 @@
             align-items: center;
         }
     }
+
+    .visual-sources {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-family: 'Barlow';
+        font-size: 12px;
+        line-height: 18px;
+        color: $grey-darker;
+        z-index: 1;
+
+        &.-climate-story {
+            bottom: 96px
+        }
+
+        a {
+            text-decoration: underline;
+        }
+    }
 }
 
 @keyframes fade-in {

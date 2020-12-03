@@ -113,7 +113,9 @@ export const OCEAN_STEPS = [
         },
         stickyContainerElement: <div className={styles['coral-map']}>
             <div className={styles['coral-map-background']} />
-        </div>
+        </div>,
+        visualSource: <a href="https://coralreefwatch.noaa.gov/climate/projections/downscaled_bleaching_4km/index.php" target="_blank">NOAA</a>,
+        visualDataset: <a href="https://resourcewatch.org/data/explore/ocn010-Projected-Coral-Bleaching_1" target="_blank">Resource Watch Projected Bleaching</a>
     },
     {
         index: 1,
@@ -130,7 +132,9 @@ export const OCEAN_STEPS = [
         },
         stickyContainerElement: <div className={styles['coral-map']}>
             <div className={styles['coral-map-background']} />
-        </div>
+        </div>,
+        visualSource: <a href="https://coralreefwatch.noaa.gov/climate/projections/downscaled_bleaching_4km/index.php" target="_blank">NOAA</a>,
+        visualDataset: <a href="https://resourcewatch.org/data/explore/ocn010-Projected-Coral-Bleaching_1" target="_blank">Resource Watch Projected Bleaching</a>
     },
     {
         index: 2,
@@ -153,7 +157,9 @@ export const OCEAN_STEPS = [
                 </div>,
             imageHeader: '/static/images/scrolly-telling/ocean/fisheries-under-pressure.jpg'
         },
-        stickyContainerElement: getTrendsInMarineFishStock()
+        stickyContainerElement: getTrendsInMarineFishStock(),
+        visualSource: <><a href="http://www.fao.org/state-of-fisheries-aquaculture" target="_blank">FAO State of Fisheries Report</a>, Fig 19</>,
+        visualDataset: <a href="http://www.fao.org/fishery/statistics/en " target="_blank">http://www.fao.org/fishery/statistics/en </a>
 
 
     },
@@ -172,7 +178,9 @@ export const OCEAN_STEPS = [
                     </p>
                 </div>
         },
-        stickyContainerElement: getTrendsInMarineFishStock()
+        stickyContainerElement: getTrendsInMarineFishStock(),
+        visualSource: <><a href="http://www.fao.org/state-of-fisheries-aquaculture" target="_blank">FAO State of Fisheries Report</a>, Fig 19</>,
+        visualDataset: <a href="http://www.fao.org/fishery/statistics/en " target="_blank">http://www.fao.org/fishery/statistics/en </a>
     },
     {
         index: 4,
@@ -208,7 +216,9 @@ export const OCEAN_STEPS = [
                         </div>
                     </div>
                 </Mobile>
-            </MediaContextProvider>
+            </MediaContextProvider>,
+        visualSource: <><a href="http://www.fao.org/state-of-fisheries-aquaculture" target="_blank">FAO State of Fisheries Report</a>, Fig 1</>,
+        visualDataset: <a href="http://www.fao.org/fishery/statistics/en " target="_blank">http://www.fao.org/fishery/statistics/en </a>
     },
     {
         index: 5,
@@ -229,7 +239,8 @@ export const OCEAN_STEPS = [
                 </div>,
             imageHeader: '/static/images/scrolly-telling/ocean/islands-of-plastic.jpg'
         },
-        stickyContainerElement: <IslandsOfPlastic />
+        stickyContainerElement: <IslandsOfPlastic />,
+        visualDataset: <a href="https://bit.ly/37uUxf5" target="_blank">Resource Watch Plastic Density</a>
     },
     {
         index: 6,
@@ -241,7 +252,8 @@ export const OCEAN_STEPS = [
                      debris <a className="external-link -ocean bold" href="https://www.nationalgeographic.org/encyclopedia/great-pacific-garbage-patch/" target="_blank">bounded by the massive North Pacific Subtropical Gyre</a>.
                 </p>
         },
-        stickyContainerElement: getGreatPacificGarbagePatch()
+        stickyContainerElement: getGreatPacificGarbagePatch(),
+        visualDataset: <a href="https://bit.ly/37uUxf5" target="_blank">Resource Watch Plastic Density</a>
     },
     {
         index: 7,
@@ -272,6 +284,7 @@ export const OCEAN_STEPS = [
                     <h6 className="ocean">Benefit-cost ratios for sustainable ocean interventions</h6>
                     <img src="/static/images/scrolly-telling/ocean/benefit-cost-ratios-for-sustainable-ocean-interventions.svg" />
                 </div>
-            </div>
+            </div>,
+        visualSource: <><a href="https://oceanpanel.org/sites/default/files/2020-07/Ocean%20Panel_Economic%20Analysis_FINAL.pdf" target="_blank">Ocean Panel</a>, pg 5</>
     }
 ];
