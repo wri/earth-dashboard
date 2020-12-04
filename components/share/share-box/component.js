@@ -47,7 +47,7 @@ function ShareBox({ url, topic, style, showInput, showBorder }) {
                 [styles['-mobile']]: mobile,
                 [styles['-desktop']]: !mobile
             })}>
-                <a href={`mailto:?subject=Shared from Earth Dashboard&body= I thought you'd be interested in what I found on Earth Dashboard: ${url}`}>
+                <a href={`mailto:?subject=Earth Dashboard&body=I thought you'd be interested in what I found on the Earth Dashboard: ${url}`}>
                     <div className={classnames({
                         [styles['share-button']]: true,
                         [styles['-mobile']]: mobile,
@@ -69,9 +69,7 @@ function ShareBox({ url, topic, style, showInput, showBorder }) {
                         <img src={getFacebookIconPerTopic(topic)} />
                     </div>
                 </a>
-                <a href={`https://twitter.com/share?url=${url}&text=${encodeURIComponent(
-                    isServer ? '' : document.title
-                )}`}
+                <a href={`https://twitter.com/share?url=${url}&text=Check out what I found on the Earth Dashboard:`}
                     target="_blank"
                     rel="noopener noreferrer">
                     <div className={classnames({
