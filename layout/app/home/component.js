@@ -23,26 +23,32 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   const getTopicLinks = () =>
     <div className={styles['topic-links']}>
       <Link href="/climate">
-        <a className={styles['climate-link']}>
+        <a className="external-link -climate">
           CLIMATE
         </a>
       </Link>
       <Link href="/forests">
-        <a className={styles['forests-link']}>
+        <a className="external-link -forests">
           FORESTS
         </a>
       </Link>
       <Link href="/freshwater">
-        <a className={styles['freshwater-link']}>
+        <a className="external-link -freshwater">
           FRESHWATER
         </a>
       </Link>
       <Link href="/ocean">
-        <a className={styles['ocean-link']}>
+        <a className="external-link -ocean">
           OCEAN
         </a>
       </Link>
-      <a data-tip data-for="comingSoon" className={styles['biodiversity-link']} >
+      <a
+        data-tip data-for="comingSoon"
+        className={classnames({
+          'external-link -biodiversity': true,
+          [styles['biodiversity-link']]: true
+        })}
+      >
         BIODIVERSITY
       </a>
       <ReactTooltip className={styles['biodiversity-tooltip']} id="comingSoon" type="light" effect="float">
@@ -53,8 +59,8 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   const getSubtitle = (mobile) => {
     const CustomTag = mobile ? 'h7' : 'h3';
     return (
-      <CustomTag>Earth HQ: Situation Room For the Planet.<br />
-        Real Facts. Sound Science. Serious Solutions.
+      <CustomTag>
+        Earth HQ: Situation Room For the Planet.
       </CustomTag>
     );
   }

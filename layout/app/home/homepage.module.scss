@@ -63,7 +63,7 @@
                 }
             }
             h3, h7 {
-                margin: 0px 0px 106px 0px;
+                margin: 0px 0px 100px 0px;
                 color: $grey;
             }
             .highlighted-text {
@@ -111,42 +111,10 @@
                     font-family: 'Barlow Condensed';
                     font-size: 20px;
                     cursor: pointer;
-                    
-                    &:after {
-                        content: '';
-                        height: 2px;
-                        width: 100%;
-                        position: absolute;
-                        bottom: 1px;
-                        left: 0px;
-                    }
                 }
     
-                .climate-link {
-                    &:after {
-                        background-color: $climate;
-                    }
-                }
-                .forests-link {
-                    &:after {
-                        background-color: $forests;
-                    }
-                }
-                .freshwater-link {
-                    &:after {
-                        background-color: $freshwater;
-                    }
-                }
-                .ocean-link {
-                    &:after {
-                        background-color: $ocean;
-                    }
-                }
                 .biodiversity-link {
                     color: $grey-darker;
-                    &:after {
-                        background-color: $grey-darker;
-                    }
                 }
     
                 .biodiversity-tooltip {
