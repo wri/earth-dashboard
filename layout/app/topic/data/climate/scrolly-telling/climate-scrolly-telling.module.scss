@@ -26,36 +26,70 @@
                     color: $white;
                     font-family: 'Barlow Condensed';
                 }
-    
+
                 h1 {
                     display: flex;
                     position: relative;
-                    width: 440px;
-                    font-size: 64px;
-                    font-weight: 500;
+                }
 
-                    .rest {
-                        margin-right: 80px;
+                &.-desktop {
+                    h1 {
+                        width: 440px;
+                        font-size: 64px;
+                        font-weight: 500;
+    
+                        .rest {
+                            margin-right: 80px;
+                        }
+    
+                        .minutes {
+                            position: absolute;
+                            right: 80px;
+                        }
+    
+                        .seconds-first-digit {
+                            position: absolute;
+                            right: 43px;
+                        }
+                        .seconds-second-digit {
+                            position: absolute;
+                            right: 0px;
+                        }
                     }
-
-                    .minutes {
-                        position: absolute;
-                        right: 80px;
-                    }
-
-                    .seconds-first-digit {
-                        position: absolute;
-                        right: 43px;
-                    }
-                    .seconds-second-digit {
-                        position: absolute;
-                        right: 0px;
+                    h6 {
+                        font-size: 24px;
+                        margin-bottom: 24px;
                     }
                 }
 
-                h6 {
-                    font-size: 24px;
-                    margin-bottom: 24px;
+                &.-mobile {
+                    h1 {
+                        width: 320px;
+                        font-size: 48px;
+                        line-height: 1;
+    
+                        .rest {
+                            margin-right: 80px;
+                        }
+    
+                        .minutes {
+                            position: absolute;
+                            right: 54px;
+                        }
+    
+                        .seconds-first-digit {
+                            position: absolute;
+                            right: 30px;
+                        }
+                        .seconds-second-digit {
+                            position: absolute;
+                            right: 0px;
+                        }
+                    }
+                    h6 {
+                        font-size: 24px;
+                        line-height: 29px;
+                    }
                 }
             }
     
