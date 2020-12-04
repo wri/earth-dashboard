@@ -7,7 +7,7 @@ import Spinner from 'components/ui/spinner';
 
 // constants
 import { 
-    CORS_PROXY,
+    // CORS_PROXY,
     MONGABAY_RSS_FEED_URL
 } from './constants';
 import { getMongabayTagsByTopic } from 'utils/topics';
@@ -22,16 +22,16 @@ function TopicNews(props) {
 
     useEffect(() => {
         setLoading(true);
-        const urlWithProxy = 
-            `${CORS_PROXY}${MONGABAY_RSS_FEED_URL}${getMongabayTagsByTopic(topic)}`;
+        const url = 
+            `${MONGABAY_RSS_FEED_URL}${getMongabayTagsByTopic(topic)}`;
         const parser = new Parser();
-        parser.parseURL(urlWithProxy)
+        parser.parseURL(url)
             .then((response) => {
                 setNews(response.items.slice(0,limit));
                 setLoading(false);
             })
             .catch((error) => {
-                console.error(`There was an error loading the news ${urlWithProxy}: ${error}`);
+                console.error(`There was an error loading the news ${url}: ${error}`);
                 setLoading(false);
             });
     }, [topic]);

@@ -11,7 +11,7 @@ import SourceBox from 'components/widgets/source-box';
 
 // constants
 import { 
-    CORS_PROXY,
+    // CORS_PROXY,
     MONGABAY_NEWS_TYPE,
     GUARDIAN_NEWS_TYPE 
 } from './constants';
@@ -32,11 +32,11 @@ function NewsWidget(props) {
 
     useEffect(() => {
         setLoading(true);
-        const urlWithProxy = `${CORS_PROXY}${url}`;
+        // const urlWithProxy = `${CORS_PROXY}${url}`;
                 
         if (isMongabay) {
             const parser = new Parser();
-            parser.parseURL(urlWithProxy)
+            parser.parseURL(url)
                 .then((response) => {
                     setLoading(false);
                     setItem(response.items[0]);

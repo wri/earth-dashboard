@@ -25,6 +25,7 @@ function Globe({ width, height, style, options, onLoad, topic }) {
                     globeBackgroundTexture={null}
                     globeCloudsTexture={null}
                     backgroundColor="#12171C"
+                    key={`globe-${topic}`}
                     width={width}
                     height={height}
                     options={{
