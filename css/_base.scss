@@ -197,6 +197,13 @@ input, button, select, textarea {
     }
   }
 
+  &.-biodiversity {
+    box-shadow: inset 0 -0.125em $grey-darker;
+    &:hover{
+      box-shadow: inset 0 -0.25em $grey-darker;
+    }
+  }
+
   &.-white {
     box-shadow: inset 0 -0.125em $white;
     &:hover{
