@@ -73,6 +73,7 @@ function LayoutTopic(props) {
                   }}
                   topic={topic}
                   onLoad={() => setGlobeLoaded(true)}
+                  hideUntilLoaded={true}
                 />
               </div>
             }
