@@ -57,7 +57,7 @@ function ShareBox({ url, topic, style, showInput, showBorder }) {
                         <img src={getEmailIconPerTopic(topic)} />
                     </div>
                 </a>
-                <a href={`http://www.facebook.com/sharer/sharer.php?u=${url}`}
+                <a href={`http://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`}
                     target="_blank"
                     rel="noopener noreferrer">
                     <div className={classnames({
@@ -69,7 +69,7 @@ function ShareBox({ url, topic, style, showInput, showBorder }) {
                         <img src={getFacebookIconPerTopic(topic)} />
                     </div>
                 </a>
-                <a href={`https://twitter.com/share?url=${url}&text=Check out what I found on the Earth Dashboard:`}
+                <a href={`https://twitter.com/share?url=${encodeURIComponent(url)}&text=Check out what I found on the Earth Dashboard:`}
                     target="_blank"
                     rel="noopener noreferrer">
                     <div className={classnames({
