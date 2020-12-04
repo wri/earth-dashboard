@@ -217,8 +217,7 @@
             .indicator-block {
                 position: relative;
                 width: 100%;
-                margin-top: 4 * $space;
-                padding-bottom: 6 * $space;
+                padding: 40px 0px 30px 0px;
                 border-bottom: solid 1px $grey-light;
                 color: $white;
 
@@ -233,14 +232,23 @@
 
                 .share-button {
                     position: absolute;
-                    top: 0px;
+                    top: 16px;
                     right: 0px;
-                    width: 18px;
-                    height: 18px;
-                    background-image: url('/static/images/share/share-black-background.svg');
+                    font-size: 12px;
+                    color: $grey-darker;
+                    opacity: 0;
+                    font-family: 'Barlow';
         
                     &:hover {
-                        background-image: url('/static/images/share/share-black-background-hover.svg');
+                        color: $white;
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+
+                &:hover {
+                    .share-button {
+                        opacity: 1;
                     }
                 }
             }

@@ -112,7 +112,7 @@ function LayoutTopic(props) {
                       id={widgetObj?.id}
                     >
                       <WidgetPreview widget={widgetObj} showSource={true} />
-                      <button
+                      <div
                         className={styles['share-button']}
                         onClick={() => {
                           setSharedata({
@@ -122,7 +122,9 @@ function LayoutTopic(props) {
                           })
                           setShareModalIsOpen(true);
                         }}
-                      />
+                      >
+                        Share
+                      </div>
                     </div>
                   );
                 } else if (type === 'topic-news') {
