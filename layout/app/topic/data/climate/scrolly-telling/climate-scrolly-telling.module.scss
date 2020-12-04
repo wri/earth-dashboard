@@ -27,9 +27,14 @@
                     font-family: 'Barlow Condensed';
                 }
     
+                h1 {
+                    font-size: 64px;
+                    font-weight: 500;
+                }
+
                 h6 {
-                    font-size: 16px;
-                    margin-bottom: 0px;
+                    font-size: 24px;
+                    margin-bottom: 24px;
                 }
             }
     
@@ -222,6 +227,10 @@
 
         a {
             text-decoration: underline;
+            
+            &:hover { 
+                color: $black;
+            }
         }
     }
 }

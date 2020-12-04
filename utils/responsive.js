@@ -5,6 +5,7 @@ const breakpoints = {
   md: 768,
   lg: 1024,
   xl: 1192,
+  xxl: 1440
 };
 
 const EDMedia = createMedia({ breakpoints });
