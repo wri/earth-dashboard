@@ -91,8 +91,8 @@ function ClimateScrollyTelling({ topic }) {
   // ----------- TIME COUNTER -------------
   useEffect(() => {
     const counterInterval = setInterval(() => {
-      const newSeconds = (counterData.seconds != 0) ? counterData.seconds - 1 : 59;
-      const newMinutes = newSeconds === 60 ? counterData.minutes - 1 : counterData.minutes;
+      const newSeconds = (counterData.seconds != 1) ? counterData.seconds - 1 : 59;
+      const newMinutes = newSeconds === 59 ? counterData.minutes - 1 : counterData.minutes;
       setCounterData({
         tones: counterData.tones - (Math.round(Math.random() * 100) % 30),
         seconds: newSeconds,
@@ -141,6 +141,8 @@ function ClimateScrollyTelling({ topic }) {
     );
   }
 
+  const secondsString = seconds <= 9 ? `0${seconds}` : `${seconds}`;
+
   return (
     <div
       className={styles['c-climate-scrolly-telling']}
@@ -151,7 +153,12 @@ function ClimateScrollyTelling({ topic }) {
           <div className={styles['smoke-container']}>
             <div className={styles['smoke-text']}>
               <h6>Time left until CO<sub>2</sub> budget depleted</h6>
-              <h1>7y 1m 26d {hours}h {minutes}' {seconds}''</h1>
+              <h1>
+                <span className={styles.rest}>7y 1m 26d {hours}h</span>
+                <span className={styles.minutes}>{minutes}'</span>
+                <span className={styles['seconds-first-digit']}>{secondsString[0]}</span>
+                <span className={styles['seconds-second-digit']}>{secondsString[1]}''</span>
+              </h1>
               {/* <h6>CO<sub>2</sub> budget left</h6>
               <h1>{d3.format(',')(tones)} tons</h1> */}
             </div>

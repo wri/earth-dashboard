@@ -28,8 +28,29 @@
                 }
     
                 h1 {
+                    display: flex;
+                    position: relative;
+                    width: 440px;
                     font-size: 64px;
                     font-weight: 500;
+
+                    .rest {
+                        margin-right: 80px;
+                    }
+
+                    .minutes {
+                        position: absolute;
+                        right: 80px;
+                    }
+
+                    .seconds-first-digit {
+                        position: absolute;
+                        right: 43px;
+                    }
+                    .seconds-second-digit {
+                        position: absolute;
+                        right: 0px;
+                    }
                 }
 
                 h6 {
