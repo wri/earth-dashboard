@@ -8,8 +8,11 @@ if (typeof window !== 'undefined') {
 // styles
 import styles from './globe.module.scss';
 
-function Globe({ width, height, style, options, onLoad }) {
+function Globe({ width, height, style, options, onLoad, topic }) {
     const isServer = typeof window === 'undefined';
+
+    const globeTexture = !!topic ? `/static/images/${topic}/world-map-dots-${topic}.svg` 
+        : '/static/images/world-map-dots.svg';
 
     return (
         <div 
@@ -18,7 +21,7 @@ function Globe({ width, height, style, options, onLoad }) {
         >
             {!isServer &&
                 <ReactGlobe
-                    globeTexture="/static/images/world-map-dots.svg"
+                    globeTexture={globeTexture}
                     globeBackgroundTexture={null}
                     globeCloudsTexture={null}
                     backgroundColor="#12171C"
@@ -41,7 +44,8 @@ Globe.propTypes = {
     height: PropTypes.string.isRequired,
     style: PropTypes.object,
     options: PropTypes.object,
-    onLoad: PropTypes.func
+    onLoad: PropTypes.func,
+    topic: PropTypes.string
 };
 
 Globe.defaultProps = {
