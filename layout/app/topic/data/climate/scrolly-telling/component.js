@@ -140,7 +140,7 @@ function ClimateScrollyTelling({ topic }) {
   }
 
   const getSmokeContainer = (mobile) =>
-    <div className={styles['smoke-container']}>
+    <>
       <div className={classnames({
         [styles['smoke-text']]: true,
         [styles['-mobile']]: mobile,
@@ -156,7 +156,27 @@ function ClimateScrollyTelling({ topic }) {
       </div>
       <canvas id="smoke-canvas" />
       {getVisualSources(!mobile, true)}
-    </div>;
+    </>;
+
+  const getYearContainer = (mobile) => {
+    const CustomHeaderTag1 = mobile ? 'h2' : 'h1';
+    const CustomHeaderTag2 = mobile ? 'h5' : 'h2';
+    return (<div
+      className={classnames({
+        [styles['year-container']]: true,
+        [styles['-mobile']]: mobile,
+        [styles['-desktop']]: !mobile
+      })}
+      style={{ backgroundColor: currentStep.yearBackgroundColor }}
+    >
+      <CustomHeaderTag1 className={styles['year-value']}>
+        {currentYear}<span className={styles['degrees-container']}> + {d3.format('.2n')(currentDegrees)} °C</span>
+      </CustomHeaderTag1>
+      <CustomHeaderTag2 className={styles['year-subtitle']}>
+        {currentStep.yearSubtitle}
+      </CustomHeaderTag2>
+    </div>);
+  };
 
   const secondsString = seconds <= 9 ? `0${seconds}` : `${seconds}`;
 
@@ -167,8 +187,8 @@ function ClimateScrollyTelling({ topic }) {
       <MediaContextProvider>
         {/* ----------------------- CLIMATE CLOCK ------------------------ */}
         <div className={styles['climate-clock-story']}>
-          <Desktop>{getSmokeContainer(false)}</Desktop>
-          <Mobile>{getSmokeContainer(true)}</Mobile>
+          <Desktop className={styles['smoke-container']}>{getSmokeContainer(false)}</Desktop>
+          <Mobile className={styles['smoke-container']}>{getSmokeContainer(true)}</Mobile>
           {isBrowser &&
             <div className={styles.steps}>
               <Scrollama
@@ -214,17 +234,10 @@ function ClimateScrollyTelling({ topic }) {
                 </>
               }
               {currentStep.showYearCounter &&
-                <div
-                  className={styles['year-container']}
-                  style={{ backgroundColor: currentStep.yearBackgroundColor }}
-                >
-                  <h1 className={styles['year-value']}>
-                    {currentYear}<span className={styles['degrees-container']}> + {d3.format('.2n')(currentDegrees)} °C</span>
-                  </h1>
-                  <h2 className={styles['year-subtitle']}>
-                    {currentStep.yearSubtitle}
-                  </h2>
-                </div>
+                <>
+                  <Desktop>{getYearContainer(false)}</Desktop>
+                  <Mobile>{getYearContainer(true)}</Mobile>
+                </>
               }
             </div>
           </div>
