@@ -272,24 +272,26 @@
 
     .visual-sources {
         position: absolute;
+        right: 16px;
         bottom: 16px;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         font-family: 'Barlow';
+        color: $grey-darker;
         font-size: 12px;
         line-height: 18px;
-        color: $grey-darker;
         z-index: 1;
 
         &.-climate-story {
             &.-desktop {
-                bottom: 96px;
-                right: 16px;
+                bottom: 96px; 
             }
             &.-mobile {
                 bottom: 68px;
                 right: 10px;
+                font-size: 10px;
+                line-height: 14px;
             }
         }
 
