@@ -126,8 +126,8 @@ export const CLIMATE_STEPS = [
                     left: '537px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '275px',
+                    left: '243px'
                 }
             },
             {
@@ -161,8 +161,8 @@ export const CLIMATE_STEPS = [
                     left: '537px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '275px',
+                    left: '243px'
                 }
             },
             {
@@ -202,8 +202,8 @@ export const CLIMATE_STEPS = [
                     left: '537px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '275px',
+                    left: '243px'
                 }
             },
             {
@@ -243,8 +243,8 @@ export const CLIMATE_STEPS = [
                     left: '537px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '275px',
+                    left: '243px'
                 }
             },
             {
@@ -284,8 +284,8 @@ export const CLIMATE_STEPS = [
                     left: '537px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '275px',
+                    left: '243px'
                 }
             },
             {
@@ -325,8 +325,8 @@ export const CLIMATE_STEPS = [
                     left: '537px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '275px',
+                    left: '243px'
                 }
             },
             {
@@ -362,8 +362,8 @@ export const CLIMATE_STEPS = [
                     left: '537px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '275px',
+                    left: '243px'
                 }
             },
             {
