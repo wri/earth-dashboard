@@ -409,8 +409,8 @@ export const CLIMATE_STEPS = [
                     left: '366px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '238px',
+                    left: '162px'
                 }
             },
             {
@@ -450,8 +450,8 @@ export const CLIMATE_STEPS = [
                     left: '366px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '238px',
+                    left: '162px'
                 }
             },
             {
@@ -493,8 +493,8 @@ export const CLIMATE_STEPS = [
                     left: '366px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '238px',
+                    left: '162px'
                 }
             },
             {
@@ -536,8 +536,8 @@ export const CLIMATE_STEPS = [
                     left: '366px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '238px',
+                    left: '162px'
                 }
             },
             {
@@ -579,8 +579,8 @@ export const CLIMATE_STEPS = [
                     left: '366px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '238px',
+                    left: '162px'
                 }
             },
             {
@@ -624,8 +624,8 @@ export const CLIMATE_STEPS = [
                     left: '510px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '198px',
+                    left: '220px'
                 }
             },
             {
@@ -673,8 +673,8 @@ export const CLIMATE_STEPS = [
                     left: '510px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '198px',
+                    left: '220px'
                 }
             },
             {
@@ -721,8 +721,8 @@ export const CLIMATE_STEPS = [
                     left: '510px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '198px',
+                    left: '220px'
                 }
             },
             {
@@ -764,8 +764,8 @@ export const CLIMATE_STEPS = [
                     left: '510px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '198px',
+                    left: '220px'
                 }
             },
             {
@@ -811,8 +811,8 @@ export const CLIMATE_STEPS = [
                     left: '510px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '198px',
+                    left: '220px'
                 }
             },
             {
@@ -855,8 +855,8 @@ export const CLIMATE_STEPS = [
                     left: '680px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '114px',
+                    left: '305px'
                 }
             },
             {
@@ -898,8 +898,8 @@ export const CLIMATE_STEPS = [
                     left: '680px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '114px',
+                    left: '305px'
                 }
             },
             {
@@ -940,8 +940,8 @@ export const CLIMATE_STEPS = [
                     left: '680px'
                 },
                 mobile: {
-                    top: '20px',
-                    left: '50px'
+                    top: '114px',
+                    left: '305px'
                 }
             },
             {
