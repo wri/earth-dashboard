@@ -19,8 +19,6 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 import styles from './share-box.module.scss';
 
 function ShareBox({ url, topic, style, showInput, showBorder }) {
-    const isServer = typeof window === 'undefined';
-
     const getContent = (mobile = false) =>
         <div 
             className={classnames({

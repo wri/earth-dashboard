@@ -245,8 +245,8 @@
                                     left: 50px;
 
                                     &.-animate {
-                                        stroke-dasharray: 300;
-                                        stroke-dashoffset: 300;
+                                        stroke-dasharray: 1000;
+                                        stroke-dashoffset: 1000;
                                         animation: dash 3s linear forwards;
                                     }
                                 }
