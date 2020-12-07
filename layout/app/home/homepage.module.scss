@@ -62,10 +62,7 @@
                     margin-bottom: 47px;
                 }
             }
-            h3, h7 {
-                margin: 0px 0px 100px 0px;
-                color: $grey;
-            }
+            
             .highlighted-text {
                 padding-right: $space;
                 font-style: italic;
@@ -74,17 +71,21 @@
             }
     
             &.-mobile {
-                h1 {
+                h2 {
                     font-size: 36px;
                     line-height: 45px;
                     
                     &.first-header {
                         margin-bottom: 0px;
                     }
+                    &.second-header {
+                        margin-bottom: 40px;
+                    }
                 }
-                h5 {
-                    font-size: 14px;
-                    margin: 10px 15px 50px 15px;
+                h4 {
+                    color: $grey-dark;
+                    margin: 0px 0px 80px 0px;
+                    font-weight: normal;
                 }
             }
     
@@ -94,8 +95,8 @@
                         margin-bottom: 10px;
                     }
                 }
-                h5 {
-                    max-width: 50%;
+                h3 {
+                    color: $grey;
                 }
             }  
     
@@ -104,7 +105,7 @@
                 justify-content: space-around;
                 width: 100%;
     
-                >a {
+                a {
                     position: relative;
                     color: $white;
                     text-decoration: none;
@@ -120,6 +121,21 @@
                 .biodiversity-tooltip {
                     color: $white;
                     background-color: $black;
+                }
+
+                &.-mobile {
+                    flex-direction: column;
+
+                    .first-row {
+                        display: flex;
+                        justify-content: space-around;
+                        margin-bottom: 20px;
+                    }
+                    .second-row {
+                        display: flex;
+                        justify-content: space-around;
+                        padding: 0px 30px 0px 30px;
+                    }
                 }
             }
         }

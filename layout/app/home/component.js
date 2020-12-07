@@ -19,29 +19,14 @@ import styles from './homepage.module.scss';
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   const [globeLoaded, setGlobeLoaded] = useState(false);
   const isServer = typeof window === 'undefined';
-
-  const getTopicLinks = () =>
-    <div className={styles['topic-links']}>
-      <Link href="/climate">
-        <a className="external-link -climate">
-          CLIMATE
-        </a>
-      </Link>
-      <Link href="/forests">
-        <a className="external-link -forests">
-          FORESTS
-        </a>
-      </Link>
-      <Link href="/freshwater">
-        <a className="external-link -freshwater">
-          FRESHWATER
-        </a>
-      </Link>
-      <Link href="/ocean">
-        <a className="external-link -ocean">
-          OCEAN
-        </a>
-      </Link>
+  const getLink = (name) =>
+    <Link href={`/${name}`}>
+      <a className={`external-link -${name}`}>
+        {name.toUpperCase()}
+      </a>
+    </Link>;
+  const getBiodiversityLink = () =>
+    <>
       <a
         data-tip data-for="comingSoon"
         className={classnames({
@@ -54,10 +39,39 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       <ReactTooltip className={styles['biodiversity-tooltip']} id="comingSoon" type="light" effect="float">
         <span>Coming soon...</span>
       </ReactTooltip>
+    </>;
+
+  const getTopicLinks = (mobile) =>
+    <div className={classnames({
+      [styles['topic-links']]: true,
+      [styles['-mobile']]: mobile
+    })}>
+      {!mobile &&
+        <>
+          {getLink('climate')}
+          {getLink('forests')}
+          {getLink('freshwater')}
+          {getLink('ocean')}
+          {getBiodiversityLink()}
+        </>
+      }
+      {mobile &&
+        <>
+          <div className={styles['first-row']}>
+            {getLink('climate')}
+            {getLink('forests')}
+            {getLink('freshwater')}
+          </div>
+          <div className={styles['second-row']}>
+            {getLink('ocean')}
+            {getBiodiversityLink()}
+          </div>
+        </>
+      }
     </div>;
 
   const getSubtitle = (mobile) => {
-    const CustomTag = mobile ? 'h7' : 'h3';
+    const CustomTag = mobile ? 'h4' : 'h3';
     return (
       <CustomTag>
         Earth HQ: Situation Room For the Planet.
@@ -106,7 +120,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
               <CustomHeaderTag className={styles['first-header']}>The Science is in.{mobile && <br />} This is not a drill.</CustomHeaderTag>
               <CustomHeaderTag className={styles['second-header']}>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</CustomHeaderTag>
               {getSubtitle(mobile)}
-              {getTopicLinks()}
+              {getTopicLinks(mobile)}
             </div>
           </>
         }

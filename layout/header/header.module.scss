@@ -3,13 +3,9 @@
 .header {
   position: fixed;
   top: 0px;
-  width: 100%;
   z-index: 10; // because of navigation dots menu in story telling pages
 
   .main-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
 
     &.-desktop {
       padding-top: 4 * $space;
@@ -27,6 +23,8 @@
     }
   
     .hamburguer-button {
+      position: fixed;
+      right: calc(50% + 24px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -37,6 +35,10 @@
       cursor: pointer;
       z-index: 6;
       transition: transform 0.4s;
+
+      &.-mobile {
+        right: 16px;
+      }
   
       &:hover {
         transform: scale(1.2);
@@ -57,7 +59,7 @@
     }
   
     .menu-container {
-      position: absolute;
+      position: fixed;
       top: 0px;
       left: 0px;
       height: 100vh;

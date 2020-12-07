@@ -33,6 +33,7 @@ function NewsWidget(props) {
     useEffect(() => {
         setLoading(true);
         const urlWithProxy = `${CORS_PROXY}${url}`;
+        console.log('url', url);
                 
         if (isMongabay) {
             const parser = new Parser();

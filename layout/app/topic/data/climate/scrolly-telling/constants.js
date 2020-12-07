@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import PulsatingItem from 'components/ui/pulsating-item';
 
 // utils
-import { Desktop, MediaContextProvider } from 'utils/responsive';
+import { Desktop, Mobile, MediaContextProvider } from 'utils/responsive';
 
 // styles
 import styles from './climate-scrolly-telling.module.scss';
@@ -14,48 +14,71 @@ import {
     CHART_AXES_1,
     CHART_AXES_2,
     CHART_AXES_3,
+    CHART_AXES_1_MOBILE,
+    CHART_AXES_2_MOBILE,
+    CHART_AXES_3_MOBILE,
     getChartLinePresent,
     getChartLineFuture,
     getChartLineHistorical,
     getChartLineProjection
 } from './data';
 
-const getChartAxes = (number) => {
-    switch (number) {
-        case 1: return CHART_AXES_1;
-        case 2: return CHART_AXES_2;
-        case 3: return CHART_AXES_3;
+const getChartAxes = (number, mobile) => {
+    if (mobile) {
+        switch (number) {
+            case 1: return CHART_AXES_1_MOBILE;
+            case 2: return CHART_AXES_2_MOBILE;
+            case 3: return CHART_AXES_3_MOBILE;
+        }
+    } else {
+        switch (number) {
+            case 1: return CHART_AXES_1;
+            case 2: return CHART_AXES_2;
+            case 3: return CHART_AXES_3;
+        }
     }
 }
+const getClimateChartContents = (number, pulsatingItemData, linesData, mobile) =>
+    <>
+        {getChartAxes(number, mobile)}
+        <img className={classnames({
+            [styles['confidence-shape']]: true,
+            [styles[`-scenario-${number}`]]: true,
+            [styles['-mobile']]: mobile,
+            [styles['-desktop']]: !mobile
+        })}
+            src={`/static/images/scrolly-telling/climate/confidence-${number}${mobile ? '-mobile' : ''}.svg`}
+        />
+        {linesData?.linePresent?.show && getChartLinePresent(linesData?.linePresent?.animate, mobile)}
+        {linesData?.lineFuture?.show && getChartLineFuture(linesData?.lineFuture?.animate, mobile)}
+        {linesData?.lineHistorical?.show && getChartLineHistorical(linesData?.lineHistorical?.animate, mobile)}
+        {linesData?.lineProjection?.show && getChartLineProjection(linesData?.lineProjection?.animate, mobile)}
+        {pulsatingItemData?.show &&
+            <div
+                className={styles.marker}
+                style={{
+                    top: mobile ? pulsatingItemData?.mobile?.top : pulsatingItemData?.desktop?.top,
+                    left: mobile ? pulsatingItemData?.mobile?.left : pulsatingItemData?.desktop?.left,
+                }}
+            >
+                <PulsatingItem level={pulsatingItemData?.level} />
+            </div>
+        }
+    </>;
 const getClimateChart = (number, pulsatingItemData, linesData) =>
     <MediaContextProvider>
         <Desktop className={classnames({
             [styles['climate-chart']]: true,
             [styles['-desktop']]: true
         })}>
-            {getChartAxes(number)}
-            <img className={classnames({
-                [styles['confidence-shape']]: true,
-                [styles[`-scenario-${number}`]]: true
-            })}
-                src={`/static/images/scrolly-telling/climate/confidence-${number}.svg`}
-            />
-            {linesData?.linePresent?.show && getChartLinePresent(linesData?.linePresent?.animate)}
-            {linesData?.lineFuture?.show && getChartLineFuture(linesData?.lineFuture?.animate)}
-            {linesData?.lineHistorical?.show && getChartLineHistorical(linesData?.lineHistorical?.animate)}
-            {linesData?.lineProjection?.show && getChartLineProjection(linesData?.lineProjection?.animate)}
-            {pulsatingItemData?.show &&
-                <div
-                    className={styles.marker}
-                    style={{
-                        top: pulsatingItemData?.top,
-                        left: pulsatingItemData?.left,
-                    }}
-                >
-                    <PulsatingItem level={pulsatingItemData?.level} />
-                </div>
-            }
+            {getClimateChartContents(number, pulsatingItemData, linesData, false)}
         </Desktop>
+        <Mobile className={classnames({
+            [styles['climate-chart']]: true,
+            [styles['-mobile']]: true
+        })}>
+            {getClimateChartContents(number, pulsatingItemData, linesData, true)}
+        </Mobile>
     </MediaContextProvider>;
 
 const getVisualSource = () =>
@@ -98,8 +121,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 1,
-                top: '274px',
-                left: '537px'
+                desktop: {
+                    top: '274px',
+                    left: '537px'
+                },
+                mobile: {
+                    top: '275px',
+                    left: '243px'
+                }
             },
             {
                 linePresent: { show: true, animate: true },
@@ -127,8 +156,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 1,
-                top: '274px',
-                left: '537px'
+                desktop: {
+                    top: '274px',
+                    left: '537px'
+                },
+                mobile: {
+                    top: '275px',
+                    left: '243px'
+                }
             },
             {
                 linePresent: { show: true, animate: false },
@@ -162,8 +197,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 1,
-                top: '274px',
-                left: '537px'
+                desktop: {
+                    top: '274px',
+                    left: '537px'
+                },
+                mobile: {
+                    top: '275px',
+                    left: '243px'
+                }
             },
             {
                 linePresent: { show: true, animate: false },
@@ -197,8 +238,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 1,
-                top: '274px',
-                left: '537px'
+                desktop: {
+                    top: '274px',
+                    left: '537px'
+                },
+                mobile: {
+                    top: '275px',
+                    left: '243px'
+                }
             },
             {
                 linePresent: { show: true, animate: false },
@@ -232,8 +279,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 1,
-                top: '274px',
-                left: '537px'
+                desktop: {
+                    top: '274px',
+                    left: '537px'
+                },
+                mobile: {
+                    top: '275px',
+                    left: '243px'
+                }
             },
             {
                 linePresent: { show: true, animate: false },
@@ -267,8 +320,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 1,
-                top: '274px',
-                left: '537px'
+                desktop: {
+                    top: '274px',
+                    left: '537px'
+                },
+                mobile: {
+                    top: '275px',
+                    left: '243px'
+                }
             },
             {
                 linePresent: { show: true, animate: false },
@@ -298,8 +357,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 1,
-                top: '274px',
-                left: '537px'
+                desktop: {
+                    top: '274px',
+                    left: '537px'
+                },
+                mobile: {
+                    top: '275px',
+                    left: '243px'
+                }
             },
             {
                 linePresent: { show: true, animate: false },
@@ -339,8 +404,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 2,
-                top: '269px',
-                left: '366px'
+                desktop: {
+                    top: '269px',
+                    left: '366px'
+                },
+                mobile: {
+                    top: '238px',
+                    left: '162px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -374,8 +445,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 2,
-                top: '269px',
-                left: '366px'
+                desktop: {
+                    top: '269px',
+                    left: '366px'
+                },
+                mobile: {
+                    top: '238px',
+                    left: '162px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -411,8 +488,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 2,
-                top: '269px',
-                left: '366px'
+                desktop: {
+                    top: '269px',
+                    left: '366px'
+                },
+                mobile: {
+                    top: '238px',
+                    left: '162px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -448,8 +531,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 2,
-                top: '269px',
-                left: '366px'
+                desktop: {
+                    top: '269px',
+                    left: '366px'
+                },
+                mobile: {
+                    top: '238px',
+                    left: '162px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -485,8 +574,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 2,
-                top: '269px',
-                left: '366px'
+                desktop: {
+                    top: '269px',
+                    left: '366px'
+                },
+                mobile: {
+                    top: '238px',
+                    left: '162px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -524,8 +619,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 3,
-                top: '240px',
-                left: '510px'
+                desktop: {
+                    top: '240px',
+                    left: '510px'
+                },
+                mobile: {
+                    top: '198px',
+                    left: '220px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -567,8 +668,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 3,
-                top: '240px',
-                left: '510px'
+                desktop: {
+                    top: '240px',
+                    left: '510px'
+                },
+                mobile: {
+                    top: '198px',
+                    left: '220px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -609,8 +716,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 3,
-                top: '240px',
-                left: '510px'
+                desktop: {
+                    top: '240px',
+                    left: '510px'
+                },
+                mobile: {
+                    top: '198px',
+                    left: '220px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -646,8 +759,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 3,
-                top: '240px',
-                left: '510px'
+                desktop: {
+                    top: '240px',
+                    left: '510px'
+                },
+                mobile: {
+                    top: '198px',
+                    left: '220px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -687,8 +806,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 3,
-                top: '240px',
-                left: '510px'
+                desktop: {
+                    top: '240px',
+                    left: '510px'
+                },
+                mobile: {
+                    top: '198px',
+                    left: '220px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -725,8 +850,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 4,
-                top: '200px',
-                left: '680px'
+                desktop: {
+                    top: '200px',
+                    left: '680px'
+                },
+                mobile: {
+                    top: '114px',
+                    left: '305px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -762,8 +893,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 4,
-                top: '200px',
-                left: '680px'
+                desktop: {
+                    top: '200px',
+                    left: '680px'
+                },
+                mobile: {
+                    top: '114px',
+                    left: '305px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -798,8 +935,14 @@ export const CLIMATE_STEPS = [
             {
                 show: true,
                 level: 4,
-                top: '200px',
-                left: '680px'
+                desktop: {
+                    top: '200px',
+                    left: '680px'
+                },
+                mobile: {
+                    top: '114px',
+                    left: '305px'
+                }
             },
             {
                 linePresent: { show: false, animate: false },
@@ -848,11 +991,6 @@ export const CLIMATE_CLOCK_STEPS = [
                            This clock follows the <a className="external-link -climate bold" href="https://www.mcc-berlin.net/en/index.html" target="_blank">methodology from the Mercator Research Institute on Global Commons
                             and Climate Change (MCC)</a> using data from the <a className="external-link -climate bold" href="https://www.ipcc.ch/sr15/" target="_blank">IPCC Special Report on Global Warming of 1.5°C</a>.
                     </p>
-                    {/* <p className={styles['text-card-source']}>
-                        Source: This clock follows the methodology from the
-                         <a href="https://www.mcc-berlin.net/en/index.html" target="_blank">Mercator Research Institute on Global Commons and Climate Change</a> (MCC)
-                         using data from the IPCC Special Report on Global Warming of 1.5°C
-                    </p> */}
                 </>
         },
         visualSource: <a href="https://www.mcc-berlin.net/en/research/co2-budget.html" target="_blank">MCC</a>,
