@@ -208,7 +208,10 @@ function Header(props) {
           })}>
             {showLogo && !isOpen && getLogoContainer()}
             <div
-              className={styles['hamburguer-button']}
+              className={classnames({
+                [styles['hamburguer-button']]: true,
+                [styles['-mobile']]: true
+              })}
               onClick={() => setIsOpen(!isOpen)}
             >
               <div className={styles['hamburguer-button-image']}>

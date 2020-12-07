@@ -24,7 +24,7 @@
   
     .hamburguer-button {
       position: fixed;
-      left: calc(50% - 24px);
+      right: calc(50% + 24px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -35,6 +35,10 @@
       cursor: pointer;
       z-index: 6;
       transition: transform 0.4s;
+
+      &.-mobile {
+        right: 16px;
+      }
   
       &:hover {
         transform: scale(1.2);
