@@ -219,8 +219,12 @@
         "diveIntoTheData": {
             "data": [
                 {
+                    "id": "ff311f21-05d1-4f62-a203-80146e278426",
+                    "widgetsPerColumn": 2
+                },
+                {
                     "id": "2010d0d6-6203-4482-909f-188e572e4c8f",
-                    "widgetsPerColumn": 1
+                    "widgetsPerColumn": 2
                 },
                 {
                     "id": "4945c48c-0c73-4b83-a523-8506988f3517",
