@@ -964,10 +964,10 @@ export const CLIMATE_CLOCK_STEPS = [
                     <h6 className="climate">The Climate Clock</h6>
                     <p>
                         The Climate Clock shows a timer, <span className="bold">counting down how long it will take to burn
-                        through our “carbon budget”</span> — the amount of CO2 that can still be released
+                        through our “carbon budget”</span> — the amount of CO<sub>2</sub> that can still be released
                         into the atmosphere while limiting global warming to 1.5°C (or 34.7 °F) above pre-industrial
                          levels.  It projects a 2017 emissions rate into the future and calculates that <a className="bold external-link -climate" href="https://www.mcc-berlin.net/en/index.html" target="_blank">holding
-                          emissions to 420 Gt of CO2 emissions gives us a 67% chance of staying within the threshold of 1.5°C</a>.
+                          emissions to 420 Gt of CO<sub>2</sub> emissions gives us a 67% chance of staying within the threshold of 1.5°C</a>.
                     </p>
                 </>
         },
@@ -986,7 +986,7 @@ export const CLIMATE_CLOCK_STEPS = [
                         dramatically and irreversibly.
                     </p>
                     <p><span className="bold">Emissions have risen since 2017, which could mean we have
-                          less time</span> than the clock says. Temperature climbs after increases in atmospheric CO2,
+                          less time</span> than the clock says. Temperature climbs after increases in atmospheric CO<sub>2</sub>,
                           so we would not feel the full impact of exceeding the carbon budget right away.
                            This clock follows the <a className="external-link -climate bold" href="https://www.mcc-berlin.net/en/index.html" target="_blank">methodology from the Mercator Research Institute on Global Commons
                             and Climate Change (MCC)</a> using data from the <a className="external-link -climate bold" href="https://www.ipcc.ch/sr15/" target="_blank">IPCC Special Report on Global Warming of 1.5°C</a>.
