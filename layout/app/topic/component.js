@@ -19,6 +19,7 @@ import {
 } from 'utils/responsive';
 import { PARTICLES_DEFINITION } from 'utils/particles';
 import { getPageMetadataByTopic } from 'utils/share';
+import { logEvent } from 'utils/gtag';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -96,7 +97,15 @@ function LayoutTopic(props) {
               <div className={styles['indicators-header']}>
                 <span className={styles['header-title']}>THE GLOBAL COMMONS REPORT</span>
                 <span className={styles['header-subtitle']}>
-                  powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
+                  powered by <a
+                     href="https://resourcewatch.org/" 
+                     target="_blank"
+                     onClick={() => logEvent({
+                      action: 'click',
+                      category: 'Outbound traffic - ResourceWatch',
+                      label: 'Origin: Global Commons Report'
+                     })}
+                    >RESOURCEWATCH</a>
                 </span>
               </div>
               {dataArray && dataArray.map(block => {
@@ -123,6 +132,11 @@ function LayoutTopic(props) {
                             showEmbed: false
                           })
                           setShareModalIsOpen(true);
+                          logEvent({
+                            action: 'share',
+                            category: 'Share',
+                            label: `Indicator widget ${widgetObj?.id}`
+                          });
                         }}
                       >
                         Share

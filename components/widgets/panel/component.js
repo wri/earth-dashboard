@@ -7,6 +7,9 @@ import ShareModal from 'components/share/share-modal';
 // components
 import WidgetPreview from 'components/widgets/preview';
 
+// utils
+import { logEvent } from 'utils/gtag';
+
 // styles
 import styles from './widget-panel.module.scss';
 
@@ -38,7 +41,14 @@ function WidgetPanel({ widget, topic }) {
                 <div className={styles['panel-actions']}>
                     <button
                         className={styles['share-button']}
-                        onClick={() => setShareModalIsOpen(true)}
+                        onClick={() => {
+                            setShareModalIsOpen(true);
+                            logEvent({
+                                action: 'share',
+                                category: 'Share',
+                                label: `RW widget ${widget?.id}`
+                            });
+                        }}
                     />
                     {!flipCardOpen &&
                         <button
@@ -107,7 +117,15 @@ function WidgetPanel({ widget, topic }) {
                 isOpen={shareModalIsOpen}
             />
             <div className={styles['powered-by']}>
-                powered by <a href="https://resourcewatch.org/" target="_blank">RESOURCEWATCH</a>
+                powered by <a
+                     href="https://resourcewatch.org/" 
+                     target="_blank"
+                     onClick={() => logEvent({
+                      action: 'click',
+                      category: 'Outbound traffic - ResourceWatch',
+                      label: 'Origin: Global Commons Report'
+                     })}
+                    >RESOURCEWATCH</a>
             </div>
         </div>
     );

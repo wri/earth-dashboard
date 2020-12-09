@@ -8,12 +8,12 @@ import { logEvent } from 'utils/gtag';
 import styles from './about.module.scss';
 
 function About() {
-    // const logPartnerClick = (partnerURL) =>
-    //     logEvent({
-    //         category: 'Outbound traffic - Partners',
-    //         action: 'click',
-    //         label: partnerURL
-    //     });
+    const logPartnerClick = (partnerURL) =>
+        logEvent({
+            category: 'Outbound traffic - Partners',
+            action: 'click',
+            label: `Partner ${partnerURL}`
+        });
 
     return (
         <div className={styles['c-about']}>
@@ -44,7 +44,11 @@ function About() {
                     [styles['logo']]: true,
                     'column small-12 medium-6': true
                 })}>
-                    <a target="_blank" href="https://globalcommonsalliance.org/">
+                    <a 
+                        target="_blank" 
+                        href="https://globalcommonsalliance.org/"
+                        onClick={() => logPartnerClick('https://globalcommonsalliance.org/')}
+                    >
                         <img src="/static/images/about/logo_GCA.svg" />
                     </a>
                 </div>
@@ -52,7 +56,11 @@ function About() {
                     [styles['logo']]: true,
                     'column small-12 medium-6': true
                 })}>
-                    <a target="_blank" href="https://resourcewatch.org/">
+                    <a 
+                        target="_blank"
+                        href="https://resourcewatch.org/"
+                        onClick={() => logPartnerClick('https://resourcewatch.org/')}
+                    >
                         <img src="/static/images/about/logo_RW.svg" />
                     </a>
                 </div>
@@ -60,7 +68,11 @@ function About() {
                     [styles['logo']]: true,
                     'column small-12 medium-6': true
                 })}>
-                    <a target="_blank" href="https://news.mongabay.com/">
+                    <a
+                        target="_blank"
+                        href="https://news.mongabay.com/"
+                        onClick={() => logPartnerClick('https://news.mongabay.com/')}
+                    >
                         <img src="/static/images/about/logo-mongabay.png" />
                     </a>
                 </div>
@@ -68,7 +80,11 @@ function About() {
                     [styles['logo']]: true,
                     'column small-12 medium-6': true
                 })}>
-                    <a target="_blank" href="https://nowthisnews.com/earth">
+                    <a
+                        target="_blank"
+                        href="https://nowthisnews.com/earth"
+                        onClick={() => logPartnerClick('https://nowthisnews.com/earth')}
+                    >
                         <img src="/static/images/about/logo_nowthis.svg" />
                     </a>
                 </div>
