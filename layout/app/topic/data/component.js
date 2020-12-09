@@ -7,6 +7,7 @@ import classnames from 'classnames';
 // utils
 import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 import { getColorByTopic } from 'utils/topics';
+import { logEvent } from 'utils/gtag';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -99,7 +100,14 @@ function LayoutTopicData(props) {
       [styles['-mobile']]: mobile,
       [styles['-desktop']]: !mobile
     })}
-      onClick={() => setShareModalIsOpen(true)}
+      onClick={() => {
+        setShareModalIsOpen(true);
+        logEvent({
+          action: 'share',
+          category: 'Share',
+          label: scrollyTellingInView ? `Scrolly-telling ${topic}` : `Dive into the data ${topic}`
+        })
+      }}
     >
       Share
     </button>;

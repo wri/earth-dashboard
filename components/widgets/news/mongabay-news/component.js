@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// utils
+import { logEvent } from 'utils/gtag';
+
 // styles
 import styles from './mongabay-news.module.scss';
 
@@ -10,20 +13,36 @@ function MongabayNews({ item, showThumbnail, showDescription }) {
         title,
         enclosure: { url: imageURL },
         contentSnippet: description,
-        pubDate 
+        pubDate
     } = item;
 
     return (
         <div className={styles['c-mongabay-news']}>
             {showThumbnail &&
                 <div className={styles['image-container']}>
-                    <a href={link} target="_blank">
+                    <a
+                        href={link}
+                        target="_blank"
+                        onClick={() => logEvent({
+                            action: 'click',
+                            category: 'Outbound traffic - Mongabay',
+                            label: `Article: ${title}`
+                        })}
+                    >
                         <img src={imageURL} />
                     </a>
                 </div>
             }
             <div className={styles['text-container']}>
-                <a href={link} target="_blank">
+                <a
+                    href={link}
+                    target="_blank"
+                    onClick={() => logEvent({
+                        action: 'click',
+                        category: 'Outbound traffic - Mongabay',
+                        label: `Article: ${title}`
+                    })}
+                >
                     <h5>{title}</h5>
                 </a>
                 {showDescription &&

@@ -5,6 +5,9 @@ import Parser from 'rss-parser';
 // components
 import Spinner from 'components/ui/spinner';
 
+// utils
+import { logEvent } from 'utils/gtag';
+
 // constants
 import { 
     CORS_PROXY,
@@ -49,7 +52,15 @@ function TopicNews(props) {
                     </div>
                     <div className={styles['news-content']}>
                         <h5>
-                            <a href={newsElem.link} target="_blank">
+                            <a
+                                href={newsElem.link}
+                                target="_blank"
+                                onClick={() => logEvent({
+                                    action: 'click',
+                                    category: 'Outbound traffic - Mongabay',
+                                    label: `Article: ${newsElem.title}`
+                                })}
+                            >
                                 {newsElem.title}
                             </a>
                         </h5>

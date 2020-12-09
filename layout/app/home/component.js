@@ -12,6 +12,7 @@ import Globe from './globe';
 // utils
 import { PARTICLES_DEFINITION } from 'utils/particles';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
+import { logEvent } from 'utils/gtag';
 
 // styles
 import styles from './homepage.module.scss';
@@ -19,9 +20,19 @@ import styles from './homepage.module.scss';
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   const [globeLoaded, setGlobeLoaded] = useState(false);
   const isServer = typeof window === 'undefined';
+  const logClickLinkEvent = (linkName) => {
+    logEvent({
+      action: 'click',
+      category: 'Homepage',
+      label: linkName
+    });
+  };
   const getLink = (name) =>
     <Link href={`/${name}`}>
-      <a className={`external-link -${name}`}>
+      <a
+        className={`external-link -${name}`}
+        onClick={() => logClickLinkEvent(name)}
+      >
         {name.toUpperCase()}
       </a>
     </Link>;
