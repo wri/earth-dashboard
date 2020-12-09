@@ -8,6 +8,7 @@ import {
   getSecondaryColorByTopic,
   getHeadlineSectionDataBytopic
 } from 'utils/topics';
+import { MediaContextProvider, Mobile, Desktop } from 'utils/responsive';
 
 // styles
 import styles from './headline-section.module.scss';
@@ -19,35 +20,52 @@ function HeadlineSection(props) {
   const topicSecondaryColor = getSecondaryColorByTopic(topic);
   const sectionData = getHeadlineSectionDataBytopic(topic);
 
+  const getMainContainer = (mobile) =>
+    <>
+      <div className={styles['topic-name-title']}>
+        {topic?.toUpperCase()}
+      </div>
+      {mobile && <h2>{sectionData?.mainTitle}</h2>}
+      {!mobile && <h1>{sectionData?.mainTitle}</h1>}
+      <div className={styles.subtitle}>
+        {sectionData?.subtitle}
+      </div>
+      <div
+        className={styles['scroll-to-explore']}
+        style={{ color: topicSecondaryColor }}
+      >
+        <span className={classnames({
+          [styles['scroll-text']]: true,
+          [styles[`-${topic}`]]: true
+        })}
+        >
+          SCROLL TO EXPLORE
+          </span>
+        <div className={styles.arrow}>
+          <img src={`/static/images/arrow-down-${topic}.svg`} />
+        </div>
+      </div>
+    </>;
+
   return (
     <div
       className={styles['c-headline-section']}
       style={{ backgroundColor: topicColor }}
     >
-      <div className={styles['main-container']}>
-        <div className={styles['topic-name-title']}>
-          {topic?.toUpperCase()}
-        </div>
-        {sectionData?.mainTitle}
-        <div className={styles.subtitle}>
-          {sectionData?.subtitle}
-        </div>
-        <div
-          className={styles['scroll-to-explore']}
-          style={{ color: topicSecondaryColor }}
-        >
-          <span className={classnames({
-            [styles['scroll-text']]: true,
-            [styles[`-${topic}`]]: true
-          })}
-          >
-            SCROLL TO EXPLORE
-          </span>
-          <div className={styles.arrow}>
-            <img src={`/static/images/arrow-down-${topic}.svg`} />
-          </div>
-        </div>
-      </div>
+      <MediaContextProvider>
+        <Desktop className={classnames({
+          [styles['main-container']]: true,
+          [styles['-desktop']]: true
+        })}>
+          {getMainContainer(false)}
+        </Desktop>
+        <Mobile className={classnames({
+          [styles['main-container']]: true,
+          [styles['-mobile']]: true
+        })}>
+          {getMainContainer(true)}
+        </Mobile>
+      </MediaContextProvider>
     </div>
   );
 }

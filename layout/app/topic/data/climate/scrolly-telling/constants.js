@@ -41,14 +41,16 @@ const getChartAxes = (number, mobile) => {
 const getClimateChartContents = (number, pulsatingItemData, linesData, mobile) =>
     <>
         {getChartAxes(number, mobile)}
-        <img className={classnames({
-            [styles['confidence-shape']]: true,
-            [styles[`-scenario-${number}`]]: true,
-            [styles['-mobile']]: mobile,
-            [styles['-desktop']]: !mobile
-        })}
-            src={`/static/images/scrolly-telling/climate/confidence-${number}${mobile ? '-mobile' : ''}.svg`}
-        />
+        {!mobile &&
+            <img className={classnames({
+                [styles['confidence-shape']]: true,
+                [styles[`-scenario-${number}`]]: true,
+                [styles['-mobile']]: mobile,
+                [styles['-desktop']]: !mobile
+            })}
+                src={`/static/images/scrolly-telling/climate/confidence-${number}.svg`}
+            />
+        }
         {linesData?.linePresent?.show && getChartLinePresent(linesData?.linePresent?.animate, mobile)}
         {linesData?.lineFuture?.show && getChartLineFuture(linesData?.lineFuture?.animate, mobile)}
         {linesData?.lineHistorical?.show && getChartLineHistorical(linesData?.lineHistorical?.animate, mobile)}
@@ -395,22 +397,22 @@ export const CLIMATE_STEPS = [
         },
         showYearCounter: true,
         previousYearValue: 2020,
-        yearValue: 2046,
+        yearValue: 2034,
         previousDegrees: 1,
         degrees: 1.5,
-        yearSubtitle: 'In less than 30 years',
+        yearSubtitle: 'In less than 20 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 2,
                 desktop: {
-                    top: '269px',
-                    left: '366px'
+                    top: '287px',
+                    left: '273px'
                 },
                 mobile: {
-                    top: '238px',
-                    left: '162px'
+                    top: '258px',
+                    left: '137px'
                 }
             },
             {
@@ -437,21 +439,21 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/biodiversity.jpg'
         },
         showYearCounter: true,
-        yearValue: 2046,
+        yearValue: 2034,
         degrees: 1.5,
-        yearSubtitle: 'In less than 30 years',
+        yearSubtitle: 'In less than 20 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 2,
                 desktop: {
-                    top: '269px',
-                    left: '366px'
+                    top: '287px',
+                    left: '273px'
                 },
                 mobile: {
-                    top: '238px',
-                    left: '162px'
+                    top: '258px',
+                    left: '137px'
                 }
             },
             {
@@ -480,21 +482,21 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/flooding.png'
         },
         showYearCounter: true,
-        yearValue: 2046,
+        yearValue: 2034,
         degrees: 1.5,
-        yearSubtitle: 'In less than 30 years',
+        yearSubtitle: 'In less than 20 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 2,
                 desktop: {
-                    top: '269px',
-                    left: '366px'
+                    top: '287px',
+                    left: '273px'
                 },
                 mobile: {
-                    top: '238px',
-                    left: '162px'
+                    top: '258px',
+                    left: '137px'
                 }
             },
             {
@@ -523,21 +525,21 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-second.jpg'
         },
         showYearCounter: true,
-        yearValue: 2046,
+        yearValue: 2034,
         degrees: 1.5,
-        yearSubtitle: 'In less than 30 years',
+        yearSubtitle: 'In less than 20 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 2,
                 desktop: {
-                    top: '269px',
-                    left: '366px'
+                    top: '287px',
+                    left: '273px'
                 },
                 mobile: {
-                    top: '238px',
-                    left: '162px'
+                    top: '258px',
+                    left: '137px'
                 }
             },
             {
@@ -566,21 +568,21 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/coral-reefs.jpg'
         },
         showYearCounter: true,
-        yearValue: 2046,
+        yearValue: 2034,
         degrees: 1.5,
-        yearSubtitle: 'In less than 30 years',
+        yearSubtitle: 'In less than 20 years',
         yearBackgroundColor: 'hsl(20, 100%, 48%)',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 2,
                 desktop: {
-                    top: '269px',
-                    left: '366px'
+                    top: '287px',
+                    left: '273px'
                 },
                 mobile: {
-                    top: '238px',
-                    left: '162px'
+                    top: '258px',
+                    left: '137px'
                 }
             },
             {
@@ -609,23 +611,23 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/extreme-rainfall.jpg'
         },
         showYearCounter: true,
-        previousYearValue: 2046,
-        yearValue: 2064,
+        previousYearValue: 2034,
+        yearValue: 2058,
         previousDegrees: 1.5,
         degrees: 2.0,
-        yearSubtitle: 'In less than 50 years',
+        yearSubtitle: 'In less than 40 years',
         yearBackgroundColor: '#DB1600',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 3,
                 desktop: {
-                    top: '240px',
-                    left: '510px'
+                    top: '255px',
+                    left: '450px'
                 },
                 mobile: {
-                    top: '198px',
-                    left: '220px'
+                    top: '206px',
+                    left: '204px'
                 }
             },
             {
@@ -660,21 +662,21 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/heatwaves-and-water-scarcity.jpg'
         },
         showYearCounter: true,
-        yearValue: 2064,
+        yearValue: 2058,
         degrees: 2.0,
-        yearSubtitle: 'In less than 50 years',
+        yearSubtitle: 'In less than 40 years',
         yearBackgroundColor: '#DB1600',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 3,
                 desktop: {
-                    top: '240px',
-                    left: '510px'
+                    top: '255px',
+                    left: '450px'
                 },
                 mobile: {
-                    top: '198px',
-                    left: '220px'
+                    top: '206px',
+                    left: '204px'
                 }
             },
             {
@@ -708,21 +710,21 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/sea-ice-and-permafrost.jpg'
         },
         showYearCounter: true,
-        yearValue: 2064,
+        yearValue: 2058,
         degrees: 2.0,
-        yearSubtitle: 'In less than 50 years',
+        yearSubtitle: 'In less than 40 years',
         yearBackgroundColor: '#DB1600',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 3,
                 desktop: {
-                    top: '240px',
-                    left: '510px'
+                    top: '255px',
+                    left: '450px'
                 },
                 mobile: {
-                    top: '198px',
-                    left: '220px'
+                    top: '206px',
+                    left: '204px'
                 }
             },
             {
@@ -751,21 +753,21 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/biodiversity-second.jpg'
         },
         showYearCounter: true,
-        yearValue: 2064,
+        yearValue: 2058,
         degrees: 2.0,
-        yearSubtitle: 'In less than 50 years',
+        yearSubtitle: 'In less than 40 years',
         yearBackgroundColor: '#DB1600',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 3,
                 desktop: {
-                    top: '240px',
-                    left: '510px'
+                    top: '255px',
+                    left: '450px'
                 },
                 mobile: {
-                    top: '198px',
-                    left: '220px'
+                    top: '206px',
+                    left: '204px'
                 }
             },
             {
@@ -798,21 +800,21 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-third.jpg'
         },
         showYearCounter: true,
-        yearValue: 2064,
+        yearValue: 2058,
         degrees: 2.0,
-        yearSubtitle: 'In less than 50 years',
+        yearSubtitle: 'In less than 40 years',
         yearBackgroundColor: '#DB1600',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 3,
                 desktop: {
-                    top: '240px',
-                    left: '510px'
+                    top: '255px',
+                    left: '450px'
                 },
                 mobile: {
-                    top: '198px',
-                    left: '220px'
+                    top: '206px',
+                    left: '204px'
                 }
             },
             {
@@ -840,23 +842,23 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/sea-ice.jpg'
         },
         showYearCounter: true,
-        previousYearValue: 2064,
-        yearValue: 2089,
+        previousYearValue: 2058,
+        yearValue: 2095,
         previousDegrees: 2.0,
         degrees: 3.0,
-        yearSubtitle: 'In less than 70 years',
+        yearSubtitle: 'In less than 80 years',
         yearBackgroundColor: '#AD0000',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 4,
                 desktop: {
-                    top: '200px',
-                    left: '680px'
+                    top: '188px',
+                    left: '747px'
                 },
                 mobile: {
-                    top: '114px',
-                    left: '305px'
+                    top: '103px',
+                    left: '329px'
                 }
             },
             {
@@ -885,21 +887,21 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/human-displacement-and-conflict-fourth.jpg'
         },
         showYearCounter: true,
-        yearValue: 2089,
+        yearValue: 2095,
         degrees: 3.0,
-        yearSubtitle: 'In less than 70 years',
+        yearSubtitle: 'In less than 80 years',
         yearBackgroundColor: '#AD0000',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 4,
                 desktop: {
-                    top: '200px',
-                    left: '680px'
+                    top: '188px',
+                    left: '747px'
                 },
                 mobile: {
-                    top: '114px',
-                    left: '305px'
+                    top: '103px',
+                    left: '329px'
                 }
             },
             {
@@ -927,21 +929,21 @@ export const CLIMATE_STEPS = [
             imageHeader: '/static/images/scrolly-telling/climate/biodiversity-third.jpg'
         },
         showYearCounter: true,
-        yearValue: 2089,
+        yearValue: 2095,
         degrees: 3.0,
-        yearSubtitle: 'In less than 70 years',
+        yearSubtitle: 'In less than 80 years',
         yearBackgroundColor: '#AD0000',
         stickyContainerElement: getClimateChart(3,
             {
                 show: true,
                 level: 4,
                 desktop: {
-                    top: '200px',
-                    left: '680px'
+                    top: '188px',
+                    left: '747px'
                 },
                 mobile: {
-                    top: '114px',
-                    left: '305px'
+                    top: '103px',
+                    left: '329px'
                 }
             },
             {
@@ -964,10 +966,10 @@ export const CLIMATE_CLOCK_STEPS = [
                     <h6 className="climate">The Climate Clock</h6>
                     <p>
                         The Climate Clock shows a timer, <span className="bold">counting down how long it will take to burn
-                        through our “carbon budget”</span> — the amount of CO2 that can still be released
+                        through our “carbon budget”</span> — the amount of CO<sub>2</sub> that can still be released
                         into the atmosphere while limiting global warming to 1.5°C (or 34.7 °F) above pre-industrial
                          levels.  It projects a 2017 emissions rate into the future and calculates that <a className="bold external-link -climate" href="https://www.mcc-berlin.net/en/index.html" target="_blank">holding
-                          emissions to 420 Gt of CO2 emissions gives us a 67% chance of staying within the threshold of 1.5°C</a>.
+                          emissions to 420 Gt of CO<sub>2</sub> emissions gives us a 67% chance of staying within the threshold of 1.5°C</a>.
                     </p>
                 </>
         },
@@ -986,7 +988,7 @@ export const CLIMATE_CLOCK_STEPS = [
                         dramatically and irreversibly.
                     </p>
                     <p><span className="bold">Emissions have risen since 2017, which could mean we have
-                          less time</span> than the clock says. Temperature climbs after increases in atmospheric CO2,
+                          less time</span> than the clock says. Temperature climbs after increases in atmospheric CO<sub>2</sub>,
                           so we would not feel the full impact of exceeding the carbon budget right away.
                            This clock follows the <a className="external-link -climate bold" href="https://www.mcc-berlin.net/en/index.html" target="_blank">methodology from the Mercator Research Institute on Global Commons
                             and Climate Change (MCC)</a> using data from the <a className="external-link -climate bold" href="https://www.ipcc.ch/sr15/" target="_blank">IPCC Special Report on Global Warming of 1.5°C</a>.

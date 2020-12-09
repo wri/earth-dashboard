@@ -1,5 +1,5 @@
 export const CLIMATE_HEADLINE_SECTION_DATA = {
-    mainTitle: <h1>Charting the <span>Threat Multiplier Effect</span> of Climate Change</h1>,
+    mainTitle: <>Charting the <span>Threat Multiplier Effect</span> of Climate Change</>,
     subtitle: 'Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. By altering climatic conditions, we undermine food and water security, human and ocean health and the survival of countless species. These threats intensify with each half degree that temperatures climb.'
 };
 
