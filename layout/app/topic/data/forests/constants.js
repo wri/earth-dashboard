@@ -1,8 +1,8 @@
 export const FORESTS_HEADLINE_SECTION_DATA = {
-    mainTitle: <h1>The Amazon’s Future Hangs in the <span>Balance</span></h1>,
-    subtitle: <p>
+    mainTitle: <>The Amazon’s Future Hangs in the <span>Balance</span></>,
+    subtitle: <>
         Tree cover loss, especially in irreplaceable primary forests rich in species and carbon, is a planetary emergency. In 2019, tropical rainforests vanished at the rate of one football pitch (soccer field) <a className="external-link -white" target="_blank" href="https://blog.globalforestwatch.org/data-and-research/global-tree-cover-loss-data-2019">every six seconds</a>. But forests face a double threat. Climate change can bring droughts to rainforests, reducing their ability to store carbon.  The Amazon is on course to transform from a carbon sink to source as soon as 2035. 
-    </p>
+    </>
 };
 
 export const FORESTS_CHALLENGE_SECTION_DATA = {

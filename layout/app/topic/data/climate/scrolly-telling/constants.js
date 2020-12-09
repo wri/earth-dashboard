@@ -41,14 +41,16 @@ const getChartAxes = (number, mobile) => {
 const getClimateChartContents = (number, pulsatingItemData, linesData, mobile) =>
     <>
         {getChartAxes(number, mobile)}
-        <img className={classnames({
-            [styles['confidence-shape']]: true,
-            [styles[`-scenario-${number}`]]: true,
-            [styles['-mobile']]: mobile,
-            [styles['-desktop']]: !mobile
-        })}
-            src={`/static/images/scrolly-telling/climate/confidence-${number}${mobile ? '-mobile' : ''}.svg`}
-        />
+        {!mobile &&
+            <img className={classnames({
+                [styles['confidence-shape']]: true,
+                [styles[`-scenario-${number}`]]: true,
+                [styles['-mobile']]: mobile,
+                [styles['-desktop']]: !mobile
+            })}
+                src={`/static/images/scrolly-telling/climate/confidence-${number}.svg`}
+            />
+        }
         {linesData?.linePresent?.show && getChartLinePresent(linesData?.linePresent?.animate, mobile)}
         {linesData?.lineFuture?.show && getChartLineFuture(linesData?.lineFuture?.animate, mobile)}
         {linesData?.lineHistorical?.show && getChartLineHistorical(linesData?.lineHistorical?.animate, mobile)}

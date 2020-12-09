@@ -1,5 +1,5 @@
 export const OCEAN_HEADLINE_SECTION_DATA = {
-    mainTitle: <h1>Towards a <span>Sustainable</span> Ocean Economy</h1>,
+    mainTitle: <>Towards a <span>Sustainable</span> Ocean Economy</>,
     subtitle: 'A healthy ocean is critical to a sustainable global economy and stable climate. To preserve and harvest this potential, we must protect ocean life from accelerating threats including overfishing, pollution and acidification.'
 };
 

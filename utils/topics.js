@@ -17,7 +17,6 @@ import {
     OCEAN_DIVE_INTO_THE_DATA_DATA,
     OCEAN_METHODOLOGY_DATA
 } from 'layout/app/topic/data/ocean/constants';
-import { func } from 'prop-types';
 import { 
     CLIMATE_CHALLENGE_SECTION_DATA,
     CLIMATE_HEADLINE_SECTION_DATA,

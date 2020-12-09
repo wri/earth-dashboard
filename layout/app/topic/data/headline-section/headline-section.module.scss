@@ -16,16 +16,13 @@
         padding: 0px 16px 0px 16px;
 
         .topic-name-title {
-            margin-bottom: 8 * $space;
             font-size: 16px;
             font-family: 'Barlow Condensed';
             color: $black;
         }
 
-        > h1 {
+        > h1, h2 {
             color: $white;
-            font-size: 48px;
-            font-family: 'Barlow Condensed';
 
             span {
                 font-style: italic;
@@ -33,16 +30,35 @@
             }
         }
 
-        .subtitle {
-            margin-top: 7 * $space;
-            font-size: 18px;
-            color: $white;
+        h2 { margin: 0px; }
+
+        .subtitle { color: $white; }
+
+        &.-desktop {
+            .subtitle {
+                margin-top: 7 * $space;
+                font-size: 18px;
+            }
+            .topic-name-title { margin-bottom: 40px; }
+            .scroll-to-explore { margin-top: 60px; }
         }
+
+        &.-mobile {
+            margin-top: 60px;
+            .subtitle {
+                margin-top: 7 * $space;
+                font-size: 14px;
+                line-height: 21px;
+            }
+            .topic-name-title { margin-bottom: 30px; }
+            .scroll-to-explore { margin-top: 50px; }
+        }
+
+        
 
         .scroll-to-explore {
             display: flex;
             flex-direction: column;
-            margin-top: 12 * $space;
             font-size: 12px;
             font-family: 'Barlow Condensed';
 
