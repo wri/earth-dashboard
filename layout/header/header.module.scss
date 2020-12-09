@@ -17,9 +17,9 @@
     }
   
     .logo-container {
-      position: absolute;
-      left: 5 * $space;
-      top: 3 * $space;
+      position: fixed;
+      left: 16px;
+      top: 16px;
     }
   
     .hamburguer-button {
