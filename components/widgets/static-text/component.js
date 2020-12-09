@@ -47,9 +47,9 @@ function StaticTextWidget({ widget, showSource }) {
                     <span
                         className={classnames({
                             [styles.parameter]: true,
-                            [currentParam.topic]: true
+                            [currentParam?.topic]: true
                         })}
-                        style={currentParam.style}
+                        style={currentParam?.style}
                         key={`param-${textValue}`}
                     >
                         {textValue}

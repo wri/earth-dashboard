@@ -247,7 +247,7 @@ class Step1 extends Component {
                   type="button"
                   onClick={() => {
                     try {
-                      const parsedContent = JSON.parse(newWidgetTypesEditorCode)
+                      const parsedContent = JSON.parse(newWidgetTypesEditorCode);
                       this.setState({ previewSource: parsedContent });
                     } catch (e) {
                       toastr.error(`Error generating preview: ${e.message}`);
