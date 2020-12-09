@@ -36,6 +36,9 @@ function About() {
                   of what can be done. By sharing collective expertise and effective strategies it aims to help avert
                   catastrophic change and safeguard a resilient, stable planet.
             </p>
+            <p>
+                By using this site, you consent to the Resource Watch <a className="external-link -white" href="https://resourcewatch.org/privacy-policy" target="_blank">Privacy Policy</a> and <a className="external-link -white" href="https://resourcewatch.org/terms-of-service" target="_blank">Terms of Service</a>.
+            </p>
             <div className={classnames({
                 [styles['logos-container']]: true,
                 'row': true
