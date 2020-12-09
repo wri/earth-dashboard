@@ -20,8 +20,7 @@
                     <tspan x="289" y="57" fill="#7C90A2">(thousand megawatts)</tspan>
                 </text>
                 <text id="+28,012%" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="36" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
-                    <tspan x="289" y="105">+28,012</tspan>
-                    <tspan x="391.492" y="111.664185" font-size="18">%</tspan>
+                    <tspan x="289" y="105">+28,012%</tspan>
                 </text>
                 <g id="Bitmap-Copy-4" transform="translate(0.000000, 21.000000)">
                     <mask id="mask-2" fill="white">

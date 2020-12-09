@@ -20,8 +20,7 @@
                     <tspan x="287" y="58" fill="#7C90A2">(million km)</tspan>
                 </text>
                 <text id="+218%" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="36" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
-                    <tspan x="287" y="106">+218</tspan>
-                    <tspan x="352.664" y="112.664185" font-size="18">%</tspan>
+                    <tspan x="287" y="106">+218%</tspan>
                 </text>
                 <rect id="Rectangle-Copy-32" fill="#D5DCE1" fill-rule="nonzero" x="107" y="0" width="1" height="126"></rect>
                 <rect id="Rectangle-Copy-33" fill="#31A9BF" fill-rule="nonzero" opacity="0.10202753" x="203" y="0" width="61" height="125"></rect>

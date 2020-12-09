@@ -19,8 +19,7 @@
                     <tspan x="289" y="66" fill="#7C90A2">(million tonnes)</tspan>
                 </text>
                 <text id="+140%" font-family="Barlow Condensed" font-size="36" line-spacing="36" fill="#31A9BF">
-                    <tspan x="289" y="114">+140</tspan>
-                    <tspan x="355.924" y="120.664185" font-size="18">%</tspan>
+                    <tspan x="289" y="114">+140%</tspan>
                 </text>
                 <text id="1970" font-family="Barlow Condensed" font-size="14" fill="#38444F">
                     <tspan x="82" y="19">1970</tspan>

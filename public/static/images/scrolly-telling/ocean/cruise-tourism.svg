@@ -20,8 +20,7 @@
                     <tspan x="288" y="57" fill="#7C90A2">(million passengers)</tspan>
                 </text>
                 <text id="+175%" font-family="Barlow Condensed" font-size="36" line-spacing="36" fill="#31A9BF">
-                    <tspan x="288" y="105">+175</tspan>
-                    <tspan x="351.9" y="111.664185" font-size="18">%</tspan>
+                    <tspan x="288" y="105">+175%</tspan>
                 </text>
                 <rect id="Rectangle" fill="#D5DCE1" fill-rule="nonzero" x="107" y="0" width="1" height="126"></rect>
                 <rect id="Rectangle" fill="#31A9BF" fill-rule="nonzero" opacity="0.10202753" x="203" y="0" width="61" height="125"></rect>

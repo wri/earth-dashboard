@@ -23,8 +23,7 @@
                     <tspan x="291" y="66" fill="#7C90A2">(million km2)</tspan>
                 </text>
                 <text id="+614%" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="36" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
-                    <tspan x="291" y="114">+614</tspan>
-                    <tspan x="356.7" y="120.664185" font-size="18">%</tspan>
+                    <tspan x="291" y="114">+614%</tspan>
                 </text>
                 <rect id="Rectangle" fill="#D5DCE1" fill-rule="nonzero" x="108" y="134" width="340" height="1"></rect>
                 <g id="Bitmap-Copy-8" transform="translate(0.000000, 23.000000)">

@@ -20,8 +20,7 @@
                     <tspan x="289" y="57" fill="#7C90A2">(million TEU containers)</tspan>
                 </text>
                 <text id="+235%" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="36" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
-                    <tspan x="289" y="105">+235</tspan>
-                    <tspan x="359.668" y="111.664185" font-size="18">%</tspan>
+                    <tspan x="289" y="105">+235%</tspan>
                 </text>
                 <g id="Bitmap-Copy-5" transform="translate(0.000000, 21.000000)">
                     <mask id="mask-2" fill="white">
