@@ -18,11 +18,11 @@
                 <rect id="Rectangle-Copy-42" fill="#31A9BF" fill-rule="nonzero" opacity="0.10202753" x="203" y="0" width="61" height="126"></rect>
                 <rect id="Rectangle-Copy-41" fill="#D5DCE1" fill-rule="nonzero" x="264" y="0" width="1" height="126"></rect>
                 <rect id="Rectangle-Copy-40" fill="#D5DCE1" fill-rule="nonzero" x="202" y="0" width="1" height="126"></rect>
-                <text id="Marine-genetic-resou" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="18" font-style="condensed" font-weight="normal">
+                <text id="Marine-genetic-resou" font-family="Barlow Condensed" font-size="16">
                     <tspan x="291" y="35" fill="#1A2129">Marine genetic resources</tspan>
                     <tspan x="291" y="57" fill="#7C90A2">(number of sequences)</tspan>
                 </text>
-                <text id="+7,093%" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="36" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
+                <text id="+7,093%" font-family="Barlow Condensed" font-size="36" line-spacing="36" fill="#31A9BF">
                     <tspan x="291" y="105">+7,093%</tspan>
                 </text>
                 <rect id="Rectangle" fill="#D5DCE1" fill-rule="nonzero" x="108" y="126" width="340" height="1"></rect>

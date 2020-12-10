@@ -15,11 +15,11 @@
         <g id="Earth-HQ---Indicator---Oceans" transform="translate(-702.000000, -1025.000000)">
             <g id="Group-21" transform="translate(710.000000, 1025.000000)">
                 <rect id="Rectangle-Copy-15" fill="#D5DCE1" fill-rule="nonzero" x="108" y="125" width="340" height="1"></rect>
-                <text id="Desalinated-seawater" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="18" font-style="condensed" font-weight="normal">
+                <text id="Desalinated-seawater" font-family="Barlow Condensed" font-size="16">
                     <tspan x="287" y="35" fill="#1A2129">Desalinated seawater</tspan>
                     <tspan x="287" y="57" fill="#7C90A2">(milllion m3/day)</tspan>
                 </text>
-                <text id="+275%" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="36" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
+                <text id="+275%" font-family="Barlow Condensed" font-size="36" line-spacing="36" fill="#31A9BF">
                     <tspan x="287" y="105">+275%</tspan>
                 </text>
                 <rect id="Rectangle" fill="#D5DCE1" fill-rule="nonzero" x="107" y="0" width="1" height="126"></rect>

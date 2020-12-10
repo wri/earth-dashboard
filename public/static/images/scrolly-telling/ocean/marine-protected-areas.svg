@@ -18,11 +18,11 @@
                 <rect id="Rectangle-Copy-38" fill="#31A9BF" fill-rule="nonzero" opacity="0.10202753" x="203" y="0" width="61" height="134"></rect>
                 <rect id="Rectangle-Copy-37" fill="#D5DCE1" fill-rule="nonzero" x="264" y="0" width="1" height="135"></rect>
                 <rect id="Rectangle-Copy-36" fill="#D5DCE1" fill-rule="nonzero" x="202" y="0" width="1" height="135"></rect>
-                <text id="Marine-protected-are" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="18" font-style="condensed" font-weight="normal">
-                    <tspan x="291" y="44" fill="#1A2129">Marine protected areas</tspan>
-                    <tspan x="291" y="66" fill="#7C90A2">(million km2)</tspan>
+                <text id="Marine-protected-are" font-family="Barlow Condensed" font-size="16">
+                    <tspan x="289" y="44" fill="#1A2129">Marine protected areas</tspan>
+                    <tspan x="289" y="66" fill="#7C90A2">(million km2)</tspan>
                 </text>
-                <text id="+614%" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="36" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
+                <text id="+614%" font-family="Barlow Condensed" font-size="36" line-spacing="36" fill="#31A9BF">
                     <tspan x="291" y="114">+614%</tspan>
                 </text>
                 <rect id="Rectangle" fill="#D5DCE1" fill-rule="nonzero" x="108" y="134" width="340" height="1"></rect>

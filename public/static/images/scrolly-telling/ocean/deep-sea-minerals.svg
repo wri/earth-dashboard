@@ -15,11 +15,11 @@
         <g id="Earth-HQ---Indicator---Oceans" transform="translate(-114.000000, -1160.000000)">
             <g id="Group-17" transform="translate(122.000000, 1160.000000)">
                 <rect id="Rectangle-Copy-11" fill="#D5DCE1" fill-rule="nonzero" x="108" y="125" width="340" height="1"></rect>
-                <text id="Deep-sea-minerals-(m" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="18" font-style="condensed" font-weight="normal">
+                <text id="Deep-sea-minerals-(m" font-family="Barlow Condensed" font-size="16">
                     <tspan x="289" y="35" fill="#1A2129">Deep sea minerals</tspan>
                     <tspan x="289" y="57" fill="#7C90A2">(million km2)</tspan>
                 </text>
-                <text id="+192%" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="36" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
+                <text id="+192%" font-family="Barlow Condensed" font-size="36" line-spacing="36" fill="#31A9BF">
                     <tspan x="289" y="105">+192%</tspan>
                 </text>
                 <g id="Bitmap-Copy-2" transform="translate(0.000000, 21.000000)">
