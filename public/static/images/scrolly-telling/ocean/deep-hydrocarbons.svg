@@ -14,11 +14,11 @@
     <g id="visuals" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Earth-HQ---Indicator---Oceans" transform="translate(-114.000000, -1034.000000)">
             <g id="Group-15" transform="translate(122.000000, 1034.000000)">
-                <text id="Deep-hydrocarbons-(m" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="18" font-style="condensed" font-weight="normal">
+                <text id="Deep-hydrocarbons-(m" font-family="Barlow Condensed" font-size="16" >
                     <tspan x="291" y="35" fill="#1A2129">Deep hydrocarbons</tspan>
                     <tspan x="291" y="57" fill="#7C90A2">(million barrels/day)</tspan>
                 </text>
-                <text id="+77%" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="36" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
+                <text id="+77%" font-family="Barlow Condensed" font-size="36" line-spacing="36" fill="#31A9BF">
                     <tspan x="291" y="105">+77%</tspan>
                 </text>
                 <rect id="Rectangle" fill="#D5DCE1" fill-rule="nonzero" x="107" y="0" width="1" height="126"></rect>
