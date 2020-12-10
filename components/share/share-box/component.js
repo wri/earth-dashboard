@@ -19,7 +19,7 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 import styles from './share-box.module.scss';
 
 function ShareBox({ url, topic, style, showInput, showBorder }) {
-    const getContent = (mobile = false) =>
+    const getContent = (mobile = false, urlValue) =>
         <div 
             className={classnames({
                 [styles['main-container']]: true,
@@ -45,7 +45,7 @@ function ShareBox({ url, topic, style, showInput, showBorder }) {
                 [styles['-mobile']]: mobile,
                 [styles['-desktop']]: !mobile
             })}>
-                <a href={`mailto:?subject=Earth Dashboard&body=I thought you'd be interested in what I found on the Earth Dashboard: ${url}`}>
+                <a href={`mailto:?subject=Earth Dashboard&body=I thought you'd be interested in what I found on the Earth Dashboard: ${urlValue}`}>
                     <div className={classnames({
                         [styles['share-button']]: true,
                         [styles['-mobile']]: mobile,
@@ -55,7 +55,7 @@ function ShareBox({ url, topic, style, showInput, showBorder }) {
                         <img src={getEmailIconPerTopic(topic)} />
                     </div>
                 </a>
-                <a href={`http://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`}
+                <a href={`http://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlValue)}`}
                     target="_blank"
                     rel="noopener noreferrer">
                     <div className={classnames({
@@ -67,7 +67,7 @@ function ShareBox({ url, topic, style, showInput, showBorder }) {
                         <img src={getFacebookIconPerTopic(topic)} />
                     </div>
                 </a>
-                <a href={`https://twitter.com/share?url=${encodeURIComponent(url)}&text=Check out what I found on the Earth Dashboard:`}
+                <a href={`https://twitter.com/share?url=${encodeURIComponent(urlValue)}&text=Check out what I found on the Earth Dashboard:`}
                     target="_blank"
                     rel="noopener noreferrer">
                     <div className={classnames({
@@ -81,7 +81,7 @@ function ShareBox({ url, topic, style, showInput, showBorder }) {
                 </a>
             </div>
             {showInput &&
-                <CopyToClipboard text={url}>
+                <CopyToClipboard text={urlValue}>
                     <button
                         className={classnames({
                             '-forests': topic === FORESTS,
@@ -101,10 +101,10 @@ function ShareBox({ url, topic, style, showInput, showBorder }) {
         <div className={styles['c-share-box']}>
             <MediaContextProvider>
                 <Desktop>
-                    {getContent(false)}
+                    {getContent(false, url)}
                 </Desktop>
                 <Mobile>
-                    {getContent(true)}
+                    {getContent(true, url)}
                 </Mobile>
             </MediaContextProvider>
 
