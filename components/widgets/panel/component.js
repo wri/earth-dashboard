@@ -94,7 +94,7 @@ function WidgetPanel({ widget, topic }) {
                             <ul>
                                 {widgetLinks.map(link =>
                                     <li>
-                                        <a href={link.link} target="_blank">
+                                        <a className={`external-link -${topic}`} href={link.link} target="_blank">
                                             {link.name}
                                         </a>
                                     </li>
