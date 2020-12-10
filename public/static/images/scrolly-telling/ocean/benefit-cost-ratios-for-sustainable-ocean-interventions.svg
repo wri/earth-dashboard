@@ -274,49 +274,49 @@
                         <line x1="12.071" y1="18.5" x2="12.071" y2="16.25" id="Path"></line>
                     </g>
                 </g>
-                <text id="Offshore-wind-energy" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#1A2129">
+                <text id="Offshore-wind-energy" font-family="Barlow Condensed" font-size="14" fill="#1A2129">
                     <tspan x="19.612" y="50">Offshore wind energy </tspan>
                     <tspan x="69.228" y="67">production</tspan>
                 </text>
-                <text id="INVESTMENTS" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#F35600">
-                    <tspan x="109.242" y="14">INVESTMENTS</tspan>
+                <text id="INVESTMENTS" font-family="Barlow Condensed" font-size="14" fill="#F35600">
+                    <tspan x="90" y="14">INVESTMENTS</tspan>
                 </text>
-                <text id="RETURNS" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#174F59">
-                    <tspan x="199" y="14">RETURNS</tspan>
+                <text id="RETURNS" font-family="Barlow Condensed" font-size="14" fill="#174F59">
+                    <tspan x="193" y="14">RETURNS</tspan>
                 </text>
-                <text id=":" font-family="BarlowCondensed-Bold, Barlow Condensed" font-size="14" font-style="condensed" font-weight="bold" fill="#1A2129">
+                <text id=":" font-family="Barlow Condensed" font-size="14" font-weight="500" fill="#1A2129">
                     <tspan x="182.15" y="57">:</tspan>
                 </text>
-                <text id=":" font-family="BarlowCondensed-Bold, Barlow Condensed" font-size="14" font-style="condensed" font-weight="bold" fill="#1A2129">
+                <text id=":" font-family="Barlow Condensed" font-size="14" font-weight="500" fill="#1A2129">
                     <tspan x="182.15" y="118">:</tspan>
                 </text>
-                <text id=":" font-family="BarlowCondensed-Bold, Barlow Condensed" font-size="14" font-style="condensed" font-weight="bold" fill="#1A2129">
+                <text id=":" font-family="Barlow Condensed" font-size="14" font-weight="500" fill="#1A2129">
                     <tspan x="182.15" y="176">:</tspan>
                 </text>
-                <text id=":" font-family="BarlowCondensed-Bold, Barlow Condensed" font-size="14" font-style="condensed" font-weight="bold" fill="#1A2129">
+                <text id=":" font-family="Barlow Condensed" font-size="14" font-weight="500" fill="#1A2129">
                     <tspan x="183.15" y="236">:</tspan>
                 </text>
-                <text id="Sustainable-ocean-ba" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#1A2129">
+                <text id="Sustainable-ocean-ba" font-family="Barlow Condensed" font-size="14" fill="#1A2129">
                     <tspan x="1.104" y="110">Sustainable ocean-based </tspan>
                     <tspan x="45.008" y="127">food production</tspan>
                 </text>
-                <text id="1:12" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="24" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
+                <text id="1:12" font-family="Barlow Condensed" font-size="24" line-spacing="36" fill="#31A9BF">
                     <tspan x="598" y="57">1:12</tspan>
                 </text>
-                <text id="1:10" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="24" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
+                <text id="1:10" font-family="Barlow Condensed" font-size="24" line-spacing="36" fill="#31A9BF">
                     <tspan x="533" y="118">1:10</tspan>
                 </text>
-                <text id="1:4" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="24" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
+                <text id="1:4" font-family="Barlow Condensed" font-size="24" line-spacing="36" fill="#31A9BF">
                     <tspan x="336" y="179">1:4</tspan>
                 </text>
-                <text id="1:3" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="24" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
+                <text id="1:3" font-family="Barlow Condensed" font-size="24" line-spacing="36" fill="#31A9BF">
                     <tspan x="300" y="237">1:3</tspan>
                 </text>
-                <text id="Decarbonization-of-i" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#1A2129">
+                <text id="Decarbonization-of-i" font-family="Barlow Condensed" font-size="14" fill="#1A2129">
                     <tspan x="30.994" y="168">Decarbonization of </tspan>
                     <tspan x="40.878" y="185">internal shipping</tspan>
                 </text>
-                <text id="Conservation-and-res" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="14" font-style="condensed" font-weight="normal" fill="#1A2129">
+                <text id="Conservation-and-res" font-family="Barlow Condensed" font-size="14" fill="#1A2129">
                     <tspan x="38.064" y="227">Conservation and </tspan>
                     <tspan x="0.166" y="244">restoration of mangroves</tspan>
                 </text>
