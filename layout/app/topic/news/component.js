@@ -26,7 +26,7 @@ function TopicNews(props) {
     useEffect(() => {
         setLoading(true);
         const urlWithProxy = 
-            `${CORS_PROXY}${MONGABAY_RSS_FEED_URL}${getMongabayTagsByTopic(topic)}`;
+            `${CORS_PROXY}${MONGABAY_RSS_FEED_URL}${getMongabayTagsByTopic(topic.join(','))}`;
         const parser = new Parser();
         parser.parseURL(urlWithProxy)
             .then((response) => {
@@ -73,7 +73,7 @@ function TopicNews(props) {
 }
 
 TopicNews.propTypes = {
-    topic: PropTypes.string.isRequired,
+    topic: PropTypes.array.isRequired,
     limit: PropTypes.number
 };
 
