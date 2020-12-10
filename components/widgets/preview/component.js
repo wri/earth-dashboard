@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import Renderer from '@widget-editor/renderer';
 import RwAdapter from '@widget-editor/rw-adapter';
 
+// utils
+import { makeMapWidgetConfigCompatibleWithLeaflet } from 'utils/widget';
+
 // components
 import CombinedWidget from 'components/widgets/combined';
 import ListWidget from 'components/widgets/list';
@@ -37,11 +40,12 @@ function WidgetPreview({ widget, showSource }) {
   const isStaticText = widgetType === STATIC_TEXT_WIDGET_TYPE;
   const widgetEmbedUrl = isEmbed && widgetConfig.url;
 
+
   return (
     <div className={styles['c-widget-preview']}>
       {useRenderer &&
         <Renderer
-          widgetConfig={widgetConfig}
+          widgetConfig={makeMapWidgetConfigCompatibleWithLeaflet(widgetConfig)}
           adapter={RwAdapter}
         />
       }
