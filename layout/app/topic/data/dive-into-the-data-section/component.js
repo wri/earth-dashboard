@@ -4,7 +4,6 @@ import classnames from 'classnames';
 
 // components
 import WidgetPanel from 'components/widgets/panel';
-import ErrorBoundary from 'components/ui/error-boundary';
 
 // utils
 import {
@@ -18,8 +17,7 @@ import styles from './dive-into-the-data-section.module.scss';
 
 function DiveIntoTheDataSection({
   topic,
-  topicData,
-  widgets
+  topicData
 }) {
   const topicColor = getColorByTopic(topic);
   const dataArray = topicData[topic]?.diveIntoTheData?.data;
@@ -37,7 +35,6 @@ function DiveIntoTheDataSection({
           [styles['-mobile']]: mobile
         })}>
         {isBrowser &&
-          <ErrorBoundary>
             <div className="row">
               {dataArray?.map(widget =>
                 (<div
@@ -53,12 +50,12 @@ function DiveIntoTheDataSection({
                   })}
                 >
                   <WidgetPanel
-                    widget={widgets.find(w => w.id === widget.id)}
+                    widget={{ id: widget.id }}
                     topic={topic}
+                    widgetShouldBeLoaded={true}
                   />
                 </div>))}
             </div>
-          </ErrorBoundary>
         }
       </div>
     </>;

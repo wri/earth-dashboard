@@ -9,6 +9,7 @@ import RwAdapter from '@widget-editor/rw-adapter';
 import { fetchWidget } from 'services/widget';
 
 // components
+import ErrorBoundary from 'components/ui/error-boundary';
 import CombinedWidget from 'components/widgets/combined';
 import ListWidget from 'components/widgets/list';
 import StaticListWidget from 'components/widgets/static-list';
@@ -29,14 +30,15 @@ import styles from './widget-preview.module.scss';
 
 function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
   const [widgetData, setWidgetData] = useState({
-    loading: true,
+    loading: widgetShouldBeLoaded,
     id: widget.id,
-    data: null
+    data: widgetShouldBeLoaded ? null : widget
   });
+  const isServer = typeof window === 'undefined';
   const { loading, data } = widgetData;
   const widgetConfig = data?.widgetConfig;
   const widgetType = widgetConfig?.type || 'chart';
-  const useRenderer = ['map', 'chart'].includes(widgetType);
+  const useRenderer = widgetType && ['map', 'chart'].includes(widgetType);
   const isEmbed = widgetType === 'embed';
   const isCombined = widgetType === COMBINED_WIDGET_TYPE;
   const isList = widgetType === LIST_WIDGET_TYPE;
@@ -67,8 +69,8 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
 
   return (
     <div className={styles['c-widget-preview']}>
-      {!loading &&
-        <>
+      {!loading && !isServer && 
+        <ErrorBoundary>
           {useRenderer &&
             <Renderer
               widgetConfig={widgetConfig}
@@ -120,7 +122,7 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
               showSource={showSource}
             />
           }
-        </>
+        </ErrorBoundary>
       }
       {loading &&
         <div className={styles.placeholder} />

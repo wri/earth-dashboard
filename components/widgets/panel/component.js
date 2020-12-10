@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ReactCardFlip from 'react-card-flip';
@@ -10,24 +10,52 @@ import WidgetPreview from 'components/widgets/preview';
 // utils
 import { logEvent } from 'utils/gtag';
 
+// services
+import { fetchWidget } from 'services/widget';
+
 // styles
 import styles from './widget-panel.module.scss';
 
-function WidgetPanel({ widget, topic }) {
+function WidgetPanel({ widget, topic, widgetShouldBeLoaded }) {
+    const [widgetData, setWidgetData] = useState({
+        loading: widgetShouldBeLoaded,
+        id: widget.id,
+        data: widgetShouldBeLoaded ? null : widget
+    });
+    const { loading, data } = widgetData;
     const [flipCardOpen, setFlipCardOpen] = useState(false);
     const [shareModalIsOpen, setShareModalIsOpen] = useState(false);
-    const description = widget?.description;
-    const metadata = widget?.metadata && widget.metadata[0];
+    const description = data?.description;
+    const metadata = data?.metadata && data.metadata[0];
     const caption = metadata?.info?.caption;
     const widgetLinks = metadata?.info?.widgetLinks;
-    const isMap = widget?.widgetConfig?.paramsConfig?.visualizationType === 'map';
+    const isMap = data?.widgetConfig?.paramsConfig?.visualizationType === 'map';
     const isServer = typeof window === 'undefined';
 
     const urlWithoutHash = !isServer && window.location.href.split('#')[0];
-    const shareModalURL = !isServer && `${urlWithoutHash}#${widget?.id}`;
+    const shareModalURL = !isServer && `${urlWithoutHash}#${data?.id}`;
     const commontRWEmbedURL = 'https://resourcewatch.org/embed';
-    const shareEmbedURL = `${commontRWEmbedURL}/${isMap ? 'map' : 'widget'}/${widget?.id}`;
+    const shareEmbedURL = `${commontRWEmbedURL}/${isMap ? 'map' : 'widget'}/${data?.id}`;
     const embedTag = `<iframe src="${shareEmbedURL}" width="100%" height="500px" frameBorder="0" />`;
+
+    const loadWidget = async () => {
+        try {
+            const res = await fetchWidget(widget.id, { includes: 'metadata' });
+            setWidgetData({
+                id: res.id,
+                loading: false,
+                data: res
+            });
+        } catch (err) {
+            console.error(`Error loading widget: ${widget.id} - ${err}`);
+        }
+    };
+
+    useEffect(() => {
+        if (widgetShouldBeLoaded) {
+            loadWidget();
+        }
+    }, []);
 
     return (
         <div
@@ -79,7 +107,9 @@ function WidgetPanel({ widget, topic }) {
                         [styles['-chart']]: !isMap
                     })}
                 >
-                    {widget && <WidgetPreview widget={widget} />}
+                    {!loading && !isServer &&
+                        <WidgetPreview widget={data} />
+                    }
                 </div>
                 <div className={styles['info-container']}>
                     {description &&
@@ -93,7 +123,7 @@ function WidgetPanel({ widget, topic }) {
                             <h5>Links</h5>
                             <ul>
                                 {widgetLinks.map(link =>
-                                    <li>
+                                    <li key={`widget-link-${link.name}`}>
                                         <a href={link.link} target="_blank">
                                             {link.name}
                                         </a>
@@ -118,20 +148,27 @@ function WidgetPanel({ widget, topic }) {
             />
             <div className={styles['powered-by']}>
                 powered by <a
-                     href="https://resourcewatch.org/" 
-                     target="_blank"
-                     onClick={() => logEvent({
-                      action: 'click',
-                      category: 'Outbound traffic - ResourceWatch',
-                      label: 'Origin: Global Commons Report'
-                     })}
-                    >RESOURCEWATCH</a>
+                    href="https://resourcewatch.org/"
+                    target="_blank"
+                    onClick={() => logEvent({
+                        action: 'click',
+                        category: 'Outbound traffic - ResourceWatch',
+                        label: 'Origin: Global Commons Report'
+                    })}
+                >RESOURCEWATCH</a>
             </div>
         </div>
     );
 }
 
-WidgetPanel.propTypes = { widget: PropTypes.object.isRequired };
+WidgetPanel.propTypes = {
+    widget: PropTypes.object.isRequired,
+    widgetShouldBeLoaded: PropTypes.bool
+};
+
+WidgetPanel.defaultProps = {
+    widgetShouldBeLoaded: false
+}
 
 export default WidgetPanel;
 
