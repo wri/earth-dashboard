@@ -49,7 +49,6 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
   const loadWidget = async () => {
     try {
       const res = await fetchWidget(widget.id, { includes: 'metadata' });
-      console.log('res', res);
       setWidgetData({
         id: res.id,
         loading: false,

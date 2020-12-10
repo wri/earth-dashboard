@@ -148,7 +148,6 @@ function LayoutTopic(props) {
                   );
                 } else if (type === 'topic-news') {
                   const { numberOfElements, keywords } = block;
-                  console.log('keywords', keywords);
                   return (
                     <div
                       key={`topic-news-${keywords}`}

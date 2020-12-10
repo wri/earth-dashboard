@@ -21,11 +21,7 @@
                 {
                     "type": "topic-news",
                     "keywords": [
-                        "Forests", 
-                        "Rainforests", 
-                        "Deforestation", 
-                        "Tropical Forests", 
-                        "Rainforest Destruction"
+                        "forests"
                     ],
                     "numberOfElements": 3
                 }
@@ -82,12 +78,7 @@
                 {
                     "type": "topic-news",
                     "keywords": [
-                        "freshwater",
-                        "Water Pollution",
-                        "Rivers",
-                        "Water",
-                        "Drought",
-                        "Flooding"
+                        "water"
                     ],
                     "number-of-elements": 3
                 }
@@ -140,11 +131,7 @@
                 {
                     "type": "topic-news",
                     "keywords": [
-                        "Oceans",
-                        "Marine Conservation",
-                        "Marine Ecosystems",
-                        "Fisheries",
-                        "Marine"
+                        "oceans"
                     ],
                     "number-of-elements": 3
                 }
@@ -205,12 +192,7 @@
                 {
                     "type": "topic-news",
                     "keywords": [
-                        "climate",
-                        "Climate Change",
-                        "Impact Of Climate Change",
-                        "Carbon Emissions",
-                        "Global Warming",
-                        "Greenhouse Gas Emissions"
+                        "climate"
                     ],
                     "number-of-elements": 3
                 }
