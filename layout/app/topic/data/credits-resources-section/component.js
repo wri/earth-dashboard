@@ -28,7 +28,7 @@ function CreditsResourcesSection(props) {
           [styles['-desktop']]: !mobile,
           [styles['-mobile']]: mobile
         })}>
-          Polly Ghazy, Emily Nilson, Liz Sacoccia and Jessica Ertel.
+          Global Commons Alliance and World Resources Institute.
         </div>
       </div>
       <div className={styles['credits-field']}>
