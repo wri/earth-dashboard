@@ -47,11 +47,6 @@ export const FORESTS_COLOR = '#009A67';
 export const FORESTS_DARK_COLOR = '#004D33';
 export const FORESTS_SECONDARY_COLOR = '#004D33';
 
-export const MONGABAY_CLIMATE = 'climate';
-export const MONGABAY_FRESHWATER = 'water';
-export const MONGABAY_OCEAN = 'ocean';
-export const MONGABAY_FORESTS = 'forests';
-
 export function getColorByTopic(topicSt, darkOption=false) {
     switch (topicSt) {
         case CLIMATE:
@@ -114,19 +109,6 @@ export function getSecondaryColorByTopic(topicSt) {
             return OCEAN_SECONDARY_COLOR;
         case FORESTS:
             return FORESTS_SECONDARY_COLOR;
-    }
-}
-
-export function getMongabayTagsByTopic(topicSt) {
-    switch (topicSt) {
-        case CLIMATE:
-            return MONGABAY_CLIMATE;
-        case FRESHWATER:
-            return MONGABAY_FRESHWATER;
-        case OCEAN:
-            return MONGABAY_OCEAN;
-        case FORESTS:
-            return MONGABAY_FORESTS;
     }
 }
 
