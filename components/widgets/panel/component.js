@@ -64,7 +64,7 @@ function WidgetPanel({ widget, topic, widgetShouldBeLoaded }) {
         >
             <div className={styles['panel-title']}>
                 <span className={styles.title}>
-                    {widget?.name}
+                    {data?.name}
                 </span>
                 <div className={styles['panel-actions']}>
                     <button
