@@ -125,6 +125,8 @@ function LayoutTopic(props) {
                         widget={{ id: block.id }}
                         showSource={true}
                         widgetShouldBeLoaded={true}
+                        topic={topic}
+                        showLoadingPlaceholder={true}
                       />
                       <div
                         className={styles['share-button']}

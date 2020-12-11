@@ -3,8 +3,21 @@
     height: 100%;
     width: 100%;
 
-    .placeholder {
-        min-height: 100px;
-        min-width: 100%;
+    .loading-placeholder {
+        width: 100%;
+        font-size: 36px;
+        line-height: 1.25;
+        font-weight: 400;
+        filter: blur(7px);
+    }
+
+    .preview-container {
+        opacity: 0;
+        animation: fade-in 1.5s forwards;
+    }
+
+    @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 }

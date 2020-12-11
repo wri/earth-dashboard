@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 // Widget Editor
 import Renderer from '@widget-editor/renderer';
@@ -30,7 +31,13 @@ import {
 // styles
 import styles from './widget-preview.module.scss';
 
-function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
+function WidgetPreview({
+  widget,
+  showSource,
+  widgetShouldBeLoaded,
+  topic,
+  showLoadingPlaceholder
+}) {
   const [widgetData, setWidgetData] = useState({
     loading: widgetShouldBeLoaded,
     id: widget.id,
@@ -69,12 +76,33 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
     }
   }, []);
 
+  const getRandomPlaceHolder = () => {
+    const number = Math.round(Math.random() * 2);
+    if (number === 1) {
+      return (<div className={styles['loading-placeholder']}>
+        In parts of the Amazon, <span className={classnames({
+        [topic]: true,
+        [styles['highlighted-text']]: true
+      })}>dry spells are expected to double</span> in 2080 compared to 2006, leading to a potential increase in fires and decrease in species habitats and carbon storage.
+      </div>);
+    } else if (number === 2) {
+      return (<div className={styles['loading-placeholder']}>
+        In Amazon, <span className={classnames({
+        [topic]: true,
+        [styles['highlighted-text']]: true
+      })}>dry spells are expectaaed to double in 2080</span> in 2080 compared to 2006.
+      </div>);
+    }
+  };
+
   return (
     <ErrorBoundary className={styles['c-widget-preview']}>
-
+      {loading && showLoadingPlaceholder &&
+        getRandomPlaceHolder()
+      }
       {!loading && !isServer &&
-        <>
-          { useRenderer &&
+        <div className={styles['preview-container']}>
+          {useRenderer &&
             <Renderer
               widgetConfig={widgetType === 'map' ?
                 makeMapWidgetConfigCompatibleWithLeaflet(widgetConfig) :
@@ -127,7 +155,7 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
               showSource={showSource}
             />
           }
-        </>
+        </div>
       }
     </ErrorBoundary>);
 }
@@ -135,12 +163,15 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
 WidgetPreview.propTypes = {
   widget: PropTypes.object.isRequired,
   showSource: PropTypes.bool,
-  widgetShouldBeLoaded: PropTypes.bool
+  widgetShouldBeLoaded: PropTypes.bool,
+  showLoadingPlaceholder: PropTypes.bool
 };
 
 WidgetPreview.defaultProps = {
   showSource: false,
-  widgetShouldBeLoaded: false
+  widgetShouldBeLoaded: false,
+  topic: 'ocean',
+  showLoadingPlaceholder: false
 };
 
 export default WidgetPreview;
