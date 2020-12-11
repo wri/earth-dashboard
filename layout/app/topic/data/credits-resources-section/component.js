@@ -8,6 +8,7 @@ import ShareBox from 'components/share/share-box';
 // utils
 import { getColorByTopic, getMethodologyDataByTopic } from 'utils/topics';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
+import { logEvent } from 'utils/gtag';
 
 // styles
 import styles from './credits-resources-section.module.scss';
@@ -76,7 +77,15 @@ function CreditsResourcesSection(props) {
                 <h6 className={styles['field-title']}>
                   SHARE THIS PAGE
                 </h6>
-                <ShareBox topic={topic} url={isServer ? '' : window.location.href} />
+                <ShareBox
+                   topic={topic}
+                   url={isServer ? '' : window.location.href}
+                   onCopyLink={(url) => logEvent({
+                     action: 'Share page (Credits and Resources)',
+                     category: 'Shares',
+                     label: url
+                   })}
+                />
               </div>
             </div>
           </div>

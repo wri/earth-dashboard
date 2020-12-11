@@ -22,9 +22,9 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   const isServer = typeof window === 'undefined';
   const logClickLinkEvent = (linkName) => {
     logEvent({
-      action: 'click',
+      action: 'Click topic on homepage',
       category: 'Homepage',
-      label: linkName
+      label: `/${linkName}`
     });
   };
   const getLink = (name) =>

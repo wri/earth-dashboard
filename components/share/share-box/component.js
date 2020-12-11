@@ -18,7 +18,7 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 // styles
 import styles from './share-box.module.scss';
 
-function ShareBox({ url, topic, style, showInput, showBorder }) {
+function ShareBox({ url, topic, style, showInput, showBorder, onCopyLink }) {
     const getContent = (mobile = false, urlValue) =>
         <div 
             className={classnames({
@@ -90,6 +90,11 @@ function ShareBox({ url, topic, style, showInput, showBorder }) {
                             '-freshwater': topic === FRESHWATER,
                             [styles['copy-link-button']]: true
                         })}
+                        onClick={() => {
+                            if (onCopyLink) {
+                                onCopyLink(url)
+                            }
+                        }}
                     >
                         Copy link
                     </button>
@@ -117,7 +122,8 @@ ShareBox.propTypes = {
     topic: PropTypes.string.isRequired,
     style: PropTypes.object,
     showInput: PropTypes.bool,
-    showBorder: PropTypes.bool
+    showBorder: PropTypes.bool,
+    onCopyLink: PropTypes.func
 };
 
 ShareBox.defaultProps = {
