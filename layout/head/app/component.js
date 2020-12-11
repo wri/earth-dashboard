@@ -45,6 +45,7 @@ class HeadApp extends PureComponent {
         <meta property="og:url" content={explicitHostname ? explicitHostname : hostname} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={thumbnail} />
+        <meta property="og:image:url" content={thumbnail} />
         <meta property="og:image:secure_url" content={thumbnail} />
         <meta property="og:image:alt" content={title} />
         <meta property="og:site_name" content="Earth Dashboard"/>

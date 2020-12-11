@@ -15,11 +15,11 @@
         <g id="Earth-HQ---Indicator---Oceans" transform="translate(-702.000000, -1151.000000)">
             <g id="Group-22" transform="translate(710.000000, 1151.000000)">
                 <rect id="Rectangle-Copy-16" fill="#D5DCE1" fill-rule="nonzero" x="108" y="125" width="340" height="1"></rect>
-                <text id="Submarine-cables-(mi" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="18" font-style="condensed" font-weight="normal">
+                <text id="Submarine-cables-(mi" font-family="Barlow Condensed" font-size="16">
                     <tspan x="287" y="36" fill="#1A2129">Submarine cables</tspan>
                     <tspan x="287" y="58" fill="#7C90A2">(million km)</tspan>
                 </text>
-                <text id="+218%" font-family="BarlowCondensed-Regular, Barlow Condensed" font-size="36" font-style="condensed" font-weight="normal" line-spacing="36" fill="#31A9BF">
+                <text id="+218%" font-family="Barlow Condensed" font-size="36" line-spacing="36" fill="#31A9BF">
                     <tspan x="287" y="106">+218%</tspan>
                 </text>
                 <rect id="Rectangle-Copy-32" fill="#D5DCE1" fill-rule="nonzero" x="107" y="0" width="1" height="126"></rect>

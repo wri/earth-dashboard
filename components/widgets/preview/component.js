@@ -7,6 +7,8 @@ import RwAdapter from '@widget-editor/rw-adapter';
 
 // services
 import { fetchWidget } from 'services/widget';
+// utils
+import { makeMapWidgetConfigCompatibleWithLeaflet } from 'utils/widget';
 
 // components
 import ErrorBoundary from 'components/ui/error-boundary';
@@ -68,12 +70,13 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
   }, []);
 
   return (
-    <div className={styles['c-widget-preview']}>
-      {!loading && !isServer && 
-        <ErrorBoundary>
-          {useRenderer &&
+    <ErrorBoundary className={styles['c-widget-preview']}>
+
+      {!loading && !isServer &&
+        <>
+          { useRenderer &&
             <Renderer
-              widgetConfig={widgetConfig}
+              widgetConfig={makeMapWidgetConfigCompatibleWithLeaflet(widgetConfig)}
               adapter={RwAdapter}
             />
           }
@@ -122,13 +125,9 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
               showSource={showSource}
             />
           }
-        </ErrorBoundary>
+        </>
       }
-      {loading &&
-        <div className={styles.placeholder} />
-      }
-    </div>
-  );
+    </ErrorBoundary>);
 }
 
 WidgetPreview.propTypes = {

@@ -88,6 +88,8 @@
                         justify-content: center;
                         align-items: center;
                         padding: 5% 5% 5% 10%;
+                        opacity: 0;
+                        animation: fade-in 1s forwards;
 
                         h6 {
                             width: 100%;
@@ -103,6 +105,11 @@
 
                         &.-mobile {
                             padding: 0px 0px 0px 20px;
+                        }
+
+                        @keyframes fade-in {
+                            from { opacity: 0; }
+                            to { opacity: 1; }
                         }
                     }
 

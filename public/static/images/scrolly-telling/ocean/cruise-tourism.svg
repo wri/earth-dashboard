@@ -15,7 +15,7 @@
         <g id="Earth-HQ---Indicator---Oceans" transform="translate(-702.000000, -899.000000)">
             <g id="Group-20" transform="translate(710.000000, 899.000000)">
                 <rect id="Rectangle-Copy-14" fill="#D5DCE1" fill-rule="nonzero" x="108" y="125" width="340" height="1"></rect>
-                <text id="Cruise-tourism-(mill" font-family="Barlow Condensed" font-size="18">
+                <text id="Cruise-tourism-(mill" font-family="Barlow Condensed" font-size="16">
                     <tspan x="288" y="35" fill="#1A2129">Cruise tourism</tspan>
                     <tspan x="288" y="57" fill="#7C90A2">(million passengers)</tspan>
                 </text>
@@ -38,13 +38,13 @@
                 </g>
                 <polyline id="Path" stroke="#31A9BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero" points="170.347333 107.471016 173.745099 107.363967 177.142865 106.971456 180.54063 105.36573 183.947705 103.010664 187.345472 100.726963 190.743237 98.4432626 194.141003 92.4128661 197.548078 91.7348924 200.945844 87.702734 204.343609 83.9917206 207.741376 80.2450248 211.14845 75.6419409 214.546216 72.7873155 217.943982 70.0397384 221.341748 68.6837914 224.748823 64.0450247 228.146588 58.9066986 231.544354 53.2331304 234.94212 51.3776241 238.349195 50.6996504 241.746961 45.9181526 245.144727 43.4917208 248.542493 35.6771833 251.949567 31.8234389 255.347333 26.471016"></polyline>
                 <text id="1970" font-family="Barlow Condensed" font-size="14" fill="#38444F">
-                    <tspan x="82" y="19">1970</tspan>
+                    <tspan x="78" y="19">1970</tspan>
                 </text>
                 <text id="2000" font-family="Barlow Condensed" font-size="14" fill="#38444F">
-                    <tspan x="173" y="19">2000</tspan>
+                    <tspan x="169" y="19">2000</tspan>
                 </text>
                 <text id="2020" font-family="Barlow Condensed" font-size="14" fill="#38444F">
-                    <tspan x="236" y="19">2020</tspan>
+                    <tspan x="232" y="19">2020</tspan>
                 </text>
             </g>
         </g>

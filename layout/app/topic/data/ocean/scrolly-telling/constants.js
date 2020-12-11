@@ -198,7 +198,11 @@ export const OCEAN_STEPS = [
         stickyContainerElement:
             <MediaContextProvider>
                 <Desktop>
-                    <div className={styles['chart-with-title']}>
+                    <div className={classnames({
+                        [styles['chart-with-title']]: true,
+                        [styles['-aquaculture']]: true
+                    })}
+                    >
                         <div>
                             <h6 className="ocean">Aquaculture and fisheries</h6>
                             <img src="/static/images/scrolly-telling/ocean/aquaculture-and-fisheries.svg" />
@@ -208,6 +212,7 @@ export const OCEAN_STEPS = [
                 <Mobile>
                     <div className={classnames({
                         [styles['chart-with-title']]: true,
+                        [styles['-aquaculture']]: true,
                         [styles['-mobile']]: true
                     })}>
                         <div>

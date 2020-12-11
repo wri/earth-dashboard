@@ -13,7 +13,6 @@ import {
     CORS_PROXY,
     MONGABAY_RSS_FEED_URL
 } from './constants';
-import { getMongabayTagsByTopic } from 'utils/topics';
 
 // styles
 import styles from './topic-news.module.scss';
@@ -23,10 +22,11 @@ function TopicNews(props) {
     const [loading, setLoading] = useState(true);
     const [news, setNews] = useState([]);
 
+    console.log('topic', topic);
     useEffect(() => {
         setLoading(true);
         const urlWithProxy = 
-            `${CORS_PROXY}${MONGABAY_RSS_FEED_URL}${getMongabayTagsByTopic(topic.join(','))}`;
+            `${CORS_PROXY}${MONGABAY_RSS_FEED_URL}${topic.join(',')}`;
         const parser = new Parser();
         parser.parseURL(urlWithProxy)
             .then((response) => {
