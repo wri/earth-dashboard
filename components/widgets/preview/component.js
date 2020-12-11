@@ -76,8 +76,8 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
         <>
           { useRenderer &&
             <Renderer
-              widgetConfig={widgetType === 'map' ? 
-                makeMapWidgetConfigCompatibleWithLeaflet(widgetConfig) : 
+              widgetConfig={widgetType === 'map' ?
+                makeMapWidgetConfigCompatibleWithLeaflet(widgetConfig) :
                 widgetConfig}
               adapter={RwAdapter}
             />
