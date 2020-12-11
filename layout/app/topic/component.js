@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
@@ -98,36 +98,39 @@ function LayoutTopic(props) {
                 <span className={styles['header-title']}>THE GLOBAL COMMONS REPORT</span>
                 <span className={styles['header-subtitle']}>
                   powered by <a
-                     href="https://resourcewatch.org/" 
-                     target="_blank"
-                     onClick={() => logEvent({
+                    href="https://resourcewatch.org/"
+                    target="_blank"
+                    onClick={() => logEvent({
                       action: 'click',
                       category: 'Outbound traffic - ResourceWatch',
                       label: 'Origin: Global Commons Report'
-                     })}
-                    >RESOURCEWATCH</a>
+                    })}
+                  >RESOURCEWATCH</a>
                 </span>
               </div>
               {dataArray && dataArray.map(block => {
                 const { type } = block;
 
                 if (type === 'widget') {
-                  const widgetObj = widgets.find(w => w.id === block.id);
                   return (
                     <div
                       className={classnames({
                         [styles['indicator-block']]: true,
                         [styles['-widget-indicator']]: true
                       })}
-                      key={widgetObj?.id}
-                      id={widgetObj?.id}
+                      key={block.id}
+                      id={block.id}
                     >
-                      <WidgetPreview widget={widgetObj} showSource={true} />
+                      <WidgetPreview
+                        widget={{ id: block.id }}
+                        showSource={true}
+                        widgetShouldBeLoaded={true}
+                      />
                       <div
                         className={styles['share-button']}
                         onClick={() => {
                           setSharedata({
-                            url: `${window.location.href.split('#')[0]}#${widgetObj?.id}`,
+                            url: `${window.location.href.split('#')[0]}#${block.id}`,
                             embedTag: null,
                             showEmbed: false
                           })
@@ -135,7 +138,7 @@ function LayoutTopic(props) {
                           logEvent({
                             action: 'share',
                             category: 'Share',
-                            label: `Indicator widget ${widgetObj?.id}`
+                            label: `Indicator widget ${block.id}`
                           });
                         }}
                       >

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 class ErrorBoundary extends PureComponent {
 
@@ -19,9 +20,12 @@ class ErrorBoundary extends PureComponent {
 
     render() {
         const { error } = this.state;
-        const { message } = this.props;
+        const { message, className } = this.props;
         return (
-            <div className="c-error-boundary">
+            <div className={classnames({
+                'c-error-boundary': true,
+                ...(!!className && { [className]: true })
+            })}>
                 {error &&
                     <div>
                         {message}
@@ -34,7 +38,8 @@ class ErrorBoundary extends PureComponent {
 }
 
 ErrorBoundary.propTypes = {
-    message: PropTypes.string
+    message: PropTypes.string,
+    className: PropTypes.object
 };
 
 ErrorBoundary.defaultProps = {

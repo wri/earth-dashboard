@@ -2,7 +2,6 @@ import React from 'react';
 
 // services
 import { fetchTopicData } from 'services/data';
-import { fetchWidget } from 'services/widget';
 
 // components
 import LayoutTopic from 'layout/app/topic';
@@ -18,19 +17,8 @@ TopicPage.getInitialProps = async (context) => {
   // Preload widgets data
   const dataArray = topicData?.[topic]?.topicPage?.data;
   const widgetIDs = dataArray?.filter(elem => elem?.type === 'widget')?.map(elem => elem?.id);
-  const widgets = [];
-  if (widgetIDs) {
-    for (let i = 0; i < widgetIDs?.length; i++) {
-      try {
-        const widget = await fetchWidget(widgetIDs?.[i], { includes: 'metadata' });
-        widgets.push(widget);
-      } catch(error) {
-        console.error(error);
-      }
-    }
-  }
 
-  return { topicData, widgets };
+  return { topicData, widgets: widgetIDs };
 };
 
 export default TopicPage;

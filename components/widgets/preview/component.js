@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Widget Editor
 import Renderer from '@widget-editor/renderer';
 import RwAdapter from '@widget-editor/rw-adapter';
 
+// services
+import { fetchWidget } from 'services/widget';
 // utils
 import { makeMapWidgetConfigCompatibleWithLeaflet } from 'utils/widget';
 
 // components
+import ErrorBoundary from 'components/ui/error-boundary';
 import CombinedWidget from 'components/widgets/combined';
 import ListWidget from 'components/widgets/list';
 import StaticListWidget from 'components/widgets/static-list';
@@ -27,10 +30,17 @@ import {
 // styles
 import styles from './widget-preview.module.scss';
 
-function WidgetPreview({ widget, showSource }) {
-  const widgetConfig = widget && widget.widgetConfig;
-  const widgetType = widgetConfig && (widgetConfig.type || 'chart');
-  const useRenderer = ['map', 'chart'].includes(widgetType);
+function WidgetPreview({ widget, showSource, widgetShouldBeLoaded }) {
+  const [widgetData, setWidgetData] = useState({
+    loading: widgetShouldBeLoaded,
+    id: widget.id,
+    data: widgetShouldBeLoaded ? null : widget
+  });
+  const isServer = typeof window === 'undefined';
+  const { loading, data } = widgetData;
+  const widgetConfig = data?.widgetConfig;
+  const widgetType = widgetConfig?.type || 'chart';
+  const useRenderer = widgetType && ['map', 'chart'].includes(widgetType);
   const isEmbed = widgetType === 'embed';
   const isCombined = widgetType === COMBINED_WIDGET_TYPE;
   const isList = widgetType === LIST_WIDGET_TYPE;
@@ -40,69 +50,97 @@ function WidgetPreview({ widget, showSource }) {
   const isStaticText = widgetType === STATIC_TEXT_WIDGET_TYPE;
   const widgetEmbedUrl = isEmbed && widgetConfig.url;
 
+  const loadWidget = async () => {
+    try {
+      const res = await fetchWidget(widget.id, { includes: 'metadata' });
+      setWidgetData({
+        id: res.id,
+        loading: false,
+        data: res
+      });
+    } catch (err) {
+      console.error(`Error loading widget: ${widget.id} - ${err}`);
+    }
+  };
+
+  useEffect(() => {
+    if (widgetShouldBeLoaded) {
+      loadWidget();
+    }
+  }, []);
 
   return (
-    <div className={styles['c-widget-preview']}>
-      {useRenderer &&
-        <Renderer
-          widgetConfig={makeMapWidgetConfigCompatibleWithLeaflet(widgetConfig)}
-          adapter={RwAdapter}
-        />
+    <ErrorBoundary className={styles['c-widget-preview']}>
+
+      {!loading && !isServer &&
+        <>
+          { useRenderer &&
+            <Renderer
+              widgetConfig={widgetType === 'map' ?
+                makeMapWidgetConfigCompatibleWithLeaflet(widgetConfig) :
+                widgetConfig}
+              adapter={RwAdapter}
+            />
+          }
+          {isEmbed &&
+            <iframe
+              title={data.name}
+              src={widgetEmbedUrl}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+            />
+          }
+          {isCombined &&
+            <CombinedWidget
+              widget={data}
+              showSource={showSource}
+            />
+          }
+          {isList &&
+            <ListWidget
+              widget={data}
+              showSource={showSource}
+            />
+          }
+          {isStaticList &&
+            <StaticListWidget
+              widget={data}
+              showSource={showSource}
+            />
+          }
+          {isDynamicText &&
+            <DynamicTextWidget
+              widget={data}
+              showSource={showSource}
+            />
+          }
+          {isStaticText &&
+            <StaticTextWidget
+              widget={data}
+              showSource={showSource}
+            />
+          }
+          {isNews &&
+            <NewsWidget
+              widget={data}
+              showSource={showSource}
+            />
+          }
+        </>
       }
-      {isEmbed &&
-        <iframe
-          title={widget.name}
-          src={widgetEmbedUrl}
-          width="100%"
-          height="100%"
-          frameBorder="0"
-        />
-      }
-      {isCombined &&
-        <CombinedWidget
-          widget={widget}
-          showSource={showSource}
-        />
-      }
-      {isList &&
-        <ListWidget
-          widget={widget}
-          showSource={showSource}
-        />
-      }
-      {isStaticList &&
-        <StaticListWidget
-          widget={widget}
-          showSource={showSource}
-        />
-      }
-      {isDynamicText &&
-        <DynamicTextWidget
-          widget={widget}
-          showSource={showSource}
-        />
-      }
-      {isStaticText &&
-        <StaticTextWidget
-          widget={widget}
-          showSource={showSource}
-        />
-      }
-      {isNews &&
-        <NewsWidget
-          widget={widget}
-          showSource={showSource}
-        />
-      }
-    </div>
-  );
+    </ErrorBoundary>);
 }
 
 WidgetPreview.propTypes = {
   widget: PropTypes.object.isRequired,
-  showSource: PropTypes.bool
+  showSource: PropTypes.bool,
+  widgetShouldBeLoaded: PropTypes.bool
 };
 
-WidgetPreview.defaultProps = { showSource: false };
+WidgetPreview.defaultProps = {
+  showSource: false,
+  widgetShouldBeLoaded: false
+};
 
 export default WidgetPreview;
