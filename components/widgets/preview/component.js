@@ -101,7 +101,10 @@ function WidgetPreview({
         getRandomPlaceHolder()
       }
       {!loading && !isServer &&
-        <div className={styles['preview-container']}>
+        <div className={classnames({
+          [styles['preview-container']]: true,
+          [styles['-animate']]: showLoadingPlaceholder
+        })}>
           {useRenderer &&
             <Renderer
               widgetConfig={widgetType === 'map' ?

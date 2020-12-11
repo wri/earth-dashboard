@@ -12,8 +12,14 @@
     }
 
     .preview-container {
-        opacity: 0;
-        animation: fade-in 1.5s forwards;
+        display: flex;
+        height: 100%;
+        width: 100%;
+
+        &.-animate {
+            opacity: 0;
+            animation: fade-in 1.5s forwards;
+        }
     }
 
     @keyframes fade-in {
