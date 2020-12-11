@@ -16,6 +16,12 @@ function MongabayNews({ item, showThumbnail, showDescription }) {
         pubDate
     } = item;
 
+    const logArticleClick = () => logEvent({
+        action: 'Click on Mongabay article',
+        category: 'Outbound traffic',
+        label: `Article: ${title}`
+    });
+
     return (
         <div className={styles['c-mongabay-news']}>
             {showThumbnail &&
@@ -23,11 +29,7 @@ function MongabayNews({ item, showThumbnail, showDescription }) {
                     <a
                         href={link}
                         target="_blank"
-                        onClick={() => logEvent({
-                            action: 'click',
-                            category: 'Outbound traffic - Mongabay',
-                            label: `Article: ${title}`
-                        })}
+                        onClick={logArticleClick}
                     >
                         <img src={imageURL} />
                     </a>
@@ -37,11 +39,7 @@ function MongabayNews({ item, showThumbnail, showDescription }) {
                 <a
                     href={link}
                     target="_blank"
-                    onClick={() => logEvent({
-                        action: 'click',
-                        category: 'Outbound traffic - Mongabay',
-                        label: `Article: ${title}`
-                    })}
+                    onClick={logArticleClick}
                 >
                     <h5>{title}</h5>
                 </a>

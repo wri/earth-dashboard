@@ -72,9 +72,9 @@ function WidgetPanel({ widget, topic, widgetShouldBeLoaded }) {
                         onClick={() => {
                             setShareModalIsOpen(true);
                             logEvent({
-                                action: 'share',
-                                category: 'Share',
-                                label: `RW widget ${widget?.id}`
+                                action: 'Share widget',
+                                category: 'Shares',
+                                label: `Widget ${widget?.id}`
                             });
                         }}
                     />
@@ -153,7 +153,7 @@ function WidgetPanel({ widget, topic, widgetShouldBeLoaded }) {
                     onClick={() => logEvent({
                         action: 'click',
                         category: 'Outbound traffic - ResourceWatch',
-                        label: 'Origin: Global Commons Report'
+                        label: window.location.href
                     })}
                 >RESOURCEWATCH</a>
             </div>

@@ -10,9 +10,9 @@ import styles from './about.module.scss';
 function About() {
     const logPartnerClick = (partnerURL) =>
         logEvent({
-            category: 'Outbound traffic - Partners',
-            action: 'click',
-            label: `Partner ${partnerURL}`
+            category: 'Outbound traffic',
+            action: 'Click on partner logo',
+            label: partnerURL
         });
 
     return (

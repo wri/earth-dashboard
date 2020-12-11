@@ -103,9 +103,9 @@ function LayoutTopicData(props) {
       onClick={() => {
         setShareModalIsOpen(true);
         logEvent({
-          action: 'share',
-          category: 'Share',
-          label: scrollyTellingInView ? `Scrolly-telling ${topic}` : `Dive into the data ${topic}`
+          action: scrollyTellingInView ? 'Share page (Scrolly-telling)' : 'Share page (Dive into the Data)',
+          category: 'Shares',
+          label: shareModalURL
         })
       }}
     >

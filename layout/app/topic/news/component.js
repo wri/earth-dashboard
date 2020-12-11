@@ -9,7 +9,7 @@ import Spinner from 'components/ui/spinner';
 import { logEvent } from 'utils/gtag';
 
 // constants
-import { 
+import {
     CORS_PROXY,
     MONGABAY_RSS_FEED_URL
 } from './constants';
@@ -25,12 +25,12 @@ function TopicNews(props) {
     console.log('topic', topic);
     useEffect(() => {
         setLoading(true);
-        const urlWithProxy = 
+        const urlWithProxy =
             `${CORS_PROXY}${MONGABAY_RSS_FEED_URL}${topic.join(',')}`;
         const parser = new Parser();
         parser.parseURL(urlWithProxy)
             .then((response) => {
-                setNews(response.items.slice(0,limit));
+                setNews(response.items.slice(0, limit));
                 setLoading(false);
             })
             .catch((error) => {
@@ -56,8 +56,8 @@ function TopicNews(props) {
                                 href={newsElem.link}
                                 target="_blank"
                                 onClick={() => logEvent({
-                                    action: 'click',
-                                    category: 'Outbound traffic - Mongabay',
+                                    action: 'Click on Mongabay article',
+                                    category: 'Outbound traffic',
                                     label: `Article: ${newsElem.title}`
                                 })}
                             >

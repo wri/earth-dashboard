@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
@@ -101,9 +101,9 @@ function LayoutTopic(props) {
                     href="https://resourcewatch.org/"
                     target="_blank"
                     onClick={() => logEvent({
-                      action: 'click',
-                      category: 'Outbound traffic - ResourceWatch',
-                      label: 'Origin: Global Commons Report'
+                      action: 'Click on ResourceWatch',
+                      category: 'Outbound traffic',
+                      label: window.location.href
                     })}
                   >RESOURCEWATCH</a>
                 </span>
@@ -138,9 +138,9 @@ function LayoutTopic(props) {
                           })
                           setShareModalIsOpen(true);
                           logEvent({
-                            action: 'share',
-                            category: 'Share',
-                            label: `Indicator widget ${block.id}`
+                            action: 'Share widget',
+                            category: 'Shares',
+                            label: `Widget ${block.id}`
                           });
                         }}
                       >
