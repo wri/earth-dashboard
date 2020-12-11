@@ -12,21 +12,18 @@ import { setUser } from 'slices/user';
 import { setHostname } from 'slices/common';
 import { useRouter } from "next/router";
 
-// utils
-// import * as gtag from "utils/gtag";
+function EDApp({ Component, pageProps }) {
+  const router = useRouter();
 
-function EDApp({ Component, pageProps }){
-  // const router = useRouter();
-
-  // useEffect(() => {
-  //   const handleRouteChange = (url) => {
-  //     gtag.pageview(url);
-  //   };
-  //   router.events.on("routeChangeComplete", handleRouteChange);
-  //   return () => {
-  //     router.events.off("routeChangeComplete", handleRouteChange);
-  //   };
-  // }, [router.events]);
+  useEffect(() => {
+    const handleRouteChange = () => {
+      window.scroll({
+        top: 0,
+        left: 0
+      });
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+  }, []);
 
   return (
     <Component {...pageProps} />
@@ -58,8 +55,8 @@ EDApp.getInitialProps = async (appContext) => {
   }
 
   const appProps = Component.getInitialProps
-  ? await Component.getInitialProps(ctx)
-  : {};
+    ? await Component.getInitialProps(ctx)
+    : {};
 
   return { pageProps: { ...appProps, user, isServer, url } };
 };
