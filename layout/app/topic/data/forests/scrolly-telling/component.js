@@ -61,7 +61,8 @@ function ForestsScrollyTelling({ topic }) {
         <div className={classnames({
             [styles['visual-sources']]: true,
             [styles['-mobile']]: mobile,
-            [styles['-desktop']]: !mobile
+            [styles['-desktop']]: !mobile,
+            [styles['-show-year']]: currentStep.showYearCounter
         })}>
             {currentStep.visualSource &&
                 <div className={styles.source}>
@@ -74,6 +75,31 @@ function ForestsScrollyTelling({ topic }) {
                 </div>
             }
         </div>
+
+    const getYearContainer = (mobile) =>
+        <>
+            <div
+                className={classnames({
+                    [styles['year-value']]: true,
+                    [styles['-mobile']]: mobile,
+                    [styles['-desktop']]: !mobile,
+                    [styles['-long-year']]: !!currentStep.yearValuePrefix
+                })}
+                style={{ color: topicColor }}
+            >
+                {currentStep.yearValuePrefix && currentStep.yearValuePrefix}
+                {currentYear}
+            </div>
+            <div className={classnames({
+                [styles['year-subtitle']]: true,
+                [styles['-mobile']]: mobile,
+                [styles['-desktop']]: !mobile,
+                [styles['-long-year']]: !!currentStep.yearValuePrefix
+            })}
+            >
+                {currentStep.yearSubtitle}
+            </div>
+        </>;
 
     return (
         <div
@@ -106,18 +132,20 @@ function ForestsScrollyTelling({ topic }) {
                                 {getVisualSources(true)}
                             </Mobile>
                             {currentStep.showYearCounter &&
-                                <div className={styles['year-container']}>
-                                    <div
-                                        className={styles['year-value']}
-                                        style={{ color: topicColor }}
-                                    >
-                                        {currentStep.yearValuePrefix && currentStep.yearValuePrefix}
-                                        {currentYear}
-                                    </div>
-                                    <div className={styles['year-subtitle']}>
-                                        {currentStep.yearSubtitle}
-                                    </div>
-                                </div>
+                                <>
+                                    <Desktop className={classnames({
+                                        [styles['year-container']]: true,
+                                        [styles['-desktop']]: true
+                                    })}>
+                                        {getYearContainer(false)}
+                                    </Desktop>
+                                    <Mobile className={classnames({
+                                        [styles['year-container']]: true,
+                                        [styles['-mobile']]: true
+                                    })}>
+                                        {getYearContainer(true)}
+                                    </Mobile>
+                                </>
                             }
                         </div>
                     </div>
