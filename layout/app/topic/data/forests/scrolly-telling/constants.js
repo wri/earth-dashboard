@@ -51,7 +51,8 @@ export const FORESTS_STEPS = [
         stickyContainerElement:
             <div className={classnames({
                 [styles['-align-right']]: true,
-                [styles['south-america-map-dissolved']]: true
+                [styles['south-america-map-dissolved']]: true,
+                [styles['trees-container']]: true
             })}>
                 <img className={styles['map-image']} src="/static/images/scrolly-telling/forests/amazon_map.svg" />
                 {getTreesSVG('trees')}
@@ -75,7 +76,11 @@ export const FORESTS_STEPS = [
         yearValue: 2000,
         yearSubtitle: '513.8 Mha of tree cover in the Amazon basin',
         stickyContainerElement:
-            <div className={styles['-align-right']}>
+            <div className={classnames({
+                [styles['-align-right']]: true,
+                [styles['south-america-map-dissolved']]: true,
+                [styles['trees-container']]: true
+            })}>
                 {getTreesSVG('one-tree')}
             </div>,
         visualSource: null,
@@ -99,7 +104,11 @@ export const FORESTS_STEPS = [
         yearValue: 2019,
         yearSubtitle: '18.9 Mha of tree cover loss in the Amazon basin',
         stickyContainerElement:
-            <div className={styles['-align-right']}>
+            <div className={classnames({
+                [styles['-align-right']]: true,
+                [styles['south-america-map-dissolved']]: true,
+                [styles['trees-container']]: true
+            })}>
                 {getTreesSVG('saws')}
             </div>,
         visualSource: null,
