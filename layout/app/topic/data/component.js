@@ -47,7 +47,7 @@ function LayoutTopicData(props) {
   const { ref: scrollyTellingRef, inView: scrollyTellingInView } = useInView({ threshold: 0.01 });
   const { ref: changeAgentsRef, inView: changeAgentsInView } = useInView({ threshold: 0.8 });
   const { ref: challengeRef, inView: challengeInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
-  const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
+  const { ref: diveIntoDataRef, inView: diveIntoDataInView } = useInView({ threshold: 0.01 });
   const { ref: creditsRef, inView: creditsInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const pageMetadata = getPageMetadataByTopic(topic, true) || {};
   const isEmbed = embed === 'true';
