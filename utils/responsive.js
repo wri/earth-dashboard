@@ -15,7 +15,7 @@ const mediaStyle = EDMedia.createMediaStyle();
 function Desktop({ children, className, includeBiggerScreens = true }) {
   return (
     <Media
-      {...(includeBiggerScreens && {greaterThanOrEqual: 'md' })}
+      {...(includeBiggerScreens && { greaterThanOrEqual: 'md' })}
       {...(!includeBiggerScreens && { at: 'md' })}
       className={className}>
       {children}
@@ -32,14 +32,24 @@ function DesktopLarge({ children, className, includeBiggerScreens = true }) {
     </Media>);
 };
 
-function DesktopXLarge(props) {
+function DesktopXLarge({ children, className, includeBiggerScreens = true }) {
   return (
     <Media
-      greaterThanOrEqual="xl"
+      {...(includeBiggerScreens && { greaterThanOrEqual: 'xl' })}
+      {...(!includeBiggerScreens && { at: 'xl' })}
+      className={className}>
+      {children}
+    </Media>);
+};
+
+function DesktopXXLarge(props) {
+  return (
+    <Media
+      greaterThanOrEqual="xxl"
       className={props.className}>
       {props.children}
     </Media>);
-};
+}
 
 function Mobile(props) {
   return (
@@ -55,6 +65,7 @@ export {
   Desktop,
   DesktopLarge,
   DesktopXLarge,
+  DesktopXXLarge,
   Mobile,
   MediaContextProvider,
   mediaStyle

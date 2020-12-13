@@ -8,7 +8,14 @@ import WaterDrop from './water-drop';
 import WaterDropLocations from './water-drop-locations';
 
 // utils
-import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
+import {
+    Mobile,
+    Desktop,
+    MediaContextProvider,
+    DesktopLarge,
+    DesktopXLarge,
+    DesktopXXLarge
+} from 'utils/responsive';
 
 // constants
 import {
@@ -115,54 +122,69 @@ function FreshwaterScrollyTelling() {
         );
     };
 
+    const getWaterDropStory = (mode) =>
+        <>
+            <div className={classnames({
+                [styles['water-drop-container']]: true,
+                [styles[`-${mode}`]]: true
+            })}>
+                {getWaterDropElements()}
+                {getVisualSources(mode === 'mobile', false)}
+            </div>
+            {isBrowser &&
+                <div className={classnames({
+                    [styles.steps]: true,
+                    [styles[`-${mode}`]]: true
+                })}>
+                    {getWaterDropScrollama()}
+                </div>
+            }
+        </>;
+
     return (
         <div
             className={styles['c-freshwater-scrolly-telling']}
         >
             <MediaContextProvider>
-                <Desktop className={classnames({
+                <Desktop includeBiggerScreens={false} className={classnames({
                     [styles.story]: true,
                     [styles['water-drop-story']]: true,
                     [styles['-desktop']]: true
                 })}
                 >
-                    <div className={classnames({
-                        [styles['water-drop-container']]: true,
-                        [styles['-desktop']]: true
-                    })}>
-                        {getWaterDropElements()}
-                        {getVisualSources(false, false)}
-                    </div>
-                    {isBrowser &&
-                        <div className={classnames({
-                            [styles.steps]: true,
-                            [styles['-desktop']]: true
-                        })}>
-                            {getWaterDropScrollama()}
-                        </div>
-                    }
+                    {getWaterDropStory('desktop')}
                 </Desktop>
+                <DesktopLarge includeBiggerScreens={false} className={classnames({
+                    [styles.story]: true,
+                    [styles['water-drop-story']]: true,
+                    [styles['-desktop-large']]: true
+                })}
+                >
+                    {getWaterDropStory('desktop-large')}
+                </DesktopLarge>
+                <DesktopXLarge includeBiggerScreens={false} className={classnames({
+                    [styles.story]: true,
+                    [styles['water-drop-story']]: true,
+                    [styles['-desktop-xlarge']]: true
+                })}
+                >
+                    {getWaterDropStory('desktop-xlarge')}
+                </DesktopXLarge>
+                <DesktopXXLarge includeBiggerScreens={false} className={classnames({
+                    [styles.story]: true,
+                    [styles['water-drop-story']]: true,
+                    [styles['-desktop-xxlarge']]: true
+                })}
+                >
+                    {getWaterDropStory('desktop-xxlarge')}
+                </DesktopXXLarge>
                 <Mobile className={classnames({
                     [styles.story]: true,
                     [styles['water-drop-story']]: true,
                     [styles['-mobile']]: true
                 })}
                 >
-                    <div className={classnames({
-                        [styles['water-drop-container']]: true,
-                        [styles['-mobile']]: true
-                    })}>
-                        {getWaterDropElements()}
-                        {getVisualSources(true, false)}
-                    </div>
-                    {isBrowser &&
-                        <div className={classnames({
-                            [styles.steps]: true,
-                            [styles['-mobile']]: true
-                        })}>
-                            {getWaterDropScrollama()}
-                        </div>
-                    }
+                    {getWaterDropStory('mobile')}
                 </Mobile>
                 <div
                     className={classnames({

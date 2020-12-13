@@ -25,9 +25,15 @@
                     margin: 0px;
                     padding: 0px 16px 0px 16px;
                 }
-
-                .water-drop-elements {
-                    margin-left: 40%;
+                &.-desktop, &.-desktop-large, &.-desktop-xlarge {
+                    .water-drop-elements {
+                        margin-left: 40%;
+                    }
+                }
+                &.-desktop-xxlarge {
+                    .water-drop-elements {
+                        margin-left: 0px;
+                    }
                 }
             }
         }
