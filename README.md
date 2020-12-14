@@ -97,45 +97,29 @@ Custom error page _(only shown in production)_. _Please refer to the [Custom Err
 ### **./layouts**
 Layouts are the second component to be loaded as part of the page render process. They contain all components that will be displayed in the page. Layouts don't directly fetch data but rather wait for it. Internal components could ask for data though.
 
-Layouts should follow the same folder structure as pages. For example: if you need created your `myawesome` page in `pages/app/myawesome`, the layout for this page should be placed in `layouts/app/myawesome` and so on.
-
 ### **./components**
-Every component will be contained in its own folder with its name. A basic component will contain the component itself (`component.js`) and an entrypoint to it (`index.js`). If the component needs access to the store, we will provide it here, otherwise we will just import the component. Additional files could be `styles.scss` (containing component-scoped styles) and `constants.js` (component-scoped constants).
+Every component will be contained in its own folder with its name. A basic component will contain the component itself (`component.js`) plus an entrypoint to it (`index.js`). If the component needs access to the store, we will provide it here, otherwise we will just import the component. Additional files would be `component-name.module.scss` (containing component-scoped styles), `constants.js` (component-scoped constants), and `data.js` (component-scoped data).
 
 ```
 ./components/sidebar/
-   ./constants.js (not mandatory)
-   ./component.js (mandatory)
-   ./index.js (mandatory)
-   ./styles.scss (not mandatory)
+   ./constants.js (not required)
+   ./component.js (required)
+   ./index.js (required)
+   ./sidebar.module.scss (not required)
+   ./data.js (not required)
 ```
 
-Try to make stateless component (unless it really needs it). This will make components easier to track and reuse.
+_Recommendation: Try to make stateless components (unless it's necessary for some reason). This will make components easier to track and reuse._
 
-### **./modules**
-Contains all redux modules used in the application. Right now, there are components with its own module inside the component folder: try to avoid this behaviour. Keeping modules per component will increase the size of the store and make it harder to handle in the long term.
 
-Usually modules are composed by, at least, three files: `actions`, `reducers`, `initial-state` and its corresponding `index` entrypoint file. To export it, just add it in `modules/index`, you will notice we use [@reduxjs/toolkit](https://github.com/Vizzuality/@reduxjs/toolkit) to handle the modules.
-
-_Legacy note:_ there is a folder named `./redactions` that also contains redux modules not handled with `@reduxjs/toolkit`. This folder is still in use, but the intention is to move everything and organise it according `@reduxjs/toolkit` specs.
-
-### **./redactions**
-Legacy folder containing redux modules written in a way not supported by `@reduxjs/toolkit`. Any new module should be placed in `./modules`.
-
-### **./selectors**
-This is a legacy folder. Still in use. [Selectors](https://github.com/reduxjs/reselect) must be used in component's scope. Using them globally will produce the loose of ability of caching. You can have more info [here](https://github.com/reduxjs/reselect#q-can-i-share-a-selector-across-multiple-component-instances).
+### **./redactions** + **./selectors**
+These two are legacy folders from RW that are necessary for the back office components to work. Please refer to the [Resource Watch documentation](https://github.com/resource-watch/resource-watch) for more information about this.
 
 
 ### **css**
 Contains generic application styles, grid, settings, mixins and anything style-related in a global scope. It also contains third-app components styles if needed.
 
-_Legacy note:_ in the `./css/components` folder you will notice a lot of styles whose scope is the component itself. From now on, components must have its own styles inside the component folder. Check `components` section to learn more about how to include component-scoped styles.
-
-
-### **./constants**
-Constants are variables available across the application. They can be used anywhere without exception. When you are about to add a new one here, please keep in mind the scope of this/these constants and if they are worth it to place here or inside the component is going to use them.
-
-As constants, they must be written in uppercase and using [Snake Case](https://en.wikipedia.org/wiki/Snake_case) notation. Example: `MY_AWESOME_CONSTANT`
+_Legacy note:_ you will notice some style definitions whose scope are the components themselves as part of the `./css/components` folder. These however are RW migrated styles that were necessary for the back office to work properly. Please refer to the [Resource Watch documentation](https://github.com/resource-watch/resource-watch) for more information about this.
 
 ### **./services**
 Services are in charge of connecting the application with external APIs/other services. Every service contains a set of fetches (usually based on [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)), it's possible to extend them if needed, but take into account there can't be any app-related logic here. Every fetch should be able to be used in any context. TLDR: make services agnostic.
