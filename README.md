@@ -122,34 +122,23 @@ Contains generic application styles, grid, settings, mixins and anything style-r
 _Legacy note:_ you will notice some style definitions whose scope are the components themselves as part of the `./css/components` folder. These however are RW migrated styles that were necessary for the back office to work properly. Please refer to the [Resource Watch documentation](https://github.com/resource-watch/resource-watch) for more information about this.
 
 ### **./services**
-Services are in charge of connecting the application with external APIs/other services. Every service contains a set of fetches (usually based on [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)), it's possible to extend them if needed, but take into account there can't be any app-related logic here. Every fetch should be able to be used in any context. TLDR: make services agnostic.
+Services are in charge of connecting the application with external APIs/other services. Every service contains a set of fetches (usually based on [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)), it's possible to extend them if needed, but take into account there shouldn't be any app-related logic here. Every fetch should be able to be used in any context.
 
 Services are based on [Axios](https://github.com/axios/axios) to manage `XMLHttpRequests/HTTP` requests.
 
-Services are split into entities (most of them coming from [WRI API](https://resource-watch.github.io/doc-api/index-rw.html), feel free to create a new one if needed. Every fetch _must_ be documented. You can found more info about it in the `documentation` section.
+Services are split into entities (most of them coming from [WRI API](https://resource-watch.github.io/doc-api/index-rw.html), feel free to create a new one if needed. Every fetch _must_ be documented. You can find more info about it in the `documentation` section.
 
-_Legacy note_: you will find services as classes with custom options. The intention is to get rid of these classes and use standalone functions able to perform the desired fetch. Also, you will find fetches performed with `isomorphic-fetch`, replace it with `axios` whenever you can.
+All request wrappers are implemented as standalone functions using Axios that can potentially be used anywhere without any initialization. Most - if not all - of them return promises that should be handled in order to retrieve the results or manage potential errors.
 
 ### **./utils**
-Contains functions that make thing easier and are used across the app. Like `constants`, think about the scope of your util before implementing it here, perhaps just adding it at component's level is enough.
+Contains general use functions that are used across the app. Like `constants`, think about the scope of your _util_ before implementing it here, perhaps just adding it at component's level is enough.
 
-### **./static**
-It's the `public` Next's folder. Contains assets accessible across the app, like `images`, `icons`, `favicon`, `robots`, ...
-
-# Routing
-_Next_ provides an easy way to manage our app's routes via [next-routes](https://github.com/fridays/next-routes). All app routes are served in `./routes`. A quick look at it:
-
-``` javascript
-routes.add('home', '/', 'app/home');
-routes.add('splash', '/splash', 'app/splash');
-routes.add('splash_detail', '/splash/:id', 'app/splash-detail');
-```
-
-The first value of the method represents the unique name of the route, the second is the route itself, while the third parameter represents the path to the page that should be rendered (starting from the **_./pages_** folder). Take into account, in some cases, and with some parameter combination, the order of route declaration matters.
+### **.public/static**
+Contains assets that are used across the app, like `data`, `images`, `favicon`, `robots`...
 
 # App State Management 🌅
 
-Earth Dashboard uses [**Redux**](http://redux.js.org/) along to [**next-redux-wrapper**](https://github.com/kirill-konshin/next-redux-wrapper) to manage the app state. With `next` 7.0 is not necessary anymore to wrap every page to access to the store. Wrapping `_app` is enough, rest of pages will access to the store like the rest of your components.
+Earth Dashboard uses [**Redux**](http://redux.js.org/) together with [**@reduxjs/toolkit**](https://github.com/reduxjs/redux-toolkit) to manage the app state.
 
 
 Connection to the store must be isolated from the component itself (separating presentation from logic).
