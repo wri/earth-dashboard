@@ -79,24 +79,23 @@ There are the main pages/groups of pages:
 - _index_: homepage.
 - _about_: about page _(it's actually loading the homepage with the navigation menu open and the about tab selected)_.
 - _404_: custom page not found layout.
+- _sign-in_: back office log in page.
 
-_Please take this into account where a page should be placed based on these criteria._
+_NOTE: The way pages and routing works have changed in the last versions of `Next.js` has changed in the most recent versions of the library. For more information about how this works in the version that ED uses - `9.5.3` please check the [official routing documentation](https://nextjs.org/docs/routing/introduction)._
 
-Every time you add a new page, you will need to tell _Next_ when it should load it. This can be done in the `./routes.js` file.
-
-Apart from the custom pages, there are 3 unique pages defined by _Next_ will see below:
+Apart from the custom pages, there exist the following 3 unique pages defined by _Next_:
 
 #### _app
-The page of pages. All ready will inherit from this one, so keep in mind this. Earth Dashboard's pages are connect to redux thanks to this file. It also sets some states and fetches used in the whole app. You can find more info [here](https://github.com/zeit/next.js#custom-app).
+Page overriding the default page initialization. The code included here applies to all the rest of pages defined for the app. _Please refer to the [Custom `App`](https://nextjs.org/docs/advanced-features/custom-app) section of the official documentation for more information about this._
 
 #### _document
-Contains the definition of how the app will be rendered. You can find more info [here](https://github.com/zeit/next.js#custom-document).
+Custom Document page used to augment the application's `<html>` and `<body>` tags. _Please refer to the [Custom `Document`](https://nextjs.org/docs/advanced-features/custom-document) section of the official documentation for more information about this._
 
 #### _error
-Fallback page where the app leads if there has been an error, or the route doesn't exit. It can be customized. You can find more info [here](https://github.com/zeit/next.js#custom-error-handling).
+Custom error page _(only shown in production)_. _Please refer to the [Custom Error Page](https://nextjs.org/docs/advanced-features/custom-error-page) section of the official documentation for more information about this._
 
 ### **./layouts**
-Layouts are the second component to be loaded through the page. They contain all components that will be displayed in the page. Layouts do _not_ fetch data, they wait for it. Inner components could ask for data though.
+Layouts are the second component to be loaded as part of the page render process. They contain all components that will be displayed in the page. Layouts don't directly fetch data but rather wait for it. Internal components could ask for data though.
 
 Layouts should follow the same folder structure as pages. For example: if you need created your `myawesome` page in `pages/app/myawesome`, the layout for this page should be placed in `layouts/app/myawesome` and so on.
 
