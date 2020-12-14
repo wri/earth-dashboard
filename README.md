@@ -5,10 +5,9 @@ Earth Dashboard features hundreds of data sets all in one place on the state of 
 
 Native execution requires the following:
 
-- [Nodejs v8.x](https://nodejs.org/en/) 
+- [Nodejs v10.x](https://nodejs.org/en/) 
 - [yarn](https://yarnpkg.com/)
 - [RW API](https://api.resourcewatch.org/)
-- [Redis](https://redis.io/)
 
 # Installation (native) 📦
 Run
@@ -60,25 +59,23 @@ The application is built on top of [**Next.js**](https://github.com/zeit/next.js
 ## Folder structure
 
 Earth Dashboard application is split into the next main folders:
-- pages
-- layout
 - components
-- modules
+- css
+- layout
+- pages
+- public
 - redactions (legacy)
 - selectors (legacy)
-- css
-- constants
 - services
+- slices
 - utils
-- public
 
 ### **./pages**
 Pages are the first component to be loaded according _Next_ specification. They contain the layout to be loaded. They are also in charge of fetching data for that specific page.
 
-Pages are split into 3 main folders:
-- _app_: contains most of the pages of the site not linked to MyRW or the administration.
-- _myrw_ contains pages related with MyRW (My Earth Dashboard) user page.
-- _admin_: contains pages related with RW data administration.
+There are the main pages/groups of pages:
+- _[topic]_: contains the two pages that are related to each specific topic i) indicators page _(index.js)_ and ii) story page _(data.js)_.
+- _admin_: contains the pages that are rendered as part of the back office.
 
 _Please take this into account where a page should be placed based on these criteria._
 
