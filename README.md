@@ -74,8 +74,11 @@ Earth Dashboard application is split into the next main folders:
 Pages are the first component to be loaded according _Next_ specification. They contain the layout to be loaded. They are also in charge of fetching data for that specific page.
 
 There are the main pages/groups of pages:
-- _[topic]_: contains the two pages that are related to each specific topic i) indicators page _(index.js)_ and ii) story page _(data.js)_.
+- _[topic]_: contains the two pages that are related to each specific topic i) **indicators page** _(index.js)_ and ii) **"scrolly-telling" page** _(data.js)_.
 - _admin_: contains the pages that are rendered as part of the back office.
+- _index_: homepage.
+- _about_: about page _(it's actually loading the homepage with the navigation menu open and the about tab selected)_.
+- _404_: custom page not found layout.
 
 _Please take this into account where a page should be placed based on these criteria._
 
