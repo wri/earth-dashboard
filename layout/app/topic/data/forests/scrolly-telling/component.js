@@ -87,8 +87,7 @@ function ForestsScrollyTelling({ topic }) {
                 })}
                 style={{ color: topicColor }}
             >
-                {currentStep.yearValuePrefix && currentStep.yearValuePrefix}
-                {currentYear}
+                {currentStep.yearValuePrefix && currentStep.yearValuePrefix}{currentYear}
             </div>
             <div className={classnames({
                 [styles['year-subtitle']]: true,
