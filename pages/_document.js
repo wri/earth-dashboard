@@ -8,8 +8,8 @@ class MyDocument extends Document {
 
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
-    return { 
-      ...initialProps, 
+    return {
+      ...initialProps,
       includeGA: !ctx.asPath.startsWith('/admin') && !ctx.asPath.startsWith('/sign-in')
     }
   }
@@ -84,13 +84,33 @@ class MyDocument extends Document {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${GA_TRACKING_ID}', {
+              gtag('config', '${GA_TRACKING_ID}',+ {
                 page_path: window.location.pathname,
               });
           `
                 }}
               />
             </>
+          }
+          {/* ------ HOTJAR TRACKING CODE ------ */}
+          {process.env.ED_NODE_ENV === 'production' && includeGA &&
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+              (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:2159027,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+                })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+              `
+              }} />
+          }
+          {/* ------ CRAZY EGG ------ */}
+          {process.env.ED_NODE_ENV === 'production' && includeGA &&
+            <script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0069/4623.js" async="async" />
           }
         </Head>
         <body>
