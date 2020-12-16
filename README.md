@@ -160,25 +160,15 @@ export default connect(
 The example above shows an `index.js` separating the logic from the component layout.
 
 # Authentication 🚫
-Authentication is based on the [RW API user management API](https://resource-watch.github.io/doc-api/index-rw.html#user-management).
+Authentication is based on the [RW API user management API](https://resource-watch.github.io/doc-api/index-rw.html#user-management) and it's handled entirely by the front-end. Check the methods from [services/user](https://github.com/wri/earth-dashboard/blob/master/services/user.js) and the [user slice](https://github.com/wri/earth-dashboard/blob/master/slices/user.js) for more information about this.
+
+# Mobile/Desktop/Desktop large... versions 📱
+We're using [Fresnel](https://github.com/artsy/fresnel) -an SSR compatible approach to CSS, to manage the different versions of the interface depending on the device that's being used. Definitions of the breakpoints plus components that can be used to define the interface for each of the cases can be found on [/utils/responsive](https://github.com/wri/earth-dashboard/blob/master/utils/responsive.js)
 
 # Optimization 🔎
 ## Bundle Analyzer
-[Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) is a development tool that creates an interactive treemap visualization of the contents of all your bundles.
+[Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) is a development tool that creates an interactive treemap visualization of the contents of all your bundles. 
 
 To run it: `yarn bundle-analyzer`.
 
 It will run the application in production build (makes a `yarn build` internally) and open a tab in your browser displaying the bundles treemap.
-
-
-# Deploy 🛫
-
-TBD
-
-# Documentation 📝
-Every change in the app must be documented in the `./CHANGELOG.md` file according to [keep a changelog](https://keepachangelog.com/en/1.0.0/) specs.
-
-At code level, comments must follow [JSDocs](https://jsdoc.app) specs.
-
-# Contributing 🎁
-If you have any amazing idea for the project, please [tell us](https://github.com/wri/earth-dashboard/issues) before develop it.
