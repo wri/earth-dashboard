@@ -5,10 +5,9 @@ Earth Dashboard features hundreds of data sets all in one place on the state of 
 
 Native execution requires the following:
 
-- [Nodejs v8.x](https://nodejs.org/en/) 
+- [Nodejs v10.x](https://nodejs.org/en/) 
 - [yarn](https://yarnpkg.com/)
 - [RW API](https://api.resourcewatch.org/)
-- [Redis](https://redis.io/)
 
 # Installation (native) 📦
 Run
@@ -60,113 +59,86 @@ The application is built on top of [**Next.js**](https://github.com/zeit/next.js
 ## Folder structure
 
 Earth Dashboard application is split into the next main folders:
-- pages
-- layout
 - components
-- modules
+- css
+- layout
+- pages
+- public
 - redactions (legacy)
 - selectors (legacy)
-- css
-- constants
 - services
+- slices
 - utils
-- public
 
 ### **./pages**
 Pages are the first component to be loaded according _Next_ specification. They contain the layout to be loaded. They are also in charge of fetching data for that specific page.
 
-Pages are split into 3 main folders:
-- _app_: contains most of the pages of the site not linked to MyRW or the administration.
-- _myrw_ contains pages related with MyRW (My Earth Dashboard) user page.
-- _admin_: contains pages related with RW data administration.
+There are the main pages/groups of pages:
+- _[topic]_: contains the two pages that are related to each specific topic i) **indicators page** _(index.js)_ and ii) **"scrolly-telling" page** _(data.js)_.
+- _admin_: contains the pages that are rendered as part of the back office.
+- _index_: homepage.
+- _about_: about page _(it's actually loading the homepage with the navigation menu open and the about tab selected)_.
+- _404_: custom page not found layout.
+- _sign-in_: back office log in page.
 
-_Please take this into account where a page should be placed based on these criteria._
+_NOTE: The way pages and routing works have changed in the last versions of `Next.js` has changed in the most recent versions of the library. For more information about how this works in the version that ED uses - `9.5.3` please check the [official routing documentation](https://nextjs.org/docs/routing/introduction)._
 
-Every time you add a new page, you will need to tell _Next_ when it should load it. This can be done in the `./routes.js` file.
-
-Apart from the custom pages, there are 3 unique pages defined by _Next_ will see below:
+Apart from the custom pages, there exist the following 3 unique pages defined by _Next_:
 
 #### _app
-The page of pages. All ready will inherit from this one, so keep in mind this. Earth Dashboard's pages are connect to redux thanks to this file. It also sets some states and fetches used in the whole app. You can find more info [here](https://github.com/zeit/next.js#custom-app).
+Page overriding the default page initialization. The code included here applies to all the rest of pages defined for the app. _Please refer to the [Custom `App`](https://nextjs.org/docs/advanced-features/custom-app) section of the official documentation for more information about this._
 
 #### _document
-Contains the definition of how the app will be rendered. You can find more info [here](https://github.com/zeit/next.js#custom-document).
+Custom Document page used to augment the application's `<html>` and `<body>` tags. _Please refer to the [Custom `Document`](https://nextjs.org/docs/advanced-features/custom-document) section of the official documentation for more information about this._
 
 #### _error
-Fallback page where the app leads if there has been an error, or the route doesn't exit. It can be customized. You can find more info [here](https://github.com/zeit/next.js#custom-error-handling).
+Custom error page _(only shown in production)_. _Please refer to the [Custom Error Page](https://nextjs.org/docs/advanced-features/custom-error-page) section of the official documentation for more information about this._
 
 ### **./layouts**
-Layouts are the second component to be loaded through the page. They contain all components that will be displayed in the page. Layouts do _not_ fetch data, they wait for it. Inner components could ask for data though.
-
-Layouts should follow the same folder structure as pages. For example: if you need created your `myawesome` page in `pages/app/myawesome`, the layout for this page should be placed in `layouts/app/myawesome` and so on.
+Layouts are the second component to be loaded as part of the page render process. They contain all components that will be displayed in the page. Layouts don't directly fetch data but rather wait for it. Internal components could ask for data though.
 
 ### **./components**
-Every component will be contained in its own folder with its name. A basic component will contain the component itself (`component.js`) and an entrypoint to it (`index.js`). If the component needs access to the store, we will provide it here, otherwise we will just import the component. Additional files could be `styles.scss` (containing component-scoped styles) and `constants.js` (component-scoped constants).
+Every component will be contained in its own folder with its name. A basic component will contain the component itself (`component.js`) plus an entrypoint to it (`index.js`). If the component needs access to the store, we will provide it here, otherwise we will just import the component. Additional files would be `component-name.module.scss` (containing component-scoped styles), `constants.js` (component-scoped constants), and `data.js` (component-scoped data).
 
 ```
 ./components/sidebar/
-   ./constants.js (not mandatory)
-   ./component.js (mandatory)
-   ./index.js (mandatory)
-   ./styles.scss (not mandatory)
+   ./constants.js (not required)
+   ./component.js (required)
+   ./index.js (required)
+   ./sidebar.module.scss (not required)
+   ./data.js (not required)
 ```
 
-Try to make stateless component (unless it really needs it). This will make components easier to track and reuse.
+_Recommendation: Try to make stateless components (unless it's necessary for some reason). This will make components easier to track and reuse._
 
-### **./modules**
-Contains all redux modules used in the application. Right now, there are components with its own module inside the component folder: try to avoid this behaviour. Keeping modules per component will increase the size of the store and make it harder to handle in the long term.
 
-Usually modules are composed by, at least, three files: `actions`, `reducers`, `initial-state` and its corresponding `index` entrypoint file. To export it, just add it in `modules/index`, you will notice we use [@reduxjs/toolkit](https://github.com/Vizzuality/@reduxjs/toolkit) to handle the modules.
-
-_Legacy note:_ there is a folder named `./redactions` that also contains redux modules not handled with `@reduxjs/toolkit`. This folder is still in use, but the intention is to move everything and organise it according `@reduxjs/toolkit` specs.
-
-### **./redactions**
-Legacy folder containing redux modules written in a way not supported by `@reduxjs/toolkit`. Any new module should be placed in `./modules`.
-
-### **./selectors**
-This is a legacy folder. Still in use. [Selectors](https://github.com/reduxjs/reselect) must be used in component's scope. Using them globally will produce the loose of ability of caching. You can have more info [here](https://github.com/reduxjs/reselect#q-can-i-share-a-selector-across-multiple-component-instances).
+### **./redactions** + **./selectors**
+These two are legacy folders from RW that are necessary for the back office components to work. Please refer to the [Resource Watch documentation](https://github.com/resource-watch/resource-watch) for more information about this.
 
 
 ### **css**
 Contains generic application styles, grid, settings, mixins and anything style-related in a global scope. It also contains third-app components styles if needed.
 
-_Legacy note:_ in the `./css/components` folder you will notice a lot of styles whose scope is the component itself. From now on, components must have its own styles inside the component folder. Check `components` section to learn more about how to include component-scoped styles.
-
-
-### **./constants**
-Constants are variables available across the application. They can be used anywhere without exception. When you are about to add a new one here, please keep in mind the scope of this/these constants and if they are worth it to place here or inside the component is going to use them.
-
-As constants, they must be written in uppercase and using [Snake Case](https://en.wikipedia.org/wiki/Snake_case) notation. Example: `MY_AWESOME_CONSTANT`
+_Legacy note:_ you will notice some style definitions whose scope are the components themselves as part of the `./css/components` folder. These however are RW migrated styles that were necessary for the back office to work properly. Please refer to the [Resource Watch documentation](https://github.com/resource-watch/resource-watch) for more information about this.
 
 ### **./services**
-Services are in charge of connecting the application with external APIs/other services. Every service contains a set of fetches (usually based on [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)), it's possible to extend them if needed, but take into account there can't be any app-related logic here. Every fetch should be able to be used in any context. TLDR: make services agnostic.
+Services are in charge of connecting the application with external APIs/other services. Every service contains a set of fetches (usually based on [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)), it's possible to extend them if needed, but take into account there shouldn't be any app-related logic here. Every fetch should be able to be used in any context.
 
 Services are based on [Axios](https://github.com/axios/axios) to manage `XMLHttpRequests/HTTP` requests.
 
-Services are split into entities (most of them coming from [WRI API](https://resource-watch.github.io/doc-api/index-rw.html), feel free to create a new one if needed. Every fetch _must_ be documented. You can found more info about it in the `documentation` section.
+Services are split into entities (most of them coming from [WRI API](https://resource-watch.github.io/doc-api/index-rw.html), feel free to create a new one if needed. Every fetch _must_ be documented. You can find more info about it in the `documentation` section.
 
-_Legacy note_: you will find services as classes with custom options. The intention is to get rid of these classes and use standalone functions able to perform the desired fetch. Also, you will find fetches performed with `isomorphic-fetch`, replace it with `axios` whenever you can.
+All request wrappers are implemented as standalone functions using Axios that can potentially be used anywhere without any initialization. Most - if not all - of them return promises that should be handled in order to retrieve the results or manage potential errors.
 
 ### **./utils**
-Contains functions that make thing easier and are used across the app. Like `constants`, think about the scope of your util before implementing it here, perhaps just adding it at component's level is enough.
+Contains general use functions that are used across the app. Like `constants`, think about the scope of your _util_ before implementing it here, perhaps just adding it at component's level is enough.
 
-### **./static**
-It's the `public` Next's folder. Contains assets accessible across the app, like `images`, `icons`, `favicon`, `robots`, ...
-
-# Routing
-_Next_ provides an easy way to manage our app's routes via [next-routes](https://github.com/fridays/next-routes). All app routes are served in `./routes`. A quick look at it:
-
-``` javascript
-routes.add('home', '/', 'app/home');
-routes.add('splash', '/splash', 'app/splash');
-routes.add('splash_detail', '/splash/:id', 'app/splash-detail');
-```
-
-The first value of the method represents the unique name of the route, the second is the route itself, while the third parameter represents the path to the page that should be rendered (starting from the **_./pages_** folder). Take into account, in some cases, and with some parameter combination, the order of route declaration matters.
+### **.public/static**
+Contains assets that are used across the app, like `data`, `images`, `favicon`, `robots`...
 
 # App State Management 🌅
 
-Earth Dashboard uses [**Redux**](http://redux.js.org/) along to [**next-redux-wrapper**](https://github.com/kirill-konshin/next-redux-wrapper) to manage the app state. With `next` 7.0 is not necessary anymore to wrap every page to access to the store. Wrapping `_app` is enough, rest of pages will access to the store like the rest of your components.
+Earth Dashboard uses [**Redux**](http://redux.js.org/) together with [**@reduxjs/toolkit**](https://github.com/reduxjs/redux-toolkit) to manage the app state.
 
 
 Connection to the store must be isolated from the component itself (separating presentation from logic).
@@ -188,25 +160,15 @@ export default connect(
 The example above shows an `index.js` separating the logic from the component layout.
 
 # Authentication 🚫
-Authentication is based on the [RW API user management API](https://resource-watch.github.io/doc-api/index-rw.html#user-management).
+Authentication is based on the [RW API user management API](https://resource-watch.github.io/doc-api/index-rw.html#user-management) and it's handled entirely by the front-end. Check the methods from [services/user](https://github.com/wri/earth-dashboard/blob/master/services/user.js) and the [user slice](https://github.com/wri/earth-dashboard/blob/master/slices/user.js) for more information about this.
+
+# Mobile/Desktop/Desktop large... versions 📱
+We're using [Fresnel](https://github.com/artsy/fresnel) -an SSR compatible approach to CSS, to manage the different versions of the interface depending on the device that's being used. Definitions of the breakpoints plus components that can be used to define the interface for each of the cases can be found on [/utils/responsive](https://github.com/wri/earth-dashboard/blob/master/utils/responsive.js)
 
 # Optimization 🔎
 ## Bundle Analyzer
-[Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) is a development tool that creates an interactive treemap visualization of the contents of all your bundles.
+[Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) is a development tool that creates an interactive treemap visualization of the contents of all your bundles. 
 
 To run it: `yarn bundle-analyzer`.
 
 It will run the application in production build (makes a `yarn build` internally) and open a tab in your browser displaying the bundles treemap.
-
-
-# Deploy 🛫
-
-TBD
-
-# Documentation 📝
-Every change in the app must be documented in the `./CHANGELOG.md` file according to [keep a changelog](https://keepachangelog.com/en/1.0.0/) specs.
-
-At code level, comments must follow [JSDocs](https://jsdoc.app) specs.
-
-# Contributing 🎁
-If you have any amazing idea for the project, please [tell us](https://github.com/wri/earth-dashboard/issues) before develop it.
