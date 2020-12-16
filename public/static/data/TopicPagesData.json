@@ -223,6 +223,10 @@
                 {
                     "id": "826e24ed-ec3f-4257-8fef-f75f5d224aee",
                     "widgetsPerColumn": 2
+                },
+                {
+                    "id": "89940a74-909a-4981-a84a-9987f669fb32",
+                    "widgetsPerColumn": 2
                 }
             ]
         }
