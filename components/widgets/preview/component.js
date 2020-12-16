@@ -107,9 +107,7 @@ function WidgetPreview({
         })}>
           {useRenderer &&
             <Renderer
-              widgetConfig={widgetType === 'map' ?
-                makeMapWidgetConfigCompatibleWithLeaflet(widgetConfig) :
-                widgetConfig}
+              widgetConfig={widgetConfig}
               adapter={RwAdapter}
             />
           }

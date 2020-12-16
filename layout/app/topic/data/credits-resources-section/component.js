@@ -79,7 +79,7 @@ function CreditsResourcesSection(props) {
                 </h6>
                 <ShareBox
                    topic={topic}
-                   url={isServer ? '' : window.location.href}
+                   url={isServer ? '' : window.location.href.split('#')[0]}
                    onCopyLink={(url) => logEvent({
                      action: 'Share page (Credits and Resources)',
                      category: 'Shares',

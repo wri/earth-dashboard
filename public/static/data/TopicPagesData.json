@@ -48,6 +48,10 @@
                 {
                     "id": "ba8e27fd-ec1f-4659-81db-1a36b0ab5df0",
                     "widgetsPerColumn": 1
+                },
+                {
+                    "id": "f7bc464a-7d09-4a2c-8ba2-fb89ba35ff77",
+                    "widgetsPerColumn": 1
                 }
             ]
         }
