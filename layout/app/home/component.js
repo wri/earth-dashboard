@@ -85,7 +85,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
     const CustomTag = mobile ? 'h4' : 'h3';
     return (
       <CustomTag>
-        Earth HQ: Situation Room For the Planet.
+        Earth HQ: situation room for the global commons.
       </CustomTag>
     );
   }
