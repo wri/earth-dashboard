@@ -142,7 +142,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
     <Layout
       title={title}
       description={description}
-      thumbnail="https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.jpg"
+      thumbnail="https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg"
       className={styles.homepage}
       openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
