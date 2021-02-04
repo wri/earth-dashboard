@@ -4,7 +4,7 @@ lock "~> 3.14.1"
 set :application, "earth_dashboard"
 set :repo_url, "git@github.com:wri/earth-dashboard.git"
 
-# Default branch is :main
+# Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
