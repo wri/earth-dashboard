@@ -125,7 +125,7 @@ LayoutApp.defaultProps = {
   title: null,
   description: null,
   className: null,
-  thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/master/public/static/images/share/thumbnails/homepage.jpg',
+  thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg',
   showHeaderLogo: true,
   showHeader: true,
   themeColor: '#1a2128'
