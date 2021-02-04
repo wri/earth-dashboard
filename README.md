@@ -20,6 +20,11 @@ yarn dev
 ```
 and your app will be served in [http://localhost:9000/](http://localhost:9000/) (if you didn't change the default port in the `.env`).
 
+# Branch structure
+
+- `main`: This is the production branch. The code from this branch should be deployable at any time.
+- `develop`: This is the reference branch for development. This branch will be used for the staging site and all feature/bug branches should be created starting from it.
+
 ## Production build
 If you need a production-ready build, run:
 ```bash
