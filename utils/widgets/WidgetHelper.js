@@ -233,7 +233,7 @@ export async function getRasterDataURL(dataset, datasetType, tableName, band, pr
 
   const geostore = chartInfo.areaIntersection ? `&geostore=${chartInfo.areaIntersection}` : '';
 
-  return `${process.env.WRI_API_URL}/query/${dataset}?sql=${query}${geostore}`;
+  return `${process.env.WRI_API_URL}/v1/query/${dataset}?sql=${query}${geostore}`;
 }
 
 /**
@@ -319,7 +319,7 @@ export async function getDataURL(dataset, datasetType, tableName, band, provider
 
   const geostore = chartInfo.areaIntersection ? `&geostore=${chartInfo.areaIntersection}` : '';
 
-  return `${process.env.WRI_API_URL}/query/${dataset}?sql=${query}${geostore}`;
+  return `${process.env.WRI_API_URL}/v1/query/${dataset}?sql=${query}${geostore}`;
 }
 
 /**

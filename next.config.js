@@ -8,17 +8,13 @@ module.exports = {
     ED_NODE_ENV: process.env.ED_NODE_ENV || 'development',
     APPLICATIONS: 'earthhq',
     CALLBACK_URL: process.env.CALLBACK_URL,
-    CONTROL_TOWER_URL: process.env.CONTROL_TOWER_URL,
     WRI_API_URL: process.env.WRI_API_URL,
     API_ENV: process.env.API_ENV,
     RW_GOGGLE_API_TOKEN_SHORTENER: process.env.RW_GOGGLE_API_TOKEN_SHORTENER,
     NEXTAUTH_URL: 'https://earthhq.org'
   },
 
-  experimental: {
-    
-    documentMiddleware: true
-  },
+  experimental: { documentMiddleware: true },
 
   webpack: (config) => {
     const _config = Object.assign({}, config);
