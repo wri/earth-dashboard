@@ -1,6 +1,6 @@
 // utils
 import { logger } from 'utils/logs';
-import { controlTowerAPI } from 'utils/axios';
+import { WRIAPI } from 'utils/axios';
 
 const isServer = typeof window === 'undefined';
 
@@ -12,8 +12,8 @@ const isServer = typeof window === 'undefined';
  */
 export const checkAuth = () => {
   logger.info('Check user logged in');
-  return controlTowerAPI
-    .get('auth/check-logged', {
+  return WRIAPI
+    .get('/auth/check-logged', {
       headers: {
         'content-type': 'application/json',
         Authorization: `Bearer ${!isServer && localStorage.getItem('userToken')}`
@@ -31,8 +31,8 @@ export const checkAuth = () => {
  */
 export const loginUser = ({ email, password }) => {
   logger.info('Login user');
-  return controlTowerAPI
-    .post('auth/login', { email, password })
+  return WRIAPI
+    .post('/auth/login', { email, password })
     .then(response => response.data);
 };
 
@@ -43,13 +43,13 @@ export const loginUser = ({ email, password }) => {
  */
 export const logoutUser = () => {
   logger.info('Logout user');
-  return controlTowerAPI
-    .get('auth/logout')
+  return WRIAPI
+    .get('/auth/logout')
     .then((response) => {
       if (response.status < 400 && !isServer) {
         localStorage.removeItem('userToken');
         window.location.reload();
-      } 
+      }
     });
 };
 

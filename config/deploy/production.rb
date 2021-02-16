@@ -6,8 +6,7 @@ set :branch, 'main'
 
 set :default_env, {
   'ED_NODE_ENV' => 'production',
-  'WRI_API_URL' => 'https://api.resourcewatch.org/v1',
-  'CONTROL_TOWER_URL' => 'https://api.resourcewatch.org',
+  'WRI_API_URL' => 'https://api.resourcewatch.org',
   'CALLBACK_URL' => 'https://earthhq.org/sign-in',
   'APPLICATIONS' => 'earthhq'
 }
