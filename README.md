@@ -50,6 +50,7 @@ The process may take a few minutes. The deployment is based of Github, not your 
 
 ## env
 There's an `.env.sample` file you will need to duplicate and rename to `.env` in order to make the app work. Populate it properly and that's all.
+You can find information there about the environment variables that are necessary for this project.
 
 ## Troubleshooting 🤔
 You might run into some problems installing dependencies:
