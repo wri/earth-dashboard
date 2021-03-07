@@ -10,7 +10,6 @@ import { logEvent } from 'utils/gtag';
 
 // constants
 import {
-    CORS_PROXY,
     MONGABAY_RSS_FEED_URL
 } from './constants';
 
@@ -25,16 +24,16 @@ function TopicNews(props) {
     console.log('topic', topic);
     useEffect(() => {
         setLoading(true);
-        const urlWithProxy =
-            `${CORS_PROXY}${MONGABAY_RSS_FEED_URL}${topic.join(',')}`;
+        const url =
+            `${MONGABAY_RSS_FEED_URL}${topic.join(',')}`;
         const parser = new Parser();
-        parser.parseURL(urlWithProxy)
+        parser.parseURL(url)
             .then((response) => {
                 setNews(response.items.slice(0, limit));
                 setLoading(false);
             })
             .catch((error) => {
-                console.error(`There was an error loading the news ${urlWithProxy}: ${error}`);
+                console.error(`There was an error loading the news ${url}: ${error}`);
                 setLoading(false);
             });
     }, [topic]);

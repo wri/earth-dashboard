@@ -43,6 +43,8 @@ function LayoutTopicData(props) {
   const [shareModalIsOpen, setShareModalIsOpen] = useState(false);
   const router = useRouter();
   const DEFAULT_IN_VIEW_THRESHOLD = 0.3;
+  // TO-DO: We could abstract the useInView calls into a custom hook to tidy up 
+  // all the definitions and calls we're making into just one or two lines instead
   const { ref: headlineRef, inView: headlineInView } = useInView({ threshold: DEFAULT_IN_VIEW_THRESHOLD });
   const { ref: scrollyTellingRef, inView: scrollyTellingInView } = useInView({ threshold: 0.01 });
   const { ref: changeAgentsRef, inView: changeAgentsInView } = useInView({ threshold: 0.8 });
