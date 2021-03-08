@@ -40,7 +40,7 @@ function NewsWidget(props) {
                     setItem(response.items[0]);
                 })
                 .catch((error) => {
-                    toastr.error(`There was an error loading the news widget ${widget.id}: ${error}`);
+                    console.error(`There was an error loading the news widget ${widget.id}: ${error}`);
                     setLoading(false);
                 });
         } else if (isGuardian) {
@@ -51,7 +51,7 @@ function NewsWidget(props) {
                     setItem(response.response.content);
                 })
                 .catch((error) => {
-                    toastr.error(`There was an error loading the news widget ${widget.id}: ${error}`);
+                    console.error(`There was an error loading the news widget ${widget.id}: ${error}`);
                     setLoading(false);
                 });
         }
