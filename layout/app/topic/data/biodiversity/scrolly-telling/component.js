@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Scrollama, Step } from 'react-scrollama';
 import classnames from 'classnames';
+import dynamic from 'next/dynamic';
 
 // components
 import TextBox from 'components/scrolly-telling/text-box';
@@ -14,6 +15,8 @@ import { BIODIVERSITY_STEPS } from './constants';
 
 // styles
 import styles from './biodiversity-scrolly-telling.module.scss';
+
+const Globe = dynamic(import('react-globe.gl'), { ssr: false });
 
 function BiodiversityScrollyTelling({ topic }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -52,6 +55,11 @@ function BiodiversityScrollyTelling({ topic }) {
         <div className={styles.story}>
           <div className={styles['sticky-container']}>
             <div className={styles['wrapper-container']}>
+              {isBrowser && (
+                <Globe
+                  globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+                />
+              )}
               {currentStep.stickyContainerElement && (
                 <>
                   <Desktop className={classnames({
@@ -59,6 +67,7 @@ function BiodiversityScrollyTelling({ topic }) {
                     [styles['-desktop']]: true
                   })}
                   >
+
                     {currentStep.stickyContainerElement}
                   </Desktop>
                   <Mobile className={classnames({

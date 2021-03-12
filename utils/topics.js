@@ -83,7 +83,7 @@ export function getNavigationDotsColorByTopic(topicSt) {
             return '#174F59';
         case FORESTS:
             return '#004D33';
-        case BIODIVERISTY:
+        case BIODIVERSITY:
             return '#004D33';
         case 'default':
             return '#7C90A2';

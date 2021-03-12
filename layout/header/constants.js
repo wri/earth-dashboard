@@ -2,7 +2,8 @@ import {
     CLIMATE_COLOR,
     FRESHWATER_COLOR,
     OCEAN_COLOR,
-    FORESTS_COLOR
+    FORESTS_COLOR,
+    BIODIVERSITY_COLOR,
 } from 'utils/topics';
 
 export const SITE_NAVIGATION_HEADER_TAB = 'site-navigation';
@@ -115,6 +116,34 @@ export const HEADER_TOPICS_DATA = [
             {
                 label: 'Dive into the Data',
                 link: '/ocean/data#dive-into-the-data',
+                highlight: false
+            }
+        ]
+    },
+    {
+        label: 'BIODIVERSITY',
+        link: '/biodiversity',
+        color: BIODIVERSITY_COLOR,
+        mainLink: '/ocean/data',
+        links: [
+            {
+                label: 'The Global Commons Report',
+                link: '/biodiversity',
+                highlight: false
+            },
+            {
+                label: 'Biodiversity scrolly telling',
+                link: '/biodiversity/data#scrolly-telling',
+                highlight: true
+            },
+            {
+                label: 'The Challenge to our Global Commons',
+                link: '/biodiversity/data#challenge-to-our-global-commons',
+                highlight: false
+            },
+            {
+                label: 'Dive into the Data',
+                link: '/biodiversity/data#dive-into-the-data',
                 highlight: false
             }
         ]
