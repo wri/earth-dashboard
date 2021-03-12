@@ -1,0 +1,78 @@
+@import 'css/settings';
+
+.c-biodiversity-scrolly-telling {
+    overflow: initial;
+
+    .story {
+
+        .sticky-container {
+            position: sticky;
+            top: 0px;
+            left: 0px;
+            height: 100vh;
+
+            .wrapper-container {
+                position: relative;
+                display: flex;
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+
+                .sticky-element {
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0px 30px 100px 20px;
+
+                    &.-mobile {
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .steps {
+        display: flex;
+        flex-direction: column;
+
+        &.-mobile {
+            align-items: center;
+        }
+    }
+
+    .visual-sources {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-family: 'Barlow';
+        color: $grey-darker;
+        font-size: 12px;
+        line-height: 18px;
+        z-index: 1;
+
+        &.-climate-story {
+            &.-desktop {
+                bottom: 96px; 
+            }
+            &.-mobile {
+                bottom: 68px;
+                right: 10px;
+                font-size: 10px;
+                line-height: 14px;
+            }
+        }
+
+        a {
+            text-decoration: underline;
+            
+            &:hover { 
+                color: $black;
+            }
+        }
+    }
+}

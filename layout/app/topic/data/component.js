@@ -22,6 +22,7 @@ import FreshWaterScrollyTelling from './freshwater/scrolly-telling';
 import ForestsScrollyTelling from './forests/scrolly-telling';
 import ClimateScrollyTelling from './climate/scrolly-telling';
 import OceansScrollyTelling from './ocean/scrolly-telling';
+import BiodiversityScrollyTelling from './biodiversity/scrolly-telling';
 import ShareModal from 'components/share/share-modal';
 
 // styles
@@ -34,6 +35,7 @@ import {
   FORESTS,
   FRESHWATER,
   OCEAN,
+  BIODIVERSITY,
   getNavigationDotsColorByTopic
 } from 'utils/topics';
 import { getPageMetadataByTopic } from 'utils/share';
@@ -89,6 +91,8 @@ function LayoutTopicData(props) {
         return <ClimateScrollyTelling topic={topic} />
       case OCEAN:
         return <OceansScrollyTelling topic={topic} />
+      case BIODIVERSITY:
+        return <BiodiversityScrollyTelling topic={topic} />
       default:
         return <div />;
     }
