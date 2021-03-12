@@ -17,18 +17,25 @@ import {
     OCEAN_DIVE_INTO_THE_DATA_DATA,
     OCEAN_METHODOLOGY_DATA
 } from 'layout/app/topic/data/ocean/constants';
-import { 
+import {
     CLIMATE_CHALLENGE_SECTION_DATA,
     CLIMATE_HEADLINE_SECTION_DATA,
     CLIMATE_DIVE_INTO_THE_DATA_DATA,
     CLIMATE_METHODOLOGY_DATA
 } from '../layout/app/topic/data/climate/constants';
+import {
+    BIODIVERSITY_HEADLINE_SECTION_DATA,
+    BIODIVERSITY_CHALLENGE_SECTION_DATA,
+    BIODIVERSITY_DIVE_INTO_THE_DATA_DATA,
+    BIODIVERSITY_METHODOLOGY_DATA
+} from 'layout/app/topic/data/biodiversity/constants';
 
 // -------- TOPICS ----------
 export const CLIMATE = 'climate';
 export const FRESHWATER = 'freshwater';
 export const OCEAN = 'ocean';
 export const FORESTS = 'forests';
+export const BIODIVERSITY = 'biodiversity';
 
 // ------- TOPIC COLORS -------
 export const CLIMATE_COLOR = '#F35600';
@@ -47,16 +54,22 @@ export const FORESTS_COLOR = '#009A67';
 export const FORESTS_DARK_COLOR = '#004D33';
 export const FORESTS_SECONDARY_COLOR = '#004D33';
 
-export function getColorByTopic(topicSt, darkOption=false) {
+export const BIODIVERSITY_COLOR = '#009A67';
+export const BIODIVERSITY_DARK_COLOR = '#004D33';
+export const BIODIVERSITY_SECONDARY_COLOR = '#004D33';
+
+export function getColorByTopic(topicSt) {
     switch (topicSt) {
         case CLIMATE:
-            return darkOption ? CLIMATE_COLOR : CLIMATE_COLOR;
+            return CLIMATE_COLOR;
         case FRESHWATER:
-            return darkOption ? FRESHWATER_COLOR : FRESHWATER_COLOR;
+            return FRESHWATER_COLOR;
         case OCEAN:
-            return darkOption ? OCEAN_COLOR : OCEAN_COLOR;
+            return OCEAN_COLOR;
         case FORESTS:
-            return darkOption ? FORESTS_COLOR : FORESTS_COLOR;
+            return FORESTS_COLOR;
+        case BIODIVERSITY:
+            return BIODIVERSITY_COLOR;
     }
 }
 
@@ -69,6 +82,8 @@ export function getNavigationDotsColorByTopic(topicSt) {
         case OCEAN:
             return '#174F59';
         case FORESTS:
+            return '#004D33';
+        case BIODIVERISTY:
             return '#004D33';
         case 'default':
             return '#7C90A2';
@@ -109,6 +124,8 @@ export function getSecondaryColorByTopic(topicSt) {
             return OCEAN_SECONDARY_COLOR;
         case FORESTS:
             return FORESTS_SECONDARY_COLOR;
+        case BIODIVERSITY:
+            return BIODIVERSITY_SECONDARY_COLOR;
     }
 }
 
@@ -122,6 +139,8 @@ export function getHeadlineSectionDataBytopic(topic) {
             return FRESHWATER_HEADLINE_SECTION_DATA;
         case OCEAN:
             return OCEAN_HEADLINE_SECTION_DATA;
+        case BIODIVERSITY:
+            return BIODIVERSITY_HEADLINE_SECTION_DATA;
         default:
             return null;
     }
@@ -137,6 +156,8 @@ export function getChallengeSectionDataByTopic(topic) {
             return CLIMATE_CHALLENGE_SECTION_DATA;
         case OCEAN:
             return OCEAN_CHALLENGE_SECTION_DATA;
+        case BIODIVERSITY:
+            return BIODIVERSITY_CHALLENGE_SECTION_DATA;
         default:
             return null;
     }
@@ -152,6 +173,8 @@ export function getDiveIntoTheDataDataByTopic(topic) {
             return CLIMATE_DIVE_INTO_THE_DATA_DATA;
         case OCEAN:
             return OCEAN_DIVE_INTO_THE_DATA_DATA;
+        case BIODIVERSITY:
+            return BIODIVERSITY_DIVE_INTO_THE_DATA_DATA;
         default:
             return null;
     }
@@ -167,6 +190,8 @@ export function getMethodologyDataByTopic(topic) {
             return CLIMATE_METHODOLOGY_DATA;
         case OCEAN:
             return OCEAN_METHODOLOGY_DATA;
+        case BIODIVERSITY:
+            return BIODIVERSITY_METHODOLOGY_DATA;
         default:
             return null;
     }
