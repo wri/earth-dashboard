@@ -1,4 +1,4 @@
-import { createMedia } from "@artsy/fresnel";
+import { createMedia } from '@artsy/fresnel';
 
 const breakpoints = {
   sm: 0,

@@ -1,8 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Scrollama, Step } from 'react-scrollama';
 import classnames from 'classnames';
-import dynamic from 'next/dynamic';
+let Globe = null;
+if (typeof window !== 'undefined') {
+  Globe = require('react-globe.gl').default;
+}
 
 // components
 import TextBox from 'components/scrolly-telling/text-box';
@@ -15,8 +18,6 @@ import { BIODIVERSITY_STEPS } from './constants';
 
 // styles
 import styles from './biodiversity-scrolly-telling.module.scss';
-
-const Globe = dynamic(import('react-globe.gl'), { ssr: false });
 
 function BiodiversityScrollyTelling({ topic }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -32,19 +33,21 @@ function BiodiversityScrollyTelling({ topic }) {
     console.info('onStepEnter!', data);
   };
 
-  const getStepContent = (mobile = false, step) => (
-    <div className={classnames({
-      'text-box-container': true,
-      '-desktop': !mobile,
-      '-mobile': mobile
-    })}
-    >
-      <TextBox
-        text={step.textPanel.text}
-        imageHeader={step.textPanel.imageHeader}
-      />
-    </div>
-  );
+  const getStepContent = (mobile = false, step) => {
+    return (
+      <div className={classnames({
+        'text-box-container': true,
+        '-desktop': !mobile,
+        '-mobile': mobile
+      })}
+      >
+        <TextBox
+          text={step.textPanel.text}
+          imageHeader={step.textPanel.imageHeader}
+        />
+      </div>
+    );
+  };
 
   return (
     <div
@@ -55,11 +58,6 @@ function BiodiversityScrollyTelling({ topic }) {
         <div className={styles.story}>
           <div className={styles['sticky-container']}>
             <div className={styles['wrapper-container']}>
-              {isBrowser && (
-                <Globe
-                  globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-                />
-              )}
               {currentStep.stickyContainerElement && (
                 <>
                   <Desktop className={classnames({
@@ -67,7 +65,11 @@ function BiodiversityScrollyTelling({ topic }) {
                     [styles['-desktop']]: true
                   })}
                   >
-
+                    {isBrowser && (
+                      <Globe
+                        globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+                      />
+                    )}
                     {currentStep.stickyContainerElement}
                   </Desktop>
                   <Mobile className={classnames({

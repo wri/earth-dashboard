@@ -124,7 +124,7 @@ export const HEADER_TOPICS_DATA = [
         label: 'BIODIVERSITY',
         link: '/biodiversity',
         color: BIODIVERSITY_COLOR,
-        mainLink: '/ocean/data',
+        mainLink: '/biodiversity/data',
         links: [
             {
                 label: 'The Global Commons Report',
