@@ -23,7 +23,7 @@ function BiodiversityScrollyTelling({ topic }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const isBrowser = typeof window !== 'undefined';
   const currentStep = BIODIVERSITY_STEPS[currentStepIndex];
-  const { location, autoRotate } = currentStep;
+  const { location, autoRotate, arcs } = currentStep;
   const globe = useRef();
 
   useEffect(() => {
@@ -81,6 +81,16 @@ function BiodiversityScrollyTelling({ topic }) {
                   ref={globe}
                   globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
                   className="globe"
+                  arcLabel="label"
+                  arcsData={arcs}
+                  arcStartLat="latStart"
+                  arcEndLat="latEnd"
+                  arcStartLng="lngStart"
+                  arcEndLng="lngEnd"
+                  arcColor="color"
+                  arcDashLength={Math.random()}
+                  arcDashGap={Math.random()}
+                  arcDashAnimateTime={(Math.random() * 4000) + 500}
                 />
               )}
               {currentStep.stickyContainerElement && (
