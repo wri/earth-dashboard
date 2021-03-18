@@ -87,7 +87,7 @@ export const BIODIVERSITY_STEPS = [
         </>
       )
     },
-    location: { lat: -3, lng: 2, altitude: 1.2 },
+    location: { lat: 32, lng: 10, altitude: 1.2 },
     arcs: [
       {
         latStart: 36,
@@ -102,7 +102,7 @@ export const BIODIVERSITY_STEPS = [
         lngStart: -3,
         latEnd: 44,
         lngEnd: 15,
-        label: 'Malaga - Madrid! ',
+        label: 'Madrid - somewhere else! ',
         color: 'green'
       }
     ],

@@ -7,11 +7,7 @@ import Spinner from 'components/ui/spinner';
 
 // utils
 import { logEvent } from 'utils/gtag';
-
-// constants
-import {
-    MONGABAY_RSS_FEED_URL
-} from './constants';
+import { MONGABAY_RSS_FEED_URL } from 'utils/news';
 
 // styles
 import styles from './topic-news.module.scss';
