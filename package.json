@@ -5,6 +5,7 @@
   "author": "Vizzuality",
   "license": "MIT",
   "dependencies": {
+    "@apollo/client": "^3.3.12",
     "@artsy/fresnel": "^1.3.0",
     "@babel/core": "^7.2.0",
     "@bijection/smoke": "^1.0.2",
@@ -26,6 +27,7 @@
     "events": "^3.0.0",
     "foundation-sites": "^6.6.3",
     "framer-motion": "^2.9.3",
+    "graphql": "^15.5.0",
     "isomorphic-fetch": "2.2.1",
     "layer-manager": "^2.0.9",
     "leaflet-utfgrid": "^0.3.0",
