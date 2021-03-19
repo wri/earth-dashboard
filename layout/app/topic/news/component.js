@@ -52,7 +52,7 @@ function TopicNews(props) {
             <span className={styles['news-date']}>{newsElem.date} - Mongabay</span>
           </div>
         </div>
-      ))}}
+      ))}
     </div>
   );
 }
