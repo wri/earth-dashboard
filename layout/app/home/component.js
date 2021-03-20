@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Particles from 'react-particles-js';
-import Link from 'next/link';
-import ReactTooltip from 'react-tooltip';
 import classnames from 'classnames';
+import * as THREE from "three";
+import * as d3 from 'd3';
+import indexBy from 'index-array-by';
+
 let Globe = null;
 if (typeof window !== 'undefined') {
   Globe = require('react-globe.gl').default;
@@ -20,9 +21,12 @@ import { logEvent } from 'utils/gtag';
 // styles
 import styles from './homepage.module.scss';
 
+// constants
+import { POPULATION } from './constants';
+
 const TOPICS_DATA = {
   biodiversity: {
-    texture: '//unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
+    texture: '//unpkg.com/three-globe/example/img/earth-night.jpg'
   },
   freshwater: {
     texture: '//unpkg.com/three-globe/example/img/earth-water.png'
@@ -34,9 +38,15 @@ const TOPICS_DATA = {
     texture: '//unpkg.com/three-globe/example/img/earth-topology.png'
   },
   ocean: {
-    texture: '//unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
+    texture: '//unpkg.com/three-globe/example/img/earth-day.jpg'
   }
 };
+
+const COUNTRY = 'United States';
+const OPACITY = 0.22;
+
+const airportParse = ([airportId, name, city, country, iata, icao, lat, lng, alt, timezone, dst, tz, type, source]) => ({ airportId, name, city, country, iata, icao, lat, lng, alt, timezone, dst, tz, type, source });
+const routeParse = ([airline, airlineId, srcIata, srcAirportId, dstIata, dstAirportId, codeshare, stops, equipment]) => ({ airline, airlineId, srcIata, srcAirportId, dstIata, dstAirportId, codeshare, stops, equipment});
 
 // Gen random paths
 const N_PATHS = 30;
@@ -44,9 +54,14 @@ const MAX_POINTS_PER_LINE = 10000;
 const MAX_STEP_DEG = 1;
 const MAX_STEP_ALT = 0.015;
 
+const polygonsMaterial = new THREE.MeshLambertMaterial({ color: 'darkslategrey', side: THREE.DoubleSide });
+
 
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   const [topicSelected, setTopicSelected] = useState('ocean');
+  const [landPolygons, setLandPolygons] = useState([]);
+  const [airports, setAirports] = useState([]);
+  const [routes, setRoutes] = useState([]);
   const isServer = typeof window === 'undefined';
 
   const PATHS_DATA = useMemo(() => [...Array(N_PATHS).keys()].map(() => {
@@ -62,9 +77,32 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
 
       return [lat, lng, alt];
     })];
-  }),
-    []
-  );
+  }), []);
+
+  useEffect(() => {
+    // load data arcs
+    Promise.all([
+      fetch('https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat').then(res => res.text())
+        .then(d => d3.csvParseRows(d, airportParse)),
+      fetch('https://raw.githubusercontent.com/jpatokal/openflights/master/data/routes.dat').then(res => res.text())
+        .then(d => d3.csvParseRows(d, routeParse))
+    ]).then(([airports, routes]) => {
+
+      const byIata = indexBy(airports, 'iata', false);
+
+      const filteredRoutes = routes
+        .filter(d => byIata.hasOwnProperty(d.srcIata) && byIata.hasOwnProperty(d.dstIata)) // exclude unknown airports
+        .filter(d => d.stops === '0') // non-stop flights only
+        .map(d => Object.assign(d, {
+          srcAirport: byIata[d.srcIata],
+          dstAirport: byIata[d.dstIata]
+        }))
+        .filter(d => d.srcAirport.country === COUNTRY && d.dstAirport.country !== COUNTRY); // international routes from country
+
+      setAirports(airports);
+      setRoutes(filteredRoutes);
+    });
+  }, []);
 
   const getLink = (name) =>
     <a
@@ -103,6 +141,9 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       }
     </div>;
 
+const weightColor = d3.scaleSequentialSqrt(d3.interpolateYlOrRd)
+.domain([0, 1e7]);
+
   const getMainContainer = (mobile) => {
     const CustomHeaderTag = mobile ? 'h2' : 'h1';
     return (
@@ -125,6 +166,38 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
                 pathDashAnimateTime: 100000
               })}
               {...(topicSelected !== 'forests' && { pathsData: [] })}
+              {...(topicSelected !== 'climate' && { hexBinPointsData: [] })}
+              {...(topicSelected !== 'biodiversity' && { arcsData: [], pointsData: [] })}
+
+              {...(topicSelected === 'climate' && {
+                hexBinPointsData: POPULATION,
+                hexBinPointWeight: 'pop',
+                hexAltitude: d => d.sumWeight * 6e-8,
+                hexBinResolution: 4,
+                hexTopColor: d => weightColor(d.sumWeight),
+                hexSideColor: d => weightColor(d.sumWeight),
+                hexBinMerge: true
+              })}
+
+              {...(topicSelected === 'biodiversity' && {
+                arcsData: routes,
+                arcLabel: d => `${d.airline}: ${d.srcIata} &#8594; ${d.dstIata}`,
+                arcStartLat: d => +d.srcAirport.lat,
+                arcStartLng: d => +d.srcAirport.lng,
+                arcEndLat: d => +d.dstAirport.lat,
+                arcEndLng: d => +d.dstAirport.lng,
+                arcDashLength: 0.25,
+                arcDashGap: 1,
+                arcDashInitialGap: () => Math.random(),
+                arcDashAnimateTime: 4000,
+                arcColor: () => [`rgba(0, 255, 0, ${OPACITY})`, `rgba(255, 0, 0, ${OPACITY})`],
+                arcsTransitionDuration: 0,
+                pointsData: airports,
+                pointColor: () => 'orange',
+                pointAltitude: 0,
+                pointRadius: 0.02,
+                pointsMerge: true
+              })}
             />
           </div>
         }
