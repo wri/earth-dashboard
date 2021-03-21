@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
-import d3 from 'd3';
+import * as d3 from 'd3';
 import { timeFormat, timeParse } from 'd3-time-format';
 
 // components
