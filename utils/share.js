@@ -3,7 +3,8 @@ import {
     CLIMATE,
     FORESTS,
     OCEAN,
-    FRESHWATER
+    FRESHWATER,
+    BIODIVERSITY
 } from './topics';
 
 export function getPageMetadataByTopic(topicSt, isDataPage = false) {
@@ -61,6 +62,20 @@ export function getPageMetadataByTopic(topicSt, isDataPage = false) {
                 return {
                     title: 'Towards a Sustainable Ocean Economy',
                     description: 'A healthy ocean is critical to a sustainable global economy and stable climate.',
+                    thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/ocean.jpg'
+                };
+            }
+        case BIODIVERSITY:
+            if (!isDataPage) {
+                return {
+                    title: 'Biodiversity: The Global Commons Report',
+                    description: '-',
+                    thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/ocean.jpg'
+                };
+            } else {
+                return {
+                    title: 'Biodiversity title',
+                    description: '-',
                     thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/ocean.jpg'
                 };
             }

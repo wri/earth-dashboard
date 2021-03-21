@@ -1,4 +1,61 @@
 {
+    "biodiversity": {
+        "topicPage": {
+            "data": [
+                {
+                    "type": "widget",
+                    "id": "0eb9d296-27a7-486e-ab37-8dc01d5cbb94"
+                },
+                {
+                    "type": "widget",
+                    "id": "6d31da71-1fbb-493b-b385-0625123443b7"
+                },
+                {
+                    "type": "widget",
+                    "id": "478a1818-39ca-42ad-bbe7-9a32684867e0"
+                },
+                {
+                    "type": "widget",
+                    "id": "347d0008-e0f6-4996-a624-84863e404568"
+                },
+                {
+                    "type": "topic-news",
+                    "keywords": [
+                        "forests"
+                    ],
+                    "numberOfElements": 3
+                }
+            ]
+        },
+        "diveIntoTheData": {
+            "data": [
+                {
+                    "id": "bbf9b1b7-d916-4a43-9bb4-1fe12480de46",
+                    "widgetsPerColumn": 2
+                },
+                {
+                    "id": "77d8f477-a159-443a-b985-6d1bef3e0bb2",
+                    "widgetsPerColumn": 2
+                },
+                {
+                    "id": "10f1cf67-1ac4-49d5-be1d-cc6794022e10",
+                    "widgetsPerColumn": 2
+                },
+                {
+                    "id": "0700460b-309f-4bab-9e7f-a018c72677bf",
+                    "widgetsPerColumn": 2
+                },
+                {
+                    "id": "ba8e27fd-ec1f-4659-81db-1a36b0ab5df0",
+                    "widgetsPerColumn": 1
+                },
+                {
+                    "id": "f7bc464a-7d09-4a2c-8ba2-fb89ba35ff77",
+                    "widgetsPerColumn": 1
+                }
+            ]
+        }
+    },
     "forests": {
         "topicPage": {
             "data": [
