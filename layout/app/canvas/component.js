@@ -121,9 +121,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
     texture = new THREE.CanvasTexture(canvas);
     texture.needsUpdate = true;
     const material = new THREE.MeshBasicMaterial({
-      map: texture,
-      transparent: true,
-      alphaTest: 0.01
+      map: texture
     });
     const geometry = new THREE.SphereGeometry(300, 64, 64);
     const sphere = new THREE.Mesh(geometry, material);
