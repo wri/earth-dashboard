@@ -1,0 +1,28 @@
+@import 'css/settings';
+
+.canvas {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-color: $black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .main-container {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100vw;
+        z-index: 2;
+
+        .canvas-coastline, .canvas {
+            display: block; width: 100vw; height: 100vh; position: absolute;
+        }
+
+        .three-world {
+            width: 100vw; height: 100vh;
+        }
+    }
+}
