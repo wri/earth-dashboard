@@ -19,6 +19,13 @@ query {
       title,
       date,
       uri,
+      locations {
+        edges {
+          node {
+            name
+          }
+        }
+      },
       featuredImage {
         node {
           mediaItemUrl
