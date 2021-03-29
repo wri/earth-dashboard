@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/client';
+import * as THREE from 'three';
 
 // components
 import Layout from 'layout/layout/layout-app';
@@ -30,19 +31,24 @@ function LayoutNews({ openHeaderMenu, headerTabSelected, title, description }) {
 
   useEffect(() => {
     if (data) {
-      setNewsData(data.posts.nodes.map(async (d) => {
-        const location = await getLocationForString(d.locations.edges[d.locations.edges.length - 1]);
-        console.log('d', d, );
+      setNewsData(data.posts.nodes.map((d) => {
+        const signLatitude = Math.random();
+        const randomLatitude = Math.random() * 90 * (signLatitude > 0.5 ? 1 : -1);
+        const signLongitude = Math.random();
+        const randomLongitude = Math.random() * 180 * (signLongitude > 0.5 ? 1 : -1);
+
         return ({
           date: d.date,
           image: d.featuredImage.node.mediaItemUrl,
           title: d.title,
           uri: d.uri,
-          lat: location.lat,
-          lng: location.lng
+          lat: randomLatitude,
+          lng: randomLongitude,
+          alt: 0,
+          radius: 5,
+          color: '#ffffff'
         });
       }));
-      // getLocationForString()
     }
   }, [data]);
 
@@ -56,12 +62,25 @@ function LayoutNews({ openHeaderMenu, headerTabSelected, title, description }) {
           [styles['-mobile']]: mobile
         })}
       >
-        {!isServer &&
+        {!isServer && !loading &&
           <div>
             <Globe
               ref={globeEl}
               globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
               backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+              customLayerData={newsData}
+              customThreeObjectUpdate={(obj, d) => {
+                Object.assign(obj.position, globeEl.current.getCoords(d.lat, d.lng, d.alt));
+              }}
+              customThreeObject={d => new THREE.Mesh(
+                new THREE.SphereBufferGeometry(d.radius),
+                new THREE.MeshLambertMaterial({ color: d.color })
+              )}
+              customLayerLabel={d => (`
+                <div>
+                  ${d.title}
+                  <img src="${d.image}" alt="" />
+                </div>`)}
             />
           </div>
         }
