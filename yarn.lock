@@ -10652,6 +10652,11 @@ three-conic-polygon-geometry@1.4.2:
     delaunator "^4.0.1"
     earcut "^2.2.2"
 
+three-css3drenderer@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/three-css3drenderer/-/three-css3drenderer-1.0.1.tgz#6cdd07b1387d300325435f6ddeaf79e767b467c0"
+  integrity sha1-bN0HsTh9MAMlQ19t3q9552e0Z8A=
+
 three-fatline@^0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/three-fatline/-/three-fatline-0.4.2.tgz#63989159bf45196d838445214a86650b0b05cff6"

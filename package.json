@@ -75,6 +75,7 @@
     "rss-parser": "^3.9.0",
     "sass": "^1.26.11",
     "three": "^0.122.0",
+    "three-css3drenderer": "^1.0.1",
     "three-orbit-controls": "^82.1.0",
     "viewport-mercator-project": "^6.1.1",
     "vizzuality-components": "^3.0.3",

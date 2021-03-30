@@ -77,7 +77,7 @@ function LayoutNews({ openHeaderMenu, headerTabSelected, title, description }) {
                 new THREE.MeshLambertMaterial({ color: d.color })
               )}
               customLayerLabel={d => (`
-                <div>
+                <div class="globe-news-container">
                   ${d.title}
                   <img src="${d.image}" alt="" />
                 </div>`)}
@@ -92,7 +92,7 @@ function LayoutNews({ openHeaderMenu, headerTabSelected, title, description }) {
       title={title}
       description={description}
       thumbnail="https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg"
-      className={styles.canvas}
+      className={styles.news}
       openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
       themeColor="#1a2128"
