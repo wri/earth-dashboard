@@ -69,61 +69,63 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
     })];
   }), []);
 
-  useEffect(() => {
 
-    // from https://github.com/telegeography/www.submarinecablemap.com
-    fetch('//raw.githubusercontent.com/telegeography/www.submarinecablemap.com/master/public/api/v2/cable/cable-geo.json')
-      .then(r => r.json())
-      .then((cablesGeo) => {
-        let cablePaths = [];
-        cablesGeo.features.forEach(({ geometry, properties }) => {
-          geometry.coordinates.forEach(coords => cablePaths.push({ coords, properties }));
-        });
+  // GLOBE TESTS COMMENTED OUT 
+  // useEffect(() => {
 
-        setCablePaths(cablePaths);
-      });
+  //   // from https://github.com/telegeography/www.submarinecablemap.com
+  //   fetch('//raw.githubusercontent.com/telegeography/www.submarinecablemap.com/master/public/api/v2/cable/cable-geo.json')
+  //     .then(r => r.json())
+  //     .then((cablesGeo) => {
+  //       let cablePaths = [];
+  //       cablesGeo.features.forEach(({ geometry, properties }) => {
+  //         geometry.coordinates.forEach(coords => cablePaths.push({ coords, properties }));
+  //       });
 
-    // load countries data
-    fetch('https://raw.githubusercontent.com/vasturiano/react-globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson').then(res => res.json())
-      .then(countriesValue => {
-        setCountries(countriesValue);
-      });
+  //       setCablePaths(cablePaths);
+  //     });
 
-    // load data arcs
-    Promise.all([
-      fetch('https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat').then(res => res.text())
-        .then(d => d3.csvParseRows(d, airportParse)),
-      fetch('https://raw.githubusercontent.com/jpatokal/openflights/master/data/routes.dat').then(res => res.text())
-        .then(d => d3.csvParseRows(d, routeParse))
-    ]).then(([airportsValue, routesValue]) => {
+  //   // load countries data
+  //   fetch('https://raw.githubusercontent.com/vasturiano/react-globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson').then(res => res.json())
+  //     .then(countriesValue => {
+  //       setCountries(countriesValue);
+  //     });
 
-      const byIata = indexBy(airportsValue, 'iata', false);
+  //   // load data arcs
+  //   Promise.all([
+  //     fetch('https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat').then(res => res.text())
+  //       .then(d => d3.csvParseRows(d, airportParse)),
+  //     fetch('https://raw.githubusercontent.com/jpatokal/openflights/master/data/routes.dat').then(res => res.text())
+  //       .then(d => d3.csvParseRows(d, routeParse))
+  //   ]).then(([airportsValue, routesValue]) => {
 
-      const filteredRoutes = routesValue
-        .filter(d => byIata.hasOwnProperty(d.srcIata) && byIata.hasOwnProperty(d.dstIata)) // exclude unknown airportsValue
-        .filter(d => d.stops === '0') // non-stop flights only
-        .map(d => Object.assign(d, {
-          srcAirport: byIata[d.srcIata],
-          dstAirport: byIata[d.dstIata]
-        }))
-        .filter(d => d.srcAirport.country === COUNTRY && d.dstAirport.country !== COUNTRY); // international routes from country
+  //     const byIata = indexBy(airportsValue, 'iata', false);
 
-      setAirports(airportsValue);
-      setRoutes(filteredRoutes);
-    });
-  }, []);
+  //     const filteredRoutes = routesValue
+  //       .filter(d => byIata.hasOwnProperty(d.srcIata) && byIata.hasOwnProperty(d.dstIata)) // exclude unknown airportsValue
+  //       .filter(d => d.stops === '0') // non-stop flights only
+  //       .map(d => Object.assign(d, {
+  //         srcAirport: byIata[d.srcIata],
+  //         dstAirport: byIata[d.dstIata]
+  //       }))
+  //       .filter(d => d.srcAirport.country === COUNTRY && d.dstAirport.country !== COUNTRY); // international routes from country
 
-  useEffect(() => {
-    if (topicSelected === 'ocean') {
-      setTimeout(() => {
-        setTransitionDuration(4000);
-        setAltitude(() => feat => Math.max(0.1, Math.sqrt(+feat.properties.POP_EST) * 7e-5));
-      }, 3000);
-      // Auto-rotate
-      globeEl.current.controls().autoRotate = true;
-      globeEl.current.controls().autoRotateSpeed = 0.3;
-    }
-  }, [topicSelected]);
+  //     setAirports(airportsValue);
+  //     setRoutes(filteredRoutes);
+  //   });
+  // }, []);
+
+  // useEffect(() => {
+  //   if (topicSelected === 'ocean') {
+  //     setTimeout(() => {
+  //       setTransitionDuration(4000);
+  //       setAltitude(() => feat => Math.max(0.1, Math.sqrt(+feat.properties.POP_EST) * 7e-5));
+  //     }, 3000);
+  //     // Auto-rotate
+  //     globeEl.current.controls().autoRotate = true;
+  //     globeEl.current.controls().autoRotateSpeed = 0.3;
+  //   }
+  // }, [topicSelected]);
 
   const getLink = name =>
   (<a
@@ -174,9 +176,10 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
         [styles['-mobile']]: mobile,
       })}
       >
+        <iframe width="100%" height="100%" src="https://earth.nullschool.net/" title="Null School" />
         {!isServer &&
           <div>
-            <Globe
+            {/* <Globe
               ref={globeEl}
               globeImageUrl={TOPICS_DATA[topicSelected].texture}
               bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
@@ -250,7 +253,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
                 pointRadius: 0.02,
                 pointsMerge: true
               })}
-            />
+            /> */}
           </div>
         }
         <div className={classnames({
@@ -263,8 +266,6 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
         </div>
       </div>);
   };
-
-  console.log('TOPICS_DATA[topicSelected]', TOPICS_DATA[topicSelected]);
 
   return (
     <Layout
