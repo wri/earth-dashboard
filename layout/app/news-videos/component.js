@@ -65,16 +65,20 @@ function LayoutNewsVideos({ openHeaderMenu, headerTabSelected, title, descriptio
     scene.add(group);
 
     controls = new OrbitControls(camera, renderer.domElement);
+    // controls.autoRotate = true;
+    // controls.autoRotateSpeed = 1;
 
     // Block iframe events when dragging camera
     const blocker = document.getElementById('blocker');
     blocker.style.display = 'none';
 
     controls.addEventListener('start', () => {
-      blocker.style.display = '';
+      // blocker.style.display = '';
+      controls.autoRotate = false;
     });
     controls.addEventListener('end', () => {
       blocker.style.display = 'none';
+      controls.autoRotate = true;
     });
 
     animate();
