@@ -4,7 +4,7 @@
     position: relative;
     height: 100vh;
     width: 100vw;
-    background-color: $black;
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,10 +12,17 @@
     .main-container {
         position: relative;
         display: flex;
+        flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         width: 100vw;
+        height: 100vh;
         z-index: 2;
+
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
 
         .globe {
             position: absolute;
@@ -38,10 +45,10 @@
 
         .text-container {
             display: flex;
-            flex-direction: column;
             align-items: flex-start;
+            position: absolute;
+            bottom: 20px;
             text-align: center;
-            max-width: 100px;
 
             &.-desktop {
                 width: 50%;
@@ -102,7 +109,6 @@
     
             .topic-links {
                 display: flex;
-                flex-direction: column;
                 justify-content: space-around;
                 width: 100%;
     
@@ -113,6 +119,7 @@
                     font-family: 'Barlow Condensed';
                     font-size: 20px;
                     cursor: pointer;
+                    margin-right: 30px;
                 }
     
                 .biodiversity-link {
