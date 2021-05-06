@@ -36,11 +36,9 @@ function FreshwaterScrollyTelling() {
     // data prop of the step, which in this demo stores the index of the step.
     const onStepEnter = ({ data }) => {
         setCurrentStepIndex(data);
-        console.log('onStepEnter!', data);
     };
     const onStepEnterWorldMap = ({ data }) => {
         setCurrentStepIndexWorldMap(data);
-        console.log('onStepEnter WorldMap!', data);
     };
 
     const getWaterDropElements = () =>

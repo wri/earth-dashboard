@@ -15,8 +15,6 @@ TopicPage.getInitialProps = async (context) => {
   const topic = context?.query?.topic;
   const topicData = await fetchTopicData('/data/TopicPagesData.json');
 
-  console.log('topicData', topicData);
-
   // Preload widgets data
   const dataArray = topicData?.[topic]?.topicPage?.data;
   const widgetIDs = dataArray?.filter(elem => elem?.type === 'widget')?.map(elem => elem?.id);

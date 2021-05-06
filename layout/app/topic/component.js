@@ -31,6 +31,7 @@ import ShareModal from 'components/share/share-modal';
 // styles
 import styles from './topic.module.scss';
 import { useRouter } from 'next/router';
+import { MONGABAY_NEWS_TYPE, NOW_THIS_EARTH_NEWS_TYPE } from './news/constants';
 
 function LayoutTopic(props) {
   const { topic, topicData, widgets, embed } = props;
@@ -64,7 +65,8 @@ function LayoutTopic(props) {
               <div className={classnames({
                 [styles.globe]: true,
                 [styles['-loaded']]: globeLoaded
-              })}>
+              })}
+              >
                 <Globe
                   width="100vh"
                   height="70vh"
@@ -74,7 +76,7 @@ function LayoutTopic(props) {
                   }}
                   topic={topic}
                   onLoad={() => setGlobeLoaded(true)}
-                  hideUntilLoaded={true}
+                  hideUntilLoaded
                 />
               </div>
             }
@@ -83,15 +85,17 @@ function LayoutTopic(props) {
         {/* -------------------------------------------- */}
 
         <div className={classnames({
-          'row': true,
+          row: true,
           [styles['indicators-row']]: true
-        })}>
+        })}
+        >
           <div className={classnames({
             [styles['indicators-container']]: true,
             'small-8': true,
             'medium-6': true,
-            'column': true
-          })}>
+            column: true
+          })}
+          >
             <ErrorBoundary>
               {/* INDICATORS HEADER */}
               <div className={styles['indicators-header']}>
@@ -105,10 +109,11 @@ function LayoutTopic(props) {
                       category: 'Outbound traffic',
                       label: window.location.href
                     })}
-                  >RESOURCEWATCH</a>
+                  >RESOURCEWATCH
+                  </a>
                 </span>
               </div>
-              {dataArray && dataArray.map(block => {
+              {dataArray && dataArray.map((block) => {
                 const { type } = block;
 
                 if (type === 'widget') {
@@ -123,10 +128,10 @@ function LayoutTopic(props) {
                     >
                       <WidgetPreview
                         widget={{ id: block.id }}
-                        showSource={true}
-                        widgetShouldBeLoaded={true}
+                        showSource
+                        widgetShouldBeLoaded
                         topic={topic}
-                        showLoadingPlaceholder={true}
+                        showLoadingPlaceholder
                       />
                       <div
                         className={styles['share-button']}
@@ -135,7 +140,7 @@ function LayoutTopic(props) {
                             url: `${window.location.href.split('#')[0]}#${block.id}`,
                             embedTag: null,
                             showEmbed: false
-                          })
+                          });
                           setShareModalIsOpen(true);
                           logEvent({
                             action: 'Share widget',
@@ -155,8 +160,10 @@ function LayoutTopic(props) {
                       key={`topic-news-${keywords}`}
                       className={styles['indicator-block']}
                     >
-                      <span className={styles['block-header']}>RECENT NEWS</span>
-                      <TopicNews topic={keywords} limit={numberOfElements} />
+                      <span className={styles['block-header']}>RECENT NEWS (MONGABAY)</span>
+                      <TopicNews topic={keywords} limit={numberOfElements} type={MONGABAY_NEWS_TYPE} />
+                      <span className={styles['block-header']}>RECENT NEWS (NOW THIS EARTH)</span>
+                      <TopicNews topic={keywords} limit={numberOfElements} type={NOW_THIS_EARTH_NEWS_TYPE} />
                     </div>
                   );
                 }
@@ -167,75 +174,78 @@ function LayoutTopic(props) {
         {/* RIGHT SIDE LINK TO STORY TELLING PAGE */}
         {!isEmbed &&
           <>
-            <Desktop>
-              <div
-                className={classnames({
+          <Desktop>
+            <div
+              className={classnames({
                   [styles['right-link']]: true,
                   [styles['-desktop']]: true,
                   [styles[`-${topic}`]]: true
                 })}
-                onClick={() => router.push(`/${topic}/data`)}
-              >
-                <a>EXPLORE<br />{topic && topic.toUpperCase()}</a>
-                <div className={styles['arrow-container']}>
-                  <img className={styles.arrow} src="/static/images/arrow-right.svg" />
-                </div>
+              onClick={() => router.push(`/${topic}/data`)}
+            >
+              <a>EXPLORE<br />{topic && topic.toUpperCase()}</a>
+              <div className={styles['arrow-container']}>
+                <img className={styles.arrow} src="/static/images/arrow-right.svg" />
               </div>
-            </Desktop>
-            <Mobile>
-              <div
-                className={classnames({
-                  [styles['right-link']]: true,
-                  [styles['-mobile']]: true,
-                  [styles[`-${topic}`]]: true
+            </div>
+          </Desktop>
+          <Mobile>
+            <div
+              className={classnames({
+                [styles['right-link']]: true,
+                [styles['-mobile']]: true,
+                [styles[`-${topic}`]]: true
+              })}
+              onClick={() => router.push(`/${topic}/data`)}
+            >
+              <a>EXPLORE {topic && topic.toUpperCase()}</a>
+              <img src="/static/images/arrow-right.svg" />
+            </div>
+          </Mobile>
+          {/* LEFT MENU */}
+          <Desktop>
+            <div
+              className={styles['left-menu']}
+            >
+              <Link href="/climate">
+                <a className={classnames({
+                  [styles['climate-link']]: topic === CLIMATE,
+                  [styles['selected-link']]: topic === CLIMATE
                 })}
-                onClick={() => router.push(`/${topic}/data`)}
-              >
-                <a>EXPLORE {topic && topic.toUpperCase()}</a>
-                <img src="/static/images/arrow-right.svg" />
-              </div>
-            </Mobile>
-
-            {/* LEFT MENU */}
-            <Desktop>
-              <div
-                className={styles['left-menu']}
-              >
-                <Link href="/climate">
-                  <a className={classnames({
-                    [styles['climate-link']]: topic === CLIMATE,
-                    [styles['selected-link']]: topic === CLIMATE
-                  })}>
-                    CLIMATE
-                  </a>
-                </Link>
-                <Link href="/forests">
-                  <a className={classnames({
-                    [styles['forests-link']]: topic === FORESTS,
-                    [styles['selected-link']]: topic === FORESTS
-                  })}>
-                    FORESTS
-                  </a>
-                </Link>
-                <Link href="/freshwater">
-                  <a className={classnames({
-                    [styles['freshwater-link']]: topic === FRESHWATER,
-                    [styles['selected-link']]: topic === FRESHWATER
-                  })}>
-                    FRESHWATER
-                  </a>
-                </Link>
-                <Link href="/ocean">
-                  <a className={classnames({
-                    [styles['ocean-link']]: topic === OCEAN,
-                    [styles['selected-link']]: topic === OCEAN
-                  })}>
-                    OCEAN
-                  </a>
-                </Link>
-              </div>
-            </Desktop>
-          </>
+                >
+                  CLIMATE
+                </a>
+              </Link>
+              <Link href="/forests">
+                <a className={classnames({
+                  [styles['forests-link']]: topic === FORESTS,
+                  [styles['selected-link']]: topic === FORESTS
+                })}
+                >
+                  FORESTS
+                </a>
+              </Link>
+              <Link href="/freshwater">
+                <a className={classnames({
+                  [styles['freshwater-link']]: topic === FRESHWATER,
+                  [styles['selected-link']]: topic === FRESHWATER
+                })}
+                >
+                  FRESHWATER
+                </a>
+              </Link>
+              <Link href="/ocean">
+                <a className={classnames({
+                  [styles['ocean-link']]: topic === OCEAN,
+                  [styles['selected-link']]: topic === OCEAN
+                })}
+                >
+                  OCEAN
+                </a>
+              </Link>
+            </div>
+          </Desktop>
+        </>
         }
         <ShareModal
           topic={topic}
