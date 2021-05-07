@@ -42,7 +42,7 @@ function LayoutCesium({ openHeaderMenu, headerTabSelected, title, description })
       title={title}
       description={description}
       thumbnail="https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg"
-      className={styles.canvas}
+      className={styles.cesium}
       openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
       themeColor="#1a2128"
