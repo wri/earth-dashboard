@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { APOLLO_CLIENT } from 'utils/news';
 
+// Cesium
+import 'cesium/Build/Cesium/Widgets/widgets.css';
+
 // store
 import { wrapper } from 'store';
 
