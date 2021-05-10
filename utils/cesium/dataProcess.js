@@ -32,18 +32,18 @@ const loadNetCDF = (filePath) => {
 
             data.lon = {};
             data.lon.array = new Float32Array(NetCDF.getDataVariable('lon').flat());
-            data.lon.min = MathCesium.min(...data.lon.array);
-            data.lon.max = MathCesium.max(...data.lon.array);
+            data.lon.min = Math.min(...data.lon.array);
+            data.lon.max = Math.max(...data.lon.array);
 
             data.lat = {};
             data.lat.array = new Float32Array(NetCDF.getDataVariable('lat').flat());
-            data.lat.min = MathCesium.min(...data.lat.array);
-            data.lat.max = MathCesium.max(...data.lat.array);
+            data.lat.min = Math.min(...data.lat.array);
+            data.lat.max = Math.max(...data.lat.array);
 
             data.lev = {};
             data.lev.array = new Float32Array(NetCDF.getDataVariable('lev').flat());
-            data.lev.min = MathCesium.min(...data.lev.array);
-            data.lev.max = MathCesium.max(...data.lev.array);
+            data.lev.min = Math.min(...data.lev.array);
+            data.lev.max = Math.max(...data.lev.array);
 
             data.U = {};
             data.U.array = new Float32Array(NetCDF.getDataVariable('U').flat());

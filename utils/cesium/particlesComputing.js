@@ -9,6 +9,8 @@ import {
     TextureMagnificationFilter
 } from 'cesium';
 
+// utils
+import { randomizeParticles } from 'utils/cesium/dataProcess';
 import { createTexture, loadText } from 'utils/cesium/util';
 
 class ParticlesComputing {
@@ -54,7 +56,7 @@ class ParticlesComputing {
             })
         };
 
-        var particlesArray = DataProcess.randomizeParticles(userInput.maxParticles, viewerParameters)
+        var particlesArray = randomizeParticles(userInput.maxParticles, viewerParameters)
         var zeroArray = new Float32Array(4 * userInput.maxParticles).fill(0);
 
         this.particlesTextures = {
@@ -199,5 +201,6 @@ class ParticlesComputing {
             })
         }
     }
-
 }
+
+export default ParticlesComputing;

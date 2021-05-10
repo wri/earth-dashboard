@@ -1,3 +1,15 @@
+import { 
+    ComponentDatatype,
+    DepthFunction,
+    Geometry,
+    GeometryAttribute,
+    GeometryAttributes,
+    PixelFormat,
+    PixelDatatype,
+    PrimitiveType,
+    ShaderSource
+} from 'cesium';
+
 class ParticlesRendering {
     constructor(context, data, userInput, viewerParameters, particlesComputing) {
         this.createRenderingTextures(context, data);
@@ -10,15 +22,15 @@ class ParticlesRendering {
             context: context,
             width: context.drawingBufferWidth,
             height: context.drawingBufferHeight,
-            pixelFormat: Cesium.PixelFormat.RGBA,
-            pixelDatatype: Cesium.PixelDatatype.UNSIGNED_BYTE
+            pixelFormat: PixelFormat.RGBA,
+            pixelDatatype: PixelDatatype.UNSIGNED_BYTE
         };
         const depthTextureOptions = {
             context: context,
             width: context.drawingBufferWidth,
             height: context.drawingBufferHeight,
-            pixelFormat: Cesium.PixelFormat.DEPTH_COMPONENT,
-            pixelDatatype: Cesium.PixelDatatype.UNSIGNED_INT
+            pixelFormat: PixelFormat.DEPTH_COMPONENT,
+            pixelDatatype: PixelDatatype.UNSIGNED_INT
         };
 
         this.textures = {
@@ -91,15 +103,15 @@ class ParticlesRendering {
             vertex += repeatVertex;
         }
 
-        var geometry = new Cesium.Geometry({
-            attributes: new Cesium.GeometryAttributes({
-                st: new Cesium.GeometryAttribute({
-                    componentDatatype: Cesium.ComponentDatatype.FLOAT,
+        var geometry = new Geometry({
+            attributes: new GeometryAttributes({
+                st: new GeometryAttribute({
+                    componentDatatype: ComponentDatatype.FLOAT,
                     componentsPerAttribute: 2,
                     values: st
                 }),
-                normal: new Cesium.GeometryAttribute({
-                    componentDatatype: Cesium.ComponentDatatype.FLOAT,
+                normal: new GeometryAttribute({
+                    componentDatatype: ComponentDatatype.FLOAT,
                     componentsPerAttribute: 3,
                     values: normal
                 }),
@@ -120,7 +132,7 @@ class ParticlesRendering {
                     normal: 1
                 },
                 geometry: this.createSegmentsGeometry(userInput),
-                primitiveType: Cesium.PrimitiveType.TRIANGLES,
+                primitiveType: PrimitiveType.TRIANGLES,
                 uniformMap: {
                     previousParticlesPosition: function () {
                         return particlesComputing.particlesTextures.previousParticlesPosition;
@@ -144,10 +156,10 @@ class ParticlesRendering {
                         return userInput.particleHeight;
                     }
                 },
-                vertexShaderSource: new Cesium.ShaderSource({
+                vertexShaderSource: new ShaderSource({
                     sources: [Util.loadText(fileOptions.glslDirectory + 'segmentDraw.vert')]
                 }),
-                fragmentShaderSource: new Cesium.ShaderSource({
+                fragmentShaderSource: new ShaderSource({
                     sources: [Util.loadText(fileOptions.glslDirectory + 'segmentDraw.frag')]
                 }),
                 rawRenderState: Util.createRawRenderState({
@@ -169,7 +181,7 @@ class ParticlesRendering {
                     st: 1
                 },
                 geometry: Util.getFullscreenQuad(),
-                primitiveType: Cesium.PrimitiveType.TRIANGLES,
+                primitiveType: PrimitiveType.TRIANGLES,
                 uniformMap: {
                     segmentsColorTexture: function () {
                         return that.textures.segmentsColor;
@@ -188,11 +200,11 @@ class ParticlesRendering {
                     }
                 },
                 // prevent Cesium from writing depth because the depth here should be written manually
-                vertexShaderSource: new Cesium.ShaderSource({
+                vertexShaderSource: new ShaderSource({
                     defines: ['DISABLE_GL_POSITION_LOG_DEPTH'],
                     sources: [Util.loadText(fileOptions.glslDirectory + 'fullscreen.vert')]
                 }),
-                fragmentShaderSource: new Cesium.ShaderSource({
+                fragmentShaderSource: new ShaderSource({
                     defines: ['DISABLE_LOG_DEPTH_FRAGMENT_WRITE'],
                     sources: [Util.loadText(fileOptions.glslDirectory + 'trailDraw.frag')]
                 }),
@@ -200,7 +212,7 @@ class ParticlesRendering {
                     viewport: undefined,
                     depthTest: {
                         enabled: true,
-                        func: Cesium.DepthFunction.ALWAYS // always pass depth test for full control of depth information
+                        func: DepthFunction.ALWAYS // always pass depth test for full control of depth information
                     },
                     depthMask: true
                 }),
@@ -226,7 +238,7 @@ class ParticlesRendering {
                     st: 1
                 },
                 geometry: Util.getFullscreenQuad(),
-                primitiveType: Cesium.PrimitiveType.TRIANGLES,
+                primitiveType: PrimitiveType.TRIANGLES,
                 uniformMap: {
                     trailsColorTexture: function () {
                         return that.framebuffers.nextTrails.getColorTexture(0);
@@ -236,11 +248,11 @@ class ParticlesRendering {
                     }
                 },
                 // prevent Cesium from writing depth because the depth here should be written manually
-                vertexShaderSource: new Cesium.ShaderSource({
+                vertexShaderSource: new ShaderSource({
                     defines: ['DISABLE_GL_POSITION_LOG_DEPTH'],
                     sources: [Util.loadText(fileOptions.glslDirectory + 'fullscreen.vert')]
                 }),
-                fragmentShaderSource: new Cesium.ShaderSource({
+                fragmentShaderSource: new ShaderSource({
                     defines: ['DISABLE_LOG_DEPTH_FRAGMENT_WRITE'],
                     sources: [Util.loadText(fileOptions.glslDirectory + 'screenDraw.frag')]
                 }),
@@ -259,3 +271,5 @@ class ParticlesRendering {
         };
     }
 }
+
+export default ParticlesRendering;

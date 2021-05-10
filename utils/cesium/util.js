@@ -136,7 +136,7 @@ export const viewRectangleToLonLatRange = (viewRectangle) => {
 }
 
 export const FILE_OPTIONS = {
-	dataDirectory: '/data/',
+	dataDirectory: '/static/data/',
 	dataFile: "demo.nc",
-	glslDirectory: '../glsl/'
+	glslDirectory: 'utils/cesium/glsl/'
 };

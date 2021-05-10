@@ -12,6 +12,8 @@ import {
   Cartesian2
 } from 'cesium';
 
+import ParticleSystem from 'utils/cesium/particleSystem';
+
 // utils
 import { loadData } from 'utils/cesium/dataProcess';
 import { viewRectangleToLonLatRange } from 'utils/cesium/util';
