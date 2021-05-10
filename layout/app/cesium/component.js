@@ -32,7 +32,7 @@ function LayoutCesium({ openHeaderMenu, headerTabSelected, title, description })
         })}
       >
         {!isServer &&
-          <CesiumGlobe />
+          <CesiumGlobe  mode={{ debug: false }} />
         }
       </div>);
   };

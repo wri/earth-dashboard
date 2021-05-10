@@ -1,3 +1,16 @@
+import {
+    Cartesian2,
+    Cartesian3,
+    PixelFormat,
+    PixelDatatype,
+    Sampler,
+    ShaderSource,
+    TextureMinificationFilter,
+    TextureMagnificationFilter
+} from 'cesium';
+
+import { createTexture, loadText } from 'utils/cesium/util';
+
 class ParticlesComputing {
     constructor(context, data, userInput, viewerParameters) {
         this.createWindTextures(context, data);
@@ -10,19 +23,19 @@ class ParticlesComputing {
             context: context,
             width: data.dimensions.lon,
             height: data.dimensions.lat * data.dimensions.lev,
-            pixelFormat: Cesium.PixelFormat.LUMINANCE,
-            pixelDatatype: Cesium.PixelDatatype.FLOAT,
+            pixelFormat: PixelFormat.LUMINANCE,
+            pixelDatatype: PixelDatatype.FLOAT,
             flipY: false,
-            sampler: new Cesium.Sampler({
+            sampler: new Sampler({
                 // the values of texture will not be interpolated
-                minificationFilter: Cesium.TextureMinificationFilter.NEAREST,
-                magnificationFilter: Cesium.TextureMagnificationFilter.NEAREST
+                minificationFilter: TextureMinificationFilter.NEAREST,
+                magnificationFilter: TextureMagnificationFilter.NEAREST
             })
         };
 
         this.windTextures = {
-            U: Util.createTexture(windTextureOptions, data.U.array),
-            V: Util.createTexture(windTextureOptions, data.V.array)
+            U: createTexture(windTextureOptions, data.U.array),
+            V: createTexture(windTextureOptions, data.V.array)
         };
     }
 
@@ -31,13 +44,13 @@ class ParticlesComputing {
             context: context,
             width: userInput.particlesTextureSize,
             height: userInput.particlesTextureSize,
-            pixelFormat: Cesium.PixelFormat.RGBA,
-            pixelDatatype: Cesium.PixelDatatype.FLOAT,
+            pixelFormat: PixelFormat.RGBA,
+            pixelDatatype: PixelDatatype.FLOAT,
             flipY: false,
-            sampler: new Cesium.Sampler({
+            sampler: new Sampler({
                 // the values of texture will not be interpolated
-                minificationFilter: Cesium.TextureMinificationFilter.NEAREST,
-                magnificationFilter: Cesium.TextureMagnificationFilter.NEAREST
+                minificationFilter: TextureMinificationFilter.NEAREST,
+                magnificationFilter: TextureMagnificationFilter.NEAREST
             })
         };
 
@@ -45,12 +58,12 @@ class ParticlesComputing {
         var zeroArray = new Float32Array(4 * userInput.maxParticles).fill(0);
 
         this.particlesTextures = {
-            previousParticlesPosition: Util.createTexture(particlesTextureOptions, particlesArray),
-            currentParticlesPosition: Util.createTexture(particlesTextureOptions, particlesArray),
-            nextParticlesPosition: Util.createTexture(particlesTextureOptions, particlesArray),
-            postProcessingPosition: Util.createTexture(particlesTextureOptions, particlesArray),
+            previousParticlesPosition: createTexture(particlesTextureOptions, particlesArray),
+            currentParticlesPosition: createTexture(particlesTextureOptions, particlesArray),
+            nextParticlesPosition: createTexture(particlesTextureOptions, particlesArray),
+            postProcessingPosition: createTexture(particlesTextureOptions, particlesArray),
 
-            particlesSpeed: Util.createTexture(particlesTextureOptions, zeroArray)
+            particlesSpeed: createTexture(particlesTextureOptions, zeroArray)
         };
     }
 
@@ -61,16 +74,16 @@ class ParticlesComputing {
     }
 
     createComputingPrimitives(data, userInput, viewerParameters) {
-        const dimension = new Cesium.Cartesian3(data.dimensions.lon, data.dimensions.lat, data.dimensions.lev);
-        const minimum = new Cesium.Cartesian3(data.lon.min, data.lat.min, data.lev.min);
-        const maximum = new Cesium.Cartesian3(data.lon.max, data.lat.max, data.lev.max);
-        const interval = new Cesium.Cartesian3(
+        const dimension = new Cartesian3(data.dimensions.lon, data.dimensions.lat, data.dimensions.lev);
+        const minimum = new Cartesian3(data.lon.min, data.lat.min, data.lev.min);
+        const maximum = new Cartesian3(data.lon.max, data.lat.max, data.lev.max);
+        const interval = new Cartesian3(
             (maximum.x - minimum.x) / (dimension.x - 1),
             (maximum.y - minimum.y) / (dimension.y - 1),
             dimension.z > 1 ? (maximum.z - minimum.z) / (dimension.z - 1) : 1.0
         );
-        const uSpeedRange = new Cesium.Cartesian2(data.U.min, data.U.max);
-        const vSpeedRange = new Cesium.Cartesian2(data.V.min, data.V.max);
+        const uSpeedRange = new Cartesian2(data.U.min, data.U.max);
+        const vSpeedRange = new Cartesian2(data.V.min, data.V.max);
 
         const that = this;
 
@@ -112,8 +125,8 @@ class ParticlesComputing {
                         return userInput.speedFactor;
                     }
                 },
-                fragmentShaderSource: new Cesium.ShaderSource({
-                    sources: [Util.loadText(fileOptions.glslDirectory + 'calculateSpeed.frag')]
+                fragmentShaderSource: new ShaderSource({
+                    sources: [loadText(fileOptions.glslDirectory + 'calculateSpeed.frag')]
                 }),
                 outputTexture: this.particlesTextures.particlesSpeed,
                 preExecute: function () {
@@ -139,8 +152,8 @@ class ParticlesComputing {
                         return that.particlesTextures.particlesSpeed;
                     }
                 },
-                fragmentShaderSource: new Cesium.ShaderSource({
-                    sources: [Util.loadText(fileOptions.glslDirectory + 'updatePosition.frag')]
+                fragmentShaderSource: new ShaderSource({
+                    sources: [loadText(fileOptions.glslDirectory + 'updatePosition.frag')]
                 }),
                 outputTexture: this.particlesTextures.nextParticlesPosition,
                 preExecute: function () {
@@ -175,8 +188,8 @@ class ParticlesComputing {
                         return userInput.dropRateBump;
                     }
                 },
-                fragmentShaderSource: new Cesium.ShaderSource({
-                    sources: [Util.loadText(fileOptions.glslDirectory + 'postProcessingPosition.frag')]
+                fragmentShaderSource: new ShaderSource({
+                    sources: [loadText(fileOptions.glslDirectory + 'postProcessingPosition.frag')]
                 }),
                 outputTexture: this.particlesTextures.postProcessingPosition,
                 preExecute: function () {

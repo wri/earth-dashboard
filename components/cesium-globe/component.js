@@ -8,11 +8,16 @@ import {
   createWorldImagery,
   Viewer,
   BoundingSphere,
-  Cartesian3
+  Cartesian3,
+  Cartesian2
 } from 'cesium';
 
 // utils
 import { loadData } from 'utils/cesium/dataProcess';
+import { viewRectangleToLonLatRange } from 'utils/cesium/util';
+
+// constants
+import { DEFAULT_PARTICLE_SYSTEM_OPTIONS, DEFAULT_LAYER_OPTIONS } from './constants';
 
 // styles
 import styles from './cesium-globe.module.scss';
@@ -25,11 +30,11 @@ let scene;
 let viewer;
 let imageryLayers;
 
-const CesiumGlobe = ({ panel, mode }) => {
+const CesiumGlobe = ({ mode }) => {
 
   const updateViewerParameters = () => {
     const viewRectangle = camera.computeViewRectangle(scene.globe.ellipsoid);
-    const lonLatRange = Util.viewRectangleToLonLatRange(viewRectangle);
+    const lonLatRange = viewRectangleToLonLatRange(viewRectangle);
     viewerParameters.lonRange.x = lonLatRange.lon.min;
     viewerParameters.lonRange.y = lonLatRange.lon.max;
     viewerParameters.latRange.x = lonLatRange.lat.min;
@@ -84,7 +89,7 @@ const CesiumGlobe = ({ panel, mode }) => {
         viewer.terrainProvider = createWorldTerrain();
         break;
       }
-      default {
+      default: {
         return;
       }
     }
@@ -117,13 +122,6 @@ const CesiumGlobe = ({ panel, mode }) => {
         scene.primitives.show = true;
       }
     });
-
-    window.addEventListener('particleSystemOptionsChanged', function () {
-      particleSystem.applyUserInput(panel.getUserInput());
-    });
-    window.addEventListener('layerOptionsChanged', function () {
-      setGlobeLayer(panel.getUserInput());
-    });
   }
 
   useEffect(() => {
@@ -135,7 +133,7 @@ const CesiumGlobe = ({ panel, mode }) => {
       scene3DOnly: true
     };
 
-    const viewer = new Viewer('cesiumContainer', options);
+    viewer = new Viewer('cesiumContainer', options);
     camera = viewer.camera;
     scene = viewer.scene;
 
@@ -145,8 +143,8 @@ const CesiumGlobe = ({ panel, mode }) => {
     }
 
     viewerParameters = {
-      lonRange: new Cesium.Cartesian2(),
-      latRange: new Cesium.Cartesian2(),
+      lonRange: new Cartesian2(),
+      latRange: new Cartesian2(),
       pixelSize: 0.0
     };
     // use a smaller earth radius to make sure distance to camera > 0
@@ -156,18 +154,18 @@ const CesiumGlobe = ({ panel, mode }) => {
     loadData().then(
       (data) => {
         particleSystem = new ParticleSystem(scene.context, data,
-          panel.getUserInput(), viewerParameters);
+          DEFAULT_PARTICLE_SYSTEM_OPTIONS, viewerParameters);
         addPrimitives();
 
         setupEventListeners();
 
-        // if (mode.debug) {
-        //   debug();
-        // }
+        if (mode.debug) {
+          debug();
+        }
       });
 
     imageryLayers = viewer.imageryLayers;
-    setGlobeLayer(panel.getUserInput());
+    setGlobeLayer(DEFAULT_LAYER_OPTIONS);
 
   }, []);
 

@@ -1,4 +1,5 @@
-import { Math } from 'cesium';
+import { Math as MathCesium } from 'cesium';
+import { FILE_OPTIONS } from './util';
 
 var data;
 
@@ -31,18 +32,18 @@ const loadNetCDF = (filePath) => {
 
             data.lon = {};
             data.lon.array = new Float32Array(NetCDF.getDataVariable('lon').flat());
-            data.lon.min = Math.min(...data.lon.array);
-            data.lon.max = Math.max(...data.lon.array);
+            data.lon.min = MathCesium.min(...data.lon.array);
+            data.lon.max = MathCesium.max(...data.lon.array);
 
             data.lat = {};
             data.lat.array = new Float32Array(NetCDF.getDataVariable('lat').flat());
-            data.lat.min = Math.min(...data.lat.array);
-            data.lat.max = Math.max(...data.lat.array);
+            data.lat.min = MathCesium.min(...data.lat.array);
+            data.lat.max = MathCesium.max(...data.lat.array);
 
             data.lev = {};
             data.lev.array = new Float32Array(NetCDF.getDataVariable('lev').flat());
-            data.lev.min = Math.min(...data.lev.array);
-            data.lev.max = Math.max(...data.lev.array);
+            data.lev.min = MathCesium.min(...data.lev.array);
+            data.lev.max = MathCesium.max(...data.lev.array);
 
             data.U = {};
             data.U.array = new Float32Array(NetCDF.getDataVariable('U').flat());
@@ -62,7 +63,7 @@ const loadNetCDF = (filePath) => {
 }
 
 export const loadData = async () => {
-    var ncFilePath = fileOptions.dataDirectory + fileOptions.dataFile;
+    var ncFilePath = FILE_OPTIONS.dataDirectory + FILE_OPTIONS.dataFile;
     await loadNetCDF(ncFilePath);
 
     return data;
@@ -71,9 +72,9 @@ export const loadData = async () => {
 export const randomizeParticles = (maxParticles, viewerParameters) => {
     const array = new Float32Array(4 * maxParticles);
     for (let i = 0; i < maxParticles; i++) {
-        array[4 * i] = Math.randomBetween(viewerParameters.lonRange.x, viewerParameters.lonRange.y);
-        array[4 * i + 1] = Math.randomBetween(viewerParameters.latRange.x, viewerParameters.latRange.y);
-        array[4 * i + 2] = Math.randomBetween(data.lev.min, data.lev.max);
+        array[4 * i] = MathCesium.randomBetween(viewerParameters.lonRange.x, viewerParameters.lonRange.y);
+        array[4 * i + 1] = MathCesium.randomBetween(viewerParameters.latRange.x, viewerParameters.latRange.y);
+        array[4 * i + 2] = MathCesium.randomBetween(data.lev.min, data.lev.max);
         array[4 * i + 3] = 0.0;
     }
     return array;
