@@ -1,3 +1,19 @@
+import {
+    BufferUsage,
+    defaultValue,
+    defined,
+    destroyObject,
+    ClearCommand,
+    Color,
+    ComputeCommand,
+    Pass,
+    VertexArray,
+    ShaderProgram,
+    RenderState,
+    Matrix4,
+    DrawCommand
+} from 'cesium';
+
 class CustomPrimitive {
     constructor(options) {
         this.commandType = options.commandType;
@@ -16,18 +32,18 @@ class CustomPrimitive {
 
         this.outputTexture = options.outputTexture;
 
-        this.autoClear = Cesium.defaultValue(options.autoClear, false);
+        this.autoClear = defaultValue(options.autoClear, false);
         this.preExecute = options.preExecute;
 
         this.show = true;
         this.commandToExecute = undefined;
         this.clearCommand = undefined;
         if (this.autoClear) {
-            this.clearCommand = new Cesium.ClearCommand({
-                color: new Cesium.Color(0.0, 0.0, 0.0, 0.0),
+            this.clearCommand = new ClearCommand({
+                color: new Color(0.0, 0.0, 0.0, 0.0),
                 depth: 1.0,
                 framebuffer: this.framebuffer,
-                pass: Cesium.Pass.OPAQUE
+                pass: Pass.OPAQUE
             });
         }
     }
@@ -35,35 +51,35 @@ class CustomPrimitive {
     createCommand(context) {
         switch (this.commandType) {
             case 'Draw': {
-                var vertexArray = Cesium.VertexArray.fromGeometry({
+                var vertexArray = VertexArray.fromGeometry({
                     context: context,
                     geometry: this.geometry,
                     attributeLocations: this.attributeLocations,
-                    bufferUsage: Cesium.BufferUsage.STATIC_DRAW,
+                    bufferUsage: BufferUsage.STATIC_DRAW,
                 });
 
-                var shaderProgram = Cesium.ShaderProgram.fromCache({
+                var shaderProgram = ShaderProgram.fromCache({
                     context: context,
                     attributeLocations: this.attributeLocations,
                     vertexShaderSource: this.vertexShaderSource,
                     fragmentShaderSource: this.fragmentShaderSource
                 });
 
-                var renderState = Cesium.RenderState.fromCache(this.rawRenderState);
-                return new Cesium.DrawCommand({
+                var renderState = RenderState.fromCache(this.rawRenderState);
+                return new DrawCommand({
                     owner: this,
                     vertexArray: vertexArray,
                     primitiveType: this.primitiveType,
                     uniformMap: this.uniformMap,
-                    modelMatrix: Cesium.Matrix4.IDENTITY,
+                    modelMatrix: Matrix4.IDENTITY,
                     shaderProgram: shaderProgram,
                     framebuffer: this.framebuffer,
                     renderState: renderState,
-                    pass: Cesium.Pass.OPAQUE
+                    pass: Pass.OPAQUE
                 });
             }
             case 'Compute': {
-                return new Cesium.ComputeCommand({
+                return new ComputeCommand({
                     owner: this,
                     fragmentShaderSource: this.fragmentShaderSource,
                     uniformMap: this.uniformMap,
@@ -76,11 +92,11 @@ class CustomPrimitive {
 
     setGeometry(context, geometry) {
         this.geometry = geometry;
-        var vertexArray = Cesium.VertexArray.fromGeometry({
+        var vertexArray = VertexArray.fromGeometry({
             context: context,
             geometry: this.geometry,
             attributeLocations: this.attributeLocations,
-            bufferUsage: Cesium.BufferUsage.STATIC_DRAW,
+            bufferUsage: BufferUsage.STATIC_DRAW,
         });
         this.commandToExecute.vertexArray = vertexArray;
     }
@@ -90,15 +106,15 @@ class CustomPrimitive {
             return;
         }
 
-        if (!Cesium.defined(this.commandToExecute)) {
+        if (!defined(this.commandToExecute)) {
             this.commandToExecute = this.createCommand(frameState.context);
         }
 
-        if (Cesium.defined(this.preExecute)) {
+        if (defined(this.preExecute)) {
             this.preExecute();
         }
 
-        if (Cesium.defined(this.clearCommand)) {
+        if (defined(this.clearCommand)) {
             frameState.commandList.push(this.clearCommand);
         }
         frameState.commandList.push(this.commandToExecute);
@@ -109,9 +125,11 @@ class CustomPrimitive {
     }
 
     destroy() {
-        if (Cesium.defined(this.commandToExecute)) {
+        if (defined(this.commandToExecute)) {
             this.commandToExecute.shaderProgram = this.commandToExecute.shaderProgram && this.commandToExecute.shaderProgram.destroy();
         }
-        return Cesium.destroyObject(this);
+        return destroyObject(this);
     }
 }
+
+export default CustomPrimitive;

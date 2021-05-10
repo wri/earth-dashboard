@@ -5,7 +5,8 @@ export const DEFAULT_PARTICLE_SYSTEM_OPTIONS = {
   dropRate: 0.003,
   dropRateBump: 0.01,
   speedFactor: 1.0,
-  lineWidth: 4.0
+  lineWidth: 4.0,
+  particlesTextureSize: 64
 };
 
 export const GLOBE_LAYERS = [

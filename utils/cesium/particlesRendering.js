@@ -10,6 +10,9 @@ import {
     ShaderSource
 } from 'cesium';
 
+import CustomPrimitive from 'utils/cesium/customPrimitive';
+import { createTexture, createFramebuffer, loadText, createRawRenderState, getFullscreenQuad } from 'utils/cesium/util';
+
 class ParticlesRendering {
     constructor(context, data, userInput, viewerParameters, particlesComputing) {
         this.createRenderingTextures(context, data);
@@ -34,22 +37,22 @@ class ParticlesRendering {
         };
 
         this.textures = {
-            segmentsColor: Util.createTexture(colorTextureOptions),
-            segmentsDepth: Util.createTexture(depthTextureOptions),
+            segmentsColor: createTexture(colorTextureOptions),
+            segmentsDepth: createTexture(depthTextureOptions),
 
-            currentTrailsColor: Util.createTexture(colorTextureOptions),
-            currentTrailsDepth: Util.createTexture(depthTextureOptions),
+            currentTrailsColor: createTexture(colorTextureOptions),
+            currentTrailsDepth: createTexture(depthTextureOptions),
 
-            nextTrailsColor: Util.createTexture(colorTextureOptions),
-            nextTrailsDepth: Util.createTexture(depthTextureOptions),
+            nextTrailsColor: createTexture(colorTextureOptions),
+            nextTrailsDepth: createTexture(depthTextureOptions),
         };
     }
 
     createRenderingFramebuffers(context) {
         this.framebuffers = {
-            segments: Util.createFramebuffer(context, this.textures.segmentsColor, this.textures.segmentsDepth),
-            currentTrails: Util.createFramebuffer(context, this.textures.currentTrailsColor, this.textures.currentTrailsDepth),
-            nextTrails: Util.createFramebuffer(context, this.textures.nextTrailsColor, this.textures.nextTrailsDepth)
+            segments: createFramebuffer(context, this.textures.segmentsColor, this.textures.segmentsDepth),
+            currentTrails: createFramebuffer(context, this.textures.currentTrailsColor, this.textures.currentTrailsDepth),
+            nextTrails: createFramebuffer(context, this.textures.nextTrailsColor, this.textures.nextTrailsDepth)
         }
     }
 
@@ -157,12 +160,12 @@ class ParticlesRendering {
                     }
                 },
                 vertexShaderSource: new ShaderSource({
-                    sources: [Util.loadText(fileOptions.glslDirectory + 'segmentDraw.vert')]
+                    sources: [loadText(fileOptions.glslDirectory + 'segmentDraw.vert')]
                 }),
                 fragmentShaderSource: new ShaderSource({
-                    sources: [Util.loadText(fileOptions.glslDirectory + 'segmentDraw.frag')]
+                    sources: [loadText(fileOptions.glslDirectory + 'segmentDraw.frag')]
                 }),
-                rawRenderState: Util.createRawRenderState({
+                rawRenderState: createRawRenderState({
                     // undefined value means let Cesium deal with it
                     viewport: undefined,
                     depthTest: {
@@ -180,7 +183,7 @@ class ParticlesRendering {
                     position: 0,
                     st: 1
                 },
-                geometry: Util.getFullscreenQuad(),
+                geometry: getFullscreenQuad(),
                 primitiveType: PrimitiveType.TRIANGLES,
                 uniformMap: {
                     segmentsColorTexture: function () {
@@ -202,13 +205,13 @@ class ParticlesRendering {
                 // prevent Cesium from writing depth because the depth here should be written manually
                 vertexShaderSource: new ShaderSource({
                     defines: ['DISABLE_GL_POSITION_LOG_DEPTH'],
-                    sources: [Util.loadText(fileOptions.glslDirectory + 'fullscreen.vert')]
+                    sources: [loadText(fileOptions.glslDirectory + 'fullscreen.vert')]
                 }),
                 fragmentShaderSource: new ShaderSource({
                     defines: ['DISABLE_LOG_DEPTH_FRAGMENT_WRITE'],
-                    sources: [Util.loadText(fileOptions.glslDirectory + 'trailDraw.frag')]
+                    sources: [loadText(fileOptions.glslDirectory + 'trailDraw.frag')]
                 }),
-                rawRenderState: Util.createRawRenderState({
+                rawRenderState: createRawRenderState({
                     viewport: undefined,
                     depthTest: {
                         enabled: true,
@@ -237,7 +240,7 @@ class ParticlesRendering {
                     position: 0,
                     st: 1
                 },
-                geometry: Util.getFullscreenQuad(),
+                geometry: getFullscreenQuad(),
                 primitiveType: PrimitiveType.TRIANGLES,
                 uniformMap: {
                     trailsColorTexture: function () {
@@ -250,13 +253,13 @@ class ParticlesRendering {
                 // prevent Cesium from writing depth because the depth here should be written manually
                 vertexShaderSource: new ShaderSource({
                     defines: ['DISABLE_GL_POSITION_LOG_DEPTH'],
-                    sources: [Util.loadText(fileOptions.glslDirectory + 'fullscreen.vert')]
+                    sources: [loadText(fileOptions.glslDirectory + 'fullscreen.vert')]
                 }),
                 fragmentShaderSource: new ShaderSource({
                     defines: ['DISABLE_LOG_DEPTH_FRAGMENT_WRITE'],
-                    sources: [Util.loadText(fileOptions.glslDirectory + 'screenDraw.frag')]
+                    sources: [loadText(fileOptions.glslDirectory + 'screenDraw.frag')]
                 }),
-                rawRenderState: Util.createRawRenderState({
+                rawRenderState: createRawRenderState({
                     viewport: undefined,
                     depthTest: {
                         enabled: false

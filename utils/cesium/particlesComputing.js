@@ -11,7 +11,8 @@ import {
 
 // utils
 import { randomizeParticles } from 'utils/cesium/dataProcess';
-import { createTexture, loadText } from 'utils/cesium/util';
+import { createTexture, loadText, FILE_OPTIONS } from 'utils/cesium/util';
+import CustomPrimitive from 'utils/cesium/customPrimitive';
 
 class ParticlesComputing {
     constructor(context, data, userInput, viewerParameters) {
@@ -42,6 +43,7 @@ class ParticlesComputing {
     }
 
     createParticlesTextures(context, userInput, viewerParameters) {
+        console.log('userInput', userInput, 'context', context);
         var particlesTextureOptions = {
             context: context,
             width: userInput.particlesTextureSize,
@@ -128,7 +130,7 @@ class ParticlesComputing {
                     }
                 },
                 fragmentShaderSource: new ShaderSource({
-                    sources: [loadText(fileOptions.glslDirectory + 'calculateSpeed.frag')]
+                    sources: [loadText(FILE_OPTIONS.glslDirectory + 'calculateSpeed.frag')]
                 }),
                 outputTexture: this.particlesTextures.particlesSpeed,
                 preExecute: function () {
@@ -155,7 +157,7 @@ class ParticlesComputing {
                     }
                 },
                 fragmentShaderSource: new ShaderSource({
-                    sources: [loadText(fileOptions.glslDirectory + 'updatePosition.frag')]
+                    sources: [loadText(FILE_OPTIONS.glslDirectory + 'updatePosition.frag')]
                 }),
                 outputTexture: this.particlesTextures.nextParticlesPosition,
                 preExecute: function () {
@@ -191,7 +193,7 @@ class ParticlesComputing {
                     }
                 },
                 fragmentShaderSource: new ShaderSource({
-                    sources: [loadText(fileOptions.glslDirectory + 'postProcessingPosition.frag')]
+                    sources: [loadText(FILE_OPTIONS.glslDirectory + 'postProcessingPosition.frag')]
                 }),
                 outputTexture: this.particlesTextures.postProcessingPosition,
                 preExecute: function () {
