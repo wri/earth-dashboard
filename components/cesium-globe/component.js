@@ -11,6 +11,9 @@ import {
   Cartesian3
 } from 'cesium';
 
+// utils
+import { loadData } from 'utils/cesium/dataProcess';
+
 // styles
 import styles from './cesium-globe.module.scss';
 
@@ -150,7 +153,7 @@ const CesiumGlobe = ({ panel, mode }) => {
     globeBoundingSphere = new BoundingSphere(Cartesian3.ZERO, 0.99 * 6378137.0);
     updateViewerParameters();
 
-    DataProcess.loadData().then(
+    loadData().then(
       (data) => {
         particleSystem = new ParticleSystem(scene.context, data,
           panel.getUserInput(), viewerParameters);
