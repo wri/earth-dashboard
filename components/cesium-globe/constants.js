@@ -19,6 +19,6 @@ export const GLOBE_LAYERS = [
 ];
 
 export const DEFAULT_LAYER_OPTIONS = {
-  "globeLayer": GLOBE_LAYERS[5],
+  "globeLayer": GLOBE_LAYERS[4],
   "WMS_URL": "https://www.ncei.noaa.gov/thredds/wms/model-gfs-g4-anl-files-old/201809/20180916/gfsanl_4_20180916_0000_000.grb2",
 };
