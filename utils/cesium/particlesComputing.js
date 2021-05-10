@@ -43,7 +43,6 @@ class ParticlesComputing {
     }
 
     createParticlesTextures(context, userInput, viewerParameters) {
-        console.log('userInput', userInput, 'context', context);
         var particlesTextureOptions = {
             context: context,
             width: userInput.particlesTextureSize,

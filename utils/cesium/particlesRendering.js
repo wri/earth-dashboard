@@ -13,6 +13,8 @@ import {
 import CustomPrimitive from 'utils/cesium/customPrimitive';
 import { createTexture, createFramebuffer, loadText, createRawRenderState, getFullscreenQuad } from 'utils/cesium/util';
 
+import { FILE_OPTIONS } from './util';
+
 class ParticlesRendering {
     constructor(context, data, userInput, viewerParameters, particlesComputing) {
         this.createRenderingTextures(context, data);
@@ -160,10 +162,10 @@ class ParticlesRendering {
                     }
                 },
                 vertexShaderSource: new ShaderSource({
-                    sources: [loadText(fileOptions.glslDirectory + 'segmentDraw.vert')]
+                    sources: [loadText(FILE_OPTIONS.glslDirectory + 'segmentDraw.vert')]
                 }),
                 fragmentShaderSource: new ShaderSource({
-                    sources: [loadText(fileOptions.glslDirectory + 'segmentDraw.frag')]
+                    sources: [loadText(FILE_OPTIONS.glslDirectory + 'segmentDraw.frag')]
                 }),
                 rawRenderState: createRawRenderState({
                     // undefined value means let Cesium deal with it
@@ -205,11 +207,11 @@ class ParticlesRendering {
                 // prevent Cesium from writing depth because the depth here should be written manually
                 vertexShaderSource: new ShaderSource({
                     defines: ['DISABLE_GL_POSITION_LOG_DEPTH'],
-                    sources: [loadText(fileOptions.glslDirectory + 'fullscreen.vert')]
+                    sources: [loadText(FILE_OPTIONS.glslDirectory + 'fullscreen.vert')]
                 }),
                 fragmentShaderSource: new ShaderSource({
                     defines: ['DISABLE_LOG_DEPTH_FRAGMENT_WRITE'],
-                    sources: [loadText(fileOptions.glslDirectory + 'trailDraw.frag')]
+                    sources: [loadText(FILE_OPTIONS.glslDirectory + 'trailDraw.frag')]
                 }),
                 rawRenderState: createRawRenderState({
                     viewport: undefined,
@@ -253,11 +255,11 @@ class ParticlesRendering {
                 // prevent Cesium from writing depth because the depth here should be written manually
                 vertexShaderSource: new ShaderSource({
                     defines: ['DISABLE_GL_POSITION_LOG_DEPTH'],
-                    sources: [loadText(fileOptions.glslDirectory + 'fullscreen.vert')]
+                    sources: [loadText(FILE_OPTIONS.glslDirectory + 'fullscreen.vert')]
                 }),
                 fragmentShaderSource: new ShaderSource({
                     defines: ['DISABLE_LOG_DEPTH_FRAGMENT_WRITE'],
-                    sources: [loadText(fileOptions.glslDirectory + 'screenDraw.frag')]
+                    sources: [loadText(FILE_OPTIONS.glslDirectory + 'screenDraw.frag')]
                 }),
                 rawRenderState: createRawRenderState({
                     viewport: undefined,

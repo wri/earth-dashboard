@@ -4,6 +4,7 @@ import {
 	defined,
 	Framebuffer,
 	Geometry,
+	GeometryAttribute,
 	GeometryAttributes,
 	Math as MathCesium,
 	Texture
@@ -138,5 +139,5 @@ export const viewRectangleToLonLatRange = (viewRectangle) => {
 export const FILE_OPTIONS = {
 	dataDirectory: '/static/data/',
 	dataFile: "demo.nc",
-	glslDirectory: 'utils/cesium/glsl/'
+	glslDirectory: '/static/data/glsl/'
 };

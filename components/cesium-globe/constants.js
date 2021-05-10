@@ -1,6 +1,6 @@
 export const DEFAULT_PARTICLE_SYSTEM_OPTIONS = {
   maxParticles: 64 * 64,
-  particleHeight: 100.0,
+  particleHeight: 10000.0,
   fadeOpacity: 0.996,
   dropRate: 0.003,
   dropRateBump: 0.01,
@@ -19,6 +19,6 @@ export const GLOBE_LAYERS = [
 ];
 
 export const DEFAULT_LAYER_OPTIONS = {
-  "globeLayer": GLOBE_LAYERS[4],
+  "globeLayer": GLOBE_LAYERS[5],
   "WMS_URL": "https://www.ncei.noaa.gov/thredds/wms/model-gfs-g4-anl-files-old/201809/20180916/gfsanl_4_20180916_0000_000.grb2",
 };
