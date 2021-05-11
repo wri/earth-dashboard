@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import {
   createWorldTerrain,
   EllipsoidTerrainProvider,
+  ArcGisMapServerImageryProvider,
   TileMapServiceImageryProvider,
   WebMapServiceImageryProvider,
+  UrlTemplateImageryProvider,
   buildModuleUrl,
   createWorldImagery,
   Viewer,
@@ -91,6 +93,16 @@ const CesiumGlobe = ({ mode }) => {
         viewer.terrainProvider = createWorldTerrain();
         break;
       }
+      case "RWLayer": {
+        viewer.imageryLayers.addImageryProvider(new UrlTemplateImageryProvider({
+          url: globeLayer.url
+        }))
+      }
+      case "ArcGIS": {
+        viewer.imageryLayers.addImageryProvider(new ArcGisMapServerImageryProvider({
+          url: globeLayer.url
+        }))
+      }
       default: {
         return;
       }
@@ -128,11 +140,12 @@ const CesiumGlobe = ({ mode }) => {
 
   useEffect(() => {
     const options = {
-      baseLayerPicker: false,
-      geocoder: false,
-      infoBox: false,
+      baseLayerPicker: true,
+      geocoder: true,
+      infoBox: true,
       fullscreenElement: 'cesiumContainer',
-      scene3DOnly: true
+      scene3DOnly: true,
+      skyAtmosphere: false
     };
 
     viewer = new Viewer('cesiumContainer', options);
