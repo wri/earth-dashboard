@@ -16,8 +16,9 @@ export const GLOBE_LAYERS = [
   { name: "WMS:Temperature", type: "WMS", layer: "Temperature_surface", ColorScaleRange: '204.1,317.5' },
   { name: "WMS:Wind Speed", type: "WMS", layer: "Wind_speed_gust_surface", ColorScaleRange: '0.1095,35.31' },
   { name: "WorldTerrain", type: "WorldTerrain" },
+  { name: "Basemap", type: "RWLayer", url: "https://api.mapbox.com/v4/mapbox.country-boundaries-v1/1/0/0.mvt?access_token=pk.eyJ1IjoidGFtYXJhbWVnYW4iLCJhIjoiY2tvanc1N2V6MDF0aTJ3cGlzYjRxeTBjcSJ9.wxw-TMg4lhEYfBnGBxTIpQ" }
   // { name: "Fire weather", type: "RWLayer", url: "https://api.resourcewatch.org/v1/layer/fc5ee0ce-1350-4c67-a66e-1257afff5bc7/tile/gee/{z}/{x}/{y}" }
-  { name: "RW fine particulate matter", type: "RWLayer", url: "https://api.resourcewatch.org/v1/layer/db8ef3b3-13f4-44ff-915b-d1150b674178/tile/gee/{z}/{x}/{y}" }
+  // { name: "RW fine particulate matter", type: "RWLayer", url: "https://api.resourcewatch.org/v1/layer/db8ef3b3-13f4-44ff-915b-d1150b674178/tile/gee/{z}/{x}/{y}" }
   // { name: "RW Satellite Imagery", type: "RWLayer", url: "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/2021-05-09/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg"}
 ];
 

@@ -34,6 +34,10 @@ module.exports = {
       test: /\.glsl$/
     });
 
+    _config.externals = Object.assign(_config.externals,{
+      cesium: 'Cesium',
+    });
+
     // CESIUM JS configuration
     if (!isServer) {
       config.plugins.push(
