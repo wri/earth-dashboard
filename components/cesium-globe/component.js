@@ -95,6 +95,11 @@ const CesiumGlobe = ({ mode }) => {
         return;
       }
     }
+
+    // Fire weather layer
+    viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+      url: 'https://api.resourcewatch.org/v1/layer/fc5ee0ce-1350-4c67-a66e-1257afff5bc7/tile/gee/{z}/{x}/{y}'
+    }));
   }
 
   const setupEventListeners = () => {

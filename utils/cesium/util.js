@@ -27,7 +27,7 @@ export const getFullscreenQuad = () => {
 			st: new Cesium.GeometryAttribute({
 				componentDatatype: Cesium.ComponentDatatype.FLOAT,
 				componentsPerAttribute: 2,
-				values: new Cesium.Float32Array([
+				values: new Float32Array([
 					0, 0,
 					1, 0,
 					1, 1,
@@ -35,7 +35,7 @@ export const getFullscreenQuad = () => {
 				])
 			})
 		}),
-		indices: new Cesium.Uint32Array([3, 2, 0, 0, 2, 1])
+		indices: new Uint32Array([3, 2, 0, 0, 2, 1])
 	});
 	return fullscreenQuad;
 }

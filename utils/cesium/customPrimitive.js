@@ -14,7 +14,7 @@ class CustomPrimitive {
         this.vertexShaderSource = options.vertexShaderSource;
         this.fragmentShaderSource = options.fragmentShaderSource;
 
-        this.rawCesium.RenderState = options.rawCesium.RenderState;
+        this.rawRenderState = options.rawRenderState;
         this.framebuffer = options.framebuffer;
 
         this.outputTexture = options.outputTexture;
@@ -52,7 +52,7 @@ class CustomPrimitive {
                     fragmentShaderSource: this.fragmentShaderSource
                 });
 
-                var renderState = Cesium.RenderState.fromCache(this.rawCesium.RenderState);
+                var renderState = Cesium.RenderState.fromCache(this.rawRenderState);
                 return new Cesium.DrawCommand({
                     owner: this,
                     vertexArray: vertexArray,

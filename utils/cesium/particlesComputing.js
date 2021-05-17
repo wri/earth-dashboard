@@ -137,7 +137,7 @@ class ParticlesComputing {
                 }
             }),
 
-            updatePosition: new Cesium.CustomPrimitive({
+            updatePosition: new CustomPrimitive({
                 commandType: 'Compute',
                 uniformMap: {
                     currentParticlesPosition: function () {
@@ -157,7 +157,7 @@ class ParticlesComputing {
                 }
             }),
 
-            postProcessingPosition: new Cesium.CustomPrimitive({
+            postProcessingPosition: new CustomPrimitive({
                 commandType: 'Compute',
                 uniformMap: {
                     nextParticlesPosition: function () {

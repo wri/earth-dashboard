@@ -74,10 +74,10 @@ class ParticlesRendering {
                 }
             }
         }
-        normal = new Cesium.Float32Array(normal);
+        normal = new Float32Array(normal);
 
         const indexSize = 12 * userInput.maxParticles;
-        var vertexIndexes = new Cesium.Uint32Array(indexSize);
+        var vertexIndexes = new Uint32Array(indexSize);
         for (var i = 0, j = 0, vertex = 0; i < userInput.maxParticles; i++) {
             vertexIndexes[j++] = vertex + 0;
             vertexIndexes[j++] = vertex + 1;
