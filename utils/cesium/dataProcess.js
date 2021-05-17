@@ -1,7 +1,8 @@
-import { Math as MathCesium } from 'cesium';
 import { FILE_OPTIONS } from './util';
 
 var data;
+let Cesium = typeof window !== 'undefined' && window.Cesium;
+
 
 const loadNetCDF = (filePath) => {
     return new Promise(function (resolve) {
@@ -72,9 +73,9 @@ export const loadData = async () => {
 export const randomizeParticles = (maxParticles, viewerParameters) => {
     const array = new Float32Array(4 * maxParticles);
     for (let i = 0; i < maxParticles; i++) {
-        array[4 * i] = MathCesium.randomBetween(viewerParameters.lonRange.x, viewerParameters.lonRange.y);
-        array[4 * i + 1] = MathCesium.randomBetween(viewerParameters.latRange.x, viewerParameters.latRange.y);
-        array[4 * i + 2] = MathCesium.randomBetween(data.lev.min, data.lev.max);
+        array[4 * i] = Cesium.Math.randomBetween(viewerParameters.lonRange.x, viewerParameters.lonRange.y);
+        array[4 * i + 1] = Cesium.Math.randomBetween(viewerParameters.latRange.x, viewerParameters.latRange.y);
+        array[4 * i + 2] = Cesium.Math.randomBetween(data.lev.min, data.lev.max);
         array[4 * i + 3] = 0.0;
     }
     return array;

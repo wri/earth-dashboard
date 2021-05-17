@@ -1,14 +1,4 @@
-import {
-	Appearance,
-	ComponentDatatype,
-	defined,
-	Framebuffer,
-	Geometry,
-	GeometryAttribute,
-	GeometryAttributes,
-	Math as MathCesium,
-	Texture
-} from 'cesium';
+let Cesium = typeof window !== 'undefined' && window.Cesium;
 
 export const loadText = (filePath) => {
 	const request = new XMLHttpRequest();
@@ -18,10 +8,10 @@ export const loadText = (filePath) => {
 };
 
 export const getFullscreenQuad = () => {
-	const fullscreenQuad = new Geometry({
-		attributes: new GeometryAttributes({
-			position: new GeometryAttribute({
-				componentDatatype: ComponentDatatype.FLOAT,
+	const fullscreenQuad = new Cesium.Geometry({
+		attributes: new Cesium.GeometryAttributes({
+			position: new Cesium.GeometryAttribute({
+				componentDatatype: Cesium.ComponentDatatype.FLOAT,
 				componentsPerAttribute: 3,
 				//  v3----v2
 				//  |     |
@@ -34,10 +24,10 @@ export const getFullscreenQuad = () => {
 					-1, 1, 0, // v3
 				])
 			}),
-			st: new GeometryAttribute({
-				componentDatatype: ComponentDatatype.FLOAT,
+			st: new Cesium.GeometryAttribute({
+				componentDatatype: Cesium.ComponentDatatype.FLOAT,
 				componentsPerAttribute: 2,
-				values: new Float32Array([
+				values: new Cesium.Float32Array([
 					0, 0,
 					1, 0,
 					1, 1,
@@ -45,25 +35,25 @@ export const getFullscreenQuad = () => {
 				])
 			})
 		}),
-		indices: new Uint32Array([3, 2, 0, 0, 2, 1])
+		indices: new Cesium.Uint32Array([3, 2, 0, 0, 2, 1])
 	});
 	return fullscreenQuad;
 }
 
 export const createTexture = (options, typedArray) => {
-	if (defined(typedArray)) {
+	if (Cesium.defined(typedArray)) {
 		// typed array needs to be passed as source option, this is required by Cesium.Texture
 		const source = {};
 		source.arrayBufferView = typedArray;
 		options.source = source;
 	}
 
-	const texture = new Texture(options);
+	const texture = new Cesium.Texture(options);
 	return texture;
 }
 
 export const createFramebuffer = (context, colorTexture, depthTexture) => {
-	const framebuffer = new Framebuffer({
+	const framebuffer = new Cesium.Framebuffer({
 		context: context,
 		colorTextures: [colorTexture],
 		depthTexture: depthTexture
@@ -81,22 +71,22 @@ export const createRawRenderState = (options) => {
 		blending: options.blending
 	};
 
-	const rawRenderState = Appearance.getDefaultRenderState(translucent, closed, existing);
+	const rawRenderState = Cesium.Appearance.getDefaultRenderState(translucent, closed, existing);
 	return rawRenderState;
 }
 
 export const viewRectangleToLonLatRange = (viewRectangle) => {
 	let range = {};
 
-	let postiveWest = MathCesium.mod(viewRectangle.west, MathCesium.TWO_PI);
-	let postiveEast = MathCesium.mod(viewRectangle.east, MathCesium.TWO_PI);
+	let postiveWest = Cesium.Math.mod(viewRectangle.west, Cesium.Math.TWO_PI);
+	let postiveEast = Cesium.Math.mod(viewRectangle.east, Cesium.Math.TWO_PI);
 	let width = viewRectangle.width;
 
 	let longitudeMin;
 	let longitudeMax;
-	if (width > MathCesium.THREE_PI_OVER_TWO) {
+	if (width > Cesium.Math.THREE_PI_OVER_TWO) {
 		longitudeMin = 0.0;
-		longitudeMax = MathCesium.TWO_PI;
+		longitudeMax = Cesium.Math.TWO_PI;
 	} else {
 		if (postiveEast - postiveWest < width) {
 			longitudeMin = postiveWest;
@@ -108,29 +98,29 @@ export const viewRectangleToLonLatRange = (viewRectangle) => {
 	}
 
 	range.lon = {
-		min: MathCesium.toDegrees(longitudeMin),
-		max: MathCesium.toDegrees(longitudeMax)
+		min: Cesium.Math.toDegrees(longitudeMin),
+		max: Cesium.Math.toDegrees(longitudeMax)
 	}
 
 	let south = viewRectangle.south;
 	let north = viewRectangle.north;
 	let height = viewRectangle.height;
 
-	let extendHeight = height > MathCesium.PI / 12 ? height / 2 : 0;
-	let extendedSouth = MathCesium.clampToLatitudeRange(south - extendHeight);
-	let extendedNorth = MathCesium.clampToLatitudeRange(north + extendHeight);
+	let extendHeight = height > Cesium.Math.PI / 12 ? height / 2 : 0;
+	let extendedSouth = Cesium.Math.clampToLatitudeRange(south - extendHeight);
+	let extendedNorth = Cesium.Math.clampToLatitudeRange(north + extendHeight);
 
 	// extend the bound in high latitude area to make sure it can cover all the visible area
-	if (extendedSouth < -MathCesium.PI_OVER_THREE) {
-		extendedSouth = -MathCesium.PI_OVER_TWO;
+	if (extendedSouth < -Cesium.Math.PI_OVER_THREE) {
+		extendedSouth = -Cesium.Math.PI_OVER_TWO;
 	}
-	if (extendedNorth > MathCesium.PI_OVER_THREE) {
-		extendedNorth = MathCesium.PI_OVER_TWO;
+	if (extendedNorth > Cesium.Math.PI_OVER_THREE) {
+		extendedNorth = Cesium.Math.PI_OVER_TWO;
 	}
 
 	range.lat = {
-		min: MathCesium.toDegrees(extendedSouth),
-		max: MathCesium.toDegrees(extendedNorth)
+		min: Cesium.Math.toDegrees(extendedSouth),
+		max: Cesium.Math.toDegrees(extendedNorth)
 	}
 
 	return range;

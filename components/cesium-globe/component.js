@@ -1,18 +1,4 @@
 import React, { useEffect } from 'react';
-import {
-  createWorldTerrain,
-  EllipsoidTerrainProvider,
-  ArcGisMapServerImageryProvider,
-  TileMapServiceImageryProvider,
-  WebMapServiceImageryProvider,
-  UrlTemplateImageryProvider,
-  buildModuleUrl,
-  createWorldImagery,
-  Viewer,
-  BoundingSphere,
-  Cartesian3,
-  Cartesian2
-} from 'cesium';
 
 import ParticleSystem from 'utils/cesium/particleSystem';
 
@@ -25,6 +11,8 @@ import { DEFAULT_PARTICLE_SYSTEM_OPTIONS, DEFAULT_LAYER_OPTIONS } from './consta
 
 // styles
 import styles from './cesium-globe.module.scss';
+
+let Cesium;
 
 let viewerParameters;
 let globeBoundingSphere;
@@ -68,18 +56,18 @@ const CesiumGlobe = ({ mode }) => {
 
   const setGlobeLayer = (userInput) => {
     viewer.imageryLayers.removeAll();
-    viewer.terrainProvider = new EllipsoidTerrainProvider();
+    viewer.terrainProvider = new Cesium.EllipsoidTerrainProvider();
 
     const globeLayer = userInput.globeLayer;
     switch (globeLayer.type) {
       case "NaturalEarthII": {
         viewer.imageryLayers.addImageryProvider(
-          new TileMapServiceImageryProvider({ url: buildModuleUrl('Assets/Textures/NaturalEarthII') })
+          new Cesium.TileMapServiceImageryProvider({ url: Cesium.buildModuleUrl('Assets/Textures/NaturalEarthII') })
         );
         break;
       }
       case "WMS": {
-        viewer.imageryLayers.addImageryProvider(new WebMapServiceImageryProvider({
+        viewer.imageryLayers.addImageryProvider(new Cesium.WebMapServiceImageryProvider({
           url: userInput.WMS_URL,
           layers: globeLayer.layer,
           parameters: { ColorScaleRange: globeLayer.ColorScaleRange }
@@ -88,18 +76,18 @@ const CesiumGlobe = ({ mode }) => {
       }
       case "WorldTerrain": {
         viewer.imageryLayers.addImageryProvider(
-          createWorldImagery()
+          Cesium.createWorldImagery()
         );
-        viewer.terrainProvider = createWorldTerrain();
+        viewer.terrainProvider = Cesium.createWorldTerrain();
         break;
       }
       case "RWLayer": {
-        viewer.imageryLayers.addImageryProvider(new UrlTemplateImageryProvider({
+        viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
           url: globeLayer.url
         }))
       }
       case "ArcGIS": {
-        viewer.imageryLayers.addImageryProvider(new ArcGisMapServerImageryProvider({
+        viewer.imageryLayers.addImageryProvider(new Cesium.ArcGisMapServerImageryProvider({
           url: globeLayer.url
         }))
       }
@@ -139,6 +127,9 @@ const CesiumGlobe = ({ mode }) => {
   }
 
   useEffect(() => {
+    // Init Cesium var
+    Cesium = window.Cesium; // eslint-disable-line prefer-destructuring
+
     const options = {
       baseLayerPicker: true,
       geocoder: true,
@@ -148,7 +139,7 @@ const CesiumGlobe = ({ mode }) => {
       skyAtmosphere: false
     };
 
-    viewer = new Viewer('cesiumContainer', options);
+    viewer = new Cesium.Viewer('cesiumContainer', options);
     camera = viewer.camera;
     scene = viewer.scene;
 
@@ -158,12 +149,12 @@ const CesiumGlobe = ({ mode }) => {
     }
 
     viewerParameters = {
-      lonRange: new Cartesian2(),
-      latRange: new Cartesian2(),
+      lonRange: new Cesium.Cartesian2(),
+      latRange: new Cesium.Cartesian2(),
       pixelSize: 0.0
     };
     // use a smaller earth radius to make sure distance to camera > 0
-    globeBoundingSphere = new BoundingSphere(Cartesian3.ZERO, 0.99 * 6378137.0);
+    globeBoundingSphere = new Cesium.BoundingSphere(Cesium.Cartesian3.ZERO, 0.99 * 6378137.0);
     updateViewerParameters();
 
     loadData().then(
