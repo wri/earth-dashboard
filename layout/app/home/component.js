@@ -62,7 +62,6 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
         [styles['-mobile']]: mobile
       })}
       >
-
         <iframe width="100%" height="100%" src="https://earth.nullschool.net/" title="Null School" />
         <div className={classnames({
           [styles['text-container']]: true,

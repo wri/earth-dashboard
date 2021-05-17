@@ -38,6 +38,9 @@ class MyDocument extends Document {
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+          {/* NETCDFJS library to read NETCDF files */}
+          <script src="https://www.lactame.com/lib/netcdfjs/0.7.0/netcdfjs.min.js"></script>
+          
           {/* Leaflet CDN */}
           {/* leaflet script necessary for the Widget Editor */}
           <script
