@@ -35,7 +35,6 @@ function ClimateScrollyTelling({ topic }) {
   // data prop of the step, which in this demo stores the index of the step.
   const onStepEnter = ({ data }) => {
     setCurrentStepIndex(data);
-    console.log('onStepEnter!', data);
 
     const step = CLIMATE_STEPS[data];
     const {

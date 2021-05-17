@@ -18,8 +18,6 @@ function CreditsResourcesSection(props) {
   const topicColor = getColorByTopic(topic);
   const isServer = typeof window === 'undefined';
 
-  console.log('topic', topic, topicColor);
-
   const getCreditsAndResourcesContent = (mobile) =>
     <>
       <div className={styles['credits-field']}>

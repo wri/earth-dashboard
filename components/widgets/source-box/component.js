@@ -12,7 +12,10 @@ function SourceBox({ source }) {
                 const sourceSuffix = sourceObj.suffix;
 
                 return (
-                    <div className={styles['source-container']}>
+                    <div 
+                        className={styles['source-container']}
+                        key={`container-${sourcePrefix?.label}-${sourceSuffix?.label}`}
+                    >
                         <div className={styles.prefix}>
                             {sourcePrefix?.link && sourcePrefix?.label && <a href={sourcePrefix?.link} target="_blank">{sourcePrefix?.label}</a>}
                             {!sourcePrefix?.link && sourcePrefix?.label && <span>{sourcePrefix?.label}</span>}

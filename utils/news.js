@@ -6,6 +6,7 @@ export const APOLLO_CLIENT = new ApolloClient({
 });
 
 export const MONGABAY_NEWS_DOMAIN = 'https://news.mongabay.com';
+export const NOW_THIS_EARTH_RSS_URL = 'https://feeds.groupninemedia.com/feeds/nowthis/earthhq';
 
 export const GET_NEWS_BY_TOPIC_QUERY = (topics, limit) => gql`
 query {

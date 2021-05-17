@@ -1,66 +1,33 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/client';
 
 // components
-import Spinner from 'components/ui/spinner';
-
-// utils
-import { logEvent } from 'utils/gtag';
-import { GET_NEWS_BY_TOPIC_QUERY, MONGABAY_NEWS_DOMAIN } from 'utils/news';
+import TopicNewsMongabay from './mongabay';
+import TopicNewsNowThisEarth from './now-this-earth';
 
 // styles
 import styles from './topic-news.module.scss';
 
-function TopicNews(props) {
-  const { topic, limit } = props;
-  const { loading, error, data, refetch } =
-    useQuery(GET_NEWS_BY_TOPIC_QUERY(topic, limit), { variables: { topic } });
+// constants
+import { MONGABAY_NEWS_TYPE, NOW_THIS_EARTH_NEWS_TYPE } from './constants';
 
-  console.log('loading', loading, 'data', data);
-  useEffect(() => {
-    refetch();
-  }, [topic, limit]);
+function TopicNews(props) {
+  const { topic, limit, type } = props;
 
   return (
     <div className={styles['c-topic-news']}>
-      <Spinner className="-light -relative" isLoading={loading} />
-      {!loading && !error && data.posts.nodes.map(newsElem => (
-        <div
-          className={styles['news-item']}
-          key={`news-item-${newsElem.title}`}
-        >
-          <div className={styles['news-picture']}>
-            <img src={newsElem.featuredImage.node.mediaItemUrl} alt="" />
-          </div>
-          <div className={styles['news-content']}>
-            <h5>
-              <a
-                href={`${MONGABAY_NEWS_DOMAIN}${newsElem.uri}`}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => logEvent({
-                  action: 'Click on Mongabay article',
-                  category: 'Outbound traffic',
-                  label: `Article: ${newsElem.title}`
-                })}
-              >
-                {newsElem.title}
-              </a>
-            </h5>
-            <span className={styles['news-date']}>{newsElem.date} - Mongabay</span>
-          </div>
-        </div>
-      ))}
+      { type === MONGABAY_NEWS_TYPE && <TopicNewsMongabay limit={limit} topic={topic} />}
+      { type === NOW_THIS_EARTH_NEWS_TYPE && <TopicNewsNowThisEarth limit={limit} topic={topic} />}
     </div>
   );
 }
 
 TopicNews.propTypes = {
   topic: PropTypes.array.isRequired,
-  limit: PropTypes.number
+  limit: PropTypes.number,
+  type: PropTypes.string
 };
 
-TopicNews.defaultProps = { limit: 3 };
+TopicNews.defaultProps = { limit: 3, type: MONGABAY_NEWS_TYPE };
 
 export default TopicNews;
