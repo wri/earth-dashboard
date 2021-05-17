@@ -1,10 +1,5 @@
-import {
-    BufferUsage,
-    ClearCommand,
-    Color,
-    Pass,
-    VertexArray
-} from 'cesium';
+let Cesium = typeof window !== 'undefined' && window.Cesium;
+
 
 import ParticlesComputing from './particlesComputing';
 import ParticlesRendering from './particlesRendering';
@@ -50,11 +45,11 @@ class ParticleSystem {
     }
 
     clearFramebuffers() {
-        var clearCommand = new ClearCommand({
-            color: new Color(0.0, 0.0, 0.0, 0.0),
+        var clearCommand = new Cesium.ClearCommand({
+            color: new Cesium.Color(0.0, 0.0, 0.0, 0.0),
             depth: 1.0,
             framebuffer: undefined,
-            pass: Pass.OPAQUE
+            pass: Cesium.Pass.OPAQUE
         });
 
         Object.keys(this.particlesRendering.framebuffers).forEach((key) => {
@@ -72,11 +67,11 @@ class ParticleSystem {
         if (maxParticlesChanged) {
             var geometry = this.particlesRendering.createSegmentsGeometry(this.userInput);
             this.particlesRendering.primitives.segments.geometry = geometry;
-            var vertexArray = VertexArray.fromGeometry({
+            var vertexArray = Cesium.VertexArray.fromGeometry({
                 context: this.context,
                 geometry: geometry,
                 attributeLocations: this.particlesRendering.primitives.segments.attributeLocations,
-                bufferUsage: BufferUsage.STATIC_DRAW,
+                bufferUsage: Cesium.BufferUsage.STATIC_DRAW,
             });
             this.particlesRendering.primitives.segments.commandToExecute.vertexArray = vertexArray;
         }

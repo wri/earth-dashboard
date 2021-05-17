@@ -5,14 +5,13 @@ import classnames from 'classnames';
 
 // components
 import Layout from 'layout/layout/layout-app';
+import CesiumGlobe from 'components/cesium-globe';
 
 // utils
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 
 // styles
 import styles from './cesium.module.scss';
-
-const CesiumGlobe = dynamic(() => import('components/cesium-globe'), { ssr: false });
 
 function LayoutCesium({ openHeaderMenu, headerTabSelected, title, description }) {
   const isServer = typeof window === 'undefined';

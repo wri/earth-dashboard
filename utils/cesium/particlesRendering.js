@@ -1,19 +1,9 @@
-import { 
-    ComponentDatatype,
-    DepthFunction,
-    Geometry,
-    GeometryAttribute,
-    GeometryAttributes,
-    PixelFormat,
-    PixelDatatype,
-    PrimitiveType,
-    ShaderSource
-} from 'cesium';
-
 import CustomPrimitive from 'utils/cesium/customPrimitive';
 import { createTexture, createFramebuffer, loadText, createRawRenderState, getFullscreenQuad } from 'utils/cesium/util';
 
 import { FILE_OPTIONS } from './util';
+
+let Cesium = typeof window !== 'undefined' && window.Cesium;
 
 class ParticlesRendering {
     constructor(context, data, userInput, viewerParameters, particlesComputing) {
@@ -27,15 +17,15 @@ class ParticlesRendering {
             context: context,
             width: context.drawingBufferWidth,
             height: context.drawingBufferHeight,
-            pixelFormat: PixelFormat.RGBA,
-            pixelDatatype: PixelDatatype.UNSIGNED_BYTE
+            pixelFormat: Cesium.PixelFormat.RGBA,
+            pixelDatatype: Cesium.PixelDatatype.UNSIGNED_BYTE
         };
         const depthTextureOptions = {
             context: context,
             width: context.drawingBufferWidth,
             height: context.drawingBufferHeight,
-            pixelFormat: PixelFormat.DEPTH_COMPONENT,
-            pixelDatatype: PixelDatatype.UNSIGNED_INT
+            pixelFormat: Cesium.PixelFormat.DEPTH_COMPONENT,
+            pixelDatatype: Cesium.PixelDatatype.UNSIGNED_INT
         };
 
         this.textures = {
@@ -108,15 +98,15 @@ class ParticlesRendering {
             vertex += repeatVertex;
         }
 
-        var geometry = new Geometry({
-            attributes: new GeometryAttributes({
-                st: new GeometryAttribute({
-                    componentDatatype: ComponentDatatype.FLOAT,
+        var geometry = new Cesium.Geometry({
+            attributes: new Cesium.GeometryAttributes({
+                st: new Cesium.GeometryAttribute({
+                    componentDatatype: Cesium.ComponentDatatype.FLOAT,
                     componentsPerAttribute: 2,
                     values: st
                 }),
-                normal: new GeometryAttribute({
-                    componentDatatype: ComponentDatatype.FLOAT,
+                normal: new Cesium.GeometryAttribute({
+                    componentDatatype: Cesium.ComponentDatatype.FLOAT,
                     componentsPerAttribute: 3,
                     values: normal
                 }),
@@ -137,7 +127,7 @@ class ParticlesRendering {
                     normal: 1
                 },
                 geometry: this.createSegmentsGeometry(userInput),
-                primitiveType: PrimitiveType.TRIANGLES,
+                primitiveType: Cesium.PrimitiveType.TRIANGLES,
                 uniformMap: {
                     previousParticlesPosition: function () {
                         return particlesComputing.particlesTextures.previousParticlesPosition;
@@ -161,10 +151,10 @@ class ParticlesRendering {
                         return userInput.particleHeight;
                     }
                 },
-                vertexShaderSource: new ShaderSource({
+                vertexShaderSource: new Cesium.ShaderSource({
                     sources: [loadText(FILE_OPTIONS.glslDirectory + 'segmentDraw.vert')]
                 }),
-                fragmentShaderSource: new ShaderSource({
+                fragmentShaderSource: new Cesium.ShaderSource({
                     sources: [loadText(FILE_OPTIONS.glslDirectory + 'segmentDraw.frag')]
                 }),
                 rawRenderState: createRawRenderState({
@@ -186,7 +176,7 @@ class ParticlesRendering {
                     st: 1
                 },
                 geometry: getFullscreenQuad(),
-                primitiveType: PrimitiveType.TRIANGLES,
+                primitiveType: Cesium.PrimitiveType.TRIANGLES,
                 uniformMap: {
                     segmentsColorTexture: function () {
                         return that.textures.segmentsColor;
@@ -205,11 +195,11 @@ class ParticlesRendering {
                     }
                 },
                 // prevent Cesium from writing depth because the depth here should be written manually
-                vertexShaderSource: new ShaderSource({
+                vertexShaderSource: new Cesium.ShaderSource({
                     defines: ['DISABLE_GL_POSITION_LOG_DEPTH'],
                     sources: [loadText(FILE_OPTIONS.glslDirectory + 'fullscreen.vert')]
                 }),
-                fragmentShaderSource: new ShaderSource({
+                fragmentShaderSource: new Cesium.ShaderSource({
                     defines: ['DISABLE_LOG_DEPTH_FRAGMENT_WRITE'],
                     sources: [loadText(FILE_OPTIONS.glslDirectory + 'trailDraw.frag')]
                 }),
@@ -217,7 +207,7 @@ class ParticlesRendering {
                     viewport: undefined,
                     depthTest: {
                         enabled: true,
-                        func: DepthFunction.ALWAYS // always pass depth test for full control of depth information
+                        func: Cesium.DepthFunction.ALWAYS // always pass depth test for full control of depth information
                     },
                     depthMask: true
                 }),
@@ -243,7 +233,7 @@ class ParticlesRendering {
                     st: 1
                 },
                 geometry: getFullscreenQuad(),
-                primitiveType: PrimitiveType.TRIANGLES,
+                primitiveType: Cesium.PrimitiveType.TRIANGLES,
                 uniformMap: {
                     trailsColorTexture: function () {
                         return that.framebuffers.nextTrails.getColorTexture(0);
@@ -253,11 +243,11 @@ class ParticlesRendering {
                     }
                 },
                 // prevent Cesium from writing depth because the depth here should be written manually
-                vertexShaderSource: new ShaderSource({
+                vertexShaderSource: new Cesium.ShaderSource({
                     defines: ['DISABLE_GL_POSITION_LOG_DEPTH'],
                     sources: [loadText(FILE_OPTIONS.glslDirectory + 'fullscreen.vert')]
                 }),
-                fragmentShaderSource: new ShaderSource({
+                fragmentShaderSource: new Cesium.ShaderSource({
                     defines: ['DISABLE_LOG_DEPTH_FRAGMENT_WRITE'],
                     sources: [loadText(FILE_OPTIONS.glslDirectory + 'screenDraw.frag')]
                 }),
