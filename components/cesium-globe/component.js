@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ParticleSystem from 'utils/cesium/particleSystem';
 
@@ -23,6 +23,7 @@ let viewer;
 let imageryLayers;
 
 const CesiumGlobe = ({ mode }) => {
+  const [layerInputText, setLayerInputText] = useState(null);
 
   const updateViewerParameters = () => {
     const viewRectangle = camera.computeViewRectangle(scene.globe.ellipsoid);
@@ -52,6 +53,12 @@ const CesiumGlobe = ({ mode }) => {
     scene.primitives.add(particleSystem.particlesRendering.primitives.segments);
     scene.primitives.add(particleSystem.particlesRendering.primitives.trails);
     scene.primitives.add(particleSystem.particlesRendering.primitives.screen);
+  }
+
+  const addGlobeLayer = (url) => {
+    viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+      url
+    }));
   }
 
   const setGlobeLayer = (userInput) => {
@@ -180,7 +187,12 @@ const CesiumGlobe = ({ mode }) => {
 
   }, []);
 
-  return <div id="cesiumContainer" className={styles['c-cesium-globe']} />;
+  return (<div id="cesiumContainer" className={styles['c-cesium-globe']} >
+    <div className={styles['add-layer-container']}>
+      <input onChange={(event) => setLayerInputText(event.target.value) } />
+      <button onClick={() => addGlobeLayer(layerInputText)}>Add layer</button>
+    </div>
+  </div>);
 };
 
 export default CesiumGlobe;
