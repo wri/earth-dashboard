@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Parser from 'rss-parser';
-import axios from 'axios';
 
 // components
 import Spinner from 'components/ui/spinner';
@@ -19,20 +18,14 @@ function TopicNewsNowThisEarth(props) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const { topic, limit } = props;
-  
+
   useEffect(() => {
     setLoading(true);
-    axios.get(NOW_THIS_EARTH_RSS_URL).then(response => {
-      // parser.parseURL(NOW_THIS_EARTH_RSS_URL)
-      // .then((response) => {
-      //   console.log('response', response);
-      // })
-      // .catch(err => console.error('error!', err));
-    })
-    .catch((err) => {
-      console.log('err', err);
-
-    });
+    parser.parseURL(NOW_THIS_EARTH_RSS_URL)
+      .then((response) => {
+        console.log('response', response);
+      })
+      .catch(err => console.error('error!', err));
   }, [topic, limit]);
 
   return (
