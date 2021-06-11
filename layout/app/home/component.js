@@ -13,10 +13,12 @@ import styles from './homepage.module.scss';
 
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   const [showIntroAndBanner, setShowIntroAndBanner] = useState(true);
+  const [timeOutReached, setTimeoutReached] = useState(false);
 
   const clickHandler = () => {
     setShowIntroAndBanner(false);
     window.removeEventListener('click', clickHandler);
+    setTimeout(() => setTimeoutReached(true), 500)
   }
 
   useEffect(() => {
@@ -39,6 +41,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
     [styles['intro-text']]: true,
     [styles['-mobile']]: mobile,
     [styles['-desktop']]: !mobile,
+    [styles['-fade-out']]: !showIntroAndBanner,
   })}>
     <div className={classnames({
       [styles['topic-links-intro-text']]: true,
@@ -67,12 +70,13 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       })}
       >
         <iframe id="nullSchoolIframe" width="100%" height="100%" src="https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306" title="Null School" frameBorder="0" />
-        {showIntroAndBanner &&
+        {!timeOutReached &&
           <>
             <div className={classnames({
               [styles['text-container']]: true,
               [styles['-desktop']]: !mobile,
-              [styles['-mobile']]: mobile
+              [styles['-mobile']]: mobile,
+              [styles['-fade-out']]: !showIntroAndBanner,
             })}
             >
               {getBanner(mobile)}
@@ -80,6 +84,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
             {getIntroText(mobile)}
           </>
         }
+
       </div>);
   };
 

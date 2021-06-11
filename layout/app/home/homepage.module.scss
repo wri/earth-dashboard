@@ -34,6 +34,10 @@
                 font-family: 'Barlow Condensed';
                 font-size: 14px;
             }
+
+            &.-fade-out {
+                animation: fade-out-and-remove forwards 1s;
+            }
             
             img {
                 margin-right: 15px;
@@ -96,6 +100,10 @@
             padding: 8px 0px;
             background: radial-gradient(44.33% 3115.06% at 50% 50%, #19232C 22.4%, rgba(0, 0, 0, 0) 100%);
 
+            &.-fade-out {
+                animation: fade-out-and-remove 1s forwards;
+            }
+
             &.-desktop {
                 top: 104px;
             }
@@ -122,5 +130,14 @@
         position: absolute;
         height: 100%;
         width: 100%;
+    }
+}
+
+@keyframes fade-out-and-remove {
+    0% { opacity: 100%; }
+    99% { opacity: 0%; }
+    100% { 
+        opacity: 0%;
+        display: none;
     }
 }
