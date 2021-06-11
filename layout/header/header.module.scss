@@ -3,12 +3,17 @@
 .header {
   position: fixed;
   top: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
   z-index: 10; // because of navigation dots menu in story telling pages
 
   .main-container {
+    display: flex;
+    align-items: center;
 
     &.-desktop {
-      padding-top: 4 * $space;
+      padding-top: 24px;
     }
 
     &.-mobile {
@@ -21,9 +26,21 @@
       left: 16px;
       top: 16px;
     }
+
+    .topic-links {
+      color: $white;
+      margin-right: 100px;
+      font-family: 'Barlow Condensed';
+      font-size: 18px;
+
+      .topic-link {
+        margin-left: 16px;
+      }
+    }
   
     .hamburguer-button {
       position: fixed;
+      top: 16px;
       display: flex;
       justify-content: center;
       align-items: center;

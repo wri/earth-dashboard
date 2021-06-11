@@ -25,7 +25,7 @@ import {
 import styles from './header.module.scss';
 
 function Header(props) {
-  const { showLogo, openMenu, selectedTab, buttonPosition } = props;
+  const { showLogo, openMenu, selectedTab, buttonPosition, showTopicLinks } = props;
   const [isOpen, setIsOpen] = useState(openMenu);
   const [tab, setTab] = useState(selectedTab);
   const isServer = typeof window === 'undefined';
@@ -95,10 +95,10 @@ function Header(props) {
       case SHARE_HEADER_TAB:
         return (
           <div className={classnames({
-              [styles['share-container']]: true,
-              [styles['-desktop']]: !mobile,
-              [styles['-mobile']]: mobile
-            })}
+            [styles['share-container']]: true,
+            [styles['-desktop']]: !mobile,
+            [styles['-mobile']]: mobile
+          })}
           >
             <ShareBox
               url={isServer ? '' : window.location.href}
@@ -123,12 +123,41 @@ function Header(props) {
       {getLogo()}
     </div>;
 
+  const getTopicLinks = () =>
+    <div className={styles['topic-links']}>
+      <Link href="/climate">
+        <a className={styles['topic-link']}>
+          Climate
+        </a>
+      </Link>
+      <Link href="/forests">
+        <a className={styles['topic-link']}>
+          Forests
+        </a>
+      </Link>
+      <Link href="/freshwater">
+        <a className={styles['topic-link']}>
+          Freshwater
+        </a>
+      </Link>
+      <Link href="/ocean">
+        <a className={styles['topic-link']}>
+          Ocean
+        </a>
+      </Link>
+      <Link href="/biodiversity">
+        <a className={styles['topic-link']}>
+          Biodiversity
+        </a>
+      </Link>
+    </div>;
+
   const getNavigationTags = (mobile) =>
     <ul className={classnames({
-        [styles['navigation-tabs']]: true,
-        [styles['-desktop']]: !mobile,
-        [styles['-mobile']]: mobile
-      })}
+      [styles['navigation-tabs']]: true,
+      [styles['-desktop']]: !mobile,
+      [styles['-mobile']]: mobile
+    })}
     >
       <li
         className={classnames({
@@ -164,6 +193,7 @@ function Header(props) {
             [styles['-desktop']]: true
           })}>
             {showLogo && !isOpen && getLogoContainer()}
+            {!isOpen && showTopicLinks && getTopicLinks()}
             <div
               className={classnames({
                 [styles['hamburguer-button']]: true,
@@ -263,12 +293,14 @@ Header.propTypes = {
   openMenu: PropTypes.bool,
   selectedTab: PropTypes.string,
   buttonPosition: PropTypes.string,
+  showTopicLinks: PropTypes.bool,
 };
 Header.defaultProps = {
   showLogo: true,
   selectedTab: SITE_NAVIGATION_HEADER_TAB,
   openMenu: false,
-  buttonPosition: 'center'
+  buttonPosition: 'center',
+  showTopicLinks: false,
 };
 
 export default Header;

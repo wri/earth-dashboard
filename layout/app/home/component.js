@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Link from 'next/link';
-
 // components
 import Layout from 'layout/layout/layout-app';
 
@@ -14,44 +12,14 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 import styles from './homepage.module.scss';
 
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
-  const isServer = typeof window === 'undefined';
-  const getLink = name =>
-  (
-    <Link href={`/${name}`}>
-      <a
-        className={`external-link -${name}`}
-      >
-        {name.toUpperCase()}
-      </a>
-    </Link>);
-
-  const getTopicLinks = mobile =>
+  const getBanner = mobile =>
   (<div className={classnames({
-    [styles['topic-links']]: true,
-    [styles['-mobile']]: mobile
+    [styles['banner']]: true,
+    [styles['-mobile']]: mobile,
+    [styles['-desktop']]: !mobile,
   })}>
-    {!mobile &&
-      <>
-        {getLink('climate')}
-        {getLink('forests')}
-        {getLink('freshwater')}
-        {getLink('ocean')}
-        {getLink('biodiversity')}
-      </>
-    }
-    {mobile &&
-      <>
-        <div className={styles['first-row']}>
-          {getLink('climate')}
-          {getLink('forests')}
-          {getLink('freshwater')}
-        </div>
-        <div className={styles['second-row']}>
-          {getLink('ocean')}
-          {getLink('biodiversity')}
-        </div>
-      </>
-    }
+    <h1>This is not a drill</h1>
+    <h1>It's a <span className={styles.gradient}>Planetary emergency</span>.</h1>
   </div>);
 
   const getMainContainer = (mobile) => {
@@ -62,14 +30,14 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
         [styles['-mobile']]: mobile
       })}
       >
-        <iframe width="100%" height="100%" src="https://earth.nullschool.net/?kiosk" title="Null School" frameBorder="0" />
+        <iframe width="100%" height="100%" src="https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306" title="Null School" frameBorder="0" />
         <div className={classnames({
           [styles['text-container']]: true,
           [styles['-desktop']]: !mobile,
           [styles['-mobile']]: mobile
         })}
         >
-          {getTopicLinks(mobile)}
+          {getBanner(mobile)}
         </div>
       </div>);
   };
@@ -83,6 +51,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
       headerButtonPosition="right"
+      headerShowTopicLinks={true}
       themeColor="#1a2128"
     >
       <MediaContextProvider>
