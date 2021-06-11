@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
 import classnames from 'classnames';
+import ReactTooltip from 'react-tooltip';
 import { motion } from "framer-motion"
 
 // components
@@ -145,11 +146,17 @@ function Header(props) {
           Ocean
         </a>
       </Link>
-      <Link href="/biodiversity">
-        <a className={styles['topic-link']}>
-          Biodiversity
-        </a>
-      </Link>
+      <a
+        data-tip data-for="comingSoon"
+        className={classnames({
+          [styles['topic-link']]: true,
+          [styles['-disabled']]: true,
+        })}>
+        Biodiversity
+      </a>
+      <ReactTooltip className={styles['biodiversity-tooltip']} id="comingSoon" type="light" effect="float">
+        <span>Coming soon...</span>
+      </ReactTooltip>
     </div>;
 
   const getNavigationTags = (mobile) =>
