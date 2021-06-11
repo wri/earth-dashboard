@@ -22,6 +22,30 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
     <h1>It's a <span className={styles.gradient}>Planetary emergency</span>.</h1>
   </div>);
 
+  const getIntroText = mobile =>
+  (<div className={classnames({
+    [styles['intro-text']]: true,
+    [styles['-mobile']]: mobile,
+    [styles['-desktop']]: !mobile,
+  })}>
+    <div className={classnames({
+      [styles['topic-links-intro-text']]: true,
+      [styles['-mobile']]: mobile,
+      [styles['-desktop']]: !mobile,
+    })}>
+      <img src="/static/icons/arrow-up-homepage.svg" />
+      <p>What you need to know about Earth's life support systems, the global commons</p>
+    </div>
+    <div className={classnames({
+      [styles['globe-menu-intro-text']]: true,
+      [styles['-mobile']]: mobile,
+      [styles['-desktop']]: !mobile,
+    })}>
+      <img src="/static/icons/arrow-down-homepage.svg" />
+      <p>Explore Earth's planetary emergency in near-real-time</p>
+    </div>
+  </div>);
+
   const getMainContainer = (mobile) => {
     return (
       <div className={classnames({
@@ -39,6 +63,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
         >
           {getBanner(mobile)}
         </div>
+        {getIntroText(mobile)}
       </div>);
   };
 

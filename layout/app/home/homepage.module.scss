@@ -24,6 +24,49 @@
             height: 100%;
         }
 
+        .intro-text {
+            color: $white;
+
+            &.-desktop {
+                font-family: 'Barlow Condensed';
+                font-size: 14px;
+            }
+            
+            img {
+                margin-right: 15px;
+            }
+
+            p {
+                max-width: 160px;
+            }
+
+            .topic-links-intro-text {
+                position: absolute;
+                display: flex;
+                align-items: flex-start;
+
+                p {
+                    margin-top: 25px;
+                }
+
+                &.-desktop {
+                    top: 68px;
+                    right: 53px;
+                }
+            }
+
+            .globe-menu-intro-text {
+                position: absolute;
+                display: flex;
+                align-items: flex-end;
+
+                &.-desktop {
+                    bottom: 62px;
+                    left: 62px;
+                }
+            }
+        }
+
         .globe {
             position: absolute;
             top: 10%;
@@ -45,6 +88,8 @@
 
         .text-container {
             position: absolute;
+            width: 100%;
+            max-width: 700px;
             padding: 8px 0px;
             background: radial-gradient(44.33% 3115.06% at 50% 50%, #19232C 22.4%, rgba(0, 0, 0, 0) 100%);
 
