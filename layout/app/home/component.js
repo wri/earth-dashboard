@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -12,6 +12,18 @@ import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
 import styles from './homepage.module.scss';
 
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
+  const [showIntroAndBanner, setShowIntroAndBanner] = useState(true);
+
+  const clickHandler = () => {
+    setShowIntroAndBanner(false);
+    window.removeEventListener('click', clickHandler);
+  }
+
+  useEffect(() => {
+    window.addEventListener('click', clickHandler);
+    return () => window.removeEventListener('click', clickHandler);
+  }, []);
+
   const getBanner = mobile =>
   (<div className={classnames({
     [styles['banner']]: true,
@@ -54,16 +66,20 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
         [styles['-mobile']]: mobile
       })}
       >
-        <iframe width="100%" height="100%" src="https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306" title="Null School" frameBorder="0" />
-        <div className={classnames({
-          [styles['text-container']]: true,
-          [styles['-desktop']]: !mobile,
-          [styles['-mobile']]: mobile
-        })}
-        >
-          {getBanner(mobile)}
-        </div>
-        {getIntroText(mobile)}
+        <iframe id="nullSchoolIframe" width="100%" height="100%" src="https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306" title="Null School" frameBorder="0" />
+        {showIntroAndBanner &&
+          <>
+            <div className={classnames({
+              [styles['text-container']]: true,
+              [styles['-desktop']]: !mobile,
+              [styles['-mobile']]: mobile
+            })}
+            >
+              {getBanner(mobile)}
+            </div>
+            {getIntroText(mobile)}
+          </>
+        }
       </div>);
   };
 
