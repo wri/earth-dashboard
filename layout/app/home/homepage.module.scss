@@ -24,6 +24,56 @@
             height: 100%;
         }
 
+        .intro-text {
+            position: absolute;
+            min-width: 100%;
+            min-height: 100%;
+            color: $white;
+
+            &.-desktop {
+                font-family: 'Barlow Condensed';
+                font-size: 14px;
+            }
+
+            &.-fade-out {
+                animation: fade-out-and-remove forwards 1s;
+            }
+            
+            img {
+                margin-right: 15px;
+            }
+
+            p {
+                max-width: 160px;
+            }
+
+            .topic-links-intro-text {
+                position: absolute;
+                display: flex;
+                align-items: flex-start;
+
+                p {
+                    margin-top: 25px;
+                }
+
+                &.-desktop {
+                    top: 68px;
+                    right: 53px;
+                }
+            }
+
+            .globe-menu-intro-text {
+                position: absolute;
+                display: flex;
+                align-items: flex-end;
+
+                &.-desktop {
+                    bottom: 62px;
+                    left: 62px;
+                }
+            }
+        }
+
         .globe {
             position: absolute;
             top: 10%;
@@ -44,106 +94,33 @@
         }
 
         .text-container {
-            display: flex;
-            align-items: flex-start;
             position: absolute;
-            bottom: 20px;
-            text-align: center;
+            width: 100%;
+            max-width: 700px;
+            padding: 8px 0px;
+            background: radial-gradient(44.33% 3115.06% at 50% 50%, #19232C 22.4%, rgba(0, 0, 0, 0) 100%);
+
+            &.-fade-out {
+                animation: fade-out-and-remove 1s forwards;
+            }
 
             &.-desktop {
-                width: 50%;
-            }
-            &.-mobile {
-                padding: 0px 30px 0px 30px;
-
-                h3 {
-                    font-size: 14px;
-                    line-height: 21px;
-                }
+                top: 104px;
             }
 
-            h1, h2 {
-                color: $white;
-                
-                &.second-header {
-                    margin-bottom: 47px;
-                }
-            }
-            
-            .highlighted-text {
-                padding-right: $space;
-                font-style: italic;
-                background-color: $grey;
-                color: $black;
-            }
-    
-            &.-mobile {
-                h2 {
-                    font-size: 36px;
-                    line-height: 45px;
-                    
-                    &.first-header {
-                        margin-bottom: 0px;
-                    }
-                    &.second-header {
-                        margin-bottom: 40px;
-                    }
-                }
-                h4 {
-                    color: $grey-dark;
-                    margin: 0px 0px 80px 0px;
-                    font-weight: normal;
-                }
-            }
-    
-            &:not(.-mobile) {
-                h1 {
-                    &.first-header {
-                        margin-bottom: 10px;
-                    }
-                }
-                h3 {
-                    color: $grey;
-                }
-            }  
-    
-            .topic-links {
+            .banner {
                 display: flex;
-                justify-content: space-around;
-                width: 100%;
-    
-                a {
-                    position: relative;
+                flex-direction: column;
+                align-items: center;
+
+                h1 {
                     color: $white;
-                    text-decoration: none;
-                    font-family: 'Barlow Condensed';
-                    font-size: 20px;
-                    cursor: pointer;
-                    margin-right: 30px;
-                }
-    
-                .biodiversity-link {
-                    color: $grey-darker;
-                }
-    
-                .biodiversity-tooltip {
-                    color: $white;
-                    background-color: $black;
+                    font-size: 24px;
                 }
 
-                &.-mobile {
-                    flex-direction: column;
-
-                    .first-row {
-                        display: flex;
-                        justify-content: space-around;
-                        margin-bottom: 20px;
-                    }
-                    .second-row {
-                        display: flex;
-                        justify-content: space-around;
-                        padding: 0px 30px 0px 30px;
-                    }
+                .gradient {
+                    font-style: italic;
+                    background: linear-gradient(270.9deg, $dark-red 1.68%, rgba(147, 18, 18, 0) 99.22%);
                 }
             }
         }
@@ -153,5 +130,14 @@
         position: absolute;
         height: 100%;
         width: 100%;
+    }
+}
+
+@keyframes fade-out-and-remove {
+    0% { opacity: 100%; }
+    99% { opacity: 0%; }
+    100% { 
+        opacity: 0%;
+        display: none;
     }
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Particles from 'react-particles-js';
 import Link from 'next/link';
 import classnames from 'classnames';
+import ReactTooltip from 'react-tooltip';
 import { motion } from "framer-motion"
 
 // components
@@ -25,7 +26,7 @@ import {
 import styles from './header.module.scss';
 
 function Header(props) {
-  const { showLogo, openMenu, selectedTab } = props;
+  const { showLogo, openMenu, selectedTab, buttonPosition, showTopicLinks } = props;
   const [isOpen, setIsOpen] = useState(openMenu);
   const [tab, setTab] = useState(selectedTab);
   const isServer = typeof window === 'undefined';
@@ -95,10 +96,10 @@ function Header(props) {
       case SHARE_HEADER_TAB:
         return (
           <div className={classnames({
-              [styles['share-container']]: true,
-              [styles['-desktop']]: !mobile,
-              [styles['-mobile']]: mobile
-            })}
+            [styles['share-container']]: true,
+            [styles['-desktop']]: !mobile,
+            [styles['-mobile']]: mobile
+          })}
           >
             <ShareBox
               url={isServer ? '' : window.location.href}
@@ -123,12 +124,47 @@ function Header(props) {
       {getLogo()}
     </div>;
 
+  const getTopicLinks = () =>
+    <div className={styles['topic-links']}>
+      <Link href="/climate">
+        <a className={styles['topic-link']}>
+          Climate
+        </a>
+      </Link>
+      <Link href="/forests">
+        <a className={styles['topic-link']}>
+          Forests
+        </a>
+      </Link>
+      <Link href="/freshwater">
+        <a className={styles['topic-link']}>
+          Freshwater
+        </a>
+      </Link>
+      <Link href="/ocean">
+        <a className={styles['topic-link']}>
+          Ocean
+        </a>
+      </Link>
+      <a
+        data-tip data-for="comingSoon"
+        className={classnames({
+          [styles['topic-link']]: true,
+          [styles['-disabled']]: true,
+        })}>
+        Biodiversity
+      </a>
+      <ReactTooltip className={styles['biodiversity-tooltip']} id="comingSoon" type="light" effect="float">
+        <span>Coming soon...</span>
+      </ReactTooltip>
+    </div>;
+
   const getNavigationTags = (mobile) =>
     <ul className={classnames({
-        [styles['navigation-tabs']]: true,
-        [styles['-desktop']]: !mobile,
-        [styles['-mobile']]: mobile
-      })}
+      [styles['navigation-tabs']]: true,
+      [styles['-desktop']]: !mobile,
+      [styles['-mobile']]: mobile
+    })}
     >
       <li
         className={classnames({
@@ -164,8 +200,13 @@ function Header(props) {
             [styles['-desktop']]: true
           })}>
             {showLogo && !isOpen && getLogoContainer()}
+            {!isOpen && showTopicLinks && getTopicLinks()}
             <div
-              className={styles['hamburguer-button']}
+              className={classnames({
+                [styles['hamburguer-button']]: true,
+                [styles['-center']]: buttonPosition === 'center',
+                [styles['-right']]: buttonPosition === 'right'
+              })}
               onClick={() => setIsOpen(!isOpen)}
             >
               <div className={styles['hamburguer-button-image']}>
@@ -257,12 +298,16 @@ function Header(props) {
 Header.propTypes = {
   showLogo: PropTypes.bool.isRequired,
   openMenu: PropTypes.bool,
-  selectedTab: PropTypes.string
+  selectedTab: PropTypes.string,
+  buttonPosition: PropTypes.string,
+  showTopicLinks: PropTypes.bool,
 };
 Header.defaultProps = {
   showLogo: true,
   selectedTab: SITE_NAVIGATION_HEADER_TAB,
-  openMenu: false
+  openMenu: false,
+  buttonPosition: 'center',
+  showTopicLinks: false,
 };
 
 export default Header;
