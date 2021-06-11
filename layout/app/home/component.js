@@ -82,6 +82,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       className={styles.homepage}
       openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
+      headerButtonPosition="right"
       themeColor="#1a2128"
     >
       <MediaContextProvider>

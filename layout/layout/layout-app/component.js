@@ -28,7 +28,8 @@ function LayoutApp(props) {
     showHeader,
     openHeaderMenu,
     headerTabSelected,
-    themeColor
+    headerButtonPosition,
+    themeColor,
   } = props;
   const [showGDPRBanner, setShowGDPRBanner] = useState(false);
   const isServer = typeof window === 'undefined';
@@ -83,6 +84,7 @@ function LayoutApp(props) {
           showLogo={showHeaderLogo}
           selectedTab={headerTabSelected}
           openMenu={openHeaderMenu}
+          buttonPosition={headerButtonPosition}
         />
       }
 
@@ -118,7 +120,9 @@ LayoutApp.propTypes = {
   isFullScreen: PropTypes.bool.isRequired,
   updateIsLoading: PropTypes.func.isRequired,
   explicitHostname: PropTypes.string,
-  themeColor: PropTypes.string
+  themeColor: PropTypes.string,
+  headerTabSelected: PropTypes.boolean,
+  headerButtonPosition: PropTypes.string
 };
 
 LayoutApp.defaultProps = {
@@ -128,7 +132,8 @@ LayoutApp.defaultProps = {
   thumbnail: 'https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg',
   showHeaderLogo: true,
   showHeader: true,
-  themeColor: '#1a2128'
+  themeColor: '#1a2128',
+  headerButtonPosition: 'center'
 };
 
 export default LayoutApp;

@@ -2,7 +2,7 @@
   "env": {
     "browser": true,
     "node": true,
-    "es6": true
+    "es2021": true
   },
   "globals": {
     "L": true,
@@ -14,15 +14,13 @@
     "plugin:react/recommended"
   ],
   "rules": {
-    "jest/no-disabled-tests": "warn",
-    "jest/no-focused-tests": "error",
-    "jest/no-identical-title": "error",
-    "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error",
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true,
+      },
+    ],
   },
   "parser": "babel-eslint",
   "parserOptions": {
@@ -34,7 +32,9 @@
   },
   "plugins": [
     "babel",
-    "react-hooks"
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier"
   ],
   "settings": {
     "import/resolver": {

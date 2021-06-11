@@ -25,7 +25,7 @@ import {
 import styles from './header.module.scss';
 
 function Header(props) {
-  const { showLogo, openMenu, selectedTab } = props;
+  const { showLogo, openMenu, selectedTab, buttonPosition } = props;
   const [isOpen, setIsOpen] = useState(openMenu);
   const [tab, setTab] = useState(selectedTab);
   const isServer = typeof window === 'undefined';
@@ -165,7 +165,11 @@ function Header(props) {
           })}>
             {showLogo && !isOpen && getLogoContainer()}
             <div
-              className={styles['hamburguer-button']}
+              className={classnames({
+                [styles['hamburguer-button']]: true,
+                [styles['-center']]: buttonPosition === 'center',
+                [styles['-right']]: buttonPosition === 'right'
+              })}
               onClick={() => setIsOpen(!isOpen)}
             >
               <div className={styles['hamburguer-button-image']}>
@@ -257,12 +261,14 @@ function Header(props) {
 Header.propTypes = {
   showLogo: PropTypes.bool.isRequired,
   openMenu: PropTypes.bool,
-  selectedTab: PropTypes.string
+  selectedTab: PropTypes.string,
+  buttonPosition: PropTypes.string,
 };
 Header.defaultProps = {
   showLogo: true,
   selectedTab: SITE_NAVIGATION_HEADER_TAB,
-  openMenu: false
+  openMenu: false,
+  buttonPosition: 'center'
 };
 
 export default Header;
