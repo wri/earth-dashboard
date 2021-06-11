@@ -23,6 +23,11 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
 
   useEffect(() => {
     window.addEventListener('click', clickHandler);
+    setTimeout(() => {
+      if (showIntroAndBanner) {
+        clickHandler();
+      }
+    }, 3000);
     return () => window.removeEventListener('click', clickHandler);
   }, []);
 
