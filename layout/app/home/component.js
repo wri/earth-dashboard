@@ -13,6 +13,7 @@ import styles from './homepage.module.scss';
 
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   const [showIntroAndBanner, setShowIntroAndBanner] = useState(true);
+  const [showBanner, setShowBanner] = useState(true);
   const [timeOutReached, setTimeoutReached] = useState(false);
 
   const clickHandler = () => {
@@ -24,8 +25,8 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   useEffect(() => {
     window.addEventListener('click', clickHandler);
     setTimeout(() => {
-      if (showIntroAndBanner) {
-        clickHandler();
+      if (showIntroAndBanner && showBanner) {
+        setShowBanner(false);
       }
     }, 10000);
     return () => window.removeEventListener('click', clickHandler);
@@ -89,7 +90,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
               [styles['text-container']]: true,
               [styles['-desktop']]: !mobile,
               [styles['-mobile']]: mobile,
-              [styles['-fade-out']]: !showIntroAndBanner,
+              [styles['-fade-out']]: !showIntroAndBanner || !showBanner,
             })}
             >
               {getBanner(mobile)}
