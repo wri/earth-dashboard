@@ -13,6 +13,7 @@ import styles from './homepage.module.scss';
 
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   const [showIntroAndBanner, setShowIntroAndBanner] = useState(true);
+  const [showBanner, setShowBanner] = useState(true);
   const [timeOutReached, setTimeoutReached] = useState(false);
 
   const clickHandler = () => {
@@ -24,10 +25,10 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
   useEffect(() => {
     window.addEventListener('click', clickHandler);
     setTimeout(() => {
-      if (showIntroAndBanner) {
-        clickHandler();
+      if (showIntroAndBanner && showBanner) {
+        setShowBanner(false);
       }
-    }, 3000);
+    }, 10000);
     return () => window.removeEventListener('click', clickHandler);
   }, []);
 
@@ -53,8 +54,9 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       [styles['-mobile']]: mobile,
       [styles['-desktop']]: !mobile,
     })}>
-      <img src="/static/icons/arrow-up-homepage.svg" />
+      {!mobile && <img src="/static/icons/arrow-up-homepage.svg" />}
       <p>What you need to know about Earth's life support systems, the global commons</p>
+      {mobile && <img src="/static/icons/arrow-up-right-homepage.svg" />}
     </div>
     <div className={classnames({
       [styles['globe-menu-intro-text']]: true,
@@ -74,14 +76,21 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
         [styles['-mobile']]: mobile
       })}
       >
-        <iframe id="nullSchoolIframe" width="100%" height="100%" src="https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306" title="Null School" frameBorder="0" />
+        <iframe
+          id="nullSchoolIframe"
+          width="100%"
+          height="100%"
+          src={mobile ? 'https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,148' : 'https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306'}
+          title="Null School"
+          frameBorder="0"
+        />
         {!timeOutReached &&
           <>
             <div className={classnames({
               [styles['text-container']]: true,
               [styles['-desktop']]: !mobile,
               [styles['-mobile']]: mobile,
-              [styles['-fade-out']]: !showIntroAndBanner,
+              [styles['-fade-out']]: !showIntroAndBanner || !showBanner,
             })}
             >
               {getBanner(mobile)}

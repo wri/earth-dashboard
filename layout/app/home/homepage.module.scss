@@ -29,22 +29,24 @@
             min-width: 100%;
             min-height: 100%;
             color: $white;
+            font-family: 'Barlow Condensed';
 
             &.-desktop {
-                font-family: 'Barlow Condensed';
                 font-size: 14px;
+                p {
+                    max-width: 160px;
+                }
+            }
+
+            &.-mobile {
+                font-size: 12px;
+                p {
+                    max-width: 200px;
+                }
             }
 
             &.-fade-out {
                 animation: fade-out-and-remove forwards 1s;
-            }
-            
-            img {
-                margin-right: 15px;
-            }
-
-            p {
-                max-width: 160px;
             }
 
             .topic-links-intro-text {
@@ -59,6 +61,19 @@
                 &.-desktop {
                     top: 68px;
                     right: 53px;
+
+                    img {
+                        margin-right: 15px;
+                    }
+                }
+
+                &.-mobile {
+                    top: 72px;
+                    right: 35px;
+
+                    img {
+                        margin-left: 10px;
+                    }
                 }
             }
 
@@ -70,6 +85,19 @@
                 &.-desktop {
                     bottom: 62px;
                     left: 62px;
+
+                    img {
+                        margin-right: 15px;
+                    }
+                }
+
+                &.-mobile {
+                    bottom: 65px;
+                    left: 61px;
+
+                    img {
+                        margin-right: 10px;
+                    }
                 }
             }
         }
@@ -98,6 +126,7 @@
             width: 100%;
             max-width: 700px;
             padding: 8px 0px;
+            font-family: 'Barlow Condensed';
             background: radial-gradient(44.33% 3115.06% at 50% 50%, #19232C 22.4%, rgba(0, 0, 0, 0) 100%);
 
             &.-fade-out {
@@ -108,6 +137,10 @@
                 top: 104px;
             }
 
+            &.-mobile {
+                top: 180px;
+            }
+
             .banner {
                 display: flex;
                 flex-direction: column;
@@ -115,7 +148,18 @@
 
                 h1 {
                     color: $white;
-                    font-size: 24px;
+                }
+
+                &.-mobile {
+                    h1 {
+                        font-size: 18px;
+                    }
+                }
+
+                &.-desktop {
+                    h1 {
+                        font-size: 24px;
+                    }
                 }
 
                 .gradient {
