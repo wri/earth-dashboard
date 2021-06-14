@@ -29,24 +29,48 @@
             min-width: 100%;
             min-height: 100%;
             color: $white;
-            font-family: 'Barlow Condensed';
-
-            &.-desktop {
-                font-size: 14px;
-                p {
-                    max-width: 160px;
-                }
-            }
-
-            &.-mobile {
-                font-size: 12px;
-                p {
-                    max-width: 200px;
-                }
-            }
 
             &.-fade-out {
                 animation: fade-out-and-remove forwards 1s;
+            }
+
+            .cog-overlay {
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                background-color: black;
+                color: $white;
+    
+                span {
+                    margin-left: 10px;
+                }
+    
+                &.-fade-out {
+                    animation: fade-out-and-remove forwards 1s;
+                }
+    
+                padding: 10px 10px 20px 32px;
+            }
+
+            .topic-links-intro-text, .globe-menu-intro-text {
+                font-family: 'Barlow Condensed';
+
+                &.-desktop {
+                    font-size: 14px;
+                    p {
+                        max-width: 160px;
+                    }
+                }
+    
+                &.-mobile {
+                    font-size: 12px;
+                    p {
+                        max-width: 200px;
+                    }
+                }
             }
 
             .topic-links-intro-text {

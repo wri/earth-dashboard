@@ -66,6 +66,14 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       <img src="/static/icons/arrow-down-homepage.svg" />
       <p>Explore Earth's planetary emergency in near-real-time</p>
     </div>
+    <div className={classnames({
+      [styles['cog-overlay']]: true,
+      [styles['-mobile']]: mobile,
+      [styles['-desktop']]: !mobile,
+    })}>
+      <img src="/static/icons/cog.svg" />
+      <span>Globe</span>
+    </div>
   </div>);
 
   const getMainContainer = (mobile) => {
