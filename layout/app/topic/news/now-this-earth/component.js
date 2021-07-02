@@ -12,7 +12,11 @@ import { NOW_THIS_EARTH_RSS_URL } from 'utils/news';
 // styles
 import styles from './topic-news-now-this-earth.module.scss';
 
-const parser = new Parser();
+const parser = new Parser({
+  customFields: {
+    item: [['media:thumbnail','thumbnail'], ['media:content', 'link']],
+  }
+});
 
 function TopicNewsNowThisEarth(props) {
   const [loading, setLoading] = useState(true);
@@ -23,10 +27,14 @@ function TopicNewsNowThisEarth(props) {
     setLoading(true);
     parser.parseURL(NOW_THIS_EARTH_RSS_URL)
       .then((response) => {
-        console.log('response', response);
+        setData(response.items);
+        setLoading(false);
       })
       .catch(err => console.error('error!', err));
   }, [topic, limit]);
+
+
+  console.log('data', data);
 
   return (
     <div className={styles['c-topic-news-now-this-earth']}>
@@ -36,13 +44,13 @@ function TopicNewsNowThisEarth(props) {
           className={styles['news-item']}
           key={`news-item-${newsElem.title}`}
         >
-          {/* <div className={styles['news-picture']}>
-            <img src={newsElem.featuredImage.node.mediaItemUrl} alt="" />
+          <div className={styles['news-picture']}>
+            <img src={newsElem.thumbnail.$.url} alt="" />
           </div>
           <div className={styles['news-content']}>
             <h5>
               <a
-                href={`${MONGABAY_NEWS_DOMAIN}${newsElem.uri}`}
+                href={newsElem.link.$.url}
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => logEvent({
@@ -54,8 +62,8 @@ function TopicNewsNowThisEarth(props) {
                 {newsElem.title}
               </a>
             </h5>
-            <span className={styles['news-date']}>{newsElem.date} - Mongabay</span>
-          </div> */}
+            <span className={styles['news-date']}>{newsElem.pubDate} - NowThis Earth</span>
+          </div>
         </div>
       ))}
     </div>
