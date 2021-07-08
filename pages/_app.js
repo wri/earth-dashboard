@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { ApolloProvider } from '@apollo/client';
+import { APOLLO_CLIENT } from 'utils/news';
 
 // store
 import { wrapper } from 'store';
@@ -26,7 +28,9 @@ function EDApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <Component {...pageProps} />
+    <ApolloProvider client={APOLLO_CLIENT}>
+      <Component {...pageProps} />
+    </ApolloProvider>
   );
 }
 

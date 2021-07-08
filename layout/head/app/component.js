@@ -1,39 +1,34 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import HeadNext from 'next/head';
+import dynamic from 'next/dynamic';
+
+import { useRouter } from 'next/router';
+
+// constants
+import { CESIUM_ROUTES } from 'constants/app';
 
 // utils
 import { mediaStyle } from 'utils/responsive';
 
-class HeadApp extends PureComponent {
-  static propTypes = {
-    title: PropTypes.string,
-    description: PropTypes.string,
-    thumbnail: PropTypes.string,
-    routes: PropTypes.object.isRequired,
-    hostname: PropTypes.string.isRequired,
-    explicitHostname: PropTypes.string,
-    themeColor: PropTypes.string
-  };
+const CesiumScript = dynamic(() => import('scripts/cesium'));
 
-  static defaultProps = {
-    title: null,
-    description: null,
-    thumbnail: null,
-    explicitHostname: null,
-    themeColor: null
-  }
+function HeadApp({
+  title,
+  description,
+  thumbnail,
+  hostname,
+  explicitHostname,
+  themeColor
+}) {
+  const {
+    asPath,
+  } = useRouter();
 
-  render() {
-    const {
-      title,
-      description,
-      thumbnail,
-      hostname,
-      explicitHostname,
-      themeColor
-    } = this.props;
-    return (
+  const isCesiumRoute = useMemo(() => CESIUM_ROUTES.includes(asPath), [asPath]);
+
+  return (
+    <Fragment>
       <HeadNext>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -48,7 +43,7 @@ class HeadApp extends PureComponent {
         <meta property="og:image:url" content={thumbnail} />
         <meta property="og:image:secure_url" content={thumbnail} />
         <meta property="og:image:alt" content={title} />
-        <meta property="og:site_name" content="Earth Dashboard"/>
+        <meta property="og:site_name" content="Earth Dashboard" />
 
         {/* Facebook */}
         <meta property="fb:app_id" content="717221095898870" />
@@ -71,7 +66,7 @@ class HeadApp extends PureComponent {
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-          crossorigin=""
+          crossOrigin=""
         />
         <link
           rel="stylesheet"
@@ -80,14 +75,34 @@ class HeadApp extends PureComponent {
         />
 
         {/* Fonts */}
-        <link rel="preconnect" href="https://fonts.gstatic.com"/>
-        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,400&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
-        
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,400&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
         { /* Artsy - fresnel: for SSR*/}
         <style type="text/css">${mediaStyle}</style>
       </HeadNext>
-    );
-  }
+      {isCesiumRoute && (<CesiumScript />)}
+    </Fragment>
+  );
+
 }
+
+HeadApp.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  thumbnail: PropTypes.string,
+  routes: PropTypes.object.isRequired,
+  hostname: PropTypes.string.isRequired,
+  explicitHostname: PropTypes.string,
+  themeColor: PropTypes.string
+};
+
+HeadApp.defaultProps = {
+  title: null,
+  description: null,
+  thumbnail: null,
+  explicitHostname: null,
+  themeColor: null
+};
 
 export default HeadApp;

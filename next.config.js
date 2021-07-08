@@ -26,6 +26,11 @@ module.exports = {
       tls: 'empty'
     };
 
+    _config.module.rules.push({
+      loader: 'webpack-glsl-loader',
+      test: /\.glsl$/
+    });
+
     if (process.env.BUNDLE_ANALYZER) _config.plugins.push(new BundleAnalyzerPlugin());
 
     return _config;

@@ -1,140 +1,112 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Particles from 'react-particles-js';
-import Link from 'next/link';
-import ReactTooltip from 'react-tooltip';
 import classnames from 'classnames';
 
 // components
 import Layout from 'layout/layout/layout-app';
-import Globe from './globe';
 
 // utils
-import { PARTICLES_DEFINITION } from 'utils/particles';
 import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
-import { logEvent } from 'utils/gtag';
 
 // styles
 import styles from './homepage.module.scss';
 
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
-  const [globeLoaded, setGlobeLoaded] = useState(false);
-  const isServer = typeof window === 'undefined';
-  const logClickLinkEvent = (linkName) => {
-    logEvent({
-      action: 'Click topic on homepage',
-      category: 'Homepage',
-      label: `/${linkName}`
-    });
-  };
-  const getLink = (name) =>
-    <Link href={`/${name}`}>
-      <a
-        className={`external-link -${name}`}
-        onClick={() => logClickLinkEvent(name)}
-      >
-        {name.toUpperCase()}
-      </a>
-    </Link>;
-  const getBiodiversityLink = () =>
-    <>
-      <a
-        data-tip data-for="comingSoon"
-        className={classnames({
-          'external-link -biodiversity': true,
-          [styles['biodiversity-link']]: true
-        })}
-      >
-        BIODIVERSITY
-      </a>
-      <ReactTooltip className={styles['biodiversity-tooltip']} id="comingSoon" type="light" effect="float">
-        <span>Coming soon...</span>
-      </ReactTooltip>
-    </>;
+  const [showIntroAndBanner, setShowIntroAndBanner] = useState(true);
+  const [showBanner, setShowBanner] = useState(true);
+  const [timeOutReached, setTimeoutReached] = useState(false);
 
-  const getTopicLinks = (mobile) =>
-    <div className={classnames({
-      [styles['topic-links']]: true,
-      [styles['-mobile']]: mobile
-    })}>
-      {!mobile &&
-        <>
-          {getLink('climate')}
-          {getLink('forests')}
-          {getLink('freshwater')}
-          {getLink('ocean')}
-          {getBiodiversityLink()}
-        </>
-      }
-      {mobile &&
-        <>
-          <div className={styles['first-row']}>
-            {getLink('climate')}
-            {getLink('forests')}
-            {getLink('freshwater')}
-          </div>
-          <div className={styles['second-row']}>
-            {getLink('ocean')}
-            {getBiodiversityLink()}
-          </div>
-        </>
-      }
-    </div>;
-
-  const getSubtitle = (mobile) => {
-    const CustomTag = mobile ? 'h4' : 'h3';
-    return (
-      <CustomTag>
-        Earth HQ: situation room for the global commons.
-      </CustomTag>
-    );
+  const clickHandler = () => {
+    setShowIntroAndBanner(false);
+    window.removeEventListener('click', clickHandler);
+    setTimeout(() => setTimeoutReached(true), 500)
   }
 
-  const getGlobe = (mobile = false) =>
+  useEffect(() => {
+    window.addEventListener('click', clickHandler);
+    setTimeout(() => {
+      if (showIntroAndBanner && showBanner) {
+        setShowBanner(false);
+      }
+    }, 10000);
+    return () => window.removeEventListener('click', clickHandler);
+  }, []);
+
+  const getBanner = mobile =>
+  (<div className={classnames({
+    [styles['banner']]: true,
+    [styles['-mobile']]: mobile,
+    [styles['-desktop']]: !mobile,
+  })}>
+    <h1>This is not a drill</h1>
+    <h1>It's a <span className={styles.gradient}>Planetary emergency</span>.</h1>
+  </div>);
+
+  const getIntroText = mobile =>
+  (<div className={classnames({
+    [styles['intro-text']]: true,
+    [styles['-mobile']]: mobile,
+    [styles['-desktop']]: !mobile,
+    [styles['-fade-out']]: !showIntroAndBanner,
+  })}>
     <div className={classnames({
-      [styles.globe]: true,
-      [styles['-loaded']]: globeLoaded
+      [styles['topic-links-intro-text']]: true,
+      [styles['-mobile']]: mobile,
+      [styles['-desktop']]: !mobile,
     })}>
-      <Globe
-        width="100vw"
-        height={mobile ? '70vh' : '85vh'}
-        style={{
-          zIndex: -1,
-          opacity: globeLoaded ? 1 : 0
-        }}
-        onLoad={() => setGlobeLoaded(true)}
-        options={{
-          ambientLightIntensity: 0.7,
-          ambientLightColor: '#FFFFFF'
-        }}
-      />
-    </div>;
+      {!mobile && <img src="/static/icons/arrow-up-homepage.svg" />}
+      <p>What you need to know about Earth's life support systems, the global commons</p>
+      {mobile && <img src="/static/icons/arrow-up-right-homepage.svg" />}
+    </div>
+    <div className={classnames({
+      [styles['globe-menu-intro-text']]: true,
+      [styles['-mobile']]: mobile,
+      [styles['-desktop']]: !mobile,
+    })}>
+      <img src="/static/icons/arrow-down-homepage.svg" />
+      <p>Explore Earth's planetary emergency in near-real-time</p>
+    </div>
+    <div className={classnames({
+      [styles['cog-overlay']]: true,
+      [styles['-mobile']]: mobile,
+      [styles['-desktop']]: !mobile,
+    })}>
+      <img src="/static/icons/cog.svg" />
+      <span>Globe</span>
+    </div>
+  </div>);
 
   const getMainContainer = (mobile) => {
-    const CustomHeaderTag = mobile ? 'h2' : 'h1';
     return (
       <div className={classnames({
         [styles['main-container']]: true,
         [styles['-desktop']]: !mobile,
-        [styles['-mobile']]: mobile,
+        [styles['-mobile']]: mobile
       })}
       >
-        {!isServer &&
+        <iframe
+          id="nullSchoolIframe"
+          width="100%"
+          height="100%"
+          src={mobile ? 'https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,148' : 'https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306'}
+          title="Null School"
+          frameBorder="0"
+        />
+        {!timeOutReached &&
           <>
-            {getGlobe(false)}
             <div className={classnames({
               [styles['text-container']]: true,
               [styles['-desktop']]: !mobile,
               [styles['-mobile']]: mobile,
+              [styles['-fade-out']]: !showIntroAndBanner || !showBanner,
             })}
             >
-              <CustomHeaderTag className={styles['first-header']}>The Science is in.{mobile && <br />} This is not a drill.</CustomHeaderTag>
-              <CustomHeaderTag className={styles['second-header']}>It's a <span className={styles['highlighted-text']}>Planetary Emergency</span>.</CustomHeaderTag>
-              {getSubtitle(mobile)}
-              {getTopicLinks(mobile)}
+              {getBanner(mobile)}
             </div>
+            {getIntroText(mobile)}
           </>
         }
+
       </div>);
   };
 
@@ -146,13 +118,10 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       className={styles.homepage}
       openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
+      headerButtonPosition="right"
+      headerShowTopicLinks={true}
       themeColor="#1a2128"
     >
-      <Particles
-        className={styles.particles}
-        params={PARTICLES_DEFINITION}
-      />
-
       <MediaContextProvider>
         <Desktop>
           {getMainContainer(false)}

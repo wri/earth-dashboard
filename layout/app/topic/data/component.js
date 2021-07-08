@@ -6,10 +6,21 @@ import classnames from 'classnames';
 
 // utils
 import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
-import { getColorByTopic } from 'utils/topics';
 import { logEvent } from 'utils/gtag';
+import { getPageMetadataByTopic } from 'utils/share';
+import {
+  CLIMATE,
+  FORESTS,
+  FRESHWATER,
+  OCEAN,
+  BIODIVERSITY,
+  getNavigationDotsColorByTopic,
+  getColorByTopic
+} from 'utils/topics';
 
 // components
+import NavigationDots from 'components/ui/navigation-dots';
+import ShareModal from 'components/share/share-modal';
 import Layout from 'layout/layout/layout-app';
 import HeadlineSection from './headline-section';
 import CreditsResourcesSection from './credits-resources-section';
@@ -17,26 +28,17 @@ import ChangeAgentsSection from './change-agents-section';
 import Footer from './footer';
 import DiveIntoTheDataSection from './dive-into-the-data-section';
 import ChallengeToOurGlobalCommons from './challenge-to-our-global-commons-section';
-import NavigationDots from 'components/ui/navigation-dots';
 import FreshWaterScrollyTelling from './freshwater/scrolly-telling';
 import ForestsScrollyTelling from './forests/scrolly-telling';
 import ClimateScrollyTelling from './climate/scrolly-telling';
 import OceansScrollyTelling from './ocean/scrolly-telling';
-import ShareModal from 'components/share/share-modal';
-
-// styles
-import styles from './topic-data.module.scss';
+import BiodiversityScrollyTelling from './biodiversity/scrolly-telling';
 
 // constants
 import { NAVIGATION_ITEMS } from './constants';
-import {
-  CLIMATE,
-  FORESTS,
-  FRESHWATER,
-  OCEAN,
-  getNavigationDotsColorByTopic
-} from 'utils/topics';
-import { getPageMetadataByTopic } from 'utils/share';
+
+// styles
+import styles from './topic-data.module.scss';
 
 function LayoutTopicData(props) {
   const { topic, topicData, widgets, embed, embeddedSection } = props;
@@ -89,6 +91,8 @@ function LayoutTopicData(props) {
         return <ClimateScrollyTelling topic={topic} />
       case OCEAN:
         return <OceansScrollyTelling topic={topic} />
+      case BIODIVERSITY:
+        return <BiodiversityScrollyTelling topic={topic} />
       default:
         return <div />;
     }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
-import d3 from 'd3';
+import * as d3 from 'd3';
 import classnames from 'classnames';
 
 // components
@@ -35,7 +35,6 @@ function ClimateScrollyTelling({ topic }) {
   // data prop of the step, which in this demo stores the index of the step.
   const onStepEnter = ({ data }) => {
     setCurrentStepIndex(data);
-    console.log('onStepEnter!', data);
 
     const step = CLIMATE_STEPS[data];
     const {

@@ -1,1 +1,2 @@
-export const MONGABAY_RSS_FEED_URL = 'https://news.mongabay.com/feed/?post_type=post&feedtype=bulletpoints&topic=';
+export const MONGABAY_NEWS_TYPE = 'mongabay';
+export const NOW_THIS_EARTH_NEWS_TYPE = 'now-this-earth';

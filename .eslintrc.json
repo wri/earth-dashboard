@@ -2,31 +2,25 @@
   "env": {
     "browser": true,
     "node": true,
-    "mocha": true,
-    "es6": true
+    "es2021": true
   },
   "globals": {
     "L": true,
-    "config": true,
-    "Transifex": true
+    "config": true
   },
-  "extends": "vizzuality",
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended"
+  ],
   "rules": {
-    "class-methods-use-this": 0,
-    "import/prefer-default-export": 0,
-    "import/extensions": 0,
-    "import/no-extraneous-dependencies": 0,
-    "import/no-unresolved": 0,
-    "import/named": 0,
-    "react/prefer-stateless-function": 0,
-    "react/jsx-filename-extension": 0,
-    "linebreak-style": 0,
-    "no-plusplus": 0,
-    "jsx-a11y/href-no-hash": 0,
-    "jsx-a11y/anchor-is-valid": 0,
-    "no-underscore-dangle": 0,
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true,
+      },
+    ],
   },
   "parser": "babel-eslint",
   "parserOptions": {
@@ -38,7 +32,9 @@
   },
   "plugins": [
     "babel",
-    "react-hooks"
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier"
   ],
   "settings": {
     "import/resolver": {
