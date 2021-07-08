@@ -162,8 +162,8 @@ function LayoutTopic(props) {
                     >
                       <span className={styles['block-header']}>RECENT NEWS (MONGABAY)</span>
                       <TopicNews topic={keywords} limit={numberOfElements} type={MONGABAY_NEWS_TYPE} />
-                      <span className={styles['block-header']}>RECENT NEWS (NOW THIS EARTH)</span>
-                      <TopicNews topic={keywords} limit={numberOfElements} type={NOW_THIS_EARTH_NEWS_TYPE} />
+                      {/* <span className={styles['block-header']}>RECENT NEWS (NOW THIS EARTH)</span>
+                      <TopicNews topic={keywords} limit={numberOfElements} type={NOW_THIS_EARTH_NEWS_TYPE} /> */}
                     </div>
                   );
                 }
