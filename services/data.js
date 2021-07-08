@@ -143,7 +143,7 @@ export const fetchTopicData = () =>
             {
               "type": "topic-news",
               "keywords": [
-                "water"
+                "freshwater"
               ],
               "number-of-elements": 3
             }
