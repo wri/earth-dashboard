@@ -88,7 +88,7 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
           id="nullSchoolIframe"
           width="100%"
           height="100%"
-          src={mobile ? 'https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,148' : 'https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306'}
+          src={mobile ? 'https://earth.nullschool.net/?kiosk' : 'https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306'}
           title="Null School"
           frameBorder="0"
         />
