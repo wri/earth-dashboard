@@ -115,7 +115,7 @@ function Header(props) {
   const getLogo = () =>
     <Link href="/">
       <a>
-        <img src="/static/images/logo-light.svg" />
+        <img src="/static/images/logo-nullschool.svg" />
       </a>
     </Link>;
 
