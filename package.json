@@ -105,9 +105,6 @@
     "static-build": "next build && next export",
     "start": "next start"
   },
-  "engines": {
-    "node": "10.22.1"
-  },
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --fix",
