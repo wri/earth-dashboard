@@ -1,3 +1,6 @@
+definitions:
+  caches:
+    nextcache: .next/cache
 pipelines:
   custom:
     default:
@@ -6,7 +9,7 @@ pipelines:
           image: node:14.16.0
           caches:
             - node
-            - .next/cache
+            - nextcache
           artifacts:
             - out/**
           script:
