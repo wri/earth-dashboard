@@ -102,6 +102,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "static-build": "next build && next export",
     "start": "next start"
   },
   "engines": {
