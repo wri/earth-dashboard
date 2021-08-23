@@ -12,4 +12,5 @@ pipelines:
             - nextcache
           script:
             - yarn install
+            - yarn test
             - yarn build

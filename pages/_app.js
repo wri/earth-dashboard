@@ -25,6 +25,7 @@ function EDApp({ Component, pageProps }) {
       });
     };
     router.events.on("routeChangeComplete", handleRouteChange);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

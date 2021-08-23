@@ -26,6 +26,9 @@ class Aside extends PureComponent {
 
   render() {
     const { style, selected, items } = this.props;
+
+    console.log(items);
+
     return (
       <aside className={styles["c-aside"]} style={style}>
         <nav>
