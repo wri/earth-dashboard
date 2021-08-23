@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import truncate from 'lodash/truncate';
 import ReactMarkdown from 'react-markdown';

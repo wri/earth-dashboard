@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -13,7 +13,7 @@ import styles from './step-widget-metadata-form.module.scss';
 // constants
 import { FORM_ELEMENTS } from 'components/widgets/metadata/form/constants';
 
-class Step1 extends React.Component {
+class Step1 extends Component {
   constructor(props) {
     super(props);
 

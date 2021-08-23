@@ -1,9 +1,9 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { remove } from 'utils/request';
 import { toastr } from 'react-redux-toastr';
 
-class DeleteAction extends React.Component {
+class DeleteAction extends Component {
   constructor(props) {
     super(props);
 

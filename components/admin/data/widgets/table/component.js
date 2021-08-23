@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 
@@ -101,7 +101,7 @@ class WidgetsTable extends PureComponent {
       'page[number]': pagination.page,
       'page[size]': pagination.limit,
       application: process.env.APPLICATIONS,
-      ...dataset && { dataset },
+      ...(dataset && { dataset }),
       ...filters
     }, { Authorization: token }, true)
       .then(({ widgets, meta }) => {

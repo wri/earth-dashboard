@@ -1,8 +1,8 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 
-export default class Table extends React.Component {
+export default class Table extends Component {
   /* Property typing */
   static propTypes = {
     data: PropTypes.array,

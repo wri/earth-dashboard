@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const BIODIVERSITY_HEADLINE_SECTION_DATA = {
   mainTitle: <>This is the title for <span>Biodiversity</span></>,
   subtitle: 'And this is the subtitle...'

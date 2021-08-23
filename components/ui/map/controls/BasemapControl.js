@@ -1,5 +1,5 @@
 // TO-DO: deprecated. Replaced by components/map/controls/basemap
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { BASEMAPS, LABELS } from 'components/map/constants';
@@ -10,7 +10,7 @@ import Icon from 'components/ui/icon';
 import RadioGroup from 'components/form/RadioGroup';
 import Checkbox from 'components/form/checkbox';
 
-class BasemapControl extends React.Component {
+class BasemapControl extends Component {
   static propTypes = {
     // STORE
     basemap: PropTypes.object,

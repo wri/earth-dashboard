@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
 
@@ -19,7 +19,7 @@ import { STATE_DEFAULT, FORM_ELEMENTS } from 'components/widgets/metadata/form/c
 // styles
 import styles from './widget-metadata-form.module.scss';
 
-class MetadataForm extends React.Component {
+class MetadataForm extends Component {
   static propTypes = {
     widget: PropTypes.string.isRequired,
     authorization: PropTypes.string.isRequired,

@@ -1,4 +1,4 @@
-import React, { PureComponent, createRef } from 'react';
+import { PureComponent, createRef } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS } from 'react-map-gl';

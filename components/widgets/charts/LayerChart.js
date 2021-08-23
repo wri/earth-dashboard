@@ -1,8 +1,8 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 
-class LayerChart extends React.Component {
+class LayerChart extends Component {
   constructor(props) {
     super(props);
 

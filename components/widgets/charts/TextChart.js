@@ -1,9 +1,9 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import 'isomorphic-fetch';
 import { format } from 'd3-format';
 
-class TextChart extends React.Component {
+class TextChart extends Component {
   static propTypes = {
     widgetConfig: PropTypes.object.isRequired,
     toggleLoading: PropTypes.func // Will be called with the loading state

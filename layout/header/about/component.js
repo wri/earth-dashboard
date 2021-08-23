@@ -1,4 +1,3 @@
-import React from 'react';
 import classnames from 'classnames';
 
 // utils
@@ -94,6 +93,6 @@ function About() {
             </div>
         </div>
     );
-};
+}
 
 export default About;

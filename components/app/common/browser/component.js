@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Browser() {
   return (
     <div className="c-browser">

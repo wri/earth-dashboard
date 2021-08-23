@@ -1,5 +1,5 @@
 // TO-DO: replace with components/map/popup
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import moment from 'moment';
@@ -12,7 +12,7 @@ import Spinner from 'components/ui/spinner';
 // styles
 import styles from './map-popup.module.scss';
 
-class LayerPopup extends React.Component {
+class LayerPopup extends Component {
   static propTypes = {
     latlng: PropTypes.object,
     popup: PropTypes.object,

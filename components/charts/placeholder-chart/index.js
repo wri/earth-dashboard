@@ -1,6 +1,3 @@
-import React from 'react';
-
-// styles
 import './placeholder-chart.module.scss';
 
 function DatasetPlaceholderChart() {
