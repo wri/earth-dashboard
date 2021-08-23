@@ -10,19 +10,6 @@ pipelines:
           caches:
             - node
             - nextcache
-          artifacts:
-            - out/**
           script:
             - yarn install
-            - yarn static-build
-      - step:
-          name: Deploy to test
-          deployment: test
-          trigger: manual
-          image: atlassian/pipelines-awscli
-          artifacts:
-            - out/**
-          script:
-            - cd out
-            - aws s3 sync . s3://gca-earth-hq-test
-            - aws cloudfront create-invalidation --distribution-id E2LUVGWJJCN0T6 --paths "/*"
+            - yarn build
