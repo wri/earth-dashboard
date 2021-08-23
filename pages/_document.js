@@ -15,7 +15,7 @@ class MyDocument extends Document {
 
   render() {
     const { includeGA } = this.props;
-
+    console.log("Hey");
     return (
       <Html lang="en">
         <Head>
