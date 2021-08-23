@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import isEqual from 'lodash/isEqual';
@@ -31,7 +31,7 @@ import {
   RASTER_COLUMN_TYPES
 } from 'components/datasets/metadata/form/constants';
 
-class Step extends React.Component {
+class Step extends Component {
   static propTypes = {
     form: PropTypes.object.isRequired,
     columns: PropTypes.array.isRequired,

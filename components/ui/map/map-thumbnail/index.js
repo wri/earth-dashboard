@@ -1,8 +1,8 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getLayerImage, getBasemapImage } from './helper';
 
-class MapThumbnail extends React.Component {
+class MapThumbnail extends Component {
   static propTypes = {
     zoom: PropTypes.number,
     lat: PropTypes.number,
@@ -62,7 +62,7 @@ class MapThumbnail extends React.Component {
         style={{
           width: '100%',
           height: '100%',
-          ...bgImage && { backgroundImage: bgImage },
+          ...(bgImage && { backgroundImage: bgImage }),
           backgroundPosition: 'center',
           backgroundSize: 'cover'
         }}

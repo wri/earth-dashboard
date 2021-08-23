@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
 
@@ -13,7 +13,7 @@ import ContentGroup from 'components/ui/ContentGroup';
 import Source from 'components/datasets/metadata/form/source';
 import { SOURCE_ELEMENTS } from 'components/datasets/metadata/form/constants';
 
-class SourcesContentModal extends React.Component {
+class SourcesContentModal extends Component {
   static propTypes = {
     sources: PropTypes.array,
     tmpSources: PropTypes.array,

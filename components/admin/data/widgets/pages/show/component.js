@@ -1,4 +1,3 @@
-import React from 'react';
 import { StickyContainer, Sticky } from 'react-sticky';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';

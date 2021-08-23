@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import WidgetEditor from '@widget-editor/widget-editor';
 import RwAdapter from '@widget-editor/rw-adapter';

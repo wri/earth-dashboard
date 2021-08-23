@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { Children, isValidElement, cloneElement, PureComponent } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -23,10 +23,10 @@ class MapControls extends PureComponent {
     return (
       <div className={componentClass}>
         <ul className="map-controls--list">
-          {React.Children.map(children, (c, i) => (
-            React.isValidElement(c) && (
+          {Children.map(children, (c, i) => (
+            isValidElement(c) && (
             <li className="map-controls--list-item" key={i}>
-              {React.cloneElement(c)}
+              {cloneElement(c)}
             </li>)
           ))}
         </ul>

@@ -1,7 +1,7 @@
 /* eslint global-require: 0 */
 // TO-DO: deprecated. Replaced by components/map
 
-import React from 'react';
+import { Component } from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 
@@ -49,7 +49,7 @@ const MAP_CONFIG = {
 
 const VOID = () => {};
 
-class Map extends React.Component {
+class Map extends Component {
   static propTypes = {
     swipe: PropTypes.bool,
     canDraw: PropTypes.bool,

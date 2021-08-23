@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import TetherComponent from 'react-tether';
 import classnames from 'classnames';
@@ -9,7 +9,7 @@ import { setTooltipPosition } from 'redactions/tooltip';
 // styles
 import styles from './tooltip.module.scss';
 
-class Tooltip extends React.Component {
+class Tooltip extends Component {
   constructor(props) {
     super(props);
 

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { isValidElement, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -66,7 +66,7 @@ class Field extends PureComponent {
         }
 
         <div className="field-container">
-          {React.isValidElement(children) && children}
+          {isValidElement(children) && children}
           {children && typeof children === 'function' &&
             <this.props.children
               {...this.props}

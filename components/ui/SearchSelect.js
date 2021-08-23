@@ -1,11 +1,11 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 
 // Components
 import Icon from 'components/ui/icon';
 
-export default class SearchSelect extends React.Component {
+export default class SearchSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -1,6 +1,5 @@
 import 'isomorphic-fetch';
 
-import React from 'react';
 import PropTypes from 'prop-types';
 
 // Components

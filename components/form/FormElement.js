@@ -1,11 +1,11 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 
 import Validator from './Validator';
 
-class FormElement extends React.Component {
+class FormElement extends Component {
   constructor(props) {
     super(props);
 

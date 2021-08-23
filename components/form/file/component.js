@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import omit from 'lodash/omit';
@@ -152,10 +151,10 @@ class File extends FormElement {
           // Publish the new value to the form
           if (this.props.onChange) {
             this.props.onChange({
-              ...COLUMN_FORMAT.includes(provider) && {
+              ...(COLUMN_FORMAT.includes(provider) && {
                 // filters non-empty fields
                 fields: fields.filter(field => (field || '').length)
-              },
+              }),
               value: connectorUrl
             });
           }

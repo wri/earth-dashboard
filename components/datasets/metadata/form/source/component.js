@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import Proptypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 
@@ -18,7 +18,7 @@ import { SOURCE_ELEMENTS } from 'components/datasets/metadata/form/constants';
 // styles
 import styles from './dataset-metadata-form-source.module.scss';
 
-class Source extends React.Component {
+class Source extends Component {
   static propTypes = {
     index: Proptypes.number,
     values: Proptypes.object,

@@ -1,10 +1,10 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import isEqual from 'lodash/isEqual';
 import Checkbox from './checkbox';
 
-export default class CheckboxGroup extends React.Component {
+export default class CheckboxGroup extends Component {
   constructor(props) {
     super(props);
 

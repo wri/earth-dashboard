@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { StickyContainer, Sticky } from 'react-sticky';
 import PropTypes from 'prop-types';
 
