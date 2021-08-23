@@ -1,3 +1,5 @@
 import SignIn from "layout/sign-in";
 
-export default () => <SignIn />;
+const SignInPage = () => <SignIn />;
+
+export default SignInPage;

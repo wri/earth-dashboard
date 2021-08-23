@@ -47,13 +47,13 @@ export default class Table extends Component {
       - props.data => original data
       - filteredData => original data with filters and/or sort (if any) applied
     */
-    this.state = {
+    this.setState({
       filteredData: data,
       currentPage: (this.state && this.state.currentPage) || 0,
       totalPages: Math.ceil(data.length / props.pageSize),
       query: {},
       sort: {}
-    };
+    });
   }
 
   getPageBounds(page) {

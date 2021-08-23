@@ -29,7 +29,7 @@ class LayerPopup extends PureComponent {
     interaction: {}
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { latlng, data: popupData } = this.props;
     const { layers, layersInteractionSelected } = popupData;
     const layer = layers.find(_layer => _layer.id === layersInteractionSelected) || layers[0];
@@ -43,7 +43,7 @@ class LayerPopup extends PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {
       data: { layersInteractionSelected: nextLayersInteractionSelected },
       latlng: nextLatLng

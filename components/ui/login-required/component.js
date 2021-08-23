@@ -41,7 +41,7 @@ class LoginRequired extends PureComponent {
           {children}
         </div>
         <Modal isOpen={isOpen} onRequestClose={this.closePrompt}>
-          <Login />
+          <LoginModal />
         </Modal>
       </Fragment>
     );

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import Document, { Html, Main, NextScript, Head } from "next/document";
 
 // utils
@@ -25,7 +26,11 @@ class MyDocument extends Document {
           <link rel="icon" href="/static/cropped-favicon-192x192.png" sizes="192x192" />
           <link rel="apple-touch-icon" href="/static/cropped-favicon-180x180.png" />
           <meta name="msapplication-TileImage" content="/static/cropped-favicon-270x270.png" />
-          <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Lato:400,300,700" />
+          <link
+            rel="stylesheet"
+            media="screen"
+            href="https://fonts.googleapis.com/css?family=Lato:400,300,700&display=swap"
+          />
           <link rel="shortcut icon" href="/static/cropped-favicon-32x32.png"></link>
 
           {/* iOS Safari */}

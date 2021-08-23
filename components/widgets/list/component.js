@@ -28,6 +28,7 @@ function ListWidget(props) {
       .catch(err => {
         toastr.error(`There was an error loading the widget ${widget.name} query: ${err}`);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [widget]);
 
   const ListTag = numbers ? "ol" : "ul";
@@ -38,7 +39,7 @@ function ListWidget(props) {
       <div className={styles["list-heading"]}>{heading}</div>
       <ListTag>
         {listData.map(elem => (
-          <li>
+          <li key={elem.key}>
             {elem.key}: {elem.value}
           </li>
         ))}

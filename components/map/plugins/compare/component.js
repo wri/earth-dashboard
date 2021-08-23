@@ -1,34 +1,25 @@
-import React, { Fragment, createRef, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import {
-  Legend,
-  LegendListItem,
-  LegendItemTypes
-} from 'vizzuality-components';
+import React, { Fragment, createRef, useRef, useState } from "react";
+import PropTypes from "prop-types";
+import { Legend, LegendListItem, LegendItemTypes } from "vizzuality-components";
 
 // constants
-import { MAPSTYLES } from 'components/map/constants';
+import { MAPSTYLES } from "components/map/constants";
 
 // components
-import Map from 'components/map';
-import LayerManager from 'components/map/layer-manager';
-import MapboxCompare from './mapbox-compare';
+import Map from "components/map";
+import LayerManager from "components/map/layer-manager";
+import MapboxCompare from "./mapbox-compare";
 
 // styles
-import styles from './map-compare.module.scss';
+import styles from "./map-compare.module.scss";
 
-const CompareMaps = (props) => {
-  const {
-    layers,
-    bbox,
-    mapOptions,
-    compareOptions
-  } = props;
+const CompareMaps = props => {
+  const { layers, bbox, mapOptions, compareOptions } = props;
   const swiperRef = createRef();
   const legendRef = useRef();
   const [map, setMap] = useState({ left: null, right: null });
 
-  const handleMapRefs = (_map) => {
+  const handleMapRefs = _map => {
     setMap({
       ...map,
       ..._map
@@ -36,7 +27,7 @@ const CompareMaps = (props) => {
   };
 
   return (
-    <div className={styles['c-map-compare']}">
+    <div className={styles["c-map-compare"]}>
       <div className="compare-container">
         {/* left map */}
         <Map
@@ -47,29 +38,23 @@ const CompareMaps = (props) => {
           basemap="dark"
           labels="light"
           boundaries
-          {...(bbox && { 
+          {...(bbox && {
             bounds: {
               bbox,
               options: {}
-            }} 
-          )}
+            }
+          })}
           onLoad={({ map: _map }) => handleMapRefs({ left: _map })}
           {...mapOptions}
         >
           {_map => (
             <Fragment>
-              <LayerManager
-                map={_map}
-                layers={[layers[0]]}
-              />
+              <LayerManager map={_map} layers={[layers[0]]} />
             </Fragment>
           )}
         </Map>
 
-        <div
-          className="legend-container"
-          ref={legendRef}
-        >
+        <div className="legend-container" ref={legendRef}>
           <Legend
             key={layers[0].dataset}
             maxWidth="50%"
@@ -85,10 +70,12 @@ const CompareMaps = (props) => {
                 dataset: layers[0].dataset,
                 visible: true,
                 opacity: 1,
-                layers: [{
-                  ...layers[0],
-                  active: true
-                }]
+                layers: [
+                  {
+                    ...layers[0],
+                    active: true
+                  }
+                ]
               }}
             >
               <LegendItemTypes />
@@ -109,10 +96,12 @@ const CompareMaps = (props) => {
                 dataset: layers[1].dataset,
                 visible: true,
                 opacity: 1,
-                layers: [{
-                  ...layers[1],
-                  active: true
-                }]
+                layers: [
+                  {
+                    ...layers[1],
+                    active: true
+                  }
+                ]
               }}
             >
               <LegendItemTypes />
@@ -123,10 +112,7 @@ const CompareMaps = (props) => {
       <div className="compare-container">
         {/* right map */}
         {/* swiper */}
-        <div
-          ref={swiperRef}
-          className="swiper-container mapboxgl-compare"
-        >
+        <div ref={swiperRef} className="swiper-container mapboxgl-compare">
           <div className="compare-swiper" />
         </div>
         <Map
@@ -142,28 +128,25 @@ const CompareMaps = (props) => {
         >
           {_map => (
             <Fragment>
-              <LayerManager
-                map={_map}
-                layers={[layers[1]]}
-              />
+              <LayerManager map={_map} layers={[layers[1]]} />
             </Fragment>
           )}
         </Map>
       </div>
 
-      {(map.left && map.right) && (
+      {map.left && map.right && (
         <MapboxCompare
           leftRef={map.left}
           rightRef={map.right}
           swiper={swiperRef}
           options={{
             swiper: {
-              offset: legendRef.current ?
-                legendRef.current.getBoundingClientRect().height : 0
-              },
-              ...compareOptions
+              offset: legendRef.current ? legendRef.current.getBoundingClientRect().height : 0
+            },
+            ...compareOptions
           }}
-        />)}
+        />
+      )}
     </div>
   );
 };
