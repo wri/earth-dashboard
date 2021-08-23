@@ -1,6 +1,4 @@
 /* eslint-disable quotes */
-import React from 'react';
-
 export const BIODIVERSITY_STEPS = [
   {
     index: 0,

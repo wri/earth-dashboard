@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import MapThumbnail from 'components/ui/map/map-thumbnail';
 
@@ -17,7 +16,7 @@ function DatasetLayerChart(props) {
       </div>
     </div>
   );
-};
+}
 
 DatasetLayerChart.propTypes = {
   layer: PropTypes.object

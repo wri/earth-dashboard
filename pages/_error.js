@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
@@ -13,7 +13,7 @@ class Error extends PureComponent {
   static async getInitialProps(context) {
     const { res } = context;
 
-    return { ...res && { statusCode: res.statusCode } };
+    return { ...(res && { statusCode: res.statusCode }) };
   }
 
   render() {

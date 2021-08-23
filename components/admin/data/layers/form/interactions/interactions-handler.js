@@ -1,4 +1,3 @@
-import React from 'react';
 import { SortableHandle } from 'react-sortable-hoc';
 
 // components

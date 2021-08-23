@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import uniq from 'lodash/uniq';
 import flatten from 'lodash/flatten';

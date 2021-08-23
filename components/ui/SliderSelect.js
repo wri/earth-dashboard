@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -16,7 +16,7 @@ import Spinner from 'components/ui/spinner';
  * @typedef {{ label: string, value: string, as?: string, items?: Item[] }} Item
  */
 
-export default class SliderSelect extends React.Component {
+export default class SliderSelect extends Component {
   static propTypes = {
     /** @type {Item[]} */
     options: PropTypes.array, // List of the options (see the type Item)

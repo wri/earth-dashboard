@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import debounce from 'lodash/debounce';
@@ -16,7 +16,7 @@ import Icon from 'components/ui/icon';
 // styles
 import styles from './related-content.module.scss';
 
-class DatasetsRelatedContent extends React.Component {
+class DatasetsRelatedContent extends Component {
   constructor(props) {
     super(props);
 

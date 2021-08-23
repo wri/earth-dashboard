@@ -1,6 +1,3 @@
-import React from 'react';
-
-// components
 import LayoutHome from 'layout/app/home';
 
 function HomePage() {

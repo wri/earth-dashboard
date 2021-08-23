@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { toastr } from 'react-redux-toastr';
 import PropTypes from 'prop-types';

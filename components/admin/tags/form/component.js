@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
 import Graph from 'react-graph-vis';
@@ -28,7 +28,7 @@ const graphOptions = {
   edges: { color: '#000000' }
 };
 
-class TagsForm extends React.Component {
+class TagsForm extends Component {
   state = {
     tags: [],
     selectedTags: [],

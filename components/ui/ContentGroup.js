@@ -1,7 +1,7 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class ContentGroup extends React.Component {
+export default class ContentGroup extends Component {
   static propTypes = {
     component: PropTypes.any.isRequired,
     componentProps: PropTypes.object,

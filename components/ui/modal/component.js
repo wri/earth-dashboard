@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/ui/icon';
 import Spinner from 'components/ui/spinner';
@@ -7,7 +7,7 @@ import classnames from 'classnames';
 // styles
 import styles from './modal.module.scss';
 
-export default class Modal extends React.Component {
+export default class Modal extends Component {
   static propTypes = {
     // STORE
     open: PropTypes.bool,

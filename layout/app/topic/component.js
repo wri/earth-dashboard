@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import classnames from 'classnames';
 import Particles from 'react-particles-js';
 import Link from 'next/link';

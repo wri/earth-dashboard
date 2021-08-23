@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -8,7 +8,7 @@ import Link from 'next/link';
 // styles
 import styles from './tabs.module.scss';
 
-export default class Tabs extends React.Component {
+export default class Tabs extends Component {
   constructor(props) {
     super(props);
 

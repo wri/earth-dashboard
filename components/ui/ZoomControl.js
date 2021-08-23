@@ -1,8 +1,8 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/ui/icon';
 
-class ZoomControl extends React.Component {
+class ZoomControl extends Component {
   static propTypes = {
     // maxValue: PropTypes.number,
     // minValue: PropTypes.number,

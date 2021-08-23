@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';

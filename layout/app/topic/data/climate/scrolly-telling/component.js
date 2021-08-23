@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
 import * as d3 from 'd3';
 import classnames from 'classnames';
