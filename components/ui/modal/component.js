@@ -1,11 +1,11 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import Icon from 'components/ui/icon';
-import Spinner from 'components/ui/spinner';
-import classnames from 'classnames';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import Icon from "components/ui/icon";
+import Spinner from "components/ui/spinner";
+import classnames from "classnames";
 
 // styles
-import styles from './modal.module.scss';
+import styles from "./modal.module.scss";
 
 export default class Modal extends Component {
   static propTypes = {
@@ -27,7 +27,7 @@ export default class Modal extends Component {
   };
 
   componentDidMount() {
-    this.el.addEventListener('transitionend', () => {
+    this.el.addEventListener("transitionend", () => {
       if (!this.props.open) {
         this.props.setModalOptions({ children: null });
       }
@@ -38,51 +38,49 @@ export default class Modal extends Component {
   UNSAFE_componentWillReceiveProps({ open }) {
     const self = this;
     function escKeyPressListener(evt) {
-      document.removeEventListener('keydown', escKeyPressListener);
+      document.removeEventListener("keydown", escKeyPressListener);
       return evt.keyCode === 27 && self.props.toggleModal(false);
     }
     // if open property has changed
     if (this.props.open !== open) {
-      document[open ? 'addEventListener' : 'removeEventListener']('keydown', escKeyPressListener);
+      document[open ? "addEventListener" : "removeEventListener"]("keydown", escKeyPressListener);
     }
   }
 
   getContent() {
-    return this.props.options.children ?
-      <this.props.options.children {...this.props.options.childrenProps} /> : null;
+    return this.props.options.children ? <this.props.options.children {...this.props.options.childrenProps} /> : null;
   }
 
   render() {
     const { options, open, className, canClose } = this.props;
-    
+
     return (
       <section
-        ref={(node) => { this.el = node; }}
+        ref={node => {
+          this.el = node;
+        }}
         className={classnames({
-          [styles['c-modal']]: true,
-          '-hidden': !open,
+          [styles["c-modal"]]: true,
+          "-hidden": !open,
           [className]: !!className,
           [options.size]: !!options.size
         })}
       >
-        <div className={styles['modal-container']}>
-          {canClose &&
-            <button 
-              className={styles['modal-close']} 
+        <div className={styles["modal-container"]}>
+          {canClose && (
+            <button
+              className={styles["modal-close"]}
               onClick={e => e.stopPropagation() || this.props.toggleModal(false)}
             >
               <Icon name="icon-cross" className="-small" />
             </button>
-          }
-          <div className={styles['modal-content']}>
+          )}
+          <div className={styles["modal-content"]}>
             {this.props.children ? this.props.children : null}
             {this.props.loading ? <Spinner isLoading /> : this.getContent()}
           </div>
         </div>
-        <div
-          className={styles['modal-backdrop']}
-          onClick={e => e.stopPropagation() || this.props.toggleModal(false)}
-        />
+        <div className={styles["modal-backdrop"]} onClick={e => e.stopPropagation() || this.props.toggleModal(false)} />
       </section>
     );
   }

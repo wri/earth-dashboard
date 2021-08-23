@@ -1,3 +1,3 @@
-import NameTD from './component';
+import NameTD from "./component";
 
 export default NameTD;

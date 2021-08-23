@@ -1,25 +1,15 @@
-import PropTypes from 'prop-types';
-import TableHeaderActions from './header-actions';
+import PropTypes from "prop-types";
+import TableHeaderActions from "./header-actions";
 
 export default function TableHeader(props) {
-  const {
-    actions,
-    columns,
-    columnValues,
-    columnQueries,
-    filters,
-    sort,
-    onFilter,
-    onSort,
-    onSearch
-  } = props;
+  const { actions, columns, columnValues, columnQueries, filters, sort, onFilter, onSort, onSearch } = props;
   const actionsShowed = actions.list.filter(a => a.show);
 
   return (
     <thead>
       <tr>
         {columns.map((c, index) => (
-          <th key={index} className={c.type || ''}>
+          <th key={index} className={c.type || ""}>
             <span className="th-wrapper">
               <span>{c.label}</span>
 
@@ -36,9 +26,7 @@ export default function TableHeader(props) {
             </span>
           </th>
         ))}
-        {actions.show && actionsShowed.length &&
-          <th colSpan={`${actionsShowed.length}`} />
-        }
+        {actions.show && actionsShowed.length && <th colSpan={`${actionsShowed.length}`} />}
       </tr>
     </thead>
   );

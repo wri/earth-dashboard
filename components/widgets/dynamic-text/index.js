@@ -1,3 +1,3 @@
-import DynamicTextWidgetComponent from './component';
+import DynamicTextWidgetComponent from "./component";
 
 export default DynamicTextWidgetComponent;

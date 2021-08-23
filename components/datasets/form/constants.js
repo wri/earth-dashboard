@@ -1,61 +1,66 @@
 export const PROVIDER_TYPES_DICTIONARY = {
   cartodb: {
-    label: 'CartoDB',
-    value: 'cartodb',
-    connectorType: 'rest',
-    connectorUrlHint: 'Example: https://wri-01.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20combined01_prepared%20where%20impactparameter=%27Food Demand%27'
+    label: "CartoDB",
+    value: "cartodb",
+    connectorType: "rest",
+    connectorUrlHint:
+      "Example: https://wri-01.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20combined01_prepared%20where%20impactparameter=%27Food Demand%27"
   },
   gee: {
-    label: 'GEE (Google Earth Engine)',
-    value: 'gee',
-    connectorType: 'rest',
-    connectorUrlHint: 'Example: projects/wri-datalab/HansenComposite_14-15'
+    label: "GEE (Google Earth Engine)",
+    value: "gee",
+    connectorType: "rest",
+    connectorUrlHint: "Example: projects/wri-datalab/HansenComposite_14-15"
   },
   nexgddp: {
-    label: 'NexGDDP (Nasa yearly downscaled climate projections)',
-    value: 'nexgddp',
-    connectorType: 'rest',
-    connectorUrlHint: 'Example: scenario/model'
+    label: "NexGDDP (Nasa yearly downscaled climate projections)",
+    value: "nexgddp",
+    connectorType: "rest",
+    connectorUrlHint: "Example: scenario/model"
   },
   featureservice: {
-    value: 'featureservice',
-    label: 'Feature Service (Arcgis)',
-    connectorType: 'rest',
-    connectorUrlHint: 'Example: http://gis-gfw.wri.org/arcgis/rest/services/prep/nex_gddp_indicators/MapServer/6?f=pjson'
+    value: "featureservice",
+    label: "Feature Service (Arcgis)",
+    connectorType: "rest",
+    connectorUrlHint:
+      "Example: http://gis-gfw.wri.org/arcgis/rest/services/prep/nex_gddp_indicators/MapServer/6?f=pjson"
   },
   csv: {
-    label: 'CSV',
-    value: 'csv',
+    label: "CSV",
+    value: "csv",
     basic: true,
-    connectorType: 'document',
-    connectorUrlHint: 'Format specification: <a href="https://en.wikipedia.org/wiki/Comma-separated_values" target="_blank" >https://en.wikipedia.org/wiki/Comma-separated_values</a>'
+    connectorType: "document",
+    connectorUrlHint:
+      'Format specification: <a href="https://en.wikipedia.org/wiki/Comma-separated_values" target="_blank" >https://en.wikipedia.org/wiki/Comma-separated_values</a>'
   },
   json: {
-    label: 'JSON',
-    value: 'json',
+    label: "JSON",
+    value: "json",
     basic: true,
-    connectorType: 'document',
+    connectorType: "document",
     connectorUrlHint: 'Format specification: <a href="http://www.json.org/" target="_blank" >http://www.json.org/</a>'
   },
   tsv: {
-    label: 'TSV',
-    value: 'tsv',
+    label: "TSV",
+    value: "tsv",
     basic: true,
-    connectorType: 'document',
-    connectorUrlHint: 'Format specification: <a href="https://en.wikipedia.org/wiki/Tab-separated_values" target="_blank" >https://en.wikipedia.org/wiki/Tab-separated_values</a>'
+    connectorType: "document",
+    connectorUrlHint:
+      'Format specification: <a href="https://en.wikipedia.org/wiki/Tab-separated_values" target="_blank" >https://en.wikipedia.org/wiki/Tab-separated_values</a>'
   },
   xml: {
-    label: 'XML',
-    value: 'xml',
+    label: "XML",
+    value: "xml",
     basic: true,
-    connectorType: 'document',
-    connectorUrlHint: 'Format specification: <a href="https://www.w3.org/TR/REC-xml/" target="_blank" >https://www.w3.org/TR/REC-xml/</a>'
+    connectorType: "document",
+    connectorUrlHint:
+      'Format specification: <a href="https://www.w3.org/TR/REC-xml/" target="_blank" >https://www.w3.org/TR/REC-xml/</a>'
   },
   wms: {
-    label: 'WMS',
-    value: 'wms',
-    connectorType: 'wms',
-    connectorUrlHint: ''
+    label: "WMS",
+    value: "wms",
+    connectorType: "wms",
+    connectorUrlHint: ""
   }
 };
 
@@ -66,25 +71,25 @@ export const STATE_DEFAULT = {
   loading: false,
   dataset: {},
   form: {
-    authorization: '',
+    authorization: "",
     // STEP 1
-    name: '',
-    subtitle: '',
+    name: "",
+    subtitle: "",
     application: [],
-    type: 'tabular',
+    type: "tabular",
     provider: null,
-    connectorType: '',
-    connectorUrlHint: '',
+    connectorType: "",
+    connectorUrlHint: "",
     published: false,
     geoInfo: false,
     verified: false,
     protected: false,
-    env: 'production',
-    tableName: '',
+    env: "production",
+    tableName: "",
     widgetRelevantProps: [],
     layerRelevantProps: [],
-    connectorUrl: '',
-    dataPath: '',
+    connectorUrl: "",
+    dataPath: "",
     legend: {
       lat: undefined,
       long: undefined,
@@ -92,19 +97,19 @@ export const STATE_DEFAULT = {
       country: []
     },
     subscribable: [],
-    mainDateField: '',
-    applicationConfig: { rw: { highlighted: 'false' }}
+    mainDateField: "",
+    applicationConfig: { rw: { highlighted: "false" } }
   }
 };
 
 export const DATASET_TYPES = [
   {
-    label: 'Tabular',
-    value: 'tabular'
+    label: "Tabular",
+    value: "tabular"
   },
   {
-    label: 'Raster',
-    value: 'raster'
+    label: "Raster",
+    value: "raster"
   }
 ];
 
@@ -112,7 +117,7 @@ export const FORM_ELEMENTS = {
   elements: {},
   validate() {
     const elements = this.elements;
-    Object.keys(elements).forEach((k) => {
+    Object.keys(elements).forEach(k => {
       elements[k].validate();
     });
   },

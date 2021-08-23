@@ -1,9 +1,9 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import Link from "next/link";
 
 // utils
-import { substitution } from 'utils/utils';
+import { substitution } from "utils/utils";
 
 class EditAction extends PureComponent {
   static propTypes = {
@@ -11,7 +11,7 @@ class EditAction extends PureComponent {
     action: PropTypes.object.isRequired
   };
 
-  static defaultProps = { data: {} }
+  static defaultProps = { data: {} };
 
   getParsedParams() {
     const {
@@ -19,15 +19,18 @@ class EditAction extends PureComponent {
       action: { params }
     } = this.props;
 
-    return JSON.parse(substitution(JSON.stringify(params), [{ key: 'id', value: id }]));
+    return JSON.parse(substitution(JSON.stringify(params), [{ key: "id", value: id }]));
   }
 
   render() {
-    const { action: { route } } = this.props;
+    const {
+      action: { route }
+    } = this.props;
 
     return (
-      <Link href={{
-          pathname: route ,
+      <Link
+        href={{
+          pathname: route,
           query: this.getParsedParams()
         }}
       >

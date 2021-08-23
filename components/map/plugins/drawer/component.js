@@ -1,31 +1,28 @@
-import { useCallback, useEffect, useState, useRef } from 'react';
-import PropTypes from 'prop-types';
-import MapboxDraw from '@mapbox/mapbox-gl-draw';
+import { useCallback, useEffect, useState, useRef } from "react";
+import PropTypes from "prop-types";
+import MapboxDraw from "@mapbox/mapbox-gl-draw";
 
 // styles
-import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
+import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 
 // constants
-import { DRAWER_CONFIG } from './constants';
+import { DRAWER_CONFIG } from "./constants";
 
-const Drawer = (props) => {
-  const {
-    drawing,
-    map,
-    onDrawComplete,
-    onReady,
-    onEscapeKey
-  } = props;
+const Drawer = props => {
+  const { drawing, map, onDrawComplete, onReady, onEscapeKey } = props;
   const draw = useRef(new MapboxDraw(DRAWER_CONFIG)).current;
   const [mounted, setMountedState] = useState(false);
 
-  const handleEscapeKey = useCallback((evt) => {
-    if (evt.key === 'Escape') onEscapeKey();
-  }, [onEscapeKey]);
+  const handleEscapeKey = useCallback(
+    evt => {
+      if (evt.key === "Escape") onEscapeKey();
+    },
+    [onEscapeKey]
+  );
 
   const initDrawing = useCallback(() => {
     map.addControl(draw);
-    map.on('draw.create', (e) => {
+    map.on("draw.create", e => {
       const geoJSON = e.features && e.features[0];
       if (geoJSON) onDrawComplete(geoJSON);
     });
@@ -35,7 +32,7 @@ const Drawer = (props) => {
   }, [map, onDrawComplete, draw, onReady]);
 
   const stopDrawing = useCallback(() => {
-    map.off('draw.create');
+    map.off("draw.create");
     map.removeControl(draw);
 
     setMountedState(false);
@@ -46,12 +43,14 @@ const Drawer = (props) => {
     if (!drawing && mounted) stopDrawing();
 
     if (drawing) {
-      window.addEventListener('keydown', handleEscapeKey);
+      window.addEventListener("keydown", handleEscapeKey);
     } else {
-      window.removeEventListener('keydown', handleEscapeKey);
+      window.removeEventListener("keydown", handleEscapeKey);
     }
 
-    return () => { window.removeEventListener('keydown', handleEscapeKey); };
+    return () => {
+      window.removeEventListener("keydown", handleEscapeKey);
+    };
   }, [drawing, mounted, initDrawing, stopDrawing, handleEscapeKey]);
 
   return null;

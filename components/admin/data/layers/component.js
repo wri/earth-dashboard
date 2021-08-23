@@ -1,17 +1,17 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
 
 // components
-import LayersNew from 'components/admin/data/layers/pages/new';
-import LayersShow from 'components/admin/data/layers/pages/show';
+import LayersNew from "components/admin/data/layers/pages/new";
+import LayersShow from "components/admin/data/layers/pages/show";
 
 class LayersTab extends PureComponent {
   static propTypes = {
     user: PropTypes.object.isRequired,
     id: PropTypes.string
-  }
+  };
 
-  static defaultProps = { id: null }
+  static defaultProps = { id: null };
 
   render() {
     const {
@@ -21,8 +21,8 @@ class LayersTab extends PureComponent {
 
     return (
       <div className="c-layers-tab">
-        {(token && id) && (id === 'new') && (<LayersNew />)}
-        {(token && id) && (id !== 'new') && (<LayersShow />)}
+        {token && id && id === "new" && <LayersNew />}
+        {token && id && id !== "new" && <LayersShow />}
       </div>
     );
   }

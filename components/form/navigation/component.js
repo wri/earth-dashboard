@@ -1,13 +1,13 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
 // components
-import Button from 'components/ui/Button';
-import Spinner from 'components/ui/spinner';
+import Button from "components/ui/Button";
+import Spinner from "components/ui/spinner";
 
 // styles
-import styles from './navigation.module.scss';
+import styles from "./navigation.module.scss";
 
 class Navigation extends PureComponent {
   static propTypes = {
@@ -19,14 +19,14 @@ class Navigation extends PureComponent {
     onStepChange: PropTypes.func.isRequired,
     onBack: PropTypes.func,
     onDelete: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     hideCancel: false,
     showDelete: false,
     onBack: null,
     onDelete: null
-  }
+  };
   constructor(props) {
     super(props);
 
@@ -37,7 +37,7 @@ class Navigation extends PureComponent {
   /**
    * UI EVENTS
    * - onStepChange
-  */
+   */
   onStepChange(e) {
     e.preventDefault();
 
@@ -55,73 +55,73 @@ class Navigation extends PureComponent {
 
   render() {
     const { step, stepLength, submitting, hideCancel, showDelete, onDelete } = this.props;
-    const submittingClassName = classnames({ '-submitting': submitting });
+    const submittingClassName = classnames({ "-submitting": submitting });
 
     return (
-      <ul className={styles['c-navigation']}>
-        {showDelete &&
+      <ul className={styles["c-navigation"]}>
+        {showDelete && (
           <li className="c-button-container -full-width">
             <Button
               properties={{
-                type: 'button',
-                name: 'commit',
-                className: '-secondary -expanded'
+                type: "button",
+                name: "commit",
+                className: "-secondary -expanded"
               }}
               onClick={onDelete}
             >
               Delete
             </Button>
           </li>
-        }
-        {step !== 1 &&
+        )}
+        {step !== 1 && (
           <li>
             <Button
               properties={{
-                type: 'button',
-                name: 'commit',
-                className: '-secondary -expanded'
+                type: "button",
+                name: "commit",
+                className: "-secondary -expanded"
               }}
               onClick={this.onStepChange}
             >
               Back
             </Button>
           </li>
-        }
-        {step !== stepLength &&
+        )}
+        {step !== stepLength && (
           <li>
             <Button
               properties={{
-                type: 'submit',
-                name: 'commit',
-                className: '-primary -expanded'
+                type: "submit",
+                name: "commit",
+                className: "-primary -expanded"
               }}
             >
               Next
             </Button>
           </li>
-        }
+        )}
 
-        {stepLength === 1 && !hideCancel &&
+        {stepLength === 1 && !hideCancel && (
           <li>
             <Button
               properties={{
-                type: 'button',
-                name: 'commit',
-                className: '-secondary -expanded'
+                type: "button",
+                name: "commit",
+                className: "-secondary -expanded"
               }}
               onClick={this.onBack}
             >
               Cancel
             </Button>
           </li>
-        }
+        )}
 
-        {step === stepLength &&
+        {step === stepLength && (
           <li>
             <Button
               properties={{
-                type: 'submit',
-                name: 'commit',
+                type: "submit",
+                name: "commit",
                 disabled: submitting,
                 className: `-primary -expanded ${submittingClassName}`
               }}
@@ -130,7 +130,7 @@ class Navigation extends PureComponent {
               Save
             </Button>
           </li>
-        }
+        )}
       </ul>
     );
   }

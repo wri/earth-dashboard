@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import Link from 'next/link';
+import PropTypes from "prop-types";
+import Link from "next/link";
 
 function EditAction(props) {
   const {
@@ -9,11 +9,11 @@ function EditAction(props) {
 
   return (
     <span>
-      {(status === 'saved') &&
+      {status === "saved" && (
         <Link href={`${route}/${id}`}>
           <a className="c-btn">Edit</a>
         </Link>
-      }
+      )}
     </span>
   );
 }

@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
-import LayerInfoModalComponent from './layer-info-modal-component';
+import { connect } from "react-redux";
+import LayerInfoModalComponent from "./layer-info-modal-component";
 
 export default connect(
   state => ({

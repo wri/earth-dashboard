@@ -1,13 +1,13 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import TetherComponent from 'react-tether';
-import classnames from 'classnames';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import TetherComponent from "react-tether";
+import classnames from "classnames";
 
-import { connect } from 'react-redux';
-import { setTooltipPosition } from 'redactions/tooltip';
+import { connect } from "react-redux";
+import { setTooltipPosition } from "redactions/tooltip";
 
 // styles
-import styles from './tooltip.module.scss';
+import styles from "./tooltip.module.scss";
 
 class Tooltip extends Component {
   constructor(props) {
@@ -25,14 +25,14 @@ class Tooltip extends Component {
 
   UNSAFE_componentWillReceiveProps({ tooltip }) {
     if (tooltip.follow && tooltip.follow !== this.props.tooltip.follow) {
-      document.addEventListener('mousemove', this.onMouseMove);
+      document.addEventListener("mousemove", this.onMouseMove);
     }
 
     const stopFollowing = tooltip.follow === false && tooltip.follow !== this.props.tooltip.follow;
     const isEmpty = !tooltip.opened && tooltip.opened !== this.props.tooltip.opened;
 
     if (stopFollowing || isEmpty) {
-      document.removeEventListener('mousemove', this.onMouseMove);
+      document.removeEventListener("mousemove", this.onMouseMove);
     }
   }
 
@@ -45,14 +45,12 @@ class Tooltip extends Component {
   }
 
   getContent() {
-    return this.props.tooltip.children
-      ? (
-        <this.props.tooltip.children
-          {...this.props.tooltip.childrenProps}
-          onResize={() => this.tether && this.tether.position()}
-        />
-      )
-      : null;
+    return this.props.tooltip.children ? (
+      <this.props.tooltip.children
+        {...this.props.tooltip.childrenProps}
+        onResize={() => this.tether && this.tether.position()}
+      />
+    ) : null;
   }
 
   getStyles() {
@@ -63,12 +61,12 @@ class Tooltip extends Component {
       // position if it is out of viewport
     }
     return {
-      position: 'absolute',
+      position: "absolute",
       top: `${topPos}px`,
       left: `${bottomPos}px`,
-      width: '1px',
-      height: '1px',
-      visibility: 'hidden'
+      width: "1px",
+      height: "1px",
+      visibility: "hidden"
     };
   }
 
@@ -96,9 +94,9 @@ class Tooltip extends Component {
     const width = this.el.parentNode.getBoundingClientRect().width;
 
     if (width / 2 > target.left) {
-      tipOffset = target.left - (width / 2);
+      tipOffset = target.left - width / 2;
     } else if (width / 2 > target.right) {
-      tipOffset = (width / 2) - target.right;
+      tipOffset = width / 2 - target.right;
     }
 
     if (tipOffset !== this.state.tipOffset) {
@@ -111,40 +109,46 @@ class Tooltip extends Component {
     const className = this.props.tooltip.className;
 
     const tooltipClasses = classnames({
-      [styles['c-tooltip']]: true,
-      '-hidden': !this.props.tooltip.opened,
-      '-arrow-top': direction === 'top',
-      '-arrow-bottom': direction === 'bottom',
+      [styles["c-tooltip"]]: true,
+      "-hidden": !this.props.tooltip.opened,
+      "-arrow-top": direction === "top",
+      "-arrow-bottom": direction === "bottom",
       [className]: !!className
     });
 
     return (
       <TetherComponent
-        ref={(node) => { this.tether = node; }}
+        ref={node => {
+          this.tether = node;
+        }}
         attachment={`${direction} center`}
         targetAttachment="top center"
-        constraints={[{
-          // Don't change this without making sure the tooltip doesn't
-          // disappear in an embedded widget when the cursor is at the
-          // top of the iframe or when the tooltip is close to the edges
-          // of the screen
-          to: 'window',
-          // We don't pin at the top or the bottom because the tooltip
-          // is either displayed above or below the target
-          pin: ['left', 'right']
-        }]}
+        constraints={[
+          {
+            // Don't change this without making sure the tooltip doesn't
+            // disappear in an embedded widget when the cursor is at the
+            // top of the iframe or when the tooltip is close to the edges
+            // of the screen
+            to: "window",
+            // We don't pin at the top or the bottom because the tooltip
+            // is either displayed above or below the target
+            pin: ["left", "right"]
+          }
+        ]}
         classes={{ element: tooltipClasses }}
-        offset={`${(direction === 'bottom' ? 1 : -1) * 20}px 0`} // The offset is needed for the follow option
+        offset={`${(direction === "bottom" ? 1 : -1) * 20}px 0`} // The offset is needed for the follow option
       >
-        <div
-          style={this.getStyles()}
-        />
-        { this.props.tooltip.opened &&
-          <div ref={(node) => { this.el = node; }}>
+        <div style={this.getStyles()} />
+        {this.props.tooltip.opened && (
+          <div
+            ref={node => {
+              this.el = node;
+            }}
+          >
             {this.getContent()}
             <div className={styles.tip} style={{ left: `calc(50% + (${this.state.tipOffset}px))` }} />
           </div>
-        }
+        )}
       </TetherComponent>
     );
   }

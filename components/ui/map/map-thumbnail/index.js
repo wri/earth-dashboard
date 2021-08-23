@@ -1,6 +1,6 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import { getLayerImage, getBasemapImage } from './helper';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import { getLayerImage, getBasemapImage } from "./helper";
 
 class MapThumbnail extends Component {
   static propTypes = {
@@ -18,9 +18,9 @@ class MapThumbnail extends Component {
   };
 
   state = {
-    imageSrc: '',
-    basemapSrc: ''
-  }
+    imageSrc: "",
+    basemapSrc: ""
+  };
 
   async componentDidMount() {
     const { width, height } = this.getSize();
@@ -38,33 +38,33 @@ class MapThumbnail extends Component {
   }
 
   setStateAsync(state) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       this.setState(state, resolve);
     });
   }
 
-  getSize() {    
+  getSize() {
     return {
-      width: this.chart && this.chart.offsetWidth 
-        ? this.chart.offsetWidth : 100,
-      height: this.chart && this.chart.offsetHeight 
-        ? this.chart.offsetHeight : 100
+      width: this.chart && this.chart.offsetWidth ? this.chart.offsetWidth : 100,
+      height: this.chart && this.chart.offsetHeight ? this.chart.offsetHeight : 100
     };
   }
 
   render() {
     const { imageSrc, basemapSrc } = this.state;
-    const bgImage = (imageSrc && imageSrc !== '') ? `url('${imageSrc}') , url('${basemapSrc}')` : `url('${basemapSrc}')`;
+    const bgImage = imageSrc && imageSrc !== "" ? `url('${imageSrc}') , url('${basemapSrc}')` : `url('${basemapSrc}')`;
 
     return (
       <div
-        ref={(c) => { this.chart = c; }}
+        ref={c => {
+          this.chart = c;
+        }}
         style={{
-          width: '100%',
-          height: '100%',
+          width: "100%",
+          height: "100%",
           ...(bgImage && { backgroundImage: bgImage }),
-          backgroundPosition: 'center',
-          backgroundSize: 'cover'
+          backgroundPosition: "center",
+          backgroundSize: "cover"
         }}
       />
     );

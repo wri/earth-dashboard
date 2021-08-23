@@ -1,12 +1,12 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
 // Next components
-import Link from 'next/link';
+import Link from "next/link";
 
 // styles
-import styles from './tabs.module.scss';
+import styles from "./tabs.module.scss";
 
 export default class Tabs extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class Tabs extends Component {
   /**
    * UI EVENTS
    * - onChangeTab
-  */
+   */
   onChangeTab(selected) {
     this.setState({ selected }, () => {
       if (this.props.onChange) this.props.onChange(selected);
@@ -37,26 +37,23 @@ export default class Tabs extends Component {
     return (
       <header
         className={classnames({
-          [styles['c-tabs']]: true,
+          [styles["c-tabs"]]: true,
           [className]: !!className
         })}
       >
         <div className="row l-row">
-          {options.map((option) => {
+          {options.map(option => {
             const btnClasses = classnames({
-              [styles['tabs-btn']]: true,
-              [styles['-active']]: option.value === selected,
-              [styles['-desktopOnly']]: option.desktopOnly
+              [styles["tabs-btn"]]: true,
+              [styles["-active"]]: option.value === selected,
+              [styles["-desktopOnly"]]: option.desktopOnly
             });
 
             return (
-              <div
-                key={option.value}
-                className="column shrink"
-              >
-                {option.route &&
-                  <Link href={
-                    {
+              <div key={option.value} className="column shrink">
+                {option.route && (
+                  <Link
+                    href={{
                       pathname: option.route,
                       query: option.params
                     }}
@@ -66,14 +63,14 @@ export default class Tabs extends Component {
                       {!!option.number && <span className={styles.number}>{option.number}</span>}
                     </a>
                   </Link>
-                }
+                )}
 
-                {!option.route &&
+                {!option.route && (
                   <button className={btnClasses} onClick={() => this.onChangeTab(option.value)}>
                     <span className={styles.title}>{option.label}</span>
                     {!!option.number && <span className={styles.number}>{option.number}</span>}
                   </button>
-                }
+                )}
               </div>
             );
           })}

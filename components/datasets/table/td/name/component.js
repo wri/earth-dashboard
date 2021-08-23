@@ -1,6 +1,6 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import Link from "next/link";
 
 class NameTD extends PureComponent {
   static propTypes = {
@@ -24,17 +24,17 @@ class NameTD extends PureComponent {
 
     const newRoute = linkToNewWidget ? `${route}/widgets/new` : `${route}/datasets/${id}`;
 
-    const params = linkToNewWidget ? 
-      {
-        dataset: id,
-        application: 'rw'
-      } :
-      {};
+    const params = linkToNewWidget
+      ? {
+          dataset: id,
+          application: "rw"
+        }
+      : {};
 
     return (
       <td className="main">
-        <Link href={
-          {
+        <Link
+          href={{
             pathname: newRoute,
             query: params
           }}

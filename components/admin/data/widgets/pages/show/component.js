@@ -1,11 +1,11 @@
-import { StickyContainer, Sticky } from 'react-sticky';
-import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
+import { StickyContainer, Sticky } from "react-sticky";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
 
 // components
-import Aside from 'components/ui/aside';
-import WidgetForm from 'components/admin/data/widgets/form';
-import MetadataForm from 'components/widgets/metadata/form';
+import Aside from "components/ui/aside";
+import WidgetForm from "components/admin/data/widgets/form";
+import MetadataForm from "components/widgets/metadata/form";
 
 function WidgetsShow(props) {
   const {
@@ -13,16 +13,16 @@ function WidgetsShow(props) {
     tabs,
     user: { token }
   } = props;
-  const currentSubTab = subtab || 'edit';
+  const currentSubTab = subtab || "edit";
   const router = useRouter();
 
-  const handleSubmit = (widget) => {
+  const handleSubmit = widget => {
     if (widget) {
       router.reload();
     } else {
-      router.push('/admin/data/widgets');
+      router.push("/admin/data/widgets");
     }
-  }
+  };
 
   return (
     <div className="c-widgets-show">
@@ -30,36 +30,26 @@ function WidgetsShow(props) {
         <div className="row l-row">
           <div className="columns small-12 medium-3">
             <Sticky>
-              {
-                ({ style }) => (
-                  <div style={style}>
-                    <Aside
-                      items={tabs}
-                      selected={currentSubTab}
-                    />
-                  </div>
-                )
-              }
+              {({ style }) => (
+                <div style={style}>
+                  <Aside items={tabs} selected={currentSubTab} />
+                </div>
+              )}
             </Sticky>
           </div>
 
           <div className="columns small-12 medium-9">
-            {(subtab === 'edit') &&
-              (<WidgetForm
-                id={id}
-                authorization={token}
-                onSubmit={handleSubmit}
-              />)}
+            {subtab === "edit" && <WidgetForm id={id} authorization={token} onSubmit={handleSubmit} />}
 
-            {(subtab === 'metadata') &&
-              (<MetadataForm
+            {subtab === "metadata" && (
+              <MetadataForm
                 application={process.env.APPLICATIONS}
                 authorization={token}
                 widget={id}
                 onSubmit={() => router.push(`/admin/data/widgets/${id}/edit`)}
-              />)}
+              />
+            )}
           </div>
-
         </div>
       </StickyContainer>
     </div>

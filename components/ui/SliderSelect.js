@@ -1,11 +1,10 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
 // Components
-import Icon from 'components/ui/icon';
-import Spinner from 'components/ui/spinner';
-
+import Icon from "components/ui/icon";
+import Spinner from "components/ui/spinner";
 
 // Types
 /**
@@ -41,7 +40,7 @@ export default class SliderSelect extends Component {
   };
 
   static defaultProps = {
-    onValueChange: () => { },
+    onValueChange: () => {},
     clearable: true,
     allowNonLeafSelection: true,
     waitForChangeConfirmation: false
@@ -52,9 +51,7 @@ export default class SliderSelect extends Component {
 
     this.state = {
       /** @type {Item} */
-      selectedItem: props.options
-        ? props.options.find(item => item.value === props.value)
-        : null,
+      selectedItem: props.options ? props.options.find(item => item.value === props.value) : null,
       closed: true,
       fullList: props.options || [], // Original list of options
       filteredOptions: props.options || [], // Filtered list of options
@@ -89,13 +86,10 @@ export default class SliderSelect extends Component {
 
     // If we get new options...
     if (newProps.options !== this.props.options) {
-      const selectedIndex = (newProps.options && newProps.value)
-        ? newProps.options.findIndex(item => item.value === newProps.value)
-        : -1;
+      const selectedIndex =
+        newProps.options && newProps.value ? newProps.options.findIndex(item => item.value === newProps.value) : -1;
 
-      const selectedItem = selectedIndex !== -1
-        ? newProps.options[selectedIndex]
-        : null;
+      const selectedItem = selectedIndex !== -1 ? newProps.options[selectedIndex] : null;
 
       this.setState({
         fullList: newProps.options || [],
@@ -108,8 +102,7 @@ export default class SliderSelect extends Component {
     } else if (newProps.value !== this.props.value) {
       // If the value of the select is changed via the props, we update
       // the select item in the component
-      const selectedItem = this.props.options
-        && this.props.options.find(item => item.value === newProps.value);
+      const selectedItem = this.props.options && this.props.options.find(item => item.value === newProps.value);
 
       if (selectedItem) {
         this.setState({ selectedItem });
@@ -120,7 +113,7 @@ export default class SliderSelect extends Component {
   componentWillUnmount() {
     // We remove the handler that is used to close the
     // dropdown when the user clicks outside
-    window.removeEventListener('click', this.onScreenClick);
+    window.removeEventListener("click", this.onScreenClick);
   }
 
   /**
@@ -132,18 +125,16 @@ export default class SliderSelect extends Component {
     switch (evt.keyCode) {
       // key up
       case 38: {
-        const index = this.state.selectedIndex > 0
-          ? this.state.selectedIndex - 1
-          : this.state.filteredOptions.length - 1;
+        const index =
+          this.state.selectedIndex > 0 ? this.state.selectedIndex - 1 : this.state.filteredOptions.length - 1;
         this.setSelectedIndex(index);
         break;
       }
 
       // key down
       case 40: {
-        const index = (this.state.selectedIndex < this.state.filteredOptions.length - 1)
-          ? this.state.selectedIndex + 1
-          : 0;
+        const index =
+          this.state.selectedIndex < this.state.filteredOptions.length - 1 ? this.state.selectedIndex + 1 : 0;
         this.setSelectedIndex(index);
         break;
       }
@@ -173,8 +164,7 @@ export default class SliderSelect extends Component {
           /** @type {string} */
           const value = target.value;
           const listTofilter = this.getItemsListAtCurrentLevel(this.state.pathToCurrentItemsList);
-          const filteredOptions = listTofilter
-            .filter(item => item.label.toLowerCase().match(value.toLowerCase()));
+          const filteredOptions = listTofilter.filter(item => item.label.toLowerCase().match(value.toLowerCase()));
           this.setState({ filteredOptions });
         }, 0);
         break;
@@ -238,7 +228,7 @@ export default class SliderSelect extends Component {
       this.close();
 
       // We remove the now useless hander
-      window.removeEventListener('click', this.onScreenClick);
+      window.removeEventListener("click", this.onScreenClick);
     }
   }
 
@@ -312,7 +302,7 @@ export default class SliderSelect extends Component {
   open() {
     // This listener is used to close the dropdown
     // when the user clicks outside of it
-    window.addEventListener('click', this.onScreenClick);
+    window.addEventListener("click", this.onScreenClick);
 
     this.setState({ closed: false }, () => {
       if (this.input) this.input.focus();
@@ -325,7 +315,7 @@ export default class SliderSelect extends Component {
   close() {
     // We remove the handler that is used to close the
     // dropdown when the user clicks outside
-    window.removeEventListener('click', this.onScreenClick);
+    window.removeEventListener("click", this.onScreenClick);
 
     // We close the dropdown and reset the selected index
     this.setState({ closed: true });
@@ -351,7 +341,7 @@ export default class SliderSelect extends Component {
     }
 
     if (this.input) {
-      this.input.value = '';
+      this.input.value = "";
     }
   }
 
@@ -364,22 +354,31 @@ export default class SliderSelect extends Component {
     const path = this.state.pathToCurrentItemsList;
 
     // We wait for the confirmation to select this option
-    return new Promise(async (resolve, reject) => {
-      this.setState({ waitingConfirmation: true });
-      const res = await this.props.onValueChange(item, path.map(it => it.value), 'vocabulary');
-      this.setState({ waitingConfirmation: false });
-      if (!this.props.waitForChangeConfirmation || !!res) resolve();
-      else reject();
-    })
-      // If we've the confirmation the user can select this option, then we set it
-      .then(() => {
-        this.setState({
-          selectedItem: item,
-          pathToSelectedItem: path
-        }, () => this.close());
+    return (
+      new Promise(async (resolve, reject) => {
+        this.setState({ waitingConfirmation: true });
+        const res = await this.props.onValueChange(
+          item,
+          path.map(it => it.value),
+          "vocabulary"
+        );
+        this.setState({ waitingConfirmation: false });
+        if (!this.props.waitForChangeConfirmation || !!res) resolve();
+        else reject();
       })
-      // If that's denied, we don't care, we just don't do anything
-      .catch(() => {});
+        // If we've the confirmation the user can select this option, then we set it
+        .then(() => {
+          this.setState(
+            {
+              selectedItem: item,
+              pathToSelectedItem: path
+            },
+            () => this.close()
+          );
+        })
+        // If that's denied, we don't care, we just don't do anything
+        .catch(() => {})
+    );
   }
 
   /**
@@ -400,34 +399,41 @@ export default class SliderSelect extends Component {
 
   render() {
     const { className, options, placeholder, clearable } = this.props;
-    const {
-      closed,
-      filteredOptions,
-      selectedItem,
-      pathToCurrentItemsList,
-      selectedIndex,
-      waitingConfirmation
-    } = this.state;
+    const { closed, filteredOptions, selectedItem, pathToCurrentItemsList, selectedIndex, waitingConfirmation } =
+      this.state;
 
-    const cNames = classnames({
-      'c-custom-select -search': true,
-      '-closed': closed
-    }, className);
+    const cNames = classnames(
+      {
+        "c-custom-select -search": true,
+        "-closed": closed
+      },
+      className
+    );
 
     const noResults = !!(options.length && !filteredOptions.length);
 
     let selectText = placeholder;
-    if (waitingConfirmation) selectText = <span><Spinner isLoading className="-light -small -inline" /> Waiting for action</span>;
+    if (waitingConfirmation)
+      selectText = (
+        <span>
+          <Spinner isLoading className="-light -small -inline" /> Waiting for action
+        </span>
+      );
     else if (selectedItem) selectText = selectedItem.as || selectedItem.label;
 
     return (
-      <div ref={(node) => { this.el = node; }} className={cNames}>
-        <div
-          className="custom-select-text"
-        >
+      <div
+        ref={node => {
+          this.el = node;
+        }}
+        className={cNames}
+      >
+        <div className="custom-select-text">
           <input
             aria-label={placeholder}
-            ref={(node) => { this.input = node; }}
+            ref={node => {
+              this.input = node;
+            }}
             className="custom-select-search"
             type="search"
             onFocus={this.onEnterSearch}
@@ -440,19 +446,24 @@ export default class SliderSelect extends Component {
                 <Icon name="icon-arrow-down" className="-small icon-arrow-down" />
               </button>
             */}
-            { selectedItem && clearable &&
+            {selectedItem && clearable && (
               <button className="icon-btn clear-button" onClick={this.clearSelectedItem}>
                 <Icon name="icon-cross" className="-smaller icon-cross" />
               </button>
-            }
+            )}
           </div>
         </div>
-        {noResults &&
-          <span className="no-results">No results</span>
-        }
-        {this.state.closed ||
-          <ul className="custom-select-options" role="listbox" aria-label={placeholder} ref={(node) => { this.options = node; }}>
-            {pathToCurrentItemsList.length > 0 &&
+        {noResults && <span className="no-results">No results</span>}
+        {this.state.closed || (
+          <ul
+            className="custom-select-options"
+            role="listbox"
+            aria-label={placeholder}
+            ref={node => {
+              this.options = node;
+            }}
+          >
+            {pathToCurrentItemsList.length > 0 && (
               <li
                 role="option"
                 aria-selected="false"
@@ -465,26 +476,28 @@ export default class SliderSelect extends Component {
                   <span>{pathToCurrentItemsList[pathToCurrentItemsList.length - 1].label}</span>
                 </div>
               </li>
-            }
+            )}
             {filteredOptions.map((item, index) => (
               <li
                 role="option"
                 aria-selected={item === selectedItem}
-                className={classnames({ '-selected': index === selectedIndex })}
+                className={classnames({ "-selected": index === selectedIndex })}
                 key={item.id || item.value}
-                onMouseEnter={() => { this.setSelectedIndex(index); }}
+                onMouseEnter={() => {
+                  this.setSelectedIndex(index);
+                }}
                 onMouseDown={e => this.onMouseDownOption(e, item)}
               >
                 <span className="label">{item.label}</span>
-                {item.items && item.items.length &&
+                {item.items && item.items.length && (
                   <button className="next" onClick={e => this.onSliderNext(e, item)}>
                     <Icon name="icon-arrow-right-2" className="-small icon-arrow-right-2" />
                   </button>
-                }
+                )}
               </li>
             ))}
           </ul>
-        }
+        )}
       </div>
     );
   }

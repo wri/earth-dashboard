@@ -1,3 +1,3 @@
-import ShareBoxComponent from './component';
+import ShareBoxComponent from "./component";
 
 export default ShareBoxComponent;

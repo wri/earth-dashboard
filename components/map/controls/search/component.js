@@ -1,19 +1,19 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import Geosuggest from 'react-geosuggest';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import Geosuggest from "react-geosuggest";
 
 // components
-import Icon from 'components/ui/icon';
+import Icon from "components/ui/icon";
 
 // styles
-import styles from './search-control.module.scss';
+import styles from "./search-control.module.scss";
 
 class SearchControls extends PureComponent {
   static propTypes = { onSelectLocation: PropTypes.func.isRequired };
 
   state = { showSearchInput: false };
 
-  onSuggestSelect = (e) => {
+  onSuggestSelect = e => {
     const { onSelectLocation } = this.props;
 
     if (e) {
@@ -34,39 +34,34 @@ class SearchControls extends PureComponent {
 
       this.handleSearchInput(false);
     }
-  }
+  };
 
-  onKeyDown = (e) => {
+  onKeyDown = e => {
     if (e.keyCode === 27) this.handleSearchInput(false);
-  }
+  };
 
-  handleSearchInput = (to) => {
+  handleSearchInput = to => {
     this.setState({ showSearchInput: to }, () => {
       if (this.state.showSearchInput) this.geosuggest.focus();
     });
-  }
+  };
 
   render() {
     const { showSearchInput } = this.state;
 
     return (
-      <div className={styles['c-search-control']}>
-        {showSearchInput &&
+      <div className={styles["c-search-control"]}>
+        {showSearchInput && (
           <Geosuggest
-            ref={(r) => { this.geosuggest = r; }}
+            ref={r => {
+              this.geosuggest = r;
+            }}
             onSuggestSelect={this.onSuggestSelect}
             onKeyDown={this.onKeyDown}
           />
-        }
-        <button
-          type="button"
-          className="search-control--btn"
-          onClick={() => this.handleSearchInput(!showSearchInput)}
-        >
-          <Icon
-            name="icon-search"
-            className="-small"
-          />
+        )}
+        <button type="button" className="search-control--btn" onClick={() => this.handleSearchInput(!showSearchInput)}>
+          <Icon name="icon-search" className="-small" />
         </button>
       </div>
     );

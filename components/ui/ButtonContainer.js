@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
 // Next components
-import Link from 'next/link';
+import Link from "next/link";
 
 function ButtonContainer(props) {
   const containerClassName = classnames({ [props.className]: !!props.className });
@@ -14,15 +14,13 @@ function ButtonContainer(props) {
           const buttonClassName = classnames({ [button.className]: !!button.className });
           return (
             <li key={i}>
-              <Link href={
-                {
+              <Link
+                href={{
                   pathname: button.route,
                   query: button.params
                 }}
               >
-                <a className={`c-button ${buttonClassName}`}>
-                  {button.label}
-                </a>
+                <a className={`c-button ${buttonClassName}`}>{button.label}</a>
               </Link>
             </li>
           );

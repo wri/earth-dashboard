@@ -1,24 +1,21 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
 
 // components
-import DatasetsRelatedContent from 'components/datasets/related-content';
+import DatasetsRelatedContent from "components/datasets/related-content";
 
 class RelatedContentTD extends PureComponent {
   static propTypes = {
     row: PropTypes.object.isRequired,
     route: PropTypes.string.isRequired
-  }
+  };
 
   render() {
     const { row, route } = this.props;
 
     return (
       <td>
-        <DatasetsRelatedContent
-          dataset={row}
-          route={route}
-        />
+        <DatasetsRelatedContent dataset={row} route={route} />
       </td>
     );
   }

@@ -1,5 +1,3 @@
-import SignIn from 'layout/sign-in';
+import SignIn from "layout/sign-in";
 
-export default () => (
-  <SignIn />
-);
+export default () => <SignIn />;

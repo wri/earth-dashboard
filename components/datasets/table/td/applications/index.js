@@ -1,3 +1,3 @@
-import ApplicationsTD from './component';
+import ApplicationsTD from "./component";
 
 export default ApplicationsTD;

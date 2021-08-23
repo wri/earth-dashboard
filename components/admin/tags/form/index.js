@@ -1,3 +1,3 @@
-import TagsFormComponent from './component';
+import TagsFormComponent from "./component";
 
 export default TagsFormComponent;

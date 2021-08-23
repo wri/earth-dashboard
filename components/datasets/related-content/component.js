@@ -1,20 +1,20 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import debounce from 'lodash/debounce';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import debounce from "lodash/debounce";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import TetherComponent from 'react-tether';
+import TetherComponent from "react-tether";
 
 // Next components
-import Link from 'next/link';
+import Link from "next/link";
 
 // Components
-import Icon from 'components/ui/icon';
+import Icon from "components/ui/icon";
 
 // styles
-import styles from './related-content.module.scss';
+import styles from "./related-content.module.scss";
 
 class DatasetsRelatedContent extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class DatasetsRelatedContent extends Component {
     layer: true,
     metadata: true,
     tags: true
-  }
+  };
 
   toggleTooltip(specificDropdown, to) {
     this.setState({
@@ -50,7 +50,6 @@ class DatasetsRelatedContent extends Component {
     });
   }
 
-
   render() {
     const { dataset, user, route } = this.props;
     const buttons = { ...this.BUTTONS, ...this.props.buttons };
@@ -59,226 +58,228 @@ class DatasetsRelatedContent extends Component {
     let knowledgeGraphVoc = null;
     // Calculate the number of tags for the current dataset
     if (dataset.vocabulary && dataset.vocabulary.length) {
-      knowledgeGraphVoc = dataset.vocabulary.find(voc => voc.name === 'knowledge_graph');
+      knowledgeGraphVoc = dataset.vocabulary.find(voc => voc.name === "knowledge_graph");
       if (knowledgeGraphVoc) {
         numberOfTags = knowledgeGraphVoc.tags.length;
       }
     }
 
-    const isOwnerOrAdmin = (dataset.userId === user.id || user.role === 'ADMIN');
+    const isOwnerOrAdmin = dataset.userId === user.id || user.role === "ADMIN";
 
     return (
-      <div className={styles['c-related-content']}>
+      <div className={styles["c-related-content"]}>
         <ul>
-          {buttons.widget &&
+          {buttons.widget && (
             <li>
               <TetherComponent
                 attachment="bottom center"
-                constraints={[{
-                  to: 'window'
-                }]}
+                constraints={[
+                  {
+                    to: "window"
+                  }
+                ]}
                 targetOffset="-4px 0"
                 classes={{
-                  element: 'c-tooltip'
+                  element: "c-tooltip"
                 }}
               >
-                {isOwnerOrAdmin ?
-                  <Link href={
-                    {
+                {isOwnerOrAdmin ? (
+                  <Link
+                    href={{
                       pathname: route,
-                      query: { 
-                        tab: 'datasets',
+                      query: {
+                        tab: "datasets",
                         id: dataset.id,
-                        subtab: 'widgets'
+                        subtab: "widgets"
                       }
                     }}
                   >
                     <a
-                      onMouseEnter={() => this.toggleTooltip('widgetsActive', true)}
-                      onMouseLeave={() => this.toggleTooltip('widgetsActive', false)}
+                      onMouseEnter={() => this.toggleTooltip("widgetsActive", true)}
+                      onMouseLeave={() => this.toggleTooltip("widgetsActive", false)}
                     >
                       <Icon name="icon-widgets" className="c-icon -small" />
                       <span>{(dataset.widget && dataset.widget.length) || 0}</span>
                     </a>
                   </Link>
-
-                  :
-
+                ) : (
                   <a
-                    onMouseEnter={() => this.toggleTooltip('widgetsActive', true)}
-                    onMouseLeave={() => this.toggleTooltip('widgetsActive', false)}
+                    onMouseEnter={() => this.toggleTooltip("widgetsActive", true)}
+                    onMouseLeave={() => this.toggleTooltip("widgetsActive", false)}
                   >
                     <Icon name="icon-widgets" className="c-icon -small" />
                     <span>{(dataset.widget && dataset.widget.length) || 0}</span>
                   </a>
-                }
+                )}
 
-                {this.state.widgetsActive &&
+                {this.state.widgetsActive && (
                   <div>
                     <span>{(dataset.widget && dataset.widget.length) || 0} widgets</span>
                   </div>
-                }
+                )}
               </TetherComponent>
             </li>
-          }
+          )}
 
-          {route !== 'myrw_detail' && buttons.layer &&
+          {route !== "myrw_detail" && buttons.layer && (
             <li>
               <TetherComponent
                 attachment="bottom center"
-                constraints={[{
-                  to: 'window'
-                }]}
+                constraints={[
+                  {
+                    to: "window"
+                  }
+                ]}
                 targetOffset="-4px 0"
                 classes={{
-                  element: 'c-tooltip'
+                  element: "c-tooltip"
                 }}
               >
-                {isOwnerOrAdmin ?
-                  <Link href={
-                    {
+                {isOwnerOrAdmin ? (
+                  <Link
+                    href={{
                       pathname: route,
                       query: {
-                        tab: 'datasets',
+                        tab: "datasets",
                         id: dataset.id,
-                        subtab: 'layers'
+                        subtab: "layers"
                       }
                     }}
                   >
                     <a
-                      onMouseEnter={() => this.toggleTooltip('layersActive', true)}
-                      onMouseLeave={() => this.toggleTooltip('layersActive', false)}
+                      onMouseEnter={() => this.toggleTooltip("layersActive", true)}
+                      onMouseLeave={() => this.toggleTooltip("layersActive", false)}
                     >
                       <Icon name="icon-layers" className="c-icon -small" />
                       <span>{(dataset.layer && dataset.layer.length) || 0}</span>
                     </a>
                   </Link>
-
-                  :
-
+                ) : (
                   <a
-                    onMouseEnter={() => this.toggleTooltip('layersActive', true)}
-                    onMouseLeave={() => this.toggleTooltip('layersActive', false)}
+                    onMouseEnter={() => this.toggleTooltip("layersActive", true)}
+                    onMouseLeave={() => this.toggleTooltip("layersActive", false)}
                   >
                     <Icon name="icon-layers" className="c-icon -small" />
                     <span>{(dataset.layer && dataset.layer.length) || 0}</span>
                   </a>
-                }
+                )}
 
-                {this.state.layersActive &&
+                {this.state.layersActive && (
                   <div>
                     <span>{(dataset.layer && dataset.layer.length) || 0} layers</span>
                   </div>
-                }
+                )}
               </TetherComponent>
             </li>
-          }
+          )}
 
-          {buttons.metadata &&
+          {buttons.metadata && (
             <li>
               <TetherComponent
                 attachment="bottom center"
-                constraints={[{
-                  to: 'window'
-                }]}
+                constraints={[
+                  {
+                    to: "window"
+                  }
+                ]}
                 targetOffset="-4px 0"
                 classes={{
-                  element: 'c-tooltip'
+                  element: "c-tooltip"
                 }}
               >
-                {isOwnerOrAdmin ?
-                  <Link href={
-                    {
+                {isOwnerOrAdmin ? (
+                  <Link
+                    href={{
                       pathname: route,
                       query: {
-                        tab: 'datasets',
+                        tab: "datasets",
                         id: dataset.id,
-                        subtab: 'metadata'
+                        subtab: "metadata"
                       }
                     }}
                   >
                     <a
-                      className={classnames({ '-empty': (!dataset.metadata || !dataset.metadata.length) })}
-                      onMouseEnter={() => this.toggleTooltip('metadataActive', true)}
-                      onMouseLeave={() => this.toggleTooltip('metadataActive', false)}
+                      className={classnames({ "-empty": !dataset.metadata || !dataset.metadata.length })}
+                      onMouseEnter={() => this.toggleTooltip("metadataActive", true)}
+                      onMouseLeave={() => this.toggleTooltip("metadataActive", false)}
                     >
                       <Icon name="icon-metadata" className="c-icon -small" />
                       <span>{(dataset.metadata && dataset.metadata.length) || 0}</span>
                     </a>
                   </Link>
-
-                  :
-
+                ) : (
                   <a
-                    className={classnames({ '-empty': (!dataset.metadata || !dataset.metadata.length) })}
-                    onMouseEnter={() => this.toggleTooltip('metadataActive', true)}
-                    onMouseLeave={() => this.toggleTooltip('metadataActive', false)}
+                    className={classnames({ "-empty": !dataset.metadata || !dataset.metadata.length })}
+                    onMouseEnter={() => this.toggleTooltip("metadataActive", true)}
+                    onMouseLeave={() => this.toggleTooltip("metadataActive", false)}
                   >
                     <Icon name="icon-metadata" className="c-icon -small" />
                     <span>{(dataset.metadata && dataset.metadata.length) || 0}</span>
                   </a>
-                }
+                )}
 
-                {this.state.metadataActive &&
+                {this.state.metadataActive && (
                   <div>
                     <span>{(dataset.metadata && dataset.metadata.length) || 0} metadata</span>
                   </div>
-                }
+                )}
               </TetherComponent>
             </li>
-          }
+          )}
 
-          {route !== 'myrw_detail' && buttons.tags &&
+          {route !== "myrw_detail" && buttons.tags && (
             <li>
               <TetherComponent
                 attachment="bottom center"
-                constraints={[{
-                  to: 'window'
-                }]}
+                constraints={[
+                  {
+                    to: "window"
+                  }
+                ]}
                 targetOffset="-4px 0"
                 classes={{
-                  element: 'c-tooltip'
+                  element: "c-tooltip"
                 }}
               >
-                {isOwnerOrAdmin ?
-                  <Link href={
-                    {
+                {isOwnerOrAdmin ? (
+                  <Link
+                    href={{
                       pathname: route,
                       query: {
-                        tab: 'datasets',
+                        tab: "datasets",
                         id: dataset.id,
-                        subtab: 'tags'
+                        subtab: "tags"
                       }
-                    }} 
+                    }}
                   >
                     <a
-                      className={classnames({ '-empty': (!knowledgeGraphVoc) })}
-                      onMouseEnter={() => this.toggleTooltip('vocabulariesActive', true)}
-                      onMouseLeave={() => this.toggleTooltip('vocabulariesActive', false)}
+                      className={classnames({ "-empty": !knowledgeGraphVoc })}
+                      onMouseEnter={() => this.toggleTooltip("vocabulariesActive", true)}
+                      onMouseLeave={() => this.toggleTooltip("vocabulariesActive", false)}
                     >
                       <Icon name="icon-type" className="c-icon -smaller" />
                       <span>{numberOfTags}</span>
                     </a>
                   </Link>
-                  :
+                ) : (
                   <a
-                    className={classnames({ '-empty': (!knowledgeGraphVoc) })}
-                    onMouseEnter={() => this.toggleTooltip('vocabulariesActive', true)}
-                    onMouseLeave={() => this.toggleTooltip('vocabulariesActive', false)}
+                    className={classnames({ "-empty": !knowledgeGraphVoc })}
+                    onMouseEnter={() => this.toggleTooltip("vocabulariesActive", true)}
+                    onMouseLeave={() => this.toggleTooltip("vocabulariesActive", false)}
                   >
                     <Icon name="icon-type" className="c-icon -smaller" />
                     <span>{numberOfTags}</span>
                   </a>
-                }
+                )}
 
-                {this.state.vocabulariesActive &&
+                {this.state.vocabulariesActive && (
                   <div>
                     <span>{numberOfTags} tags</span>
                   </div>
-                }
+                )}
               </TetherComponent>
             </li>
-          }
+          )}
         </ul>
       </div>
     );
@@ -292,8 +293,6 @@ DatasetsRelatedContent.propTypes = {
   buttons: PropTypes.object
 };
 
-export default connect(
-  state => ({
-    user: state.user
-  })
-)(DatasetsRelatedContent);
+export default connect(state => ({
+  user: state.user
+}))(DatasetsRelatedContent);

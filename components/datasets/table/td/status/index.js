@@ -1,3 +1,3 @@
-import StatusTD from './component';
+import StatusTD from "./component";
 
 export default StatusTD;

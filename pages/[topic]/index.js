@@ -1,46 +1,45 @@
-import { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import DefaultErrorPage from 'next/error';
-import Head from 'next/head';
+import { Fragment } from "react";
+import PropTypes from "prop-types";
+import DefaultErrorPage from "next/error";
+import Head from "next/head";
 
 // services
-import { fetchTopicData } from 'services/data';
+import { fetchTopicData } from "services/data";
 
 // components
-import LayoutTopic from 'layout/app/topic';
+import LayoutTopic from "layout/app/topic";
 
-import { CLIMATE, OCEAN, FRESHWATER, FORESTS } from 'utils/topics';
+import { CLIMATE, OCEAN, FRESHWATER, FORESTS } from "utils/topics";
 
 function TopicPage({ topicData, widgets, topicNotFound }) {
-
-  // This includes setting the noindex header because static files always return 
+  // This includes setting the noindex header because static files always return
   // a status 200 but the rendered not found page page should obviously not be indexed
   if (topicNotFound) {
     return (
       <Fragment>
         <Head>
-           <meta name="robots" content="noindex" />
+          <meta name="robots" content="noindex" />
         </Head>
         <DefaultErrorPage statusCode={404} />
       </Fragment>
     );
   }
 
-  return (<LayoutTopic topicData={topicData} widgets={widgets} />);
+  return <LayoutTopic topicData={topicData} widgets={widgets} />;
 }
 
-TopicPage.getInitialProps = async (context) => {
+TopicPage.getInitialProps = async context => {
   const topic = context?.query?.topic;
   let topicNotFound = false;
 
   if (![CLIMATE, OCEAN, FRESHWATER, FORESTS].includes(topic)) {
     topicNotFound = true;
   }
-  const topicData = await fetchTopicData('/data/TopicPagesData.json');
+  const topicData = await fetchTopicData("/data/TopicPagesData.json");
 
   // Preload widgets data
   const dataArray = topicData?.[topic]?.topicPage?.data;
-  const widgetIDs = dataArray?.filter(elem => elem?.type === 'widget')?.map(elem => elem?.id);
+  const widgetIDs = dataArray?.filter(elem => elem?.type === "widget")?.map(elem => elem?.id);
 
   return { topicData, widgets: widgetIDs, topicNotFound };
 };

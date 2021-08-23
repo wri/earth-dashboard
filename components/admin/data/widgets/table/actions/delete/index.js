@@ -1,9 +1,6 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // component
-import DeleteAction from './component';
+import DeleteAction from "./component";
 
-export default connect(
-  state => ({ user: state.user }),
-  null
-)(DeleteAction);
+export default connect(state => ({ user: state.user }), null)(DeleteAction);

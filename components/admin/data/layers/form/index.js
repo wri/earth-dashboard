@@ -1,3 +1,3 @@
-import LayerFormComponent from './component';
+import LayerFormComponent from "./component";
 
 export default LayerFormComponent;
