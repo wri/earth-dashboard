@@ -16,15 +16,12 @@ module.exports = {
 
   experimental: { documentMiddleware: true },
 
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     const _config = Object.assign({}, config);
 
-    _config.node = {
-      console: true,
-      fs: 'empty',
-      net: 'empty',
-      tls: 'empty'
-    };
+    if (!isServer) {
+      _config.resolve.fallback.fs = false;
+    }
 
     _config.module.rules.push({
       loader: 'webpack-glsl-loader',

@@ -34,7 +34,7 @@
     "leaflet-utfgrid": "^0.3.0",
     "lodash": "^4.17.13",
     "moment": "^2.24.0",
-    "next": "10",
+    "next": "^11.1.0",
     "next-redux-wrapper": "^6.0.2",
     "normalize.css": "7.0.0",
     "numeral": "^2.0.6",
