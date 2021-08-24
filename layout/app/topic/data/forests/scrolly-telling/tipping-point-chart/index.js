@@ -1,3 +1,3 @@
-import TippingPointChartComponent from './component';
+import TippingPointChartComponent from "./component";
 
 export default TippingPointChartComponent;

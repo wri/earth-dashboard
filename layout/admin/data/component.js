@@ -1,22 +1,22 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
 
 // components
-import Layout from 'layout/layout/layout-admin';
-import Tabs from 'components/ui/tabs';
-import DatasetsIndex from 'components/admin/data/datasets/pages/list';
-import WidgetsIndex from 'components/admin/data/widgets/pages/list';
-import LayersIndex from 'components/admin/data/layers/pages/list';
+import Layout from "layout/layout/layout-admin";
+import Tabs from "components/ui/tabs";
+import DatasetsIndex from "components/admin/data/datasets/pages/list";
+import WidgetsIndex from "components/admin/data/widgets/pages/list";
+import LayersIndex from "components/admin/data/layers/pages/list";
 
 // constants
-import { DATA_TABS } from './constants';
+import { DATA_TABS } from "./constants";
 
 class LayoutAdminData extends PureComponent {
-  static propTypes = { query: PropTypes.object.isRequired }
+  static propTypes = { query: PropTypes.object.isRequired };
 
   render() {
     const { query } = this.props;
-    const currentTab = (query && query.tab) || 'datasets';
+    const currentTab = (query && query.tab) || "datasets";
 
     return (
       <Layout
@@ -30,11 +30,7 @@ class LayoutAdminData extends PureComponent {
               <div className="column small-12">
                 <div className="page-header-content -with-tabs">
                   <h1>Data</h1>
-                  <Tabs
-                    options={DATA_TABS}
-                    defaultSelected={currentTab}
-                    selected={currentTab}
-                  />
+                  <Tabs options={DATA_TABS} defaultSelected={currentTab} selected={currentTab} />
                 </div>
               </div>
             </div>
@@ -45,9 +41,9 @@ class LayoutAdminData extends PureComponent {
           <div className="l-container -admin">
             <div className="row">
               <div className="column small-12">
-                {(currentTab === 'datasets') && (<DatasetsIndex />)}
-                {(currentTab === 'widgets') && (<WidgetsIndex />)}
-                {(currentTab === 'layers') && (<LayersIndex />)}
+                {currentTab === "datasets" && <DatasetsIndex />}
+                {currentTab === "widgets" && <WidgetsIndex />}
+                {currentTab === "layers" && <LayersIndex />}
               </div>
             </div>
           </div>

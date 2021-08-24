@@ -1,4 +1,4 @@
-import deepClone from 'lodash/cloneDeep';
+import deepClone from "lodash/cloneDeep";
 
 /* eslint-disable */
 const defaultChart = {

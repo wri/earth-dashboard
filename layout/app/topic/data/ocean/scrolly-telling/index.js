@@ -1,3 +1,3 @@
-import OceansScrollyTellingComponent from './component';
+import OceansScrollyTellingComponent from "./component";
 
 export default OceansScrollyTellingComponent;

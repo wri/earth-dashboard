@@ -1,18 +1,18 @@
 export const DATA_TABS = [
   {
-    label: 'Datasets',
-    value: 'datasets',
-    route: '/admin/data/datasets'
+    label: "Datasets",
+    value: "datasets",
+    route: "/admin/data/datasets"
   },
   {
-    label: 'Widgets',
-    value: 'widgets',
-    route: '/admin/data/widgets'
+    label: "Widgets",
+    value: "widgets",
+    route: "/admin/data/widgets"
   },
   {
-    label: 'Layers',
-    value: 'layers',
-    route: '/admin/data/layers'
+    label: "Layers",
+    value: "layers",
+    route: "/admin/data/layers"
   }
 ];
 

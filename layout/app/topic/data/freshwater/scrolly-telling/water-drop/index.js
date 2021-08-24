@@ -1,3 +1,3 @@
-import WaterDropComponent from './component';
+import WaterDropComponent from "./component";
 
 export default WaterDropComponent;

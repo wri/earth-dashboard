@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 // utils
-import { logger } from 'utils/logs';
+import { logger } from "utils/logs";
 
 /**
  * Fetches fields for a specific dataset.
@@ -9,18 +9,19 @@ import { logger } from 'utils/logs';
  * @param {String} url - URL to get fields.
  * @returns {Object} array of dataset fields.
  */
-export const fetchFields = (url) => {
-  if (!url) throw Error('an URL is mandatory to perform this fetching.');
+export const fetchFields = url => {
+  if (!url) throw Error("an URL is mandatory to perform this fetching.");
   logger.info(`Fetches fields (${url})`);
 
-  return axios.get(url, {
-    headers: {
-      ...axios.defaults.headers,
-      // TO-DO: forces the API to not cache, this should be removed at some point
-      'Upgrade-Insecure-Requests': 1
-    }
-  })
-    .then((response) => {
+  return axios
+    .get(url, {
+      headers: {
+        ...axios.defaults.headers,
+        // TO-DO: forces the API to not cache, this should be removed at some point
+        "Upgrade-Insecure-Requests": 1
+      }
+    })
+    .then(response => {
       const { status, statusText, data } = response;
 
       if (status >= 300) {

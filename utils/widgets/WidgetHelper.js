@@ -1,61 +1,61 @@
-import 'isomorphic-fetch';
-import { format } from 'd3';
+import "isomorphic-fetch";
+import { format } from "d3";
 
 // Components
-import BarChart from 'utils/widgets/bar';
-import LineChart from 'utils/widgets/line';
-import PieChart from 'utils/widgets/pie';
-import OneDScatterChart from 'utils/widgets/1d_scatter';
-import OneDTickChart from 'utils/widgets/1d_tick';
-import ScatterChart from 'utils/widgets/scatter';
+import BarChart from "utils/widgets/bar";
+import LineChart from "utils/widgets/line";
+import PieChart from "utils/widgets/pie";
+import OneDScatterChart from "utils/widgets/1d_scatter";
+import OneDTickChart from "utils/widgets/1d_tick";
+import ScatterChart from "utils/widgets/scatter";
 
 // Utils
-import getQueryByFilters from 'utils/getQueryByFilters';
+import getQueryByFilters from "utils/getQueryByFilters";
 
 // Services
-import RasterService from 'services/raster';
+import RasterService from "services/raster";
 
 const CHART_TYPES = {
   bar: BarChart,
   line: LineChart,
   pie: PieChart,
   scatter: ScatterChart,
-  '1d_scatter': OneDScatterChart,
-  '1d_tick': OneDTickChart
+  "1d_scatter": OneDScatterChart,
+  "1d_tick": OneDTickChart
 };
 
 const ALLOWED_FIELD_TYPES = [
   // --- NUMBER ----
-  { name: 'esriFieldTypeSmallInteger', type: 'number', provider: 'esri' },
-  { name: 'esriFieldTypeInteger', type: 'number', provider: 'esri' },
-  { name: 'esriFieldTypeSingle', type: 'number', provider: 'esri' },
-  { name: 'esriFieldTypeDouble', type: 'number', provider: 'esri' },
-  { name: 'numeric', type: 'number', provider: 'psql' },
-  { name: 'number', type: 'number', provider: 'carto' },
-  { name: 'int', type: 'number', provider: 'psql' },
-  { name: 'integer', type: 'number', provider: 'psql' },
-  { name: 'float', type: 'number', provider: 'sql' },
-  { name: 'real', type: 'number', provider: 'sql' },
-  { name: 'decimal', type: 'number', provider: 'sql' },
+  { name: "esriFieldTypeSmallInteger", type: "number", provider: "esri" },
+  { name: "esriFieldTypeInteger", type: "number", provider: "esri" },
+  { name: "esriFieldTypeSingle", type: "number", provider: "esri" },
+  { name: "esriFieldTypeDouble", type: "number", provider: "esri" },
+  { name: "numeric", type: "number", provider: "psql" },
+  { name: "number", type: "number", provider: "carto" },
+  { name: "int", type: "number", provider: "psql" },
+  { name: "integer", type: "number", provider: "psql" },
+  { name: "float", type: "number", provider: "sql" },
+  { name: "real", type: "number", provider: "sql" },
+  { name: "decimal", type: "number", provider: "sql" },
   // ----- TEXT -----
-  { name: 'string', type: 'text', provider: 'sql' },
-  { name: 'char', type: 'text', provider: 'sql' },
-  { name: 'varchar', type: 'text', provider: 'sql' },
-  { name: 'esriFieldTypeString', type: 'text', provider: 'esri' },
-  { name: 'text', type: 'text', provider: 'elastic' },
+  { name: "string", type: "text", provider: "sql" },
+  { name: "char", type: "text", provider: "sql" },
+  { name: "varchar", type: "text", provider: "sql" },
+  { name: "esriFieldTypeString", type: "text", provider: "esri" },
+  { name: "text", type: "text", provider: "elastic" },
   // ----- DATE ----
-  { name: 'esriFieldTypeDate', type: 'date', provider: 'esri' },
-  { name: 'date', type: 'date', provider: 'sql' },
-  { name: 'time', type: 'date', provider: 'sql' },
-  { name: 'timestamp', type: 'date', provider: 'sql' },
-  { name: 'interval', type: 'date', provider: 'sql' },
+  { name: "esriFieldTypeDate", type: "date", provider: "esri" },
+  { name: "date", type: "date", provider: "sql" },
+  { name: "time", type: "date", provider: "sql" },
+  { name: "timestamp", type: "date", provider: "sql" },
+  { name: "interval", type: "date", provider: "sql" },
   // ------ BOOLEAN -----
-  { name: 'boolean', type: 'boolean', provider: 'sql' },
+  { name: "boolean", type: "boolean", provider: "sql" },
   // ------ ARRAY -------
-  { name: 'array', type: 'array', provider: 'sql' }
+  { name: "array", type: "array", provider: "sql" }
 ];
 
-const oneDimensionalChartTypes = ['1d_scatter', '1d_tick'];
+const oneDimensionalChartTypes = ["1d_scatter", "1d_tick"];
 
 /* eslint-disable max-len */
 /**
@@ -95,35 +95,24 @@ export function getChartType(type) {
  * @returns {boolean}
  */
 export function canRenderChart(widgetEditor, datasetProvider) {
-  const {
-    visualizationType,
-    category,
-    value,
-    chartType,
-    band,
-    layer,
-    areaIntersection
-  } = widgetEditor;
+  const { visualizationType, category, value, chartType, band, layer, areaIntersection } = widgetEditor;
 
-  const chart = visualizationType === 'chart'
-    && !!(chartType
-      && category
-      && category.name
-      && (
-        (isBidimensionalChart(widgetEditor.chartType)
-          && value
-          && value.name
-        )
-        || !isBidimensionalChart(widgetEditor.chartType)
-      )
-      && (datasetProvider !== 'nexgddp' || areaIntersection)
+  const chart =
+    visualizationType === "chart" &&
+    !!(
+      chartType &&
+      category &&
+      category.name &&
+      ((isBidimensionalChart(widgetEditor.chartType) && value && value.name) ||
+        !isBidimensionalChart(widgetEditor.chartType)) &&
+      (datasetProvider !== "nexgddp" || areaIntersection)
     );
 
-  const rasterChart = visualizationType === 'raster_chart' && !!band;
+  const rasterChart = visualizationType === "raster_chart" && !!band;
 
-  const map = visualizationType === 'map' && !!layer;
+  const map = visualizationType === "map" && !!layer;
 
-  const table = visualizationType === 'table' && (datasetProvider !== 'nexgddp' || areaIntersection);
+  const table = visualizationType === "table" && (datasetProvider !== "nexgddp" || areaIntersection);
 
   // Standard chart
   return chart || rasterChart || map || table;
@@ -140,7 +129,7 @@ export function canRenderChart(widgetEditor, datasetProvider) {
  */
 export function getChartInfo(dataset, datasetType, datasetProvider, widgetEditor) {
   // If the dataset is a raster one, the chart info is always the same
-  if (datasetType === 'raster') return RasterService.getChartInfo(widgetEditor);
+  if (datasetType === "raster") return RasterService.getChartInfo(widgetEditor);
 
   const {
     chartType,
@@ -158,7 +147,7 @@ export function getChartInfo(dataset, datasetType, datasetProvider, widgetEditor
 
   const chartInfo = {
     chartType,
-    limit: (datasetProvider === 'nexgddp') ? null : limit,
+    limit: datasetProvider === "nexgddp" ? null : limit,
     order: orderBy,
     filters,
     areaIntersection,
@@ -214,24 +203,24 @@ export function getChartInfo(dataset, datasetType, datasetProvider, widgetEditor
  * @return {string}
  */
 export async function getRasterDataURL(dataset, datasetType, tableName, band, provider, chartInfo) {
-  const bandType = band.type || 'categorical';
+  const bandType = band.type || "categorical";
 
   let query;
-  if (provider === 'gee') {
-    if (bandType === 'continuous') {
+  if (provider === "gee") {
+    if (bandType === "continuous") {
       query = `SELECT ST_HISTOGRAM(rast, ${band.name}, auto, true) from "${tableName}"`;
     } else {
       query = `SELECT st_valuecount(rast, '${band.name}', true) from '${tableName}'`;
     }
-  } else if (provider === 'cartodb') {
-    if (bandType === 'continuous') {
+  } else if (provider === "cartodb") {
+    if (bandType === "continuous") {
       query = `SELECT (ST_Histogram(st_union(the_raster_webmercator), ${band.name}, auto, true)).* from ${tableName}`;
     } else {
       query = `SELECT (ST_valueCount(st_union(the_raster_webmercator), ${band.name}, True)).* from ${tableName}`;
     }
   }
 
-  const geostore = chartInfo.areaIntersection ? `&geostore=${chartInfo.areaIntersection}` : '';
+  const geostore = chartInfo.areaIntersection ? `&geostore=${chartInfo.areaIntersection}` : "";
 
   return `${process.env.WRI_API_URL}/v1/query/${dataset}?sql=${query}${geostore}`;
 }
@@ -249,11 +238,19 @@ export async function getRasterDataURL(dataset, datasetType, tableName, band, pr
  * @param {boolean} [isTable=false] Whether we fetch the data of a table
  * @return {string}
  */
-export async function getDataURL(dataset, datasetType, tableName, band, provider,
-  chartInfo, isTable = false, datasetSlug = null) {
+export async function getDataURL(
+  dataset,
+  datasetType,
+  tableName,
+  band,
+  provider,
+  chartInfo,
+  isTable = false,
+  datasetSlug = null
+) {
   // If the dataset is a raster one, the behaviour is totally different
-  if (datasetType === 'raster') {
-    if (!band) return '';
+  if (datasetType === "raster") {
+    if (!band) return "";
     return getRasterDataURL(dataset, datasetType, tableName, band, provider, chartInfo);
   }
 
@@ -268,14 +265,14 @@ export async function getDataURL(dataset, datasetType, tableName, band, provider
     }
   }
 
-  if (!isTable && (!chartInfo.x || (isBidimensional && !chartInfo.y))) return '';
+  if (!isTable && (!chartInfo.x || (isBidimensional && !chartInfo.y))) return "";
 
-  const columns = [{ key: 'x', value: chartInfo.x.name, as: true }];
+  const columns = [{ key: "x", value: chartInfo.x.name, as: true }];
 
   if (isBidimensional) {
-    columns.push({ key: 'y', value: chartInfo.y.name, as: true });
+    columns.push({ key: "y", value: chartInfo.y.name, as: true });
 
-    if (chartInfo.y.aggregateFunction && chartInfo.y.aggregateFunction !== 'none') {
+    if (chartInfo.y.aggregateFunction && chartInfo.y.aggregateFunction !== "none") {
       // If there's an aggregate function, we group the results
       // with the first column (dimension x)
       columns[0].group = true;
@@ -287,16 +284,16 @@ export async function getDataURL(dataset, datasetType, tableName, band, provider
   }
 
   if (chartInfo.color) {
-    const colorColumn = { key: 'color', value: chartInfo.color.name, as: true };
-    if (chartInfo.color.aggregateFunction && chartInfo.color.aggregateFunction !== 'none') {
+    const colorColumn = { key: "color", value: chartInfo.color.name, as: true };
+    if (chartInfo.color.aggregateFunction && chartInfo.color.aggregateFunction !== "none") {
       colorColumn.aggregateFunction = chartInfo.color.aggregateFunction;
     }
     columns.push(colorColumn);
   }
 
   if (chartInfo.size) {
-    const sizeColumn = { key: 'size', value: chartInfo.size.name, as: true };
-    if (chartInfo.size.aggregateFunction && chartInfo.size.aggregateFunction !== 'none') {
+    const sizeColumn = { key: "size", value: chartInfo.size.name, as: true };
+    if (chartInfo.size.aggregateFunction && chartInfo.size.aggregateFunction !== "none") {
       sizeColumn.aggregateFunction = chartInfo.size.aggregateFunction;
     }
     columns.push(sizeColumn);
@@ -306,18 +303,31 @@ export async function getDataURL(dataset, datasetType, tableName, band, provider
 
   // If the visualization is a line chart and the user doesn't sort
   // the data, by default we sort it with the category column
-  if (!orderByColumn.length && chartInfo.chartType === 'line') {
+  if (!orderByColumn.length && chartInfo.chartType === "line") {
     orderByColumn.push({ name: chartInfo.x.name });
   }
 
-  if (orderByColumn.length > 0 && chartInfo.y && orderByColumn[0].name === chartInfo.y.name && chartInfo.y.aggregateFunction && chartInfo.y.aggregateFunction !== 'none') {
+  if (
+    orderByColumn.length > 0 &&
+    chartInfo.y &&
+    orderByColumn[0].name === chartInfo.y.name &&
+    chartInfo.y.aggregateFunction &&
+    chartInfo.y.aggregateFunction !== "none"
+  ) {
     orderByColumn[0].name = `${chartInfo.y.aggregateFunction}(${chartInfo.y.name})`;
   }
 
-  const sortOrder = chartInfo.order ? chartInfo.order.orderType : 'asc';
-  const query = `${getQueryByFilters(tableName, chartInfo.filters, columns, orderByColumn, sortOrder, datasetSlug)} LIMIT ${chartInfo.limit}`;
+  const sortOrder = chartInfo.order ? chartInfo.order.orderType : "asc";
+  const query = `${getQueryByFilters(
+    tableName,
+    chartInfo.filters,
+    columns,
+    orderByColumn,
+    sortOrder,
+    datasetSlug
+  )} LIMIT ${chartInfo.limit}`;
 
-  const geostore = chartInfo.areaIntersection ? `&geostore=${chartInfo.areaIntersection}` : '';
+  const geostore = chartInfo.areaIntersection ? `&geostore=${chartInfo.areaIntersection}` : "";
 
   return `${process.env.WRI_API_URL}/v1/query/${dataset}?sql=${query}${geostore}`;
 }
@@ -331,14 +341,15 @@ export async function getDataURL(dataset, datasetType, tableName, band, provider
  * @param {number} [timeout=15] Timeout in seconds
  * @returns {Promise<object[]>}
  */
-export function fetchData(url, timeout = 15) { // eslint-disable-line no-unused-vars
+export function fetchData(url, timeout = 15) {
+  // eslint-disable-line no-unused-vars
   return new Promise((resolve, reject) => {
-    setTimeout(() => reject('timeout'), 1000 * timeout);
+    setTimeout(() => reject("timeout"), 1000 * timeout);
 
     fetch(url)
-      .then((response) => {
+      .then(response => {
         if (response.ok) return response.json();
-        throw new Error('Unable to load the data of the chart');
+        throw new Error("Unable to load the data of the chart");
       })
       .then(data => data.data)
       .then(resolve)
@@ -357,7 +368,7 @@ export function fetchData(url, timeout = 15) { // eslint-disable-line no-unused-
  * @returns {string} date format
  */
 export function getTimeFormat(data) {
-  const timestamps = data.map(d => +(new Date(d)));
+  const timestamps = data.map(d => +new Date(d));
 
   const min = Math.min(...timestamps);
   const max = Math.max(...timestamps);
@@ -373,14 +384,14 @@ export function getTimeFormat(data) {
   const year = 12 * month;
 
   if (max - min <= 2 * day) {
-    return '%H:%M'; // ex: 10:00
+    return "%H:%M"; // ex: 10:00
   } else if (max - min <= 2 * month) {
-    return '%d %b'; // ex: 20 Jul
+    return "%d %b"; // ex: 20 Jul
   } else if (max - min <= 2 * year) {
-    return '%b %Y'; // ex: Jul 2017
+    return "%b %Y"; // ex: Jul 2017
   }
 
-  return '%Y'; // ex: 2017
+  return "%Y"; // ex: 2017
 }
 
 /**
@@ -395,8 +406,8 @@ export function getTimeFormat(data) {
 export function parseRasterData(data, band, provider) {
   if (!data.length) return data;
 
-  if (provider === 'gee') {
-    if (band.type === 'continuous') {
+  if (provider === "gee") {
+    if (band.type === "continuous") {
       return data[0][band.name].map(d => ({
         x: get2DecimalFixedNumber(d[0]),
         y: d[1]
@@ -404,11 +415,11 @@ export function parseRasterData(data, band, provider) {
     }
 
     return Object.keys(data[0][band.name]).map(k => ({
-      x: k === 'null' ? 'No data' : get2DecimalFixedNumber(k),
+      x: k === "null" ? "No data" : get2DecimalFixedNumber(k),
       y: data[0][band.name][k]
     }));
-  } else if (provider === 'cartodb') {
-    if (band.type === 'continuous') {
+  } else if (provider === "cartodb") {
+    if (band.type === "continuous") {
       return data.map(d => ({
         x: get2DecimalFixedNumber(d.max),
         y: d.count
@@ -438,37 +449,28 @@ export function parseRasterData(data, band, provider) {
  * @param {boolean} [embedData=false] Whether the configuration should
  * be saved with the data in it or just its URL
  */
-export async function getChartConfig(
-  dataset,
-  datasetType,
-  tableName,
-  band,
-  provider,
-  chartInfo,
-  embedData = false
-) {
+export async function getChartConfig(dataset, datasetType, tableName, band, provider, chartInfo, embedData = false) {
   // URL of the data needed to display the chart
   const url = await getDataURL(dataset, datasetType, tableName, band, provider, chartInfo);
 
   // We fetch the data to have clever charts
-  let data
+  let data;
   try {
     data = await fetchData(url);
-  } catch(err) {
-    if (err === 'timeout') {
-      throw new Error('This dataset is taking longer than expected to load. Please try again in a few minutes.');
+  } catch (err) {
+    if (err === "timeout") {
+      throw new Error("This dataset is taking longer than expected to load. Please try again in a few minutes.");
     } else {
-      throw new Error('The request to load the data has failed. Please try again in a few minutes.');
+      throw new Error("The request to load the data has failed. Please try again in a few minutes.");
     }
   }
 
-  if (datasetType === 'raster') {
+  if (datasetType === "raster") {
     data = parseRasterData(data, band, provider);
   }
 
   // We compute the name of the x column
-  const xLabel = chartInfo.x.name[0].toUpperCase()
-    + chartInfo.x.name.slice(1, chartInfo.x.name.length);
+  const xLabel = chartInfo.x.name[0].toUpperCase() + chartInfo.x.name.slice(1, chartInfo.x.name.length);
 
   // We compute the name of the y column
   let yLabel = chartInfo.y && chartInfo.y.name;
@@ -491,18 +493,17 @@ export async function getChartConfig(
         type: chartInfo.x.type,
         name: xLabel,
         alias: chartInfo.x.alias
-          ? chartInfo.x.alias[0].toUpperCase()
-              + chartInfo.x.alias.slice(1, chartInfo.x.alias.length)
+          ? chartInfo.x.alias[0].toUpperCase() + chartInfo.x.alias.slice(1, chartInfo.x.alias.length)
           : null
       },
       y: {
         present: !!chartInfo.y,
         type: chartInfo.y && chartInfo.y.type,
         name: yLabel,
-        alias: chartInfo.y && chartInfo.y.alias
-          ? chartInfo.y.alias[0].toUpperCase()
-            + chartInfo.y.alias.slice(1, chartInfo.y.alias.length)
-          : null
+        alias:
+          chartInfo.y && chartInfo.y.alias
+            ? chartInfo.y.alias[0].toUpperCase() + chartInfo.y.alias.slice(1, chartInfo.y.alias.length)
+            : null
       },
       color: {
         present: !!chartInfo.color,
@@ -552,7 +553,7 @@ export async function fetchRasterData(url, band, provider) {
  * @return {string}
  */
 export function get2DecimalFixedNumber(number) {
-  return Math.abs(number % 1) > 0 ? format(',.2f')(number) : `${number}`;
+  return Math.abs(number % 1) > 0 ? format(",.2f")(number) : `${number}`;
 }
 
 /**
@@ -562,5 +563,5 @@ export function get2DecimalFixedNumber(number) {
  * @return {string}
  */
 export function getSINumber(number) {
-  return format('.2s')(number);
+  return format(".2s")(number);
 }

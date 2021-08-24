@@ -1,3 +1,3 @@
-import ForestsScrollyTellingComponent from './component';
+import ForestsScrollyTellingComponent from "./component";
 
 export default ForestsScrollyTellingComponent;

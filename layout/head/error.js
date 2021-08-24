@@ -1,9 +1,9 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import HeadNext from 'next/head';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import HeadNext from "next/head";
 
 class HeadError extends PureComponent {
-  static propTypes = { statusCode: PropTypes.number.isRequired }
+  static propTypes = { statusCode: PropTypes.number.isRequired };
 
   render() {
     const { statusCode } = this.props;
@@ -23,7 +23,6 @@ class HeadError extends PureComponent {
         {/* iOS Safari */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
       </HeadNext>
     );
   }

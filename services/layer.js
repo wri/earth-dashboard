@@ -1,8 +1,8 @@
-import WRISerializer from 'wri-json-api-serializer';
+import WRISerializer from "wri-json-api-serializer";
 
 // utils
-import { WRIAPI } from 'utils/axios';
-import { logger } from 'utils/logs';
+import { WRIAPI } from "utils/axios";
+import { logger } from "utils/logs";
 
 /**
  * Fetchs layers according to params.
@@ -13,13 +13,13 @@ import { logger } from 'utils/logs';
  * @returns {Object[]} array of serialized layers.
  */
 export const fetchLayers = (params = {}, headers = {}, _meta = false) => {
-  logger.info('fetches layers');
+  logger.info("fetches layers");
 
-  return WRIAPI.get('/layer', {
+  return WRIAPI.get("/layer", {
     headers: {
       ...WRIAPI.defaults.headers,
       // TO-DO: forces the API to not cache, this should be removed at some point
-      'Upgrade-Insecure-Requests': 1,
+      "Upgrade-Insecure-Requests": 1,
       ...headers
     },
     params: {
@@ -27,17 +27,14 @@ export const fetchLayers = (params = {}, headers = {}, _meta = false) => {
       application: process.env.APPLICATIONS,
       ...params
     },
-    transformResponse: [].concat(
-      WRIAPI.defaults.transformResponse,
-      (({ data, meta }) => ({ layers: data, meta }))
-    )
+    transformResponse: [].concat(WRIAPI.defaults.transformResponse, ({ data, meta }) => ({ layers: data, meta }))
   })
-    .then((response) => {
+    .then(response => {
       const { status, statusText, data } = response;
       const { layers, meta } = data;
 
       if (status >= 300) {
-        logger.error('Error fetching layers:', `${status}: ${statusText}`);
+        logger.error("Error fetching layers:", `${status}: ${statusText}`);
         throw new Error(statusText);
       }
 
@@ -50,7 +47,7 @@ export const fetchLayers = (params = {}, headers = {}, _meta = false) => {
 
       return WRISerializer({ data: layers });
     })
-    .catch((response) => {
+    .catch(response => {
       const { status, statusText } = response;
 
       logger.error(`Error fetching layers: ${status}: ${statusText}`);
@@ -66,41 +63,40 @@ export const fetchLayers = (params = {}, headers = {}, _meta = false) => {
  * @returns {Object[]} - serialized specific layer.
  */
 export const fetchLayer = (id, params = {}) => {
-  if (!id) throw Error('layer id is mandatory to perform this fetching.');
+  if (!id) throw Error("layer id is mandatory to perform this fetching.");
   logger.info(`Fetches layer: ${id}`);
 
   return WRIAPI.get(`/layer/${id}`, {
     headers: {
       ...WRIAPI.defaults.headers,
       // TO-DO: forces the API to not cache, this should be removed at some point
-      'Upgrade-Insecure-Requests': 1
+      "Upgrade-Insecure-Requests": 1
     },
     params: {
       application: process.env.APPLICATIONS,
       env: process.env.API_ENV,
       ...params
     },
-    transformResponse: [].concat(
-      WRIAPI.defaults.transformResponse,
-      ({ data }) => data
-    )
-  }).then((response) => {
-    const { status, statusText, data } = response;
+    transformResponse: [].concat(WRIAPI.defaults.transformResponse, ({ data }) => data)
+  })
+    .then(response => {
+      const { status, statusText, data } = response;
 
-    if (status >= 300) {
-      if (status === 404) {
-        logger.debug(`Layer '${id}' not found, ${status}: ${statusText}`);
-      } else {
-        logger.error('Error fetching layer:', `${status}: ${statusText}`);
+      if (status >= 300) {
+        if (status === 404) {
+          logger.debug(`Layer '${id}' not found, ${status}: ${statusText}`);
+        } else {
+          logger.error("Error fetching layer:", `${status}: ${statusText}`);
+        }
+        throw new Error(statusText);
       }
-      throw new Error(statusText);
-    }
-    return WRISerializer({ data });
-  }).catch(({ response }) => {
-    const { status, statusText } = response;
-    logger.error('Error fetching layer:', `${status}: ${statusText}`);
-    throw new Error('Error fetching layer:', `${status}: ${statusText}`);
-  });
+      return WRISerializer({ data });
+    })
+    .catch(({ response }) => {
+      const { status, statusText } = response;
+      logger.error("Error fetching layer:", `${status}: ${statusText}`);
+      throw new Error("Error fetching layer:", `${status}: ${statusText}`);
+    });
 };
 
 /**
@@ -121,7 +117,7 @@ export const deleteLayer = (layerId, datasetId, token) => {
       Authorization: token
     }
   })
-    .then((response) => {
+    .then(response => {
       const { status, statusText } = response;
 
       if (status >= 300) {
@@ -168,14 +164,16 @@ export const updateLayer = (layer, datasetId, token) => {
  * @param {string} token - user's token.
  */
 export const createLayer = (layer, datasetId, token) => {
-  logger.info('Create layer');
-  return WRIAPI.post(`dataset/${datasetId}/layer`,
+  logger.info("Create layer");
+  return WRIAPI.post(
+    `dataset/${datasetId}/layer`,
     {
-      application: process.env.APPLICATIONS.split(','),
+      application: process.env.APPLICATIONS.split(","),
       env: process.env.API_ENV,
       ...layer
     },
-    { headers: { Authorization: token } })
+    { headers: { Authorization: token } }
+  )
     .then(response => WRISerializer(response.data))
     .catch(({ response }) => {
       const { status, statusText } = response;

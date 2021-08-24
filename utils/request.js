@@ -1,9 +1,9 @@
 function get({ url, headers = [], withCredentials, onSuccess, onError }) {
   const request = new XMLHttpRequest();
-  request.open('GET', url);
+  request.open("GET", url);
   request.withCredentials = withCredentials;
   // Set request headers
-  headers.forEach((h) => {
+  headers.forEach(h => {
     request.setRequestHeader(h.key, h.value);
   });
   request.send(null);
@@ -18,7 +18,7 @@ function get({ url, headers = [], withCredentials, onSuccess, onError }) {
           onSuccess(request.responseText);
         }
       } else {
-        onError('error');
+        onError("error");
       }
     }
   };
@@ -28,12 +28,12 @@ function get({ url, headers = [], withCredentials, onSuccess, onError }) {
 
 function post({ type, url, body, headers = [], onSuccess, onError, multipart }) {
   const request = new XMLHttpRequest();
-  request.open(type || 'POST', url, true);
+  request.open(type || "POST", url, true);
   // Set request headers
-  headers.forEach((h) => {
+  headers.forEach(h => {
     request.setRequestHeader(h.key, h.value);
   });
-  request.send((multipart) ? body : JSON.stringify(body));
+  request.send(multipart ? body : JSON.stringify(body));
 
   request.onreadystatechange = () => {
     if (request.readyState === 4) {
@@ -49,7 +49,7 @@ function post({ type, url, body, headers = [], onSuccess, onError, multipart }) 
           const data = JSON.parse(request.responseText);
           onError(data.errors);
         } catch (e) {
-          onError('error');
+          onError("error");
         }
       }
     }
@@ -60,9 +60,9 @@ function post({ type, url, body, headers = [], onSuccess, onError, multipart }) 
 
 function remove({ url, headers = [], onSuccess, onError }) {
   const request = new XMLHttpRequest();
-  request.open('DELETE', url);
+  request.open("DELETE", url);
   // Set request headers
-  headers.forEach((h) => {
+  headers.forEach(h => {
     request.setRequestHeader(h.key, h.value);
   });
 
@@ -82,7 +82,7 @@ function remove({ url, headers = [], onSuccess, onError }) {
           const data = JSON.parse(request.responseText);
           onError(data.errors);
         } catch (e) {
-          onError('error');
+          onError("error");
         }
       }
     }

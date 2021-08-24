@@ -1,5 +1,5 @@
-import deepClone from 'lodash/cloneDeep';
-import { scale } from 'd3';
+import deepClone from "lodash/cloneDeep";
+import { scale } from "d3";
 
 /* eslint-disable */
 const defaultChart = {

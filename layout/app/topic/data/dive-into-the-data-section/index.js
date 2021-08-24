@@ -1,3 +1,3 @@
-import DiveIntoTheDataComponent from './component';
+import DiveIntoTheDataComponent from "./component";
 
 export default DiveIntoTheDataComponent;

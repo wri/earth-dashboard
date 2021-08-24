@@ -1,10 +1,10 @@
 /**
  * CONSTANTS
-*/
-const MODAL_TOGGLE = 'MODAL_TOGGLE';
-const MODAL_SET_OPTIONS = 'MODAL_SET_OPTIONS';
-const MODAL_LOADING = 'MODAL_LOADING';
-const MODAL_EXECUTE_CLOSE_CALLBACK = 'MODAL_EXECUTE_CLOSE_CALLBACK';
+ */
+const MODAL_TOGGLE = "MODAL_TOGGLE";
+const MODAL_SET_OPTIONS = "MODAL_SET_OPTIONS";
+const MODAL_LOADING = "MODAL_LOADING";
+const MODAL_EXECUTE_CLOSE_CALLBACK = "MODAL_EXECUTE_CLOSE_CALLBACK";
 
 // REDUCER
 const initialState = {
@@ -12,7 +12,7 @@ const initialState = {
   options: {
     children: null,
     childrenProps: null,
-    size: '',
+    size: "",
     // Callback executed if the user closes the modal (user interaction)
     // (not executed when toggleModal is executed)
     onCloseModal: null
@@ -51,13 +51,13 @@ export default function (state = initialState, action) {
  * - toggleModal
  * - modalLoading
  * - setModalOptions
-*/
+ */
 export function closeModal() {
   return dispatch => dispatch({ type: MODAL_TOGGLE });
 }
 
 export function toggleModal(open, opts = {}, userInteraction = false) {
-  return (dispatch) => {
+  return dispatch => {
     if (open && opts) {
       dispatch({ type: MODAL_SET_OPTIONS, payload: opts });
     }

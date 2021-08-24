@@ -1,23 +1,22 @@
+import * as util from "./util";
 
-import * as util from './util';
+import drawVert from "./shaders/draw.vert.glsl";
+import drawFrag from "./shaders/draw.frag.glsl";
 
-import drawVert from './shaders/draw.vert.glsl';
-import drawFrag from './shaders/draw.frag.glsl';
+import quadVert from "./shaders/quad.vert.glsl";
 
-import quadVert from './shaders/quad.vert.glsl';
-
-import screenFrag from './shaders/screen.frag.glsl';
-import updateFrag from './shaders/update.frag.glsl';
+import screenFrag from "./shaders/screen.frag.glsl";
+import updateFrag from "./shaders/update.frag.glsl";
 
 const defaultRampColors = {
-  0.0: '#3288bd',
-  0.1: '#66c2a5',
-  0.2: '#abdda4',
-  0.3: '#e6f598',
-  0.4: '#fee08b',
-  0.5: '#fdae61',
-  0.6: '#f46d43',
-  1.0: '#d53e4f'
+  0.0: "#3288bd",
+  0.1: "#66c2a5",
+  0.2: "#abdda4",
+  0.3: "#e6f598",
+  0.4: "#fee08b",
+  0.5: "#fdae61",
+  0.6: "#f46d43",
+  1.0: "#d53e4f"
 };
 
 export default class WindGL {
@@ -57,7 +56,7 @@ export default class WindGL {
     const gl = this.gl;
 
     // we create a square texture where each pixel will hold a particle position encoded as RGBA
-    const particleRes = this.particleStateResolution = Math.ceil(Math.sqrt(numParticles));
+    const particleRes = (this.particleStateResolution = Math.ceil(Math.sqrt(numParticles)));
     this._numParticles = particleRes * particleRes;
 
     const particleState = new Uint8Array(this._numParticles * 4);
@@ -178,8 +177,8 @@ export default class WindGL {
 }
 
 function getColorRamp(colors) {
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
 
   canvas.width = 256;
   canvas.height = 1;

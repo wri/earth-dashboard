@@ -1,3 +1,3 @@
-import WaterDropLocationsComponent from './component';
+import WaterDropLocationsComponent from "./component";
 
 export default WaterDropLocationsComponent;
