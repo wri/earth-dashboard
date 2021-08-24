@@ -83,8 +83,11 @@
   },
   "devDependencies": {
     "@3sidedcube/prettier-config": "^1.0.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
     "babel-cli": "6.26.0",
     "babel-eslint": "^9.0.0",
+    "babel-jest": "^27.0.6",
     "babel-preset-env": "1.6.0",
     "colors": "1.1.2",
     "eslint": "7.32.0",
@@ -92,8 +95,11 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.1",
     "husky": "^7.0.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.6",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
+    "react-test-renderer": "^17.0.2",
     "webpack-bundle-analyzer": "^3.3.2"
   },
   "prettier": "@3sidedcube/prettier-config",
@@ -102,7 +108,7 @@
     "build": "next build",
     "static-build": "next build && next export",
     "start": "next start",
-    "test": "echo \"No Tests Specified\"",
+    "test": "jest --env=jsdom",
     "lint": "next lint",
     "lint:fix": "next lint --fix"
   },
