@@ -2,6 +2,18 @@ definitions:
   caches:
     nextcache: .next/cache
 pipelines:
+  pull-requests:
+    "**":
+      - step:
+          name: Build
+          image: node:14.16.0
+          caches:
+            - node
+            - nextcache
+          script:
+            - yarn install
+            - yarn test
+            - yarn build
   custom:
     default:
       - step:
