@@ -1,205 +1,217 @@
-@import 'css/settings';
+@import "css/settings";
 
 .homepage {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  background: url("/static/images/star-background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    .main-container {
-        position: relative;
+  .main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .intro-text {
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+      color: $white;
+
+      &.-fade-out {
+        animation: fade-out-and-remove forwards 1s;
+      }
+
+      .cog-overlay {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background-color: black;
+        color: $white;
+
+        span {
+          margin-left: 10px;
+        }
+
+        &.-fade-out {
+          animation: fade-out-and-remove forwards 1s;
+        }
+
+        padding: 10px 10px 20px 32px;
+      }
+
+      .topic-links-intro-text,
+      .globe-menu-intro-text {
+        font-family: "Barlow Condensed";
+
+        &.-desktop {
+          font-size: 14px;
+          p {
+            max-width: 160px;
+          }
+        }
+
+        &.-mobile {
+          font-size: 12px;
+          p {
+            max-width: 200px;
+          }
+        }
+      }
+
+      .topic-links-intro-text {
+        position: absolute;
+        display: flex;
+        align-items: flex-start;
+
+        p {
+          margin-top: 25px;
+        }
+
+        &.-desktop {
+          top: 68px;
+          right: 53px;
+
+          img {
+            margin-right: 15px;
+          }
+        }
+
+        &.-mobile {
+          top: 72px;
+          right: 35px;
+
+          img {
+            margin-left: 10px;
+          }
+        }
+      }
+
+      .globe-menu-intro-text {
+        position: absolute;
+        display: flex;
+        align-items: flex-end;
+
+        &.-desktop {
+          bottom: 62px;
+          left: 62px;
+
+          img {
+            margin-right: 15px;
+          }
+        }
+
+        &.-mobile {
+          bottom: 65px;
+          left: 61px;
+
+          img {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    .globe {
+      position: absolute;
+      top: 10%;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: -1;
+
+      &.-loaded {
+        animation: fade-in 1s forwards;
+
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .text-container {
+      position: absolute;
+      width: 100%;
+      max-width: 700px;
+      padding: 8px 0px;
+      font-family: "Barlow Condensed";
+      background: radial-gradient(44.33% 3115.06% at 50% 50%, #19232c 22.4%, rgba(0, 0, 0, 0) 100%);
+
+      &.-fade-out {
+        animation: fade-out-and-remove 1s forwards;
+      }
+
+      &.-desktop {
+        top: 104px;
+      }
+
+      &.-mobile {
+        top: 180px;
+      }
+
+      .banner {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
         align-items: center;
-        width: 100vw;
-        height: 100vh;
-        z-index: 2;
 
-        iframe {
-            width: 100%;
-            height: 100%;
+        h1 {
+          color: $white;
         }
 
-        .intro-text {
-            position: absolute;
-            min-width: 100%;
-            min-height: 100%;
-            color: $white;
-
-            &.-fade-out {
-                animation: fade-out-and-remove forwards 1s;
-            }
-
-            .cog-overlay {
-                position: absolute;
-                bottom: 0px;
-                left: 0px;
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                background-color: black;
-                color: $white;
-    
-                span {
-                    margin-left: 10px;
-                }
-    
-                &.-fade-out {
-                    animation: fade-out-and-remove forwards 1s;
-                }
-    
-                padding: 10px 10px 20px 32px;
-            }
-
-            .topic-links-intro-text, .globe-menu-intro-text {
-                font-family: 'Barlow Condensed';
-
-                &.-desktop {
-                    font-size: 14px;
-                    p {
-                        max-width: 160px;
-                    }
-                }
-    
-                &.-mobile {
-                    font-size: 12px;
-                    p {
-                        max-width: 200px;
-                    }
-                }
-            }
-
-            .topic-links-intro-text {
-                position: absolute;
-                display: flex;
-                align-items: flex-start;
-
-                p {
-                    margin-top: 25px;
-                }
-
-                &.-desktop {
-                    top: 68px;
-                    right: 53px;
-
-                    img {
-                        margin-right: 15px;
-                    }
-                }
-
-                &.-mobile {
-                    top: 72px;
-                    right: 35px;
-
-                    img {
-                        margin-left: 10px;
-                    }
-                }
-            }
-
-            .globe-menu-intro-text {
-                position: absolute;
-                display: flex;
-                align-items: flex-end;
-
-                &.-desktop {
-                    bottom: 62px;
-                    left: 62px;
-
-                    img {
-                        margin-right: 15px;
-                    }
-                }
-
-                &.-mobile {
-                    bottom: 65px;
-                    left: 61px;
-
-                    img {
-                        margin-right: 10px;
-                    }
-                }
-            }
+        &.-mobile {
+          h1 {
+            font-size: 18px;
+          }
         }
 
-        .globe {
-            position: absolute;
-            top: 10%;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            z-index: -1;
-
-            &.-loaded {
-                animation: fade-in 1s forwards;
-
-                @keyframes fade-in {
-                    from { opacity: 0;}
-                    to { opacity: 1;}
-                }
-            }
+        &.-desktop {
+          h1 {
+            font-size: 24px;
+          }
         }
 
-        .text-container {
-            position: absolute;
-            width: 100%;
-            max-width: 700px;
-            padding: 8px 0px;
-            font-family: 'Barlow Condensed';
-            background: radial-gradient(44.33% 3115.06% at 50% 50%, #19232C 22.4%, rgba(0, 0, 0, 0) 100%);
-
-            &.-fade-out {
-                animation: fade-out-and-remove 1s forwards;
-            }
-
-            &.-desktop {
-                top: 104px;
-            }
-
-            &.-mobile {
-                top: 180px;
-            }
-
-            .banner {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                h1 {
-                    color: $white;
-                }
-
-                &.-mobile {
-                    h1 {
-                        font-size: 18px;
-                    }
-                }
-
-                &.-desktop {
-                    h1 {
-                        font-size: 24px;
-                    }
-                }
-
-                .gradient {
-                    font-style: italic;
-                    background: linear-gradient(270.9deg, $dark-red 1.68%, rgba(147, 18, 18, 0) 99.22%);
-                }
-            }
+        .gradient {
+          font-style: italic;
+          background: linear-gradient(270.9deg, $dark-red 1.68%, rgba(147, 18, 18, 0) 99.22%);
         }
+      }
     }
+  }
 }
 
 @keyframes fade-out-and-remove {
-    0% { opacity: 100%; }
-    99% { opacity: 0%; }
-    100% { 
-        opacity: 0%;
-        display: none;
-    }
+  0% {
+    opacity: 100%;
+  }
+  99% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 0%;
+    display: none;
+  }
 }
