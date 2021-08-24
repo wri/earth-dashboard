@@ -1,22 +1,18 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // Drag and drop
-import { SortableContainer } from 'react-sortable-hoc';
+import { SortableContainer } from "react-sortable-hoc";
 
 // Components
-import InteractionsItem from './interactions-item';
+import InteractionsItem from "./interactions-item";
 
-const InteractionsItems = (props) => {
-  const {
-    interactions,
-    editInteraction,
-    removeInteraction
-  } = props;
+const InteractionsItems = props => {
+  const { interactions, editInteraction, removeInteraction } = props;
 
   return (
     <ul className="c-field preview-container c-interactions">
-      {interactions.added && interactions.added.map((interaction, key) =>
-        (
+      {interactions.added &&
+        interactions.added.map((interaction, key) => (
           <InteractionsItem
             key={interaction.column + key}
             index={key}

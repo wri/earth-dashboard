@@ -1,3 +1,3 @@
-import OwnerTD from './component';
+import OwnerTD from "./component";
 
 export default OwnerTD;

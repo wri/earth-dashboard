@@ -1,41 +1,30 @@
-import { PureComponent } from 'react';
+import { PureComponent } from "react";
 
 // components
-import Modal from 'components/modal';
-import ShareModal from 'components/modal/share-modal';
-import Icon from 'components/ui/icon';
+import Modal from "components/modal";
+import ShareModal from "components/modal/share-modal";
+import Icon from "components/ui/icon";
 
 // styles
-import './share-control.module.scss';
+import "./share-control.module.scss";
 
 class ShareControls extends PureComponent {
-  state = { showShareModal: false }
+  state = { showShareModal: false };
 
-  handleToggleShareModal = (modalVisibility) => {
+  handleToggleShareModal = modalVisibility => {
     this.setState({ showShareModal: modalVisibility });
-  }
+  };
 
   render() {
     const { showShareModal } = this.state;
-    const location = typeof window !== 'undefined' && window.location;
+    const location = typeof window !== "undefined" && window.location;
 
     return (
       <div className="c-share-control">
-        <button
-          type="button"
-          className="share-control--btn"
-          onClick={() => this.handleToggleShareModal(true)}
-        >
-          <Icon
-            name="icon-share"
-            className="-small"
-          />
+        <button type="button" className="share-control--btn" onClick={() => this.handleToggleShareModal(true)}>
+          <Icon name="icon-share" className="-small" />
 
-          <Modal
-            isOpen={showShareModal}
-            className="-medium"
-            onRequestClose={() => this.handleToggleShareModal(false)}
-          >
+          <Modal isOpen={showShareModal} className="-medium" onRequestClose={() => this.handleToggleShareModal(false)}>
             <ShareModal
               links={{
                 link: location && location.href,

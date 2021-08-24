@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Component } from "react";
+import PropTypes from "prop-types";
 
 class Button extends Component {
   static defaultProps = { properties: {} };
@@ -38,17 +38,12 @@ class Button extends Component {
     this.props.onMouseOut(e);
   }
 
-
   render() {
     const { children, properties, onClick, onMouseOver, onMouseOut, disabled } = this.props;
 
     if (disabled) {
       return (
-        <button
-          {...properties}
-          disabled
-          className={`c-button ${properties.className || ''}`}
-        >
+        <button {...properties} disabled className={`c-button ${properties.className || ""}`}>
           {children}
         </button>
       );
@@ -57,10 +52,10 @@ class Button extends Component {
     return (
       <button
         {...properties}
-        className={`c-button ${properties.className || ''}`}
-        onClick={(onClick) ? this.triggerClick : null}
-        onMouseOver={(onMouseOver) ? this.triggerMouseOver : null}
-        onMouseOut={(onMouseOut) ? this.triggerMouseOut : null}
+        className={`c-button ${properties.className || ""}`}
+        onClick={onClick ? this.triggerClick : null}
+        onMouseOver={onMouseOver ? this.triggerMouseOver : null}
+        onMouseOut={onMouseOut ? this.triggerMouseOut : null}
       >
         {children}
       </button>

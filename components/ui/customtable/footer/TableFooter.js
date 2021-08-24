@@ -1,6 +1,6 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import Paginator from 'components/ui/paginator';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import Paginator from "components/ui/paginator";
 
 class TableFooter extends PureComponent {
   static propTypes = {
@@ -19,7 +19,9 @@ class TableFooter extends PureComponent {
     showTotalPages: false
   };
 
-  onChangePage(page) { this.props.onChangePage(page); }
+  onChangePage(page) {
+    this.props.onChangePage(page);
+  }
 
   render() {
     const { pagination, showTotalPages } = this.props;
@@ -30,12 +32,16 @@ class TableFooter extends PureComponent {
         <div className="table-footer">
           <Paginator
             options={pagination}
-            onChange={(pageValue) => { this.onChangePage(pageValue); }}
+            onChange={pageValue => {
+              this.onChangePage(pageValue);
+            }}
           />
 
-          {(enabled && showTotalPages) &&
-            (<div>Page <span>{page}</span> of <span>{pages}</span></div>)}
-
+          {enabled && showTotalPages && (
+            <div>
+              Page <span>{page}</span> of <span>{pages}</span>
+            </div>
+          )}
         </div>
       );
     }

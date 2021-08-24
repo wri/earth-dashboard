@@ -1,3 +1,3 @@
-import WidgetPreviewComponent from './component';
+import WidgetPreviewComponent from "./component";
 
 export default WidgetPreviewComponent;

@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-import Link from 'next/link';
+import PropTypes from "prop-types";
+import Link from "next/link";
 
 // styles
-import styles from './sorting-layer-manager-item.module.scss';
+import styles from "./sorting-layer-manager-item.module.scss";
 
 const LayerCardItem = ({ layer, onDragStart, onDragEnd, onDragOver, index }) => {
   const { name, id, dataset, published } = layer;
@@ -10,14 +10,14 @@ const LayerCardItem = ({ layer, onDragStart, onDragEnd, onDragOver, index }) => 
   return (
     <li
       draggable
-      className={styles['sorting-layer-manager-item']}
+      className={styles["sorting-layer-manager-item"]}
       onDragStart={e => onDragStart(e, index)}
       onDragEnd={onDragEnd}
       onDragOver={() => onDragOver(index)}
     >
       <div className="card-name">
-        <Link href={
-          {
+        <Link
+          href={{
             pathname: `/admin/data/layers/${id}/edit`,
             query: {
               dataset
@@ -26,7 +26,7 @@ const LayerCardItem = ({ layer, onDragStart, onDragEnd, onDragOver, index }) => 
         >
           <a>{name}</a>
         </Link>
-        {!published && (<span className="unpublished">&nbsp;(Unpublished)</span>)}
+        {!published && <span className="unpublished">&nbsp;(Unpublished)</span>}
       </div>
       <div className="draggable-symbol">
         <span className="square-container" />

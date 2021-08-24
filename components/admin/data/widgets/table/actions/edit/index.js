@@ -1,3 +1,3 @@
-import EditAction from './component';
+import EditAction from "./component";
 
 export default EditAction;

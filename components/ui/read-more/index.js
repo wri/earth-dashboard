@@ -1,3 +1,3 @@
-import ReadMoreComponent from './component';
+import ReadMoreComponent from "./component";
 
 export default ReadMoreComponent;

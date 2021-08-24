@@ -1,3 +1,3 @@
-import CodeTD from './component';
+import CodeTD from "./component";
 
 export default CodeTD;

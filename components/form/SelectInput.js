@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import Select, { Creatable } from 'react-select';
-import FormElement from './FormElement';
+import PropTypes from "prop-types";
+import Select, { Creatable } from "react-select";
+import FormElement from "./FormElement";
 
 class SelectInput extends FormElement {
   static defaultProps = { options: [] };
@@ -22,14 +22,14 @@ class SelectInput extends FormElement {
   /**
    * UI EVENTS
    * - triggerChange
-  */
+   */
   triggerChange(selected) {
     let value;
 
     if (Array.isArray(selected)) {
-      value = (selected) ? selected.map(s => s.value) : null;
+      value = selected ? selected.map(s => s.value) : null;
     } else {
-      value = (selected) ? selected.value : null;
+      value = selected ? selected.value : null;
     }
 
     this.setState({ value }, () => {

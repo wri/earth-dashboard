@@ -1,19 +1,19 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { toastr } from 'react-redux-toastr';
-import findIndex from 'lodash/findIndex';
-import { arrayMove } from 'react-sortable-hoc';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import { toastr } from "react-redux-toastr";
+import findIndex from "lodash/findIndex";
+import { arrayMove } from "react-sortable-hoc";
 
 // constants
-import { FORM_ELEMENTS, FORMAT } from 'components/admin/data/layers/form/constants';
+import { FORM_ELEMENTS, FORMAT } from "components/admin/data/layers/form/constants";
 
 // components
-import Field from 'components/form/Field';
-import Select from 'components/form/SelectInput';
-import InteractionsItems from './interactions-items';
+import Field from "components/form/Field";
+import Select from "components/form/SelectInput";
+import InteractionsItems from "./interactions-items";
 
 // styles
-import styles from './layer-form-interactions.module.scss';
+import styles from "./layer-form-interactions.module.scss";
 
 class InteractionManager extends PureComponent {
   static propTypes = {
@@ -23,20 +23,17 @@ class InteractionManager extends PureComponent {
     getCurrentLayerInteractions: PropTypes.func.isRequired,
     getAvailableLayerInteractions: PropTypes.func.isRequired,
     resetInteractions: PropTypes.func.isRequired
-  }
+  };
 
   UNSAFE_componentWillMount() {
-    const {
-      layer,
-      getCurrentLayerInteractions,
-      getAvailableLayerInteractions
-    } = this.props;
+    const { layer, getCurrentLayerInteractions, getAvailableLayerInteractions } = this.props;
     // gets interaction from interactionConfig layer attribute
     getCurrentLayerInteractions({ ...this.props });
 
     // fetchs for all available fields available in the dataset
-    getAvailableLayerInteractions({ ...this.props })
-      .catch(() => toastr.error('Something went wrong', `Error fetching fields for dataset ${layer.id} `));
+    getAvailableLayerInteractions({ ...this.props }).catch(() =>
+      toastr.error("Something went wrong", `Error fetching fields for dataset ${layer.id} `)
+    );
   }
 
   componentWillUnmount() {
@@ -49,7 +46,7 @@ class InteractionManager extends PureComponent {
 
     interactions.added = arrayMove(interactions.added, oldIndex, newIndex);
     setCurrentInteractions(interactions.added);
-  }
+  };
 
   addInteractions(options = []) {
     const { interactions, setCurrentInteractions } = this.props;
@@ -57,7 +54,7 @@ class InteractionManager extends PureComponent {
     // Check if we are removing interactions, then remove the reference(es) to it
     if (options.length < interactions.added.length) {
       let interactionsRemoved = interactions.added;
-      options.forEach((item) => {
+      options.forEach(item => {
         interactionsRemoved = interactionsRemoved.filter(t => t.column !== item);
       });
       interactionsRemoved.forEach(interaction => FORM_ELEMENTS.removeInteraction(interaction));
@@ -65,8 +62,7 @@ class InteractionManager extends PureComponent {
 
     // Remove layer if its not in options
     if (interactions.added) {
-      interactions.added = interactions.added
-        .filter(item => options.includes(item.column));
+      interactions.added = interactions.added.filter(item => options.includes(item.column));
     }
 
     if (!interactions.added || options.length > interactions.added.length) {
@@ -76,9 +72,9 @@ class InteractionManager extends PureComponent {
       interactions.added.push({
         column: selected.label,
         format: null,
-        prefix: '',
+        prefix: "",
         property: selected.label,
-        suffix: '',
+        suffix: "",
         type: selected.type
       });
     }
@@ -89,7 +85,7 @@ class InteractionManager extends PureComponent {
   editInteraction(data) {
     const { interactions, setCurrentInteractions } = this.props;
 
-    if (data.key.toLowerCase() === 'label') {
+    if (data.key.toLowerCase() === "label") {
       data.field.property = data.value;
     } else {
       data.field[data.key.toLowerCase()] = data.value;
@@ -112,17 +108,17 @@ class InteractionManager extends PureComponent {
     const { interactions } = this.props;
 
     return (
-      <div className={styles['c-layer-form-interactions']}>
-        {interactions.available &&
+      <div className={styles["c-layer-form-interactions"]}>
+        {interactions.available && (
           <Field
             options={interactions.available}
             onChange={value => this.addInteractions(value)}
             properties={{
-              className: 'Select--large',
-              name: 'selected_columns',
-              label: 'Add interactions',
-              placeholder: 'Select a column or type one...',
-              type: 'text',
+              className: "Select--large",
+              name: "selected_columns",
+              label: "Add interactions",
+              placeholder: "Select a column or type one...",
+              type: "text",
               creatable: true,
               removeSelected: true,
               multi: true,
@@ -131,7 +127,8 @@ class InteractionManager extends PureComponent {
             }}
           >
             {Select}
-          </Field>}
+          </Field>
+        )}
 
         <InteractionsItems
           interactions={interactions}
@@ -142,7 +139,6 @@ class InteractionManager extends PureComponent {
           useDragHandle
           onSortEnd={this.onSortInteractions}
         />
-
       </div>
     );
   }

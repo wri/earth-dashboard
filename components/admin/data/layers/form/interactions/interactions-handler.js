@@ -1,7 +1,7 @@
-import { SortableHandle } from 'react-sortable-hoc';
+import { SortableHandle } from "react-sortable-hoc";
 
 // components
-import Icon from 'components/ui/icon';
+import Icon from "components/ui/icon";
 
 const InteractionsHandler = () => (
   <span className="handler -dragger">

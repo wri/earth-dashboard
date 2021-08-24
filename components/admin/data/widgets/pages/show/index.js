@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // component
-import WidgetsShow from './component';
+import WidgetsShow from "./component";
 
 // selectors
-import { parseTabs } from './selectors';
+import { parseTabs } from "./selectors";
 
 export default connect(
   state => ({

@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import FormElement from './FormElement';
+import FormElement from "./FormElement";
 
 class TextArea extends FormElement {
   /**
    * UI EVENTS
    * - triggerChange
-  */
+   */
   triggerChange(e) {
     this.setState({ value: e.currentTarget.value }, () => {
       // Trigger validation

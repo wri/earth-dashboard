@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Component } from "react";
+import PropTypes from "prop-types";
 
 class EditAction extends Component {
   parseHref() {
@@ -7,7 +7,7 @@ class EditAction extends Component {
     const id = data.id;
     const path = action.path;
 
-    return path.replace(':id', id);
+    return path.replace(":id", id);
   }
 
   render() {

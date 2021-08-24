@@ -1,22 +1,18 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import compact from 'lodash/compact';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import compact from "lodash/compact";
 
 // Constants
-import {
-  PROVIDER_TYPES_DICTIONARY,
-  FORM_ELEMENTS,
-  DATASET_TYPES
-} from 'components/datasets/form/constants';
+import { PROVIDER_TYPES_DICTIONARY, FORM_ELEMENTS, DATASET_TYPES } from "components/datasets/form/constants";
 
 // components
-import Field from 'components/form/Field';
-import Input from 'components/form/Input';
-import File from 'components/form/file';
-import Select from 'components/form/SelectInput';
-import Checkbox from 'components/form/checkbox';
-import Spinner from 'components/ui/spinner';
-import SortingLayerManager from '../sorting-layer-manager';
+import Field from "components/form/Field";
+import Input from "components/form/Input";
+import File from "components/form/file";
+import Select from "components/form/SelectInput";
+import Checkbox from "components/form/checkbox";
+import Spinner from "components/ui/spinner";
+import SortingLayerManager from "../sorting-layer-manager";
 
 class Step1 extends PureComponent {
   static propTypes = {
@@ -63,7 +59,7 @@ class Step1 extends PureComponent {
   setProviderOptions() {
     const { basic, dataset } = this.props;
 
-    const options = Object.keys(PROVIDER_TYPES_DICTIONARY).map((key) => {
+    const options = Object.keys(PROVIDER_TYPES_DICTIONARY).map(key => {
       if (basic && !dataset) {
         if (PROVIDER_TYPES_DICTIONARY[key].basic) {
           return {
@@ -84,8 +80,10 @@ class Step1 extends PureComponent {
     return basic ? compact(options) : options;
   }
 
-  handleSortLayer = (layers) => {
-    const { dataDataset: { applicationConfig } } = this.state;
+  handleSortLayer = layers => {
+    const {
+      dataDataset: { applicationConfig }
+    } = this.state;
     const { onChange } = this.props;
 
     onChange({
@@ -102,10 +100,8 @@ class Step1 extends PureComponent {
   renderMainDateOptions(option) {
     return (
       <div>
-        {option.value}{' '}
-        {option.type && typeof option.type === 'string' ? (
-          <small className="_right">{option.type}</small>
-        ) : null}
+        {option.value}{" "}
+        {option.type && typeof option.type === "string" ? <small className="_right">{option.type}</small> : null}
       </div>
     );
   }
@@ -118,15 +114,15 @@ class Step1 extends PureComponent {
     // Reset FORM_ELEMENTS
     FORM_ELEMENTS.elements = {};
 
-    const isCarto = provider === 'cartodb';
-    const isGee = provider === 'gee';
-    const isNextGDDP = provider === 'nexgddp';
-    const isFeatureservice = provider === 'featureservice';
-    const isJson = provider === 'json';
-    const isCsv = provider === 'csv';
-    const isTsv = provider === 'tsv';
-    const isXml = provider === 'xml';
-    const isWMS = provider === 'wms';
+    const isCarto = provider === "cartodb";
+    const isGee = provider === "gee";
+    const isNextGDDP = provider === "nexgddp";
+    const isFeatureservice = provider === "featureservice";
+    const isJson = provider === "json";
+    const isCsv = provider === "csv";
+    const isTsv = provider === "tsv";
+    const isXml = provider === "xml";
+    const isWMS = provider === "wms";
     const isDocument = isJson || isXml || isCsv || isTsv;
 
     const dateColumns = columns.map(f => ({ label: f.name, value: f.name, type: f.type }));
@@ -135,9 +131,9 @@ class Step1 extends PureComponent {
     return (
       <div>
         <fieldset className="c-field-container">
-          {user.role === 'ADMIN' && !basic && (
+          {user.role === "ADMIN" && !basic && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.env = c;
               }}
               hint={
@@ -145,15 +141,15 @@ class Step1 extends PureComponent {
               }
               className="-fluid"
               options={[
-                { label: 'Pre-production', value: 'preproduction' },
-                { label: 'Production', value: 'production' }
+                { label: "Pre-production", value: "preproduction" },
+                { label: "Production", value: "production" }
               ]}
               onChange={value => this.props.onChange({ env: value })}
               properties={{
-                name: 'env',
-                label: 'Environment',
-                placeholder: 'Please select an environment',
-                default: 'preproduction',
+                name: "env",
+                label: "Environment",
+                placeholder: "Please select an environment",
+                default: "preproduction",
                 value: this.props.form.env
               }}
             >
@@ -161,15 +157,15 @@ class Step1 extends PureComponent {
             </Field>
           )}
 
-          {user.role === 'ADMIN' && !basic && !!dataset && (
+          {user.role === "ADMIN" && !basic && !!dataset && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.applications = c;
               }}
               className="-fluid"
               properties={{
-                name: 'applications',
-                label: 'Applications',
+                name: "applications",
+                label: "Applications",
                 disabled: true,
                 readOnly: true,
                 default: application,
@@ -180,37 +176,37 @@ class Step1 extends PureComponent {
             </Field>
           )}
 
-          {user.role === 'ADMIN' && !basic && (
+          {user.role === "ADMIN" && !basic && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.published = c;
               }}
               onChange={value => this.props.onChange({ published: value.checked })}
-              validations={['required']}
+              validations={["required"]}
               properties={{
-                name: 'published',
-                label: 'Do you want to set this dataset as published?',
-                value: 'published',
-                title: 'Published',
-                defaultChecked: !dataset ? user.role === 'ADMIN' : this.props.form.published
+                name: "published",
+                label: "Do you want to set this dataset as published?",
+                value: "published",
+                title: "Published",
+                defaultChecked: !dataset ? user.role === "ADMIN" : this.props.form.published
               }}
             >
               {Checkbox}
             </Field>
           )}
 
-          {user.role === 'ADMIN' && !basic && (
+          {user.role === "ADMIN" && !basic && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.protected = c;
               }}
               onChange={value => this.props.onChange({ protected: value.checked })}
-              validations={['required']}
+              validations={["required"]}
               properties={{
-                name: 'protected',
-                label: 'Do you want to set this dataset as protected?',
-                value: 'protected',
-                title: 'Protected',
+                name: "protected",
+                label: "Do you want to set this dataset as protected?",
+                value: "protected",
+                title: "Protected",
                 defaultChecked: this.props.form.protected
               }}
             >
@@ -218,21 +214,25 @@ class Step1 extends PureComponent {
             </Field>
           )}
 
-          {user.role === 'ADMIN' && !basic && (
+          {user.role === "ADMIN" && !basic && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.isHighlighted = c;
               }}
               onChange={value => this.props.onChange({ applicationConfig: { rw: { highlighted: value.checked } } })}
               properties={{
-                name: 'isHighlighted',
-                label: 'Do you want to set this dataset as highlighted?',
-                value: this.state.form.applicationConfig && this.state.form.applicationConfig.rw &&
+                name: "isHighlighted",
+                label: "Do you want to set this dataset as highlighted?",
+                value:
+                  this.state.form.applicationConfig &&
+                  this.state.form.applicationConfig.rw &&
                   this.state.form.applicationConfig.rw.highlighted,
-                title: 'Highlighted',
-                defaultChecked: !dataset ? user.role === 'ADMIN' :
-                  this.props.form.applicationConfig && this.props.form.applicationConfig.rw
-                  && this.props.form.applicationConfig.rw.highlighted
+                title: "Highlighted",
+                defaultChecked: !dataset
+                  ? user.role === "ADMIN"
+                  : this.props.form.applicationConfig &&
+                    this.props.form.applicationConfig.rw &&
+                    this.props.form.applicationConfig.rw.highlighted
               }}
             >
               {Checkbox}
@@ -240,16 +240,16 @@ class Step1 extends PureComponent {
           )}
 
           <Field
-            ref={(c) => {
+            ref={c => {
               if (c) FORM_ELEMENTS.elements.name = c;
             }}
             onChange={value => this.props.onChange({ name: value })}
-            validations={['required']}
+            validations={["required"]}
             className="-fluid"
             properties={{
-              name: 'name',
-              label: 'Title',
-              type: 'text',
+              name: "name",
+              label: "Title",
+              type: "text",
               required: true,
               default: this.state.form.name
             }}
@@ -258,34 +258,34 @@ class Step1 extends PureComponent {
           </Field>
 
           <Field
-            ref={(c) => {
+            ref={c => {
               if (c) FORM_ELEMENTS.elements.subtitle = c;
             }}
             onChange={value => this.props.onChange({ subtitle: value })}
             className="-fluid"
             properties={{
-              name: 'subtitle',
-              label: 'Subtitle',
-              type: 'text',
+              name: "subtitle",
+              label: "Subtitle",
+              type: "text",
               default: this.state.form.subtitle
             }}
           >
             {Input}
           </Field>
 
-          {user.role === 'ADMIN' && !basic && (
+          {user.role === "ADMIN" && !basic && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.type = c;
               }}
-              onChange={(value) => {
+              onChange={value => {
                 this.props.onChange({
                   type: value,
-                  ...(value === 'raster' && { geoInfo: true })
+                  ...(value === "raster" && { geoInfo: true })
                 });
               }}
               className="-fluid"
-              validations={['required']}
+              validations={["required"]}
               options={DATASET_TYPES}
               hint={`
                 <ul>
@@ -294,13 +294,13 @@ class Step1 extends PureComponent {
                 </ul>
               `}
               properties={{
-                name: 'type',
-                label: 'Type',
+                name: "type",
+                label: "Type",
                 default: this.state.form.type,
                 value: this.state.form.type,
                 disabled: !!this.state.dataset,
                 required: true,
-                instanceId: 'selectType'
+                instanceId: "selectType"
               }}
             >
               {Select}
@@ -308,18 +308,17 @@ class Step1 extends PureComponent {
           )}
 
           <Field
-            ref={(c) => {
+            ref={c => {
               if (c) FORM_ELEMENTS.elements.geoInfo = c;
             }}
             onChange={value => this.props.onChange({ geoInfo: value.checked })}
-            validations={['required']}
+            validations={["required"]}
             properties={{
-              name: 'geoInfo',
-              label:
-                'Does this dataset contain geographical features such as points, polygons or lines?',
-              value: 'geoInfo',
-              title: 'Yes',
-              disabled: this.state.form.type === 'raster',
+              name: "geoInfo",
+              label: "Does this dataset contain geographical features such as points, polygons or lines?",
+              value: "geoInfo",
+              title: "Yes",
+              disabled: this.state.form.type === "raster",
               defaultChecked: this.props.form.geoInfo
             }}
           >
@@ -327,36 +326,34 @@ class Step1 extends PureComponent {
           </Field>
 
           <Field
-            ref={(c) => {
+            ref={c => {
               if (c) FORM_ELEMENTS.elements.provider = c;
             }}
-            onChange={(value) => {
+            onChange={value => {
               this.props.onChange({
                 provider: value,
-                connectorUrl: '',
+                connectorUrl: "",
                 legend: {
                   lat: undefined,
                   long: undefined,
                   date: [],
                   country: []
                 },
-                connectorType: PROVIDER_TYPES_DICTIONARY[value]
-                  ? PROVIDER_TYPES_DICTIONARY[value].connectorType
-                  : null,
+                connectorType: PROVIDER_TYPES_DICTIONARY[value] ? PROVIDER_TYPES_DICTIONARY[value].connectorType : null,
                 columnFields: null
               });
             }}
             className="-fluid"
-            validations={['required']}
+            validations={["required"]}
             options={this.setProviderOptions()}
             properties={{
-              name: 'provider',
-              label: 'Provider',
+              name: "provider",
+              label: "Provider",
               default: this.state.form.provider,
               value: this.state.form.provider,
               disabled: !!this.state.dataset,
               required: true,
-              instanceId: 'selectProvider'
+              instanceId: "selectProvider"
             }}
           >
             {Select}
@@ -369,10 +366,10 @@ class Step1 extends PureComponent {
            */}
           {isCarto && !dataset && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.cartoAccountUsername = c;
               }}
-              onChange={(value) => {
+              onChange={value => {
                 this.setState(
                   {
                     carto: {
@@ -381,16 +378,16 @@ class Step1 extends PureComponent {
                     }
                   },
                   () => {
-                    this.onCartoFieldsChange('cartoAccountUsername', value);
+                    this.onCartoFieldsChange("cartoAccountUsername", value);
                   }
                 );
               }}
-              validations={['required']}
+              validations={["required"]}
               className="-fluid"
               properties={{
-                name: 'cartoAccountUsername',
-                label: 'Carto account username',
-                type: 'text',
+                name: "cartoAccountUsername",
+                label: "Carto account username",
+                type: "text",
                 default: this.state.form.cartoAccountUsername,
                 required: true
               }}
@@ -401,10 +398,10 @@ class Step1 extends PureComponent {
 
           {isCarto && !dataset && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.tableName = c;
               }}
-              onChange={(value) => {
+              onChange={value => {
                 this.setState(
                   {
                     carto: {
@@ -413,16 +410,16 @@ class Step1 extends PureComponent {
                     }
                   },
                   () => {
-                    this.onCartoFieldsChange('tableName', value);
+                    this.onCartoFieldsChange("tableName", value);
                   }
                 );
               }}
-              validations={['required']}
+              validations={["required"]}
               className="-fluid"
               properties={{
-                name: 'tableName',
-                label: 'Table name',
-                type: 'text',
+                name: "tableName",
+                label: "Table name",
+                type: "text",
                 default: this.state.form.tableName,
                 required: true
               }}
@@ -433,15 +430,15 @@ class Step1 extends PureComponent {
 
           {isCarto && !!dataset && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.connectorUrl = c;
               }}
-              validations={['required']}
+              validations={["required"]}
               className="-fluid"
               properties={{
-                name: 'connectorUrl',
-                label: 'connector Url',
-                type: 'text',
+                name: "connectorUrl",
+                label: "connector Url",
+                type: "text",
                 default: this.state.form.connectorUrl,
                 disabled: !!this.state.dataset,
                 required: true
@@ -458,17 +455,17 @@ class Step1 extends PureComponent {
            */}
           {isGee && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.tableName = c;
               }}
               onChange={value => this.props.onChange({ tableName: value })}
-              validations={['required']}
+              validations={["required"]}
               className="-fluid"
               hint="Please add fusion table (ft:id) or an image. Example: projects/wri-datalab/HansenComposite_14-15`"
               properties={{
-                name: 'tableName',
-                label: 'Asset id',
-                type: 'text',
+                name: "tableName",
+                label: "Asset id",
+                type: "text",
                 default: this.state.form.tableName,
                 disabled: !!this.state.dataset,
                 required: true
@@ -485,17 +482,17 @@ class Step1 extends PureComponent {
            */}
           {isNextGDDP && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.tableName = c;
               }}
               onChange={value => this.props.onChange({ tableName: value })}
-              validations={['required']}
+              validations={["required"]}
               className="-fluid"
               hint="Please verify that the scenario and model is already incorporated in Rasdaman. Example: scenario/model"
               properties={{
-                name: 'tableName',
-                label: 'Table name',
-                type: 'text',
+                name: "tableName",
+                label: "Table name",
+                type: "text",
                 default: this.state.form.tableName,
                 disabled: !!this.state.dataset,
                 required: true
@@ -512,17 +509,17 @@ class Step1 extends PureComponent {
            */}
           {isFeatureservice && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.connectorUrl = c;
               }}
               onChange={value => this.props.onChange({ connectorUrl: value })}
-              validations={['required', 'url']}
+              validations={["required", "url"]}
               className="-fluid"
               hint="Example: http://gis-gfw.wri.org/arcgis/rest/services/prep/nex_gddp_indicators/MapServer/6?f=pjson"
               properties={{
-                name: 'connectorUrl',
-                label: 'Url data endpoint',
-                type: 'text',
+                name: "connectorUrl",
+                label: "Url data endpoint",
+                type: "text",
                 default: this.state.form.connectorUrl,
                 disabled: !!this.state.dataset,
                 required: true
@@ -539,17 +536,17 @@ class Step1 extends PureComponent {
            */}
           {isWMS && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.connectorUrl = c;
               }}
               onChange={value => this.props.onChange({ connectorUrl: value })}
-              validations={['required', 'url']}
+              validations={["required", "url"]}
               className="-fluid"
               hint="This connector will only display the data as a wms map layer. The data will not be available through queries."
               properties={{
-                name: 'connectorUrl',
-                label: 'Url data endpoint',
-                type: 'text',
+                name: "connectorUrl",
+                label: "Url data endpoint",
+                type: "text",
                 default: this.state.form.connectorUrl,
                 disabled: !!this.state.dataset,
                 required: true
@@ -565,18 +562,18 @@ class Step1 extends PureComponent {
            *****************************************************
            */}
 
-          {isDocument && user.role === 'ADMIN' && !basic && (
+          {isDocument && user.role === "ADMIN" && !basic && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.verified = c;
               }}
               onChange={value => this.props.onChange({ verified: value.checked })}
-              validations={['required']}
+              validations={["required"]}
               properties={{
-                name: 'verified',
-                label: 'Is this dataset verified?',
-                value: 'verified',
-                title: 'Verified',
+                name: "verified",
+                label: "Is this dataset verified?",
+                value: "verified",
+                title: "Verified",
                 checked: this.props.form.verified
               }}
             >
@@ -586,7 +583,7 @@ class Step1 extends PureComponent {
 
           {isDocument && !dataset && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.connectorUrl = c;
               }}
               onChange={({ fields, value }) => {
@@ -595,13 +592,13 @@ class Step1 extends PureComponent {
                   ...(!!fields && { columnFields: fields })
                 });
               }}
-              validations={['required', 'url']}
+              validations={["required", "url"]}
               className="-fluid"
               properties={{
-                name: 'connectorUrl',
-                label: 'Url data endpoint / File',
-                type: 'text',
-                placeholder: 'Paste a URL here or browse file',
+                name: "connectorUrl",
+                label: "Url data endpoint / File",
+                type: "text",
+                placeholder: "Paste a URL here or browse file",
                 authorization,
                 provider: this.state.form.provider,
                 default: this.state.form.connectorUrl,
@@ -615,18 +612,18 @@ class Step1 extends PureComponent {
 
           {isDocument && !!dataset && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.connectorUrl = c;
               }}
-              onChange={(value) => {
+              onChange={value => {
                 this.props.onChange({ connectorUrl: value });
               }}
-              validations={['required', 'url']}
+              validations={["required", "url"]}
               className="-fluid"
               properties={{
-                name: 'connectorUrl',
-                label: 'Url data endpoint / File',
-                type: 'text',
+                name: "connectorUrl",
+                label: "Url data endpoint / File",
+                type: "text",
                 default: this.state.form.connectorUrl,
                 disabled: !!this.state.dataset,
                 required: true
@@ -638,17 +635,17 @@ class Step1 extends PureComponent {
 
           {(isJson || isXml) && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.dataPath = c;
               }}
               onChange={value => this.props.onChange({ dataPath: value })}
               hint="Name of the element that you want to import"
-              validations={isXml ? ['required'] : []}
+              validations={isXml ? ["required"] : []}
               className="-fluid"
               properties={{
-                name: 'dataPath',
-                label: 'Data path',
-                type: 'text',
+                name: "dataPath",
+                label: "Data path",
+                type: "text",
                 default: this.state.form.dataPath,
                 disabled: !!this.state.dataset,
                 required: isXml
@@ -660,17 +657,17 @@ class Step1 extends PureComponent {
 
           {dateColumns.length > 0 && (
             <Field
-              ref={(c) => {
+              ref={c => {
                 if (c) FORM_ELEMENTS.elements.mainDateField = c;
               }}
               onChange={value => this.props.onChange({ mainDateField: value })}
               options={dateColumns}
               className="-fluid"
               properties={{
-                name: 'mainDateField',
-                label: 'Main date',
-                type: 'text',
-                placeholder: 'Select or type',
+                name: "mainDateField",
+                label: "Main date",
+                type: "text",
+                placeholder: "Select or type",
                 optionRenderer: this.renderMainDateOptions,
                 default: this.state.form.mainDateField
               }}
@@ -684,7 +681,7 @@ class Step1 extends PureComponent {
               <div className="row l-row">
                 <div className="column small-12 medium-6">
                   <Field
-                    ref={(c) => {
+                    ref={c => {
                       if (c) FORM_ELEMENTS.elements.lat = c;
                     }}
                     onChange={value => this.onLegendChange({ lat: value })}
@@ -692,10 +689,10 @@ class Step1 extends PureComponent {
                     options={columnFieldsOptions}
                     className="-fluid"
                     properties={{
-                      name: 'lat',
-                      label: 'Latitude',
-                      type: 'text',
-                      placeholder: 'Select or type the column...',
+                      name: "lat",
+                      label: "Latitude",
+                      type: "text",
+                      placeholder: "Select or type the column...",
                       disabled: !!this.state.dataset,
                       default: this.state.form.legend.lat
                     }}
@@ -706,7 +703,7 @@ class Step1 extends PureComponent {
 
                 <div className="column small-12 medium-6">
                   <Field
-                    ref={(c) => {
+                    ref={c => {
                       if (c) FORM_ELEMENTS.elements.long = c;
                     }}
                     onChange={value => this.onLegendChange({ long: value })}
@@ -714,10 +711,10 @@ class Step1 extends PureComponent {
                     options={columnFieldsOptions}
                     className="-fluid"
                     properties={{
-                      name: 'long',
-                      label: 'Longitude',
-                      type: 'text',
-                      placeholder: 'Select or type the column...',
+                      name: "long",
+                      label: "Longitude",
+                      type: "text",
+                      placeholder: "Select or type the column...",
                       disabled: !!this.state.dataset,
                       default: this.state.form.legend.long
                     }}
@@ -728,7 +725,7 @@ class Step1 extends PureComponent {
 
                 <div className="column small-12 medium-6">
                   <Field
-                    ref={(c) => {
+                    ref={c => {
                       if (c) FORM_ELEMENTS.elements.date = c;
                     }}
                     onChange={value => this.onLegendChange({ date: value })}
@@ -736,11 +733,11 @@ class Step1 extends PureComponent {
                     options={columnFieldsOptions}
                     className="-fluid"
                     properties={{
-                      name: 'date',
-                      label: 'Date',
-                      type: 'text',
+                      name: "date",
+                      label: "Date",
+                      type: "text",
                       disabled: !!this.state.dataset,
-                      placeholder: 'Select or type the column..'
+                      placeholder: "Select or type the column.."
                     }}
                   >
                     {Select}
@@ -749,7 +746,7 @@ class Step1 extends PureComponent {
 
                 <div className="column small-12 medium-6">
                   <Field
-                    ref={(c) => {
+                    ref={c => {
                       if (c) FORM_ELEMENTS.elements.country = c;
                     }}
                     onChange={value => this.onLegendChange({ country: value })}
@@ -757,11 +754,11 @@ class Step1 extends PureComponent {
                     options={columnFieldsOptions}
                     className="-fluid"
                     properties={{
-                      name: 'country',
-                      label: 'Country',
-                      type: 'text',
+                      name: "country",
+                      label: "Country",
+                      type: "text",
                       disabled: !!this.state.dataset,
-                      placeholder: 'Select or type the column...'
+                      placeholder: "Select or type the column..."
                     }}
                   >
                     {Select}
@@ -786,17 +783,17 @@ class Step1 extends PureComponent {
                   <div className="column small-12 medium-6">
                     <Field
                       options={columns.map(c => ({ label: c.name, value: c.name }))}
-                      ref={(c) => {
+                      ref={c => {
                         if (c) FORM_ELEMENTS.elements.widgetRelevantProps = c;
                       }}
                       onChange={value => this.props.onChange({ widgetRelevantProps: value })}
                       className="-fluid"
                       properties={{
-                        name: 'widgetRelevantProps',
-                        label: 'Widget relevant columns',
+                        name: "widgetRelevantProps",
+                        label: "Widget relevant columns",
                         multi: true,
-                        instanceId: 'selectWidgetRelevantProps',
-                        placeholder: 'Select the dataset columns...',
+                        instanceId: "selectWidgetRelevantProps",
+                        placeholder: "Select the dataset columns...",
                         default: this.state.form.widgetRelevantProps.map(column => ({
                           label: column,
                           value: column
@@ -814,17 +811,17 @@ class Step1 extends PureComponent {
                   <div className="column small-12 medium-6">
                     <Field
                       options={columns.map(c => ({ label: c.name, value: c.name }))}
-                      ref={(c) => {
+                      ref={c => {
                         if (c) FORM_ELEMENTS.elements.layerRelevantProps = c;
                       }}
                       onChange={value => this.props.onChange({ layerRelevantProps: value })}
                       className="-fluid"
                       properties={{
-                        name: 'layerRelevantProps',
-                        label: 'Layer relevant columns',
+                        name: "layerRelevantProps",
+                        label: "Layer relevant columns",
                         multi: true,
-                        instanceId: 'selectLayerRelevantProps',
-                        placeholder: 'Select the dataset columns...',
+                        instanceId: "selectLayerRelevantProps",
+                        placeholder: "Select the dataset columns...",
                         default: this.state.form.layerRelevantProps.map(column => ({
                           label: column,
                           value: column

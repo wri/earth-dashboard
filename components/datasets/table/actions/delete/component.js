@@ -1,16 +1,16 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { toastr } from 'react-redux-toastr';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import { toastr } from "react-redux-toastr";
 
 // services
-import { deleteDataset } from 'services/dataset';
+import { deleteDataset } from "services/dataset";
 
 class DeleteAction extends PureComponent {
   static propTypes = {
     data: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     onRowDelete: PropTypes.func.isRequired
-  }
+  };
 
   handleOnClickDelete = () => {
     const {
@@ -24,26 +24,23 @@ class DeleteAction extends PureComponent {
         deleteDataset(id, token)
           .then(() => {
             onRowDelete(id);
-            toastr.success('Success', `The dataset "${id}" - "${name}" has been removed correctly`);
+            toastr.success("Success", `The dataset "${id}" - "${name}" has been removed correctly`);
           })
-          .catch((err) => {
+          .catch(err => {
             try {
-              err.map(er => toastr.error('Error', `The dataset "${id}" - "${name}" was not deleted. ${er.detail}`));
+              err.map(er => toastr.error("Error", `The dataset "${id}" - "${name}" was not deleted. ${er.detail}`));
             } catch (e) {
-              toastr.error('Error', `The dataset "${id}" - "${name}" was not deleted. Try again.`);
+              toastr.error("Error", `The dataset "${id}" - "${name}" was not deleted. Try again.`);
             }
           });
       }
     });
-  }
+  };
 
   render() {
     return (
       <span>
-        <button
-          className="c-btn"
-          onClick={this.handleOnClickDelete}
-        >
+        <button className="c-btn" onClick={this.handleOnClickDelete}>
           Remove
         </button>
       </span>

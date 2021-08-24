@@ -1,3 +1,3 @@
-import CombinedWidgetComponent from './component';
+import CombinedWidgetComponent from "./component";
 
 export default CombinedWidgetComponent;

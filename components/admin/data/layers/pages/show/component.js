@@ -1,16 +1,18 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
 
 // components
-import LayersForm from 'components/admin/data/layers/form';
+import LayersForm from "components/admin/data/layers/form";
 
 class LayersShow extends PureComponent {
   static propTypes = {
     dataset: PropTypes.string.isRequired,
     user: PropTypes.object.isRequired
-  }
+  };
 
-  handleSubmit = () => { window.scrollTo(0, 0); }
+  handleSubmit = () => {
+    window.scrollTo(0, 0);
+  };
 
   render() {
     const {
@@ -20,14 +22,14 @@ class LayersShow extends PureComponent {
 
     return (
       <div className="c-layers-show">
-        {token &&
+        {token && (
           <LayersForm
             id={dataset}
             application={[process.env.APPLICATIONS]}
             authorization={token}
             onSubmit={this.handleSubmit}
           />
-        }
+        )}
       </div>
     );
   }

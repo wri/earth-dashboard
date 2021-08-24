@@ -1,3 +1,3 @@
-import BreadcrumbsComponent from './component';
+import BreadcrumbsComponent from "./component";
 
 export default BreadcrumbsComponent;

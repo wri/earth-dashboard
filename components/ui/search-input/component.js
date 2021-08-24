@@ -1,22 +1,22 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import escapeRegExp from 'lodash/escapeRegExp';
-import classnames from 'classnames';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import escapeRegExp from "lodash/escapeRegExp";
+import classnames from "classnames";
 
 // Next
-import Link from 'next/link';
+import Link from "next/link";
 
 // Components
-import Icon from 'components/ui/icon';
+import Icon from "components/ui/icon";
 
 // styles
-import styles from './search-input.module.scss';
+import styles from "./search-input.module.scss";
 
 class SearchInput extends PureComponent {
   static defaultProps = {
     link: {},
     onlyDesktop: false
-  }
+  };
 
   static propTypes = {
     input: PropTypes.object.isRequired,
@@ -43,17 +43,17 @@ class SearchInput extends PureComponent {
     }
   }
 
-  onSearch = (e) => {
-    this.setState({ value: e.currentTarget.value || '' }, () => {
+  onSearch = e => {
+    this.setState({ value: e.currentTarget.value || "" }, () => {
       const { value } = this.state;
       if (this.props.escapeText) this.props.onSearch(escapeRegExp(value));
       if (!this.props.escapeText) this.props.onSearch(value);
     });
-  }
+  };
 
   onKeyDown(c) {
     const { onKeyDown } = this.props;
-    if (onKeyDown && typeof onKeyDown === 'function') {
+    if (onKeyDown && typeof onKeyDown === "function") {
       return onKeyDown(c);
     }
     return null;
@@ -61,29 +61,28 @@ class SearchInput extends PureComponent {
 
   getInputRef(c) {
     const { getRef } = this.props;
-    if (getRef && typeof getRef === 'function') {
+    if (getRef && typeof getRef === "function") {
       return getRef(c);
     }
     return null;
   }
-
 
   render() {
     const { value } = this.state;
     const { link, input, isHeader } = this.props;
     const { onlyDesktop } = link;
 
-    const classNames = classnames({ 
-      [styles['c-search-input']]: true,
-      [styles['c-search-input--header']]: isHeader 
+    const classNames = classnames({
+      [styles["c-search-input"]]: true,
+      [styles["c-search-input--header"]]: isHeader
     });
 
-    const inputClassNames = classnames({ 'c-search-input--header': isHeader });
+    const inputClassNames = classnames({ "c-search-input--header": isHeader });
 
     const linkClassNames = classnames({
-      '-desktopOnly': onlyDesktop,
-      'c-button': true,
-      '-primary': true
+      "-desktopOnly": onlyDesktop,
+      "c-button": true,
+      "-primary": true
     });
 
     return (
@@ -96,23 +95,23 @@ class SearchInput extends PureComponent {
               onKeyDown={c => this.onKeyDown(c)}
               onChange={this.onSearch}
               placeholder={input.placeholder}
-              value={value || ''}
+              value={value || ""}
               type="search"
             />
             {!isHeader && <Icon name="icon-search" className="-small" />}
           </div>
         </div>
 
-        {link.route &&
-          <Link href={
-            {
+        {link.route && (
+          <Link
+            href={{
               pathname: link.route,
               query: link.params
             }}
           >
             <a className={linkClassNames}>{link.label}</a>
           </Link>
-        }
+        )}
       </div>
     );
   }

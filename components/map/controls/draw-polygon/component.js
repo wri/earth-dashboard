@@ -1,13 +1,12 @@
-
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
 // components
-import Icon from 'components/ui/icon';
+import Icon from "components/ui/icon";
 
 // styles
-import styles from './draw-polygon-control.scss';
+import styles from "./draw-polygon-control.scss";
 
 class DrawPolygonControls extends PureComponent {
   static propTypes = {
@@ -16,54 +15,47 @@ class DrawPolygonControls extends PureComponent {
     showRemovePolygonButton: PropTypes.bool,
     onDrawPolygon: PropTypes.func.isRequired,
     onRemovePolygon: PropTypes.func.isRequired
-  }
+  };
 
   static defaultProps = {
     className: null,
     showRemovePolygonButton: true
-  }
+  };
 
   handleDrawPolygon = () => {
     const { onDrawPolygon } = this.props;
 
     onDrawPolygon();
-  }
+  };
 
   handleRemovePolygon = () => {
     const { onRemovePolygon } = this.props;
 
     onRemovePolygon();
-  }
+  };
 
   render() {
     const { className, drawing, showRemovePolygonButton } = this.props;
     const componentClass = classnames({
-      [styles['c-draw-polygon-control']]: true,
+      [styles["c-draw-polygon-control"]]: true,
       [className]: !!className
     });
 
     const drawPolygonBtnClass = classnames({
-      'draw-polygon--btn': true,
-      '-drawing': drawing
+      "draw-polygon--btn": true,
+      "-drawing": drawing
     });
 
     return (
       <div className={componentClass}>
-        <button
-          type="button"
-          className={drawPolygonBtnClass}
-          onClick={this.handleDrawPolygon}
-        >
+        <button type="button" className={drawPolygonBtnClass} onClick={this.handleDrawPolygon}>
           <Icon name="icon-draw-polygon" />
         </button>
         {showRemovePolygonButton && (
-          <button
-            type="button"
-            className="remove-polygon--btn"
-            onClick={this.handleRemovePolygon}
-          >
+          <button type="button" className="remove-polygon--btn" onClick={this.handleRemovePolygon}>
             <Icon name="icon-bin" />
-          </button>)}
+          </button>
+        )}
       </div>
     );
   }

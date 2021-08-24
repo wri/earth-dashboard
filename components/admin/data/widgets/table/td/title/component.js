@@ -1,12 +1,12 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import Link from "next/link";
 
 class TitleTD extends PureComponent {
   static propTypes = {
     row: PropTypes.object.isRequired,
     value: PropTypes.string.isRequired
-  }
+  };
 
   render() {
     const {
@@ -16,7 +16,8 @@ class TitleTD extends PureComponent {
 
     return (
       <td className="main">
-        <Link href={{
+        <Link
+          href={{
             pathname: `/admin/data/widgets/${id}/edit`,
             query: {
               dataset

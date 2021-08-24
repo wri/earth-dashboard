@@ -1,14 +1,20 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // actions
-import { setSearchOpened } from 'layout/header/actions';
-import { setSearchPage, setSearchUrl, setSearchTerm, fetchSearch, setSearchSelected } from 'components/search-results/actions';
+import { setSearchOpened } from "layout/header/actions";
+import {
+  setSearchPage,
+  setSearchUrl,
+  setSearchTerm,
+  fetchSearch,
+  setSearchSelected
+} from "components/search-results/actions";
 
 // selectors
-import { selectedSearchItem } from './selectors';
+import { selectedSearchItem } from "./selectors";
 
 // component
-import SearchBar from './component';
+import SearchBar from "./component";
 
 export default connect(
   state => ({

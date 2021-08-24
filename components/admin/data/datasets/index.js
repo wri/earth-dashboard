@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // component
-import DatasetsTab from './component';
+import DatasetsTab from "./component";
 
 export default connect(
   state => ({

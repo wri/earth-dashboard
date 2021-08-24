@@ -1,12 +1,9 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // actions
-import { setUser } from 'slices/user';
+import { setUser } from "slices/user";
 
 // component
-import LoginModal from './component';
+import LoginModal from "./component";
 
-export default connect(
-  null,
-  { setUser }
-)(LoginModal);
+export default connect(null, { setUser })(LoginModal);

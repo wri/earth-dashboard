@@ -1,17 +1,17 @@
-import { useEffect } from 'react';
-import { ApolloProvider } from '@apollo/client';
-import { APOLLO_CLIENT } from 'utils/news';
+import { useEffect } from "react";
+import { ApolloProvider } from "@apollo/client";
+import { APOLLO_CLIENT } from "utils/news";
 
 // store
-import { wrapper } from 'store';
+import { wrapper } from "store";
 
 // global styles
-import 'css/index.scss';
+import "css/index.scss";
 
 // actions
-import { setRouter } from 'slices/routes';
-import { setUser } from 'slices/user';
-import { setHostname } from 'slices/common';
+import { setRouter } from "slices/routes";
+import { setUser } from "slices/user";
+import { setHostname } from "slices/common";
 import { useRouter } from "next/router";
 
 function EDApp({ Component, pageProps }) {
@@ -34,11 +34,11 @@ function EDApp({ Component, pageProps }) {
   );
 }
 
-EDApp.getInitialProps = async (appContext) => {
+EDApp.getInitialProps = async appContext => {
   const { router, ctx, Component } = appContext;
   const { store, req, query } = ctx;
   const { asPath } = router;
-  const isServer = typeof window === 'undefined';
+  const isServer = typeof window === "undefined";
   const pathname = req ? asPath : appContext.asPath;
 
   const url = { asPath, pathname, query };
@@ -58,9 +58,7 @@ EDApp.getInitialProps = async (appContext) => {
     }
   }
 
-  const appProps = Component.getInitialProps
-    ? await Component.getInitialProps(ctx)
-    : {};
+  const appProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
 
   return { pageProps: { ...appProps, user, isServer, url } };
 };

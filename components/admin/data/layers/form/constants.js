@@ -4,8 +4,8 @@ export const STATE_DEFAULT = {
   submitting: false,
   loading: false,
   form: {
-    name: '',
-    description: '',
+    name: "",
+    description: "",
     provider: null,
     layerConfig: {},
     legendConfig: {},
@@ -18,7 +18,7 @@ export const STATE_DEFAULT = {
 
 export const FORMAT = {
   options(o) {
-    return o.map((item) => {
+    return o.map(item => {
       return { label: item.column, value: item.column };
     });
   },
@@ -26,7 +26,7 @@ export const FORMAT = {
     if (!interactions || !added) {
       return [];
     }
-    return added.map((item) => {
+    return added.map(item => {
       const interaction = interactions.fields.find(field => field.label === item.column);
 
       if (interaction) {
@@ -39,12 +39,12 @@ export const FORMAT = {
   resolveKey(label) {
     const labelLower = label.toLowerCase();
     switch (labelLower) {
-      case 'field':
-        return 'column';
-      case 'label':
-        return 'property';
-      case 'format':
-        return 'type';
+      case "field":
+        return "column";
+      case "label":
+        return "property";
+      case "format":
+        return "type";
       default:
         return labelLower;
     }
@@ -52,16 +52,16 @@ export const FORMAT = {
 };
 
 export const FORM_ELEMENTS = {
-  elements: {
-  },
+  elements: {},
   removeInteraction(interaction) {
     const { elements } = this;
-    ['Field', 'Label', 'Prefix', 'Suffix', 'Format'].map(item =>
-      delete elements[`${item.toLowerCase()}${interaction.column}`]);
+    ["Field", "Label", "Prefix", "Suffix", "Format"].map(
+      item => delete elements[`${item.toLowerCase()}${interaction.column}`]
+    );
   },
   validate() {
     const { elements } = this;
-    Object.keys(elements).forEach((k) => {
+    Object.keys(elements).forEach(k => {
       elements[k].validate();
     });
   },
@@ -76,11 +76,10 @@ export const FORM_ELEMENTS = {
   }
 };
 
-
 export const PROVIDER_OPTIONS = [
-  { label: 'Carto', value: 'cartodb' },
-  { label: 'ARCGIS: Feature service', value: 'featureservice' },
-  { label: 'Leaflet', value: 'leaflet' },
-  { label: 'WMS', value: 'wms' },
-  { label: 'GEE', value: 'gee' }
+  { label: "Carto", value: "cartodb" },
+  { label: "ARCGIS: Feature service", value: "featureservice" },
+  { label: "Leaflet", value: "leaflet" },
+  { label: "WMS", value: "wms" },
+  { label: "GEE", value: "gee" }
 ];

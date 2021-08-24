@@ -1,13 +1,13 @@
-import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import Modal from 'react-modal';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import Modal from "react-modal";
 
 // components
-import Icon from 'components/ui/icon';
+import Icon from "components/ui/icon";
 
 // styles
-import styles from './modal2-overlay.module.scss';
+import styles from "./modal2-overlay.module.scss";
 
 class ModalComponent extends PureComponent {
   static propTypes = {
@@ -29,39 +29,28 @@ class ModalComponent extends PureComponent {
 
   // eslint-disable-line react/prefer-stateless-function
   render() {
-    const {
-      isOpen,
-      className,
-      header,
-      onAfterOpen,
-      onRequestClose
-    } = this.props;
-    const classNames = classnames({ 
-      [styles['c-modal2']]: true,
-      [className]: !!className 
+    const { isOpen, className, header, onAfterOpen, onRequestClose } = this.props;
+    const classNames = classnames({
+      [styles["c-modal2"]]: true,
+      [className]: !!className
     });
     return (
       <Modal
         className={classNames}
-        overlayClassName={styles['c-modal2-overlay']}
+        overlayClassName={styles["c-modal2-overlay"]}
         bodyOpenClassName="-no-scroll"
         isOpen={isOpen}
         ariaHideApp={false}
-        {...onAfterOpen && { onAfterOpen }}
+        {...(onAfterOpen && { onAfterOpen })}
         onRequestClose={onRequestClose}
       >
         {header}
 
-        <button
-          className={styles['modal-close']}
-          onClick={e => e.stopPropagation() || onRequestClose()}
-        >
+        <button className={styles["modal-close"]} onClick={e => e.stopPropagation() || onRequestClose()}>
           <Icon name="icon-cross" className="-small" />
         </button>
 
-        <div className={styles['modal-content']}>
-          {this.props.children}
-        </div>
+        <div className={styles["modal-content"]}>{this.props.children}</div>
       </Modal>
     );
   }

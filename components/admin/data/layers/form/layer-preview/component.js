@@ -1,24 +1,20 @@
-import { PureComponent, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
-import isEqual from 'react-fast-compare';
-import isEmpty from 'lodash/isEmpty';
-import { Popup } from 'react-map-gl';
-import {
-  Legend,
-  LegendListItem,
-  LegendItemTypes
-} from 'vizzuality-components';
+import { PureComponent, Fragment } from "react";
+import PropTypes from "prop-types";
+import debounce from "lodash/debounce";
+import isEqual from "react-fast-compare";
+import isEmpty from "lodash/isEmpty";
+import { Popup } from "react-map-gl";
+import { Legend, LegendListItem, LegendItemTypes } from "vizzuality-components";
 
 // components
-import Map from 'components/map';
-import LayerManager from 'components/map/layer-manager';
-import MapControls from 'components/map/controls';
-import ZoomControls from 'components/map/controls/zoom';
-import LayerPopup from 'components/map/popup';
+import Map from "components/map";
+import LayerManager from "components/map/layer-manager";
+import MapControls from "components/map/controls";
+import ZoomControls from "components/map/controls/zoom";
+import LayerPopup from "components/map/popup";
 
 // constants
-import { MAPSTYLES, BASEMAPS, LABELS, DEFAULT_VIEWPORT } from 'components/map/constants';
+import { MAPSTYLES, BASEMAPS, LABELS, DEFAULT_VIEWPORT } from "components/map/constants";
 
 class LayerPreviewComponent extends PureComponent {
   static propTypes = {
@@ -60,7 +56,7 @@ class LayerPreviewComponent extends PureComponent {
     setLayerInteraction(interactions);
 
     return true;
-  }
+  };
 
   getInteractions = ({ features, interaction }) => {
     // if the user clicks on a zone where there is no data in any current layer
@@ -69,23 +65,29 @@ class LayerPreviewComponent extends PureComponent {
     const noDataAvailable = !features.length;
 
     if (noDataAvailable) {
-      return Object.keys(interaction).reduce((accumulator, currentValue) => ({
-        ...accumulator,
-        [currentValue]: {}
-      }), {});
+      return Object.keys(interaction).reduce(
+        (accumulator, currentValue) => ({
+          ...accumulator,
+          [currentValue]: {}
+        }),
+        {}
+      );
     }
 
-    return features.reduce((accumulator, currentValue) => ({
-      ...accumulator,
-      [currentValue.layer.source]: { data: currentValue.properties }
-    }), {});
-  }
+    return features.reduce(
+      (accumulator, currentValue) => ({
+        ...accumulator,
+        [currentValue.layer.source]: { data: currentValue.properties }
+      }),
+      {}
+    );
+  };
 
-  handleViewport = debounce((viewport) => {
+  handleViewport = debounce(viewport => {
     this.setState({ viewport });
-  }, 250)
+  }, 250);
 
-  handleZoom = (zoom) => {
+  handleZoom = zoom => {
     const { viewport: currentViewport } = this.state;
 
     this.setState({
@@ -94,33 +96,24 @@ class LayerPreviewComponent extends PureComponent {
         zoom
       }
     });
-  }
+  };
 
   handleRefreshPreview = () => {
     const { layer, interactions, generateLayerGroups } = this.props;
 
     generateLayerGroups({ layer, interactions });
-  }
+  };
 
   handleClosePopup = () => {
     this.props.setLayerInteractionLatLng(null);
-  }
+  };
 
   render() {
-    const {
-      adminLayerPreview,
-      layers,
-      setLayerInteractionSelected
-    } = this.props;
+    const { adminLayerPreview, layers, setLayerInteractionSelected } = this.props;
 
     const { viewport } = this.state;
 
-    const {
-      layerGroups,
-      interaction,
-      interactionLatLng,
-      interactionSelected
-    } = adminLayerPreview;
+    const { layerGroups, interaction, interactionLatLng, interactionSelected } = adminLayerPreview;
 
     const shouldRenderPopup = !isEmpty(interactionLatLng) && layers.length;
 
@@ -156,12 +149,9 @@ class LayerPreviewComponent extends PureComponent {
             >
               {_map => (
                 <Fragment>
-                  <LayerManager
-                    map={_map}
-                    layers={layers}
-                  />
+                  <LayerManager map={_map} layers={layers} />
 
-                  {shouldRenderPopup &&
+                  {shouldRenderPopup && (
                     <Popup
                       {...interactionLatLng}
                       closeButton
@@ -176,30 +166,20 @@ class LayerPreviewComponent extends PureComponent {
                         onChangeInteractiveLayer={setLayerInteractionSelected}
                       />
                     </Popup>
-                    }
+                  )}
                 </Fragment>
               )}
             </Map>
           </div>
 
           <MapControls>
-            <ZoomControls
-              viewport={viewport}
-              onClick={this.handleZoom}
-            />
+            <ZoomControls viewport={viewport} onClick={this.handleZoom} />
           </MapControls>
 
           <div className="c-legend-map">
-            <Legend
-              maxHeight={140}
-              sortable={false}
-            >
+            <Legend maxHeight={140} sortable={false}>
               {layerGroups.map((lg, i) => (
-                <LegendListItem
-                  index={i}
-                  key={lg.dataset}
-                  layerGroup={lg}
-                >
+                <LegendListItem index={i} key={lg.dataset} layerGroup={lg}>
                   <LegendItemTypes />
                 </LegendListItem>
               ))}
@@ -207,11 +187,7 @@ class LayerPreviewComponent extends PureComponent {
           </div>
         </div>
         <div className="c-button-container -j-end layer-preview-actions">
-          <button
-            type="button"
-            className="c-button -primary"
-            onClick={() => this.handleRefreshPreview()}
-          >
+          <button type="button" className="c-button -primary" onClick={() => this.handleRefreshPreview()}>
             Refresh
           </button>
         </div>

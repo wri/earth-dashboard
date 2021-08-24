@@ -82,29 +82,29 @@
     "wri-json-api-serializer": "1.0.1"
   },
   "devDependencies": {
+    "@3sidedcube/prettier-config": "^1.0.0",
     "babel-cli": "6.26.0",
     "babel-eslint": "^9.0.0",
     "babel-preset-env": "1.6.0",
     "colors": "1.1.2",
-    "eslint": "^4.9.0",
-    "eslint-config-airbnb": "17.0.0",
-    "eslint-config-prettier": "2.9.0",
-    "eslint-config-vizzuality": "1.0.14",
-    "eslint-import-resolver-babel-module": "5.0.0-beta.1",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "6.1.1",
-    "eslint-plugin-react": "^7.4.0",
-    "eslint-plugin-react-hooks": "^2.0.1",
-    "lint-staged": "^9.2.5",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
     "webpack-bundle-analyzer": "^3.3.2"
   },
+  "prettier": "@3sidedcube/prettier-config",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "static-build": "next build && next export",
     "start": "next start",
-    "test": "echo \"No Tests Specified\""
+    "test": "echo \"No Tests Specified\"",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
   },
   "lint-staged": {
     "*.{js,jsx}": [

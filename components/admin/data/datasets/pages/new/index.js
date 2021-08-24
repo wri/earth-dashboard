@@ -1,9 +1,6 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // component
-import DatasetsNew from './component';
+import DatasetsNew from "./component";
 
-export default connect(
-  state => ({ user: state.user }),
-  null
-)(DatasetsNew);
+export default connect(state => ({ user: state.user }), null)(DatasetsNew);

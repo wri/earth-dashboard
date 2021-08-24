@@ -1,31 +1,25 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import { toastr } from 'react-redux-toastr';
-import Graph from 'react-graph-vis';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import { toastr } from "react-redux-toastr";
+import Graph from "react-graph-vis";
 
 // Components
-import Spinner from 'components/ui/spinner';
-import Field from 'components/form/Field';
-import Select from 'components/form/SelectInput';
-import Navigation from 'components/form/navigation';
+import Spinner from "components/ui/spinner";
+import Field from "components/form/Field";
+import Select from "components/form/SelectInput";
+import Navigation from "components/form/navigation";
 
 // Services
-import {
-  fetchAllTags,
-  fetchInferredTags
-} from 'services/graph';
-import {
-  fetchDatasetTags,
-  updateDatasetTags
-} from 'services/dataset';
+import { fetchAllTags, fetchInferredTags } from "services/graph";
+import { fetchDatasetTags, updateDatasetTags } from "services/dataset";
 
 // styles
-import styles from './tags-form.module.scss';
+import styles from "./tags-form.module.scss";
 
 const graphOptions = {
-  height: '100%',
+  height: "100%",
   layout: { hierarchical: false },
-  edges: { color: '#000000' }
+  edges: { color: "#000000" }
 };
 
 class TagsForm extends Component {
@@ -47,7 +41,7 @@ class TagsForm extends Component {
   /**
    * COMPONENT LIFECYCLE
    * - componentDidMount
-  */
+   */
   componentDidMount() {
     this.loadAllTags();
     this.loadKnowledgeGraph();
@@ -57,19 +51,21 @@ class TagsForm extends Component {
   loadDatasetTags() {
     this.setState({ loadingDatasetTags: true });
     fetchDatasetTags(this.props.dataset)
-      .then((response) => {
-        const knowledgeGraphVoc = response.find(elem => elem.id === 'knowledge_graph');
-        const datasetTags = knowledgeGraphVoc ? knowledgeGraphVoc.tags
-          : knowledgeGraphVoc;
-        this.setState({
-          selectedTags: datasetTags,
-          savedTags: datasetTags,
-          loadingDatasetTags: false,
-          datasetHasTags: datasetTags && datasetTags.length > 0
-        }, () => this.loadInferredTags());
+      .then(response => {
+        const knowledgeGraphVoc = response.find(elem => elem.id === "knowledge_graph");
+        const datasetTags = knowledgeGraphVoc ? knowledgeGraphVoc.tags : knowledgeGraphVoc;
+        this.setState(
+          {
+            selectedTags: datasetTags,
+            savedTags: datasetTags,
+            loadingDatasetTags: false,
+            datasetHasTags: datasetTags && datasetTags.length > 0
+          },
+          () => this.loadInferredTags()
+        );
       })
-      .catch((err) => {
-        toastr.error('Error loading the dataset tags');
+      .catch(err => {
+        toastr.error("Error loading the dataset tags");
         console.error(err);
         this.setState({ loadingDatasetTags: false });
       });
@@ -77,9 +73,9 @@ class TagsForm extends Component {
 
   loadKnowledgeGraph() {
     // Topics selector
-    fetch(new Request('/static/data/knowledgeGraph.json', { credentials: 'same-origin' }))
+    fetch(new Request("/static/data/knowledgeGraph.json", { credentials: "same-origin" }))
       .then(response => response.json())
-      .then((data) => {
+      .then(data => {
         this.knowledgeGraph = {
           edges: data.edges.map(elem => ({
             from: elem.source,
@@ -96,11 +92,10 @@ class TagsForm extends Component {
     const { inferredTags, selectedTags } = this.state;
     this.setState({
       graph: {
-        edges: this.knowledgeGraph.edges
-          .filter(elem => inferredTags.find(tag => tag.id === elem.to)),
+        edges: this.knowledgeGraph.edges.filter(elem => inferredTags.find(tag => tag.id === elem.to)),
         nodes: this.knowledgeGraph.nodes
           .filter(elem => inferredTags.find(tag => tag.id === elem.id))
-          .map(elem => ({ ...elem, color: selectedTags.find(tag => tag === elem.id) ? '#c32d7b' : '#F4F6F7' }))
+          .map(elem => ({ ...elem, color: selectedTags.find(tag => tag === elem.id) ? "#c32d7b" : "#F4F6F7" }))
       }
     });
   }
@@ -109,8 +104,8 @@ class TagsForm extends Component {
    * UI EVENTS
    * - handleSubmit
    * - handleTagsChange
-  */
-  handleSubmit = (event) => {
+   */
+  handleSubmit = event => {
     const { dataset, user } = this.props;
     const { selectedTags, savedTags, datasetHasTags } = this.state;
 
@@ -118,47 +113,45 @@ class TagsForm extends Component {
 
     if (selectedTags.length !== 0 || (savedTags && savedTags.length !== 0)) {
       this.setState({ loading: true });
-      updateDatasetTags(dataset, selectedTags, user.token,
-        selectedTags && selectedTags.length > 0 && datasetHasTags)
-        .then((response) => {
-          toastr.success('Success', 'Tags updated successfully');
+      updateDatasetTags(dataset, selectedTags, user.token, selectedTags && selectedTags.length > 0 && datasetHasTags)
+        .then(response => {
+          toastr.success("Success", "Tags updated successfully");
           this.setState({
             savedTags: response[0] ? response[0].tags : [],
             datasetHasTags: response[0] && response[0].tags.length > 0,
             loading: false
           });
         })
-        .catch((err) => {
-          toastr.error('Error updating the tags');
+        .catch(err => {
+          toastr.error("Error updating the tags");
           console.error(err);
           this.setState({ loading: false });
         });
     } else {
-      toastr.success('Success', 'Tags updated successfully');
+      toastr.success("Success", "Tags updated successfully");
     }
-  }
-  handleTagsChange = (value) => {
-    this.setState({ selectedTags: value },
-      () => this.loadInferredTags());
-  }
+  };
+  handleTagsChange = value => {
+    this.setState({ selectedTags: value }, () => this.loadInferredTags());
+  };
 
   /**
-  * HELPER FUNCTIONS
-  * - loadAllTags
-  * - loadInferredTags
-  */
+   * HELPER FUNCTIONS
+   * - loadAllTags
+   * - loadInferredTags
+   */
   loadAllTags() {
     this.setState({ loadingAllTags: true });
     fetchAllTags()
-      .then((response) => {
+      .then(response => {
         this.setState({
           loadingAllTags: false,
           tags: response.map(val => ({ label: val.label, value: val.id }))
         });
       })
-      .catch((err) => {
+      .catch(err => {
         this.setState({ loadingAllTags: false });
-        toastr.error('Error loading tags');
+        toastr.error("Error loading tags");
         console.error(err);
       });
   }
@@ -166,16 +159,19 @@ class TagsForm extends Component {
     const { selectedTags } = this.state;
     this.setState({ loadingInferredTags: true });
     if (selectedTags && selectedTags.length > 0) {
-      fetchInferredTags({ concepts: selectedTags.join(',') })
-        .then((inferredTags) => {
-          this.setState({
-            loadingInferredTags: false,
-            inferredTags
-          }, () => this.loadSubGraph());
+      fetchInferredTags({ concepts: selectedTags.join(",") })
+        .then(inferredTags => {
+          this.setState(
+            {
+              loadingInferredTags: false,
+              inferredTags
+            },
+            () => this.loadSubGraph()
+          );
         })
-        .catch((err) => {
+        .catch(err => {
           this.setState({ loadingInferredTags: false });
-          toastr.error('Error loading inferred tags');
+          toastr.error("Error loading inferred tags");
           console.error(err);
         });
     } else {
@@ -188,26 +184,18 @@ class TagsForm extends Component {
   }
 
   render() {
-    const {
-      tags, selectedTags, inferredTags, graph, loadingDatasetTags,
-      loadingAllTags, loadingInferredTags
-    } = this.state;
+    const { tags, selectedTags, inferredTags, graph, loadingDatasetTags, loadingAllTags, loadingInferredTags } =
+      this.state;
 
     return (
-      <form
-        className={styles['c-tags-form']}
-        onSubmit={this.handleSubmit}
-      >
-        <Spinner
-          className="-light"
-          isLoading={loadingAllTags || loadingDatasetTags}
-        />
+      <form className={styles["c-tags-form"]} onSubmit={this.handleSubmit}>
+        <Spinner className="-light" isLoading={loadingAllTags || loadingDatasetTags} />
         <Field
           onChange={value => this.handleTagsChange(value)}
           options={tags}
           properties={{
-            name: 'tags',
-            label: 'Tags',
+            name: "tags",
+            label: "Tags",
             multi: true,
             value: selectedTags,
             default: selectedTags
@@ -216,38 +204,26 @@ class TagsForm extends Component {
           {Select}
         </Field>
         <h5>Inferred tags:</h5>
-        <div className={styles['inferred-tags']}>
-          {inferredTags.map(tag =>
-            (
-              <div
-                className="tag"
-                key={tag.id}
-              >
-                {tag.label}
-              </div>
-            ))}
+        <div className={styles["inferred-tags"]}>
+          {inferredTags.map(tag => (
+            <div className="tag" key={tag.id}>
+              {tag.label}
+            </div>
+          ))}
         </div>
-        <div className={styles['graph-div']}>
-          <Spinner
-            className="-light -relative"
-            isLoading={loadingInferredTags}
-          />
-          {graph &&
-            <Graph
-              graph={graph}
-              options={graphOptions}
-            />
-          }
+        <div className={styles["graph-div"]}>
+          <Spinner className="-light -relative" isLoading={loadingInferredTags} />
+          {graph && <Graph graph={graph} options={graphOptions} />}
         </div>
 
-        {!this.state.loading &&
+        {!this.state.loading && (
           <Navigation
             step={this.state.step}
             stepLength={this.state.stepLength}
             submitting={this.state.submitting}
             onStepChange={this.handleSubmit}
           />
-        }
+        )}
       </form>
     );
   }

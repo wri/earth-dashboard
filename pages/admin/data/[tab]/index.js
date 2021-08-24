@@ -1,7 +1,7 @@
-import LayoutAdminData from 'layout/admin/data';
+import LayoutAdminData from "layout/admin/data";
 
 function AdminPage() {
-  return (<LayoutAdminData />);
+  return <LayoutAdminData />;
 }
 
 export default AdminPage;

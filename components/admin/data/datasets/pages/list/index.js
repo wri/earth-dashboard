@@ -1,3 +1,3 @@
-import DatasetsIndex from './component';
+import DatasetsIndex from "./component";
 
 export default DatasetsIndex;

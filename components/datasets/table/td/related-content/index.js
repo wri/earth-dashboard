@@ -1,3 +1,3 @@
-import RelatedContentTD from './component';
+import RelatedContentTD from "./component";
 
 export default RelatedContentTD;

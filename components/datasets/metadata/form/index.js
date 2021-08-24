@@ -1,15 +1,12 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // actions
-import { setSources, resetSources } from 'redactions/admin/sources';
+import { setSources, resetSources } from "redactions/admin/sources";
 
 // component
-import DatasetMetadataForm from './component';
+import DatasetMetadataForm from "./component";
 
-export default connect(
-  state => ({ user: state.user }),
-  {
-    setSources,
-    resetSources
-  }
-)(DatasetMetadataForm);
+export default connect(state => ({ user: state.user }), {
+  setSources,
+  resetSources
+})(DatasetMetadataForm);

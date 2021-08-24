@@ -1,17 +1,17 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
 // components
-import Field from 'components/form/Field';
-import Input from 'components/form/Input';
-import Checkbox from 'components/form/checkbox';
+import Field from "components/form/Field";
+import Input from "components/form/Input";
+import Checkbox from "components/form/checkbox";
 
 // styles
-import styles from './step-widget-metadata-form.module.scss';
+import styles from "./step-widget-metadata-form.module.scss";
 
 // constants
-import { FORM_ELEMENTS } from 'components/widgets/metadata/form/constants';
+import { FORM_ELEMENTS } from "components/widgets/metadata/form/constants";
 
 class Step1 extends Component {
   constructor(props) {
@@ -32,19 +32,18 @@ class Step1 extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
-      widgetLinksSelected: nextProps.form.info.widgetLinks &&
-        nextProps.form.info.widgetLinks.length > 0,
+      widgetLinksSelected: nextProps.form.info.widgetLinks && nextProps.form.info.widgetLinks.length > 0,
       form: nextProps.form
     });
   }
 
   /**
-    * UI EVENTS
-    * - onWidgetLinkChange
-    * - onWidgetLinksCheckboxChange
-    * - handleRemoveWidgetLink
-    * - handleAddWidgetLink
-  */
+   * UI EVENTS
+   * - onWidgetLinkChange
+   * - onWidgetLinksCheckboxChange
+   * - handleRemoveWidgetLink
+   * - handleAddWidgetLink
+   */
   onWidgetLinkChange(obj) {
     const widgetLinks = this.props.form.info.widgetLinks.slice(0);
     const index = widgetLinks.findIndex(elem => elem.id === obj.id);
@@ -58,14 +57,10 @@ class Step1 extends Component {
     this.setState({ widgetLinksSelected: checked });
     let newWidgetLinks = [];
     if (checked) {
-      newWidgetLinks = [{ name: '', link: '', id: Date.now() }];
+      newWidgetLinks = [{ name: "", link: "", id: Date.now() }];
     }
     this.props.onChange({
-      info: Object.assign(
-        {},
-        this.state.form.info,
-        { widgetLinks: newWidgetLinks }
-      )
+      info: Object.assign({}, this.state.form.info, { widgetLinks: newWidgetLinks })
     });
   }
   handleRemoveWidgetLink(id) {
@@ -77,7 +72,7 @@ class Step1 extends Component {
 
   handleAddWidgetLink() {
     const widgetLinks = this.props.form.info.widgetLinks.slice(0);
-    widgetLinks.push({ name: '', link: '', id: Date.now() });
+    widgetLinks.push({ name: "", link: "", id: Date.now() });
     this.props.onChange({ info: Object.assign({}, this.state.form.info, { widgetLinks }) });
   }
 
@@ -86,27 +81,27 @@ class Step1 extends Component {
     const { info } = form;
 
     return (
-      <div className={styles['c-step-widget-metadata-form']}>
+      <div className={styles["c-step-widget-metadata-form"]}>
         <fieldset className="c-field-container">
-          <h4>
-            Edit metadata
-          </h4>
+          <h4>Edit metadata</h4>
           {/* CAPTION */}
           <Field
-            ref={(c) => { if (c) FORM_ELEMENTS.elements.caption = c; }}
-            onChange={value => this.props.onChange(
-              {
+            ref={c => {
+              if (c) FORM_ELEMENTS.elements.caption = c;
+            }}
+            onChange={value =>
+              this.props.onChange({
                 info: {
                   ...this.state.form.info,
                   caption: value
                 }
-              }
-            )}
+              })
+            }
             className="-fluid"
             properties={{
-              name: 'caption',
-              label: 'Caption',
-              type: 'text',
+              name: "caption",
+              label: "Caption",
+              type: "text",
               default: this.state.form.info.caption,
               value: this.state.form.info.caption
             }}
@@ -115,18 +110,20 @@ class Step1 extends Component {
           </Field>
           {/* HIGHLIGHTED */}
           <Field
-            ref={(c) => { if (c) FORM_ELEMENTS.elements.highlighted = c; }}
-            onChange={value => this.props.onChange(
-              {
+            ref={c => {
+              if (c) FORM_ELEMENTS.elements.highlighted = c;
+            }}
+            onChange={value =>
+              this.props.onChange({
                 info: {
                   ...this.state.form.info,
                   highlighted: value.checked
                 }
-              }
-            )}
+              })
+            }
             properties={{
-              name: 'highlighted',
-              title: 'Highlighted',
+              name: "highlighted",
+              title: "Highlighted",
               checked: info.highlighted
             }}
           >
@@ -134,109 +131,118 @@ class Step1 extends Component {
           </Field>
           {/* ARCHIVED */}
           <Field
-            ref={(c) => { if (c) FORM_ELEMENTS.elements.archived = c; }}
-            onChange={value => this.props.onChange(
-              {
+            ref={c => {
+              if (c) FORM_ELEMENTS.elements.archived = c;
+            }}
+            onChange={value =>
+              this.props.onChange({
                 info: {
                   ...this.state.form.info,
                   archived: value.checked
                 }
-              }
-            )}
+              })
+            }
             properties={{
-              name: 'archived',
-              title: 'Archived',
+              name: "archived",
+              title: "Archived",
               checked: info.archived
             }}
           >
             {Checkbox}
           </Field>
           {/*
-          *****************************************************
-          ****************** WIDGET LINKS *********************
-          *****************************************************
-          */}
-          <div className={styles['widget-links-container']}>
+           *****************************************************
+           ****************** WIDGET LINKS *********************
+           *****************************************************
+           */}
+          <div className={styles["widget-links-container"]}>
             <Field
-              ref={(c) => { if (c) FORM_ELEMENTS.elements.widget_links = c; }}
+              ref={c => {
+                if (c) FORM_ELEMENTS.elements.widget_links = c;
+              }}
               onChange={value => this.onWidgetLinksCheckboxChange(value.checked)}
               properties={{
-                name: 'widget_links',
-                title: 'Widget links',
+                name: "widget_links",
+                title: "Widget links",
                 checked: info.widgetLinks && info.widgetLinks.length > 0
               }}
             >
               {Checkbox}
             </Field>
-            {widgetLinksSelected &&
+            {widgetLinksSelected && (
               <div>
-                {
-                  this.state.form.info.widgetLinks.map((elem, index) => (
-                    <div
-                      className="c-field-row"
-                      key={elem.id}
-                    >
-                      <div className="l-row row">
-                        <div className="column small-3">
-                          <Field
-                            ref={(c) => { if (c) FORM_ELEMENTS.elements.widgetLinkName = c; }}
-                            onChange={value => this.onWidgetLinkChange({
+                {this.state.form.info.widgetLinks.map((elem, index) => (
+                  <div className="c-field-row" key={elem.id}>
+                    <div className="l-row row">
+                      <div className="column small-3">
+                        <Field
+                          ref={c => {
+                            if (c) FORM_ELEMENTS.elements.widgetLinkName = c;
+                          }}
+                          onChange={value =>
+                            this.onWidgetLinkChange({
                               name: value,
                               id: elem.id
-                            })}
-                            validations={['required']}
-                            className="-fluid"
-                            properties={{
-                              name: 'widgetLinkName',
-                              label: 'Name',
-                              type: 'text',
-                              default: elem.name,
-                              required: true
-                            }}
-                          >
-                            {Input}
-                          </Field>
-                        </div>
-                        <div className="column small-6">
-                          <Field
-                            ref={(c) => { if (c) FORM_ELEMENTS.elements.widgetLinkLink = c; }}
-                            onChange={value => this.onWidgetLinkChange({ link: value, id: elem.id })}
-                            validations={['required', 'url']}
-                            className="-fluid"
-                            properties={{
-                              name: 'widgetLinkLink',
-                              label: 'Link',
-                              type: 'text',
-                              default: elem.link,
-                              required: true
-                            }}
-                          >
-                            {Input}
-                          </Field>
-                        </div>
-                        <div className={classnames({
-                          'column small-3': true,
-                          [styles['remove-widget-link-container']]: true
-                        })}>
-                          <button
-                            type="button"
-                            className="c-button -secondary -fullwidth"
-                            onClick={() => this.handleRemoveWidgetLink(elem.id)}
-                            disabled={this.state.form.info.widgetLinks.length > 1 && index === 0}
-                          >
-                            Remove
-                          </button>
-                        </div>
+                            })
+                          }
+                          validations={["required"]}
+                          className="-fluid"
+                          properties={{
+                            name: "widgetLinkName",
+                            label: "Name",
+                            type: "text",
+                            default: elem.name,
+                            required: true
+                          }}
+                        >
+                          {Input}
+                        </Field>
+                      </div>
+                      <div className="column small-6">
+                        <Field
+                          ref={c => {
+                            if (c) FORM_ELEMENTS.elements.widgetLinkLink = c;
+                          }}
+                          onChange={value => this.onWidgetLinkChange({ link: value, id: elem.id })}
+                          validations={["required", "url"]}
+                          className="-fluid"
+                          properties={{
+                            name: "widgetLinkLink",
+                            label: "Link",
+                            type: "text",
+                            default: elem.link,
+                            required: true
+                          }}
+                        >
+                          {Input}
+                        </Field>
+                      </div>
+                      <div
+                        className={classnames({
+                          "column small-3": true,
+                          [styles["remove-widget-link-container"]]: true
+                        })}
+                      >
+                        <button
+                          type="button"
+                          className="c-button -secondary -fullwidth"
+                          onClick={() => this.handleRemoveWidgetLink(elem.id)}
+                          disabled={this.state.form.info.widgetLinks.length > 1 && index === 0}
+                        >
+                          Remove
+                        </button>
                       </div>
                     </div>
-                  ))
-                }
+                  </div>
+                ))}
                 <div className="c-field-row">
                   <div className="l-row row">
-                    <div className={classnames({
-                      'column small-12': true,
-                      [styles['add-widget-link-container']]: true
-                    })}>
+                    <div
+                      className={classnames({
+                        "column small-12": true,
+                        [styles["add-widget-link-container"]]: true
+                      })}
+                    >
                       <button
                         type="button"
                         className="c-button -secondary -fullwidth"
@@ -248,7 +254,7 @@ class Step1 extends Component {
                   </div>
                 </div>
               </div>
-            }
+            )}
           </div>
         </fieldset>
       </div>

@@ -1,3 +1,3 @@
-import StaticListWidgetComponent from './component';
+import StaticListWidgetComponent from "./component";
 
 export default StaticListWidgetComponent;

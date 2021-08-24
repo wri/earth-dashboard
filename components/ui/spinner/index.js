@@ -1,3 +1,3 @@
-import SpinnerComponent from './component';
+import SpinnerComponent from "./component";
 
 export default SpinnerComponent;

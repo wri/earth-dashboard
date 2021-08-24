@@ -1,3 +1,3 @@
-import RoleTD from './component';
+import RoleTD from "./component";
 
 export default RoleTD;

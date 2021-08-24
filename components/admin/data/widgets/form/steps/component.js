@@ -1,26 +1,26 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import WidgetEditor from '@widget-editor/widget-editor';
-import RwAdapter from '@widget-editor/rw-adapter';
-import classnames from 'classnames';
-import { toastr } from 'react-redux-toastr';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import WidgetEditor from "@widget-editor/widget-editor";
+import RwAdapter from "@widget-editor/rw-adapter";
+import classnames from "classnames";
+import { toastr } from "react-redux-toastr";
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // Utils
-import DefaultTheme from 'utils/widgets/theme';
+import DefaultTheme from "utils/widgets/theme";
 
 // Components
-import Field from 'components/form/Field';
-import Select from 'components/form/SelectInput';
-import Checkbox from 'components/form/checkbox';
-import RadioGroup from 'components/form/RadioGroup';
-import WidgetPreview from 'components/widgets/preview';
-import ErrorBoundary from 'components/ui/error-boundary';
+import Field from "components/form/Field";
+import Select from "components/form/SelectInput";
+import Checkbox from "components/form/checkbox";
+import RadioGroup from "components/form/RadioGroup";
+import WidgetPreview from "components/widgets/preview";
+import ErrorBoundary from "components/ui/error-boundary";
 
 // styles
-import styles from './widget-form-preview-step.module.scss';
+import styles from "./widget-form-preview-step.module.scss";
 
 // Constants
 import {
@@ -31,7 +31,7 @@ import {
   WIDGET_TYPE_NEW,
   NEW_WIDGET_TYPES_TEMPLATES,
   NEW_WIDGET_TYPES_OPTIONS
-} from '../constants';
+} from "../constants";
 
 class Step1 extends Component {
   static propTypes = {
@@ -48,17 +48,16 @@ class Step1 extends Component {
     super(props);
     const { form, id, query } = props;
     const widgetType = form && form.widgetConfig && form.widgetConfig.type;
-    const isNewWidgetType = !!id && widgetType &&
-      NEW_WIDGET_TYPES.includes(widgetType);
-    const defaultCode = isNewWidgetType ?
-      NEW_WIDGET_TYPES_TEMPLATES.find(e => e.id === widgetType).value
+    const isNewWidgetType = !!id && widgetType && NEW_WIDGET_TYPES.includes(widgetType);
+    const defaultCode = isNewWidgetType
+      ? NEW_WIDGET_TYPES_TEMPLATES.find(e => e.id === widgetType).value
       : NEW_WIDGET_TYPES_TEMPLATES[0].value;
 
     this.state = {
       id,
       form: {
         ...form,
-        dataset: form.dataset || query && query.dataset
+        dataset: form.dataset || (query && query.dataset)
       },
       showNewWidgetsInterface: !!id && isNewWidgetType,
       newWidgetTypesEditorCode: id ? JSON.stringify(form, null, 5) : JSON.stringify(defaultCode, null, 5),
@@ -75,85 +74,93 @@ class Step1 extends Component {
     });
   }
 
-  onWidgetTypeChange = (value) => {
-    this.setState({ showNewWidgetsInterface: value === 'new' });
-  }
+  onWidgetTypeChange = value => {
+    this.setState({ showNewWidgetsInterface: value === "new" });
+  };
 
-  onWidgetTypeTemplateChange = (event) => {
+  onWidgetTypeTemplateChange = event => {
     const newCode = NEW_WIDGET_TYPES_TEMPLATES.find(e => e.id === event.target.value).value;
     this.setState({ newWidgetTypesEditorCode: JSON.stringify(newCode, null, 5) });
-  }
+  };
 
   render() {
-    const {
-      id,
-      showNewWidgetsInterface,
-      newWidgetTypesEditorCode,
-      previewSource
-    } = this.state;
+    const { id, showNewWidgetsInterface, newWidgetTypesEditorCode, previewSource } = this.state;
     const { user, query, form } = this.props;
     const datasetSelected = this.state.form.dataset;
     const editMode = !!id;
     const widgetType = form && form.widgetConfig && form.widgetConfig.type;
-    const isNewWidgetType = editMode && widgetType &&
-      NEW_WIDGET_TYPES.includes(widgetType);
+    const isNewWidgetType = editMode && widgetType && NEW_WIDGET_TYPES.includes(widgetType);
 
     // Reset FORM_ELEMENTS
     FORM_ELEMENTS.elements = {};
 
     return (
-      <fieldset className={classnames({
-        [styles['c-widget-form-preview-step']]: true,
-        'c-field-container': true
-      })}>
+      <fieldset
+        className={classnames({
+          [styles["c-widget-form-preview-step"]]: true,
+          "c-field-container": true
+        })}
+      >
         <fieldset className="c-field-container">
           {/* DATASET */}
           <Field
-            ref={(c) => { if (c) FORM_ELEMENTS.elements.dataset = c; }}
+            ref={c => {
+              if (c) FORM_ELEMENTS.elements.dataset = c;
+            }}
             onChange={value => this.props.onChange({ dataset: value })}
-            validations={['required']}
+            validations={["required"]}
             className="-fluid"
             options={this.props.datasets}
             properties={{
-              name: 'dataset',
-              label: 'Dataset',
+              name: "dataset",
+              label: "Dataset",
               default: this.state.form.dataset || query.dataset,
               value: this.state.form.dataset || query.dataset,
               disabled: !!id,
               required: true,
-              instanceId: 'selectDataset'
+              instanceId: "selectDataset"
             }}
           >
             {Select}
           </Field>
 
-          {(user.role === 'ADMIN') &&
+          {user.role === "ADMIN" && (
             <Field
-              ref={(c) => { if (c) FORM_ELEMENTS.elements.env = c; }}
-              hint={'Choose "preproduction" to see this dataset it only as admin, "production" option will show it in public site.'}
+              ref={c => {
+                if (c) FORM_ELEMENTS.elements.env = c;
+              }}
+              hint={
+                'Choose "preproduction" to see this dataset it only as admin, "production" option will show it in public site.'
+              }
               className="-fluid"
-              options={[{ label: 'Pre-production', value: 'preproduction' }, { label: 'Production', value: 'production' }]}
+              options={[
+                { label: "Pre-production", value: "preproduction" },
+                { label: "Production", value: "production" }
+              ]}
               onChange={value => this.props.onChange({ env: value })}
               properties={{
-                name: 'env',
-                label: 'Environment',
-                placeholder: 'Please select an environment',
-                default: 'preproduction',
+                name: "env",
+                label: "Environment",
+                placeholder: "Please select an environment",
+                default: "preproduction",
                 value: this.props.form.env
               }}
             >
               {Select}
-            </Field>}
+            </Field>
+          )}
 
           {/* PUBLISHED */}
           <Field
-            ref={(c) => { if (c) FORM_ELEMENTS.elements.published = c; }}
+            ref={c => {
+              if (c) FORM_ELEMENTS.elements.published = c;
+            }}
             onChange={value => this.props.onChange({ published: value.checked })}
             properties={{
-              name: 'published',
-              label: 'Do you want to set this widget as published?',
-              value: 'published',
-              title: 'Published',
+              name: "published",
+              label: "Do you want to set this widget as published?",
+              value: "published",
+              title: "Published",
               checked: this.props.form.published
             }}
           >
@@ -162,13 +169,15 @@ class Step1 extends Component {
 
           {/* DEFAULT */}
           <Field
-            ref={(c) => { if (c) FORM_ELEMENTS.elements.default = c; }}
+            ref={c => {
+              if (c) FORM_ELEMENTS.elements.default = c;
+            }}
             onChange={value => this.props.onChange({ default: value.checked })}
             properties={{
-              name: 'default',
-              label: 'Do you want to set this widget as default?',
-              value: 'default',
-              title: 'Default',
+              name: "default",
+              label: "Do you want to set this widget as default?",
+              value: "default",
+              title: "Default",
               checked: this.props.form.default
             }}
           >
@@ -177,13 +186,15 @@ class Step1 extends Component {
 
           {/* DEFAULT EDITABLE WIDGET */}
           <Field
-            ref={(c) => { if (c) FORM_ELEMENTS.elements.defaultEditableWidget = c; }}
+            ref={c => {
+              if (c) FORM_ELEMENTS.elements.defaultEditableWidget = c;
+            }}
             onChange={value => this.props.onChange({ defaultEditableWidget: value.checked })}
             properties={{
-              name: 'defaultEditableWidget',
-              label: 'Do you want to set this widget as the default editable widget?',
-              value: 'defaultEditableWidget',
-              title: 'Default editable widget',
+              name: "defaultEditableWidget",
+              label: "Do you want to set this widget as the default editable widget?",
+              value: "defaultEditableWidget",
+              title: "Default editable widget",
               checked: this.props.form.defaultEditableWidget
             }}
           >
@@ -200,8 +211,7 @@ class Step1 extends Component {
           </div>
         </fieldset>
 
-        {datasetSelected && !showNewWidgetsInterface &&
-          !isNewWidgetType &&
+        {datasetSelected && !showNewWidgetsInterface && !isNewWidgetType && (
           <WidgetEditor
             datasetId={this.state.form.dataset}
             {...(id && { widgetId: id })}
@@ -212,36 +222,31 @@ class Step1 extends Component {
             authenticated
             compact={false}
           />
-        }
-        {datasetSelected && showNewWidgetsInterface &&
-          <div className={styles['new-widget-types-container']}>
-            <div className={styles['template-select-container']}>
+        )}
+        {datasetSelected && showNewWidgetsInterface && (
+          <div className={styles["new-widget-types-container"]}>
+            <div className={styles["template-select-container"]}>
               <label className={styles.label}>Choose a template:</label>
-              <select
-                onChange={this.onWidgetTypeTemplateChange}
-              >
-                {NEW_WIDGET_TYPES_OPTIONS.map(elem =>
-                  (<option
-                    key={elem.label}
-                    value={elem.value}
-                    {...(elem.value === widgetType && { selected: true })}
-                  >
+              <select onChange={this.onWidgetTypeTemplateChange}>
+                {NEW_WIDGET_TYPES_OPTIONS.map(elem => (
+                  <option key={elem.label} value={elem.value} {...(elem.value === widgetType && { selected: true })}>
                     {elem.label}
-                  </option>))}
+                  </option>
+                ))}
               </select>
             </div>
             <ErrorBoundary>
-              <div className={styles['json-editor-container']}>
+              <div className={styles["json-editor-container"]}>
                 <textarea
-                  className={styles['json-editor']}
+                  className={styles["json-editor"]}
                   onChange={event => this.setState({ newWidgetTypesEditorCode: event.target.value })}
                   value={newWidgetTypesEditorCode}
                 />
-                <div className={styles['widget-preview-container']}>
+                <div className={styles["widget-preview-container"]}>
                   <WidgetPreview widget={previewSource} showSource={true} />
                 </div>
               </div>
-              <div className={styles['preview-actions']}>
+              <div className={styles["preview-actions"]}>
                 <button
                   className="c-button -primary"
                   type="button"
@@ -258,7 +263,7 @@ class Step1 extends Component {
                 </button>
               </div>
             </ErrorBoundary>
-            <div className={styles['buttons-container']}>
+            <div className={styles["buttons-container"]}>
               <button
                 className="c-button -primary"
                 type="button"
@@ -273,7 +278,7 @@ class Step1 extends Component {
               </button>
             </div>
           </div>
-        }
+        )}
       </fieldset>
     );
   }

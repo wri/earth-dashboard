@@ -1,45 +1,8 @@
 {
-  "env": {
-    "browser": true,
-    "node": true,
-    "es2021": true
-  },
-  "globals": {
-    "L": true,
-    "config": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:react/recommended"
-  ],
+  "plugins": ["prettier"],
+  "extends": ["next/core-web-vitals", "prettier"],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {},
-      {
-        "usePrettierrc": true,
-      },
-    ],
-  },
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaVersion": 7,
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "sourceType": "module"
-  },
-  "plugins": [
-    "babel",
-    "react-hooks",
-    "@typescript-eslint",
-    "prettier"
-  ],
-  "settings": {
-    "import/resolver": {
-      "babel-module": {
-      }
-    }
+    // Allow Prettier to throw errors via ESLint
+    "prettier/prettier": "error"
   }
 }

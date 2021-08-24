@@ -1,8 +1,5 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import Step1 from './component';
+import Step1 from "./component";
 
-export default connect(
-  state => ({ user: state.user }),
-  null
-)(Step1);
+export default connect(state => ({ user: state.user }), null)(Step1);

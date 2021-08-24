@@ -1,6 +1,6 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import isEqual from 'lodash/isEqual';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import isEqual from "lodash/isEqual";
 
 export default class Table extends Component {
   /* Property typing */
@@ -47,13 +47,13 @@ export default class Table extends Component {
       - props.data => original data
       - filteredData => original data with filters and/or sort (if any) applied
     */
-    this.state = {
+    this.setState({
       filteredData: data,
       currentPage: (this.state && this.state.currentPage) || 0,
       totalPages: Math.ceil(data.length / props.pageSize),
       query: {},
       sort: {}
-    };
+    });
   }
 
   getPageBounds(page) {
@@ -109,13 +109,23 @@ export default class Table extends Component {
 
     return paginatedData.map((row, index) => (
       <tr key={index}>
-        {this.props.columns.map((col, i) => <td key={i} className={col.cellClasses ? col.cellClasses : ''}>{row[col.name]}</td>)}
-        {this.props.actionsColumn ? <td>
-          <ul className="menu simple">
-            <li><a href={`/admin/datasets/${row.id}/edit`}>Edit</a></li>
-            <li><a href={`/admin/datasets/${row.id}/remove`}>Remove</a></li>
-          </ul>
-        </td> : null}
+        {this.props.columns.map((col, i) => (
+          <td key={i} className={col.cellClasses ? col.cellClasses : ""}>
+            {row[col.name]}
+          </td>
+        ))}
+        {this.props.actionsColumn ? (
+          <td>
+            <ul className="menu simple">
+              <li>
+                <a href={`/admin/datasets/${row.id}/edit`}>Edit</a>
+              </li>
+              <li>
+                <a href={`/admin/datasets/${row.id}/remove`}>Remove</a>
+              </li>
+            </ul>
+          </td>
+        ) : null}
       </tr>
     ));
   }
@@ -124,16 +134,26 @@ export default class Table extends Component {
     return (
       <div className="table-footer">
         {/* Paginator */}
-        {this.props.paginated &&
+        {this.props.paginated && (
           <ul className="pagination" role="navigation">
-            <li className="pagination-previous"><button className="paginator-btn" onClick={this.prevPage}>Prev</button></li>
-            <li className="pagination-next"><button className="paginator-btn" onClick={this.nextPage}>Next</button></li>
+            <li className="pagination-previous">
+              <button className="paginator-btn" onClick={this.prevPage}>
+                Prev
+              </button>
+            </li>
+            <li className="pagination-next">
+              <button className="paginator-btn" onClick={this.nextPage}>
+                Next
+              </button>
+            </li>
           </ul>
-        }
+        )}
         {/* Page locator */}
-        {this.props.paginated &&
-          <div>Page <span>{this.state.currentPage + 1}</span> of <span>{this.state.totalPages}</span></div>
-        }
+        {this.props.paginated && (
+          <div>
+            Page <span>{this.state.currentPage + 1}</span> of <span>{this.state.totalPages}</span>
+          </div>
+        )}
       </div>
     );
   }

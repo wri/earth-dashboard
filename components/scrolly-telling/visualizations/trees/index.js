@@ -1,3 +1,3 @@
-import TreesComponent from './component';
+import TreesComponent from "./component";
 
 export default TreesComponent;

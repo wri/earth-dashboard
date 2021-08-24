@@ -1,3 +1,3 @@
-import SourceComponent from './component';
+import SourceComponent from "./component";
 
 export default SourceComponent;

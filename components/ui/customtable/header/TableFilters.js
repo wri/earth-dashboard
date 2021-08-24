@@ -1,9 +1,9 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import TetherComponent from 'react-tether';
-import classnames from 'classnames';
-import Icon from 'components/ui/icon';
-import CheckboxGroup from '../../../form/CheckboxGroup';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import TetherComponent from "react-tether";
+import classnames from "classnames";
+import Icon from "components/ui/icon";
+import CheckboxGroup from "../../../form/CheckboxGroup";
 
 export default class TableFilters extends Component {
   static propTypes = {
@@ -23,7 +23,7 @@ export default class TableFilters extends Component {
 
     this.state = {
       closed: true,
-      input: '',
+      input: "",
       sort: 1,
       values: props.values || [],
       selected: props.selected || []
@@ -44,7 +44,7 @@ export default class TableFilters extends Component {
 
   /* Component lifecycle */
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const selected = (nextProps.selected) ? nextProps.selected : nextProps.values;
+    const selected = nextProps.selected ? nextProps.selected : nextProps.values;
     this.setState({
       selected,
       values: nextProps.values
@@ -52,7 +52,7 @@ export default class TableFilters extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this.onScreenClick);
+    window.removeEventListener("click", this.onScreenClick);
   }
 
   /**
@@ -66,7 +66,7 @@ export default class TableFilters extends Component {
    * - onFilterSelect
    * - onFilterSelectAll
    * - onFilterClear
-  */
+   */
   onToggle() {
     const { closed } = this.state;
 
@@ -78,8 +78,8 @@ export default class TableFilters extends Component {
     //                        filter btn won't trigger the screenClick,
     //                        so we will have 2 dropdown filters at the same time
     requestAnimationFrame(() => {
-      window[closed ? 'addEventListener' : 'removeEventListener']('click', this.onScreenClick);
-      window[closed ? 'addEventListener' : 'removeEventListener']('keyup', this.onKeyUp);
+      window[closed ? "addEventListener" : "removeEventListener"]("click", this.onScreenClick);
+      window[closed ? "addEventListener" : "removeEventListener"]("keyup", this.onKeyUp);
     });
 
     this.setState({ closed: !closed });
@@ -87,7 +87,7 @@ export default class TableFilters extends Component {
 
   // WINDOW EVENTS
   onScreenClick(e) {
-    const el = document.querySelector('.c-table-tooltip');
+    const el = document.querySelector(".c-table-tooltip");
     const clickOutside = el && el.contains && !el.contains(e.target);
 
     if (clickOutside) {
@@ -110,10 +110,11 @@ export default class TableFilters extends Component {
 
   onChangeInput() {
     this.setState({ input: this.input.value }, () => {
-      this.props.onSearch && this.props.onSearch({
-        field: this.props.field,
-        value: this.input.value
-      });
+      this.props.onSearch &&
+        this.props.onSearch({
+          field: this.props.field,
+          value: this.input.value
+        });
     });
   }
 
@@ -122,51 +123,57 @@ export default class TableFilters extends Component {
     // That's why I put this
     e && e.stopPropagation();
 
-    this.setState({ input: '' }, () => {
-      this.props.onSearch && this.props.onSearch({
-        field: this.props.field,
-        value: this.input.value
-      });
+    this.setState({ input: "" }, () => {
+      this.props.onSearch &&
+        this.props.onSearch({
+          field: this.props.field,
+          value: this.input.value
+        });
     });
   }
 
   onFilterSelect(selected) {
     this.setState({ selected }, () => {
       const { selected, values } = this.state;
-      this.props.onFilter && this.props.onFilter({
-        field: this.props.field,
-        value: (selected.length !== values.length) ? selected : null
-      });
+      this.props.onFilter &&
+        this.props.onFilter({
+          field: this.props.field,
+          value: selected.length !== values.length ? selected : null
+        });
     });
   }
 
   onFilterSelectAll() {
     this.setState({ selected: null }, () => {
-      this.props.onFilter && this.props.onFilter({
-        field: this.props.field,
-        value: this.state.selected
-      });
+      this.props.onFilter &&
+        this.props.onFilter({
+          field: this.props.field,
+          value: this.state.selected
+        });
     });
   }
 
   onFilterClear() {
     this.setState({ selected: [] }, () => {
-      this.props.onFilter && this.props.onFilter({
-        field: this.props.field,
-        value: this.state.selected
-      });
+      this.props.onFilter &&
+        this.props.onFilter({
+          field: this.props.field,
+          value: this.state.selected
+        });
     });
   }
 
   /**
    * HELPERS
    * - getFilteredValues
-  */
+   */
   getFilteredValues() {
     const { values, input } = this.state;
-    if (!values) { return []; }
+    if (!values) {
+      return [];
+    }
 
-    const filteredValues = values.filter((val) => {
+    const filteredValues = values.filter(val => {
       if (input) {
         return val.toString().toLowerCase().includes(input.toString().toLowerCase());
       }
@@ -179,21 +186,23 @@ export default class TableFilters extends Component {
     const { field } = this.props;
     const { selected, input, values } = this.state;
 
-    const btnClass = classnames({ '-active': (values && selected && values.length !== selected.length) || input });
+    const btnClass = classnames({ "-active": (values && selected && values.length !== selected.length) || input });
 
     return (
       <div className={btnClass}>
         <TetherComponent
           attachment="top center"
-          constraints={[{
-            to: 'window',
-            pin: true
-          }]}
-          classes={{ element: 'c-table-tooltip -footer' }}
+          constraints={[
+            {
+              to: "window",
+              pin: true
+            }
+          ]}
+          classes={{ element: "c-table-tooltip -footer" }}
         >
           {/* First child: This is what the item will be tethered to */}
           <button
-            ref={node => this.btnToggle = node}
+            ref={node => (this.btnToggle = node)}
             onClick={this.onToggle}
             className={`table-header-btn ${btnClass}`}
           >
@@ -201,31 +210,28 @@ export default class TableFilters extends Component {
           </button>
 
           {/* Second child: If present, this item will be tethered to the the first child */}
-          {!this.state.closed &&
+          {!this.state.closed && (
             <div className="tooltip-content">
               <div className="content">
                 <div className="search-box">
                   <input
-                    ref={node => this.input = node}
+                    ref={node => (this.input = node)}
                     type="text"
                     value={input}
                     placeholder="Type search"
                     onChange={this.onChangeInput}
                   />
-                  {!input &&
+                  {!input && (
                     <button className="-search">
                       <Icon name="icon-search" className="-small" />
                     </button>
-                  }
+                  )}
 
-                  {!!input &&
-                    <button
-                      className="-close"
-                      onClick={this.onResetInput}
-                    >
+                  {!!input && (
+                    <button className="-close" onClick={this.onResetInput}>
                       <Icon name="icon-cross" className="-small" />
                     </button>
-                  }
+                  )}
                 </div>
                 <CheckboxGroup
                   name={field}
@@ -250,7 +256,7 @@ export default class TableFilters extends Component {
                 </ul>
               </div>
             </div>
-          }
+          )}
         </TetherComponent>
       </div>
     );

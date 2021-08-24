@@ -1,24 +1,24 @@
 /* eslint global-require: 0 */
 // TO-DO: deprecated. Replaced by components/map
 
-import { Component } from 'react';
-import { render } from 'react-dom';
-import PropTypes from 'prop-types';
+import { Component } from "react";
+import { render } from "react-dom";
+import PropTypes from "prop-types";
 
-import compact from 'lodash/compact';
-import isEqual from 'lodash/isEqual';
-import isEmpty from 'lodash/isEmpty';
+import compact from "lodash/compact";
+import isEqual from "lodash/isEqual";
+import isEmpty from "lodash/isEmpty";
 
-import { BOUNDARIES } from 'components/ui/map/constants';
+import { BOUNDARIES } from "components/ui/map/constants";
 
 // Components
-import LayerPopup from 'components/ui/map/popup';
-import Spinner from 'components/ui/spinner';
+import LayerPopup from "components/ui/map/popup";
+import Spinner from "components/ui/spinner";
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   /*
    * Workaround for 1px lines appearing in some browsers due to fractional transforms
    * and resulting anti-aliasing.
@@ -34,7 +34,7 @@ if (typeof window !== 'undefined') {
         tile.style.height = `${tileSize.y + 1}px`;
       }
     });
-  }());
+  })();
 }
 
 const MAP_CONFIG = {
@@ -116,7 +116,7 @@ class Map extends Component {
   state = {
     loading: false,
     mapHasInvalidState: false
-  }
+  };
 
   componentDidMount() {
     this.hasBeenMounted = true;
@@ -148,17 +148,17 @@ class Map extends Component {
     if (this.props.canDraw) {
       this.editableLayers = new L.FeatureGroup();
 
-      const DRAW_SHAPE_STYLES = { fillOpacity: 0.2, weight: 3, opacity: 1, color: '#FAB72E' };
+      const DRAW_SHAPE_STYLES = { fillOpacity: 0.2, weight: 3, opacity: 1, color: "#FAB72E" };
 
       this.drawConfig = {
-        position: 'topright',
+        position: "topright",
         draw: {
           polygon: {
             showArea: true,
             shapeOptions: DRAW_SHAPE_STYLES,
             icon: new L.DivIcon({
               iconSize: new L.Point(10, 10),
-              className: 'leaflet-div-icon leaflet-editing-icon c-map__draw--icon'
+              className: "leaflet-div-icon leaflet-editing-icon c-map__draw--icon"
             })
           },
           polyline: false,
@@ -181,7 +181,7 @@ class Map extends Component {
       this.drawControl = new L.Control.Draw(this.drawConfig);
       this.map.addLayer(this.editableLayers.bringToFront());
 
-      this.map.on(L.Draw.Event.CREATED, (event) => {
+      this.map.on(L.Draw.Event.CREATED, event => {
         const { layer } = event;
 
         /* eslint-disable no-unused-expressions */
@@ -213,9 +213,7 @@ class Map extends Component {
     // LAYERS
     this.setLayerManager();
 
-    const layers = this.props.layerGroups
-      .filter(l => l.visible)
-      .map(l => l.layers.find(la => la.active));
+    const layers = this.props.layerGroups.filter(l => l.visible).map(l => l.layers.find(la => la.active));
 
     this.addLayers(layers, this.props.filters);
 
@@ -246,28 +244,23 @@ class Map extends Component {
 
     // Check if the interactions updated in admin,
     // if so, we need to update the interaction for that layer
-    if (!isEqual(this.props.availableInteractions, nextProps.availableInteractions) &&
-        nextLayers.length === 1) {
+    if (!isEqual(this.props.availableInteractions, nextProps.availableInteractions) && nextLayers.length === 1) {
       this.removeLayers(oldLayers);
 
-      const modifyInteractionConfig = Object.assign(
-        {},
-        nextLayers[0].interactionConfig,
-        { output: nextProps.availableInteractions }
-      );
+      const modifyInteractionConfig = Object.assign({}, nextLayers[0].interactionConfig, {
+        output: nextProps.availableInteractions
+      });
 
-      const addInteractionConfigToLayer = Object.assign(
-        {},
-        nextLayers[0],
-        { interactionConfig: modifyInteractionConfig }
-      );
+      const addInteractionConfigToLayer = Object.assign({}, nextLayers[0], {
+        interactionConfig: modifyInteractionConfig
+      });
 
       this.addLayers([addInteractionConfigToLayer]);
     }
 
     if (oldLayersIds.length !== nextLayersIds.length) {
       // Test whether old & new layers are the same
-      unionLayers.forEach((layer) => {
+      unionLayers.forEach(layer => {
         if (!oldLayersIds.find(id => id === layer.id)) {
           this.addLayers([layer]);
         } else if (!nextLayersIds.find(id => id === layer.id)) {
@@ -281,12 +274,17 @@ class Map extends Component {
       }
     } else {
       // Set layer opacity
-      if (!isEqual(
-        oldlayerGroups.map(d => d.opacity),
-        nextLayerGroups.map(d => d.opacity)
-      )) {
-        const layers = nextLayerGroups.map(lg =>
-          ({ ...lg.layers.find(l => l.active), opacity: lg.opacity, visible: lg.visible }));
+      if (
+        !isEqual(
+          oldlayerGroups.map(d => d.opacity),
+          nextLayerGroups.map(d => d.opacity)
+        )
+      ) {
+        const layers = nextLayerGroups.map(lg => ({
+          ...lg.layers.find(l => l.active),
+          opacity: lg.opacity,
+          visible: lg.visible
+        }));
 
         this.layerManager.setOpacity(layers);
 
@@ -297,12 +295,17 @@ class Map extends Component {
       }
 
       // Set layer visibility
-      if (!isEqual(
-        oldlayerGroups.map(d => d.visible),
-        nextLayerGroups.map(d => d.visible)
-      )) {
-        const layers = nextLayerGroups.map(lg =>
-          ({ ...lg.layers.find(l => l.active), opacity: lg.opacity, visible: lg.visible }));
+      if (
+        !isEqual(
+          oldlayerGroups.map(d => d.visible),
+          nextLayerGroups.map(d => d.visible)
+        )
+      ) {
+        const layers = nextLayerGroups.map(lg => ({
+          ...lg.layers.find(l => l.active),
+          opacity: lg.opacity,
+          visible: lg.visible
+        }));
 
         this.layerManager.setVisibility(layers);
 
@@ -319,7 +322,7 @@ class Map extends Component {
 
       // Set layer active
       if (!isEqual(oldLayersIds, nextLayersIds)) {
-        unionLayers.forEach((layer) => {
+        unionLayers.forEach(layer => {
           if (!oldLayersIds.find(id => id === layer.id)) {
             this.addLayers([layer]);
           } else if (!nextLayersIds.find(id => id === layer.id)) {
@@ -345,10 +348,7 @@ class Map extends Component {
     }
 
     // LOCATION
-    if (!isEqual(
-      this.props.location,
-      nextProps.location
-    )) {
+    if (!isEqual(this.props.location, nextProps.location)) {
       if (!isEqual(this.props.location.bbox, nextProps.location.bbox)) {
         this.fitBounds({ bbox: nextProps.location.bbox });
       }
@@ -358,10 +358,7 @@ class Map extends Component {
       }
 
       if (this.props.location.lat !== nextProps.location.lng) {
-        this.map.setView(
-          [nextProps.location.lat, nextProps.location.lng],
-          nextProps.location.zoom
-        );
+        this.map.setView([nextProps.location.lat, nextProps.location.lng], nextProps.location.zoom);
       }
     }
 
@@ -370,39 +367,35 @@ class Map extends Component {
       this.setBoundaries(nextProps.boundaries);
     }
 
-
     // INTERACTION
     if (
-      nextProps.interactionLatLng &&
-      (
-        // interactionSelected changed
-        (// interaction changed
-          this.props.interactionSelected !== nextProps.interactionSelected || !isEmpty(nextProps.interaction) &&
-        !isEqual(this.props.interaction, nextProps.interaction))
-      )
+      nextProps.interactionLatLng && // interaction changed
+      // interactionSelected changed
+      (this.props.interactionSelected !== nextProps.interactionSelected ||
+        (!isEmpty(nextProps.interaction) && !isEqual(this.props.interaction, nextProps.interaction)))
     ) {
-      const popupContainer = document.createElement('div');
+      const popupContainer = document.createElement("div");
 
       render(
         <LayerPopup
           interaction={nextProps.interaction}
           interactionSelected={nextProps.interactionSelected}
-          interactionLayers={compact(nextLayerGroups.map(g =>
-            g.layers.find(l => l.active && !isEmpty(l.interactionConfig))))}
+          interactionLayers={compact(
+            nextLayerGroups.map(g => g.layers.find(l => l.active && !isEmpty(l.interactionConfig)))
+          )}
           onChangeInteractiveLayer={this.props.setLayerInteractionSelected}
         />,
         popupContainer
       );
 
-      this.popup = this.popup || L.popup({
-        maxWidth: 400,
-        minWidth: 240
-      });
+      this.popup =
+        this.popup ||
+        L.popup({
+          maxWidth: 400,
+          minWidth: 240
+        });
 
-      this.popup
-        .setLatLng(nextProps.interactionLatLng)
-        .setContent(popupContainer)
-        .openOn(this.map);
+      this.popup.setLatLng(nextProps.interactionLatLng).setContent(popupContainer).openOn(this.map);
     }
 
     if (this.props.sidebar.open !== nextProps.sidebar.open && !this.state.mapHasInvalidState) {
@@ -445,7 +438,7 @@ class Map extends Component {
       swipe: this.props.swipe,
       onLayerAddedSuccess: onLayerAdded,
       onLayerAddedError: onLayerAdded,
-      onLayerClick: (layer) => {
+      onLayerClick: layer => {
         if (this.props.setLayerInteractionLatLng) {
           this.props.setLayerInteractionLatLng(layer.latlng);
         }
@@ -455,12 +448,14 @@ class Map extends Component {
   }
 
   setAttribution() {
-    this.map.attributionControl.addAttribution('&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>');
+    this.map.attributionControl.addAttribution(
+      '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+    );
   }
 
   setZoomControl() {
     if (this.map.zoomControl) {
-      this.map.zoomControl.setPosition('topright');
+      this.map.zoomControl.setPosition("topright");
     }
   }
 
@@ -473,9 +468,7 @@ class Map extends Component {
   setBasemap(basemap) {
     if (this.tileLayer) this.tileLayer.remove();
 
-    this.tileLayer = L.tileLayer(basemap.value, basemap.options)
-      .addTo(this.map)
-      .setZIndex(0);
+    this.tileLayer = L.tileLayer(basemap.value, basemap.options).addTo(this.map).setZIndex(0);
   }
 
   /**
@@ -485,7 +478,7 @@ class Map extends Component {
   setLabels(labels) {
     if (this.labelLayer) this.labelLayer.remove();
 
-    if (labels.id !== 'none') {
+    if (labels.id !== "none") {
       this.labelLayer = L.tileLayer(labels.value, labels.options || {})
         .addTo(this.map)
         .setZIndex(1002);
@@ -519,9 +512,13 @@ class Map extends Component {
   }
 
   // MAP FUNCTIONS
-  getCenter() { return this.map.getCenter(); }
+  getCenter() {
+    return this.map.getCenter();
+  }
 
-  getZoom() { return this.map.getZoom(); }
+  getZoom() {
+    return this.map.getZoom();
+  }
 
   // MAP LISTENERS
   setMapEventListeners() {
@@ -537,8 +534,8 @@ class Map extends Component {
     }
 
     if (this.props.onMapParams) {
-      this.map.on('zoomend', mapChangeHandler.bind(this));
-      this.map.on('dragend', mapChangeHandler.bind(this));
+      this.map.on("zoomend", mapChangeHandler.bind(this));
+      this.map.on("dragend", mapChangeHandler.bind(this));
     }
   }
 
@@ -547,14 +544,12 @@ class Map extends Component {
 
     if (same) {
       layers.forEach((layer, key) => {
-        same = !same ||
-          !isEqual(layer.interactionConfig, nextLayers[key].interactionConfig);
+        same = !same || !isEqual(layer.interactionConfig, nextLayers[key].interactionConfig);
       });
     }
 
     return same;
   }
-
 
   fitBounds({ bbox, geometry }) {
     let bounds;
@@ -573,8 +568,8 @@ class Map extends Component {
   }
 
   removeMapEventListeners() {
-    this.map.off('zoomend');
-    this.map.off('dragend');
+    this.map.off("zoomend");
+    this.map.off("dragend");
   }
 
   // LAYER METHODS
@@ -582,7 +577,7 @@ class Map extends Component {
     if (!layers) return;
     if (layers.length) this.setState({ loading: true });
 
-    layers.forEach((layer) => {
+    layers.forEach(layer => {
       this.layerManager.addLayer(layer, { ...(filters || this.props.filters) });
     });
   }
@@ -590,7 +585,7 @@ class Map extends Component {
   removeLayers(layers) {
     if (!layers) this.layerManager.removeLayers();
 
-    layers.forEach((layer) => {
+    layers.forEach(layer => {
       this.layerManager.removeLayer(layer.id);
     });
   }
@@ -600,7 +595,12 @@ class Map extends Component {
     return (
       <div className="c-map">
         {this.state.loading && <Spinner isLoading />}
-        <div ref={(node) => { this.mapNode = node; }} className="map-leaflet" />
+        <div
+          ref={node => {
+            this.mapNode = node;
+          }}
+          className="map-leaflet"
+        />
       </div>
     );
   }

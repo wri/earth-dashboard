@@ -1,31 +1,31 @@
-import { PureComponent } from 'react';
+import { PureComponent } from "react";
 
 // components
-import DatasetsTable from 'components/datasets/table';
+import DatasetsTable from "components/datasets/table";
 
 // styles
-import styles from './datasets-page-list.module.scss';
+import styles from "./datasets-page-list.module.scss";
 
 class DatasetsIndex extends PureComponent {
   render() {
     return (
-      <div className={styles['c-datasets-index']}>
-        <div className={styles['datasets-table']}>
+      <div className={styles["c-datasets-index"]}>
+        <div className={styles["datasets-table"]}>
           <h3>EarthHQ datasets</h3>
           <DatasetsTable
             routes={{
-              index: '/admin/data',
-              detail: '/admin/data'
+              index: "/admin/data",
+              detail: "/admin/data"
             }}
             application={process.env.APPLICATIONS}
           />
         </div>
-        <div className={styles['datasets-table']}>
+        <div className={styles["datasets-table"]}>
           <h3>RW datasets</h3>
           <DatasetsTable
             routes={{
-              index: '/admin/data',
-              detail: '/admin/data'
+              index: "/admin/data",
+              detail: "/admin/data"
             }}
             application="rw"
             showActions={false}

@@ -1,3 +1,3 @@
-import MongabayNewsComponent from './component';
+import MongabayNewsComponent from "./component";
 
 export default MongabayNewsComponent;
