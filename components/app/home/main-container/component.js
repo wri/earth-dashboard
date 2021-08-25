@@ -15,16 +15,17 @@ const MainContainer = ({ isMobile }) => {
 
   const setRef = useCallback(node => {
     const connectToNullSchool = async node => {
+      console.log("Connecting to nullschool");
       const resp = await getEarthClient(node);
-      console.log({ resp });
       setEarthClient(resp);
+      console.log({ resp });
     };
 
     if (node) {
       // Check if a node is actually passed. Otherwise node would be null.
       // You can now do what you need to, addEventListeners, measure, etc.
-      connectToNullSchool(node);
-      node.onload = () => console.log("loaded iframe");
+      // connectToNullSchool(node);
+      node.onload = () => connectToNullSchool(node);
     }
 
     // Save a reference to the node

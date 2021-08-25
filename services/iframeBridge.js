@@ -37,7 +37,9 @@ export const getEarthClient = async iframe => {
 
   try {
     const port = await connect({ api: "earth", version: 1, initialState, iframe });
+    console.log(port);
     const server = Comlink.wrap(port);
+    console.log(server);
     Comlink.expose(new EarthClient(), port);
     return server;
   } catch (err) {
