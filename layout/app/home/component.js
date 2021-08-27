@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
@@ -10,126 +11,9 @@ import { Mobile, Desktop, MediaContextProvider } from "utils/responsive";
 
 // styles
 import styles from "./homepage.module.scss";
+import MainContainer from "components/app/home/main-container";
 
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
-  const [showIntroAndBanner, setShowIntroAndBanner] = useState(true);
-  const [showBanner, setShowBanner] = useState(true);
-  const [timeOutReached, setTimeoutReached] = useState(false);
-
-  const clickHandler = () => {
-    setShowIntroAndBanner(false);
-    window.removeEventListener("click", clickHandler);
-    setTimeout(() => setTimeoutReached(true), 500);
-  };
-
-  useEffect(() => {
-    window.addEventListener("click", clickHandler);
-    setTimeout(() => {
-      if (showIntroAndBanner && showBanner) {
-        setShowBanner(false);
-      }
-    }, 10000);
-    return () => window.removeEventListener("click", clickHandler);
-  }, []);
-
-  const getBanner = mobile => (
-    <div
-      className={classnames({
-        [styles["banner"]]: true,
-        [styles["-mobile"]]: mobile,
-        [styles["-desktop"]]: !mobile
-      })}
-    >
-      <h1>This is not a drill</h1>
-      <h1>
-        It&apos;s a <span className={styles.gradient}>Planetary emergency</span>.
-      </h1>
-    </div>
-  );
-
-  const getIntroText = mobile => (
-    <div
-      className={classnames({
-        [styles["intro-text"]]: true,
-        [styles["-mobile"]]: mobile,
-        [styles["-desktop"]]: !mobile,
-        [styles["-fade-out"]]: !showIntroAndBanner
-      })}
-    >
-      <div
-        className={classnames({
-          [styles["topic-links-intro-text"]]: true,
-          [styles["-mobile"]]: mobile,
-          [styles["-desktop"]]: !mobile
-        })}
-      >
-        {!mobile && <img src="/static/icons/arrow-up-homepage.svg" role="presentation" alt="" />}
-        <p>What you need to know about Earth&apos;s life support systems, the global commons</p>
-        {mobile && <img src="/static/icons/arrow-up-right-homepage.svg" role="presentation" alt="" />}
-      </div>
-      <div
-        className={classnames({
-          [styles["globe-menu-intro-text"]]: true,
-          [styles["-mobile"]]: mobile,
-          [styles["-desktop"]]: !mobile
-        })}
-      >
-        <img src="/static/icons/arrow-down-homepage.svg" role="presentation" alt="" />
-        <p>Explore Earth&apos;s planetary emergency in near-real-time</p>
-      </div>
-      <div
-        className={classnames({
-          [styles["cog-overlay"]]: true,
-          [styles["-mobile"]]: mobile,
-          [styles["-desktop"]]: !mobile
-        })}
-      >
-        <img src="/static/icons/cog.svg" role="presentation" alt="" />
-        <span>Globe</span>
-      </div>
-    </div>
-  );
-
-  const getMainContainer = mobile => {
-    return (
-      <div
-        className={classnames({
-          [styles["main-container"]]: true,
-          [styles["-desktop"]]: !mobile,
-          [styles["-mobile"]]: mobile
-        })}
-      >
-        <iframe
-          id="nullSchoolIframe"
-          width="100%"
-          height="100%"
-          src={
-            mobile
-              ? "https://earth.nullschool.net/?kiosk"
-              : "https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306"
-          }
-          title="Null School"
-          frameBorder="0"
-        />
-        {!timeOutReached && (
-          <>
-            <div
-              className={classnames({
-                [styles["text-container"]]: true,
-                [styles["-desktop"]]: !mobile,
-                [styles["-mobile"]]: mobile,
-                [styles["-fade-out"]]: !showIntroAndBanner || !showBanner
-              })}
-            >
-              {getBanner(mobile)}
-            </div>
-            {getIntroText(mobile)}
-          </>
-        )}
-      </div>
-    );
-  };
-
   return (
     <Layout
       title={title}
@@ -143,8 +27,12 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       themeColor="#1a2128"
     >
       <MediaContextProvider>
-        <Desktop>{getMainContainer(false)}</Desktop>
-        <Mobile>{getMainContainer(true)}</Mobile>
+        <Desktop>
+          <MainContainer isMobile={false} />
+        </Desktop>
+        <Mobile>
+          <MainContainer isMobile={true} />
+        </Mobile>
       </MediaContextProvider>
     </Layout>
   );
