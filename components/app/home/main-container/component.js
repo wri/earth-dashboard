@@ -15,7 +15,6 @@ const MainContainer = ({ isMobile }) => {
 
   const setRef = useCallback(node => {
     const connectToNullSchool = async node => {
-      // console.log("Connecting to nullschool");
       const resp = await getEarthServer(node);
       earthServer.current = resp;
     };
