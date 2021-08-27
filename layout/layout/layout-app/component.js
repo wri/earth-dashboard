@@ -131,7 +131,7 @@ LayoutApp.propTypes = {
   updateIsLoading: PropTypes.func.isRequired,
   explicitHostname: PropTypes.string,
   themeColor: PropTypes.string,
-  headerTabSelected: PropTypes.boolean,
+  headerTabSelected: PropTypes.string,
   headerButtonPosition: PropTypes.string,
   headerShowTopicLinks: PropTypes.bool
 };

@@ -4,21 +4,21 @@ import styles from "layout/app/home/homepage.module.scss";
 import PropTypes from "prop-types";
 import Banner from "../banner";
 import IntroText from "../intro-text";
-import { getEarthClient } from "services/iframeBridge";
+import { getEarthServer } from "services/iframeBridge";
+import d3 from "d3";
 
 const MainContainer = ({ isMobile }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
   const [hasBanner, setHasBanner] = useState(true);
   const [hasTimeOutReached, setHasTimeoutReached] = useState(false);
-  const [earthClient, setEarthClient] = useState(null);
   const iframeRef = useRef(null);
+  const earthServer = useRef(null);
 
   const setRef = useCallback(node => {
     const connectToNullSchool = async node => {
-      console.log("Connecting to nullschool");
-      const resp = await getEarthClient(node);
-      setEarthClient(resp);
-      console.log({ resp });
+      // console.log("Connecting to nullschool");
+      const resp = await getEarthServer(node);
+      earthServer.current = resp;
     };
 
     if (node) {
@@ -58,20 +58,21 @@ const MainContainer = ({ isMobile }) => {
           [styles["-mobile"]]: isMobile
         })}
       >
-        <div style={{ position: "absolute", top: 500, left: 10 }}>
+        <div style={{ position: "absolute", top: 500, right: 10 }}>
           <button
             onClick={() => {
-              console.log(earthClient);
-              // earthClient.reorient({ scaleBy: 1.05 });
+              earthServer.current.reorient({ scaleBy: 1.05 });
             }}
+            disabled={!earthServer.current}
             style={{ background: "white" }}
           >
             +
           </button>
           <button
             onClick={() => {
-              earthClient.reorient({ scaleBy: 0.95 });
+              earthServer.current.reorient({ scaleBy: 0.95 });
             }}
+            disabled={!earthServer.current}
             style={{ background: "white" }}
           >
             -

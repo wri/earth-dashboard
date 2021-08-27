@@ -29,7 +29,7 @@ const connect = ({ api, version, initialState, iframe }) => {
   });
 };
 
-export const getEarthClient = async iframe => {
+export const getEarthServer = async iframe => {
   const initialState = {
     animation_enabled: false,
     overlay_type: "temp"
