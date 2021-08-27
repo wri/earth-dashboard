@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import Banner from "../banner";
 import IntroText from "../intro-text";
 import { getEarthServer } from "services/iframeBridge";
-import d3 from "d3";
 
 const MainContainer = ({ isMobile }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
