@@ -1,8 +1,8 @@
 // utils
-import { logger } from 'utils/logs';
-import { WRIAPI } from 'utils/axios';
+import { logger } from "utils/logs";
+import { WRIAPI } from "utils/axios";
 
-const isServer = typeof window === 'undefined';
+const isServer = typeof window === "undefined";
 
 /**
  * Logs in a user based on the email + password combination
@@ -11,17 +11,14 @@ const isServer = typeof window === 'undefined';
  * @returns {Object}
  */
 export const checkAuth = () => {
-  logger.info('Check user logged in');
-  return WRIAPI
-    .get('/auth/check-logged', {
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `Bearer ${!isServer && localStorage.getItem('userToken')}`
-      }
-    })
-    .then(response => response.data);
+  logger.info("Check user logged in");
+  return WRIAPI.get("/auth/check-logged", {
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${!isServer && localStorage.getItem("userToken")}`
+    }
+  }).then(response => response.data);
 };
-
 
 /**
  * Logs in a user based on the email + password combination
@@ -30,10 +27,8 @@ export const checkAuth = () => {
  * @returns {Object}
  */
 export const loginUser = ({ email, password }) => {
-  logger.info('Login user');
-  return WRIAPI
-    .post('/auth/login', { email, password })
-    .then(response => response.data);
+  logger.info("Login user");
+  return WRIAPI.post("/auth/login", { email, password }).then(response => response.data);
 };
 
 /**
@@ -42,15 +37,13 @@ export const loginUser = ({ email, password }) => {
  * @returns {Object}
  */
 export const logoutUser = () => {
-  logger.info('Logout user');
-  return WRIAPI
-    .get('/auth/logout')
-    .then((response) => {
-      if (response.status < 400 && !isServer) {
-        localStorage.removeItem('userToken');
-        window.location.reload();
-      }
-    });
+  logger.info("Logout user");
+  return WRIAPI.get("/auth/logout").then(response => {
+    if (response.status < 400 && !isServer) {
+      localStorage.removeItem("userToken");
+      window.location.reload();
+    }
+  });
 };
 
 export default {

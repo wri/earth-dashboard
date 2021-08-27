@@ -14,6 +14,22 @@ module.exports = {
     NEXTAUTH_URL: "https://earthhq.org"
   },
 
+  eslint: {
+    dirs: [
+      "pages",
+      "lib",
+      "utils",
+      "components",
+      "config",
+      "constants",
+      "layout",
+      "redactions",
+      "selectors",
+      "services",
+      "slices"
+    ]
+  },
+
   experimental: { documentMiddleware: true },
 
   webpack: (config, { isServer }) => {

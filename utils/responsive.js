@@ -1,4 +1,4 @@
-import { createMedia } from '@artsy/fresnel';
+import { createMedia } from "@artsy/fresnel";
 
 const breakpoints = {
   sm: 0,
@@ -15,58 +15,53 @@ const mediaStyle = EDMedia.createMediaStyle();
 function Desktop({ children, className, includeBiggerScreens = true }) {
   return (
     <Media
-      {...(includeBiggerScreens && { greaterThanOrEqual: 'md' })}
-      {...(!includeBiggerScreens && { at: 'md' })}
-      className={className}>
+      {...(includeBiggerScreens && { greaterThanOrEqual: "md" })}
+      {...(!includeBiggerScreens && { at: "md" })}
+      className={className}
+    >
       {children}
-    </Media>);
-};
+    </Media>
+  );
+}
 
 function DesktopLarge({ children, className, includeBiggerScreens = true }) {
   return (
     <Media
-      {...(includeBiggerScreens && { greaterThanOrEqual: 'lg' })}
-      {...(!includeBiggerScreens && { at: 'lg' })}
-      className={className}>
+      {...(includeBiggerScreens && { greaterThanOrEqual: "lg" })}
+      {...(!includeBiggerScreens && { at: "lg" })}
+      className={className}
+    >
       {children}
-    </Media>);
-};
+    </Media>
+  );
+}
 
 function DesktopXLarge({ children, className, includeBiggerScreens = true }) {
   return (
     <Media
-      {...(includeBiggerScreens && { greaterThanOrEqual: 'xl' })}
-      {...(!includeBiggerScreens && { at: 'xl' })}
-      className={className}>
+      {...(includeBiggerScreens && { greaterThanOrEqual: "xl" })}
+      {...(!includeBiggerScreens && { at: "xl" })}
+      className={className}
+    >
       {children}
-    </Media>);
-};
+    </Media>
+  );
+}
 
 function DesktopXXLarge(props) {
   return (
-    <Media
-      greaterThanOrEqual="xxl"
-      className={props.className}>
+    <Media greaterThanOrEqual="xxl" className={props.className}>
       {props.children}
-    </Media>);
+    </Media>
+  );
 }
 
 function Mobile(props) {
   return (
-    <Media
-      lessThan="md"
-      className={props.className}>
+    <Media lessThan="md" className={props.className}>
       {props.children}
-    </Media>);
-};
+    </Media>
+  );
+}
 
-export {
-  breakpoints,
-  Desktop,
-  DesktopLarge,
-  DesktopXLarge,
-  DesktopXXLarge,
-  Mobile,
-  MediaContextProvider,
-  mediaStyle
-};
+export { breakpoints, Desktop, DesktopLarge, DesktopXLarge, DesktopXXLarge, Mobile, MediaContextProvider, mediaStyle };

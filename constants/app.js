@@ -1,4 +1,1 @@
-export const CESIUM_ROUTES = [
-  '/cesium',
-];
-
+export const CESIUM_ROUTES = ["/cesium"];

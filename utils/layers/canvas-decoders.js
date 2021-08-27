@@ -104,7 +104,7 @@ const decodes = {
 };
 
 export default {
-  'tree-cover-loss': decodes.treeCoverLoss,
-  'biomass-loss': decodes.biomassLoss,
+  "tree-cover-loss": decodes.treeCoverLoss,
+  "biomass-loss": decodes.biomassLoss,
   glad: decodes.GLADs
 };

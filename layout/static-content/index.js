@@ -1,3 +1,3 @@
-import StaticContentComponent from './static-content-component';
+import StaticContentComponent from "./static-content-component";
 
 export default StaticContentComponent;

@@ -1,8 +1,8 @@
-import WRISerializer from 'wri-json-api-serializer';
+import WRISerializer from "wri-json-api-serializer";
 
 // utils
-import { WRIAPI } from 'utils/axios';
-import { logger } from 'utils/logs';
+import { WRIAPI } from "utils/axios";
+import { logger } from "utils/logs";
 
 /**
  * Fetch pages
@@ -11,22 +11,19 @@ import { logger } from 'utils/logs';
  * @param {Object} headers Request headers.
  */
 export const fetchPages = (token, params = {}, headers = {}) => {
-  logger.info('Fetch pages');
-  return WRIAPI.get(
-    'static_page',
-    {
-      headers: {
-        ...headers,
-        Authorization: token
-      },
-      params: {
-        published: 'all',
-        application: process.env.APPLICATIONS,
-        env: process.env.API_ENV,
-        ...params
-      }
+  logger.info("Fetch pages");
+  return WRIAPI.get("static_page", {
+    headers: {
+      ...headers,
+      Authorization: token
+    },
+    params: {
+      published: "all",
+      application: process.env.APPLICATIONS,
+      env: process.env.API_ENV,
+      ...params
     }
-  )
+  })
     .then(response => WRISerializer(response.data))
     .catch(({ response }) => {
       const { status, statusText } = response;
@@ -45,16 +42,13 @@ export const fetchPages = (token, params = {}, headers = {}) => {
  */
 export const fetchPage = (id, token, params = {}, headers = {}) => {
   logger.info(`Fetch page ${id}`);
-  return WRIAPI.get(
-    `static_page/${id}`,
-    {
-      headers: {
-        ...headers,
-        Authorization: token
-      },
-      params: { ...params }
-    }
-  )
+  return WRIAPI.get(`static_page/${id}`, {
+    headers: {
+      ...headers,
+      Authorization: token
+    },
+    params: { ...params }
+  })
     .then(response => WRISerializer(response.data))
     .catch(({ response }) => {
       const { status, statusText } = response;
@@ -71,9 +65,11 @@ export const fetchPage = (id, token, params = {}, headers = {}) => {
  */
 export const updatePage = (page, token) => {
   logger.info(`Update page ${page.id}`);
-  return WRIAPI.patch(`static_page/${page.id}`,
-    { data: { attributes: { ...page } } }
-    , { headers: { Authorization: token } })
+  return WRIAPI.patch(
+    `static_page/${page.id}`,
+    { data: { attributes: { ...page } } },
+    { headers: { Authorization: token } }
+  )
     .then(response => WRISerializer(response.data))
     .catch(({ response }) => {
       const { status, statusText } = response;
@@ -89,8 +85,9 @@ export const updatePage = (page, token) => {
  * @param {Object} token Authentication token.
  */
 export const createPage = (page, token) => {
-  logger.info('Create page');
-  return WRIAPI.post('static_page',
+  logger.info("Create page");
+  return WRIAPI.post(
+    "static_page",
     {
       data: {
         application: process.env.APPLICATIONS,
@@ -98,7 +95,8 @@ export const createPage = (page, token) => {
         attributes: { ...page }
       }
     },
-    { headers: { Authorization: token } })
+    { headers: { Authorization: token } }
+  )
     .then(response => WRISerializer(response.data))
     .catch(({ response }) => {
       const { status, statusText } = response;
@@ -117,21 +115,17 @@ export const createPage = (page, token) => {
  */
 export const deletePage = (id, token, params = {}, headers = {}) => {
   logger.info(`Delete page ${id}`);
-  return WRIAPI.delete(
-    `static_page/${id}`,
-    {
-      headers: {
-        ...headers,
-        Authorization: token
-      },
-      params: { ...params }
-    }
-  )
-    .catch(({ response }) => {
-      const { status, statusText } = response;
-      logger.error(`Error deleting page ${id}: ${status}: ${statusText}`);
-      throw new Error(`Error deleting page ${id}: ${status}: ${statusText}`);
-    });
+  return WRIAPI.delete(`static_page/${id}`, {
+    headers: {
+      ...headers,
+      Authorization: token
+    },
+    params: { ...params }
+  }).catch(({ response }) => {
+    const { status, statusText } = response;
+    logger.error(`Error deleting page ${id}: ${status}: ${statusText}`);
+    throw new Error(`Error deleting page ${id}: ${status}: ${statusText}`);
+  });
 };
 
 export default {

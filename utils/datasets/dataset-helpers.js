@@ -2,39 +2,39 @@ const getKey = (obj, val) => Object.keys(obj).find(key => obj[key] === val);
 
 // Namespace for dataset types in WRI's API
 const TYPES = {
-  tabular: 'tabular',
-  raster: 'raster'
+  tabular: "tabular",
+  raster: "raster"
 };
 
 // Namespace for dataset connectors in WRI's API
 const CONNECTORS = {
-  doc: 'document',
-  rest: 'rest',
-  wms: 'wms'
+  doc: "document",
+  rest: "rest",
+  wms: "wms"
 };
 
 // Namespace for dataset providers in WRI's API
 const PROVIDERS = {
-  carto: 'cartodb',
-  gee: 'gee',
-  wms: 'wms',
-  nexgddp: 'nexgddp',
-  bigquery: 'bigquery',
-  rasdaman: 'rasdaman',
-  featureService: 'featureservice',
-  imageService: 'imageservice',
-  csv: 'csv',
-  tsv: 'tsv',
-  xml: 'xml',
-  json: 'json'
+  carto: "cartodb",
+  gee: "gee",
+  wms: "wms",
+  nexgddp: "nexgddp",
+  bigquery: "bigquery",
+  rasdaman: "rasdaman",
+  featureService: "featureservice",
+  imageService: "imageservice",
+  csv: "csv",
+  tsv: "tsv",
+  xml: "xml",
+  json: "json"
 };
 
 const visTypes = {
-  chart: 'Chart',
-  table: 'Table',
-  map: 'Map',
-  embed: 'Embed',
-  text: 'Text'
+  chart: "Chart",
+  table: "Table",
+  map: "Map",
+  embed: "Embed",
+  text: "Text"
 };
 
 const DECISIONTREE = {
@@ -66,11 +66,11 @@ const DECISIONTREE = {
   }
 };
 
-export const getVisualisationTypes = (datasetData) => {
-  if (!datasetData) throw Error('datasetData param is required.');
+export const getVisualisationTypes = datasetData => {
+  if (!datasetData) throw Error("datasetData param is required.");
 
   const { id, type, connectorType, provider, geoInfo } = datasetData;
-  const datasetType = !type ? 'tabular' : getKey(TYPES, type); // null means 'tabular'
+  const datasetType = !type ? "tabular" : getKey(TYPES, type); // null means 'tabular'
   const datasetConnector = getKey(CONNECTORS, connectorType);
   const datasetProvider = getKey(PROVIDERS, provider);
 
@@ -85,7 +85,7 @@ export const getVisualisationTypes = (datasetData) => {
   let visualisationTypes = DECISIONTREE[datasetType][datasetConnector][datasetProvider];
 
   // Checking geoInfo: it will remove Map if geoInfo is false or WMS
-  if (datasetProvider && datasetProvider !== 'wms' && !geoInfo) {
+  if (datasetProvider && datasetProvider !== "wms" && !geoInfo) {
     visualisationTypes = visualisationTypes.filter(el => el !== visTypes.map);
   }
 
@@ -98,13 +98,13 @@ export const getVisualisationTypes = (datasetData) => {
   };
 };
 
-export const getLabel = (dataset) => {
+export const getLabel = dataset => {
   if (dataset && dataset.metadata && dataset.metadata.length > 0) {
     const metadata = dataset.metadata[0];
-    if ('info' in metadata && 'name' in metadata.info) {
+    if ("info" in metadata && "name" in metadata.info) {
       return metadata.info.name;
     }
   }
 
-  return dataset && 'name' in dataset ? dataset.name : '';
+  return dataset && "name" in dataset ? dataset.name : "";
 };

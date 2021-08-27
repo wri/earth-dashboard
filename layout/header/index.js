@@ -1,4 +1,4 @@
 // component
-import HeaderComponent from './component';
+import HeaderComponent from "./component";
 
 export default HeaderComponent;

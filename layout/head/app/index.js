@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // component
-import HeadApp from './component';
+import HeadApp from "./component";
 
 export default connect(
   state => ({

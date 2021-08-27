@@ -1,29 +1,20 @@
-import { Fragment, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import HeadNext from 'next/head';
-import dynamic from 'next/dynamic';
+import { Fragment, useMemo } from "react";
+import PropTypes from "prop-types";
+import HeadNext from "next/head";
+import dynamic from "next/dynamic";
 
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 // constants
-import { CESIUM_ROUTES } from 'constants/app';
+import { CESIUM_ROUTES } from "constants/app";
 
 // utils
-import { mediaStyle } from 'utils/responsive';
+import { mediaStyle } from "utils/responsive";
 
-const CesiumScript = dynamic(() => import('scripts/cesium'));
+const CesiumScript = dynamic(() => import("scripts/cesium"));
 
-function HeadApp({
-  title,
-  description,
-  thumbnail,
-  hostname,
-  explicitHostname,
-  themeColor
-}) {
-  const {
-    asPath,
-  } = useRouter();
+function HeadApp({ title, description, thumbnail, hostname, explicitHostname, themeColor }) {
+  const { asPath } = useRouter();
 
   const isCesiumRoute = useMemo(() => CESIUM_ROUTES.includes(asPath), [asPath]);
 
@@ -76,15 +67,17 @@ function HeadApp({
 
         {/* Fonts */}
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,400&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,400&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap"
+          rel="stylesheet"
+        />
 
-        { /* Artsy - fresnel: for SSR*/}
+        {/* Artsy - fresnel: for SSR*/}
         <style type="text/css">${mediaStyle}</style>
       </HeadNext>
-      {isCesiumRoute && (<CesiumScript />)}
+      {isCesiumRoute && <CesiumScript />}
     </Fragment>
   );
-
 }
 
 HeadApp.propTypes = {

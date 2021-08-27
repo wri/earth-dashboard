@@ -2,10 +2,10 @@ export const getFieldUrl = ({ id, provider, type, tableName }) => {
   let url;
 
   switch (`${provider}-${type}`) {
-    case 'cartodb-raster':
+    case "cartodb-raster":
       url = `${process.env.WRI_API_URL}/v1/query/${id}?sql=select (ST_METADATA(st_union(the_raster_webmercator))).* from ${tableName}`;
       break;
-    case 'gee-raster': {
+    case "gee-raster": {
       url = `${process.env.WRI_API_URL}/v1/query/${id}?sql=select ST_METADATA(rast) from "${tableName}"`;
       break;
     }
@@ -20,13 +20,13 @@ export const getFields = (data = {}, provider, type) => {
   let fields = [];
 
   switch (`${provider}-${type}`) {
-    case 'cartodb-raster':
+    case "cartodb-raster":
       fields = Object.keys(data.data || {}).map(field => ({
         name: (data.data[field] || {}).numbands,
         type: null
       }));
       break;
-    case 'gee-raster':
+    case "gee-raster":
       fields = ((data.data[0] || {}).bands || []).map(band => ({
         name: band.id,
         type: null

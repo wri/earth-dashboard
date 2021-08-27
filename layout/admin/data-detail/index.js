@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // component
-import LayoutAdminDataDetail from './component';
+import LayoutAdminDataDetail from "./component";
 
 export default connect(
   state => ({

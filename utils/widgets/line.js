@@ -1,7 +1,7 @@
-import deepClone from 'lodash/cloneDeep';
+import deepClone from "lodash/cloneDeep";
 
 // Helpers
-import { getTimeFormat } from 'utils/widgets/WidgetHelper';
+import { getTimeFormat } from "utils/widgets/WidgetHelper";
 
 /* eslint-disable */
 const defaultChart = {

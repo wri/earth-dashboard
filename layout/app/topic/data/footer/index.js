@@ -1,3 +1,3 @@
-import TopicDataFooterComponent from './component';
+import TopicDataFooterComponent from "./component";
 
 export default TopicDataFooterComponent;
