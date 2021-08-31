@@ -11,6 +11,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* mobile viewport bug fix */
+  height: -webkit-fill-available;
 
   .main-container {
     position: relative;
