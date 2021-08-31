@@ -1,5 +1,8 @@
-import { render } from "test-utils";
+import { render, fireEvent } from "test-utils";
 import MainContainer from "./index";
+import { getEarthServer } from "../../../../services/iframeBridge";
+
+jest.mock("services/iframeBridge");
 
 test("<MainContainer /> renders correctly as desktop", () => {
   const { container } = render(<MainContainer isMobile={false} />);
@@ -7,15 +10,33 @@ test("<MainContainer /> renders correctly as desktop", () => {
 <div>
   <div
     class="main-container -desktop"
+    data-testid="iframe-container"
   >
-    <iframe
-      frameborder="0"
-      height="100%"
-      id="nullSchoolIframe"
-      src="https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306"
-      title="Null School"
-      width="100%"
-    />
+    <div
+      class="c-home-actions u-padding-horizontal-l"
+    >
+      <div>
+        <button
+          aria-controls="menu"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="c-home-menu-toggle u-padding-horizontal-xs"
+          data-testid="toggle"
+          id="menu-button"
+        >
+          <div
+            class="c-home-menu-toggle__text-container"
+          >
+            <span>
+              Understand the emergency
+            </span>
+            <span>
+              Lorem ipsum
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
     <div
       class="text-container -desktop"
     >
@@ -36,46 +57,6 @@ test("<MainContainer /> renders correctly as desktop", () => {
         </h1>
       </div>
     </div>
-    <div
-      class="intro-text -desktop"
-    >
-      <div
-        class="topic-links-intro-text -desktop"
-      >
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/arrow-up-homepage.svg"
-        />
-        <p>
-          What you need to know about Earth's life support systems, the global commons
-        </p>
-      </div>
-      <div
-        class="globe-menu-intro-text -desktop"
-      >
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/arrow-down-homepage.svg"
-        />
-        <p>
-          Explore Earth's planetary emergency in near-real-time
-        </p>
-      </div>
-      <div
-        class="cog-overlay -desktop"
-      >
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/cog.svg"
-        />
-        <span>
-          Globe
-        </span>
-      </div>
-    </div>
   </div>
 </div>
 `);
@@ -87,15 +68,33 @@ test("<MainContainer /> renders correctly as mobile", () => {
 <div>
   <div
     class="main-container -mobile"
+    data-testid="iframe-container"
   >
-    <iframe
-      frameborder="0"
-      height="100%"
-      id="nullSchoolIframe"
-      src="https://earth.nullschool.net/?kiosk"
-      title="Null School"
-      width="100%"
-    />
+    <div
+      class="c-home-actions u-padding-horizontal-l"
+    >
+      <div>
+        <button
+          aria-controls="menu"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="c-home-menu-toggle u-padding-horizontal-xs"
+          data-testid="toggle"
+          id="menu-button"
+        >
+          <div
+            class="c-home-menu-toggle__text-container"
+          >
+            <span>
+              Understand the emergency
+            </span>
+            <span>
+              Lorem ipsum
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
     <div
       class="text-container -mobile"
     >
@@ -116,47 +115,20 @@ test("<MainContainer /> renders correctly as mobile", () => {
         </h1>
       </div>
     </div>
-    <div
-      class="intro-text -mobile"
-    >
-      <div
-        class="topic-links-intro-text -mobile"
-      >
-        <p>
-          What you need to know about Earth's life support systems, the global commons
-        </p>
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/arrow-up-right-homepage.svg"
-        />
-      </div>
-      <div
-        class="globe-menu-intro-text -mobile"
-      >
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/arrow-down-homepage.svg"
-        />
-        <p>
-          Explore Earth's planetary emergency in near-real-time
-        </p>
-      </div>
-      <div
-        class="cog-overlay -mobile"
-      >
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/cog.svg"
-        />
-        <span>
-          Globe
-        </span>
-      </div>
-    </div>
   </div>
 </div>
 `);
+});
+
+test("<MainContainer /> toggle class toggles properly", () => {
+  const { getByTestId } = render(<MainContainer isMobile={false} />);
+
+  const button = getByTestId("toggle");
+  const container = getByTestId("iframe-container");
+
+  expect(container.classList.contains("-has-menu-open")).toBe(false);
+
+  fireEvent.click(button);
+
+  expect(container.classList.contains("-has-menu-open")).toBe(true);
 });

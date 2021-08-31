@@ -88,7 +88,7 @@ function LayoutApp(props) {
       <HeadApp
         title={title}
         description={description}
-        explicitHostname={!isServer && window.location.href}
+        explicitHostname={!isServer ? window.location.href : ""}
         {...(thumbnail && { thumbnail })}
         themeColor={themeColor}
       />
@@ -131,7 +131,7 @@ LayoutApp.propTypes = {
   updateIsLoading: PropTypes.func.isRequired,
   explicitHostname: PropTypes.string,
   themeColor: PropTypes.string,
-  headerTabSelected: PropTypes.boolean,
+  headerTabSelected: PropTypes.string,
   headerButtonPosition: PropTypes.string,
   headerShowTopicLinks: PropTypes.bool
 };

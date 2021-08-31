@@ -7,28 +7,32 @@
 */
 
 // Bourbon settings
-@import 'foundation_settings';
+@import "foundation_settings";
 $output-bourbon-deprecation-warnings: false;
 @import "../node_modules/bourbon/app/assets/stylesheets/settings/px-to-em";
 @import "../node_modules/bourbon/app/assets/stylesheets/functions/strip-units";
 @import "../node_modules/bourbon/app/assets/stylesheets/functions/px-to-rem";
 
 // grid
-@import 'foundation_settings';
+@import "foundation_settings";
 
 // --------- Colors ------------------
+$colour-space: #1b2127;
+$colour-night: #38444f;
+$colour-flame: #d63c00;
+$colour-galaxy: #002841;
 
 // ++++++++++ Topic colors +++++++++++++++
 // climate
 $climate: hsl(20, 100%, 48%);
-$climate-lighter:hsl(41, 100%, 48%);
+$climate-lighter: hsl(41, 100%, 48%);
 $climate-light: hsl(20, 100%, 68%);
 $climate-dark: hsl(20, 100%, 23%);
 
 // forests
 $forests: hsl(160, 100%, 30%);
-$forests-light:  hsl(160, 100%, 40%);
-$forests-dark:  hsl(160, 100%, 15%);
+$forests-light: hsl(160, 100%, 40%);
+$forests-dark: hsl(160, 100%, 15%);
 
 // freshwater
 $freshwater: hsl(212, 100%, 56%);
@@ -37,15 +41,15 @@ $freshwater-dark: hsl(212, 100%, 26%);
 
 // ocean
 $ocean: hsl(189, 59%, 47%);
-$ocean-light:  hsl(189, 59%, 67%);
-$ocean-dark:  hsl(189, 59%, 22%);
+$ocean-light: hsl(189, 59%, 67%);
+$ocean-dark: hsl(189, 59%, 22%);
 // +++++++++++++++++++++++++++++++++++++++
 
 // +++++++++++ Grey-scale colors +++++++++
 $white: hsl(0, 0%, 100%);
 $grey-lightest: hsl(210, 17, 98);
-$grey-lighter:  hsl(210, 17, 96);
-$grey-light:  hsl(210, 19, 91);
+$grey-lighter: hsl(210, 17, 96);
+$grey-light: hsl(210, 19, 91);
 $grey: hsl(210, 19, 86);
 $grey-dark: hsl(209, 17, 76);
 $grey-darker: hsl(209, 17, 56);
@@ -60,9 +64,9 @@ $dark-red: #931212;
 $yellow: yellow;
 $red: #e23035;
 $dove-grey: #717171;
-$porcelain: #F4F6F7;
-$sea-blue: #2C75B0;
-$blue-grey: #9AA2A9;
+$porcelain: #f4f6f7;
+$sea-blue: #2c75b0;
+$blue-grey: #9aa2a9;
 $color-12: #f0f1f2;
 $pale-grey: #f4f5f6;
 $mid-grey: #b9bfc4;
@@ -78,12 +82,16 @@ $ui-bg-color: $porcelain;
 $body-bg-color: $white;
 
 $border-color-1: rgba(26, 28, 34, 0.1);
-$border-color-2: rgba(202, 204,208, 0.85); // For inputs
+$border-color-2: rgba(202, 204, 208, 0.85); // For inputs
 $alt-border-color: $white;
 
 $color-secondary: $sea-blue;
 $primary-color: $freshwater;
 $secondary-color: $sea-blue;
+
+$global-font-baseline: 6px !default;
+$global-font-size: 16px !default;
+$global-line-height: 1.5 !default;
 
 // Typography
 $font-size-tiny: 10px;
@@ -124,7 +132,7 @@ $font-weight-bold: 700;
 $body-background: $body-bg-color;
 $body-font-size: $body-font-color;
 $body-font-color: $body-font-color;
-$body-font-family: 'Barlow', sans-serif;
+$body-font-family: "Barlow", sans-serif;
 $global-weight-normal: normal;
 $global-lineheight: 1.625;
 $global-font-size: $font-size-medium;
@@ -136,7 +144,6 @@ $margin-size: 50px;
 $margin-size-big: 100px;
 $space: 5px;
 
-
 // Header
 $header-main-height: 75px;
 $header-main-height-mobile: 50px;
@@ -144,24 +151,23 @@ $header-secondary-height: 0;
 $header-bg-color: $freshwater;
 
 // Shadows
-$thick-shadow: 0 20px 30px 0 rgba(0,0,0,0.1);
+$thick-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.1);
 
 // Map specific settings
 $map-labels-index: 11;
 $map-box-shadow: 0 0 0 1px rgba($black, 0.1), 0 1px 2px rgba($black, 0.1);
 
 // Transitions – timings
-$animation-time: .16s;
-$animation-time-2: .24s;
-$animation-time-3: .5s;
-$animation-time-4: .75s;
+$animation-time: 0.16s;
+$animation-time-2: 0.24s;
+$animation-time-3: 0.5s;
+$animation-time-4: 0.75s;
 
 // Transitions – functions
-$ease-in-cubic: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-$ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-$ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+$ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
 
-$ease-in-sine: cubic-bezier(0.470, 0.000, 0.745, 0.715);
-$ease-out-sine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
-$ease-in-out-sine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
-
+$ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
+$ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
+$ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
