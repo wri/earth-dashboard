@@ -1,34 +1,27 @@
 // Reset
 // Project settings (it doesn't include Grid system)
 @import "settings";
+@import "./settings/spacings";
+@import "./settings/breakpoints";
 
 @import "../node_modules/normalize.css/normalize";
 
 // Libraries
-@import '../node_modules/react-progress-2/main';
-@import '../node_modules/react-redux-toastr/src/styles/index';
-@import '../node_modules/react-input-range/src/scss/index.scss';
-@import '../node_modules/vizzuality-components/dist/bundle';
+@import "../node_modules/react-progress-2/main";
+@import "../node_modules/react-redux-toastr/src/styles/index";
+@import "../node_modules/react-input-range/src/scss/index.scss";
+@import "../node_modules/vizzuality-components/dist/bundle";
 
 // Common files
 @import "base";
 @import "helpers";
 @import "mixins";
 @import "scrolly-telling";
-@import "layouts/container",
-  "layouts/page",
-  "layouts/error",
-  "layouts/section",
-  "layouts/content",
-  "layouts/postcontent",
-  "layouts/row",
-  "layouts/footer",
-  "layouts/sidebar",
-  "layouts/static";
+@import "layouts/container", "layouts/page", "layouts/error", "layouts/section", "layouts/content",
+  "layouts/postcontent", "layouts/row", "layouts/footer", "layouts/sidebar", "layouts/static";
 
 // Components
 // UI
-
 @import "./components/ui/button";
 @import "./components/ui/button-container";
 @import "./components/ui/card";
@@ -44,8 +37,8 @@
 
 // Map
 @import "./components/map/map";
-@import './components/map/map-side-by-side-layout';
-@import './components/map/map-side-by-side-range';
+@import "./components/map/map-side-by-side-layout";
+@import "./components/map/map-side-by-side-range";
 
 // Form
 @import "./components/form/form";
@@ -67,7 +60,10 @@
 
 // Foundation:
 // We are using this library only for grid system
-@import '../node_modules/foundation-sites/scss/foundation';
+@import "../node_modules/foundation-sites/scss/foundation";
 @include foundation-flex-classes;
 @include foundation-flex-grid;
 @include foundation-responsive-embed;
+
+// Utilities
+@import "./utilities/spacing";

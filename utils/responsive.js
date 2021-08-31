@@ -1,5 +1,6 @@
 import { createMedia } from "@artsy/fresnel";
 
+// Must match breakpoints set in css/settings/_breakpoints.scss
 const breakpoints = {
   sm: 0,
   md: 768,
