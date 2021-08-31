@@ -1,4 +1,4 @@
-import { render } from "test-utils";
+import { render, fireEvent } from "test-utils";
 import MainContainer from "./index";
 import { getEarthServer } from "../../../../services/iframeBridge";
 
@@ -10,6 +10,7 @@ test("<MainContainer /> renders correctly as desktop", () => {
 <div>
   <div
     class="main-container -desktop"
+    data-testid="iframe-container"
   >
     <div
       style="position: absolute; top: 500px; right: 10px; z-index: 999;"
@@ -27,6 +28,7 @@ test("<MainContainer /> renders correctly as desktop", () => {
         -
       </button>
       <button
+        data-testid="toggle"
         style="background: white;"
       >
         Toggle
@@ -111,6 +113,7 @@ test("<MainContainer /> renders correctly as mobile", () => {
 <div>
   <div
     class="main-container -mobile"
+    data-testid="iframe-container"
   >
     <div
       style="position: absolute; top: 500px; right: 10px; z-index: 999;"
@@ -128,6 +131,7 @@ test("<MainContainer /> renders correctly as mobile", () => {
         -
       </button>
       <button
+        data-testid="toggle"
         style="background: white;"
       >
         Toggle
@@ -204,4 +208,17 @@ test("<MainContainer /> renders correctly as mobile", () => {
   </div>
 </div>
 `);
+});
+
+test("<MainContainer /> toggle class toggles properly", () => {
+  const { getByTestId } = render(<MainContainer isMobile={false} />);
+
+  const button = getByTestId("toggle");
+  const container = getByTestId("iframe-container");
+
+  expect(container.classList.contains("-has-menu-open")).toBe(false);
+
+  fireEvent.click(button);
+
+  expect(container.classList.contains("-has-menu-open")).toBe(true);
 });

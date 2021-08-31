@@ -56,6 +56,7 @@ const MainContainer = ({ isMobile }) => {
         [styles["-mobile"]]: isMobile,
         [styles["-has-menu-open"]]: hasMenuOpen
       })}
+      data-testid="iframe-container"
     >
       <div style={{ position: "absolute", top: 500, right: 10, zIndex: 999 }}>
         <button
@@ -81,6 +82,7 @@ const MainContainer = ({ isMobile }) => {
             setHasMenuOpen(!hasMenuOpen);
           }}
           style={{ background: "white" }}
+          data-testid="toggle"
         >
           Toggle
         </button>
