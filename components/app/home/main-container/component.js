@@ -10,6 +10,7 @@ const MainContainer = ({ isMobile }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
   const [hasBanner, setHasBanner] = useState(true);
   const [hasTimeOutReached, setHasTimeoutReached] = useState(false);
+  const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const iframeRef = useRef(null);
   const earthServer = useRef(null);
 
@@ -48,62 +49,69 @@ const MainContainer = ({ isMobile }) => {
   }, []);
 
   return (
-    <>
-      <div
-        className={classnames({
-          [styles["main-container"]]: true,
-          [styles["-desktop"]]: !isMobile,
-          [styles["-mobile"]]: isMobile
-        })}
-      >
-        <div style={{ position: "absolute", top: 500, right: 10 }}>
-          <button
-            onClick={() => {
-              earthServer.current.reorient({ scaleBy: 1.05 });
-            }}
-            disabled={!earthServer.current}
-            style={{ background: "white" }}
-          >
-            +
-          </button>
-          <button
-            onClick={() => {
-              earthServer.current.reorient({ scaleBy: 0.95 });
-            }}
-            disabled={!earthServer.current}
-            style={{ background: "white" }}
-          >
-            -
-          </button>
-        </div>
-
-        <iframe
-          id="nullSchoolIframe"
-          width="100%"
-          height="100%"
-          src={process.env.NULL_SCHOOL_IFRAME_BASE}
-          title="Null School"
-          frameBorder="0"
-          allowtransparency="true"
-          ref={setRef}
-        />
-        {!hasTimeOutReached && (
-          <>
-            <div
-              className={classnames({
-                [styles["text-container"]]: true,
-                [styles["-desktop"]]: !isMobile,
-                [styles["-mobile"]]: isMobile,
-                [styles["-fade-out"]]: !hasIntroAndBanner || !hasBanner
-              })}
-            >
-              <Banner isMobile={isMobile} />
-            </div>
-            <IntroText isMobile={isMobile} hasIntroAndBanner={hasIntroAndBanner} />
-          </>
-        )}
+    <div
+      className={classnames({
+        [styles["main-container"]]: true,
+        [styles["-desktop"]]: !isMobile,
+        [styles["-mobile"]]: isMobile,
+        [styles["-has-menu-open"]]: hasMenuOpen
+      })}
+    >
+      <div style={{ position: "absolute", top: 500, right: 10, zIndex: 999 }}>
+        <button
+          onClick={() => {
+            earthServer.current.reorient({ scaleBy: 1.05 });
+          }}
+          disabled={!earthServer.current}
+          style={{ background: "white" }}
+        >
+          +
+        </button>
+        <button
+          onClick={() => {
+            earthServer.current.reorient({ scaleBy: 0.95 });
+          }}
+          disabled={!earthServer.current}
+          style={{ background: "white" }}
+        >
+          -
+        </button>
+        <button
+          onClick={() => {
+            setHasMenuOpen(!hasMenuOpen);
+          }}
+          style={{ background: "white" }}
+        >
+          Toggle
+        </button>
       </div>
-    </>
+
+      <iframe
+        id="nullSchoolIframe"
+        width="100%"
+        height="100%"
+        src={process.env.NULL_SCHOOL_IFRAME_BASE}
+        title="Null School"
+        frameBorder="0"
+        allowtransparency="true"
+        ref={setRef}
+      />
+      {!hasTimeOutReached && (
+        <>
+          <div
+            className={classnames({
+              [styles["text-container"]]: true,
+              [styles["-desktop"]]: !isMobile,
+              [styles["-mobile"]]: isMobile,
+              [styles["-fade-out"]]: !hasIntroAndBanner || !hasBanner
+            })}
+          >
+            <Banner isMobile={isMobile} />
+          </div>
+          <IntroText isMobile={isMobile} hasIntroAndBanner={hasIntroAndBanner} />
+        </>
+      )}
+    </div>
   );
 };
 

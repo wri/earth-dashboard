@@ -1,5 +1,8 @@
 import { render } from "test-utils";
 import MainContainer from "./index";
+import { getEarthServer } from "../../../../services/iframeBridge";
+
+jest.mock("services/iframeBridge");
 
 test("<MainContainer /> renders correctly as desktop", () => {
   const { container } = render(<MainContainer isMobile={false} />);
@@ -8,11 +11,32 @@ test("<MainContainer /> renders correctly as desktop", () => {
   <div
     class="main-container -desktop"
   >
+    <div
+      style="position: absolute; top: 500px; right: 10px; z-index: 999;"
+    >
+      <button
+        disabled=""
+        style="background: white;"
+      >
+        +
+      </button>
+      <button
+        disabled=""
+        style="background: white;"
+      >
+        -
+      </button>
+      <button
+        style="background: white;"
+      >
+        Toggle
+      </button>
+    </div>
     <iframe
+      allowtransparency="true"
       frameborder="0"
       height="100%"
       id="nullSchoolIframe"
-      src="https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306"
       title="Null School"
       width="100%"
     />
@@ -88,11 +112,32 @@ test("<MainContainer /> renders correctly as mobile", () => {
   <div
     class="main-container -mobile"
   >
+    <div
+      style="position: absolute; top: 500px; right: 10px; z-index: 999;"
+    >
+      <button
+        disabled=""
+        style="background: white;"
+      >
+        +
+      </button>
+      <button
+        disabled=""
+        style="background: white;"
+      >
+        -
+      </button>
+      <button
+        style="background: white;"
+      >
+        Toggle
+      </button>
+    </div>
     <iframe
+      allowtransparency="true"
       frameborder="0"
       height="100%"
       id="nullSchoolIframe"
-      src="https://earth.nullschool.net/?kiosk"
       title="Null School"
       width="100%"
     />

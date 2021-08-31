@@ -88,7 +88,7 @@ function LayoutApp(props) {
       <HeadApp
         title={title}
         description={description}
-        explicitHostname={!isServer && window.location.href}
+        explicitHostname={!isServer ? window.location.href : ""}
         {...(thumbnail && { thumbnail })}
         themeColor={themeColor}
       />
