@@ -1,4 +1,5 @@
 @import "css/settings";
+@import "css/settings/breakpoints";
 @import "css/tools/fontSize.scss";
 
 .c-home-menu-toggle {
@@ -7,8 +8,7 @@
   display: flex;
   align-items: center;
   color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 12px;
 
   &:hover,
   &:focus {
@@ -16,9 +16,14 @@
   }
 
   &__text-container {
+    flex-grow: 1;
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: 500;
     span {
       display: block;
       text-align: left;
+      @include font-size(14px, 21px);
 
       &:first-of-type {
         text-transform: uppercase;
@@ -64,6 +69,34 @@
 
     &:after {
       transform: rotate(-180deg);
+    }
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    width: 100%;
+    padding: 6.5px 10px;
+
+    &:before {
+      height: 36px;
+      width: 36px;
+      margin-right: 6px;
+    }
+
+    &__text-container {
+      span {
+        @include font-size(12px, 18px);
+
+        &:first-of-type {
+          @include font-size(16px, 19px);
+        }
+      }
+    }
+
+    &:after {
+      height: 8px;
+      width: 14.4px;
+      margin-right: 6px;
+      transition: transform 0.3s ease-in;
     }
   }
 }

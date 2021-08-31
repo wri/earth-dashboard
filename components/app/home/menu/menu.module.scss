@@ -1,5 +1,6 @@
 @import "css/_settings.scss";
 @import "css/tools/fontSize.scss";
+@import "css/settings/breakpoints";
 
 .c-home-menu {
   position: absolute;
@@ -73,6 +74,62 @@
     background: rgba($colour-space, 0.8);
     backdrop-filter: blur(10.8731px);
     flex-grow: 1;
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 60px;
+    max-height: unset;
+    max-width: unset;
+    border-radius: 16px;
+
+    &__header {
+      padding-top: 11px;
+      padding-bottom: 11px;
+      &:before {
+        height: 28px;
+        width: 28px;
+        margin-right: 8px;
+      }
+    }
+
+    &__content {
+      background: $colour-space;
+    }
+
+    &__header-text {
+      @include font-size(20px, 30px);
+    }
+
+    &__close-button {
+      margin-right: -12px;
+      background-size: 19px 19px;
+      background-position: 50% 7px;
+      width: 31px;
+      height: 31px;
+    }
+  }
+}
+
+.c-home-menu-container {
+  @media screen and (max-width: $global-breakpoint-md) {
+    background: rgba($colour-space, 0.4);
+    backdrop-filter: blur(10.8731px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0px;
+    position: absolute;
+    z-index: 11;
+  }
+
+  animation: FadeIn 0.3s ease-in;
+
+  &--closing {
+    opacity: 0;
+    animation: FadeOut 0.3s ease-in;
   }
 }
 

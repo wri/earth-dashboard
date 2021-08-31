@@ -20,7 +20,7 @@ test("<MainContainer /> renders correctly as desktop", () => {
           aria-controls="menu"
           aria-expanded="false"
           aria-haspopup="true"
-          class="c-home-menu-toggle u-padding-horizontal-xs"
+          class="c-home-menu-toggle"
           data-testid="toggle"
           id="menu-button"
         >
@@ -32,6 +32,7 @@ test("<MainContainer /> renders correctly as desktop", () => {
             </span>
             <span>
               Lorem ipsum
+               
             </span>
           </div>
         </button>
@@ -78,7 +79,7 @@ test("<MainContainer /> renders correctly as mobile", () => {
           aria-controls="menu"
           aria-expanded="false"
           aria-haspopup="true"
-          class="c-home-menu-toggle u-padding-horizontal-xs"
+          class="c-home-menu-toggle"
           data-testid="toggle"
           id="menu-button"
         >
@@ -90,6 +91,9 @@ test("<MainContainer /> renders correctly as mobile", () => {
             </span>
             <span>
               Lorem ipsum
+               
+              <br />
+               21/10/2021
             </span>
           </div>
         </button>

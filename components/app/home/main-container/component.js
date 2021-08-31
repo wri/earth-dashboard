@@ -103,8 +103,7 @@ const MainContainer = ({ isMobile }) => {
         <button
           className={classnames(
             menuButtonStyles["c-home-menu-toggle"],
-            hasMenuOpen && menuButtonStyles["c-home-menu-toggle--open"],
-            "u-padding-horizontal-xs"
+            hasMenuOpen && menuButtonStyles["c-home-menu-toggle--open"]
           )}
           onClick={toggleMenu}
           aria-haspopup="true"
@@ -115,7 +114,14 @@ const MainContainer = ({ isMobile }) => {
         >
           <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
             <span>Understand the emergency</span>
-            <span>Lorem ipsum</span>
+            <span>
+              Lorem ipsum{" "}
+              {isMobile && (
+                <>
+                  <br /> 21/10/2021
+                </>
+              )}
+            </span>
           </div>
         </button>
       </Actions>
