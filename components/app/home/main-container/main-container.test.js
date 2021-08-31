@@ -34,14 +34,6 @@ test("<MainContainer /> renders correctly as desktop", () => {
         Toggle
       </button>
     </div>
-    <iframe
-      allowtransparency="true"
-      frameborder="0"
-      height="100%"
-      id="nullSchoolIframe"
-      title="Null School"
-      width="100%"
-    />
     <div
       class="text-container -desktop"
     >
@@ -137,14 +129,6 @@ test("<MainContainer /> renders correctly as mobile", () => {
         Toggle
       </button>
     </div>
-    <iframe
-      allowtransparency="true"
-      frameborder="0"
-      height="100%"
-      id="nullSchoolIframe"
-      title="Null School"
-      width="100%"
-    />
     <div
       class="text-container -mobile"
     >
