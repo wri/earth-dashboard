@@ -44,12 +44,15 @@ $spacing-sizes: (
 ) !default;
 
 $spacing-sizes-mobile: (
+  null: $global-spacing-unit,
   "-xxs": $global-spacing-unit-xxs-mobile,
   "-xs": $global-spacing-unit-xs-mobile,
   "-s": $global-spacing-unit-s-mobile,
   "-m": $global-spacing-unit-mobile,
   "-l": $global-spacing-unit-l-mobile,
-  "-xl": $global-spacing-unit-xl-mobile
+  "-xl": $global-spacing-unit-xl-mobile,
+  "-none": 0,
+  "-auto": auto
 ) !default;
 
 @each $property-namespace, $property in $spacing-properties {
