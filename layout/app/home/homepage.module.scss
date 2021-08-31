@@ -1,8 +1,8 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
+
 .homepage {
   position: relative;
-  height: 100vh;
   width: 100vw;
   background-color: black;
   background: url("/static/images/star-background.png");
@@ -11,8 +11,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* mobile viewport bug fix */
-  height: -webkit-fill-available;
 
   .main-container {
     position: relative;
@@ -22,6 +20,8 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+
     overflow: hidden;
 
     &.-has-menu-open {
