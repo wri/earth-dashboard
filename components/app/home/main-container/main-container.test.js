@@ -13,26 +13,29 @@ test("<MainContainer /> renders correctly as desktop", () => {
     data-testid="iframe-container"
   >
     <div
-      style="position: absolute; top: 500px; right: 10px; z-index: 999;"
+      class="c-home-actions u-padding-horizontal-l"
     >
-      <button
-        disabled=""
-        style="background: white;"
-      >
-        +
-      </button>
-      <button
-        disabled=""
-        style="background: white;"
-      >
-        -
-      </button>
-      <button
-        data-testid="toggle"
-        style="background: white;"
-      >
-        Toggle
-      </button>
+      <div>
+        <button
+          aria-controls="menu"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="c-home-menu-toggle u-padding-horizontal-xs"
+          data-testid="toggle"
+          id="menu-button"
+        >
+          <div
+            class="c-home-menu-toggle__text-container"
+          >
+            <span>
+              Understand the emergency
+            </span>
+            <span>
+              Lorem ipsum
+            </span>
+          </div>
+        </button>
+      </div>
     </div>
     <div
       class="text-container -desktop"
@@ -54,46 +57,6 @@ test("<MainContainer /> renders correctly as desktop", () => {
         </h1>
       </div>
     </div>
-    <div
-      class="intro-text -desktop"
-    >
-      <div
-        class="topic-links-intro-text -desktop"
-      >
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/arrow-up-homepage.svg"
-        />
-        <p>
-          What you need to know about Earth's life support systems, the global commons
-        </p>
-      </div>
-      <div
-        class="globe-menu-intro-text -desktop"
-      >
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/arrow-down-homepage.svg"
-        />
-        <p>
-          Explore Earth's planetary emergency in near-real-time
-        </p>
-      </div>
-      <div
-        class="cog-overlay -desktop"
-      >
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/cog.svg"
-        />
-        <span>
-          Globe
-        </span>
-      </div>
-    </div>
   </div>
 </div>
 `);
@@ -108,26 +71,29 @@ test("<MainContainer /> renders correctly as mobile", () => {
     data-testid="iframe-container"
   >
     <div
-      style="position: absolute; top: 500px; right: 10px; z-index: 999;"
+      class="c-home-actions u-padding-horizontal-l"
     >
-      <button
-        disabled=""
-        style="background: white;"
-      >
-        +
-      </button>
-      <button
-        disabled=""
-        style="background: white;"
-      >
-        -
-      </button>
-      <button
-        data-testid="toggle"
-        style="background: white;"
-      >
-        Toggle
-      </button>
+      <div>
+        <button
+          aria-controls="menu"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="c-home-menu-toggle u-padding-horizontal-xs"
+          data-testid="toggle"
+          id="menu-button"
+        >
+          <div
+            class="c-home-menu-toggle__text-container"
+          >
+            <span>
+              Understand the emergency
+            </span>
+            <span>
+              Lorem ipsum
+            </span>
+          </div>
+        </button>
+      </div>
     </div>
     <div
       class="text-container -mobile"
@@ -147,46 +113,6 @@ test("<MainContainer /> renders correctly as mobile", () => {
           </span>
           .
         </h1>
-      </div>
-    </div>
-    <div
-      class="intro-text -mobile"
-    >
-      <div
-        class="topic-links-intro-text -mobile"
-      >
-        <p>
-          What you need to know about Earth's life support systems, the global commons
-        </p>
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/arrow-up-right-homepage.svg"
-        />
-      </div>
-      <div
-        class="globe-menu-intro-text -mobile"
-      >
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/arrow-down-homepage.svg"
-        />
-        <p>
-          Explore Earth's planetary emergency in near-real-time
-        </p>
-      </div>
-      <div
-        class="cog-overlay -mobile"
-      >
-        <img
-          alt=""
-          role="presentation"
-          src="/static/icons/cog.svg"
-        />
-        <span>
-          Globe
-        </span>
       </div>
     </div>
   </div>

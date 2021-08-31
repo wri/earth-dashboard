@@ -17,9 +17,10 @@ $output-bourbon-deprecation-warnings: false;
 @import "foundation_settings";
 
 // --------- Colors ------------------
-$space: #1b2127;
-$night: #38444f;
-$flame: #d63c00;
+$colour-space: #1b2127;
+$colour-night: #38444f;
+$colour-flame: #d63c00;
+$colour-galaxy: #002841;
 
 // ++++++++++ Topic colors +++++++++++++++
 // climate
@@ -87,6 +88,10 @@ $alt-border-color: $white;
 $color-secondary: $sea-blue;
 $primary-color: $freshwater;
 $secondary-color: $sea-blue;
+
+$global-font-baseline: 6px !default;
+$global-font-size: 16px !default;
+$global-line-height: 1.5 !default;
 
 // Typography
 $font-size-tiny: 10px;
