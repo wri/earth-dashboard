@@ -10,7 +10,6 @@
   max-height: 519px;
   left: 40px;
   bottom: 120px;
-  border-radius: 28px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -27,6 +26,7 @@
     backdrop-filter: blur(10.8731px);
     padding-top: 14px;
     padding-bottom: 14px;
+    border-radius: 28px 28px 0 0;
 
     display: flex;
     align-items: center;
@@ -74,6 +74,7 @@
     background: rgba($colour-space, 0.8);
     backdrop-filter: blur(10.8731px);
     flex-grow: 1;
+    border-radius: 0 0 28px 28px;
   }
 
   @media screen and (max-width: $global-breakpoint-md) {
@@ -83,11 +84,11 @@
     top: 60px;
     max-height: unset;
     max-width: unset;
-    border-radius: 16px;
 
     &__header {
       padding-top: 11px;
       padding-bottom: 11px;
+      border-radius: 16px 16px 0 0;
       &:before {
         height: 28px;
         width: 28px;
