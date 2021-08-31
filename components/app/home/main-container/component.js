@@ -11,6 +11,7 @@ const MainContainer = ({ isMobile }) => {
   const [hasBanner, setHasBanner] = useState(true);
   const [hasTimeOutReached, setHasTimeoutReached] = useState(false);
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
+  const [hasIframe, setHasIframe] = useState(false);
   const iframeRef = useRef(null);
   const earthServer = useRef(null);
 
@@ -44,6 +45,9 @@ const MainContainer = ({ isMobile }) => {
         setHasBanner(false);
       }
     }, 10000);
+    setTimeout(() => {
+      setHasIframe(true);
+    }, 1000);
     return () => window.removeEventListener("click", clickHandler);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -88,16 +92,18 @@ const MainContainer = ({ isMobile }) => {
         </button>
       </div>
 
-      <iframe
-        id="nullSchoolIframe"
-        width="100%"
-        height="100%"
-        src={process.env.NULL_SCHOOL_IFRAME_BASE}
-        title="Null School"
-        frameBorder="0"
-        allowtransparency="true"
-        ref={setRef}
-      />
+      {hasIframe && (
+        <iframe
+          id="nullSchoolIframe"
+          width="100%"
+          height="100%"
+          src={process.env.NULL_SCHOOL_IFRAME_BASE}
+          title="Null School"
+          frameBorder="0"
+          allowtransparency="true"
+          ref={setRef}
+        />
+      )}
       {!hasTimeOutReached && (
         <>
           <div
