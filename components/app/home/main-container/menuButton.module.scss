@@ -1,0 +1,69 @@
+@import "css/settings";
+@import "css/tools/fontSize.scss";
+
+.c-home-menu-toggle {
+  background: #1b2127;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &:hover,
+  &:focus {
+    background-color: $colour-flame;
+  }
+
+  &__text-container {
+    span {
+      display: block;
+      text-align: left;
+
+      &:first-of-type {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-family: "Barlow Condensed";
+        @include font-size(20px, 30px);
+      }
+    }
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    background-image: url("/static/icons/home-menu/layers.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 48px;
+    width: 48px;
+    margin-right: 12px;
+    border-radius: 50%;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    background-image: url("/static/icons/toggle-arrow-down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 10px;
+    width: 18px;
+    margin-left: 24px;
+    margin-right: 12px;
+    transition: transform 0.3s ease-in;
+  }
+
+  &--open {
+    &:before {
+      background-image: url("/static/icons/close.svg");
+      background-color: $colour-galaxy;
+      background-size: 28px 28px;
+      background-position: center;
+    }
+
+    &:after {
+      transform: rotate(-180deg);
+    }
+  }
+}
