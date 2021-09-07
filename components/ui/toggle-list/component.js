@@ -15,8 +15,6 @@ const ToggleList = ({ title, selectedValue, onSelect, children, className, ...re
       });
     });
 
-    console.log(resp);
-
     return resp;
   };
 

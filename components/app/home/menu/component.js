@@ -59,10 +59,6 @@ const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
               </TabPanel>
             </div>
           </Tabs>
-          {/* <fieldset>
-            <legend>Put controls here</legend>
-            <input ref={ref} type="radio" />
-          </fieldset> */}
         </div>
       </div>
     </div>
