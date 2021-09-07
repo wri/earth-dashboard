@@ -40,7 +40,7 @@ const defaultTheme = {
  * @param {boolean} [thumbnail=false]
  * @return {object}
  */
-export default function (thumbnail = false) {
+export default function Theme(thumbnail = false) {
   const theme = deepClone(defaultTheme);
 
   if (thumbnail) {

@@ -39,7 +39,7 @@ const initialState = {
 /**
  * REDUCER
  */
-export default function (state = initialState, action) {
+export default function Widget(state = initialState, action) {
   switch (action.type) {
     case SET_WIDGET_LOADING: {
       const widget = {

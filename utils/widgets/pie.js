@@ -143,7 +143,7 @@ const defaultChart = {
  * @export
  * @param {any} { columns, data, url, embedData, templateMode }
  */
-export default function ({ columns, data, url, embedData, templateMode }) {
+export default function Pie({ columns, data, url, embedData, templateMode }) {
   const config = deepClone(defaultChart);
 
   // Simple template used in the advanced mode of the editor

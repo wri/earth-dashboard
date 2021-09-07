@@ -70,7 +70,7 @@ const defaultChart = {
  * @export
  * @param {any} { columns, data, url, embedData }
  */
-export default function ({ columns, data, url, embedData }) {
+export default function Scatter({ columns, data, url, embedData }) {
   const config = deepClone(defaultChart);
 
   if (embedData) {

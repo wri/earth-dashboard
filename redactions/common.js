@@ -14,7 +14,7 @@ const initialState = {
   hostname: "https://earthhq.org"
 };
 
-export default function (state = initialState, action) {
+export default function Common(state = initialState, action) {
   switch (action.type) {
     case SET_LOCALE:
       return Object.assign({}, state, { locale: action.payload });
