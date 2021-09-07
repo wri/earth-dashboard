@@ -18,6 +18,70 @@
   box-shadow: 0px 0px 113.425px #000000;
   border-radius: 16px;
 
+  &__tabs {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__tab-list {
+    color: white;
+    margin: 0px;
+    padding-left: 28px;
+    padding-right: 28px;
+    list-style: none;
+    display: flex;
+    background-color: rgba($colour-night, 0.4);
+    backdrop-filter: blur(10.8731px);
+  }
+
+  &__tab {
+    color: white;
+    cursor: pointer;
+    padding-bottom: 8px;
+    border-bottom: 3px solid transparent;
+    font-weight: 500;
+    font-family: "Barlow";
+    @include font-size(14px, 21px);
+    &[aria-selected="true"],
+    &:hover {
+      border-bottom: 3px solid $colour-flame;
+    }
+  }
+
+  &__tab-container {
+    background: rgba($colour-space, 0.8);
+    backdrop-filter: blur(10.8731px);
+    padding: 86px 28px 40px 28px;
+    position: relative;
+    flex-grow: 1;
+  }
+
+  &__tab-description {
+    display: block;
+    background-color: $colour-galaxy;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 12px 28px;
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 21px);
+    &:after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 24px solid $colour-galaxy;
+      position: absolute;
+      right: 40px;
+      top: -18px;
+    }
+  }
+
   &--closing {
     opacity: 0;
     animation: FadeOut 0.3s ease-in;
@@ -26,8 +90,8 @@
   &__header {
     background-color: rgba($colour-night, 0.4);
     backdrop-filter: blur(10.8731px);
-    padding-top: 14px;
-    padding-bottom: 14px;
+
+    padding: 14px 28px 0px 28px;
     border-radius: 16px 16px 0 0;
 
     display: flex;
@@ -73,8 +137,6 @@
   }
 
   &__content {
-    background: rgba($colour-space, 0.8);
-    backdrop-filter: blur(10.8731px);
     flex-grow: 1;
     border-radius: 0 0 16px 16px;
   }
@@ -88,8 +150,7 @@
     max-width: unset;
 
     &__header {
-      padding-top: 11px;
-      padding-bottom: 11px;
+      padding: 11px 24px 0px 24px;
       border-radius: 16px 16px 0 0;
       &:before {
         height: 28px;
@@ -98,8 +159,30 @@
       }
     }
 
-    &__content {
+    &__tab-list {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    &__tab-container {
       background: $colour-space;
+      padding: 64px 24px 40px 24px;
+    }
+
+    &__tab {
+      @include font-size(12px, 18px);
+    }
+
+    &__tab-description {
+      padding: 8px 24px;
+      @include font-size(12px, 18px);
+      &:after {
+        right: 24px;
+        top: -14px;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 16px solid $colour-galaxy;
+      }
     }
 
     &__header-text {
