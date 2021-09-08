@@ -7,6 +7,7 @@ import Banner from "../banner";
 import { getEarthServer } from "services/iframeBridge";
 import Menu from "../menu/component";
 import Actions from "../actions";
+import useWindowDimensions from "hooks/useWindowDimensions";
 
 const MainContainer = ({ isMobile }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
@@ -17,24 +18,30 @@ const MainContainer = ({ isMobile }) => {
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const iframeRef = useRef(null);
   const earthServer = useRef(null);
+  const [earthClient, setEarthClient] = useState(null);
   const menuRef = useRef(null);
+  const { width } = useWindowDimensions();
 
-  const setRef = useCallback(node => {
-    const connectToNullSchool = async node => {
-      const resp = await getEarthServer(node);
-      earthServer.current = resp;
-    };
+  const setRef = useCallback(
+    node => {
+      const connectToNullSchool = async node => {
+        const resp = await getEarthServer(node, width);
+        earthServer.current = resp.server;
+        setEarthClient(resp.client);
+      };
 
-    if (node) {
-      // Check if a node is actually passed. Otherwise node would be null.
-      // You can now do what you need to, addEventListeners, measure, etc.
-      // connectToNullSchool(node);
-      node.onload = () => connectToNullSchool(node);
-    }
+      if (node) {
+        // Check if a node is actually passed. Otherwise node would be null.
+        // You can now do what you need to, addEventListeners, measure, etc.
+        // connectToNullSchool(node);
+        node.onload = () => connectToNullSchool(node);
+      }
 
-    // Save a reference to the node
-    iframeRef.current = node;
-  }, []);
+      // Save a reference to the node
+      iframeRef.current = node;
+    },
+    [width]
+  );
 
   const clickHandler = () => {
     setHasIntroAndBanner(false);

@@ -7,14 +7,16 @@
   width: 100%;
   height: 100%;
   max-width: 558px;
-  max-height: 519px;
-  left: 40px;
+  max-height: 532px;
+  left: 24px;
   bottom: 120px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   color: white;
   animation: FadeIn 0.3s ease-in;
+  box-shadow: 0px 0px 113.425px #000000;
+  border-radius: 16px;
 
   &--closing {
     opacity: 0;
@@ -26,7 +28,7 @@
     backdrop-filter: blur(10.8731px);
     padding-top: 14px;
     padding-bottom: 14px;
-    border-radius: 28px 28px 0 0;
+    border-radius: 16px 16px 0 0;
 
     display: flex;
     align-items: center;
@@ -74,7 +76,7 @@
     background: rgba($colour-space, 0.8);
     backdrop-filter: blur(10.8731px);
     flex-grow: 1;
-    border-radius: 0 0 28px 28px;
+    border-radius: 0 0 16px 16px;
   }
 
   @media screen and (max-width: $global-breakpoint-md) {

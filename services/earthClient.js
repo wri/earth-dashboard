@@ -1,4 +1,6 @@
 export class EarthClient {
+  state = {};
+
   /**
    * Invoked when any of the globe's state variables change.
    *
@@ -16,7 +18,7 @@ export class EarthClient {
    * @param {*} meta metadata passed in during the save operation, if any
    */
   stateChanged(delta, old, meta) {
-    console.log("State changed:", { delta, old, meta });
+    this.state = { ...this.state, ...delta };
   }
 
   /**
@@ -63,7 +65,7 @@ export class EarthClient {
    */
   click(point, coords) {
     console.log("click:", { point, coords });
-  } // UNDONE: onClick? clicked? match tense of "stateChanged"?
+  }
 
   reorientStart(payload) {
     console.log("reorientStart:", { payload });
