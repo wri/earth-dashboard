@@ -1,0 +1,43 @@
+@import "css/settings";
+@import "css/tools/_visuallyHidden";
+@import "css/tools/_fontSize";
+@import "css/settings/breakpoints";
+
+.c-toggle-list {
+  border: 0px;
+  padding: 0px;
+  &__item {
+    border: 2px solid white;
+    box-sizing: border-box;
+    border-radius: 48px;
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 21px);
+    padding: 6px 12px;
+    cursor: pointer;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:focus-within {
+      border: 2px solid $colour-flame;
+      color: white;
+      background: transparent;
+    }
+
+    &--selected {
+      color: $colour-space;
+      background: white;
+    }
+  }
+  input,
+  legend {
+    @include visually-hidden();
+  }
+  @media screen and (max-width: $global-breakpoint-md) {
+    &__item {
+      @include font-size(12px, 18px);
+      padding: 8px 12px;
+    }
+  }
+}
