@@ -5,7 +5,7 @@ import classnames from "classnames";
 
 const ToggleList = ({ title, selectedValue, onSelect, children, className, ...rest }) => {
   const getChildren = () => {
-    const array = Children.toArray(children).filter(element => !!element.type && element.type.name === "ToggleItem");
+    const array = Children.toArray(children).filter(element => !!element.type && element.type.tagName === "ToggleItem");
 
     const resp = array.map(el => {
       return cloneElement(el, {
