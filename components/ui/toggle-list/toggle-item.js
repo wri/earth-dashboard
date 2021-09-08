@@ -25,4 +25,7 @@ ToggleItem.defaultProps = {
   className: ""
 };
 
+// So we can identify it in the Toggle list as a toggle
+ToggleItem.tagName = "ToggleItem";
+
 export default ToggleItem;
