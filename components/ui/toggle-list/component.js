@@ -3,15 +3,41 @@ import { Children, cloneElement } from "react";
 import styles from "./toggle-list.module.scss";
 import classnames from "classnames";
 
-const ToggleList = ({ title, selectedValue, onSelect, children, className, ...rest }) => {
+const ToggleList = ({ title, legendComponent, hasLegend, selectedValue, onSelect, children, className, ...rest }) => {
   const getChildren = () => {
     const array = Children.toArray(children).filter(element => !!element.type && element.type.tagName === "ToggleItem");
 
+    const handleSelect = e => {
+      const value = e.target.value;
+      const type = e.target.type;
+      if (type === "checkbox") {
+        const index = selectedValue.indexOf(value);
+        if (index > -1) {
+          const newValue = [...selectedValue];
+          newValue.splice(index, 1);
+          onSelect(newValue);
+        } else {
+          onSelect([...selectedValue, value]);
+        }
+      } else {
+        onSelect(value);
+      }
+    };
+
+    const isSelected = el => {
+      if (el.props.type === "checkbox") {
+        const index = selectedValue.indexOf(el.props.value);
+        return index > -1;
+      }
+
+      return el.props.value === selectedValue;
+    };
+
     const resp = array.map(el => {
       return cloneElement(el, {
-        selected: el.props.value === selectedValue,
+        selected: isSelected(el),
         name: title,
-        onChange: e => onSelect(e.target.value)
+        onChange: handleSelect
       });
     });
 
@@ -20,7 +46,7 @@ const ToggleList = ({ title, selectedValue, onSelect, children, className, ...re
 
   return (
     <fieldset className={classnames(styles["c-toggle-list"], className)} {...rest}>
-      <legend>{title}</legend>
+      {hasLegend && (legendComponent ? legendComponent : <legend>{title}</legend>)}
       {getChildren()}
     </fieldset>
   );
@@ -28,14 +54,18 @@ const ToggleList = ({ title, selectedValue, onSelect, children, className, ...re
 
 ToggleList.propTypes = {
   title: PropTypes.string.isRequired,
-  selectedValue: PropTypes.string.isRequired,
+  selectedValue: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.array.isRequired]),
   onSelect: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  className: PropTypes.string
+  legendComponent: PropTypes.node,
+  className: PropTypes.string,
+  hasLegend: PropTypes.bool
 };
 
 ToggleList.defaultProps = {
-  className: ""
+  className: "",
+  hasLegend: true,
+  legendComponent: null
 };
 
 export default ToggleList;

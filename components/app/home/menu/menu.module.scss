@@ -18,6 +18,15 @@
   box-shadow: 0px 0px 113.425px #000000;
   border-radius: 16px;
 
+  &__tab,
+  &__tab-description,
+  &__data-label,
+  p {
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 21px);
+  }
+
   &__tabs {
     height: 100%;
     display: flex;
@@ -37,9 +46,6 @@
     cursor: pointer;
     padding-bottom: 8px;
     border-bottom: 3px solid transparent;
-    font-weight: 500;
-    font-family: "Barlow";
-    @include font-size(14px, 21px);
     &[aria-selected="true"] {
       border-bottom: 3px solid $colour-flame;
     }
@@ -56,7 +62,8 @@
     backdrop-filter: blur(10.8731px);
     padding: 86px 28px 40px 28px;
     position: relative;
-    height: 100%;
+    flex-grow: 1;
+    border-radius: 0 0 16px 16px;
   }
 
   &__tab-description {
@@ -67,9 +74,6 @@
     right: 0;
     top: 0;
     padding: 12px 28px;
-    font-family: "Barlow";
-    font-weight: 500;
-    @include font-size(14px, 21px);
     &:after {
       content: "";
       display: block;
@@ -84,6 +88,18 @@
     }
   }
 
+  &__template-description {
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+  }
+
+  &__data-selection {
+    display: grid;
+    grid-template-columns: 126px auto;
+    grid-gap: 0px;
+    row-gap: 4px;
+  }
+
   &--closing {
     opacity: 0;
     animation: FadeOut 0.3s ease-in;
@@ -92,7 +108,6 @@
   &__header {
     background-color: rgba($colour-night, 0.4);
     backdrop-filter: blur(10.8731px);
-
     padding: 14px 28px 0px 28px;
     border-radius: 16px 16px 0 0;
   }
@@ -143,6 +158,8 @@
   &__content {
     flex-grow: 1;
     border-radius: 0 0 16px 16px;
+    display: flex;
+    flex-direction: column;
   }
 
   @media screen and (max-width: $global-breakpoint-md) {
@@ -171,13 +188,15 @@
       padding: 64px 24px 40px 24px;
     }
 
-    &__tab {
+    &__tab,
+    &__tab-description,
+    &__data-label,
+    p {
       @include font-size(12px, 18px);
     }
 
     &__tab-description {
       padding: 8px 24px;
-      @include font-size(12px, 18px);
       &:after {
         right: 24px;
         top: -14px;
@@ -185,6 +204,15 @@
         border-right: 8px solid transparent;
         border-bottom: 16px solid $colour-galaxy;
       }
+    }
+
+    &__template-description {
+      padding-bottom: 12px;
+      margin-top: 4px;
+    }
+
+    &__data-selection {
+      display: block;
     }
 
     &__header-text {
@@ -197,6 +225,22 @@
       background-position: 50% 7px;
       width: 31px;
       height: 31px;
+    }
+
+    &__toggle-list {
+      margin-bottom: 4px;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    &__tab-container {
+      padding: 80px 24px 40px 24px;
+    }
+
+    &__tab-description {
+      &::after {
+        display: none;
+      }
     }
   }
 }
