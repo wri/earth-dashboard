@@ -12,21 +12,21 @@ test("<Menu /> renders correctly as desktop", () => {
       class="c-home-menu"
     >
       <div
-        class="c-home-menu__header"
-      >
-        <h2
-          class="c-home-menu__header-text"
-        >
-          Understand the emergency
-        </h2>
-      </div>
-      <div
-        class="c-home-menu__content u-padding-none"
+        class="c-home-menu__tabs"
+        data-tabs="true"
       >
         <div
-          class="c-home-menu__tabs"
-          data-tabs="true"
+          class="c-home-menu__header"
         >
+          <div
+            class="c-home-menu__header-content"
+          >
+            <h2
+              class="c-home-menu__header-text"
+            >
+              Understand the emergency
+            </h2>
+          </div>
           <ul
             class="c-home-menu__tab-list u-padding-top-xs"
             role="tablist"
@@ -66,6 +66,10 @@ test("<Menu /> renders correctly as desktop", () => {
               Dive Into The Data
             </li>
           </ul>
+        </div>
+        <div
+          class="c-home-menu__content u-padding-none"
+        >
           <div
             class="c-home-menu__tab-container"
           >
@@ -116,21 +120,21 @@ test("<Menu /> renders correctly as mobile", () => {
       class="c-home-menu c-home-menu--closing"
     >
       <div
-        class="c-home-menu__header"
-      >
-        <h2
-          class="c-home-menu__header-text"
-        >
-          Understand the emergency
-        </h2>
-      </div>
-      <div
-        class="c-home-menu__content u-padding-none"
+        class="c-home-menu__tabs"
+        data-tabs="true"
       >
         <div
-          class="c-home-menu__tabs"
-          data-tabs="true"
+          class="c-home-menu__header"
         >
+          <div
+            class="c-home-menu__header-content"
+          >
+            <h2
+              class="c-home-menu__header-text"
+            >
+              Understand the emergency
+            </h2>
+          </div>
           <ul
             class="c-home-menu__tab-list u-padding-top-xs"
             role="tablist"
@@ -170,6 +174,10 @@ test("<Menu /> renders correctly as mobile", () => {
               Dive Into The Data
             </li>
           </ul>
+        </div>
+        <div
+          class="c-home-menu__content u-padding-none"
+        >
           <div
             class="c-home-menu__tab-container"
           >
