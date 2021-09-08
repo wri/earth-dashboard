@@ -27,12 +27,9 @@
   &__tab-list {
     color: white;
     margin: 0px;
-    padding-left: 28px;
-    padding-right: 28px;
+    padding: 0px;
     list-style: none;
     display: flex;
-    background-color: rgba($colour-night, 0.4);
-    backdrop-filter: blur(10.8731px);
   }
 
   &__tab {
@@ -98,7 +95,9 @@
 
     padding: 14px 28px 0px 28px;
     border-radius: 16px 16px 0 0;
+  }
 
+  &__header-content {
     display: flex;
     align-items: center;
 
@@ -155,18 +154,16 @@
     max-width: unset;
 
     &__header {
-      padding: 11px 24px 0px 24px;
       border-radius: 16px 16px 0 0;
+      padding: 11px 24px 0px 24px;
+    }
+
+    &__header-content {
       &:before {
         height: 28px;
         width: 28px;
         margin-right: 8px;
       }
-    }
-
-    &__tab-list {
-      padding-left: 24px;
-      padding-right: 24px;
     }
 
     &__tab-container {

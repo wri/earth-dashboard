@@ -14,12 +14,12 @@ const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
     <div className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}>
       <div className={classnames(styles["c-home-menu"], isClosing && styles["c-home-menu--closing"])} {...rest}>
         <div className={classnames(styles["c-home-menu__header"])}>
-          <h2 className={styles["c-home-menu__header-text"]}>Understand the emergency</h2>
-          {onClose && (
-            <button className={styles["c-home-menu__close-button"]} onClick={onClose} aria-label="Close menu" />
-          )}
-        </div>
-        <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>
+          <div className={classnames(styles["c-home-menu__header-content"])}>
+            <h2 className={styles["c-home-menu__header-text"]}>Understand the emergency</h2>
+            {onClose && (
+              <button className={styles["c-home-menu__close-button"]} onClick={onClose} aria-label="Close menu" />
+            )}
+          </div>
           <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)} className={styles["c-home-menu__tabs"]}>
             <TabList className={classnames(styles["c-home-menu__tab-list"], "u-padding-top-xs")}>
               <Tab className={classnames(styles["c-home-menu__tab"], "u-margin-right-l")} data-testid="tab-1">
@@ -32,6 +32,10 @@ const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
                 Dive Into The Data
               </Tab>
             </TabList>
+          </Tabs>
+        </div>
+        <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>
+          <Tabs selectedIndex={tabIndex} className={styles["c-home-menu__tabs"]}>
             <div className={classnames(styles["c-home-menu__tab-container"])}>
               <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-1">
                 <p className={classnames(styles["c-home-menu__tab-description"])}>What’s Happening</p>
