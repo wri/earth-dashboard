@@ -14,7 +14,8 @@ const DataPanel = ({
   setMonitorValue,
   animationValue,
   setAnimationValue,
-  isMobile
+  isMobile,
+  onSelectInfo
 }) => {
   return (
     <>
@@ -38,13 +39,13 @@ const DataPanel = ({
         vestibulum nisl vehicula.
       </p>
       <div className={styles["c-home-menu__data-selection"]}>
-        {!isMobile && <InfoLabel title="Dataset" />}
+        {!isMobile && <InfoLabel title="Dataset" onSelectInfo={onSelectInfo} />}
         <ToggleList
           selectedValue={datasetValue}
           onSelect={value => setDatasetValue(value)}
           title="Datasets"
           hasLegend={isMobile}
-          legendComponent={<InfoLabel title="Dataset" className="u-margin-right-xs" />}
+          legendComponent={<InfoLabel title="Dataset" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />}
           role="group"
           aria-labelledby="dataset-label"
           className={styles["c-home-menu__toggle-list"]}
@@ -59,13 +60,13 @@ const DataPanel = ({
             Particulate Matter
           </ToggleItem>
         </ToggleList>
-        {!isMobile && <InfoLabel title="Monitor" />}
+        {!isMobile && <InfoLabel title="Monitor" onSelectInfo={onSelectInfo} />}
         <ToggleList
           selectedValue={monitorValue}
           onSelect={value => setMonitorValue(value)}
           title="Monitor"
           hasLegend={isMobile}
-          legendComponent={<InfoLabel title="Monitor" className="u-margin-right-xs" />}
+          legendComponent={<InfoLabel title="Monitor" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />}
           role="group"
           aria-labelledby="monitor-label"
           className={styles["c-home-menu__toggle-list"]}
@@ -74,13 +75,13 @@ const DataPanel = ({
             Fires
           </ToggleItem>
         </ToggleList>
-        {!isMobile && <InfoLabel title="Animation" />}
+        {!isMobile && <InfoLabel title="Animation" onSelectInfo={onSelectInfo} />}
         <ToggleList
           selectedValue={animationValue}
           onSelect={value => setAnimationValue(value)}
           title="Animation"
           hasLegend={isMobile}
-          legendComponent={<InfoLabel title="Animation" className="u-margin-right-xs" />}
+          legendComponent={<InfoLabel title="Animation" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />}
           role="group"
           aria-labelledby="animation-label"
           className={styles["c-home-menu__toggle-list"]}
@@ -103,7 +104,8 @@ DataPanel.propTypes = {
   setMonitorValue: PropTypes.func.isRequired,
   animationValue: PropTypes.array.isRequired,
   setAnimationValue: PropTypes.func.isRequired,
-  isMobile: PropTypes.bool
+  isMobile: PropTypes.bool,
+  onSelectInfo: PropTypes.bool.isRequired
 };
 
 DataPanel.defaultProps = {
