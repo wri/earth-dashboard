@@ -20,7 +20,7 @@ const initialState = {
   loading: false
 };
 
-export default function (state = initialState, action) {
+export default function Modal(state = initialState, action) {
   switch (action.type) {
     case MODAL_TOGGLE:
       return Object.assign({}, state, { open: action.payload });

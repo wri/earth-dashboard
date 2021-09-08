@@ -29,17 +29,27 @@ const connect = ({ api, version, initialState, iframe }) => {
   });
 };
 
-export const getEarthServer = async iframe => {
+export const getEarthServer = async (iframe, windowWidth) => {
+  // Clamp size of initial earth.
+  // Between 200 -> 768
+  const scale = Math.min(Math.max((windowWidth * 0.4) / 2, 150), 768);
+
   const initialState = {
     animation_enabled: false,
-    overlay_type: "temp"
+    overlay_type: "temp",
+    orientation: { scale }
   };
 
   try {
     const port = await connect({ api: "earth", version: 1, initialState, iframe });
     const server = Comlink.wrap(port);
-    Comlink.expose(new EarthClient(), port);
-    return server;
+    const client = new EarthClient();
+    Comlink.expose(client, port);
+
+    const initialStateResp = await server.getState();
+    client.state = initialStateResp;
+
+    return { server, client };
   } catch (err) {
     console.log("Failed to connect to iframe", err);
   }
