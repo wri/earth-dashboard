@@ -105,7 +105,7 @@ DataPanel.propTypes = {
   animationValue: PropTypes.array.isRequired,
   setAnimationValue: PropTypes.func.isRequired,
   isMobile: PropTypes.bool,
-  onSelectInfo: PropTypes.bool.isRequired
+  onSelectInfo: PropTypes.func.isRequired
 };
 
 DataPanel.defaultProps = {

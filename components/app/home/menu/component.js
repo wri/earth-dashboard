@@ -24,6 +24,9 @@ const INFO_DATA = {
   }
 };
 
+const INFO_TAB_INDEX = 3;
+const DATA_TAB_INDEX = 2;
+
 const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
   const [tabIndex, setTabIndex] = useState(0);
   const [infoData, setInfoData] = useState(null);
@@ -34,12 +37,12 @@ const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
   const [animationValue, setAnimationValue] = useState(["wind"]);
 
   const onBack = () => {
-    setTabIndex(2);
+    setTabIndex(DATA_TAB_INDEX);
     setInfoData(null);
   };
 
   const onSelectInfo = key => {
-    setTabIndex(3);
+    setTabIndex(INFO_TAB_INDEX);
     setInfoData(INFO_DATA[key]);
   };
 
@@ -49,15 +52,17 @@ const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
         className={classnames(
           styles["c-home-menu"],
           isClosing && styles["c-home-menu--closing"],
-          tabIndex === 3 && styles["c-home-menu--is-info-page"]
+          tabIndex === INFO_TAB_INDEX && styles["c-home-menu--is-info-page"]
         )}
         {...rest}
       >
         <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)} className={styles["c-home-menu__tabs"]}>
           <div className={classnames(styles["c-home-menu__header"])}>
             <div className={classnames(styles["c-home-menu__header-content"])}>
-              {tabIndex !== 3 && <h2 className={styles["c-home-menu__header-text"]}>Understand the emergency</h2>}
-              {tabIndex === 3 && (
+              {tabIndex !== INFO_TAB_INDEX && (
+                <h2 className={styles["c-home-menu__header-text"]}>Understand the emergency</h2>
+              )}
+              {tabIndex === INFO_TAB_INDEX && (
                 <>
                   <button className={styles["c-home-menu__back-button"]} onClick={onBack} aria-label="Back" />
                   {infoData && isMobile && (
