@@ -3,12 +3,15 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
-import ToggleList from "components/ui/toggle-list";
-import ToggleItem from "components/ui/toggle-list/toggle-item";
+import DataPanel from "./panels/data";
 
 const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
   const [tabIndex, setTabIndex] = useState(0);
-  const [toggleValue, setToggleValue] = useState("wildfires");
+  // TODO: Redux
+  const [templateValue, setTemplateValue] = useState("wildfires");
+  const [datasetValue, setDatasetValue] = useState(["part_mat"]);
+  const [monitorValue, setMonitorValue] = useState(["fires"]);
+  const [animationValue, setAnimationValue] = useState(["wind"]);
 
   return (
     <div className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}>
@@ -36,28 +39,23 @@ const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
           <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>
             <div className={classnames(styles["c-home-menu__tab-container"])}>
               <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-1">
-                <p className={classnames(styles["c-home-menu__tab-description"])}>What’s Happening</p>
+                <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>What’s Happening</p>
               </TabPanel>
               <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-2">
-                <p className={classnames(styles["c-home-menu__tab-description"])}>Vital Signs</p>
+                <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>Vital Signs</p>
               </TabPanel>
               <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-3">
-                <p className={classnames(styles["c-home-menu__tab-description"])}>
-                  Understand more about how the globe is being impacted by other factors that contribute to the climate
-                  crisis.
-                </p>
-                <ToggleList selectedValue={toggleValue} onSelect={index => setToggleValue(index)} title="Templates">
-                  <ToggleItem value="wildfires" className="u-margin-right-xxs">
-                    Wildfires
-                  </ToggleItem>
-                  <ToggleItem value="winds" className="u-margin-right-xxs">
-                    Winds
-                  </ToggleItem>
-                  <ToggleItem value="atmosphere" className="u-margin-right-xxs">
-                    Atmosphere
-                  </ToggleItem>
-                  <ToggleItem value="ocean">Ocean</ToggleItem>
-                </ToggleList>
+                <DataPanel
+                  templateValue={templateValue}
+                  setTemplateValue={setTemplateValue}
+                  datasetValue={datasetValue}
+                  setDatasetValue={setDatasetValue}
+                  monitorValue={monitorValue}
+                  setMonitorValue={setMonitorValue}
+                  animationValue={animationValue}
+                  setAnimationValue={setAnimationValue}
+                  isMobile={isMobile}
+                />
               </TabPanel>
             </div>
           </div>

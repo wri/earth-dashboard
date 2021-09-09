@@ -81,7 +81,7 @@ test("<Menu /> renders correctly as desktop", () => {
               role="tabpanel"
             >
               <p
-                class="c-home-menu__tab-description"
+                class="c-home-menu__tab-description u-margin-none"
               >
                 What’s Happening
               </p>
@@ -189,7 +189,7 @@ test("<Menu /> renders correctly as mobile", () => {
               role="tabpanel"
             >
               <p
-                class="c-home-menu__tab-description"
+                class="c-home-menu__tab-description u-margin-none"
               >
                 What’s Happening
               </p>
