@@ -65,6 +65,17 @@ test("<Menu /> renders correctly as desktop", () => {
             >
               Dive Into The Data
             </li>
+            <li
+              aria-controls="react-tabs-7"
+              aria-disabled="false"
+              aria-selected="false"
+              class="u-display-none"
+              data-testid="tab-4"
+              id="react-tabs-6"
+              role="tab"
+            >
+              Info
+            </li>
           </ul>
         </div>
         <div
@@ -98,6 +109,12 @@ test("<Menu /> renders correctly as desktop", () => {
               class="c-home-menu__tab-panel"
               data-testid="panel-3"
               id="react-tabs-5"
+              role="tabpanel"
+            />
+            <div
+              aria-labelledby="react-tabs-6"
+              class="react-tabs__tab-panel"
+              id="react-tabs-7"
               role="tabpanel"
             />
           </div>
@@ -140,38 +157,49 @@ test("<Menu /> renders correctly as mobile", () => {
             role="tablist"
           >
             <li
-              aria-controls="react-tabs-7"
+              aria-controls="react-tabs-9"
               aria-disabled="false"
               aria-selected="true"
               class="c-home-menu__tab u-margin-right-l react-tabs__tab--selected"
               data-testid="tab-1"
-              id="react-tabs-6"
+              id="react-tabs-8"
               role="tab"
               tabindex="0"
             >
               What’s Happening
             </li>
             <li
-              aria-controls="react-tabs-9"
+              aria-controls="react-tabs-11"
               aria-disabled="false"
               aria-selected="false"
               class="c-home-menu__tab u-margin-right-l"
               data-testid="tab-2"
-              id="react-tabs-8"
+              id="react-tabs-10"
               role="tab"
             >
               Vital Signs
             </li>
             <li
-              aria-controls="react-tabs-11"
+              aria-controls="react-tabs-13"
               aria-disabled="false"
               aria-selected="false"
               class="c-home-menu__tab"
               data-testid="tab-3"
-              id="react-tabs-10"
+              id="react-tabs-12"
               role="tab"
             >
               Dive Into The Data
+            </li>
+            <li
+              aria-controls="react-tabs-15"
+              aria-disabled="false"
+              aria-selected="false"
+              class="u-display-none"
+              data-testid="tab-4"
+              id="react-tabs-14"
+              role="tab"
+            >
+              Info
             </li>
           </ul>
         </div>
@@ -182,10 +210,10 @@ test("<Menu /> renders correctly as mobile", () => {
             class="c-home-menu__tab-container"
           >
             <div
-              aria-labelledby="react-tabs-6"
+              aria-labelledby="react-tabs-8"
               class="c-home-menu__tab-panel react-tabs__tab-panel--selected"
               data-testid="panel-1"
-              id="react-tabs-7"
+              id="react-tabs-9"
               role="tabpanel"
             >
               <p
@@ -195,17 +223,23 @@ test("<Menu /> renders correctly as mobile", () => {
               </p>
             </div>
             <div
-              aria-labelledby="react-tabs-8"
+              aria-labelledby="react-tabs-10"
               class="c-home-menu__tab-panel"
               data-testid="panel-2"
-              id="react-tabs-9"
+              id="react-tabs-11"
               role="tabpanel"
             />
             <div
-              aria-labelledby="react-tabs-10"
+              aria-labelledby="react-tabs-12"
               class="c-home-menu__tab-panel"
               data-testid="panel-3"
-              id="react-tabs-11"
+              id="react-tabs-13"
+              role="tabpanel"
+            />
+            <div
+              aria-labelledby="react-tabs-14"
+              class="react-tabs__tab-panel"
+              id="react-tabs-15"
               role="tabpanel"
             />
           </div>

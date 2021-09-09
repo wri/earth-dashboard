@@ -126,6 +126,13 @@
       width: 40px;
       margin-right: 12px;
     }
+
+    &--no-icon {
+      justify-content: space-between;
+      &:before {
+        content: initial;
+      }
+    }
   }
 
   &__header-text {
@@ -138,15 +145,10 @@
     flex-grow: 1;
   }
 
-  &__close-button {
+  &__close-button,
+  &__back-button {
     display: block;
-    background-image: url("/static/icons/close.svg");
-    background-size: 24px 24px;
     background-repeat: no-repeat;
-    background-position: 50% 9px;
-    width: 40px;
-    height: 40px;
-    margin-right: -20px;
     border-radius: 50%;
 
     &:focus,
@@ -155,11 +157,56 @@
     }
   }
 
+  &__close-button {
+    background-image: url("/static/icons/close.svg");
+    background-size: 24px 24px;
+    background-position: 50% 9px;
+    width: 40px;
+    height: 40px;
+    margin-right: -20px;
+  }
+
+  &__back-button {
+    background-image: url("/static/icons/back-chevron.svg");
+    background-size: 10px 18px;
+    background-position: 43% 11px;
+    width: 40px;
+    height: 40px;
+    margin-left: -17px;
+  }
+
   &__content {
     flex-grow: 1;
     border-radius: 0 0 16px 16px;
     display: flex;
     flex-direction: column;
+  }
+
+  &__info-title {
+    font-family: "Barlow";
+    font-style: normal;
+    font-weight: 500;
+    @include font-size(18px, 27px);
+    margin-bottom: 12px;
+    color: white;
+  }
+
+  &--is-info-page {
+    .c-home-menu__header-content {
+      justify-content: space-between;
+      &:before {
+        content: initial;
+      }
+    }
+    .c-home-menu__header {
+      padding: 14px 28px 14px 28px;
+    }
+    .c-home-menu__tab-list {
+      display: none;
+    }
+    .c-home-menu__tab-container {
+      padding: 20px 28px 40px 28px;
+    }
   }
 
   @media screen and (max-width: $global-breakpoint-md) {

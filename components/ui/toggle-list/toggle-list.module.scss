@@ -75,6 +75,13 @@
     background-image: url("/static/icons/home-menu/info.svg");
     background-size: contain;
     background-repeat: no-repeat;
+    border: 1px solid transparent;
+    border-radius: 50%;
+
+    &:hover,
+    &:focus {
+      border: 1px solid $colour-flame;
+    }
   }
 
   @media screen and (max-width: $global-breakpoint-md) {

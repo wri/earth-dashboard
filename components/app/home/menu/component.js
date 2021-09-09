@@ -5,21 +5,73 @@ import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
 import DataPanel from "./panels/data";
 
+const INFO_DATA = {
+  dataset: {
+    title: "Dataset",
+    description: `Datasets show another dimension of data using color. Some overlays are valid at a specific height while others are valid for the entire thickness of the atmosphere
+
+    Wind	- wind speed at specified height
+    Temp	- temperature at specified height
+    RH	- relative humidity at specified height`
+  },
+  monitor: {
+    title: "Monitor",
+    description: "Lorem Ipsum"
+  },
+  animation: {
+    title: "Animation",
+    description: "Lorem Ipsum"
+  }
+};
+
+const INFO_TAB_INDEX = 3;
+const DATA_TAB_INDEX = 2;
+
 const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
   const [tabIndex, setTabIndex] = useState(0);
+  const [infoData, setInfoData] = useState(null);
   // TODO: Redux
   const [templateValue, setTemplateValue] = useState("wildfires");
   const [datasetValue, setDatasetValue] = useState(["part_mat"]);
   const [monitorValue, setMonitorValue] = useState(["fires"]);
   const [animationValue, setAnimationValue] = useState(["wind"]);
 
+  const onBack = () => {
+    setTabIndex(DATA_TAB_INDEX);
+    setInfoData(null);
+  };
+
+  const onSelectInfo = key => {
+    setTabIndex(INFO_TAB_INDEX);
+    setInfoData(INFO_DATA[key]);
+  };
+
   return (
     <div className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}>
-      <div className={classnames(styles["c-home-menu"], isClosing && styles["c-home-menu--closing"])} {...rest}>
+      <div
+        className={classnames(
+          styles["c-home-menu"],
+          isClosing && styles["c-home-menu--closing"],
+          tabIndex === INFO_TAB_INDEX && styles["c-home-menu--is-info-page"]
+        )}
+        {...rest}
+      >
         <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)} className={styles["c-home-menu__tabs"]}>
           <div className={classnames(styles["c-home-menu__header"])}>
             <div className={classnames(styles["c-home-menu__header-content"])}>
-              <h2 className={styles["c-home-menu__header-text"]}>Understand the emergency</h2>
+              {tabIndex !== INFO_TAB_INDEX && (
+                <h2 className={styles["c-home-menu__header-text"]}>Understand the emergency</h2>
+              )}
+              {tabIndex === INFO_TAB_INDEX && (
+                <>
+                  <button className={styles["c-home-menu__back-button"]} onClick={onBack} aria-label="Back" />
+                  {infoData && isMobile && (
+                    <h2 className={classnames(styles["c-home-menu__header-text"], "u-text-center")}>
+                      {infoData.title}
+                    </h2>
+                  )}
+                </>
+              )}
               {onClose && (
                 <button className={styles["c-home-menu__close-button"]} onClick={onClose} aria-label="Close menu" />
               )}
@@ -33,6 +85,9 @@ const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
               </Tab>
               <Tab className={styles["c-home-menu__tab"]} data-testid="tab-3">
                 Dive Into The Data
+              </Tab>
+              <Tab className="u-display-none" data-testid="tab-4">
+                Info
               </Tab>
             </TabList>
           </div>
@@ -55,7 +110,16 @@ const Menu = forwardRef(({ isMobile, onClose, isClosing, ...rest }, ref) => {
                   animationValue={animationValue}
                   setAnimationValue={setAnimationValue}
                   isMobile={isMobile}
+                  onSelectInfo={onSelectInfo}
                 />
+              </TabPanel>
+              <TabPanel>
+                {infoData && (
+                  <>
+                    {!isMobile && <h2 className={styles["c-home-menu__info-title"]}>{infoData.title}</h2>}
+                    <p className="u-text-pre-line">{infoData.description}</p>
+                  </>
+                )}
               </TabPanel>
             </div>
           </div>
