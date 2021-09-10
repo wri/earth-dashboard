@@ -6,8 +6,9 @@ import classnames from "classnames";
 import styles from "../menu.module.scss";
 
 const DataPanel = ({
-  templateValue,
-  setTemplateValue,
+  currentTemplate,
+  setCurrentTemplate,
+  templates,
   datasetValue,
   setDatasetValue,
   monitorValue,
@@ -22,22 +23,18 @@ const DataPanel = ({
       <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
         Understand more about how the globe is being impacted by other factors that contribute to the climate crisis.
       </p>
-      <ToggleList selectedValue={templateValue} onSelect={value => setTemplateValue(value)} title="Templates">
-        <ToggleItem value="wildfires" className="u-margin-right-xxs u-margin-bottom-xs">
-          Wildfires
-        </ToggleItem>
-        <ToggleItem value="winds" className="u-margin-right-xxs u-margin-bottom-xs">
-          Winds
-        </ToggleItem>
-        <ToggleItem value="atmosphere" className="u-margin-right-xxs u-margin-bottom-xs">
-          Atmosphere
-        </ToggleItem>
-        <ToggleItem value="ocean">Ocean</ToggleItem>
+      <ToggleList
+        selectedValue={currentTemplate.id}
+        onSelect={value => setCurrentTemplate(templates.find(template => parseInt(value, 10) === template.id))}
+        title="Templates"
+      >
+        {templates.map(template => (
+          <ToggleItem value={template.id} className="u-margin-right-xxs u-margin-bottom-xs" key={template.id}>
+            {template.attributes.title}
+          </ToggleItem>
+        ))}
       </ToggleList>
-      <p className={styles["c-home-menu__template-description"]}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse molestie felis at tortor mollis, id
-        vestibulum nisl vehicula.
-      </p>
+      <p className={styles["c-home-menu__template-description"]}>{currentTemplate.attributes.description}</p>
       <div className={styles["c-home-menu__data-selection"]}>
         {!isMobile && <InfoLabel title="Dataset" onSelectInfo={onSelectInfo} />}
         <ToggleList
@@ -96,8 +93,9 @@ const DataPanel = ({
 };
 
 DataPanel.propTypes = {
-  templateValue: PropTypes.string.isRequired,
-  setTemplateValue: PropTypes.func.isRequired,
+  currentTemplate: PropTypes.object,
+  setCurrentTemplate: PropTypes.func.isRequired,
+  templates: PropTypes.array,
   datasetValue: PropTypes.array.isRequired,
   setDatasetValue: PropTypes.func.isRequired,
   monitorValue: PropTypes.array.isRequired,
@@ -109,7 +107,9 @@ DataPanel.propTypes = {
 };
 
 DataPanel.defaultProps = {
-  isMobile: false
+  isMobile: false,
+  currentTemplate: null,
+  templates: []
 };
 
 export default DataPanel;
