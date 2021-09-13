@@ -104,7 +104,14 @@ const MainContainer = ({ isMobile }) => {
         />
       )}
       {hasMenuOpen && (
-        <Menu isMobile={isMobile} onClose={toggleMenu} id="menu" ref={menuRef} isClosing={isClosingMenu} />
+        <Menu
+          isMobile={isMobile}
+          onClose={toggleMenu}
+          id="menu"
+          ref={menuRef}
+          isClosing={isClosingMenu}
+          earthServer={earthServer.current}
+        />
       )}
       <Actions isMobile={isMobile}>
         <button

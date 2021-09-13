@@ -5,6 +5,7 @@ import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
 import DataPanel from "./panels/data";
 import { fetchTemplates } from "services/gca";
+import { DATA_LAYER_MAP } from "constants/datalayers";
 
 const INFO_DATA = {
   dataset: {
@@ -29,15 +30,27 @@ const INFO_TAB_INDEX = 3;
 const DATA_TAB_INDEX = 2;
 
 const Menu = forwardRef(
-  ({ isMobile, onClose, isClosing, templates, setTemplates, currentTemplate, setCurrentTemplate, ...rest }, ref) => {
+  ({
+    isMobile,
+    onClose,
+    isClosing,
+    templates,
+    setTemplates,
+    currentTemplate,
+    setCurrentTemplate,
+    animationValue,
+    setAnimationValue,
+    datasetValue,
+    setDatasetValue,
+    monitorValue,
+    setMonitorValue,
+    earthServer,
+    ...rest
+  }) => {
     const [tabIndex, setTabIndex] = useState(0);
     const [infoData, setInfoData] = useState(null);
     // TODO: Redux
     const [isFetchingTemplates, setIsFetchingTemplates] = useState(true);
-
-    const [datasetValue, setDatasetValue] = useState(["part_mat"]);
-    const [monitorValue, setMonitorValue] = useState(["fires"]);
-    const [animationValue, setAnimationValue] = useState(["wind"]);
 
     const onBack = () => {
       setTabIndex(DATA_TAB_INDEX);
@@ -64,6 +77,16 @@ const Menu = forwardRef(
 
       getTemplates();
     }, [setTemplates]);
+
+    useEffect(() => {
+      if (earthServer) {
+        const animation = DATA_LAYER_MAP[animationValue] || { animation_enabled: false };
+        const monitor = DATA_LAYER_MAP[monitorValue] || { annotation_type: "none" };
+        const dataset = DATA_LAYER_MAP[datasetValue] || { overlay_type: "none", z_level: "surface" };
+
+        earthServer.saveState({ ...animation, ...monitor, ...dataset });
+      }
+    }, [animationValue, datasetValue, monitorValue, earthServer]);
 
     return (
       <div
