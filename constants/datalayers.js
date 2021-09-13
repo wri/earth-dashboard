@@ -3,6 +3,8 @@ export const LEVELS = {
   jetstream: "250hPa",
   polarVortex: "10hPa"
 };
+
+// Maps from the GCA CMS data keys to the state of the nullschool iframe
 export const DATA_LAYER_MAP = {
   // Animations
   vdma9i9h: { animation_type: "currents", animation_enabled: true },
@@ -24,8 +26,7 @@ export const DATA_LAYER_MAP = {
   xpo1gqgs: { overlay_type: "wind", z_level: LEVELS.surface }, // Wind at surface
   "6mffa36d": { overlay_type: "wind", z_level: LEVELS.jetstream }, // Wind at jet stream
   f6fcp2ev: { overlay_type: "none", z_level: LEVELS.surface }, // Smoke TBD
-  zbwzorpj: { overlay_type: "cosc", z_level: LEVELS.surface }, // Carbon Monoxide
-  f6fcp2ev: { overlay_type: "", z_level: LEVELS.surface }
+  zbwzorpj: { overlay_type: "cosc", z_level: LEVELS.surface } // Carbon Monoxide
   // End Datasets
 };
 
