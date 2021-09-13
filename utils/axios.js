@@ -15,7 +15,6 @@ export const localAPI = axios.create({
   headers: { "Content-Type": "application/json" }
 });
 
-console.log(process.env);
 export const GCAAPI = axios.create({
   baseURL: process.env.GCA_API_URL,
   headers: { "Content-Type": "application/json" }
