@@ -49,7 +49,6 @@ const Menu = forwardRef(
   }) => {
     const [tabIndex, setTabIndex] = useState(0);
     const [infoData, setInfoData] = useState(null);
-    // TODO: Redux
     const [isFetchingTemplates, setIsFetchingTemplates] = useState(true);
 
     const onBack = () => {
