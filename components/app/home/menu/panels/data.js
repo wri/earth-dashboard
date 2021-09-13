@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import PropTypes from "prop-types";
 import ToggleList from "components/ui/toggle-list";
 import ToggleItem from "components/ui/toggle-list/toggle-item";
@@ -23,6 +24,24 @@ const DataPanel = ({
   const animationLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.animation);
   const datasetLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.dataset);
   const monitorLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.monitor);
+  const currentTemplateMatch = useMemo(() => {
+    // Do the defaults of the template match the current layers.
+    const defaults = currentTemplate.attributes.data_layers.filter(layer => layer.attributes.default_on);
+    const defaultKeys = defaults.map(layer => layer.attributes.data_key);
+
+    const hasMonitor =
+      defaults.findIndex(layer => layer.attributes.category.attributes.title === DATA_LAYER_TYPES.monitor) > -1;
+    const hasAnimation =
+      defaults.findIndex(layer => layer.attributes.category.attributes.title === DATA_LAYER_TYPES.animation) > -1;
+    const hasDataset =
+      defaults.findIndex(layer => layer.attributes.category.attributes.title === DATA_LAYER_TYPES.dataset) > -1;
+
+    return (
+      (hasMonitor ? defaultKeys.indexOf(monitorValue) > -1 : true) &&
+      (hasAnimation ? defaultKeys.indexOf(animationValue) > -1 : true) &&
+      (hasDataset ? defaultKeys.indexOf(datasetValue) > -1 : true)
+    );
+  }, [animationValue, currentTemplate.attributes.data_layers, datasetValue, monitorValue]);
 
   return (
     <>
@@ -30,7 +49,7 @@ const DataPanel = ({
         Understand more about how the globe is being impacted by other factors that contribute to the climate crisis.
       </p>
       <ToggleList
-        selectedValue={currentTemplate.id}
+        selectedValue={currentTemplateMatch ? currentTemplate.id : null}
         onSelect={value => setCurrentTemplate(templates.find(template => parseInt(value, 10) === template.id))}
         title="Templates"
       >

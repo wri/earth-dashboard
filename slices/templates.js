@@ -12,6 +12,11 @@ const templatesSlice = createSlice({
   name: "templates",
   initialState,
   reducers: {
+    resetValues(state) {
+      state.animationValue = "";
+      state.datasetValue = "";
+      state.monitorValue = "";
+    },
     setTemplates(state, action) {
       state.allTemplates = action.payload;
       if (!state.currentTemplate) {
@@ -33,5 +38,6 @@ const templatesSlice = createSlice({
   }
 });
 
-export const { setTemplates, setCurrentTemplate, setAnimation, setDataset, setMonitor } = templatesSlice.actions;
+export const { setTemplates, setCurrentTemplate, setAnimation, setDataset, setMonitor, resetValues } =
+  templatesSlice.actions;
 export default templatesSlice.reducer;

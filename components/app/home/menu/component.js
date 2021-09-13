@@ -5,7 +5,7 @@ import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
 import DataPanel from "./panels/data";
 import { fetchTemplates } from "services/gca";
-import { DATA_LAYER_MAP } from "constants/datalayers";
+import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
 
 const INFO_DATA = {
   dataset: {
@@ -45,6 +45,7 @@ const Menu = forwardRef(
     monitorValue,
     setMonitorValue,
     earthServer,
+    resetValues,
     ...rest
   }) => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -76,6 +77,29 @@ const Menu = forwardRef(
 
       getTemplates();
     }, [setTemplates]);
+
+    useEffect(() => {
+      // Get defaults
+      if (currentTemplate) {
+        resetValues();
+        const defaults = currentTemplate.attributes.data_layers.filter(layer => layer.attributes.default_on);
+        defaults.forEach(layer => {
+          let setter = () => {};
+          switch (layer.attributes.category.attributes.title) {
+            case DATA_LAYER_TYPES.animation:
+              setter = setAnimationValue;
+              break;
+            case DATA_LAYER_TYPES.dataset:
+              setter = setDatasetValue;
+              break;
+            case DATA_LAYER_TYPES.monitor:
+              setter = setMonitorValue;
+              break;
+          }
+          setter(layer.attributes.data_key);
+        });
+      }
+    }, [currentTemplate, resetValues, setAnimationValue, setDatasetValue, setMonitorValue]);
 
     useEffect(() => {
       if (earthServer) {

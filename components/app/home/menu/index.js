@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Menu from "./component";
-import { setTemplates, setCurrentTemplate, setAnimation, setDataset, setMonitor } from "slices/templates";
+import { setTemplates, setCurrentTemplate, setAnimation, setDataset, setMonitor, resetValues } from "slices/templates";
 
 export default connect(
   state => ({
@@ -15,6 +15,7 @@ export default connect(
     setCurrentTemplate,
     setAnimationValue: setAnimation,
     setMonitorValue: setMonitor,
-    setDatasetValue: setDataset
+    setDatasetValue: setDataset,
+    resetValues: resetValues
   }
 )(Menu);
