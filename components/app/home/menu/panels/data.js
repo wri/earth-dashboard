@@ -19,7 +19,8 @@ const DataPanel = ({
   animationValue,
   setAnimationValue,
   isMobile,
-  onSelectInfo
+  onSelectInfo,
+  layers
 }) => {
   const animationLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.animation);
   const datasetLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.dataset);
@@ -43,109 +44,127 @@ const DataPanel = ({
     );
   }, [animationValue, currentTemplate.attributes.data_layers, datasetValue, monitorValue]);
 
+  const source = useMemo(() => {
+    const layer = layers.find(layer => layer?.type === "overlay");
+    return layer ? `Source: ${layer.product.source}` : "";
+  }, [layers]);
+
+  const description = useMemo(() => {
+    const layer = datasetLayers.find(layer => layer.attributes.data_key === datasetValue);
+    return layer ? layer.attributes.description : "";
+  }, [datasetLayers, datasetValue]);
+
   return (
     <>
       <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
         Understand more about how the globe is being impacted by other factors that contribute to the climate crisis.
       </p>
-      <ToggleList
-        selectedValue={currentTemplateMatch ? currentTemplate.id : null}
-        onSelect={value => {
-          setCurrentTemplate({ ...templates.find(template => parseInt(value, 10) === template.id) });
-        }}
-        title="Templates"
-      >
-        {templates.map(template => (
-          <ToggleItem value={template.id} className="u-margin-right-xxs u-margin-bottom-xs" key={template.id}>
-            {template.attributes.title}
-          </ToggleItem>
-        ))}
-      </ToggleList>
-      <p className={styles["c-home-menu__template-description"]}>{currentTemplate.attributes.description}</p>
-      <div className={styles["c-home-menu__data-selection"]}>
-        {datasetLayers.length > 0 && (
-          <>
-            {!isMobile && <InfoLabel title="Dataset" onSelectInfo={onSelectInfo} />}
-            <ToggleList
-              selectedValue={datasetValue}
-              onSelect={value => setDatasetValue(value)}
-              title="Datasets"
-              hasLegend={isMobile}
-              legendComponent={<InfoLabel title="Dataset" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />}
-              role="group"
-              aria-labelledby="dataset-label"
-              className={styles["c-home-menu__toggle-list"]}
-              singularMode
-            >
-              {datasetLayers.map(layer => (
-                <ToggleItem
-                  key={layer.attributes.data_key}
-                  value={layer.attributes.data_key}
-                  className="u-margin-right-xxs u-margin-bottom-xs"
-                  type="checkbox"
-                >
-                  {layer.attributes.title}
-                </ToggleItem>
-              ))}
-            </ToggleList>
-          </>
-        )}
-        {monitorLayers.length > 0 && (
-          <>
-            {!isMobile && <InfoLabel title="Monitor" onSelectInfo={onSelectInfo} />}
-            <ToggleList
-              selectedValue={monitorValue}
-              onSelect={value => setMonitorValue(value)}
-              title="Monitor"
-              hasLegend={isMobile}
-              legendComponent={<InfoLabel title="Monitor" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />}
-              role="group"
-              aria-labelledby="monitor-label"
-              className={styles["c-home-menu__toggle-list"]}
-              singularMode
-            >
-              {monitorLayers.map(layer => (
-                <ToggleItem
-                  key={layer.attributes.data_key}
-                  value={layer.attributes.data_key}
-                  className="u-margin-right-xxs u-margin-bottom-xs"
-                  type="checkbox"
-                >
-                  {layer.attributes.title}
-                </ToggleItem>
-              ))}
-            </ToggleList>
-          </>
-        )}
-        {animationLayers.length > 0 && (
-          <>
-            {!isMobile && <InfoLabel title="Animation" onSelectInfo={onSelectInfo} />}
-            <ToggleList
-              selectedValue={animationValue}
-              onSelect={value => setAnimationValue(value)}
-              title="Animation"
-              hasLegend={isMobile}
-              legendComponent={
-                <InfoLabel title="Animation" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />
-              }
-              role="group"
-              aria-labelledby="animation-label"
-              className={styles["c-home-menu__toggle-list"]}
-              singularMode
-            >
-              {animationLayers.map(layer => (
-                <ToggleItem
-                  key={layer.attributes.data_key}
-                  value={layer.attributes.data_key}
-                  className="u-margin-right-xxs u-margin-bottom-xs"
-                  type="checkbox"
-                >
-                  {layer.attributes.title}
-                </ToggleItem>
-              ))}
-            </ToggleList>
-          </>
-        )}
+      <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
+        <ToggleList
+          selectedValue={currentTemplateMatch ? currentTemplate.id : null}
+          onSelect={value => {
+            setCurrentTemplate({ ...templates.find(template => parseInt(value, 10) === template.id) });
+          }}
+          title="Templates"
+        >
+          {templates.map(template => (
+            <ToggleItem value={template.id} className="u-margin-right-xxs u-margin-bottom-xs" key={template.id}>
+              {template.attributes.title}
+            </ToggleItem>
+          ))}
+        </ToggleList>
+        <p className={styles["c-home-menu__template-description"]}>{currentTemplate.attributes.description}</p>
+        <div className={styles["c-home-menu__data-selection"]}>
+          {datasetLayers.length > 0 && (
+            <>
+              {!isMobile && <InfoLabel title="Dataset" onSelectInfo={onSelectInfo} />}
+              <ToggleList
+                selectedValue={datasetValue}
+                onSelect={value => setDatasetValue(value)}
+                title="Datasets"
+                hasLegend={isMobile}
+                legendComponent={
+                  <InfoLabel title="Dataset" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />
+                }
+                role="group"
+                aria-labelledby="dataset-label"
+                className={styles["c-home-menu__toggle-list"]}
+                singularMode
+              >
+                {datasetLayers.map(layer => (
+                  <ToggleItem
+                    key={layer.attributes.data_key}
+                    value={layer.attributes.data_key}
+                    className="u-margin-right-xxs u-margin-bottom-xs"
+                    type="checkbox"
+                  >
+                    {layer.attributes.title}
+                  </ToggleItem>
+                ))}
+              </ToggleList>
+            </>
+          )}
+          {monitorLayers.length > 0 && (
+            <>
+              {!isMobile && <InfoLabel title="Monitor" onSelectInfo={onSelectInfo} />}
+              <ToggleList
+                selectedValue={monitorValue}
+                onSelect={value => setMonitorValue(value)}
+                title="Monitor"
+                hasLegend={isMobile}
+                legendComponent={
+                  <InfoLabel title="Monitor" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />
+                }
+                role="group"
+                aria-labelledby="monitor-label"
+                className={styles["c-home-menu__toggle-list"]}
+                singularMode
+              >
+                {monitorLayers.map(layer => (
+                  <ToggleItem
+                    key={layer.attributes.data_key}
+                    value={layer.attributes.data_key}
+                    className="u-margin-right-xxs u-margin-bottom-xs"
+                    type="checkbox"
+                  >
+                    {layer.attributes.title}
+                  </ToggleItem>
+                ))}
+              </ToggleList>
+            </>
+          )}
+          {animationLayers.length > 0 && (
+            <>
+              {!isMobile && <InfoLabel title="Animation" onSelectInfo={onSelectInfo} />}
+              <ToggleList
+                selectedValue={animationValue}
+                onSelect={value => setAnimationValue(value)}
+                title="Animation"
+                hasLegend={isMobile}
+                legendComponent={
+                  <InfoLabel title="Animation" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />
+                }
+                role="group"
+                aria-labelledby="animation-label"
+                className={styles["c-home-menu__toggle-list"]}
+                singularMode
+              >
+                {animationLayers.map(layer => (
+                  <ToggleItem
+                    key={layer.attributes.data_key}
+                    value={layer.attributes.data_key}
+                    className="u-margin-right-xxs u-margin-bottom-xs"
+                    type="checkbox"
+                  >
+                    {layer.attributes.title}
+                  </ToggleItem>
+                ))}
+              </ToggleList>
+            </>
+          )}
+        </div>
+        {description && <p className="u-margin-none">{description}</p>}
+        {source && <p className="u-margin-none">{source}</p>}
       </div>
     </>
   );
@@ -162,7 +181,8 @@ DataPanel.propTypes = {
   animationValue: PropTypes.string.isRequired,
   setAnimationValue: PropTypes.func.isRequired,
   isMobile: PropTypes.bool,
-  onSelectInfo: PropTypes.func.isRequired
+  onSelectInfo: PropTypes.func.isRequired,
+  layers: PropTypes.array.isRequired
 };
 
 DataPanel.defaultProps = {

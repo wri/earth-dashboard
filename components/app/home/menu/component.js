@@ -44,6 +44,7 @@ const Menu = forwardRef(
     setMonitorValue,
     earthServer,
     resetValues,
+    layers,
     ...rest
   }) => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -129,6 +130,7 @@ const Menu = forwardRef(
                     setAnimationValue={setAnimationValue}
                     isMobile={isMobile}
                     onSelectInfo={onSelectInfo}
+                    layers={layers}
                   />
                 </TabPanel>
                 <TabPanel>
@@ -153,7 +155,8 @@ Menu.displayName = "Menu";
 Menu.propTypes = {
   isMobile: PropTypes.bool.isRequired,
   isClosing: PropTypes.bool.isRequired,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  layers: PropTypes.array.isRequired
 };
 
 export default Menu;
