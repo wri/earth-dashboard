@@ -37,9 +37,9 @@ const DataPanel = ({
       defaults.findIndex(layer => layer.attributes.category.attributes.title === DATA_LAYER_TYPES.dataset) > -1;
 
     return (
-      (hasMonitor ? defaultKeys.indexOf(monitorValue) > -1 : true) &&
-      (hasAnimation ? defaultKeys.indexOf(animationValue) > -1 : true) &&
-      (hasDataset ? defaultKeys.indexOf(datasetValue) > -1 : true)
+      (hasMonitor ? defaultKeys.indexOf(monitorValue) > -1 : !Boolean(monitorValue)) &&
+      (hasAnimation ? defaultKeys.indexOf(animationValue) > -1 : !Boolean(animationValue)) &&
+      (hasDataset ? defaultKeys.indexOf(datasetValue) > -1 : !Boolean(datasetValue))
     );
   }, [animationValue, currentTemplate.attributes.data_layers, datasetValue, monitorValue]);
 
@@ -50,7 +50,9 @@ const DataPanel = ({
       </p>
       <ToggleList
         selectedValue={currentTemplateMatch ? currentTemplate.id : null}
-        onSelect={value => setCurrentTemplate(templates.find(template => parseInt(value, 10) === template.id))}
+        onSelect={value => {
+          setCurrentTemplate({ ...templates.find(template => parseInt(value, 10) === template.id) });
+        }}
         title="Templates"
       >
         {templates.map(template => (
@@ -153,11 +155,11 @@ DataPanel.propTypes = {
   currentTemplate: PropTypes.object,
   setCurrentTemplate: PropTypes.func.isRequired,
   templates: PropTypes.array,
-  datasetValue: PropTypes.array.isRequired,
+  datasetValue: PropTypes.string.isRequired,
   setDatasetValue: PropTypes.func.isRequired,
-  monitorValue: PropTypes.array.isRequired,
+  monitorValue: PropTypes.string.isRequired,
   setMonitorValue: PropTypes.func.isRequired,
-  animationValue: PropTypes.array.isRequired,
+  animationValue: PropTypes.string.isRequired,
   setAnimationValue: PropTypes.func.isRequired,
   isMobile: PropTypes.bool,
   onSelectInfo: PropTypes.func.isRequired
