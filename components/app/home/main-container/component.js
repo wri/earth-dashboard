@@ -35,6 +35,7 @@ const MainContainer = ({
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
   const menuRef = useRef(null);
   const { width } = useWindowDimensions();
+  const [layersLabelArr, setLayersLabelArr] = useState([]);
 
   const setRef = useCallback(
     node => {
@@ -115,6 +116,7 @@ const MainContainer = ({
   // if the current template changes, and there is an earth client, set the data layer values
   useEffect(() => {
     if (currentTemplate && earthClient) {
+      setLayersLabelArr([]);
       resetValues();
       const defaults = currentTemplate.attributes.data_layers.filter(layer => layer.attributes.default_on);
       defaults.forEach(layer => {
@@ -130,6 +132,7 @@ const MainContainer = ({
             setter = setMonitorValue;
             break;
         }
+        setLayersLabelArr(arr => [...arr, layer.attributes.title]);
         setter(layer.attributes.data_key);
       });
     }
@@ -138,13 +141,23 @@ const MainContainer = ({
   // Send the correct state to the iframe when data layer values change.
   useEffect(() => {
     if (earthServer.current) {
+      setLayersLabelArr([]);
+      currentTemplate?.attributes?.data_layers.forEach(layer => {
+        if (
+          layer.attributes.data_key === animationValue ||
+          layer.attributes.data_key === monitorValue ||
+          layer.attributes.data_key === datasetValue
+        ) {
+          setLayersLabelArr(arr => [...arr, layer.attributes.title]);
+        }
+      });
       const animation = DATA_LAYER_MAP[animationValue] || { animation_enabled: false };
       const monitor = DATA_LAYER_MAP[monitorValue] || { annotation_type: "none" };
       const dataset = DATA_LAYER_MAP[datasetValue] || { overlay_type: "none", z_level: "surface" };
 
       earthServer.current.saveState({ ...animation, ...monitor, ...dataset });
     }
-  }, [animationValue, datasetValue, monitorValue]);
+  }, [animationValue, datasetValue, monitorValue, currentTemplate?.attributes?.data_layers]);
 
   return (
     <div
@@ -194,7 +207,7 @@ const MainContainer = ({
           <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
             <span>Understand the emergency</span>
             <span>
-              Lorem ipsum{" "}
+              {layersLabelArr.join(", ")}
               {isMobile && (
                 <>
                   <br /> 21/10/2021
