@@ -9,6 +9,7 @@ module.exports = {
     APPLICATIONS: "earthhq",
     CALLBACK_URL: process.env.CALLBACK_URL,
     WRI_API_URL: process.env.WRI_API_URL,
+    GCA_API_URL: process.env.GCA_API_URL,
     API_ENV: process.env.API_ENV,
     RW_GOGGLE_API_TOKEN_SHORTENER: process.env.RW_GOGGLE_API_TOKEN_SHORTENER,
     NEXTAUTH_URL: "https://earthhq.org",

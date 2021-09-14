@@ -1,4 +1,4 @@
-import { EarthClient } from "services/earthClient";
+import { EarthClient } from "./earthClient";
 import * as Comlink from "comlink";
 
 /**

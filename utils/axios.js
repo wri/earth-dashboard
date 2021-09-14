@@ -15,7 +15,16 @@ export const localAPI = axios.create({
   headers: { "Content-Type": "application/json" }
 });
 
-export default {
+export const GCAAPI = axios.create({
+  baseURL: process.env.GCA_API_URL,
+  headers: { "Content-Type": "application/json" }
+});
+
+const APIs = {
   WRIAPI,
-  blogAPI
+  blogAPI,
+  GCAAPI,
+  localAPI
 };
+
+export default APIs;

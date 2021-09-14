@@ -4,8 +4,8 @@ import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menuButton.module.scss";
 import PropTypes from "prop-types";
 import Banner from "../banner";
-import { getEarthServer } from "services/iframeBridge";
-import Menu from "../menu/component";
+import { getEarthServer } from "utils/iframeBridge/iframeBridge";
+import Menu from "../menu";
 import Actions from "../actions";
 import useWindowDimensions from "hooks/useWindowDimensions";
 
@@ -104,7 +104,14 @@ const MainContainer = ({ isMobile }) => {
         />
       )}
       {hasMenuOpen && (
-        <Menu isMobile={isMobile} onClose={toggleMenu} id="menu" ref={menuRef} isClosing={isClosingMenu} />
+        <Menu
+          isMobile={isMobile}
+          onClose={toggleMenu}
+          id="menu"
+          ref={menuRef}
+          isClosing={isClosingMenu}
+          earthServer={earthServer.current}
+        />
       )}
       <Actions isMobile={isMobile}>
         <button

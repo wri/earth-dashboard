@@ -4,10 +4,13 @@ import ToggleItem from "components/ui/toggle-list/toggle-item";
 import InfoLabel from "components/ui/toggle-list/info-label";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
+import useDataLayers from "hooks/useDataLayers";
+import { DATA_LAYER_TYPES } from "constants/datalayers";
 
 const DataPanel = ({
-  templateValue,
-  setTemplateValue,
+  currentTemplate,
+  setCurrentTemplate,
+  templates,
   datasetValue,
   setDatasetValue,
   monitorValue,
@@ -17,87 +20,120 @@ const DataPanel = ({
   isMobile,
   onSelectInfo
 }) => {
+  const animationLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.animation);
+  const datasetLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.dataset);
+  const monitorLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.monitor);
+
   return (
     <>
       <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
         Understand more about how the globe is being impacted by other factors that contribute to the climate crisis.
       </p>
-      <ToggleList selectedValue={templateValue} onSelect={value => setTemplateValue(value)} title="Templates">
-        <ToggleItem value="wildfires" className="u-margin-right-xxs u-margin-bottom-xs">
-          Wildfires
-        </ToggleItem>
-        <ToggleItem value="winds" className="u-margin-right-xxs u-margin-bottom-xs">
-          Winds
-        </ToggleItem>
-        <ToggleItem value="atmosphere" className="u-margin-right-xxs u-margin-bottom-xs">
-          Atmosphere
-        </ToggleItem>
-        <ToggleItem value="ocean">Ocean</ToggleItem>
+      <ToggleList
+        selectedValue={currentTemplate.id}
+        onSelect={value => setCurrentTemplate(templates.find(template => parseInt(value, 10) === template.id))}
+        title="Templates"
+      >
+        {templates.map(template => (
+          <ToggleItem value={template.id} className="u-margin-right-xxs u-margin-bottom-xs" key={template.id}>
+            {template.attributes.title}
+          </ToggleItem>
+        ))}
       </ToggleList>
-      <p className={styles["c-home-menu__template-description"]}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse molestie felis at tortor mollis, id
-        vestibulum nisl vehicula.
-      </p>
+      <p className={styles["c-home-menu__template-description"]}>{currentTemplate.attributes.description}</p>
       <div className={styles["c-home-menu__data-selection"]}>
-        {!isMobile && <InfoLabel title="Dataset" onSelectInfo={onSelectInfo} />}
-        <ToggleList
-          selectedValue={datasetValue}
-          onSelect={value => setDatasetValue(value)}
-          title="Datasets"
-          hasLegend={isMobile}
-          legendComponent={<InfoLabel title="Dataset" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />}
-          role="group"
-          aria-labelledby="dataset-label"
-          className={styles["c-home-menu__toggle-list"]}
-        >
-          <ToggleItem value="carbon_mon" className="u-margin-right-xxs u-margin-bottom-xs" type="checkbox">
-            Carbon Monoxide
-          </ToggleItem>
-          <ToggleItem value="smoke" className="u-margin-right-xxs u-margin-bottom-xs" type="checkbox">
-            Smoke
-          </ToggleItem>
-          <ToggleItem value="part_mat" className="u-margin-right-xxs u-margin-bottom-xs" type="checkbox">
-            Particulate Matter
-          </ToggleItem>
-        </ToggleList>
-        {!isMobile && <InfoLabel title="Monitor" onSelectInfo={onSelectInfo} />}
-        <ToggleList
-          selectedValue={monitorValue}
-          onSelect={value => setMonitorValue(value)}
-          title="Monitor"
-          hasLegend={isMobile}
-          legendComponent={<InfoLabel title="Monitor" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />}
-          role="group"
-          aria-labelledby="monitor-label"
-          className={styles["c-home-menu__toggle-list"]}
-        >
-          <ToggleItem value="fires" className="u-margin-right-xxs u-margin-bottom-xs" type="checkbox">
-            Fires
-          </ToggleItem>
-        </ToggleList>
-        {!isMobile && <InfoLabel title="Animation" onSelectInfo={onSelectInfo} />}
-        <ToggleList
-          selectedValue={animationValue}
-          onSelect={value => setAnimationValue(value)}
-          title="Animation"
-          hasLegend={isMobile}
-          legendComponent={<InfoLabel title="Animation" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />}
-          role="group"
-          aria-labelledby="animation-label"
-          className={styles["c-home-menu__toggle-list"]}
-        >
-          <ToggleItem value="wind" className="u-margin-right-xxs u-margin-bottom-xs" type="checkbox">
-            Wind
-          </ToggleItem>
-        </ToggleList>
+        {datasetLayers.length > 0 && (
+          <>
+            {!isMobile && <InfoLabel title="Dataset" onSelectInfo={onSelectInfo} />}
+            <ToggleList
+              selectedValue={datasetValue}
+              onSelect={value => setDatasetValue(value)}
+              title="Datasets"
+              hasLegend={isMobile}
+              legendComponent={<InfoLabel title="Dataset" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />}
+              role="group"
+              aria-labelledby="dataset-label"
+              className={styles["c-home-menu__toggle-list"]}
+              singularMode
+            >
+              {datasetLayers.map(layer => (
+                <ToggleItem
+                  key={layer.attributes.data_key}
+                  value={layer.attributes.data_key}
+                  className="u-margin-right-xxs u-margin-bottom-xs"
+                  type="checkbox"
+                >
+                  {layer.attributes.title}
+                </ToggleItem>
+              ))}
+            </ToggleList>
+          </>
+        )}
+        {monitorLayers.length > 0 && (
+          <>
+            {!isMobile && <InfoLabel title="Monitor" onSelectInfo={onSelectInfo} />}
+            <ToggleList
+              selectedValue={monitorValue}
+              onSelect={value => setMonitorValue(value)}
+              title="Monitor"
+              hasLegend={isMobile}
+              legendComponent={<InfoLabel title="Monitor" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />}
+              role="group"
+              aria-labelledby="monitor-label"
+              className={styles["c-home-menu__toggle-list"]}
+              singularMode
+            >
+              {monitorLayers.map(layer => (
+                <ToggleItem
+                  key={layer.attributes.data_key}
+                  value={layer.attributes.data_key}
+                  className="u-margin-right-xxs u-margin-bottom-xs"
+                  type="checkbox"
+                >
+                  {layer.attributes.title}
+                </ToggleItem>
+              ))}
+            </ToggleList>
+          </>
+        )}
+        {animationLayers.length > 0 && (
+          <>
+            {!isMobile && <InfoLabel title="Animation" onSelectInfo={onSelectInfo} />}
+            <ToggleList
+              selectedValue={animationValue}
+              onSelect={value => setAnimationValue(value)}
+              title="Animation"
+              hasLegend={isMobile}
+              legendComponent={
+                <InfoLabel title="Animation" className="u-margin-right-xs" onSelectInfo={onSelectInfo} />
+              }
+              role="group"
+              aria-labelledby="animation-label"
+              className={styles["c-home-menu__toggle-list"]}
+              singularMode
+            >
+              {animationLayers.map(layer => (
+                <ToggleItem
+                  key={layer.attributes.data_key}
+                  value={layer.attributes.data_key}
+                  className="u-margin-right-xxs u-margin-bottom-xs"
+                  type="checkbox"
+                >
+                  {layer.attributes.title}
+                </ToggleItem>
+              ))}
+            </ToggleList>
+          </>
+        )}
       </div>
     </>
   );
 };
 
 DataPanel.propTypes = {
-  templateValue: PropTypes.string.isRequired,
-  setTemplateValue: PropTypes.func.isRequired,
+  currentTemplate: PropTypes.object,
+  setCurrentTemplate: PropTypes.func.isRequired,
+  templates: PropTypes.array,
   datasetValue: PropTypes.array.isRequired,
   setDatasetValue: PropTypes.func.isRequired,
   monitorValue: PropTypes.array.isRequired,
@@ -109,7 +145,9 @@ DataPanel.propTypes = {
 };
 
 DataPanel.defaultProps = {
-  isMobile: false
+  isMobile: false,
+  currentTemplate: null,
+  templates: []
 };
 
 export default DataPanel;

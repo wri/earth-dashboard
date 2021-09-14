@@ -3,14 +3,24 @@ import { Children, cloneElement } from "react";
 import styles from "./toggle-list.module.scss";
 import classnames from "classnames";
 
-const ToggleList = ({ title, legendComponent, hasLegend, selectedValue, onSelect, children, className, ...rest }) => {
+const ToggleList = ({
+  title,
+  legendComponent,
+  hasLegend,
+  selectedValue,
+  onSelect,
+  children,
+  className,
+  singularMode,
+  ...rest
+}) => {
   const getChildren = () => {
     const array = Children.toArray(children).filter(element => !!element.type && element.type.tagName === "ToggleItem");
 
     const handleSelect = e => {
       const value = e.target.value;
       const type = e.target.type;
-      if (type === "checkbox") {
+      if (type === "checkbox" && !singularMode) {
         const index = selectedValue.indexOf(value);
         if (index > -1) {
           const newValue = [...selectedValue];
@@ -19,13 +29,15 @@ const ToggleList = ({ title, legendComponent, hasLegend, selectedValue, onSelect
         } else {
           onSelect([...selectedValue, value]);
         }
+      } else if (singularMode) {
+        onSelect(selectedValue === value ? "" : value);
       } else {
         onSelect(value);
       }
     };
 
     const isSelected = el => {
-      if (el.props.type === "checkbox") {
+      if (el.props.type === "checkbox" && !singularMode) {
         const index = selectedValue.indexOf(el.props.value);
         return index > -1;
       }
@@ -59,13 +71,15 @@ ToggleList.propTypes = {
   children: PropTypes.node.isRequired,
   legendComponent: PropTypes.node,
   className: PropTypes.string,
-  hasLegend: PropTypes.bool
+  hasLegend: PropTypes.bool,
+  singularMode: PropTypes.bool
 };
 
 ToggleList.defaultProps = {
   className: "",
   hasLegend: true,
-  legendComponent: null
+  legendComponent: null,
+  singularMode: false
 };
 
 export default ToggleList;
