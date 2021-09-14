@@ -8,8 +8,21 @@ import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import Menu from "../menu";
 import Actions from "../actions";
 import useWindowDimensions from "hooks/useWindowDimensions";
+import { fetchTemplates } from "services/gca";
+import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
 
-const MainContainer = ({ isMobile }) => {
+const MainContainer = ({
+  isMobile,
+  setTemplates,
+  currentTemplate,
+  resetValues,
+  setAnimationValue,
+  setDatasetValue,
+  setMonitorValue,
+  animationValue,
+  datasetValue,
+  monitorValue
+}) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
   const [hasBanner, setHasBanner] = useState(true);
   const [hasTimeOutReached, setHasTimeoutReached] = useState(false);
@@ -19,6 +32,7 @@ const MainContainer = ({ isMobile }) => {
   const iframeRef = useRef(null);
   const earthServer = useRef(null);
   const [earthClient, setEarthClient] = useState(null);
+  const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
   const menuRef = useRef(null);
   const { width } = useWindowDimensions();
 
@@ -42,6 +56,18 @@ const MainContainer = ({ isMobile }) => {
     },
     [width]
   );
+
+  const toggleMenu = () => {
+    if (!hasMenuOpen) {
+      setHasMenuOpen(true);
+    } else {
+      setIsClosingMenu(true);
+      setTimeout(() => {
+        setIsClosingMenu(false);
+        setHasMenuOpen(false);
+      }, 400);
+    }
+  };
 
   const clickHandler = () => {
     setHasIntroAndBanner(false);
@@ -69,17 +95,56 @@ const MainContainer = ({ isMobile }) => {
     }
   }, [hasMenuOpen]);
 
-  const toggleMenu = () => {
-    if (!hasMenuOpen) {
-      setHasMenuOpen(true);
-    } else {
-      setIsClosingMenu(true);
-      setTimeout(() => {
-        setIsClosingMenu(false);
-        setHasMenuOpen(false);
-      }, 400);
+  // Fetch Templates from the GCA CMS
+  useEffect(() => {
+    setIsFetchingTemplates(true);
+    const getTemplates = async () => {
+      try {
+        const resp = await fetchTemplates();
+        setTemplates(resp.data.data);
+      } catch (err) {
+        console.log("Error fetching templates");
+      } finally {
+        setIsFetchingTemplates(false);
+      }
+    };
+
+    getTemplates();
+  }, [setTemplates]);
+
+  // if the current template changes, and there is an earth client, set the data layer values
+  useEffect(() => {
+    if (currentTemplate && earthClient) {
+      resetValues();
+      const defaults = currentTemplate.attributes.data_layers.filter(layer => layer.attributes.default_on);
+      defaults.forEach(layer => {
+        let setter = () => {};
+        switch (layer.attributes.category.attributes.title) {
+          case DATA_LAYER_TYPES.animation:
+            setter = setAnimationValue;
+            break;
+          case DATA_LAYER_TYPES.dataset:
+            setter = setDatasetValue;
+            break;
+          case DATA_LAYER_TYPES.monitor:
+            setter = setMonitorValue;
+            break;
+        }
+        setter(layer.attributes.data_key);
+      });
     }
-  };
+  }, [currentTemplate, earthClient, resetValues, setAnimationValue, setDatasetValue, setMonitorValue]);
+
+  // Send the correct state to the iframe when data layer values change.
+  useEffect(() => {
+    if (earthServer.current) {
+      const animation = DATA_LAYER_MAP[animationValue] || { animation_enabled: false };
+      const monitor = DATA_LAYER_MAP[monitorValue] || { annotation_type: "none" };
+      const dataset = DATA_LAYER_MAP[datasetValue] || { overlay_type: "none", z_level: "surface" };
+
+      earthServer.current.saveState({ ...animation, ...monitor, ...dataset });
+    }
+  }, [animationValue, datasetValue, monitorValue]);
 
   return (
     <div
@@ -103,7 +168,7 @@ const MainContainer = ({ isMobile }) => {
           ref={setRef}
         />
       )}
-      {hasMenuOpen && (
+      {hasMenuOpen && !isFetchingTemplates && (
         <Menu
           isMobile={isMobile}
           onClose={toggleMenu}

@@ -1,11 +1,9 @@
-import { forwardRef, useState, useEffect } from "react";
+import { forwardRef, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
 import DataPanel from "./panels/data";
-import { fetchTemplates } from "services/gca";
-import { DATA_LAYER_MAP } from "constants/datalayers";
 
 const INFO_DATA = {
   dataset: {
@@ -45,11 +43,11 @@ const Menu = forwardRef(
     monitorValue,
     setMonitorValue,
     earthServer,
+    resetValues,
     ...rest
   }) => {
     const [tabIndex, setTabIndex] = useState(0);
     const [infoData, setInfoData] = useState(null);
-    const [isFetchingTemplates, setIsFetchingTemplates] = useState(true);
 
     const onBack = () => {
       setTabIndex(DATA_TAB_INDEX);
@@ -60,32 +58,6 @@ const Menu = forwardRef(
       setTabIndex(INFO_TAB_INDEX);
       setInfoData(INFO_DATA[key]);
     };
-
-    useEffect(() => {
-      setIsFetchingTemplates(true);
-      const getTemplates = async () => {
-        try {
-          const resp = await fetchTemplates();
-          setTemplates(resp.data.data);
-        } catch (err) {
-          console.log("Error fetching templates");
-        } finally {
-          setIsFetchingTemplates(false);
-        }
-      };
-
-      getTemplates();
-    }, [setTemplates]);
-
-    useEffect(() => {
-      if (earthServer) {
-        const animation = DATA_LAYER_MAP[animationValue] || { animation_enabled: false };
-        const monitor = DATA_LAYER_MAP[monitorValue] || { annotation_type: "none" };
-        const dataset = DATA_LAYER_MAP[datasetValue] || { overlay_type: "none", z_level: "surface" };
-
-        earthServer.saveState({ ...animation, ...monitor, ...dataset });
-      }
-    }, [animationValue, datasetValue, monitorValue, earthServer]);
 
     return (
       <div
@@ -126,7 +98,7 @@ const Menu = forwardRef(
                 <Tab className={classnames(styles["c-home-menu__tab"], "u-margin-right-l")} data-testid="tab-2">
                   Vital Signs
                 </Tab>
-                <Tab className={styles["c-home-menu__tab"]} data-testid="tab-3" disabled={isFetchingTemplates}>
+                <Tab className={styles["c-home-menu__tab"]} data-testid="tab-3">
                   Dive Into The Data
                 </Tab>
                 <Tab className="u-display-none" data-testid="tab-4">
