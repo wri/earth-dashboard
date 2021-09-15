@@ -20,6 +20,7 @@ const ToggleList = ({
     const handleSelect = e => {
       const value = e.target.value;
       const type = e.target.type;
+
       if (type === "checkbox" && !singularMode) {
         const index = selectedValue.indexOf(value);
         if (index > -1) {
@@ -47,7 +48,7 @@ const ToggleList = ({
 
     const resp = array.map(el => {
       return cloneElement(el, {
-        selected: isSelected(el),
+        checked: isSelected(el),
         name: title,
         onChange: handleSelect
       });

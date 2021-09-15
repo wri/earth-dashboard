@@ -11,7 +11,6 @@ import { logger } from "utils/logs";
  * be included in the response or not.
  */
 export const fetchTemplates = () => {
-  logger.info("Fetch templates");
   return GCAAPI.get("/templates", {
     headers: {
       ...GCAAPI.defaults.headers

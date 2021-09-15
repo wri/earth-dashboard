@@ -7,7 +7,7 @@ const ToggleItem = ({ children, className, ...rest }) => {
     <label
       className={classnames(
         styles["c-toggle-list__item"],
-        rest.selected && styles["c-toggle-list__item--selected"],
+        rest.checked && styles["c-toggle-list__item--selected"],
         className
       )}
     >
