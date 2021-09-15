@@ -6,9 +6,8 @@
 .c-home-menu {
   position: absolute;
   width: 100%;
-  height: 100%;
-  max-width: 558px;
-  max-height: 532px;
+  max-width: 740px;
+  top: 100px;
   left: 24px;
   bottom: 120px;
   overflow: hidden;
@@ -91,7 +90,7 @@
 
   &__tab-panel-scroll-area {
     position: absolute;
-    top: 86px;
+    top: 68px;
     bottom: 28px;
     left: 0px;
     right: 12px;
@@ -222,12 +221,18 @@
     }
   }
 
+  @media screen and (max-width: 1700px) {
+    max-width: 558px;
+
+    &__tab-panel-scroll-area {
+      top: 86px;
+    }
+  }
+
   @media screen and (max-width: $global-breakpoint-md) {
     left: 0;
     right: 0;
     bottom: 0;
-    top: 60px;
-    max-height: unset;
     max-width: unset;
 
     &__header {
