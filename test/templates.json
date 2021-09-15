@@ -1,0 +1,386 @@
+{
+  "data": [
+    {
+      "type": "Template",
+      "id": 1,
+      "attributes": {
+        "title": "Wildfires",
+        "description": "Consequuntur voluptatem fugit maiores voluptatem. Nesciunt modi enim perspiciatis et ipsa recusandae adipisci.",
+        "data_layers": [
+          {
+            "type": "DataLayer",
+            "id": 17,
+            "attributes": {
+              "title": "Wind",
+              "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+              "default_on": true,
+              "data_key": "sze2a0gf",
+              "category": {
+                "type": "LayerCategory",
+                "id": 3,
+                "attributes": {
+                  "title": "Animation",
+                  "description": "Possimus sed sit culpa sed corporis velit animi. Error autem dolor libero."
+                }
+              },
+              "source": null
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 15,
+            "attributes": {
+              "title": "Particulate Matter",
+              "description": "Mass of atmospheric particles with a diameter less than 2.5 micron",
+              "default_on": true,
+              "data_key": "13xvafxz",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "CAMS / Copernicus / European Commission + ECMWF"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 16,
+            "attributes": {
+              "title": "Fires",
+              "description": "Active fires on the Earth",
+              "default_on": true,
+              "data_key": "jvafhah4",
+              "category": {
+                "type": "LayerCategory",
+                "id": 2,
+                "attributes": {
+                  "title": "Monitor",
+                  "description": "Sed quia dignissimos dolor ut. Ab qui maxime molestiae rerum reprehenderit voluptas consequuntur dolorem. Enim nam quia reiciendis. Aut quasi earum totam illo."
+                }
+              },
+              "source": "CAMS / Copernicus / European Commission + ECMWF + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 2,
+            "attributes": {
+              "title": "Carbon Monoxide",
+              "description": "Carbon Monoxide Surface Concentration – the fraction of carbon monoxide present in air at the earth's surface",
+              "default_on": false,
+              "data_key": "zbwzorpj",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "GEOS-5 / GMAO / NASA"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Template",
+      "id": 2,
+      "attributes": {
+        "title": "Wind",
+        "description": "Cupiditate magnam nam sit esse et. Dolorem ea sit animi. Eligendi quibusdam asperiores harum. Minus voluptatem et enim sunt.",
+        "data_layers": [
+          {
+            "type": "DataLayer",
+            "id": 4,
+            "attributes": {
+              "title": "Jet Stream Wind",
+              "description": "Wind speed at 250 hectopascals or roughly 10,500 m from surface",
+              "default_on": false,
+              "data_key": "6mffa36d",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 5,
+            "attributes": {
+              "title": "Surface Wind",
+              "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+              "default_on": true,
+              "data_key": "xpo1gqgs",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 17,
+            "attributes": {
+              "title": "Wind",
+              "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+              "default_on": true,
+              "data_key": "sze2a0gf",
+              "category": {
+                "type": "LayerCategory",
+                "id": 3,
+                "attributes": {
+                  "title": "Animation",
+                  "description": "Possimus sed sit culpa sed corporis velit animi. Error autem dolor libero."
+                }
+              },
+              "source": null
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 6,
+            "attributes": {
+              "title": "Polar Vortex Wind",
+              "description": "Wind speed at 10 hectopascals",
+              "default_on": false,
+              "data_key": "krcrjvpg",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Template",
+      "id": 3,
+      "attributes": {
+        "title": "Atmosphere",
+        "description": "Ipsum est voluptates sit quia ea voluptas odit. Voluptas id modi dolor pariatur et aut ipsam.",
+        "data_layers": [
+          {
+            "type": "DataLayer",
+            "id": 7,
+            "attributes": {
+              "title": "Temperature",
+              "description": "Temperature at the Earths surface",
+              "default_on": false,
+              "data_key": "tcvntrxq",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 8,
+            "attributes": {
+              "title": "UVI",
+              "description": "Ultraviolet Index – risk of harm from unprotected sun exposure due to the strength of sunburn-producing ultraviolet (UV) radiation; \n0 - 2 low\n3 - 5 moderate\n6 - 7 high\n8 - 10 very high\n11+ extreme",
+              "default_on": false,
+              "data_key": "0hzxvexv",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "CPC / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 9,
+            "attributes": {
+              "title": "Relative Humidity",
+              "description": null,
+              "default_on": false,
+              "data_key": "kotzxwzb",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 10,
+            "attributes": {
+              "title": "Misery Index",
+              "description": null,
+              "default_on": false,
+              "data_key": "7jb2seh1",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 11,
+            "attributes": {
+              "title": "TPW",
+              "description": "Total precipitable water",
+              "default_on": false,
+              "data_key": "f6fcp2ev",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 17,
+            "attributes": {
+              "title": "Wind",
+              "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+              "default_on": true,
+              "data_key": "sze2a0gf",
+              "category": {
+                "type": "LayerCategory",
+                "id": 3,
+                "attributes": {
+                  "title": "Animation",
+                  "description": "Possimus sed sit culpa sed corporis velit animi. Error autem dolor libero."
+                }
+              },
+              "source": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Template",
+      "id": 4,
+      "attributes": {
+        "title": "Ocean",
+        "description": "Minima placeat repudiandae fugit qui dolores omnis illum. Consequatur aut quae aut. Aliquam ab occaecati temporibus est. Repellat voluptatem aliquid tempora.",
+        "data_layers": [
+          {
+            "type": "DataLayer",
+            "id": 12,
+            "attributes": {
+              "title": "Sea Temperature",
+              "description": "Temperature at the sea's surface",
+              "default_on": false,
+              "data_key": "hrb7qlk9",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "OSTIA / UK Met Office + GHRSST + CMEMS + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 13,
+            "attributes": {
+              "title": "SSTA",
+              "description": "Sea Surface Temperature Anomaly",
+              "default_on": false,
+              "data_key": "riqtkkov",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": "OSTIA / UK Met Office + GHRSST + CMEMS + VIIRS NRT / FIRMS / EOSDIS / NASA"
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 14,
+            "attributes": {
+              "title": "Reef bleaching",
+              "description": "Coral Reef Bleaching",
+              "default_on": true,
+              "data_key": "fzshpfqe",
+              "category": {
+                "type": "LayerCategory",
+                "id": 1,
+                "attributes": {
+                  "title": "Data Set",
+                  "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                }
+              },
+              "source": null
+            }
+          },
+          {
+            "type": "DataLayer",
+            "id": 18,
+            "attributes": {
+              "title": "Current",
+              "description": "Amimation showing oceans currents",
+              "default_on": true,
+              "data_key": "vdma9i9h",
+              "category": {
+                "type": "LayerCategory",
+                "id": 3,
+                "attributes": {
+                  "title": "Animation",
+                  "description": "Possimus sed sit culpa sed corporis velit animi. Error autem dolor libero."
+                }
+              },
+              "source": "OSCAR / Earth & Space Research"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

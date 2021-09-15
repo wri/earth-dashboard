@@ -1,8 +1,9 @@
 import { render, fireEvent } from "test-utils";
 import Menu from "./index";
+import { earthServer } from "../../../../test/iframeBridge";
 
 test("<Menu /> renders correctly as desktop", () => {
-  const { container } = render(<Menu isMobile={false} isClosing={false} />);
+  const { container } = render(<Menu isMobile={false} isClosing={false} layers={[]} earthServer={earthServer} />);
   expect(container).toMatchInlineSnapshot(`
 <div>
   <div
@@ -127,7 +128,7 @@ test("<Menu /> renders correctly as desktop", () => {
 });
 
 test("<Menu /> renders correctly as mobile", () => {
-  const { container } = render(<Menu isMobile={true} isClosing={true} />);
+  const { container } = render(<Menu isMobile={true} isClosing={true} layers={[]} earthServer={earthServer} />);
   expect(container).toMatchInlineSnapshot(`
 <div>
   <div
@@ -252,7 +253,9 @@ test("<Menu /> renders correctly as mobile", () => {
 });
 
 test("<Menu /> toggles tabs prooperly", () => {
-  const { getByTestId, queryByTestId } = render(<Menu isMobile={false} isClosing={false} />);
+  const { getByTestId, queryByTestId } = render(
+    <Menu isMobile={false} isClosing={false} layers={[]} earthServer={earthServer} />
+  );
 
   const tab = getByTestId(`tab-2`);
 

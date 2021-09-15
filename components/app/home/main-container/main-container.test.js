@@ -1,11 +1,34 @@
-import { render, fireEvent } from "test-utils";
+import { render, fireEvent, waitFor } from "test-utils";
 import MainContainer from "./index";
-import { getEarthServer } from "../../../../services/iframeBridge";
+import useIframeBridge from "../../../../hooks/useIframeBridge";
+import { EarthClient } from "../../../../utils/iframeBridge/earthClient";
+import templates from "../../../../test/templates.json";
+import { GCAAPI } from "../../../../utils/axios";
+import { earthServer } from "../../../../test/iframeBridge";
 
-jest.mock("services/iframeBridge");
+jest.mock("../../../../hooks/useIframeBridge");
+jest.mock("../../../../utils/axios");
 
-test("<MainContainer /> renders correctly as desktop", () => {
-  const { container } = render(<MainContainer isMobile={false} />);
+const mockIframeBridge = {
+  setRef: () => {},
+  earthClient: new EarthClient(),
+  earthServer: {
+    current: earthServer
+  },
+  iframeRef: {
+    current: null
+  },
+  layers: []
+};
+
+test("<MainContainer /> renders correctly as desktop", async () => {
+  GCAAPI.get.mockResolvedValue({ data: templates });
+  useIframeBridge.mockReturnValue(mockIframeBridge);
+
+  const { container, getByTestId } = render(<MainContainer isMobile={false} />);
+
+  await waitFor(() => getByTestId("labels-arr"));
+
   expect(container).toMatchInlineSnapshot(`
 <div>
   <div
@@ -30,9 +53,10 @@ test("<MainContainer /> renders correctly as desktop", () => {
             <span>
               Understand the emergency
             </span>
-            <span>
-              Lorem ipsum
-               
+            <span
+              data-testid="labels-arr"
+            >
+              Wind, Particulate Matter, Fires
             </span>
           </div>
         </button>
@@ -63,8 +87,13 @@ test("<MainContainer /> renders correctly as desktop", () => {
 `);
 });
 
-test("<MainContainer /> renders correctly as mobile", () => {
-  const { container } = render(<MainContainer isMobile={true} />);
+test("<MainContainer /> renders correctly as mobile", async () => {
+  GCAAPI.get.mockResolvedValue({ data: templates });
+  useIframeBridge.mockReturnValue(mockIframeBridge);
+
+  const { container, getByTestId } = render(<MainContainer isMobile={true} />);
+  await waitFor(() => getByTestId("labels-arr"));
+
   expect(container).toMatchInlineSnapshot(`
 <div>
   <div
@@ -89,9 +118,10 @@ test("<MainContainer /> renders correctly as mobile", () => {
             <span>
               Understand the emergency
             </span>
-            <span>
-              Lorem ipsum
-               
+            <span
+              data-testid="labels-arr"
+            >
+              Wind, Particulate Matter, Fires
               <br />
                21/10/2021
             </span>
@@ -124,8 +154,12 @@ test("<MainContainer /> renders correctly as mobile", () => {
 `);
 });
 
-test("<MainContainer /> toggle class toggles properly", () => {
+test("<MainContainer /> toggle class toggles properly", async () => {
+  GCAAPI.get.mockResolvedValue({ data: templates });
+  useIframeBridge.mockReturnValue(mockIframeBridge);
+
   const { getByTestId } = render(<MainContainer isMobile={false} />);
+  await waitFor(() => getByTestId("labels-arr"));
 
   const button = getByTestId("toggle");
   const container = getByTestId("iframe-container");
