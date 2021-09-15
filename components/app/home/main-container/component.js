@@ -4,10 +4,9 @@ import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menuButton.module.scss";
 import PropTypes from "prop-types";
 import Banner from "../banner";
-import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import Menu from "../menu";
 import Actions from "../actions";
-import useWindowDimensions from "hooks/useWindowDimensions";
+import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
 
@@ -29,34 +28,11 @@ const MainContainer = ({
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
-  const iframeRef = useRef(null);
-  const earthServer = useRef(null);
-  const [earthClient, setEarthClient] = useState(null);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
   const menuRef = useRef(null);
-  const { width } = useWindowDimensions();
   const [layersLabelArr, setLayersLabelArr] = useState([]);
 
-  const setRef = useCallback(
-    node => {
-      const connectToNullSchool = async node => {
-        const resp = await getEarthServer(node, width);
-        earthServer.current = resp.server;
-        setEarthClient(resp.client);
-      };
-
-      if (node) {
-        // Check if a node is actually passed. Otherwise node would be null.
-        // You can now do what you need to, addEventListeners, measure, etc.
-        // connectToNullSchool(node);
-        node.onload = () => connectToNullSchool(node);
-      }
-
-      // Save a reference to the node
-      iframeRef.current = node;
-    },
-    [width]
-  );
+  const { setRef, earthClient, earthServer, iframeRef, layers } = useIframeBridge();
 
   const toggleMenu = () => {
     if (!hasMenuOpen) {
@@ -157,7 +133,7 @@ const MainContainer = ({
 
       earthServer.current.saveState({ ...animation, ...monitor, ...dataset });
     }
-  }, [animationValue, datasetValue, monitorValue, currentTemplate?.attributes?.data_layers]);
+  }, [animationValue, datasetValue, monitorValue, currentTemplate?.attributes?.data_layers, earthServer]);
 
   return (
     <div
@@ -189,6 +165,7 @@ const MainContainer = ({
           ref={menuRef}
           isClosing={isClosingMenu}
           earthServer={earthServer.current}
+          layers={layers}
         />
       )}
       <Actions isMobile={isMobile}>

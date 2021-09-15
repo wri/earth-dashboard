@@ -29,7 +29,7 @@ const connect = ({ api, version, initialState, iframe }) => {
   });
 };
 
-export const getEarthServer = async (iframe, windowWidth) => {
+export const getEarthServer = async (iframe, windowWidth, createEarthClient) => {
   // Clamp size of initial earth.
   // Between 200 -> 768
   const scale = Math.min(Math.max((windowWidth * 0.4) / 2, 150), 768);
@@ -43,7 +43,7 @@ export const getEarthServer = async (iframe, windowWidth) => {
   try {
     const port = await connect({ api: "earth", version: 1, initialState, iframe });
     const server = Comlink.wrap(port);
-    const client = new EarthClient();
+    const client = createEarthClient ? createEarthClient() : new EarthClient();
     Comlink.expose(client, port);
 
     const initialStateResp = await server.getState();
