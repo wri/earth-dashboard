@@ -8,7 +8,7 @@ import { setHeadlines } from "slices/headlines";
 import HeadlineCard from "components/app/home/headline/component";
 
 const HeadlinesPanel = ({ headlines, setHeadlines }) => {
-  const [isFetching, setIsFetching] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
 
   // Fetch Headlines from the GCA CMS
   useEffect(() => {
@@ -34,9 +34,13 @@ const HeadlinesPanel = ({ headlines, setHeadlines }) => {
         know and the places that are being affected.
       </p>
       <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
-        {headlines.map(headline => (
-          <HeadlineCard headline={headline} key={headline.id} className={styles["c-home-menu__headline"]} />
-        ))}
+        {!isFetching ? (
+          headlines.map(headline => (
+            <HeadlineCard headline={headline} key={headline.id} className={styles["c-home-menu__headline"]} />
+          ))
+        ) : (
+          <p>Loading</p>
+        )}
       </div>
     </>
   );

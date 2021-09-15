@@ -6,7 +6,7 @@ import moment from "moment";
 
 const HeadlineCard = ({ headline, className, ...rest }) => {
   return (
-    <div className={classnames(styles["c-headline"], className)} {...rest}>
+    <div className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
       <img
         className={styles["c-headline__image"]}
         src={headline.attributes.thumbnail_image}
