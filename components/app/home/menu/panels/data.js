@@ -163,8 +163,8 @@ const DataPanel = ({
             </>
           )}
         </div>
-        {description && <p className="u-margin-none">{description}</p>}
-        {source && <p className="u-margin-none">{source}</p>}
+        {description && <p className={classnames(styles["c-home-menu__source"], "u-margin-none")}>{description}</p>}
+        {source && <p className={classnames(styles["c-home-menu__source"], "u-margin-none")}>{source}</p>}
       </div>
     </>
   );

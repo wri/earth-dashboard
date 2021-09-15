@@ -4,6 +4,7 @@ import classnames from "classnames";
 import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
 import DataPanel from "./panels/data";
+import HeadlinePanel from "./panels/headlines";
 
 const INFO_DATA = {
   dataset: {
@@ -110,9 +111,7 @@ const Menu = forwardRef(
             <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>
               <div className={classnames(styles["c-home-menu__tab-container"])}>
                 <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-1">
-                  <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
-                    What’s Happening
-                  </p>
+                  <HeadlinePanel />
                 </TabPanel>
                 <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-2">
                   <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>Vital Signs</p>

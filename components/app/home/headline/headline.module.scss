@@ -1,0 +1,48 @@
+@import "css/_settings.scss";
+@import "css/tools/_fontSize.scss";
+@import "css/settings/breakpoints";
+
+.c-headline {
+  padding: 12px;
+  background-color: rgba($colour-night, 0.4);
+  backdrop-filter: blur(10.8731px);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__image {
+    width: 104px;
+    height: 80px;
+    flex-basis: 104px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-right: 18px;
+  }
+
+  &__title {
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 21px);
+    margin-bottom: 4px;
+    color: white;
+  }
+
+  &__date {
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(12px, 18px);
+    color: white;
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    &__title {
+      @include font-size(12px, 18px);
+    }
+    &__date {
+      @include font-size(11px, 16px);
+    }
+  }
+}
