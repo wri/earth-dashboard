@@ -92,7 +92,7 @@ const DataPanel = ({
             layers={monitorLayers}
           />
           <DataLayers
-            title="Monitor"
+            title="Animation"
             onSelectInfo={onSelectInfo}
             isMobile={isMobile}
             value={animationValue}
