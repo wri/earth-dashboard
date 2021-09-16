@@ -183,14 +183,16 @@ const MainContainer = ({
         >
           <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
             <span>Understand the emergency</span>
-            <span>
-              {layersLabelArr.join(", ")}
-              {isMobile && (
-                <>
-                  <br /> 21/10/2021
-                </>
-              )}
-            </span>
+            {layersLabelArr.length > 0 && (
+              <span data-testid="labels-arr">
+                {layersLabelArr.join(", ")}
+                {isMobile && (
+                  <>
+                    <br /> 21/10/2021
+                  </>
+                )}
+              </span>
+            )}
           </div>
         </button>
       </Actions>

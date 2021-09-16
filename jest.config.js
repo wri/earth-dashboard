@@ -1,6 +1,7 @@
 // jest.config.js
 
 module.exports = {
+  setupFiles: ["jest-canvas-mock"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   collectCoverageFrom: ["**/*.{js,jsx,ts,tsx}", "!**/*.d.ts", "!**/node_modules/**"],
   moduleNameMapper: {
