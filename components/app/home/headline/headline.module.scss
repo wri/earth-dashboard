@@ -9,11 +9,13 @@
     @include font-size(18px, 27px);
     color: white;
   }
+
   &__body {
     font-family: "Barlow";
     font-weight: 500;
     @include font-size(14px, 21px);
   }
+
   &__widget {
     background-color: white;
     color: black;
@@ -23,9 +25,12 @@
     position: relative;
   }
 
+  &__media-container {
+    margin-bottom: 20px;
+  }
+
   &__widget-source {
     border-bottom: 1px solid white;
-    margin-bottom: 20px;
     text-align: center;
     p {
       font-weight: 500;
