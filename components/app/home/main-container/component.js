@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menuButton.module.scss";
+import actionStyles from "components/app/home/actions/actions.module.scss";
 import PropTypes from "prop-types";
 import Banner from "../banner";
 import Menu from "../menu";
@@ -9,6 +10,9 @@ import Actions from "../actions";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
+import useCurrentPosition from "../../../../hooks/useCurrentPosition";
+import locationImage from "public/static/icons/location.svg";
+import Image from "next/image";
 
 const MainContainer = ({
   isMobile,
@@ -31,7 +35,8 @@ const MainContainer = ({
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
   const menuRef = useRef(null);
   const [layersLabelArr, setLayersLabelArr] = useState([]);
-
+  const [shouldFetchLocation, setShouldFetchLocation] = useState(false);
+  const { currentPosition, error, isFetching } = useCurrentPosition(shouldFetchLocation);
   const { setRef, earthClient, earthServer, iframeRef, layers } = useIframeBridge();
 
   const toggleMenu = () => {
@@ -135,6 +140,21 @@ const MainContainer = ({
     }
   }, [animationValue, datasetValue, monitorValue, currentTemplate?.attributes?.data_layers, earthServer]);
 
+  useEffect(() => {
+    if (earthServer && currentPosition) {
+      const long = +currentPosition.longitude;
+      const lat = +currentPosition.latitude;
+
+      earthServer.current.reorient({
+        rotate: [-long, -lat],
+        scale: "default",
+        scaleBy: 5
+      });
+
+      setShouldFetchLocation(false);
+    }
+  }, [currentPosition, earthServer]);
+
   return (
     <div
       className={classnames({
@@ -154,6 +174,7 @@ const MainContainer = ({
           title="Null School"
           frameBorder="0"
           allowtransparency="true"
+          allow="*"
           ref={setRef}
         />
       )}
@@ -171,6 +192,7 @@ const MainContainer = ({
       <Actions isMobile={isMobile}>
         <button
           className={classnames(
+            actionStyles["c-home-actions__item"],
             menuButtonStyles["c-home-menu-toggle"],
             hasMenuOpen && menuButtonStyles["c-home-menu-toggle--open"]
           )}
@@ -195,6 +217,17 @@ const MainContainer = ({
             )}
           </div>
         </button>
+        <div className={classnames(actionStyles["c-home-actions__item"], actionStyles["c-home-actions__map-controls"])}>
+          <button
+            onClick={() => setShouldFetchLocation(true)}
+            className="c-button c-button--icon"
+            disabled={isFetching}
+            aria-label="Get Current Location"
+          >
+            <Image src={locationImage} role="presentation" alt="" />
+          </button>
+        </div>
+        <div className={actionStyles["c-home-actions__item"]}></div>
       </Actions>
       {!hasTimeOutReached && (
         <div
