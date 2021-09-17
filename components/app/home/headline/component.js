@@ -4,6 +4,7 @@ import classnames from "classnames";
 import styles from "./headline.module.scss";
 import WidgetPreview from "components/widgets/preview";
 import { useMemo } from "react";
+import { logEvent } from "utils/gtag";
 
 const Headline = ({ headline, className, currentTemplate, ...rest }) => {
   const isBrowser = typeof window !== "undefined";
@@ -65,6 +66,16 @@ const Headline = ({ headline, className, currentTemplate, ...rest }) => {
         <p className="u-margin-none">{activeLayerString}</p>
         <p className="u-margin-none">Affected Area</p>
         <p className="u-margin-none">{headline.attributes.location.name}</p>
+      </div>
+      <div className="u-text-right u-margin-top-m">
+        <a
+          href={headline.attributes.content.article_url}
+          target="_blank"
+          rel="noreferrer"
+          className="c-button c-button--new-style c-button--flame"
+        >
+          View full article
+        </a>
       </div>
     </article>
   );
