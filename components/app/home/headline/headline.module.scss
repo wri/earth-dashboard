@@ -3,46 +3,58 @@
 @import "css/settings/breakpoints";
 
 .c-headline {
-  padding: 12px;
-  background-color: rgba($colour-night, 0.4);
-  backdrop-filter: blur(10.8731px);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-
-  &__image {
-    width: 104px;
-    height: 80px;
-    flex-basis: 104px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-right: 18px;
-  }
-
   &__title {
     font-family: "Barlow";
     font-weight: 500;
-    @include font-size(14px, 21px);
-    margin-bottom: 4px;
+    @include font-size(18px, 27px);
     color: white;
   }
-
-  &__date {
+  &__body {
     font-family: "Barlow";
     font-weight: 500;
-    @include font-size(12px, 18px);
-    color: white;
+    @include font-size(14px, 21px);
+  }
+  &__widget {
+    background-color: white;
+    color: black;
+    height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  &__widget-source {
+    border-bottom: 1px solid white;
+    margin-bottom: 20px;
+    text-align: center;
+    p {
+      font-weight: 500;
+      @include font-size(14px, 21px);
+    }
+  }
+
+  &__image {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  &__meta {
+    display: grid;
+    grid-template-columns: 110px auto;
+    grid-gap: 0px;
+    row-gap: 12px;
+    p {
+      font-weight: 500;
+      @include font-size(14px, 21px);
+    }
   }
 
   @media screen and (max-width: $global-breakpoint-md) {
-    &__title {
-      @include font-size(12px, 18px);
-    }
-    &__date {
-      @include font-size(11px, 16px);
+    &__media-container {
+      padding-bottom: 10px;
+      margin-bottom: 12px;
     }
   }
 }

@@ -5,10 +5,27 @@ import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { fetchHeadlines } from "services/gca";
 import { setHeadlines } from "slices/headlines";
-import HeadlineCard from "components/app/home/headline/component";
+import { setCurrentTemplate } from "slices/templates";
 
-const HeadlinesPanel = ({ headlines, setHeadlines }) => {
+import HeadlineCard from "components/app/home/headline-card";
+import Headline from "components/app/home/headline";
+
+const HeadlinesPanel = ({ headlines, setHeadlines, onForceInfoPage, forceInfoPage, setCurrentTemplate }) => {
   const [isFetching, setIsFetching] = useState(true);
+  const [currentHeadline, setCurrentHeadline] = useState(null);
+
+  useEffect(() => {
+    if (!forceInfoPage) {
+      setCurrentHeadline(null);
+    }
+  }, [forceInfoPage]);
+
+  useEffect(() => {
+    if (currentHeadline) {
+      // Set default template
+      setCurrentTemplate(currentHeadline.attributes.template);
+    }
+  }, [currentHeadline]);
 
   // Fetch Headlines from the GCA CMS
   useEffect(() => {
@@ -27,7 +44,21 @@ const HeadlinesPanel = ({ headlines, setHeadlines }) => {
     getHeadlines();
   }, [setHeadlines]);
 
-  return (
+  const onSelectHeadline = headline => {
+    onForceInfoPage();
+    setCurrentHeadline(headline);
+  };
+
+  return currentHeadline ? (
+    <div
+      className={classnames(
+        styles["c-home-menu__tab-panel-scroll-area"],
+        styles["c-home-menu__tab-panel-scroll-area--slim"]
+      )}
+    >
+      <Headline headline={currentHeadline} />
+    </div>
+  ) : (
     <>
       <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
         Learn more about the top headlines describing the climate emergency. Stay up to date with the news you need to
@@ -36,7 +67,13 @@ const HeadlinesPanel = ({ headlines, setHeadlines }) => {
       <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
         {!isFetching ? (
           headlines.map(headline => (
-            <HeadlineCard headline={headline} key={headline.id} className={styles["c-home-menu__headline"]} />
+            <HeadlineCard
+              key={headline.id}
+              as="button"
+              headline={headline}
+              className={styles["c-home-menu__headline"]}
+              onClick={() => onSelectHeadline(headline)}
+            />
           ))
         ) : (
           <p>Loading</p>
@@ -46,7 +83,12 @@ const HeadlinesPanel = ({ headlines, setHeadlines }) => {
   );
 };
 
-HeadlinesPanel.propTypes = {};
+HeadlinesPanel.propTypes = {
+  onForceInfoPage: PropTypes.func.isRequired,
+  headlines: PropTypes.array.isRequired,
+  setHeadlines: PropTypes.func.isRequired,
+  forceInfoPage: PropTypes.bool.isRequired
+};
 
 HeadlinesPanel.defaultProps = {};
 
@@ -54,5 +96,5 @@ export default connect(
   state => ({
     headlines: state.headlines.headlines
   }),
-  { setHeadlines }
+  { setHeadlines, setCurrentTemplate }
 )(HeadlinesPanel);
