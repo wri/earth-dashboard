@@ -170,7 +170,7 @@ const MainContainer = ({
         />
       )}
       <Actions isMobile={isMobile}>
-        <div style={{ "flex": 1 }}>
+        <div className="u-flex-1">
           <button
             className={classnames(
               menuButtonStyles["c-home-menu-toggle"],
@@ -199,7 +199,7 @@ const MainContainer = ({
           </button>
         </div>
         <Controls />
-        <div style={{ "flex": 1 }}>{/* SHOWING DATA FROM Button */}</div>
+        <div className="u-flex-1">{/* SHOWING DATA FROM Button */}</div>
       </Actions>
       {!hasTimeOutReached && (
         <div
