@@ -1,23 +1,20 @@
 import classnames from "classnames";
-import PropTypes from "prop-types";
+import styles from "./controls.module.scss";
 
 const ControlsConfig = [
   {
+    id: "settings",
     name: "settings",
     src: "cog.svg"
   }
 ];
 
 const Controls = () => (
-  <div>
+  <div className={classnames(styles["c-controls-container"])}>
     {ControlsConfig.map(control => (
-      <button><img src={`/static/icons/${control.src}`} /></button>
+      <button key={control.key} className={classnames(styles["c-control-btn"])}><img src={`/static/icons/${control.src}`} width="48px" height="48px" /></button>
     ))}
   </div>
 );
-
-// Controls.propTypes = {
-//   isMobile: PropTypes.bool.isRequired
-// };
 
 export default Controls;

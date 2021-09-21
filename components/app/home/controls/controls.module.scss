@@ -1,0 +1,20 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+
+.c-controls-container {
+  display: grid;
+  gap: 12px;
+  grid-auto-flow: column;
+  align-items: center;
+}
+
+.c-control-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  border-radius: 24px;
+  background-color: $colour-space;
+}
