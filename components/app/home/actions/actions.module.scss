@@ -14,4 +14,9 @@
     padding-top: 16px;
     padding-bottom: 16px;
   }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
 }

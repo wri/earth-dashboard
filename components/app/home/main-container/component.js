@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Banner from "../banner";
 import Menu from "../menu";
 import Actions from "../actions";
+import Controls from "components/app/home/controls";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
@@ -169,32 +170,36 @@ const MainContainer = ({
         />
       )}
       <Actions isMobile={isMobile}>
-        <button
-          className={classnames(
-            menuButtonStyles["c-home-menu-toggle"],
-            hasMenuOpen && menuButtonStyles["c-home-menu-toggle--open"]
-          )}
-          onClick={toggleMenu}
-          aria-haspopup="true"
-          aria-expanded={hasMenuOpen}
-          aria-controls="menu"
-          id="menu-button"
-          data-testid="toggle"
-        >
-          <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
-            <span>Understand the emergency</span>
-            {layersLabelArr.length > 0 && (
-              <span data-testid="labels-arr">
-                {layersLabelArr.join(", ")}
-                {isMobile && (
-                  <>
-                    <br /> 21/10/2021
-                  </>
-                )}
-              </span>
+        <div style={{ "flex": 1 }}>
+          <button
+            className={classnames(
+              menuButtonStyles["c-home-menu-toggle"],
+              hasMenuOpen && menuButtonStyles["c-home-menu-toggle--open"]
             )}
-          </div>
-        </button>
+            onClick={toggleMenu}
+            aria-haspopup="true"
+            aria-expanded={hasMenuOpen}
+            aria-controls="menu"
+            id="menu-button"
+            data-testid="toggle"
+          >
+            <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
+              <span>Understand the emergency</span>
+              {layersLabelArr.length > 0 && (
+                <span data-testid="labels-arr">
+                  {layersLabelArr.join(", ")}
+                  {isMobile && (
+                    <>
+                      <br /> 21/10/2021
+                    </>
+                  )}
+                </span>
+              )}
+            </div>
+          </button>
+        </div>
+        <Controls />
+        <div style={{ "flex": 1 }}>{/* SHOWING DATA FROM Button */}</div>
       </Actions>
       {!hasTimeOutReached && (
         <div

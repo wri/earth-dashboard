@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const Actions = ({ isMobile, children }) => {
   return (
     <div className={classnames(styles["c-home-actions"], "u-padding-horizontal-l")}>
-      <div>{children}</div>
+      <div className={classnames(styles["c-home-actions__wrapper"])}>{children}</div>
     </div>
   );
 };
