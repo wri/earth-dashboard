@@ -17,4 +17,8 @@
   padding: 12px;
   border-radius: 24px;
   background-color: $colour-space;
+
+  &:hover {
+    background-color: $colour-flame;
+  }
 }
