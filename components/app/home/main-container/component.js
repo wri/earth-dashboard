@@ -6,10 +6,11 @@ import PropTypes from "prop-types";
 import Banner from "../banner";
 import Menu from "../menu";
 import Actions from "../actions";
-import Controls from "components/app/home/controls";
+import ControlBar from "components/app/home/control-bar";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
+import HomePageControlBarItems from "constants/control-bar/homePage";
 
 const MainContainer = ({
   isMobile,
@@ -21,7 +22,8 @@ const MainContainer = ({
   setMonitorValue,
   animationValue,
   datasetValue,
-  monitorValue
+  monitorValue,
+  ...props
 }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
   const [hasBanner, setHasBanner] = useState(true);
@@ -198,7 +200,7 @@ const MainContainer = ({
             </div>
           </button>
         </div>
-        <Controls />
+        <ControlBar controls={HomePageControlBarItems} />
         <div className="u-flex-1">{/* SHOWING DATA FROM Button */}</div>
       </Actions>
       {!hasTimeOutReached && (
