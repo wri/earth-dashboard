@@ -8,13 +8,13 @@ const RadioImage = ({ className, label, name, options, getSelectOption, handleCh
 
   return (
     <div className={classnames(styles["c-radio-image"], className)}>
-      {label && <label className={styles["c-radio-image__label"]}>{label}</label>}
+      {label && <h3 className={styles["c-radio-image__label"]}>{label}</h3>}
 
       <div className={styles["c-radio-image__options"]}>
         {options.map(option => (
           <div key={option.id}>
             <input
-              className={styles["c-radio-image__input"]}
+              className={classnames(styles["c-radio-image__input"], "u-display-none")}
               type="radio"
               id={`radio-image-${name}-${option.id}`}
               name={name}

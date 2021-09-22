@@ -17,7 +17,7 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose }) => {
 
       <div className={styles["c-settings-menu-modal"]}>
         <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
-          <h1 className="u-margin-bottom-none">Settings</h1>
+          <h1 className={classnames(styles["c-settings-menu-modal__header__title"], "u-margin-bottom-none")}>Settings</h1>
           <button
             type="button"
             className={styles["c-settings-menu-modal__close"]}

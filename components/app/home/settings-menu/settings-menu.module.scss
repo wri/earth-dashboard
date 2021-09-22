@@ -1,5 +1,6 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
+@import "css/tools/fontSize";
 
 .c-settings-menu {
   position: absolute;
@@ -36,6 +37,13 @@
     padding: 19px 80px 13px;
     background-color: $colour-night;
     z-index: 1;
+
+    &__title {
+      color: $white;
+      @include font-size(24px, 36px);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
   }
 
   &__close {
