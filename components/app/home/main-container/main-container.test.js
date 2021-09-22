@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { render, fireEvent, waitFor } from "test-utils";
 import MainContainer from "./index";
 import useIframeBridge from "../../../../hooks/useIframeBridge";
@@ -9,6 +10,9 @@ import { earthServer } from "../../../../test/iframeBridge";
 
 jest.mock("../../../../hooks/useIframeBridge");
 jest.mock("../../../../utils/axios");
+jest.mock("next/image", () => {
+  return () => <></>;
+});
 
 const mockIframeBridge = {
   setRef: () => {},
@@ -39,50 +43,41 @@ test("<MainContainer /> renders correctly as desktop", async () => {
     <div
       class="c-home-actions u-padding-horizontal-l"
     >
-      <div
-        class="c-home-actions__wrapper"
+      <button
+        aria-controls="menu"
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="c-home-actions__item c-home-menu-toggle"
+        data-testid="toggle"
+        id="menu-button"
       >
         <div
-          class="u-flex-1"
+          class="c-home-menu-toggle__text-container"
         >
-          <button
-            aria-controls="menu"
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="c-home-menu-toggle"
-            data-testid="toggle"
-            id="menu-button"
+          <span>
+            Understand the emergency
+          </span>
+          <span
+            data-testid="labels-arr"
           >
-            <div
-              class="c-home-menu-toggle__text-container"
-            >
-              <span>
-                Understand the emergency
-              </span>
-              <span
-                data-testid="labels-arr"
-              >
-                Wind, Particulate Matter, Fires
-              </span>
-            </div>
-          </button>
+            Wind, Particulate Matter, Fires
+          </span>
         </div>
-        <div
-          class="c-controls-container"
-        >
-          <button
-            class="c-control-btn"
-          >
-            <img
-              height="48px"
-              src="/static/icons/cog.svg"
-              width="48px"
-            />
-          </button>
-        </div>
-        <div
-          class="u-flex-1"
+      </button>
+      <div
+        class="c-map-controls c-home-actions__map-controls"
+      >
+        <button
+          aria-label="Get current location"
+          class="c-button c-button--icon u-margin-right-xs"
         />
+        <button
+          aria-label="Settings"
+          class="c-button c-button--icon u-margin-right-xs"
+        />
+      </div>
+      <div>
+        Date picker here
       </div>
     </div>
     <div
@@ -126,53 +121,29 @@ test("<MainContainer /> renders correctly as mobile", async () => {
     <div
       class="c-home-actions u-padding-horizontal-l"
     >
-      <div
-        class="c-home-actions__wrapper"
+      <button
+        aria-controls="menu"
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="c-home-actions__item c-home-menu-toggle"
+        data-testid="toggle"
+        id="menu-button"
       >
         <div
-          class="u-flex-1"
+          class="c-home-menu-toggle__text-container"
         >
-          <button
-            aria-controls="menu"
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="c-home-menu-toggle"
-            data-testid="toggle"
-            id="menu-button"
+          <span>
+            Understand the emergency
+          </span>
+          <span
+            data-testid="labels-arr"
           >
-            <div
-              class="c-home-menu-toggle__text-container"
-            >
-              <span>
-                Understand the emergency
-              </span>
-              <span
-                data-testid="labels-arr"
-              >
-                Wind, Particulate Matter, Fires
-                <br />
-                 21/10/2021
-              </span>
-            </div>
-          </button>
+            Wind, Particulate Matter, Fires
+            <br />
+             21/10/2021
+          </span>
         </div>
-        <div
-          class="c-controls-container"
-        >
-          <button
-            class="c-control-btn"
-          >
-            <img
-              height="48px"
-              src="/static/icons/cog.svg"
-              width="48px"
-            />
-          </button>
-        </div>
-        <div
-          class="u-flex-1"
-        />
-      </div>
+      </button>
     </div>
     <div
       class="text-container -mobile"

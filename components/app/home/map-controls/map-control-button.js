@@ -39,10 +39,10 @@ const MapControlButton = ({
 };
 
 MapControlButton.propTypes = {
-  image: PropTypes.object.isRequired,
+  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   isActiveSelector: PropTypes.func.isRequired,
   shouldDisableOnActive: PropTypes.bool,
-  disabled: PropTypes.func,
+  disabled: PropTypes.bool,
   getDispatch: PropTypes.func.isRequired,
   className: PropTypes.string
 };
