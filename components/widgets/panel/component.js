@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import ReactCardFlip from "react-card-flip";
@@ -10,18 +10,13 @@ import WidgetPreview from "components/widgets/preview";
 // utils
 import { logEvent } from "utils/gtag";
 
-// services
-import { fetchWidget } from "services/widget";
-
 // styles
 import styles from "./widget-panel.module.scss";
+import useWidget from "hooks/useWidget";
 
 function WidgetPanel({ widget, topic, widgetShouldBeLoaded }) {
-  const [widgetData, setWidgetData] = useState({
-    loading: widgetShouldBeLoaded,
-    id: widget.id,
-    data: widgetShouldBeLoaded ? null : widget
-  });
+  const widgetData = useWidget(widget, widgetShouldBeLoaded);
+
   const { loading, data } = widgetData;
   const [flipCardOpen, setFlipCardOpen] = useState(false);
   const [shareModalIsOpen, setShareModalIsOpen] = useState(false);
@@ -37,25 +32,6 @@ function WidgetPanel({ widget, topic, widgetShouldBeLoaded }) {
   const commontRWEmbedURL = "https://resourcewatch.org/embed";
   const shareEmbedURL = `${commontRWEmbedURL}/${isMap ? "map" : "widget"}/${data?.id}`;
   const embedTag = `<iframe src="${shareEmbedURL}" width="100%" height="500px" frameBorder="0" />`;
-
-  const loadWidget = async () => {
-    try {
-      const res = await fetchWidget(widget.id, { includes: "metadata" });
-      setWidgetData({
-        id: res.id,
-        loading: false,
-        data: res
-      });
-    } catch (err) {
-      console.error(`Error loading widget: ${widget.id} - ${err}`);
-    }
-  };
-
-  useEffect(() => {
-    if (widgetShouldBeLoaded) {
-      loadWidget();
-    }
-  }, []);
 
   return (
     <div className={styles["c-widget-panel"]} id={widget?.id}>

@@ -1,0 +1,570 @@
+{
+  "data": [
+    {
+      "type": "Headline",
+      "id": 1,
+      "attributes": {
+        "title": "Consequuntur sunt voluptate rerum nemo suscipit et.",
+        "summary": "schimmel.andrew@example.org",
+        "thumbnail_image": "http://localhost:9000/gca-earth-hq/dicta.png",
+        "headline_date": "2021-09-09T10:37:43+00:00",
+        "content": {
+          "body": "Consectetur et expedita reiciendis eius deserunt deserunt quaerat. Numquam blanditiis omnis autem et vel a. Quidem ad corporis ex illum quasi nostrum accusantium velit. Ad cumque voluptatem qui laboriosam non.",
+          "media": {
+            "widget": {
+              "type": "Widget",
+              "id": 1,
+              "attributes": {
+                "title": "ratione",
+                "embed_url": "http://harris.com/"
+              }
+            },
+            "body_image": "http://localhost:9000/gca-earth-hq/sed.png"
+          },
+          "article_url": "https://strosin.com/ut-est-a-provident-aut-nemo-libero-rerum.html"
+        },
+        "location": {
+          "name": "pariatur",
+          "lat": 14.998442,
+          "lng": -12.591782
+        },
+        "template": {
+          "type": "Template",
+          "id": 1,
+          "attributes": {
+            "title": "Wildfires",
+            "description": "Consequuntur voluptatem fugit maiores voluptatem. Nesciunt modi enim perspiciatis et ipsa recusandae adipisci.",
+            "data_layers": [
+              {
+                "type": "DataLayer",
+                "id": 17,
+                "attributes": {
+                  "title": "Wind",
+                  "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                  "default_on": true,
+                  "data_key": "sze2a0gf",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 3,
+                    "attributes": {
+                      "title": "Animation",
+                      "description": "Possimus sed sit culpa sed corporis velit animi. Error autem dolor libero."
+                    }
+                  },
+                  "source": null
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 15,
+                "attributes": {
+                  "title": "Particulate Matter",
+                  "description": "Mass of atmospheric particles with a diameter less than 2.5 micron",
+                  "default_on": true,
+                  "data_key": "13xvafxz",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "CAMS / Copernicus / European Commission + ECMWF"
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 16,
+                "attributes": {
+                  "title": "Fires",
+                  "description": "Active fires on the Earth",
+                  "default_on": true,
+                  "data_key": "jvafhah4",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 2,
+                    "attributes": {
+                      "title": "Monitor",
+                      "description": "Sed quia dignissimos dolor ut. Ab qui maxime molestiae rerum reprehenderit voluptas consequuntur dolorem. Enim nam quia reiciendis. Aut quasi earum totam illo."
+                    }
+                  },
+                  "source": "CAMS / Copernicus / European Commission + ECMWF + VIIRS NRT / FIRMS / EOSDIS / NASA"
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 2,
+                "attributes": {
+                  "title": "Carbon Monoxide",
+                  "description": "Carbon Monoxide Surface Concentration – the fraction of carbon monoxide present in air at the earth's surface",
+                  "default_on": false,
+                  "data_key": "zbwzorpj",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "GEOS-5 / GMAO / NASA"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "Headline",
+      "id": 2,
+      "attributes": {
+        "title": "Minima velit nam sunt.",
+        "summary": "delmer92@example.com",
+        "thumbnail_image": "http://localhost:9000/gca-earth-hq/et.png",
+        "headline_date": "2021-09-09T10:37:43+00:00",
+        "content": {
+          "body": "Expedita quidem consequuntur eius sed aspernatur quis. Illo quo quos corrupti dolorum. Aperiam dolorem ut reiciendis perferendis. Et modi esse voluptatem aut.",
+          "media": {
+            "widget": {
+              "type": "Widget",
+              "id": 1,
+              "attributes": {
+                "title": "ratione",
+                "embed_url": "http://harris.com/"
+              }
+            },
+            "body_image": "http://localhost:9000/gca-earth-hq/molestiae.png"
+          },
+          "article_url": "http://maggio.info/voluptas-qui-error-minus-quis-aperiam-qui.html"
+        },
+        "location": {
+          "name": "adipisci",
+          "lat": -39.593922,
+          "lng": -143.909389
+        },
+        "template": {
+          "type": "Template",
+          "id": 1,
+          "attributes": {
+            "title": "Wildfires",
+            "description": "Consequuntur voluptatem fugit maiores voluptatem. Nesciunt modi enim perspiciatis et ipsa recusandae adipisci.",
+            "data_layers": [
+              {
+                "type": "DataLayer",
+                "id": 17,
+                "attributes": {
+                  "title": "Wind",
+                  "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                  "default_on": true,
+                  "data_key": "sze2a0gf",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 3,
+                    "attributes": {
+                      "title": "Animation",
+                      "description": "Possimus sed sit culpa sed corporis velit animi. Error autem dolor libero."
+                    }
+                  },
+                  "source": null
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 15,
+                "attributes": {
+                  "title": "Particulate Matter",
+                  "description": "Mass of atmospheric particles with a diameter less than 2.5 micron",
+                  "default_on": true,
+                  "data_key": "13xvafxz",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "CAMS / Copernicus / European Commission + ECMWF"
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 16,
+                "attributes": {
+                  "title": "Fires",
+                  "description": "Active fires on the Earth",
+                  "default_on": true,
+                  "data_key": "jvafhah4",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 2,
+                    "attributes": {
+                      "title": "Monitor",
+                      "description": "Sed quia dignissimos dolor ut. Ab qui maxime molestiae rerum reprehenderit voluptas consequuntur dolorem. Enim nam quia reiciendis. Aut quasi earum totam illo."
+                    }
+                  },
+                  "source": "CAMS / Copernicus / European Commission + ECMWF + VIIRS NRT / FIRMS / EOSDIS / NASA"
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 2,
+                "attributes": {
+                  "title": "Carbon Monoxide",
+                  "description": "Carbon Monoxide Surface Concentration – the fraction of carbon monoxide present in air at the earth's surface",
+                  "default_on": false,
+                  "data_key": "zbwzorpj",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "GEOS-5 / GMAO / NASA"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "Headline",
+      "id": 3,
+      "attributes": {
+        "title": "Praesentium nobis vel necessitatibus.",
+        "summary": "kaitlyn.windler@example.org",
+        "thumbnail_image": "http://localhost:9000/gca-earth-hq/reiciendis.png",
+        "headline_date": "2021-09-09T10:37:43+00:00",
+        "content": {
+          "body": "Dolorem earum a aut sequi et. Qui cum reiciendis et eos sed. Facere sit deleniti sunt. Qui ut odit ea vitae voluptas in.",
+          "media": {
+            "widget": null,
+            "body_image": "http://localhost:9000/gca-earth-hq/id.png"
+          },
+          "article_url": "http://www.gibson.com/rem-rerum-reiciendis-qui-et-consequatur.html"
+        },
+        "location": {
+          "name": "eum",
+          "lat": 52.72761,
+          "lng": 167.060808
+        },
+        "template": {
+          "type": "Template",
+          "id": 2,
+          "attributes": {
+            "title": "Wind",
+            "description": "Cupiditate magnam nam sit esse et. Dolorem ea sit animi. Eligendi quibusdam asperiores harum. Minus voluptatem et enim sunt.",
+            "data_layers": [
+              {
+                "type": "DataLayer",
+                "id": 4,
+                "attributes": {
+                  "title": "Jet Stream Wind",
+                  "description": "Wind speed at 250 hectopascals or roughly 10,500 m from surface",
+                  "default_on": false,
+                  "data_key": "6mffa36d",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 5,
+                "attributes": {
+                  "title": "Surface Wind",
+                  "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                  "default_on": true,
+                  "data_key": "xpo1gqgs",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 17,
+                "attributes": {
+                  "title": "Wind",
+                  "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                  "default_on": true,
+                  "data_key": "sze2a0gf",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 3,
+                    "attributes": {
+                      "title": "Animation",
+                      "description": "Possimus sed sit culpa sed corporis velit animi. Error autem dolor libero."
+                    }
+                  },
+                  "source": null
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 6,
+                "attributes": {
+                  "title": "Polar Vortex Wind",
+                  "description": "Wind speed at 10 hectopascals",
+                  "default_on": false,
+                  "data_key": "krcrjvpg",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "Headline",
+      "id": 4,
+      "attributes": {
+        "title": "A ea modi id error qui.",
+        "summary": "kelsi.barrows@example.net",
+        "thumbnail_image": "http://localhost:9000/gca-earth-hq/temporibus.png",
+        "headline_date": "2021-09-09T10:37:43+00:00",
+        "content": {
+          "body": "Error facilis non reprehenderit excepturi architecto enim non. Omnis sint et quia et architecto. Dolores corrupti est unde maiores. Praesentium commodi minima culpa quis et voluptatum.",
+          "media": {
+            "widget": null,
+            "body_image": "http://localhost:9000/gca-earth-hq/corrupti.png"
+          },
+          "article_url": "http://www.hansen.net/sed-repudiandae-consequatur-qui-cum-nihil"
+        },
+        "location": {
+          "name": "qui",
+          "lat": 20.884401,
+          "lng": -167.157367
+        },
+        "template": {
+          "type": "Template",
+          "id": 2,
+          "attributes": {
+            "title": "Wind",
+            "description": "Cupiditate magnam nam sit esse et. Dolorem ea sit animi. Eligendi quibusdam asperiores harum. Minus voluptatem et enim sunt.",
+            "data_layers": [
+              {
+                "type": "DataLayer",
+                "id": 4,
+                "attributes": {
+                  "title": "Jet Stream Wind",
+                  "description": "Wind speed at 250 hectopascals or roughly 10,500 m from surface",
+                  "default_on": false,
+                  "data_key": "6mffa36d",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 5,
+                "attributes": {
+                  "title": "Surface Wind",
+                  "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                  "default_on": true,
+                  "data_key": "xpo1gqgs",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 17,
+                "attributes": {
+                  "title": "Wind",
+                  "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                  "default_on": true,
+                  "data_key": "sze2a0gf",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 3,
+                    "attributes": {
+                      "title": "Animation",
+                      "description": "Possimus sed sit culpa sed corporis velit animi. Error autem dolor libero."
+                    }
+                  },
+                  "source": null
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 6,
+                "attributes": {
+                  "title": "Polar Vortex Wind",
+                  "description": "Wind speed at 10 hectopascals",
+                  "default_on": false,
+                  "data_key": "krcrjvpg",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "GFS / NCEP / US National Weather Service + VIIRS NRT / FIRMS / EOSDIS / NASA"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "Headline",
+      "id": 5,
+      "attributes": {
+        "title": "One of four North Atlantic right whale calves spotted so far this breeding season struck by ship",
+        "summary": "One of just four North Atlantic right whale calves spotted have suffered deep propeller wounds to both sides of its head.",
+        "thumbnail_image": "http://localhost:9000/gca-earth-hq/NacueP1wLLPka4nSGQVDxp2MDdaHUCJAC324EGqz.jpg",
+        "headline_date": "2021-09-15T11:00:00+00:00",
+        "content": {
+          "body": "One of just four North Atlantic right whale calves spotted off the southeast coast of the United States so far this winter was discovered last week to have suffered deep propeller wounds to both sides of its head.\n\nBarb Zoodsma of the National Marine Fisheries Service told the Associated Press that the injured calf was photographed by an aerial survey team about 8 miles (12.8 kilometers) off the coast of the state of Georgia while swimming with its mother on January 8. The survey team didn’t notice the calf’s injuries until later, when the photograph was viewed at full size.\n\nThe two S-shaped gashes observed by the survey team were most likely caused by the propeller of a boat, but humans will probably not be able to intervene and help the calf. “[I]t’s highly unlikely that we can fix this animal,” Zoodsma said.\n\nThe North Atlantic right whale (Eubalaena glacialis) is listed as Endangered on the IUCN Red List. Centuries of commercial hunting nearly wiped the whales out, but their numbers grew at an annual rate of 2.8% between 1990 and 2010, when the population peaked at about 480 individuals. Since 2010, however, the population has been on the decline once again, due almost entirely to the impacts of human activities, especially collisions with ships and entanglement in fishing gear. The North Atlantic right whale birth rate is believed to be dropping, as well, which has meant that deaths have outpaced births in recent years. It is estimated that around 450 North Atlantic right whales still survive today.",
+          "media": {
+            "widget": {
+              "type": "Widget",
+              "id": 2,
+              "attributes": {
+                "title": "The 2020 Atlantic hurricane season set the record for the most storms in a single season",
+                "embed_url": "https://api.resourcewatch.org/widget/89940a74-909a-4981-a84a-9987f669fb32"
+              }
+            },
+            "body_image": null
+          },
+          "article_url": "https://news.mongabay.com/2020/01/one-of-four-north-atlantic-right-whale-calves-spotted-so-far-this-breeding-season-struck-by-ship/"
+        },
+        "location": {
+          "name": "North Atlantic",
+          "lat": 28.2362147,
+          "lng": -75.1395286
+        },
+        "template": {
+          "type": "Template",
+          "id": 4,
+          "attributes": {
+            "title": "Ocean",
+            "description": "Minima placeat repudiandae fugit qui dolores omnis illum. Consequatur aut quae aut. Aliquam ab occaecati temporibus est. Repellat voluptatem aliquid tempora.",
+            "data_layers": [
+              {
+                "type": "DataLayer",
+                "id": 12,
+                "attributes": {
+                  "title": "Sea Temperature",
+                  "description": "Temperature at the sea's surface",
+                  "default_on": false,
+                  "data_key": "hrb7qlk9",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "OSTIA / UK Met Office + GHRSST + CMEMS + VIIRS NRT / FIRMS / EOSDIS / NASA"
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 13,
+                "attributes": {
+                  "title": "SSTA",
+                  "description": "Sea Surface Temperature Anomaly",
+                  "default_on": false,
+                  "data_key": "riqtkkov",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": "OSTIA / UK Met Office + GHRSST + CMEMS + VIIRS NRT / FIRMS / EOSDIS / NASA"
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 14,
+                "attributes": {
+                  "title": "Reef bleaching",
+                  "description": "Coral Reef Bleaching",
+                  "default_on": true,
+                  "data_key": "fzshpfqe",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 1,
+                    "attributes": {
+                      "title": "Data Set",
+                      "description": "Molestiae tenetur quisquam excepturi eos mollitia voluptas non. Est ipsa iure pariatur recusandae nesciunt. Voluptatem id sequi vel minus laborum itaque."
+                    }
+                  },
+                  "source": null
+                }
+              },
+              {
+                "type": "DataLayer",
+                "id": 18,
+                "attributes": {
+                  "title": "Current",
+                  "description": "Amimation showing oceans currents",
+                  "default_on": true,
+                  "data_key": "vdma9i9h",
+                  "category": {
+                    "type": "LayerCategory",
+                    "id": 3,
+                    "attributes": {
+                      "title": "Animation",
+                      "description": "Possimus sed sit culpa sed corporis velit animi. Error autem dolor libero."
+                    }
+                  },
+                  "source": "OSCAR / Earth & Space Research"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

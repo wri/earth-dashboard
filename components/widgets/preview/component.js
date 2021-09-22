@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+import useWidget from "hooks/useWidget";
 
 // Widget Editor
 import Renderer from "@widget-editor/renderer";
 import RwAdapter from "@widget-editor/rw-adapter";
-
-// services
-import { fetchWidget } from "services/widget";
-// utils
-import { makeMapWidgetConfigCompatibleWithLeaflet } from "utils/widget";
 
 // components
 import ErrorBoundary from "components/ui/error-boundary";
@@ -30,13 +25,11 @@ import {
 
 // styles
 import styles from "./widget-preview.module.scss";
+import RandomPlaceholder from "components/widgets/random-placeholder";
 
-function WidgetPreview({ widget, showSource, widgetShouldBeLoaded, topic, showLoadingPlaceholder }) {
-  const [widgetData, setWidgetData] = useState({
-    loading: widgetShouldBeLoaded,
-    id: widget.id,
-    data: widgetShouldBeLoaded ? null : widget
-  });
+function WidgetPreview({ widget, showSource, widgetShouldBeLoaded, showLoadingPlaceholder }) {
+  const widgetData = useWidget(widget, widgetShouldBeLoaded);
+
   const isServer = typeof window === "undefined";
   const { loading, data } = widgetData;
   const widgetConfig = data?.widgetConfig;
@@ -51,64 +44,9 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded, topic, showLo
   const isStaticText = widgetType === STATIC_TEXT_WIDGET_TYPE;
   const widgetEmbedUrl = isEmbed && widgetConfig.url;
 
-  const loadWidget = async () => {
-    try {
-      const res = await fetchWidget(widget.id, { includes: "metadata" });
-      setWidgetData({
-        id: res.id,
-        loading: false,
-        data: res
-      });
-    } catch (err) {
-      console.error(`Error loading widget: ${widget.id} - ${err}`);
-    }
-  };
-
-  useEffect(() => {
-    if (widgetShouldBeLoaded) {
-      loadWidget();
-    }
-  }, []);
-
-  const getRandomPlaceHolder = () => {
-    const number = Math.round(Math.random() * 2);
-    if (number === 1) {
-      return (
-        <div className={styles["loading-placeholder"]}>
-          In parts of the Amazon,{" "}
-          <span
-            className={classnames({
-              [topic]: true,
-              [styles["highlighted-text"]]: true
-            })}
-          >
-            dry spells are expected to double
-          </span>{" "}
-          in 2080 compared to 2006, leading to a potential increase in fires and decrease in species habitats and carbon
-          storage.
-        </div>
-      );
-    } else if (number === 2) {
-      return (
-        <div className={styles["loading-placeholder"]}>
-          In Amazon,{" "}
-          <span
-            className={classnames({
-              [topic]: true,
-              [styles["highlighted-text"]]: true
-            })}
-          >
-            dry spells are expectaaed to double in 2080
-          </span>{" "}
-          in 2080 compared to 2006.
-        </div>
-      );
-    }
-  };
-
   return (
     <ErrorBoundary className={styles["c-widget-preview"]}>
-      {loading && showLoadingPlaceholder && getRandomPlaceHolder()}
+      {loading && showLoadingPlaceholder && <RandomPlaceholder />}
       {!loading && !isServer && (
         <div
           className={classnames({
@@ -140,7 +78,6 @@ WidgetPreview.propTypes = {
 WidgetPreview.defaultProps = {
   showSource: false,
   widgetShouldBeLoaded: false,
-  topic: "ocean",
   showLoadingPlaceholder: false
 };
 
