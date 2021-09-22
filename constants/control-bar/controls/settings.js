@@ -1,7 +1,7 @@
 import { setSettingsOpen, setSettingsClose, isSettingsOpen } from "slices/controlBar";
 import cogIcon from "public/static/icons/cog.svg";
 
-const settings = {
+const settingsControlConfig = {
   key: "settings",
   image: cogIcon,
   isActiveSelector: isSettingsOpen,
@@ -10,4 +10,4 @@ const settings = {
   "aria-label": "Settings"
 };
 
-export default settings;
+export default settingsControlConfig;
