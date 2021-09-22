@@ -10,9 +10,9 @@ const StyledSwitch = ({ className, label, isActiveSelector, setActive, setInacti
 
   const handleChange = checked => {
     if (checked) {
-      dispatch(setActive())
+      dispatch(setActive());
     } else {
-      dispatch(setInactive())
+      dispatch(setInactive());
     }
   };
 

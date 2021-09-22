@@ -18,10 +18,7 @@ const ControlBtn = props => {
   };
 
   return (
-    <button
-      key={id}
-      className={classnames(styles["c-control-btn"])}
-      onClick={handleOnClick}>
+    <button key={id} className={classnames(styles["c-control-btn"])} onClick={handleOnClick}>
       <img src={`/static/icons/${src}`} width="48px" height="48px" />
     </button>
   );
@@ -29,7 +26,9 @@ const ControlBtn = props => {
 
 const ControlBar = ({ controls }) => (
   <div className={classnames(styles["c-control-bar-container"])}>
-    {controls.map(control => <ControlBtn control={control} />)}
+    {controls.map(control => (
+      <ControlBtn control={control} />
+    ))}
   </div>
 );
 

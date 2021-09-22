@@ -3,7 +3,9 @@ import globalSettings from "constants/globalSettings";
 
 export const NAME = "globalSettings";
 
-const initialState = globalSettings.reduce((accumulator, setting) => ({[setting.id]: setting.initialState, ...accumulator}), {});
+const initialState = {
+  ...globalSettings.reduce((accumulator, setting) => ({ [setting.id]: setting.initialState, ...accumulator }), {})
+};
 
 const globalSettingsSlice = createSlice({
   name: NAME,
@@ -12,7 +14,7 @@ const globalSettingsSlice = createSlice({
     setSettingById(state, { payload }) {
       if (!state.hasOwnProperty(payload.id)) return;
 
-      state[payload.id] = payload.newState
+      state[payload.id] = payload.newState;
     }
   }
 });
