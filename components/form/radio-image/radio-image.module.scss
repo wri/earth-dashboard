@@ -7,7 +7,6 @@
   &__label {
     display: block;
     margin-bottom: 16px;
-    font-family: "Barlow";
     color: $white;
     @include font-size(18px, 27px);
     font-weight: 500;
@@ -24,9 +23,11 @@
   }
 
   &__image {
+    position: relative;
     margin-bottom: 8px;
     height: 120px;
     background-color: $colour-night;
     border-radius: 28px;
+    overflow: hidden;
   }
 }

@@ -1,6 +1,7 @@
 import FormSwitch from "components/form/switch";
 import RadioImage from "components/form/radio-image";
 import { setSettingById, getSettingValueById } from "slices/globalSettings";
+import imageTest from "public/static/images/star-background.png";
 
 const globalSettings = [
   {
@@ -40,9 +41,9 @@ const globalSettings = [
       name: "basemaps",
       label: "Basemaps",
       options: [
-        { id: "default", label: "Default", image: "" },
+        { id: "default", label: "Default", image: imageTest },
         // PLACEHOLDER TEXT
-        { id: "placeholder", label: "Lorem ipsum", image: "" }
+        { id: "placeholder", label: "Lorem ipsum", image: imageTest }
       ],
       getSelectOption: () => getSettingValueById("basemaps"),
       handleChange: id => setSettingById({ id: "basemaps", newState: id })

@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import classnames from "classnames";
+import Image from "next/image";
 import styles from "./radio-image.module.scss";
 
 const RadioImage = ({ className, label, name, options, getSelectOption, handleChange }) => {
@@ -8,7 +9,7 @@ const RadioImage = ({ className, label, name, options, getSelectOption, handleCh
 
   return (
     <div className={classnames(styles["c-radio-image"], className)}>
-      {label && <h3 className={styles["c-radio-image__label"]}>{label}</h3>}
+      {label && <span className={styles["c-radio-image__label"]}>{label}</span>}
 
       <div className={styles["c-radio-image__options"]}>
         {options.map(option => (
@@ -24,7 +25,7 @@ const RadioImage = ({ className, label, name, options, getSelectOption, handleCh
             />
             <label className={styles["c-radio-image__input-label"]} htmlFor={`radio-image-${name}-${option.id}`}>
               <div className={styles["c-radio-image__image"]}>
-                <img src={option.image} />
+                <Image src={option.image} layout="fill" objectFit="cover" role="presentation" alt="" />
               </div>
               <span>{option.label}</span>
             </label>

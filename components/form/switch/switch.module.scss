@@ -7,7 +7,6 @@
   align-items: center;
 
   &__label {
-    font-family: "Barlow";
     color: $white;
     @include font-size(18px, 27px);
     font-weight: 500;

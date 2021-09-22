@@ -12,7 +12,6 @@ const StyledSelect = () => {
   return (
     <Select
       styles={desktopStyles}
-      options={}
     />
   );
 };

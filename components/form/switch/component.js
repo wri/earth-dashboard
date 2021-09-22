@@ -32,7 +32,7 @@ const StyledSwitch = ({ className, label, isActiveSelector, handleChange }) => {
   return (
     <label className={classnames(styles["c-custom-styled-switch"], className)}>
       {label && (
-        <h3 className={classnames(styles["c-custom-styled-switch__label"], "u-margin-bottom-none")}>{label}</h3>
+        <span className={classnames(styles["c-custom-styled-switch__label"], "u-margin-bottom-none")}>{label}</span>
       )}
       <MediaContextProvider>
         <Desktop>
