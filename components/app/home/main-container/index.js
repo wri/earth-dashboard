@@ -1,6 +1,6 @@
 import MainContainerComponent from "./component";
 import { connect } from "react-redux";
-import { NAME as controlBarSliceName, setShouldFetchLocation } from "slices/controlBar";
+import { NAME as mapControlsSliceName, setShouldFetchLocation } from "slices/mapControls";
 import { setTemplates, setAnimation, setDataset, setMonitor, resetValues } from "slices/templates";
 
 export default connect(
@@ -9,8 +9,8 @@ export default connect(
     animationValue: state.templates.animationValue,
     monitorValue: state.templates.monitorValue,
     datasetValue: state.templates.datasetValue,
-    isSettingsOpen: state[controlBarSliceName].isSettingsOpen,
-    shouldFetchLocation: state[controlBarSliceName].shouldFetchLocation
+    isSettingsOpen: state[mapControlsSliceName].isSettingsOpen,
+    shouldFetchLocation: state[mapControlsSliceName].shouldFetchLocation
   }),
   {
     setTemplates,

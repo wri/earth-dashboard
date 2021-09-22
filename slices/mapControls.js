@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const NAME = "controlBar";
+export const NAME = "mapControls";
 
 const initialState = {
   isSettingsOpen: false,
   shouldFetchLocation: false
 };
 
-const controlBarSlice = createSlice({
+const mapControlsSlice = createSlice({
   name: NAME,
   initialState,
   reducers: {
@@ -23,8 +23,8 @@ const controlBarSlice = createSlice({
   }
 });
 
-export const { setSettingsOpen, setSettingsClose, setShouldFetchLocation } = controlBarSlice.actions;
+export const { setSettingsOpen, setSettingsClose, setShouldFetchLocation } = mapControlsSlice.actions;
 export const isSettingsOpen = state => state[NAME].isSettingsOpen;
 export const shouldFetchLocation = state => state[NAME].shouldFetchLocation;
 
-export default controlBarSlice.reducer;
+export default mapControlsSlice.reducer;

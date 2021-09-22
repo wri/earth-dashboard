@@ -1,4 +1,4 @@
-import { setShouldFetchLocation, shouldFetchLocation } from "slices/controlBar";
+import { setShouldFetchLocation, shouldFetchLocation } from "slices/mapControls";
 import locationIcon from "public/static/icons/location.svg";
 
 const location = {

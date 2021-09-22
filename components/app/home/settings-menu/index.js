@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import SettingsMenuComponent from "./component";
-import { setSettingsClose, NAME as controlBarSliceName } from "slices/controlBar";
+import { setSettingsClose, NAME as mapControlsSliceName } from "slices/mapControls";
 
 export default connect(
   state => ({
-    isSettingsOpen: state[controlBarSliceName].isSettingsOpen
+    isSettingsOpen: state[mapControlsSliceName].isSettingsOpen
   }),
   {
     setSettingsClose

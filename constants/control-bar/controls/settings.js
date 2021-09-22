@@ -1,4 +1,4 @@
-import { setSettingsOpen, setSettingsClose, isSettingsOpen } from "slices/controlBar";
+import { setSettingsOpen, setSettingsClose, isSettingsOpen } from "slices/mapControls";
 import cogIcon from "public/static/icons/cog.svg";
 
 const settingsControlConfig = {
