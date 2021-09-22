@@ -3,6 +3,7 @@ import MainContainer from "./index";
 import useIframeBridge from "../../../../hooks/useIframeBridge";
 import { EarthClient } from "../../../../utils/iframeBridge/earthClient";
 import templates from "../../../../test/templates.json";
+import headlines from "../../../../test/headlines.json";
 import { GCAAPI } from "../../../../utils/axios";
 import { earthServer } from "../../../../test/iframeBridge";
 
@@ -158,7 +159,7 @@ test("<MainContainer /> toggle class toggles properly", async () => {
   GCAAPI.get.mockResolvedValue({ data: templates });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
-  const { getByTestId } = render(<MainContainer isMobile={false} />);
+  const { getByTestId, queryAllByTestId } = render(<MainContainer isMobile={false} />);
   await waitFor(() => getByTestId("labels-arr"));
 
   const button = getByTestId("toggle");
@@ -166,7 +167,11 @@ test("<MainContainer /> toggle class toggles properly", async () => {
 
   expect(container.classList.contains("-has-menu-open")).toBe(false);
 
+  GCAAPI.get.mockResolvedValue({ data: headlines });
+
   fireEvent.click(button);
+
+  await waitFor(() => queryAllByTestId("headline"));
 
   expect(container.classList.contains("-has-menu-open")).toBe(true);
 });

@@ -1,29 +1,25 @@
 .c-widget-preview {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  .preview-container {
     display: flex;
     height: 100%;
     width: 100%;
 
-    .loading-placeholder {
-        width: 100%;
-        font-size: 36px;
-        line-height: 1.25;
-        font-weight: 400;
-        filter: blur(7px);
+    &.-animate {
+      opacity: 0;
+      animation: fade-in 1.5s forwards;
     }
+  }
 
-    .preview-container {
-        display: flex;
-        height: 100%;
-        width: 100%;
-
-        &.-animate {
-            opacity: 0;
-            animation: fade-in 1.5s forwards;
-        }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
     }
-
-    @keyframes fade-in {
-        from { opacity: 0; }
-        to { opacity: 1; }
+    to {
+      opacity: 1;
     }
+  }
 }

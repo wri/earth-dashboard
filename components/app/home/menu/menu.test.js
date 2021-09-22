@@ -1,9 +1,21 @@
-import { render, fireEvent } from "test-utils";
+import { render, fireEvent, waitFor, waitForElementToBeRemoved } from "test-utils";
+import headlines from "../../../../test/headlines.json";
+import { GCAAPI } from "../../../../utils/axios";
 import Menu from "./index";
 import { earthServer } from "../../../../test/iframeBridge";
 
-test("<Menu /> renders correctly as desktop", () => {
-  const { container } = render(<Menu isMobile={false} isClosing={false} layers={[]} earthServer={earthServer} />);
+jest.mock("../../../../utils/axios");
+
+test("<Menu /> renders correctly as desktop", async () => {
+  GCAAPI.get.mockResolvedValue({ data: headlines });
+
+  const { container, queryAllByTestId, getByText } = render(
+    <Menu isMobile={false} isClosing={false} layers={[]} earthServer={earthServer} />
+  );
+  await waitForElementToBeRemoved(() => getByText(/Loading/i));
+
+  await waitFor(() => queryAllByTestId("headline"));
+
   expect(container).toMatchInlineSnapshot(`
 <div>
   <div
@@ -95,8 +107,127 @@ test("<Menu /> renders correctly as desktop", () => {
               <p
                 class="c-home-menu__tab-description u-margin-none"
               >
-                What’s Happening
+                Learn more about the top headlines describing the climate emergency. Stay up to date with the news you need to know and the places that are being affected.
               </p>
+              <div
+                class="c-home-menu__tab-panel-scroll-area"
+              >
+                <button
+                  class="c-headline-card c-home-menu__headline"
+                  data-testid="headline"
+                >
+                  <img
+                    alt=""
+                    class="c-headline-card__image"
+                    role="presentation"
+                    src="http://localhost:9000/gca-earth-hq/dicta.png"
+                  />
+                  <div>
+                    <h3
+                      class="c-headline-card__title"
+                    >
+                      Consequuntur sunt voluptate rerum nemo suscipit et.
+                    </h3>
+                    <p
+                      class="c-headline-card__date"
+                    >
+                      9th September 2021
+                    </p>
+                  </div>
+                </button>
+                <button
+                  class="c-headline-card c-home-menu__headline"
+                  data-testid="headline"
+                >
+                  <img
+                    alt=""
+                    class="c-headline-card__image"
+                    role="presentation"
+                    src="http://localhost:9000/gca-earth-hq/et.png"
+                  />
+                  <div>
+                    <h3
+                      class="c-headline-card__title"
+                    >
+                      Minima velit nam sunt.
+                    </h3>
+                    <p
+                      class="c-headline-card__date"
+                    >
+                      9th September 2021
+                    </p>
+                  </div>
+                </button>
+                <button
+                  class="c-headline-card c-home-menu__headline"
+                  data-testid="headline"
+                >
+                  <img
+                    alt=""
+                    class="c-headline-card__image"
+                    role="presentation"
+                    src="http://localhost:9000/gca-earth-hq/reiciendis.png"
+                  />
+                  <div>
+                    <h3
+                      class="c-headline-card__title"
+                    >
+                      Praesentium nobis vel necessitatibus.
+                    </h3>
+                    <p
+                      class="c-headline-card__date"
+                    >
+                      9th September 2021
+                    </p>
+                  </div>
+                </button>
+                <button
+                  class="c-headline-card c-home-menu__headline"
+                  data-testid="headline"
+                >
+                  <img
+                    alt=""
+                    class="c-headline-card__image"
+                    role="presentation"
+                    src="http://localhost:9000/gca-earth-hq/temporibus.png"
+                  />
+                  <div>
+                    <h3
+                      class="c-headline-card__title"
+                    >
+                      A ea modi id error qui.
+                    </h3>
+                    <p
+                      class="c-headline-card__date"
+                    >
+                      9th September 2021
+                    </p>
+                  </div>
+                </button>
+                <button
+                  class="c-headline-card c-home-menu__headline"
+                  data-testid="headline"
+                >
+                  <img
+                    alt=""
+                    class="c-headline-card__image"
+                    role="presentation"
+                    src="http://localhost:9000/gca-earth-hq/NacueP1wLLPka4nSGQVDxp2MDdaHUCJAC324EGqz.jpg"
+                  />
+                  <div>
+                    <h3
+                      class="c-headline-card__title"
+                    >
+                      One of four North Atlantic right whale calves spotted so far this breeding season struck by ship
+                    </h3>
+                    <p
+                      class="c-headline-card__date"
+                    >
+                      15th September 2021
+                    </p>
+                  </div>
+                </button>
+              </div>
             </div>
             <div
               aria-labelledby="react-tabs-2"
@@ -127,8 +258,17 @@ test("<Menu /> renders correctly as desktop", () => {
 `);
 });
 
-test("<Menu /> renders correctly as mobile", () => {
-  const { container } = render(<Menu isMobile={true} isClosing={true} layers={[]} earthServer={earthServer} />);
+test("<Menu /> renders correctly as mobile", async () => {
+  GCAAPI.get.mockResolvedValue({ data: headlines });
+
+  const { container, queryAllByTestId, getByText } = render(
+    <Menu isMobile={true} isClosing={true} layers={[]} earthServer={earthServer} />
+  );
+
+  await waitForElementToBeRemoved(() => getByText(/Loading/i));
+
+  await waitFor(() => queryAllByTestId("headline"));
+
   expect(container).toMatchInlineSnapshot(`
 <div>
   <div
@@ -220,8 +360,127 @@ test("<Menu /> renders correctly as mobile", () => {
               <p
                 class="c-home-menu__tab-description u-margin-none"
               >
-                What’s Happening
+                Learn more about the top headlines describing the climate emergency. Stay up to date with the news you need to know and the places that are being affected.
               </p>
+              <div
+                class="c-home-menu__tab-panel-scroll-area"
+              >
+                <button
+                  class="c-headline-card c-home-menu__headline"
+                  data-testid="headline"
+                >
+                  <img
+                    alt=""
+                    class="c-headline-card__image"
+                    role="presentation"
+                    src="http://localhost:9000/gca-earth-hq/dicta.png"
+                  />
+                  <div>
+                    <h3
+                      class="c-headline-card__title"
+                    >
+                      Consequuntur sunt voluptate rerum nemo suscipit et.
+                    </h3>
+                    <p
+                      class="c-headline-card__date"
+                    >
+                      9th September 2021
+                    </p>
+                  </div>
+                </button>
+                <button
+                  class="c-headline-card c-home-menu__headline"
+                  data-testid="headline"
+                >
+                  <img
+                    alt=""
+                    class="c-headline-card__image"
+                    role="presentation"
+                    src="http://localhost:9000/gca-earth-hq/et.png"
+                  />
+                  <div>
+                    <h3
+                      class="c-headline-card__title"
+                    >
+                      Minima velit nam sunt.
+                    </h3>
+                    <p
+                      class="c-headline-card__date"
+                    >
+                      9th September 2021
+                    </p>
+                  </div>
+                </button>
+                <button
+                  class="c-headline-card c-home-menu__headline"
+                  data-testid="headline"
+                >
+                  <img
+                    alt=""
+                    class="c-headline-card__image"
+                    role="presentation"
+                    src="http://localhost:9000/gca-earth-hq/reiciendis.png"
+                  />
+                  <div>
+                    <h3
+                      class="c-headline-card__title"
+                    >
+                      Praesentium nobis vel necessitatibus.
+                    </h3>
+                    <p
+                      class="c-headline-card__date"
+                    >
+                      9th September 2021
+                    </p>
+                  </div>
+                </button>
+                <button
+                  class="c-headline-card c-home-menu__headline"
+                  data-testid="headline"
+                >
+                  <img
+                    alt=""
+                    class="c-headline-card__image"
+                    role="presentation"
+                    src="http://localhost:9000/gca-earth-hq/temporibus.png"
+                  />
+                  <div>
+                    <h3
+                      class="c-headline-card__title"
+                    >
+                      A ea modi id error qui.
+                    </h3>
+                    <p
+                      class="c-headline-card__date"
+                    >
+                      9th September 2021
+                    </p>
+                  </div>
+                </button>
+                <button
+                  class="c-headline-card c-home-menu__headline"
+                  data-testid="headline"
+                >
+                  <img
+                    alt=""
+                    class="c-headline-card__image"
+                    role="presentation"
+                    src="http://localhost:9000/gca-earth-hq/NacueP1wLLPka4nSGQVDxp2MDdaHUCJAC324EGqz.jpg"
+                  />
+                  <div>
+                    <h3
+                      class="c-headline-card__title"
+                    >
+                      One of four North Atlantic right whale calves spotted so far this breeding season struck by ship
+                    </h3>
+                    <p
+                      class="c-headline-card__date"
+                    >
+                      15th September 2021
+                    </p>
+                  </div>
+                </button>
+              </div>
             </div>
             <div
               aria-labelledby="react-tabs-10"
@@ -252,10 +511,16 @@ test("<Menu /> renders correctly as mobile", () => {
 `);
 });
 
-test("<Menu /> toggles tabs prooperly", () => {
-  const { getByTestId, queryByTestId } = render(
+test("<Menu /> toggles tabs prooperly", async () => {
+  GCAAPI.get.mockResolvedValue({ data: headlines });
+
+  const { getByTestId, queryByTestId, queryAllByTestId, getByText } = render(
     <Menu isMobile={false} isClosing={false} layers={[]} earthServer={earthServer} />
   );
+
+  await waitForElementToBeRemoved(() => getByText(/Loading/i));
+
+  await waitFor(() => queryAllByTestId("headline"));
 
   const tab = getByTestId(`tab-2`);
 
