@@ -23,7 +23,9 @@ const RadioImage = ({ className, label, name, options, getSelectOption, handleCh
               onChange={e => dispatch(handleChange(e.currentTarget.value))}
             />
             <label className={styles["c-radio-image__input-label"]} htmlFor={`radio-image-${name}-${option.id}`}>
-              <div className={styles["c-radio-image__image"]}><img src={option.image} /></div>
+              <div className={styles["c-radio-image__image"]}>
+                <img src={option.image} />
+              </div>
               <span>{option.label}</span>
             </label>
           </div>

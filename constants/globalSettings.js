@@ -8,7 +8,7 @@ const globalSettings = [
     props: {
       label: "Show Map Grid",
       isActiveSelector: () => getSettingValueById("show-map-grid"),
-      handleChange: (checked) => setSettingById({ id: "show-map-grid", newState: checked })
+      handleChange: checked => setSettingById({ id: "show-map-grid", newState: checked })
     },
     component: FormSwitch,
     initialState: false
@@ -18,7 +18,7 @@ const globalSettings = [
     props: {
       label: "Animations",
       isActiveSelector: () => getSettingValueById("animations"),
-      handleChange: (checked) => setSettingById({ id: "animations", newState: checked })
+      handleChange: checked => setSettingById({ id: "animations", newState: checked })
     },
     component: FormSwitch,
     initialState: true
@@ -28,7 +28,7 @@ const globalSettings = [
     props: {
       label: "High Definition Mode",
       isActiveSelector: () => getSettingValueById("high-definition-mode"),
-      handleChange: (checked) => setSettingById({ id: "high-definition-mode", newState: checked })
+      handleChange: checked => setSettingById({ id: "high-definition-mode", newState: checked })
     },
     component: FormSwitch,
     initialState: false
@@ -42,10 +42,10 @@ const globalSettings = [
       options: [
         { id: "default", label: "Default", image: "" },
         // PLACEHOLDER TEXT
-        { id: "placeholder", label: "Lorem ipsum", image: "" },
+        { id: "placeholder", label: "Lorem ipsum", image: "" }
       ],
       getSelectOption: () => getSettingValueById("basemaps"),
-      handleChange: (id) => setSettingById({ id: "basemaps", newState: id })
+      handleChange: id => setSettingById({ id: "basemaps", newState: id })
     },
     initialState: "default"
   }
