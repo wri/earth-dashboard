@@ -98,6 +98,9 @@
     overflow-y: auto;
     padding: 0px 12px 0px 28px;
     @include scrollbars(4px, #b6b8ba, #494d51);
+    &--slim {
+      top: 24px;
+    }
   }
 
   &__template-description {
@@ -231,6 +234,9 @@
 
     &__tab-panel-scroll-area {
       top: 86px;
+      &--slim {
+        top: 24px;
+      }
     }
   }
 
@@ -280,7 +286,10 @@
     &__tab-panel-scroll-area {
       padding: 0px 12px 0px 24px;
       top: 86px;
-      bottom: 70px;
+      bottom: 40px;
+      &--slim {
+        top: 24px;
+      }
     }
 
     &__template-description {

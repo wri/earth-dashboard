@@ -2,32 +2,94 @@
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "./headline.module.scss";
-import moment from "moment";
+import WidgetPreview from "components/widgets/preview";
+import { useMemo } from "react";
+import { logEvent } from "utils/gtag";
 
-const HeadlineCard = ({ headline, className, ...rest }) => {
+const Headline = ({ headline, className, currentTemplate, ...rest }) => {
+  const isBrowser = typeof window !== "undefined";
+  const activeLayerString = useMemo(() => {
+    const defaultTemplateNames = currentTemplate.attributes.data_layers
+      .filter(layer => layer.attributes.default_on)
+      .map(layer => layer.attributes.title);
+    return defaultTemplateNames.join(", ");
+  }, [currentTemplate]);
+
   return (
-    <div className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
-      <img
-        className={styles["c-headline__image"]}
-        src={headline.attributes.thumbnail_image}
-        alt=""
-        role="presentation"
-      />
-      <div>
-        <h3 className={styles["c-headline__title"]}>{headline.attributes.title}</h3>
-        <p className={styles["c-headline__date"]}>{moment(headline.attributes.headline_date).format("Do MMMM YYYY")}</p>
+    <article className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
+      <h3 className={classnames(styles["c-headline__title"], "u-margin-none")}>{headline.attributes.title}</h3>
+      <p className={classnames(styles["c-headline__body"], "u-margin-top-xs u-text-pre-line")}>
+        {headline.attributes.content.body}
+      </p>
+      <div className={styles["c-headline__media-container"]}>
+        {isBrowser && headline.attributes.content.media.widget?.attributes.widget_id && (
+          <>
+            <div className={styles["c-headline__widget"]}>
+              <WidgetPreview
+                widget={{ id: headline.attributes.content.media.widget.attributes.widget_id }}
+                widgetShouldBeLoaded
+              />
+            </div>
+            <div className={styles["c-headline__widget-source"]}>
+              <p className="u-margin-vertical-xs">
+                Source:
+                <a
+                  href="https://resourcewatch.org/"
+                  target="_blank"
+                  onClick={() =>
+                    logEvent({
+                      action: "click",
+                      category: "Outbound traffic - ResourceWatch",
+                      label: window.location.href
+                    })
+                  }
+                  rel="noreferrer"
+                >
+                  {" "}
+                  ResourceWatch
+                </a>
+              </p>
+            </div>
+          </>
+        )}
+        {headline.attributes.content.media.body_image && (
+          <img
+            className={styles["c-headline__image"]}
+            src={headline.attributes.content.media.body_image}
+            alt=""
+            role="presentation"
+          />
+        )}
       </div>
-    </div>
+      <div className={styles["c-headline__meta"]}>
+        <p className="u-margin-none">Showing</p>
+        <p className="u-margin-none">{activeLayerString}</p>
+        <p className="u-margin-none">Affected Area</p>
+        <p className="u-margin-none">{headline.attributes.location.name}</p>
+      </div>
+      <div className="u-text-right u-margin-top-m">
+        <a
+          href={headline.attributes.content.article_url}
+          target="_blank"
+          rel="noreferrer"
+          className="c-button c-button--new-style c-button--flame"
+        >
+          View full article
+        </a>
+      </div>
+    </article>
   );
 };
 
-HeadlineCard.propTypes = {
+Headline.propTypes = {
   headline: PropTypes.object.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  currentTemplate: PropTypes.object
 };
 
-HeadlineCard.defaultProps = {
-  className: ""
+Headline.defaultProps = {
+  className: "",
+  currentTemplate: null
 };
 
-export default HeadlineCard;
+export default Headline;

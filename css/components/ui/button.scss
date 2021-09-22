@@ -1,4 +1,4 @@
-$btn-bg-hover-color: rgba(195, 45, 123,0.05);
+$btn-bg-hover-color: rgba(195, 45, 123, 0.05);
 $btn-bg-hover-alt-color: rgba(255, 255, 255, 0.1);
 $btn-border-color: rgba(195, 45, 123, 0.3);
 $btn-border-alt-color: rgba(255, 255, 255, 0.3);
@@ -55,8 +55,7 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
   &.-tertiary,
   &.-facebook,
   &.-twitter,
-  &.-google
-   {
+  &.-google {
     padding: 0 $margin-size-small;
     height: 45px;
   }
@@ -96,7 +95,6 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
         box-shadow: none;
       }
     }
-
   }
 
   &.-b,
@@ -182,7 +180,7 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
   &.-fs-tiny {
     font-size: $font-size-tiny;
     line-height: 10px;
-    font-weight: bold
+    font-weight: bold;
   }
 
   &.-facebook {
@@ -209,18 +207,46 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
 
   &.-google {
     display: inline-flex;
-    background: #D62D20;
+    background: #d62d20;
     color: $white;
-    border-color: #D62D20;
+    border-color: #d62d20;
 
     &:hover {
-      background: darken(#D62D20, 10%);
+      background: darken(#d62d20, 10%);
     }
   }
 
   &.-underline {
     text-decoration: underline;
   }
+
+  // Sept 2021 updates
+  &--new-style {
+    font-family: "Barlow Condensed";
+    font-style: normal;
+    font-weight: 500;
+    @include font-size(20px, 30px);
+    padding: 7px 40px;
+    border-radius: 48px;
+    text-transform: uppercase;
+  }
+
+  &--flame {
+    color: white;
+    background: $colour-flame;
+    &:focus,
+    &:hover {
+      background-color: $colour-galaxy;
+    }
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    &--new-style {
+      @include font-size(16px, 24px);
+      padding: 8px 24px;
+    }
+  }
+  // End Sept 2021 updates
 }
 
 .buttons {

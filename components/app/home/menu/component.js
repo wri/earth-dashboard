@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useState, useMemo } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
@@ -29,30 +29,40 @@ const INFO_TAB_INDEX = 3;
 const DATA_TAB_INDEX = 2;
 
 const Menu = forwardRef(
-  ({
-    isMobile,
-    onClose,
-    isClosing,
-    templates,
-    setTemplates,
-    currentTemplate,
-    setCurrentTemplate,
-    animationValue,
-    setAnimationValue,
-    datasetValue,
-    setDatasetValue,
-    monitorValue,
-    setMonitorValue,
-    earthServer,
-    resetValues,
-    layers,
-    ...rest
-  }) => {
+  (
+    {
+      isMobile,
+      onClose,
+      isClosing,
+      templates,
+      setTemplates,
+      currentTemplate,
+      setCurrentTemplate,
+      animationValue,
+      setAnimationValue,
+      datasetValue,
+      setDatasetValue,
+      monitorValue,
+      setMonitorValue,
+      earthServer,
+      resetValues,
+      layers,
+      ...rest
+    },
+    ref
+  ) => {
     const [tabIndex, setTabIndex] = useState(0);
     const [infoData, setInfoData] = useState(null);
+    const [forceInfoPage, setForceInfoPage] = useState(false);
+    const isInfoPage = useMemo(() => {
+      return tabIndex === INFO_TAB_INDEX || forceInfoPage;
+    }, [forceInfoPage, tabIndex]);
 
     const onBack = () => {
-      setTabIndex(DATA_TAB_INDEX);
+      if (tabIndex === INFO_TAB_INDEX) {
+        setTabIndex(DATA_TAB_INDEX);
+      }
+      setForceInfoPage(false);
       setInfoData(null);
     };
 
@@ -69,17 +79,24 @@ const Menu = forwardRef(
           className={classnames(
             styles["c-home-menu"],
             isClosing && styles["c-home-menu--closing"],
-            tabIndex === INFO_TAB_INDEX && styles["c-home-menu--is-info-page"]
+            isInfoPage && styles["c-home-menu--is-info-page"]
           )}
           {...rest}
         >
-          <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)} className={styles["c-home-menu__tabs"]}>
+          <Tabs
+            selectedIndex={tabIndex}
+            onSelect={index => setTabIndex(index)}
+            className={styles["c-home-menu__tabs"]}
+            domRef={el => {
+              if (ref) {
+                ref.current = el;
+              }
+            }}
+          >
             <div className={classnames(styles["c-home-menu__header"])}>
               <div className={classnames(styles["c-home-menu__header-content"])}>
-                {tabIndex !== INFO_TAB_INDEX && (
-                  <h2 className={styles["c-home-menu__header-text"]}>Understand the emergency</h2>
-                )}
-                {tabIndex === INFO_TAB_INDEX && (
+                {!isInfoPage && <h2 className={styles["c-home-menu__header-text"]}>Understand the emergency</h2>}
+                {isInfoPage && (
                   <>
                     <button className={styles["c-home-menu__back-button"]} onClick={onBack} aria-label="Back" />
                     {infoData && isMobile && (
@@ -94,7 +111,11 @@ const Menu = forwardRef(
                 )}
               </div>
               <TabList className={classnames(styles["c-home-menu__tab-list"], "u-padding-top-xs")}>
-                <Tab className={classnames(styles["c-home-menu__tab"], "u-margin-right-l")} data-testid="tab-1">
+                <Tab
+                  className={classnames(styles["c-home-menu__tab"], "u-margin-right-l")}
+                  data-testid="tab-1"
+                  ref={ref}
+                >
                   What’s Happening
                 </Tab>
                 <Tab className={classnames(styles["c-home-menu__tab"], "u-margin-right-l")} data-testid="tab-2">
@@ -111,7 +132,7 @@ const Menu = forwardRef(
             <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>
               <div className={classnames(styles["c-home-menu__tab-container"])}>
                 <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-1">
-                  <HeadlinePanel />
+                  <HeadlinePanel onForceInfoPage={() => setForceInfoPage(true)} forceInfoPage={forceInfoPage} />
                 </TabPanel>
                 <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-2">
                   <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>Vital Signs</p>
