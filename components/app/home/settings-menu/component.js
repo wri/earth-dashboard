@@ -1,5 +1,13 @@
+import { createElement } from "react";
 import classnames from "classnames";
 import styles from "./settings-menu.module.scss";
+import FormSwitch from "components/form/switch";
+
+const SettingsFormElements = [
+  { props: { label: "Show Map Grid" }, component: FormSwitch },
+  { props: { label: "Animations" }, component: FormSwitch },
+  { props: { label: "High Definition Mode" }, component: FormSwitch }
+];
 
 const SettingsMenu = ({ isSettingsOpen, setSettingsClose }) => {
   // Should never get here anyway...
@@ -21,8 +29,8 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose }) => {
           </button>
         </div>
 
-        <div className={classnames(styles["c-settings-menu-modal__body"])}>
-          ...
+        <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}>
+          {SettingsFormElements.map(formEl => createElement(formEl.component, formEl.props))}
         </div>
       </div>
     </div>
