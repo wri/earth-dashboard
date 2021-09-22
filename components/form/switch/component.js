@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import classnames from "classnames";
 import Switch from "react-switch";
 import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
 import styles from "./switch.module.scss";
 
-const StyledSwitch = ({ className, label }) => {
-  const [isChecked, setChecked] = useState(false);
+const StyledSwitch = ({ className, label, isActiveSelector, setActive, setInactive }) => {
+  const dispatch = useDispatch();
+  const isActive = useSelector(isActiveSelector());
+
+  const handleChange = checked => {
+    if (checked) {
+      dispatch(setActive())
+    } else {
+      dispatch(setInactive())
+    }
+  };
 
   const defaultSwitchProps = {
-    onChange: checked => setChecked(checked),
-    checked: isChecked,
+    onChange: handleChange,
+    checked: isActive,
     offColor: "#38444F",
     onColor: "#D63C00",
     uncheckedIcon: false,
