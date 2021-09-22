@@ -12,7 +12,7 @@ import MapControls from "components/app/home/map-controls";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
-import HomePageMapControlsItems from "constants/control-bar/homePage";
+import HomePageMapControlsItems from "constants/control-bar/home-page";
 import useCurrentPosition from "../../../../hooks/useCurrentPosition";
 
 const MainContainer = ({
@@ -219,8 +219,12 @@ const MainContainer = ({
             )}
           </div>
         </button>
-        <MapControls controls={HomePageMapControlsItems} className={actionStyles["c-home-actions__map-controls"]} />
-        <div>Date picker here</div>
+        {!isMobile && (
+          <>
+            <MapControls controls={HomePageMapControlsItems} className={actionStyles["c-home-actions__map-controls"]} />
+            <div>Date picker here</div>
+          </>
+        )}
       </Actions>
       {!hasTimeOutReached && (
         <div

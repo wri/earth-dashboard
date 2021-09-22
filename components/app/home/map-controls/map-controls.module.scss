@@ -5,4 +5,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    justify-content: flex-start;
+    margin-top: 12px;
+  }
 }

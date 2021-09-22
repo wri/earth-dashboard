@@ -75,6 +75,7 @@
 
   @media screen and (max-width: $global-breakpoint-md) {
     width: 100%;
+    max-width: unset;
     padding: 6.5px 10px;
 
     &:before {
