@@ -17,5 +17,7 @@ export default connect(
     setMonitorValue: setMonitor,
     setDatasetValue: setDataset,
     resetValues: resetValues
-  }
+  },
+  null,
+  { forwardRef: true }
 )(Menu);
