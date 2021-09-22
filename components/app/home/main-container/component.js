@@ -5,6 +5,7 @@ import menuButtonStyles from "./menuButton.module.scss";
 import PropTypes from "prop-types";
 import Banner from "../banner";
 import Menu from "../menu";
+import SettingsMenu from "components/app/home/settings-menu";
 import Actions from "../actions";
 import ControlBar from "components/app/home/control-bar";
 import useIframeBridge from "hooks/useIframeBridge";
@@ -23,7 +24,7 @@ const MainContainer = ({
   animationValue,
   datasetValue,
   monitorValue,
-  ...props
+  isSettingsOpen
 }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
   const [hasBanner, setHasBanner] = useState(true);
@@ -215,6 +216,8 @@ const MainContainer = ({
           <Banner isMobile={isMobile} />
         </div>
       )}
+
+      {isSettingsOpen && !isFetchingTemplates && <SettingsMenu />}
     </div>
   );
 };

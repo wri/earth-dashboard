@@ -1,3 +1,3 @@
-import ControlsComponents from "./component";
+import ControlsComponent from "./component";
 
-export default ControlsComponents;
+export default ControlsComponent;
