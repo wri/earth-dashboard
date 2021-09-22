@@ -4,16 +4,16 @@ import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menuButton.module.scss";
 import actionStyles from "components/app/home/actions/actions.module.scss";
 import PropTypes from "prop-types";
-import Banner from "../banner";
-import Menu from "../menu";
+import Banner from "components/app/home/banner";
+import Menu from "components/app/home/menu";
 import SettingsMenu from "components/app/home/settings-menu";
-import Actions from "../actions";
+import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
 import HomePageMapControlsItems from "constants/control-bar/home-page";
-import useCurrentPosition from "../../../../hooks/useCurrentPosition";
+import useCurrentPosition from "hooks/useCurrentPosition";
 
 const MainContainer = ({
   isMobile,
