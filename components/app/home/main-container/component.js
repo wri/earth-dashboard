@@ -177,7 +177,6 @@ const MainContainer = ({
           title="Null School"
           frameBorder="0"
           allowtransparency="true"
-          allow="*"
           ref={setRef}
         />
       )}
