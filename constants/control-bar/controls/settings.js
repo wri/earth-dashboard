@@ -1,11 +1,13 @@
-import { setSettingsOpen, setSettingsClose, isSettingsOpen } from "slices/controlBar";
+import { setSettingsOpen, setSettingsClose, isSettingsOpen } from "slices/mapControls";
+import cogIcon from "public/static/icons/cog.svg";
 
 const settingsControlConfig = {
-  id: "settings",
-  src: "cog.svg",
+  key: "settings",
+  image: cogIcon,
   isActiveSelector: isSettingsOpen,
-  setActive: setSettingsOpen,
-  setInactive: setSettingsClose
+  getDispatch: isActive => (isActive ? setSettingsClose : setSettingsOpen),
+  disabled: false,
+  "aria-label": "Settings"
 };
 
 export default settingsControlConfig;

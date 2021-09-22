@@ -1,0 +1,13 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+
+.c-map-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    justify-content: flex-start;
+    margin-top: 12px;
+  }
+}
