@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import DataLayers from "components/ui/toggle-list/data-list";
 import ToggleItem from "components/ui/toggle-list/toggle-item";
 import ToggleList from "components/ui/toggle-list";
+import MapControls from "components/app/home/map-controls";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import useDataLayers from "hooks/useDataLayers";
 import { DATA_LAYER_TYPES } from "constants/datalayers";
+import MobileMapControlsItems from "constants/control-bar/mobile-home-page";
 
 const DataPanel = ({
   currentTemplate,
@@ -102,6 +104,7 @@ const DataPanel = ({
         </div>
         {description && <p className={classnames(styles["c-home-menu__source"], "u-margin-none")}>{description}</p>}
         {source && <p className={classnames(styles["c-home-menu__source"], "u-margin-none")}>{source}</p>}
+        {isMobile && <MapControls controls={MobileMapControlsItems} />}
       </div>
     </>
   );
