@@ -1,19 +1,18 @@
+import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classnames from "classnames";
 import Switch from "react-switch";
 import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
 import styles from "./switch.module.scss";
 
-const StyledSwitch = ({ className, label, isActiveSelector, setActive, setInactive }) => {
+const StyledSwitch = ({ className, label, isActiveSelector, getDispatch }) => {
   const dispatch = useDispatch();
   const isActive = useSelector(isActiveSelector());
 
-  const handleChange = checked => {
-    if (checked) {
-      dispatch(setActive());
-    } else {
-      dispatch(setInactive());
-    }
+  const dispatchFn = useMemo(() => getDispatch(isActive), [isActive, getDispatch]);
+
+  const handleChange = () => {
+    dispatch(dispatchFn());
   };
 
   const defaultSwitchProps = {

@@ -20,6 +20,6 @@ const globalSettingsSlice = createSlice({
 });
 
 export const { setSettingById } = globalSettingsSlice.actions;
-export default globalSettingsSlice.reducer;
-
 export const getSettingValueById = id => state => state[NAME][id];
+
+export default globalSettingsSlice.reducer;

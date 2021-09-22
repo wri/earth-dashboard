@@ -7,8 +7,7 @@ const globalSettings = [
     props: {
       label: "Show Map Grid",
       isActiveSelector: () => getSettingValueById("show-map-grid"),
-      setActive: () => setSettingById({ id: "show-map-grid", newState: true }),
-      setInactive: () => setSettingById({ id: "show-map-grid", newState: false })
+      getDispatch: (isActive) => () => setSettingById({ id: "show-map-grid", newState: !isActive })
     },
     component: FormSwitch,
     initialState: false
@@ -18,8 +17,7 @@ const globalSettings = [
     props: {
       label: "Animations",
       isActiveSelector: () => getSettingValueById("animations"),
-      setActive: () => setSettingById({ id: "animations", newState: true }),
-      setInactive: () => setSettingById({ id: "animations", newState: false })
+      getDispatch: (isActive) => () => setSettingById({ id: "show-map-grid", newState: !isActive })
     },
     component: FormSwitch,
     initialState: true
@@ -29,8 +27,7 @@ const globalSettings = [
     props: {
       label: "High Definition Mode",
       isActiveSelector: () => getSettingValueById("high-definition-mode"),
-      setActive: () => setSettingById({ id: "high-definition-mode", newState: true }),
-      setInactive: () => setSettingById({ id: "high-definition-mode", newState: false })
+      getDispatch: (isActive) => () => setSettingById({ id: "show-map-grid", newState: !isActive })
     },
     component: FormSwitch,
     initialState: false
