@@ -29,7 +29,7 @@ const MapControlButton = ({
   return (
     <button
       onClick={handleOnClick}
-      className={classnames("c-button c-button--icon", className)}
+      className={classnames("c-button c-button--icon u-margin-right-xs", className)}
       disabled={isDisabled}
       {...rest}
     >
