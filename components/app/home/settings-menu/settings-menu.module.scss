@@ -27,13 +27,15 @@
   mix-blend-mode: normal;
   backdrop-filter: blur(10.8731px);
   border-radius: 28px;
-  overflow: hidden;
+  overflow: auto;
   transform: translateX(-50%);
 
   &__header {
-    position: relative;
+    position: sticky;
+    top: 0;
     padding: 19px 80px 13px;
     background-color: $colour-night;
+    z-index: 1;
   }
 
   &__close {
@@ -48,6 +50,14 @@
 
     &:hover {
       background-color: $colour-flame;
+    }
+  }
+
+  &__body {
+    padding: 40px;
+
+    > *:not(:last-child) {
+      margin-bottom: 24px;
     }
   }
 }
