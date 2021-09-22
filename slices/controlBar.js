@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const NAME = "controlBar";
 
 const initialState = {
-  isSettingsOpen: false
+  isSettingsOpen: false,
+  shouldFetchLocation: false
 };
 
 const controlBarSlice = createSlice({
@@ -15,11 +16,15 @@ const controlBarSlice = createSlice({
     },
     setSettingsClose(state) {
       state.isSettingsOpen = false;
+    },
+    setShouldFetchLocation(state, action) {
+      state.shouldFetchLocation = action.payload;
     }
   }
 });
 
-export const { setSettingsOpen, setSettingsClose } = controlBarSlice.actions;
-export default controlBarSlice.reducer;
-
+export const { setSettingsOpen, setSettingsClose, setShouldFetchLocation } = controlBarSlice.actions;
 export const isSettingsOpen = state => state[NAME].isSettingsOpen;
+export const shouldFetchLocation = state => state[NAME].shouldFetchLocation;
+
+export default controlBarSlice.reducer;
