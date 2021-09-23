@@ -15,7 +15,7 @@ const RadioImage = ({ className, label, name, options, getSelectOption, handleCh
         {options.map(option => {
           const id = `radio-image-${name}-${option.id}`;
           const checked = option.id === activeId;
-          
+
           return (
             <div key={option.id}>
               <input
@@ -27,7 +27,13 @@ const RadioImage = ({ className, label, name, options, getSelectOption, handleCh
                 checked={checked}
                 onChange={e => dispatch(handleChange(e.currentTarget.value))}
               />
-              <label className={classnames(styles["c-radio-image__input-label"], !checked && styles["c-radio-image__input-label--unchecked"])} htmlFor={id}>
+              <label
+                className={classnames(
+                  styles["c-radio-image__input-label"],
+                  !checked && styles["c-radio-image__input-label--unchecked"]
+                )}
+                htmlFor={id}
+              >
                 <div className={styles["c-radio-image__image"]}>
                   <Image src={option.image} layout="fill" objectFit="cover" role="presentation" alt="" />
                 </div>
