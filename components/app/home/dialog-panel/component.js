@@ -8,6 +8,9 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
     className: styles["c-dialog-panel__draggable"],
     // Inline override, otherwise !important is needed in the stylesheet
     style: { position: "absolute" },
+    handleClasses: { top: styles["c-dialog-panel__draggable__handle"] },
+    // Inline override, otherwise !important is needed in the stylesheet
+    handleStyles: { top: { width: "115px", height: "6px", left: "50%" } },
     enable: {
       top: true,
       right: false,
