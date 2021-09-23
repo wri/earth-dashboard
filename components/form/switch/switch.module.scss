@@ -1,0 +1,14 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-custom-styled-switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__label {
+    color: $white;
+    @include font-size(18px, 27px);
+    font-weight: 500;
+  }
+}

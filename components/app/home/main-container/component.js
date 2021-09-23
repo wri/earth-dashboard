@@ -1,14 +1,19 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menuButton.module.scss";
+import actionStyles from "components/app/home/actions/actions.module.scss";
 import PropTypes from "prop-types";
-import Banner from "../banner";
-import Menu from "../menu";
-import Actions from "../actions";
+import Banner from "components/app/home/banner";
+import Menu from "components/app/home/menu";
+import SettingsMenu from "components/app/home/settings-menu";
+import Actions from "components/app/home/actions";
+import MapControls from "components/app/home/map-controls";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
+import HomePageMapControlsItems from "constants/control-bar/home-page";
+import useCurrentPosition from "hooks/useCurrentPosition";
 
 const MainContainer = ({
   isMobile,
@@ -20,7 +25,10 @@ const MainContainer = ({
   setMonitorValue,
   animationValue,
   datasetValue,
-  monitorValue
+  monitorValue,
+  isSettingsOpen,
+  shouldFetchLocation,
+  setShouldFetchLocation
 }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
   const [hasBanner, setHasBanner] = useState(true);
@@ -31,7 +39,7 @@ const MainContainer = ({
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
   const menuRef = useRef(null);
   const [layersLabelArr, setLayersLabelArr] = useState([]);
-
+  const { currentPosition } = useCurrentPosition(shouldFetchLocation);
   const { setRef, earthClient, earthServer, iframeRef, layers } = useIframeBridge();
 
   const toggleMenu = () => {
@@ -135,6 +143,21 @@ const MainContainer = ({
     }
   }, [animationValue, datasetValue, monitorValue, currentTemplate?.attributes?.data_layers, earthServer]);
 
+  useEffect(() => {
+    if (earthServer && currentPosition) {
+      const long = +currentPosition.longitude;
+      const lat = +currentPosition.latitude;
+
+      earthServer.current.reorient({
+        rotate: [-long, -lat],
+        scale: "default",
+        scaleBy: 5
+      });
+
+      setShouldFetchLocation(false);
+    }
+  }, [currentPosition, earthServer, setShouldFetchLocation]);
+
   return (
     <div
       className={classnames({
@@ -171,6 +194,7 @@ const MainContainer = ({
       <Actions isMobile={isMobile}>
         <button
           className={classnames(
+            actionStyles["c-home-actions__item"],
             menuButtonStyles["c-home-menu-toggle"],
             hasMenuOpen && menuButtonStyles["c-home-menu-toggle--open"]
           )}
@@ -195,6 +219,12 @@ const MainContainer = ({
             )}
           </div>
         </button>
+        {!isMobile && (
+          <>
+            <MapControls controls={HomePageMapControlsItems} className={actionStyles["c-home-actions__map-controls"]} />
+            <div>Date picker here</div>
+          </>
+        )}
       </Actions>
       {!hasTimeOutReached && (
         <div
@@ -208,12 +238,17 @@ const MainContainer = ({
           <Banner isMobile={isMobile} />
         </div>
       )}
+
+      {isSettingsOpen && !isFetchingTemplates && <SettingsMenu />}
     </div>
   );
 };
 
 MainContainer.propTypes = {
-  isMobile: PropTypes.bool.isRequired
+  isMobile: PropTypes.bool.isRequired,
+  isSettingsOpen: PropTypes.bool.isRequired,
+  shouldFetchLocation: PropTypes.bool.isRequired,
+  setShouldFetchLocation: PropTypes.func.isRequired
 };
 
 export default MainContainer;

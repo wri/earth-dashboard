@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Select, { Creatable } from "react-select";
+import Select, { Creatable } from "react-select-legacy";
 import FormElement from "./FormElement";
 
 class SelectInput extends FormElement {

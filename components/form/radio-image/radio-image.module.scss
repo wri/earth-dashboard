@@ -1,0 +1,33 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-radio-image {
+  $this: &;
+
+  &__label {
+    display: block;
+    margin-bottom: 16px;
+    color: $white;
+    @include font-size(18px, 27px);
+    font-weight: 500;
+  }
+
+  &__options {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  &__input:checked ~ #{$this}__input-label #{$this}__image {
+    border: 4px solid $colour-flame;
+  }
+
+  &__image {
+    position: relative;
+    margin-bottom: 8px;
+    height: 120px;
+    background-color: $colour-night;
+    border-radius: 28px;
+    overflow: hidden;
+  }
+}

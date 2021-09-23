@@ -9,9 +9,18 @@
   backdrop-filter: blur(10.8731px);
   position: absolute;
   bottom: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
 
   @media screen and (max-width: $global-breakpoint-md) {
     padding-top: 16px;
     padding-bottom: 16px;
+    display: block;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
   }
 }
