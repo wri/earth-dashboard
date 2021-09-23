@@ -31,7 +31,7 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose }) => {
         </div>
 
         <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}>
-          {settingsFormElements.map(formEl => createElement(formEl.component, {key: formEl.id, ...formEl.props}))}
+          {settingsFormElements.map(formEl => createElement(formEl.component, { key: formEl.id, ...formEl.props }))}
         </div>
       </div>
     </div>
