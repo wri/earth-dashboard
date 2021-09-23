@@ -9,7 +9,6 @@ export default connect(
     animationValue: state.templates.animationValue,
     monitorValue: state.templates.monitorValue,
     datasetValue: state.templates.datasetValue,
-    isSettingsOpen: state[mapControlsSliceName].isSettingsOpen,
     shouldFetchLocation: state[mapControlsSliceName].shouldFetchLocation
   }),
   {

@@ -26,7 +26,6 @@ const MainContainer = ({
   animationValue,
   datasetValue,
   monitorValue,
-  isSettingsOpen,
   shouldFetchLocation,
   setShouldFetchLocation
 }) => {
@@ -239,14 +238,13 @@ const MainContainer = ({
         </div>
       )}
 
-      {isSettingsOpen && !isFetchingTemplates && <SettingsMenu />}
+      {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
     </div>
   );
 };
 
 MainContainer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
-  isSettingsOpen: PropTypes.bool.isRequired,
   shouldFetchLocation: PropTypes.bool.isRequired,
   setShouldFetchLocation: PropTypes.func.isRequired
 };

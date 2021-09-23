@@ -1,20 +1,18 @@
 import { createElement } from "react";
 import classnames from "classnames";
+import DialogPanel from "components/app/home/dialog-panel";
 import styles from "./settings-menu.module.scss";
 import settingsFormElements from "constants/globalSettings";
 
-const SettingsMenu = ({ isSettingsOpen, setSettingsClose }) => {
-  // Should never get here anyway...
-  if (!isSettingsOpen) return;
+const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
+  if (!isSettingsOpen) return null;
 
   const handleClose = e => {
     setSettingsClose();
   };
 
   return (
-    <div className={classnames(styles["c-settings-menu"])}>
-      <div className={classnames(styles["c-settings-menu__overlay"])} onClick={handleClose}></div>
-
+    <DialogPanel onClose={handleClose} isMobile={isMobile}>
       <div className={styles["c-settings-menu-modal"]}>
         <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
           <h1 className={classnames(styles["c-settings-menu-modal__header__title"], "u-margin-bottom-none")}>
@@ -34,7 +32,7 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose }) => {
           {settingsFormElements.map(formEl => createElement(formEl.component, { key: formEl.id, ...formEl.props }))}
         </div>
       </div>
-    </div>
+    </DialogPanel>
   );
 };
 
