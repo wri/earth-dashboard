@@ -72,6 +72,10 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           class="c-button c-button--icon u-margin-right-xs"
         />
         <button
+          aria-label="Toggle 2D Globe"
+          class="c-button c-button--icon u-margin-right-xs"
+        />
+        <button
           aria-label="Settings"
           class="c-button c-button--icon u-margin-right-xs"
         />
