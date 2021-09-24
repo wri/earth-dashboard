@@ -9,7 +9,8 @@ export default connect(
     animationValue: state.templates.animationValue,
     monitorValue: state.templates.monitorValue,
     datasetValue: state.templates.datasetValue,
-    shouldFetchLocation: state[mapControlsSliceName].shouldFetchLocation
+    shouldFetchLocation: state[mapControlsSliceName].shouldFetchLocation,
+    projectionType: state[mapControlsSliceName].projectionType
   }),
   {
     setTemplates,

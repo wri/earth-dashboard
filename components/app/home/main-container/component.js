@@ -27,7 +27,8 @@ const MainContainer = ({
   datasetValue,
   monitorValue,
   shouldFetchLocation,
-  setShouldFetchLocation
+  setShouldFetchLocation,
+  projectionType
 }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
   const [hasBanner, setHasBanner] = useState(true);
@@ -141,6 +142,13 @@ const MainContainer = ({
       earthServer.current.saveState({ ...animation, ...monitor, ...dataset });
     }
   }, [animationValue, datasetValue, monitorValue, currentTemplate?.attributes?.data_layers, earthServer]);
+
+  // Switch between the different projection types available
+  useEffect(() => {
+    if (earthServer.current) {
+      earthServer.current.saveState({ projection_type: projectionType  });
+    }
+  }, [projectionType, earthServer]);
 
   useEffect(() => {
     if (earthServer && currentPosition) {
