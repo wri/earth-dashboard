@@ -8,7 +8,7 @@ import classnames from "classnames";
 import styles from "../menu.module.scss";
 import useDataLayers from "hooks/useDataLayers";
 import { DATA_LAYER_TYPES } from "constants/datalayers";
-import MobileMapControlsItems from "constants/control-bar/mobile-home-page";
+import MobileMapControlsItems from "schemas/control-bar/mobile-home-page";
 
 const DataPanel = ({
   currentTemplate,

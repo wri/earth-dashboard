@@ -5,7 +5,8 @@ const initialState = {
   allTemplates: null,
   animationValue: "",
   datasetValue: "",
-  monitorValue: ""
+  monitorValue: "",
+  layersLabelArr: []
 };
 
 const templatesSlice = createSlice({
@@ -34,10 +35,20 @@ const templatesSlice = createSlice({
     },
     setMonitor(state, action) {
       state.monitorValue = action.payload;
+    },
+    setLayersLabelArr(state, action) {
+      state.layersLabelArr = action.payload;
     }
   }
 });
 
-export const { setTemplates, setCurrentTemplate, setAnimation, setDataset, setMonitor, resetValues } =
-  templatesSlice.actions;
+export const {
+  setTemplates,
+  setCurrentTemplate,
+  setAnimation,
+  setDataset,
+  setMonitor,
+  resetValues,
+  setLayersLabelArr
+} = templatesSlice.actions;
 export default templatesSlice.reducer;
