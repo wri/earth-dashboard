@@ -1,0 +1,33 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-showing-data-for {
+  $this: &;
+
+  justify-content: flex-end;
+
+  &,
+  &__button {
+    display: flex;
+    align-items: center;
+  }
+
+  &__text {
+    margin-right: 16px;
+    color: $white;
+    font-family: "Barlow Condensed";
+    @include font-size(20px, 24px);
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  &__date {
+    white-space: nowrap;
+  }
+
+  &__button:hover #{$this}__icon {
+    background-color: $colour-flame;
+  }
+}

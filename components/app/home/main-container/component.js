@@ -14,6 +14,7 @@ import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
+import { formatDate } from "utils/dates";
 
 const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
@@ -21,6 +22,7 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
   const [hasTimeOutReached, setHasTimeoutReached] = useState(false);
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
+  const [ currentDate, setCurrentDate ] = useState(null);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
   const [homePageMapControlsItems, setHomePageControlBarItems] = useState([]);
@@ -85,6 +87,30 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
     getTemplates();
   }, [setTemplates]);
 
+  // Find the Date of the Data being displayed
+  useEffect(() => {
+    const dates = [];
+
+    layers?.forEach(layer => {
+      if (!layer || !layer.product || !layer.product.validTime) return;
+
+      dates.push(new Date(layer.product.validTime));
+    });
+
+    if (dates.length) {
+      // Set the current date as the biggest date
+      setCurrentDate(dates.reduce((accumulator, currentValue) => {
+        if (!accumulator) return currentValue;
+
+        if (currentValue.getTime() > accumulator.getTime()) {
+          return currentValue;
+        } else {
+          return accumulator;
+        }
+      }, null))
+    }
+  }, [ layers ]);
+
   return (
     <div
       className={classnames({
@@ -128,7 +154,7 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
                 {layersLabelArr.join(", ")}
                 {isMobile && (
                   <>
-                    <br /> 21/10/2021
+                    <br /> {formatDate(currentDate)}
                   </>
                 )}
               </span>
@@ -138,7 +164,7 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
         {!isMobile && (
           <>
             <MapControls controls={homePageMapControlsItems} className={actionStyles["c-home-actions__map-controls"]} />
-            <DatePickerBtn />
+            <DatePickerBtn currentDate={currentDate} />
           </>
         )}
       </Actions>
