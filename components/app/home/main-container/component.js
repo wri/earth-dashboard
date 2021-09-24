@@ -9,6 +9,7 @@ import Menu from "components/app/home/menu";
 import SettingsMenu from "components/app/home/settings-menu";
 import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
+import DatePickerBtn from "components/app/home/date-picker/button";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
@@ -222,7 +223,7 @@ const MainContainer = ({
         {!isMobile && (
           <>
             <MapControls controls={HomePageMapControlsItems} className={actionStyles["c-home-actions__map-controls"]} />
-            <div>Date picker here</div>
+            <DatePickerBtn />
           </>
         )}
       </Actions>
