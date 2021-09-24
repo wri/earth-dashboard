@@ -1,5 +1,6 @@
 import { EarthClient } from "./earthClient";
 import * as Comlink from "comlink";
+import * as d3 from "utils/d3";
 
 /**
  * @param {string} api
@@ -53,4 +54,20 @@ export const getEarthServer = async (iframe, windowWidth, createEarthClient) => 
   } catch (err) {
     console.log("Failed to connect to iframe", err);
   }
+};
+
+export const reorientController = (button, cb) => {
+  let zoomAction;
+
+  function action() {
+    cb();
+    zoomAction = setTimeout(action, 25);
+  }
+
+  const zoomBehavior = d3
+    .zoom()
+    .on("start", action)
+    .on("end", () => clearTimeout(zoomAction));
+
+  button.call(zoomBehavior).on("dblclick.zoom", null).on("wheel.zoom", null);
 };
