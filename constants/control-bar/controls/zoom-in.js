@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import zoomInIcon from "public/static/icons/zoom-in.svg";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";

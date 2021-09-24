@@ -1,6 +1,9 @@
 import { forwardRef, useState, useEffect } from "react";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
 import useCurrentPosition from "hooks/useCurrentPosition";
+import PropTypes from "prop-types";
+import { EarthClient } from "utils/iframeBridge/earthClient";
+import { nullLiteral } from "@babel/types";
 
 const MapIframe = forwardRef(
   (
@@ -118,5 +121,29 @@ const MapIframe = forwardRef(
 );
 
 MapIframe.displayName = "MapIframe";
+
+MapIframe.propTypes = {
+  currentTemplate: PropTypes.object,
+  resetValues: PropTypes.func.isRequired,
+  setAnimationValue: PropTypes.func.isRequired,
+  setDatasetValue: PropTypes.func.isRequired,
+  setMonitorValue: PropTypes.func.isRequired,
+  animationValue: PropTypes.string,
+  datasetValue: PropTypes.string,
+  monitorValue: PropTypes.string,
+  setShouldFetchLocation: PropTypes.func.isRequired,
+  shouldFetchLocation: PropTypes.bool.isRequired,
+  earthClient: PropTypes.instanceOf(EarthClient),
+  earthServer: PropTypes.object,
+  setLayersLabelArr: PropTypes.func.isRequired
+};
+
+MapIframe.defaultProps = {
+  currentTemplate: null,
+  earthServer: null,
+  animationValue: null,
+  datasetValue: null,
+  monitorValue: null
+};
 
 export default MapIframe;

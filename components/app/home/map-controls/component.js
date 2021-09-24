@@ -15,7 +15,6 @@ const MapControls = ({ controls, className }) => (
 MapControls.propTypes = {
   controls: PropTypes.arrayOf(
     PropTypes.shape({
-      ...MapControlButton.propTypes,
       key: PropTypes.string.isRequired
     })
   ),

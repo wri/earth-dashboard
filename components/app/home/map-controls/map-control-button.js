@@ -18,8 +18,6 @@ const MapControlButton = ({ isActiveSelector, shouldDisableOnActive, getDispatch
     dispatch(dispatchFn());
   };
 
-  console.log(isDisabled);
-
   return (
     <IconButton
       onClick={handleOnClick}
