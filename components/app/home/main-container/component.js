@@ -146,7 +146,7 @@ const MainContainer = ({
   // Switch between the different projection types available
   useEffect(() => {
     if (earthServer.current) {
-      earthServer.current.saveState({ projection_type: projectionType  });
+      earthServer.current.saveState({ projection_type: projectionType });
     }
   }, [projectionType, earthServer]);
 

@@ -26,11 +26,12 @@ const mapControlsSlice = createSlice({
     },
     setGlobe3d(state) {
       state.projectionType = "orthographic";
-    },
+    }
   }
 });
 
-export const { setSettingsOpen, setSettingsClose, setShouldFetchLocation, setGlobe2d, setGlobe3d } = mapControlsSlice.actions;
+export const { setSettingsOpen, setSettingsClose, setShouldFetchLocation, setGlobe2d, setGlobe3d } =
+  mapControlsSlice.actions;
 export const isSettingsOpen = state => state[NAME].isSettingsOpen;
 export const shouldFetchLocation = state => state[NAME].shouldFetchLocation;
 export const isGlobe3d = state => state[NAME].projectionType === "orthographic";
