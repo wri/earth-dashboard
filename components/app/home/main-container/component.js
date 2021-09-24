@@ -11,7 +11,7 @@ import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
-import getHomePageControlBarItems from "constants/control-bar/home-page";
+import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
 
 const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr }) => {
