@@ -3,7 +3,7 @@ import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
 
-const useIframeBridge = () => {
+const useIframeBridge = callback => {
   const { width } = useWindowDimensions();
   const iframeRef = useRef(null);
   const earthServer = useRef(null);
@@ -24,6 +24,7 @@ const useIframeBridge = () => {
         const resp = await getEarthServer(node, width, createEarthClient);
         earthServer.current = resp.server;
         setEarthClient(resp.client);
+        callback();
       };
 
       if (node) {
@@ -36,7 +37,7 @@ const useIframeBridge = () => {
       // Save a reference to the node
       iframeRef.current = node;
     },
-    [width, createEarthClient]
+    [width, createEarthClient, callback]
   );
 
   return { setRef, iframeRef, earthClient, earthServer, layers };

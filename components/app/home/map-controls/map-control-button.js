@@ -1,18 +1,10 @@
 import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classnames from "classnames";
-import Image from "next/image";
 import PropTypes from "prop-types";
+import IconButton from "components/ui/icon-button";
 
-const MapControlButton = ({
-  image,
-  isActiveSelector,
-  shouldDisableOnActive,
-  getDispatch,
-  className,
-  disabled,
-  ...rest
-}) => {
+const MapControlButton = ({ isActiveSelector, shouldDisableOnActive, getDispatch, className, disabled, ...rest }) => {
   const dispatch = useDispatch();
 
   const isActive = useSelector(isActiveSelector);
@@ -26,20 +18,20 @@ const MapControlButton = ({
     dispatch(dispatchFn());
   };
 
+  console.log(isDisabled);
+
   return (
-    <button
+    <IconButton
       onClick={handleOnClick}
-      className={classnames("c-button c-button--icon u-margin-right-xs", className)}
+      className={classnames("u-margin-right-xs", className)}
       disabled={isDisabled}
       {...rest}
-    >
-      <Image src={image} role="presentation" alt="" />
-    </button>
+    />
   );
 };
 
 MapControlButton.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  icon: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   isActiveSelector: PropTypes.func.isRequired,
   shouldDisableOnActive: PropTypes.bool,
   disabled: PropTypes.bool,
