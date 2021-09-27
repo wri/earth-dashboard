@@ -3,7 +3,7 @@ import twoDIcon from "public/static/icons/2dtoggle.svg";
 
 const projectionTypeToggleConfig = {
   key: "projectionTypeToggle",
-  image: twoDIcon,
+  icon: twoDIcon,
   isActiveSelector: isGlobe3d,
   getDispatch: isActive => (isActive ? setGlobe2d : setGlobe3d),
   disabled: false,

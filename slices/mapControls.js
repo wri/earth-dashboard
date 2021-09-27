@@ -5,7 +5,9 @@ export const NAME = "mapControls";
 const initialState = {
   projectionType: "orthographic",
   isSettingsOpen: false,
-  shouldFetchLocation: false
+  shouldFetchLocation: false,
+  shouldZoomIn: false,
+  shouldZoomOut: false
 };
 
 const mapControlsSlice = createSlice({
@@ -26,14 +28,21 @@ const mapControlsSlice = createSlice({
     },
     setGlobe3d(state) {
       state.projectionType = "orthographic";
+    },
+    setShouldZoomIn(state, action) {
+      state.shouldZoomIn = action.payload;
+    },
+    setShouldZoomOut(state, action) {
+      state.shouldZoomOut = action.payload;
     }
   }
 });
 
-export const { setSettingsOpen, setSettingsClose, setShouldFetchLocation, setGlobe2d, setGlobe3d } =
-  mapControlsSlice.actions;
+export const { setSettingsOpen, setSettingsClose, setShouldFetchLocation, setGlobe2d, setGlobe3d, setShouldZoomIn, setShouldZoomOut } = mapControlsSlice.actions;
 export const isSettingsOpen = state => state[NAME].isSettingsOpen;
 export const shouldFetchLocation = state => state[NAME].shouldFetchLocation;
 export const isGlobe3d = state => state[NAME].projectionType === "orthographic";
+export const shouldZoomOut = state => state[NAME].shouldZoomOut;
+export const shouldZoomIn = state => state[NAME].shouldZoomIn;
 
 export default mapControlsSlice.reducer;

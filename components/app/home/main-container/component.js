@@ -11,25 +11,10 @@ import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
-import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
-import HomePageMapControlsItems from "constants/control-bar/home-page";
-import useCurrentPosition from "hooks/useCurrentPosition";
+import getHomePageControlBarItems from "schemas/control-bar/home-page";
+import MapIframe from "components/app/home/map";
 
-const MainContainer = ({
-  isMobile,
-  setTemplates,
-  currentTemplate,
-  resetValues,
-  setAnimationValue,
-  setDatasetValue,
-  setMonitorValue,
-  animationValue,
-  datasetValue,
-  monitorValue,
-  shouldFetchLocation,
-  setShouldFetchLocation,
-  projectionType
-}) => {
+const MainContainer = ({ isMobile, setTemplates, layersLabelArr }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
   const [hasBanner, setHasBanner] = useState(true);
   const [hasTimeOutReached, setHasTimeoutReached] = useState(false);
@@ -37,10 +22,12 @@ const MainContainer = ({
   const [hasIframe, setHasIframe] = useState(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
+  const [homePageMapControlsItems, setHomePageControlBarItems] = useState([]);
   const menuRef = useRef(null);
-  const [layersLabelArr, setLayersLabelArr] = useState([]);
-  const { currentPosition } = useCurrentPosition(shouldFetchLocation);
-  const { setRef, earthClient, earthServer, iframeRef, layers } = useIframeBridge();
+
+  const { setRef, earthClient, earthServer, layers } = useIframeBridge(() => {
+    setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
+  });
 
   const toggleMenu = () => {
     if (!hasMenuOpen) {
@@ -97,74 +84,6 @@ const MainContainer = ({
     getTemplates();
   }, [setTemplates]);
 
-  // if the current template changes, and there is an earth client, set the data layer values
-  useEffect(() => {
-    if (currentTemplate && earthClient) {
-      setLayersLabelArr([]);
-      resetValues();
-      const defaults = currentTemplate.attributes.data_layers.filter(layer => layer.attributes.default_on);
-      defaults.forEach(layer => {
-        let setter = () => {};
-        switch (layer.attributes.category.attributes.title) {
-          case DATA_LAYER_TYPES.animation:
-            setter = setAnimationValue;
-            break;
-          case DATA_LAYER_TYPES.dataset:
-            setter = setDatasetValue;
-            break;
-          case DATA_LAYER_TYPES.monitor:
-            setter = setMonitorValue;
-            break;
-        }
-        setLayersLabelArr(arr => [...arr, layer.attributes.title]);
-        setter(layer.attributes.data_key);
-      });
-    }
-  }, [currentTemplate, earthClient, resetValues, setAnimationValue, setDatasetValue, setMonitorValue]);
-
-  // Send the correct state to the iframe when data layer values change.
-  useEffect(() => {
-    if (earthServer.current) {
-      setLayersLabelArr([]);
-      currentTemplate?.attributes?.data_layers.forEach(layer => {
-        if (
-          layer.attributes.data_key === animationValue ||
-          layer.attributes.data_key === monitorValue ||
-          layer.attributes.data_key === datasetValue
-        ) {
-          setLayersLabelArr(arr => [...arr, layer.attributes.title]);
-        }
-      });
-      const animation = DATA_LAYER_MAP[animationValue] || { animation_enabled: false };
-      const monitor = DATA_LAYER_MAP[monitorValue] || { annotation_type: "none" };
-      const dataset = DATA_LAYER_MAP[datasetValue] || { overlay_type: "none", z_level: "surface" };
-
-      earthServer.current.saveState({ ...animation, ...monitor, ...dataset });
-    }
-  }, [animationValue, datasetValue, monitorValue, currentTemplate?.attributes?.data_layers, earthServer]);
-
-  // Switch between the different projection types available
-  useEffect(() => {
-    if (earthServer.current) {
-      earthServer.current.saveState({ projection_type: projectionType });
-    }
-  }, [projectionType, earthServer]);
-
-  useEffect(() => {
-    if (earthServer && currentPosition) {
-      const long = +currentPosition.longitude;
-      const lat = +currentPosition.latitude;
-
-      earthServer.current.reorient({
-        rotate: [-long, -lat],
-        scale: "default",
-        scaleBy: 5
-      });
-
-      setShouldFetchLocation(false);
-    }
-  }, [currentPosition, earthServer, setShouldFetchLocation]);
-
   return (
     <div
       className={classnames({
@@ -175,18 +94,7 @@ const MainContainer = ({
       })}
       data-testid="iframe-container"
     >
-      {hasIframe && (
-        <iframe
-          id="nullSchoolIframe"
-          width="100%"
-          height="100%"
-          src={process.env.NULL_SCHOOL_IFRAME_BASE}
-          title="Null School"
-          frameBorder="0"
-          allowtransparency="true"
-          ref={setRef}
-        />
-      )}
+      {hasIframe && <MapIframe ref={setRef} earthServer={earthServer} earthClient={earthClient} />}
       {hasMenuOpen && !isFetchingTemplates && (
         <Menu
           isMobile={isMobile}
@@ -228,7 +136,7 @@ const MainContainer = ({
         </button>
         {!isMobile && (
           <>
-            <MapControls controls={HomePageMapControlsItems} className={actionStyles["c-home-actions__map-controls"]} />
+            <MapControls controls={homePageMapControlsItems} className={actionStyles["c-home-actions__map-controls"]} />
             <div>Date picker here</div>
           </>
         )}
@@ -253,8 +161,8 @@ const MainContainer = ({
 
 MainContainer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
-  shouldFetchLocation: PropTypes.bool.isRequired,
-  setShouldFetchLocation: PropTypes.func.isRequired
+  setTemplates: PropTypes.func.isRequired,
+  layersLabelArr: PropTypes.array.isRequired
 };
 
 export default MainContainer;

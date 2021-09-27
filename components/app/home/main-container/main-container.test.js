@@ -40,6 +40,14 @@ test("<MainContainer /> renders correctly as desktop", async () => {
     class="main-container -desktop"
     data-testid="iframe-container"
   >
+    <iframe
+      allowtransparency="true"
+      frameborder="0"
+      height="100%"
+      id="nullSchoolIframe"
+      title="Null School"
+      width="100%"
+    />
     <div
       class="c-home-actions u-padding-horizontal-l"
     >
@@ -66,20 +74,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
       </button>
       <div
         class="c-map-controls c-home-actions__map-controls"
-      >
-        <button
-          aria-label="Get current location"
-          class="c-button c-button--icon u-margin-right-xs"
-        />
-        <button
-          aria-label="Toggle 2D Globe"
-          class="c-button c-button--icon u-margin-right-xs"
-        />
-        <button
-          aria-label="Settings"
-          class="c-button c-button--icon u-margin-right-xs"
-        />
-      </div>
+      />
       <div>
         Date picker here
       </div>
