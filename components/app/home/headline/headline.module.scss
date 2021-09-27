@@ -59,10 +59,18 @@
     }
   }
 
+  &__cta {
+    margin-right: 6px;
+  }
+
   @media screen and (max-width: $global-breakpoint-md) {
     &__media-container {
       padding-bottom: 10px;
       margin-bottom: 12px;
+    }
+
+    &__cta {
+      margin-right: 0px;
     }
   }
 }
