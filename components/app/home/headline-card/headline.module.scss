@@ -42,7 +42,7 @@
 
   &:focus,
   &:hover {
-    border: 4px solid rgba(214, 60, 0, 0.6);
+    border: 4px solid $colour-flame;
   }
 
   @media screen and (max-width: $global-breakpoint-md) {

@@ -91,15 +91,19 @@
 
   &__tab-panel-scroll-area {
     position: absolute;
-    top: 80px;
-    bottom: 28px;
+    top: 66px;
+    bottom: 0px;
     left: 0px;
     right: 12px;
     overflow-y: auto;
-    padding: 0px 12px 0px 28px;
+    padding: 20px 12px 20px 28px;
     @include scrollbars(4px, #b6b8ba, #494d51);
+    &::-webkit-scrollbar-track {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
     &--slim {
-      top: 24px;
+      top: 0px;
     }
   }
 
@@ -231,13 +235,6 @@
 
   @media screen and (max-width: 1700px) {
     max-width: 558px;
-
-    &__tab-panel-scroll-area {
-      top: 86px;
-      &--slim {
-        top: 24px;
-      }
-    }
   }
 
   @media screen and (max-width: $global-breakpoint-md) {
@@ -284,11 +281,16 @@
     }
 
     &__tab-panel-scroll-area {
-      padding: 0px 12px 0px 24px;
-      top: 86px;
-      bottom: 40px;
+      padding: 12px 12px 12px 24px;
+      top: 52px;
+
       &--slim {
-        top: 24px;
+        top: 0px;
+      }
+
+      &::-webkit-scrollbar-track {
+        margin-top: 12px;
+        margin-bottom: 12px;
       }
     }
 
@@ -331,7 +333,11 @@
     }
 
     &__tab-panel-scroll-area {
-      padding: 0px 12px 0px 24px;
+      padding: 12px 12px 0px 24px;
+      top: 88px;
+      &--slim {
+        top: 0px;
+      }
     }
   }
 
