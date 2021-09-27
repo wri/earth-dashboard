@@ -75,8 +75,27 @@ test("<MainContainer /> renders correctly as desktop", async () => {
       <div
         class="c-map-controls c-home-actions__map-controls"
       />
-      <div>
-        Date picker here
+      <div
+        class="c-showing-data-for"
+      >
+        <button
+          class="c-showing-data-for__button"
+          role="button"
+        >
+          <span
+            class="c-showing-data-for__text"
+          >
+            Showing Data for: 
+            <span
+              class="c-showing-data-for__date"
+            >
+              ...
+            </span>
+          </span>
+          <button
+            class="c-button c-button--icon c-showing-data-for__icon"
+          />
+        </button>
       </div>
     </div>
     <div
@@ -139,7 +158,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
           >
             Wind, Particulate Matter, Fires
             <br />
-             21/10/2021
+             
           </span>
         </div>
       </button>
