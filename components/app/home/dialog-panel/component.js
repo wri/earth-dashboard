@@ -1,7 +1,13 @@
 import { Resizable } from "re-resizable";
+import FocusTrap from "focus-trap-react";
 import styles from "./dialog-panel.module.scss";
+import PropTypes from "prop-types";
 
-const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobile }) => {
+const KEY_CODES = {
+  esc: 27
+};
+
+const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobile, initialFocus }) => {
   const handleResize = (e, direction, div) => setDialogHeight({ height: div.offsetHeight });
 
   const resizableProps = {
@@ -29,12 +35,31 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
     maxHeight: "90vh"
   };
 
+  const focusTrapOptions = Object.assign(
+    {
+      onDeactivate: onClose,
+      // Close the Modal when user clicks outside
+      clickOutsideDeactivates: true
+    },
+    initialFocus && { initialFocus }
+  );
+
   return (
     <div className={styles["c-dialog-panel"]}>
-      <div className={styles["c-dialog-panel__overlay"]} onClick={onClose}></div>
-      {isMobile ? <Resizable {...resizableProps}>{children}</Resizable> : children}
+      <FocusTrap focusTrapOptions={focusTrapOptions}>
+        {isMobile ? <Resizable {...resizableProps}>{children}</Resizable> : children}
+      </FocusTrap>
     </div>
   );
+};
+
+DialogPanel.propTypes = {
+  initialFocus: PropTypes.oneOfType([
+    PropTypes.elementType,
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.func
+  ])
 };
 
 export default DialogPanel;

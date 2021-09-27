@@ -1,38 +1,48 @@
-import { createElement } from "react";
+import { createElement, useEffect, useRef } from "react";
 import classnames from "classnames";
 import DialogPanel from "components/app/home/dialog-panel";
 import styles from "./settings-menu.module.scss";
 import settingsFormElements from "constants/globalSettings";
 
 const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
-  if (!isSettingsOpen) return null;
+  const firstInput = useRef(null);
 
-  const handleClose = e => {
+  useEffect(() => {
+    if (firstInput.current && isSettingsOpen) {
+      firstInput.current.$inputRef?.focus();
+    }
+  }, [firstInput, isSettingsOpen]);
+
+  const handleClose = () => {
     setSettingsClose();
   };
 
   return (
-    <DialogPanel onClose={handleClose} isMobile={isMobile}>
-      <div className={styles["c-settings-menu-modal"]}>
-        <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
-          <h1 className={classnames(styles["c-settings-menu-modal__header__title"], "u-margin-bottom-none")}>
-            Settings
-          </h1>
-          <button
-            type="button"
-            className={styles["c-settings-menu-modal__close"]}
-            aria-label="Close"
-            onClick={handleClose}
-          >
-            <img src="/static/icons/close.svg" width="48px" height="48px" role="presentation" />
-          </button>
-        </div>
+    isSettingsOpen && (
+      <DialogPanel onClose={handleClose} isMobile={isMobile}>
+        <div className={styles["c-settings-menu-modal"]}>
+          <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
+            <h1 className={classnames(styles["c-settings-menu-modal__header__title"], "u-margin-bottom-none")}>
+              Settings
+            </h1>
+            <button
+              type="button"
+              className={styles["c-settings-menu-modal__close"]}
+              aria-label="Close"
+              onClick={handleClose}
+            >
+              <img src="/static/icons/close.svg" width="48px" height="48px" role="presentation" />
+            </button>
+          </div>
 
-        <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}>
-          {settingsFormElements.map(formEl => createElement(formEl.component, { key: formEl.id, ...formEl.props }))}
+          <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}>
+            {settingsFormElements.map((formEl, index) =>
+              createElement(formEl.component, { key: formEl.id, ref: !index ? firstInput : null, ...formEl.props })
+            )}
+          </div>
         </div>
-      </div>
-    </DialogPanel>
+      </DialogPanel>
+    )
   );
 };
 

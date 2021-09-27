@@ -1,9 +1,10 @@
+import { forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classnames from "classnames";
 import Image from "next/image";
 import styles from "./radio-image.module.scss";
 
-const RadioImage = ({ className, label, name, options, getSelectOption, handleChange }) => {
+const RadioImage = forwardRef(({ className, label, name, options, getSelectOption, handleChange }, ref) => {
   const dispatch = useDispatch();
   const activeId = useSelector(getSelectOption());
 
@@ -19,7 +20,7 @@ const RadioImage = ({ className, label, name, options, getSelectOption, handleCh
           return (
             <div key={option.id}>
               <input
-                className={classnames(styles["c-radio-image__input"], "u-display-none")}
+                className={classnames(styles["c-radio-image__input"])}
                 type="radio"
                 id={id}
                 name={name}
@@ -45,6 +46,6 @@ const RadioImage = ({ className, label, name, options, getSelectOption, handleCh
       </div>
     </div>
   );
-};
+});
 
 export default RadioImage;
