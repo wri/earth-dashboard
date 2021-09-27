@@ -18,7 +18,7 @@ const DatePickerBtn = ({ isMobile, dateOfDataShown }) => (
           role="button"
         >
           <span className={styles["c-showing-data-for__date"]}>{formatDate(dateOfDataShown) || "..."}</span>
-          <IconButton className={styles["c-showing-data-for__icon"]} icon={chevronRightSVG} />
+          <IconButton el="div" className={styles["c-showing-data-for__icon"]} icon={chevronRightSVG} />
         </button>
       </>
     ) : (
@@ -27,7 +27,7 @@ const DatePickerBtn = ({ isMobile, dateOfDataShown }) => (
           {showingDateForText}
           <span className={styles["c-showing-data-for__date"]}>{formatDate(dateOfDataShown) || "..."}</span>
         </span>
-        <IconButton className={styles["c-showing-data-for__icon"]} icon={chevronDownSVG} />
+        <IconButton el="div" className={styles["c-showing-data-for__icon"]} icon={chevronDownSVG} />
       </button>
     )}
   </div>
