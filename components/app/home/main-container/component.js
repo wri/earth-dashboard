@@ -4,7 +4,6 @@ import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menuButton.module.scss";
 import actionStyles from "components/app/home/actions/actions.module.scss";
 import PropTypes from "prop-types";
-import Banner from "components/app/home/banner";
 import Menu from "components/app/home/menu";
 import SettingsMenu from "components/app/home/settings-menu";
 import Actions from "components/app/home/actions";
@@ -15,9 +14,6 @@ import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
 
 const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr }) => {
-  const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
-  const [hasBanner, setHasBanner] = useState(true);
-  const [hasTimeOutReached, setHasTimeoutReached] = useState(false);
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
@@ -41,24 +37,10 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
     }
   };
 
-  const clickHandler = () => {
-    setHasIntroAndBanner(false);
-    window.removeEventListener("click", clickHandler);
-    setTimeout(() => setHasTimeoutReached(true), 500);
-  };
-
   useEffect(() => {
-    window.addEventListener("click", clickHandler);
-    setTimeout(() => {
-      if (hasIntroAndBanner && hasBanner) {
-        setHasBanner(false);
-      }
-    }, 10000);
     setTimeout(() => {
       setHasIframe(true);
     }, 1000);
-    return () => window.removeEventListener("click", clickHandler);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -141,18 +123,6 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
           </>
         )}
       </Actions>
-      {!hasTimeOutReached && (
-        <div
-          className={classnames({
-            [styles["text-container"]]: true,
-            [styles["-desktop"]]: !isMobile,
-            [styles["-mobile"]]: isMobile,
-            [styles["-fade-out"]]: !hasIntroAndBanner || !hasBanner
-          })}
-        >
-          <Banner isMobile={isMobile} />
-        </div>
-      )}
 
       {isSettingsOpen && !isFetchingTemplates && <SettingsMenu />}
     </div>
