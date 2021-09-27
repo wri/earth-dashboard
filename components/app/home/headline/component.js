@@ -18,7 +18,7 @@ const Headline = ({ headline, className, currentTemplate, ...rest }) => {
   return (
     <article className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
       <h3 className={classnames(styles["c-headline__title"], "u-margin-none")}>{headline.attributes.title}</h3>
-      <p className={classnames(styles["c-headline__body"], "u-margin-top-xs u-text-pre-line")}>
+      <p className={classnames(styles["c-headline__body"], "u-margin-top-xs u-margin-bottom-l u-text-pre-line")}>
         {headline.attributes.content.body}
       </p>
       <div className={styles["c-headline__media-container"]}>
@@ -72,7 +72,7 @@ const Headline = ({ headline, className, currentTemplate, ...rest }) => {
           href={headline.attributes.content.article_url}
           target="_blank"
           rel="noreferrer"
-          className="c-button c-button--new-style c-button--flame"
+          className={classnames("c-button c-button--new-style c-button--flame", styles["c-headline__cta"])}
         >
           View full article
         </a>
