@@ -6,6 +6,7 @@ import { setTemplates } from "slices/templates";
 export default connect(
   state => ({
     isSettingsOpen: state[mapControlsSliceName].isSettingsOpen,
+    dateOfDataShown: new Date(state.templates.dateOfDataShown),
     layersLabelArr: state.templates.layersLabelArr
   }),
   {
