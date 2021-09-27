@@ -3,7 +3,7 @@ import cogIcon from "public/static/icons/cog.svg";
 
 const settingsControlConfig = {
   key: "settings",
-  image: cogIcon,
+  icon: cogIcon,
   isActiveSelector: isSettingsOpen,
   getDispatch: isActive => (isActive ? setSettingsClose : setSettingsOpen),
   disabled: false,

@@ -3,7 +3,7 @@ import locationIcon from "public/static/icons/location.svg";
 
 const location = {
   key: "location",
-  image: locationIcon,
+  icon: locationIcon,
   isActiveSelector: shouldFetchLocation,
   getDispatch: () => () => setShouldFetchLocation(true),
   shouldDisableOnActive: true,
