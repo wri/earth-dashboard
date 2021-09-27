@@ -16,7 +16,7 @@ import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
 import { formatDate } from "utils/dates";
 
-const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr, dateOfDataShown }) => {
+const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr, dateOfDataShown, setIsMobile }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
   const [hasBanner, setHasBanner] = useState(true);
   const [hasTimeOutReached, setHasTimeoutReached] = useState(false);
@@ -48,6 +48,9 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr,
     window.removeEventListener("click", clickHandler);
     setTimeout(() => setHasTimeoutReached(true), 500);
   };
+
+  // Store the isMobile flag in the redux store
+  useEffect(() => setIsMobile(isMobile), [isMobile, setIsMobile]);
 
   useEffect(() => {
     window.addEventListener("click", clickHandler);
@@ -163,6 +166,7 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr,
 
 MainContainer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
+  setIsMobile: PropTypes.func.isRequired,
   isSettingsOpen: PropTypes.bool.isRequired,
   setTemplates: PropTypes.func.isRequired,
   layersLabelArr: PropTypes.array.isRequired,

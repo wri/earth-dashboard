@@ -119,17 +119,19 @@ const MapIframe = forwardRef(
 
       if (dates.length) {
         // Set the current date as the biggest date
-        setDateOfDataShown(dates.reduce((accumulator, currentValue) => {
-          if (!accumulator) return currentValue;
+        setDateOfDataShown(
+          dates.reduce((accumulator, currentValue) => {
+            if (!accumulator) return currentValue;
 
-          if (new Date(currentValue).getTime() > new Date(accumulator).getTime()) {
-            return currentValue;
-          } else {
-            return accumulator;
-          }
-        }, null))
+            if (new Date(currentValue).getTime() > new Date(accumulator).getTime()) {
+              return currentValue;
+            } else {
+              return accumulator;
+            }
+          }, null)
+        );
       }
-    }, [ layers ]);
+    }, [layers, setDateOfDataShown]);
 
     return (
       <iframe
