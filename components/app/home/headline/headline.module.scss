@@ -23,6 +23,9 @@
     border-radius: 12px;
     overflow: hidden;
     position: relative;
+    .leaflet-container {
+      border-radius: 12px;
+    }
   }
 
   &__media-container {
