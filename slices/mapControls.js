@@ -38,7 +38,15 @@ const mapControlsSlice = createSlice({
   }
 });
 
-export const { setSettingsOpen, setSettingsClose, setShouldFetchLocation, setGlobe2d, setGlobe3d, setShouldZoomIn, setShouldZoomOut } = mapControlsSlice.actions;
+export const {
+  setSettingsOpen,
+  setSettingsClose,
+  setShouldFetchLocation,
+  setGlobe2d,
+  setGlobe3d,
+  setShouldZoomIn,
+  setShouldZoomOut
+} = mapControlsSlice.actions;
 export const isSettingsOpen = state => state[NAME].isSettingsOpen;
 export const shouldFetchLocation = state => state[NAME].shouldFetchLocation;
 export const isGlobe3d = state => state[NAME].projectionType === "orthographic";
