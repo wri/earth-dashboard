@@ -1,4 +1,5 @@
 @import "css/settings";
+@import "css/settings/breakpoints";
 
 .header {
   position: fixed;
@@ -23,8 +24,13 @@
 
     .logo-container {
       position: fixed;
-      left: 16px;
-      top: 16px;
+      left: 24px;
+      top: 19px;
+      @media screen and (max-width: $global-breakpoint-md) {
+        top: 12px;
+        left: 17px;
+        width: 112px;
+      }
     }
 
     .topic-links {
@@ -50,7 +56,7 @@
 
     .hamburger-button {
       position: fixed;
-      top: 16px;
+      top: 24px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -61,22 +67,6 @@
       cursor: pointer;
       z-index: 6;
       transition: transform 0.4s;
-
-      &.-center {
-        right: calc(50% - 24px);
-      }
-
-      &.-right {
-        right: 24px;
-      }
-
-      &.-mobile {
-        right: 16px;
-      }
-
-      &:hover {
-        transform: scale(1.2);
-      }
 
       .hamburger-button-image {
         display: flex;
@@ -89,6 +79,29 @@
         &:hover {
           transform: scale(0.8);
         }
+      }
+
+      &.-center {
+        right: calc(50% - 24px);
+      }
+
+      &.-right {
+        right: 24px;
+      }
+
+      &.-mobile {
+        width: 32px;
+        height: 32px;
+        top: 14px;
+        right: 15px;
+
+        .hamburger-button-image {
+          width: 80%;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.2);
       }
     }
 

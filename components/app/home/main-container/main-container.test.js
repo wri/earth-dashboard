@@ -79,26 +79,6 @@ test("<MainContainer /> renders correctly as desktop", async () => {
         Date picker here
       </div>
     </div>
-    <div
-      class="text-container -desktop"
-    >
-      <div
-        class="banner -desktop"
-      >
-        <h1>
-          This is not a drill
-        </h1>
-        <h1>
-          It's a 
-          <span
-            class="gradient"
-          >
-            Planetary emergency
-          </span>
-          .
-        </h1>
-      </div>
-    </div>
   </div>
 </div>
 `);
@@ -143,26 +123,6 @@ test("<MainContainer /> renders correctly as mobile", async () => {
           </span>
         </div>
       </button>
-    </div>
-    <div
-      class="text-container -mobile"
-    >
-      <div
-        class="banner -mobile"
-      >
-        <h1>
-          This is not a drill
-        </h1>
-        <h1>
-          It's a 
-          <span
-            class="gradient"
-          >
-            Planetary emergency
-          </span>
-          .
-        </h1>
-      </div>
     </div>
   </div>
 </div>
