@@ -181,14 +181,14 @@ function Header(props) {
             )}
             <button
               className={classnames({
-                [styles["hamburguer-button"]]: true,
+                [styles["hamburger-button"]]: true,
                 [styles["-center"]]: buttonPosition === "center",
                 [styles["-right"]]: buttonPosition === "right"
               })}
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close Menu" : "Open menu"}
             >
-              <div className={styles["hamburguer-button-image"]}>
+              <div className={styles["hamburger-button-image"]}>
                 <img src={`/static/images/${isOpen ? "close" : "hamburger"}.svg`} role="presentation" alt="" />
               </div>
             </button>
@@ -235,13 +235,13 @@ function Header(props) {
             {showLogo && !isOpen && getLogoContainer()}
             <button
               className={classnames({
-                [styles["hamburguer-button"]]: true,
+                [styles["hamburger-button"]]: true,
                 [styles["-mobile"]]: true
               })}
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close Menu" : "Open menu"}
             >
-              <div className={styles["hamburguer-button-image"]}>
+              <div className={styles["hamburger-button-image"]}>
                 <img src={`/static/images/${isOpen ? "close" : "hamburger"}.svg`} role="presentation" alt="" />
               </div>
             </button>
