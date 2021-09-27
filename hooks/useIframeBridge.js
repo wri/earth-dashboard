@@ -13,7 +13,6 @@ const useIframeBridge = callback => {
   const createEarthClient = useCallback(() => {
     return new (class EarthClientImpl extends EarthClient {
       layersChanged(layers) {
-        console.log(layers);
         setLayers(layers);
       }
     })();
