@@ -17,7 +17,8 @@ const StyledSwitch = forwardRef(({ className, label, isActiveSelector, handleCha
     offColor: "#38444F",
     onColor: "#D63C00",
     uncheckedIcon: false,
-    checkedIcon: false
+    checkedIcon: false,
+    "data-testid": "test-switch"
   };
 
   const desktopSwitchProps = {
