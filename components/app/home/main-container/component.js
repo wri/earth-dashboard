@@ -13,7 +13,7 @@ import { fetchTemplates } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
 
-const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr }) => {
+const MainContainer = ({ isMobile, setTemplates, layersLabelArr }) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
@@ -124,14 +124,13 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
         )}
       </Actions>
 
-      {isSettingsOpen && !isFetchingTemplates && <SettingsMenu />}
+      {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
     </div>
   );
 };
 
 MainContainer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
-  isSettingsOpen: PropTypes.bool.isRequired,
   setTemplates: PropTypes.func.isRequired,
   layersLabelArr: PropTypes.array.isRequired
 };
