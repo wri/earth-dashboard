@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import { max } from "lodash";
 import PropTypes from "prop-types";
 import styles from "./scale.module.scss";
 
@@ -33,7 +32,8 @@ Scale.propTypes = {
   alt: PropTypes.string,
   min: PropTypes.number,
   max: PropTypes.number,
-  scaleUnit: PropTypes.string
+  scaleUnit: PropTypes.string,
+  readOnly: PropTypes.bool
 };
 
 Scale.defaultProps = {
@@ -41,7 +41,8 @@ Scale.defaultProps = {
   title: "Scale",
   min: 0,
   max: 100,
-  scaleUnit: "%"
+  scaleUnit: "%",
+  readOnly: true
 };
 
 export default Scale;
