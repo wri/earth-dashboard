@@ -29,7 +29,6 @@ function LayoutApp(props) {
     openHeaderMenu,
     headerTabSelected,
     headerButtonPosition,
-    headerShowTopicLinks,
     themeColor
   } = props;
   const [showGDPRBanner, setShowGDPRBanner] = useState(false);
@@ -99,7 +98,6 @@ function LayoutApp(props) {
           selectedTab={headerTabSelected}
           openMenu={openHeaderMenu}
           buttonPosition={headerButtonPosition}
-          showTopicLinks={headerShowTopicLinks}
         />
       )}
 
@@ -132,8 +130,7 @@ LayoutApp.propTypes = {
   explicitHostname: PropTypes.string,
   themeColor: PropTypes.string,
   headerTabSelected: PropTypes.string,
-  headerButtonPosition: PropTypes.string,
-  headerShowTopicLinks: PropTypes.bool
+  headerButtonPosition: PropTypes.string
 };
 
 LayoutApp.defaultProps = {
@@ -145,8 +142,7 @@ LayoutApp.defaultProps = {
   showHeaderLogo: true,
   showHeader: true,
   themeColor: "#1a2128",
-  headerButtonPosition: "center",
-  headerShowTopicLinks: false
+  headerButtonPosition: "center"
 };
 
 export default LayoutApp;

@@ -35,7 +35,6 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
       headerButtonPosition="right"
-      headerShowTopicLinks={true}
       themeColor="#1a2128"
     >
       <MediaContextProvider>

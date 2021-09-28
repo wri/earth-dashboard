@@ -1,10 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Particles from "react-particles-js";
 import Link from "next/link";
 import classnames from "classnames";
-import ReactTooltip from "react-tooltip";
 import { motion } from "framer-motion";
+import LogoLink from "components/ui/logo-link/index";
+import HeaderTitle from "layout/header/header-title";
 
 // components
 import About from "./about";
@@ -21,7 +23,7 @@ import { HEADER_TOPICS_DATA, SHARE_HEADER_TAB, SITE_NAVIGATION_HEADER_TAB, ABOUT
 import styles from "./header.module.scss";
 
 function Header(props) {
-  const { showLogo, openMenu, selectedTab, buttonPosition, showTopicLinks } = props;
+  const { showLogo, openMenu, selectedTab, buttonPosition } = props;
   const [isOpen, setIsOpen] = useState(openMenu);
   const [tab, setTab] = useState(selectedTab);
   const isServer = typeof window === "undefined";
@@ -33,9 +35,8 @@ function Header(props) {
     if (selectedTab != tab) {
       setTab(selectedTab);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openMenu, selectedTab]);
-
-  const getParticles = () => <Particles className={styles.particles} params={PARTICLES_DEFINITION} />;
 
   const getTopicContainer = () => (
     <ul className={styles["topics-container"]}>
@@ -97,43 +98,9 @@ function Header(props) {
     }
   };
 
-  const getLogo = () => (
-    <Link href="/">
-      <a>
-        <img src="/static/images/logo-nullschool.svg" />
-      </a>
-    </Link>
-  );
-
-  const getLogoContainer = () => <div className={styles["logo-container"]}>{getLogo()}</div>;
-
-  const getTopicLinks = () => (
-    <div className={styles["topic-links"]}>
-      <Link href="/climate">
-        <a className={styles["topic-link"]}>Climate</a>
-      </Link>
-      <Link href="/forests">
-        <a className={styles["topic-link"]}>Forests</a>
-      </Link>
-      <Link href="/freshwater">
-        <a className={styles["topic-link"]}>Freshwater</a>
-      </Link>
-      <Link href="/ocean">
-        <a className={styles["topic-link"]}>Ocean</a>
-      </Link>
-      <a
-        data-tip
-        data-for="comingSoon"
-        className={classnames({
-          [styles["topic-link"]]: true,
-          [styles["-disabled"]]: true
-        })}
-      >
-        Biodiversity
-      </a>
-      <ReactTooltip className={styles["biodiversity-tooltip"]} id="comingSoon" type="light" effect="float">
-        <span>Coming soon...</span>
-      </ReactTooltip>
+  const getLogoContainer = () => (
+    <div className={styles["logo-container"]}>
+      <LogoLink />
     </div>
   );
 
@@ -183,23 +150,24 @@ function Header(props) {
             })}
           >
             {showLogo && !isOpen && getLogoContainer()}
-            {!isOpen && showTopicLinks && getTopicLinks()}
-            <div
+            {!isOpen && <HeaderTitle />}
+            <button
               className={classnames({
-                [styles["hamburguer-button"]]: true,
+                [styles["hamburger-button"]]: true,
                 [styles["-center"]]: buttonPosition === "center",
                 [styles["-right"]]: buttonPosition === "right"
               })}
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close Menu" : "Open menu"}
             >
-              <div className={styles["hamburguer-button-image"]}>
-                <img src={`/static/images/${isOpen ? "close" : "hamburger"}.svg`} />
+              <div className={styles["hamburger-button-image"]}>
+                <img src={`/static/images/${isOpen ? "close" : "hamburger"}.svg`} role="presentation" alt="" />
               </div>
-            </div>
+            </button>
             <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
               {isOpen && (
                 <div className={styles["menu-container"]}>
-                  {getParticles()}
+                  <Particles className={styles.particles} params={PARTICLES_DEFINITION} />
                   <div
                     className={classnames({
                       [styles["data-containers"]]: true,
@@ -212,7 +180,7 @@ function Header(props) {
                         [styles["-desktop"]]: true
                       })}
                     >
-                      {getLogo()}
+                      <LogoLink />
                       {getNavigationTags(false)}
                     </div>
                     <div
@@ -237,21 +205,22 @@ function Header(props) {
             })}
           >
             {showLogo && !isOpen && getLogoContainer()}
-            <div
+            <button
               className={classnames({
-                [styles["hamburguer-button"]]: true,
+                [styles["hamburger-button"]]: true,
                 [styles["-mobile"]]: true
               })}
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close Menu" : "Open menu"}
             >
-              <div className={styles["hamburguer-button-image"]}>
-                <img src={`/static/images/${isOpen ? "close" : "hamburger"}.svg`} />
+              <div className={styles["hamburger-button-image"]}>
+                <img src={`/static/images/${isOpen ? "close" : "hamburger"}.svg`} role="presentation" alt="" />
               </div>
-            </div>
+            </button>
             <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
               {isOpen && (
                 <div className={styles["menu-container"]}>
-                  {getParticles()}
+                  <Particles className={styles.particles} params={PARTICLES_DEFINITION} />
                   <div
                     className={classnames({
                       [styles["data-containers"]]: true,
@@ -273,13 +242,16 @@ function Header(props) {
                       })}
                     >
                       {getRightContainer(true)}
-                      <div className={styles["logo-footer"]}>{getLogo()}</div>
+                      <div className={styles["logo-footer"]}>
+                        <LogoLink />
+                      </div>
                     </div>
                   </div>
                 </div>
               )}
             </motion.div>
           </div>
+          <HeaderTitle />
         </Mobile>
       </MediaContextProvider>
     </header>
@@ -290,15 +262,13 @@ Header.propTypes = {
   showLogo: PropTypes.bool.isRequired,
   openMenu: PropTypes.bool,
   selectedTab: PropTypes.string,
-  buttonPosition: PropTypes.string,
-  showTopicLinks: PropTypes.bool
+  buttonPosition: PropTypes.string
 };
 Header.defaultProps = {
   showLogo: true,
   selectedTab: SITE_NAVIGATION_HEADER_TAB,
   openMenu: false,
-  buttonPosition: "center",
-  showTopicLinks: false
+  buttonPosition: "center"
 };
 
 export default Header;

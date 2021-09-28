@@ -1,4 +1,5 @@
-@import 'css/settings';
+@import "css/settings";
+@import "css/settings/breakpoints";
 
 .header {
   position: fixed;
@@ -20,17 +21,22 @@
       justify-content: flex-end;
       padding: 16px;
     }
-  
+
     .logo-container {
       position: fixed;
-      left: 16px;
-      top: 16px;
+      left: 24px;
+      top: 19px;
+      @media screen and (max-width: $global-breakpoint-md) {
+        top: 12px;
+        left: 17px;
+        width: 112px;
+      }
     }
 
     .topic-links {
       color: $white;
       margin-right: 100px;
-      font-family: 'Barlow Condensed';
+      font-family: "Barlow Condensed";
       font-size: 18px;
 
       .topic-link {
@@ -47,10 +53,10 @@
         background-color: $black;
       }
     }
-  
-    .hamburguer-button {
+
+    .hamburger-button {
       position: fixed;
-      top: 16px;
+      top: 24px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -62,6 +68,19 @@
       z-index: 6;
       transition: transform 0.4s;
 
+      .hamburger-button-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.4s;
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+          transform: scale(0.8);
+        }
+      }
+
       &.-center {
         right: calc(50% - 24px);
       }
@@ -71,27 +90,21 @@
       }
 
       &.-mobile {
-        right: 16px;
+        width: 32px;
+        height: 32px;
+        top: 14px;
+        right: 15px;
+
+        .hamburger-button-image {
+          width: 80%;
+        }
       }
-  
+
       &:hover {
         transform: scale(1.2);
       }
-  
-      .hamburguer-button-image {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: transform 0.4s;
-        width: 100%;
-        height: 100%;
-  
-        &:hover {
-          transform: scale(0.8);
-        }
-      }
     }
-  
+
     .menu-container {
       position: fixed;
       top: 0px;
@@ -101,30 +114,30 @@
       overflow: auto;
       background-color: $black;
       color: $grey-light;
-  
+
       .particles {
-          position: fixed;
-          top: 0px;
-          left: 0px;
-          height: 100%;
-          width: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
       }
-  
+
       .data-containers {
         padding: 180px 0px 100px 0px;
         display: flex;
-  
+
         &.-mobile {
           flex-direction: column;
           padding: 80px 0px 60px 0px;
         }
-  
+
         .left-container {
           position: fixed;
           width: 40%;
           padding-left: 110px;
           z-index: 4;
-  
+
           &.-mobile {
             top: 0px;
             width: 100%;
@@ -132,13 +145,13 @@
             z-index: 5;
             background-color: $black;
           }
-  
+
           .navigation-tabs {
             display: flex;
             margin-top: 14 * $space;
             list-style-type: none;
             padding: 0px;
-            font-family: 'Barlow Condensed';
+            font-family: "Barlow Condensed";
             font-size: 20px;
 
             &.-desktop {
@@ -167,18 +180,18 @@
             }
           }
         }
-    
+
         .right-container {
           width: 100%;
           margin: 0px 110px 0px 40%;
           z-index: 4;
-  
+
           &.-mobile {
             width: 100%;
             padding: 0px;
             margin: 130px 0px 0px 0px;
             padding: 0px 16px 0px 16px;
-  
+
             > ul {
               padding: 0px;
             }
@@ -195,29 +208,28 @@
             .topic-container {
               margin-bottom: 8 * $space;
               list-style-type: none;
-    
+
               .topic-title {
-                font-family: 'Barlow Condensed';
+                font-family: "Barlow Condensed";
                 font-size: 20px;
                 margin-bottom: 4 * $space;
-    
+
                 a {
                   color: $white;
                   text-decoration: none;
                 }
               }
-    
+
               .topic-link-list {
-    
                 .topic-link {
                   margin-bottom: 2 * $space;
                   font-size: 16px;
                   list-style-type: none;
-    
+
                   a {
                     text-decoration: none;
                     color: $grey-light;
-    
+
                     &.-highlighted-link {
                       color: $white;
                       font-weight: 500;
@@ -239,7 +251,7 @@
               margin-bottom: 200px;
             }
 
-            input { 
+            input {
               color: $grey-lightest;
             }
 
@@ -252,15 +264,13 @@
 
         @keyframes fade-in {
           from {
-              opacity: 0;
+            opacity: 0;
           }
           to {
-              opacity: 1;
+            opacity: 1;
           }
         }
       }
     }
   }
 }
-
-

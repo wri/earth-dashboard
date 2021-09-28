@@ -18,6 +18,7 @@ const MapIframe = forwardRef(
       monitorValue,
       setShouldFetchLocation,
       shouldFetchLocation,
+      projectionType,
       earthClient,
       earthServer,
       layers,
@@ -91,6 +92,13 @@ const MapIframe = forwardRef(
       setLayersLabelArr
     ]);
 
+    // Switch between the different projection types available
+    useEffect(() => {
+      if (earthServer.current) {
+        earthServer.current.saveState({ projection_type: projectionType });
+      }
+    }, [projectionType, earthServer]);
+
     // Set the current position of the user on the map
     useEffect(() => {
       if (earthServer && currentPosition) {
@@ -161,6 +169,7 @@ MapIframe.propTypes = {
   monitorValue: PropTypes.string,
   setShouldFetchLocation: PropTypes.func.isRequired,
   shouldFetchLocation: PropTypes.bool.isRequired,
+  projectionType: PropTypes.string.isRequired,
   earthClient: PropTypes.instanceOf(EarthClient),
   earthServer: PropTypes.object,
   layers: PropTypes.array,
