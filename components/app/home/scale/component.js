@@ -2,20 +2,20 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import styles from "./scale.module.scss";
 
-const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, ...rest }) => {
+const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizontal, ...rest }) => {
   const minLabel = `${min}${scaleUnit}`.length > 9 ? `${min} ${scaleUnit}` : `${min}${scaleUnit}`;
   const maxLabel = `${max}${scaleUnit}`.length > 9 ? `${max} ${scaleUnit}` : `${max}${scaleUnit}`;
 
   const style = { "--min": `"${minLabel}"`, "--max": `"${maxLabel}"`, "--gradient": scaleGradient };
 
   return (
-    <div className={classnames(className, styles["c-scale"])}>
+    <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>
       <label htmlFor="scale">Scale</label>
       <input
         id="scale"
         type="range"
-        orient="vertical"
-        aria-orientation="vertical"
+        orient={isHorizontal ? "horizontal" : "vertical"}
+        aria-orientation={isHorizontal ? "horizontal" : "vertical"}
         value="0"
         min={min}
         max={max}
@@ -33,7 +33,8 @@ Scale.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   scaleUnit: PropTypes.string,
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
+  isHorizontal: PropTypes.bool
 };
 
 Scale.defaultProps = {
@@ -42,7 +43,8 @@ Scale.defaultProps = {
   min: 0,
   max: 100,
   scaleUnit: "%",
-  readOnly: true
+  readOnly: true,
+  isHorizontal: false
 };
 
 export default Scale;

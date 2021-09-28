@@ -96,7 +96,7 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
       data-testid="iframe-container"
     >
       {hasIframe && <MapIframe ref={setRef} earthServer={earthServer} earthClient={earthClient} />}
-      {overlayLayer && (
+      {overlayLayer && !isMobile && (
         <Scale
           min={scaleData.min}
           max={scaleData.max}
@@ -104,7 +104,7 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
           className={styles["scale"]}
           value="50%"
           readOnly
-          scaleGradient={overlayLayer.product.scale.css}
+          scaleGradient={overlayLayer.product.scale.getCss(180)}
         />
       )}
       {hasMenuOpen && !isFetchingTemplates && (
@@ -119,6 +119,18 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
         />
       )}
       <Actions isMobile={isMobile}>
+        {overlayLayer && isMobile && (
+          <Scale
+            min={scaleData.min}
+            max={scaleData.max}
+            scaleUnit={scaleData.unitSymbol}
+            className={classnames(styles["scale"], styles["scale--mobile"])}
+            value="50%"
+            readOnly
+            scaleGradient={overlayLayer.product.scale.getCss(90)}
+            isHorizontal
+          />
+        )}
         <button
           className={classnames(
             actionStyles["c-home-actions__item"],

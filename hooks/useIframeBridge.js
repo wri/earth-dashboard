@@ -32,8 +32,8 @@ const useIframeBridge = callback => {
             const color = String(colorAt(colors, i / (height - 1)));
             cssColors.push(`${color} ${(i / height) * 100}%`);
           }
-          const css = `linear-gradient(180deg, ${cssColors.join(", ")})`;
-          scale.css = css;
+          const getCss = deg => `linear-gradient(${deg}deg, ${cssColors.join(", ")})`;
+          scale.getCss = getCss;
         }
 
         setLayers(layers);

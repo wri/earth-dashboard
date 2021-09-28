@@ -67,3 +67,42 @@ test("<Scale /> renders correctly with values", async () => {
 </div>
 `);
 });
+
+test("<Scale /> renders correctly horizontal", async () => {
+  const { container } = render(
+    <Scale
+      min={-20}
+      max={1000}
+      scaleUnit="hpa"
+      className="c-some-class"
+      value="50%"
+      scaleGradient={`linear-gradient(0deg, rgba(23,181,254,1) 0%, rgba(17,107,242,1) 100%)`}
+      isHorizontal
+    />
+  );
+
+  expect(container).toMatchInlineSnapshot(`
+<div>
+  <div
+    class="c-some-class c-scale c-scale--horizontal"
+  >
+    <label
+      for="scale"
+    >
+      Scale
+    </label>
+    <input
+      aria-orientation="horizontal"
+      id="scale"
+      max="1000"
+      min="-20"
+      orient="horizontal"
+      readonly=""
+      style="--min: \\"-20hpa\\"; --max: \\"1000hpa\\"; --gradient: linear-gradient(0deg, rgba(23,181,254,1) 0%, rgba(17,107,242,1) 100%);"
+      type="range"
+      value="50%"
+    />
+  </div>
+</div>
+`);
+});
