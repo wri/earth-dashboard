@@ -1,8 +1,11 @@
 import { forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classnames from "classnames";
+import uuid from "react-uuid";
 import Image from "next/image";
 import styles from "./radio-image.module.scss";
+
+const ID = "radio-image-" + uuid();
 
 const RadioImage = forwardRef(({ className, label, name, options, getSelectOption, handleChange }, ref) => {
   const dispatch = useDispatch();
@@ -10,9 +13,9 @@ const RadioImage = forwardRef(({ className, label, name, options, getSelectOptio
 
   return (
     <div className={classnames(styles["c-radio-image"], className)}>
-      {label && <span className={styles["c-radio-image__label"]}>{label}</span>}
+      {label && <span id={ID} className={styles["c-radio-image__label"]}>{label}</span>}
 
-      <div className={styles["c-radio-image__options"]}>
+      <div className={styles["c-radio-image__options"]} role="group" aria-labelledby={ID}>
         {options.map(option => {
           const id = `radio-image-${name}-${option.id}`;
           const checked = option.id === activeId;

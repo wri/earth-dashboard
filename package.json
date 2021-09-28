@@ -78,6 +78,7 @@
     "react-tabs": "^3.2.2",
     "react-tether": "0.6.1",
     "react-tooltip": "^4.2.10",
+    "react-uuid": "^1.0.2",
     "reselect": "3.0.1",
     "rss-parser": "^3.9.0",
     "sass": "1.26.11",
