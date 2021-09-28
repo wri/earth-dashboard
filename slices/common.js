@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  hostname: "https://earthhq.org/"
+  hostname: "https://earthhq.org/",
+  isMobile: true
 };
 
 const commonSlice = createSlice({
@@ -10,9 +11,14 @@ const commonSlice = createSlice({
   reducers: {
     setHostname(state, action) {
       state.hostname = action.payload;
+    },
+    setIsMobile(state, { payload }) {
+      if (typeof payload !== "boolean") return;
+
+      state.isMobile = payload;
     }
   }
 });
 
-export const { setHostname } = commonSlice.actions;
+export const { setHostname, setIsMobile } = commonSlice.actions;
 export default commonSlice.reducer;

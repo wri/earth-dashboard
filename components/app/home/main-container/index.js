@@ -1,13 +1,15 @@
 import MainContainerComponent from "./component";
 import { connect } from "react-redux";
-import { NAME as mapControlsSliceName } from "slices/mapControls";
+import { setIsMobile } from "slices/common";
 import { setTemplates } from "slices/templates";
 
 export default connect(
   state => ({
+    dateOfDataShown: new Date(state.templates.dateOfDataShown),
     layersLabelArr: state.templates.layersLabelArr
   }),
   {
-    setTemplates
+    setTemplates,
+    setIsMobile
   }
 )(MainContainerComponent);

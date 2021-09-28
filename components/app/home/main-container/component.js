@@ -8,12 +8,14 @@ import Menu from "components/app/home/menu";
 import SettingsMenu from "components/app/home/settings-menu";
 import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
+import DatePickerBtn from "components/app/home/date-picker/button";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
+import { formatDate } from "utils/dates";
 
-const MainContainer = ({ isMobile, setTemplates, layersLabelArr }) => {
+const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, dateOfDataShown }) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
@@ -36,6 +38,9 @@ const MainContainer = ({ isMobile, setTemplates, layersLabelArr }) => {
       }, 400);
     }
   };
+
+  // Store the isMobile flag in the redux store
+  useEffect(() => setIsMobile(isMobile), [isMobile, setIsMobile]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -76,7 +81,7 @@ const MainContainer = ({ isMobile, setTemplates, layersLabelArr }) => {
       })}
       data-testid="iframe-container"
     >
-      {hasIframe && <MapIframe ref={setRef} earthServer={earthServer} earthClient={earthClient} />}
+      {hasIframe && <MapIframe ref={setRef} earthServer={earthServer} earthClient={earthClient} layers={layers} />}
       {hasMenuOpen && !isFetchingTemplates && (
         <Menu
           isMobile={isMobile}
@@ -109,7 +114,7 @@ const MainContainer = ({ isMobile, setTemplates, layersLabelArr }) => {
                 {layersLabelArr.join(", ")}
                 {isMobile && (
                   <>
-                    <br /> 21/10/2021
+                    <br /> {formatDate(dateOfDataShown)}
                   </>
                 )}
               </span>
@@ -119,7 +124,7 @@ const MainContainer = ({ isMobile, setTemplates, layersLabelArr }) => {
         {!isMobile && (
           <>
             <MapControls controls={homePageMapControlsItems} className={actionStyles["c-home-actions__map-controls"]} />
-            <div>Date picker here</div>
+            <DatePickerBtn />
           </>
         )}
       </Actions>
@@ -131,8 +136,10 @@ const MainContainer = ({ isMobile, setTemplates, layersLabelArr }) => {
 
 MainContainer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
+  setIsMobile: PropTypes.func.isRequired,
   setTemplates: PropTypes.func.isRequired,
-  layersLabelArr: PropTypes.array.isRequired
+  layersLabelArr: PropTypes.array.isRequired,
+  dateOfDataShown: PropTypes.instanceOf(Date).isRequired
 };
 
 export default MainContainer;

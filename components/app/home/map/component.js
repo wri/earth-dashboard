@@ -21,7 +21,9 @@ const MapIframe = forwardRef(
       projectionType,
       earthClient,
       earthServer,
-      setLayersLabelArr
+      layers,
+      setLayersLabelArr,
+      setDateOfDataShown
     },
     ref
   ) => {
@@ -113,6 +115,32 @@ const MapIframe = forwardRef(
       }
     }, [currentPosition, earthServer, setShouldFetchLocation]);
 
+    // Find the Date of the Data being displayed
+    useEffect(() => {
+      const dates = [];
+
+      layers?.forEach(layer => {
+        if (!layer || !layer.product || !layer.product.validTime) return;
+
+        dates.push(layer.product.validTime);
+      });
+
+      if (dates.length) {
+        // Set the current date as the biggest date
+        setDateOfDataShown(
+          dates.reduce((accumulator, currentValue) => {
+            if (!accumulator) return currentValue;
+
+            if (new Date(currentValue).getTime() > new Date(accumulator).getTime()) {
+              return currentValue;
+            } else {
+              return accumulator;
+            }
+          }, null)
+        );
+      }
+    }, [layers, setDateOfDataShown]);
+
     return (
       <iframe
         id="nullSchoolIframe"
@@ -144,7 +172,9 @@ MapIframe.propTypes = {
   projectionType: PropTypes.string.isRequired,
   earthClient: PropTypes.instanceOf(EarthClient),
   earthServer: PropTypes.object,
-  setLayersLabelArr: PropTypes.func.isRequired
+  layers: PropTypes.array,
+  setLayersLabelArr: PropTypes.func.isRequired,
+  setDateOfDataShown: PropTypes.func.isRequired
 };
 
 MapIframe.defaultProps = {

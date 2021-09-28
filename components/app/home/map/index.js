@@ -1,7 +1,14 @@
 import { connect } from "react-redux";
 import MapComponent from "./component";
 import { NAME as mapControlsSliceName, setShouldFetchLocation } from "slices/mapControls";
-import { setAnimation, setDataset, setMonitor, resetValues, setLayersLabelArr } from "slices/templates";
+import {
+  setAnimation,
+  setDataset,
+  setMonitor,
+  resetValues,
+  setLayersLabelArr,
+  setDateOfDataShown
+} from "slices/templates";
 
 export default connect(
   state => ({
@@ -19,7 +26,8 @@ export default connect(
     setDatasetValue: setDataset,
     resetValues: resetValues,
     setShouldFetchLocation,
-    setLayersLabelArr
+    setLayersLabelArr,
+    setDateOfDataShown
   },
   null,
   { forwardRef: true }
