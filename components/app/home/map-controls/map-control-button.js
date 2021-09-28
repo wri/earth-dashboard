@@ -5,7 +5,15 @@ import PropTypes from "prop-types";
 import styles from "./map-controls.module.scss";
 import IconButton from "components/ui/icon-button";
 
-const MapControlButton = ({ isActiveSelector, shouldDisableOnActive, getDispatch, className, disabled, isToggle, ...rest }) => {
+const MapControlButton = ({
+  isActiveSelector,
+  shouldDisableOnActive,
+  getDispatch,
+  className,
+  disabled,
+  isToggle,
+  ...rest
+}) => {
   const dispatch = useDispatch();
 
   const isActive = useSelector(isActiveSelector);
