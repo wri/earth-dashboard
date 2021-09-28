@@ -2,6 +2,13 @@ import { useRef, useCallback, useState } from "react";
 import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
+import * as d3 from "utils/d3";
+
+function colorAt(colors, t) {
+  const n = colors.length / 4;
+  const j = Math.round(t * (n - 1)) * 4;
+  return d3.rgb(colors[j], colors[j + 1], colors[j + 2], colors[j + 3] / 255);
+}
 
 const useIframeBridge = callback => {
   const { width } = useWindowDimensions();
@@ -13,6 +20,22 @@ const useIframeBridge = callback => {
   const createEarthClient = useCallback(() => {
     return new (class EarthClientImpl extends EarthClient {
       layersChanged(layers) {
+        const overlayLayer = layers.find(layer => layer.type === "overlay");
+        if (overlayLayer && overlayLayer.product) {
+          const { scale } = overlayLayer.product;
+          const { colors } = scale;
+
+          const height = 100;
+
+          const cssColors = [];
+          for (let i = 0; i < height; i++) {
+            const color = String(colorAt(colors, i / (height - 1)));
+            cssColors.push(`${color} ${(i / height) * 100}%`);
+          }
+          const css = `linear-gradient(180deg, ${cssColors.join(", ")})`;
+          scale.css = css;
+        }
+
         setLayers(layers);
       }
     })();

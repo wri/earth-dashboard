@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menuButton.module.scss";
@@ -12,6 +12,7 @@ import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
+import Scale from "components/app/home/scale";
 
 const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr }) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
@@ -24,6 +25,24 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
   const { setRef, earthClient, earthServer, layers } = useIframeBridge(() => {
     setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
   });
+
+  const overlayLayer = useMemo(() => {
+    return layers.find(layer => layer.type === "overlay");
+  }, [layers]);
+
+  const scaleData = useMemo(() => {
+    if (overlayLayer?.product) {
+      const { units } = overlayLayer.product;
+      const [unitSymbol, [lo, hi]] = Object.entries(overlayLayer.product.scale.range)[0];
+      const precision = units[unitSymbol]?.precision ?? 4;
+
+      return {
+        min: lo.toFixed(precision),
+        max: hi.toFixed(precision),
+        unitSymbol
+      };
+    }
+  }, [overlayLayer?.product]);
 
   const toggleMenu = () => {
     if (!hasMenuOpen) {
@@ -77,6 +96,17 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
       data-testid="iframe-container"
     >
       {hasIframe && <MapIframe ref={setRef} earthServer={earthServer} earthClient={earthClient} />}
+      {overlayLayer && (
+        <Scale
+          min={scaleData.min}
+          max={scaleData.max}
+          scaleUnit={scaleData.unitSymbol}
+          className={styles["scale"]}
+          value="50%"
+          readOnly
+          scaleGradient={overlayLayer.product.scale.css}
+        />
+      )}
       {hasMenuOpen && !isFetchingTemplates && (
         <Menu
           isMobile={isMobile}

@@ -5,3 +5,7 @@
 .u-flex-1 {
   flex: 1;
 }
+
+.u-visually-hidden {
+  @include visually-hidden();
+}
