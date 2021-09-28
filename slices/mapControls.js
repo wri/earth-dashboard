@@ -49,7 +49,7 @@ export const {
 } = mapControlsSlice.actions;
 export const isSettingsOpen = state => state[NAME].isSettingsOpen;
 export const shouldFetchLocation = state => state[NAME].shouldFetchLocation;
-export const isGlobe3d = state => state[NAME].projectionType === "orthographic";
+export const isGlobe2d = state => state[NAME].projectionType === "equirectangular";
 export const shouldZoomOut = state => state[NAME].shouldZoomOut;
 export const shouldZoomIn = state => state[NAME].shouldZoomIn;
 

@@ -11,3 +11,9 @@
     margin-top: 12px;
   }
 }
+
+.c-map-control-toggle {
+  &--active {
+    background-color: $colour-flame;
+  }
+}
