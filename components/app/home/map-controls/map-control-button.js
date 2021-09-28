@@ -4,7 +4,15 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import IconButton from "components/ui/icon-button";
 
-const MapControlButton = ({ isActiveSelector, shouldDisableOnActive, getDispatch, className, disabled, ...rest }) => {
+const MapControlButton = ({
+  isActiveSelector,
+  shouldDisableOnActive,
+  getDispatch,
+  className,
+  forceDark,
+  disabled,
+  ...rest
+}) => {
   const dispatch = useDispatch();
 
   const isActive = useSelector(isActiveSelector);
@@ -21,7 +29,7 @@ const MapControlButton = ({ isActiveSelector, shouldDisableOnActive, getDispatch
   return (
     <IconButton
       onClick={handleOnClick}
-      className={classnames("u-margin-right-xs", className)}
+      className={classnames("u-margin-right-xs", forceDark && "c-button--icon-force-dark", className)}
       disabled={isDisabled}
       {...rest}
     />
@@ -34,12 +42,14 @@ MapControlButton.propTypes = {
   shouldDisableOnActive: PropTypes.bool,
   disabled: PropTypes.bool,
   getDispatch: PropTypes.func.isRequired,
+  forceDark: PropTypes.bool,
   className: PropTypes.string
 };
 
 MapControlButton.defaultProps = {
   className: "",
   shouldDisableOnActive: false,
+  forceDark: false,
   disabled: false
 };
 

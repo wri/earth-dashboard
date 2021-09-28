@@ -13,6 +13,7 @@ import { fetchTemplates } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
+import settingsButtonConfig from "constants/control-bar/controls/settings";
 
 const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr }) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
@@ -120,16 +121,22 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
       )}
       <Actions isMobile={isMobile}>
         {overlayLayer && isMobile && (
-          <Scale
-            min={scaleData.min}
-            max={scaleData.max}
-            scaleUnit={scaleData.unitSymbol}
-            className={classnames(styles["scale"], styles["scale--mobile"])}
-            value="50%"
-            readOnly
-            scaleGradient={overlayLayer.product.scale.getCss(90)}
-            isHorizontal
-          />
+          <div className="u-flex u-flex--align-center u-margin-bottom-xs">
+            <Scale
+              min={scaleData.min}
+              max={scaleData.max}
+              scaleUnit={scaleData.unitSymbol}
+              className={classnames(styles["scale"], styles["scale--mobile"], "u-flex-1 u-margin-right-l")}
+              value="50%"
+              readOnly
+              scaleGradient={overlayLayer.product.scale.getCss(90)}
+              isHorizontal
+            />
+            <MapControls
+              controls={[{ ...settingsButtonConfig, forceDark: true, className: "u-margin-right-none" }]}
+              className="u-margin-top-none"
+            />
+          </div>
         )}
         <button
           className={classnames(

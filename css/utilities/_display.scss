@@ -9,3 +9,15 @@
 .u-visually-hidden {
   @include visually-hidden();
 }
+
+.u-flex {
+  display: flex;
+
+  &--align-center {
+    align-items: center;
+  }
+}
+
+.u-width-100 {
+  width: 100%;
+}

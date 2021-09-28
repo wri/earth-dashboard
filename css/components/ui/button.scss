@@ -280,6 +280,10 @@ $btn-hover-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.2);
         max-height: 20px !important;
       }
     }
+
+    &--icon-force-dark {
+      background-color: $colour-space;
+    }
   }
   // End Sept 2021 updates
 }
