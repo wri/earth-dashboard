@@ -3,10 +3,6 @@ import FocusTrap from "focus-trap-react";
 import styles from "./dialog-panel.module.scss";
 import PropTypes from "prop-types";
 
-const KEY_CODES = {
-  esc: 27
-};
-
 const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobile, initialFocus }) => {
   const handleResize = (e, direction, div) => setDialogHeight({ height: div.offsetHeight });
 
@@ -45,7 +41,7 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
   );
 
   return (
-    <div className={styles["c-dialog-panel"]}>
+    <div className={styles["c-dialog-panel"]} role="dialog">
       <FocusTrap focusTrapOptions={focusTrapOptions}>
         {isMobile ? <Resizable {...resizableProps}>{children}</Resizable> : children}
       </FocusTrap>

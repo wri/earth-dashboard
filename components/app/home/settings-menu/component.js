@@ -1,7 +1,9 @@
 import { createElement, useEffect, useRef } from "react";
 import classnames from "classnames";
 import DialogPanel from "components/app/home/dialog-panel";
+import IconButton from "components/ui/icon-button";
 import styles from "./settings-menu.module.scss";
+import CloseIcon from "public/static/icons/close.svg";
 import settingsFormElements from "constants/globalSettings";
 
 const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
@@ -20,19 +22,17 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
   return (
     isSettingsOpen && (
       <DialogPanel onClose={handleClose} isMobile={isMobile}>
-        <div className={styles["c-settings-menu-modal"]}>
+        <div className={styles["c-settings-menu-modal"]} aria-labelledby="settingsModalTitle" role="document">
           <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
-            <h1 className={classnames(styles["c-settings-menu-modal__header__title"], "u-margin-bottom-none")}>
+            <h1 id="settingsModalTitle" className={classnames(styles["c-settings-menu-modal__header__title"], "u-margin-bottom-none")}>
               Settings
             </h1>
-            <button
-              type="button"
+            <IconButton
+              icon={CloseIcon}
               className={styles["c-settings-menu-modal__close"]}
-              aria-label="Close"
+              aria-label="Close Settings"
               onClick={handleClose}
-            >
-              <img src="/static/icons/close.svg" width="48px" height="48px" role="presentation" />
-            </button>
+            />
           </div>
 
           <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}>
