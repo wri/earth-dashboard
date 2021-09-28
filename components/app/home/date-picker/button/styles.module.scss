@@ -18,7 +18,7 @@
 
     &--mobile {
       justify-content: space-between;
-      padding: 6px 8px 6px 20px;
+      padding: 6px 8px 6px 16px;
       width: 100%;
       color: $white;
       @include font-size(16px, 24px);
@@ -32,16 +32,10 @@
     white-space: nowrap;
   }
 
-  &__button:hover #{$this}__icon {
+  &__icon {
+    width: 28px;
+    height: 28px;
     background-color: $colour-flame;
-  }
-
-  @media screen and (max-width: $global-breakpoint-md) {
-    &__icon {
-      width: 28px;
-      height: 28px;
-      background-color: $colour-flame;
-    }
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
@@ -49,12 +43,17 @@
     justify-content: flex-end;
 
     &__text {
-      margin-right: 16px;
+      margin-right: 9px;
       margin-bottom: 0;
       font-family: "Barlow Condensed";
       @include font-size(20px, 24px);
       text-transform: uppercase;
       text-align: right;
+    }
+
+    &__icon {
+      width: 32px;
+      height: 32px;
     }
   }
 }
