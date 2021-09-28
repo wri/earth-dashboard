@@ -18,9 +18,12 @@ const MapIframe = forwardRef(
       monitorValue,
       setShouldFetchLocation,
       shouldFetchLocation,
+      projectionType,
       earthClient,
       earthServer,
-      setLayersLabelArr
+      layers,
+      setLayersLabelArr,
+      setDateOfDataShown
     },
     ref
   ) => {
@@ -89,6 +92,13 @@ const MapIframe = forwardRef(
       setLayersLabelArr
     ]);
 
+    // Switch between the different projection types available
+    useEffect(() => {
+      if (earthServer.current) {
+        earthServer.current.saveState({ projection_type: projectionType });
+      }
+    }, [projectionType, earthServer]);
+
     // Set the current position of the user on the map
     useEffect(() => {
       if (earthServer && currentPosition) {
@@ -104,6 +114,32 @@ const MapIframe = forwardRef(
         setShouldFetchLocation(false);
       }
     }, [currentPosition, earthServer, setShouldFetchLocation]);
+
+    // Find the Date of the Data being displayed
+    useEffect(() => {
+      const dates = [];
+
+      layers?.forEach(layer => {
+        if (!layer || !layer.product || !layer.product.validTime) return;
+
+        dates.push(layer.product.validTime);
+      });
+
+      if (dates.length) {
+        // Set the current date as the biggest date
+        setDateOfDataShown(
+          dates.reduce((accumulator, currentValue) => {
+            if (!accumulator) return currentValue;
+
+            if (new Date(currentValue).getTime() > new Date(accumulator).getTime()) {
+              return currentValue;
+            } else {
+              return accumulator;
+            }
+          }, null)
+        );
+      }
+    }, [layers, setDateOfDataShown]);
 
     return (
       <iframe
@@ -133,9 +169,12 @@ MapIframe.propTypes = {
   monitorValue: PropTypes.string,
   setShouldFetchLocation: PropTypes.func.isRequired,
   shouldFetchLocation: PropTypes.bool.isRequired,
+  projectionType: PropTypes.string.isRequired,
   earthClient: PropTypes.instanceOf(EarthClient),
   earthServer: PropTypes.object,
-  setLayersLabelArr: PropTypes.func.isRequired
+  layers: PropTypes.array,
+  setLayersLabelArr: PropTypes.func.isRequired,
+  setDateOfDataShown: PropTypes.func.isRequired
 };
 
 MapIframe.defaultProps = {

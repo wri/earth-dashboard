@@ -1,0 +1,59 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-showing-data-for {
+  $this: &;
+
+  &__text {
+    margin-bottom: 8px;
+    color: $white;
+    @include font-size(12px, 18px);
+    font-weight: 500;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+
+    &--mobile {
+      justify-content: space-between;
+      padding: 6px 8px 6px 16px;
+      width: 100%;
+      color: $white;
+      @include font-size(16px, 24px);
+      font-weight: 500;
+      background-color: $colour-night;
+      border-radius: 28px;
+    }
+  }
+
+  &__date {
+    white-space: nowrap;
+  }
+
+  &__icon {
+    width: 28px;
+    height: 28px;
+    background-color: $colour-flame;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    display: flex;
+    justify-content: flex-end;
+
+    &__text {
+      margin-right: 9px;
+      margin-bottom: 0;
+      font-family: "Barlow Condensed";
+      @include font-size(20px, 24px);
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    &__icon {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}

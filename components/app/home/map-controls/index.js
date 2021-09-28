@@ -1,3 +1,3 @@
-import ControlsComponent from "./component";
+import MapControlsComponent from "./component";
 
-export default ControlsComponent;
+export default MapControlsComponent;

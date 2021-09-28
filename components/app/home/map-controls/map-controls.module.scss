@@ -11,3 +11,17 @@
     margin-top: 12px;
   }
 }
+
+.c-map-control-toggle {
+  &--active {
+    background-color: $colour-flame;
+  }
+
+  &--2d-toggle {
+    padding: 11px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      padding: 13px;
+    }
+  }
+}

@@ -50,6 +50,9 @@ export const addToDate = (date, count, interval = "days") => {
 
 export const formatDate = (date, format = "YYYY-MM-DD") => {
   const d = new Date(date);
+
+  if (isNaN(d)) return undefined;
+
   let month = null;
   let day = null;
   const year = d.getFullYear();

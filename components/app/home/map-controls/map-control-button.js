@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import styles from "./map-controls.module.scss";
 import IconButton from "components/ui/icon-button";
 
 const MapControlButton = ({
@@ -9,8 +10,9 @@ const MapControlButton = ({
   shouldDisableOnActive,
   getDispatch,
   className,
-  forceDark,
   disabled,
+  isToggle,
+  forceDark,
   ...rest
 }) => {
   const dispatch = useDispatch();
@@ -29,7 +31,12 @@ const MapControlButton = ({
   return (
     <IconButton
       onClick={handleOnClick}
-      className={classnames("u-margin-right-xs", forceDark && "c-button--icon-force-dark", className)}
+      className={classnames(
+        "u-margin-right-xs",
+        isToggle && isActive && styles["c-map-control-toggle--active"],
+        forceDark && "c-button--icon-force-dark",
+        className
+      )}
       disabled={isDisabled}
       {...rest}
     />
@@ -43,14 +50,16 @@ MapControlButton.propTypes = {
   disabled: PropTypes.bool,
   getDispatch: PropTypes.func.isRequired,
   forceDark: PropTypes.bool,
+  isToggle: PropTypes.bool,
   className: PropTypes.string
 };
 
 MapControlButton.defaultProps = {
   className: "",
   shouldDisableOnActive: false,
-  forceDark: false,
-  disabled: false
+  disabled: false,
+  isToggle: false,
+  forceDark: false
 };
 
 export default MapControlButton;

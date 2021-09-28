@@ -22,13 +22,13 @@ test("<MapControls /> renders correctly", () => {
   >
     <button
       aria-label="Settings"
-      class="c-button c-button--icon u-margin-right-xs c-button--icon-force-dark"
+      class="c-button c-button--icon u-margin-right-xs"
     >
       <img />
     </button>
     <button
       aria-label="Get current location"
-      class="c-button c-button--icon u-margin-right-xs c-button--icon-force-dark"
+      class="c-button c-button--icon u-margin-right-xs"
     >
       <img />
     </button>

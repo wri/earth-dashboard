@@ -6,7 +6,8 @@ const initialState = {
   animationValue: "",
   datasetValue: "",
   monitorValue: "",
-  layersLabelArr: []
+  layersLabelArr: [],
+  dateOfDataShown: ""
 };
 
 const templatesSlice = createSlice({
@@ -38,6 +39,13 @@ const templatesSlice = createSlice({
     },
     setLayersLabelArr(state, action) {
       state.layersLabelArr = action.payload;
+    },
+    setDateOfDataShown(state, { payload }) {
+      // Make sure only serialisable data is stored in the redux state.
+      // Can't store a Date Object in the state for example.
+      if (typeof payload !== "string") return;
+
+      state.dateOfDataShown = payload;
     }
   }
 });
@@ -49,6 +57,7 @@ export const {
   setDataset,
   setMonitor,
   resetValues,
-  setLayersLabelArr
+  setLayersLabelArr,
+  setDateOfDataShown
 } = templatesSlice.actions;
 export default templatesSlice.reducer;
