@@ -5,7 +5,6 @@ import { setTemplates } from "slices/templates";
 
 export default connect(
   state => ({
-    isSettingsOpen: state[mapControlsSliceName].isSettingsOpen,
     layersLabelArr: state.templates.layersLabelArr
   }),
   {

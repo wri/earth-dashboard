@@ -14,7 +14,7 @@ import { fetchTemplates } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
 
-const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr }) => {
+const MainContainer = ({ isMobile, setTemplates, layersLabelArr }) => {
   const [hasIntroAndBanner, setHasIntroAndBanner] = useState(true);
   const [hasBanner, setHasBanner] = useState(true);
   const [hasTimeOutReached, setHasTimeoutReached] = useState(false);
@@ -161,7 +161,6 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
 
 MainContainer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
-  isSettingsOpen: PropTypes.bool.isRequired,
   setTemplates: PropTypes.func.isRequired,
   layersLabelArr: PropTypes.array.isRequired
 };
