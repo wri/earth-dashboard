@@ -5,6 +5,7 @@ import IconButton from "components/ui/icon-button";
 import styles from "./settings-menu.module.scss";
 import CloseIcon from "public/static/icons/close.svg";
 import settingsFormElements from "constants/globalSettings";
+import PropTypes from "prop-types";
 
 const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
   const firstInput = useRef(null);
@@ -44,6 +45,16 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
       </DialogPanel>
     )
   );
+};
+
+SettingsMenu.propTypes = {
+  isSettingsOpen: PropTypes.bool.isRequired,
+  setSettingsClose: PropTypes.func.isRequired,
+  isMobile: PropTypes.bool.isRequired
+};
+
+SettingsMenu.defaultProps = {
+
 };
 
 export default SettingsMenu;

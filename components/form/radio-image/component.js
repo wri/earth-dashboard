@@ -4,6 +4,7 @@ import classnames from "classnames";
 import uuid from "react-uuid";
 import Image from "next/image";
 import styles from "./radio-image.module.scss";
+import PropTypes from "prop-types";
 
 const ID = "radio-image-" + uuid();
 
@@ -13,7 +14,7 @@ const RadioImage = forwardRef(({ className, label, name, options, getSelectOptio
 
   return (
     <div className={classnames(styles["c-radio-image"], className)}>
-      {label && <span id={ID} className={styles["c-radio-image__label"]}>{label}</span>}
+      <span id={ID} className={styles["c-radio-image__label"]}>{label}</span>
 
       <div className={styles["c-radio-image__options"]} role="group" aria-labelledby={ID}>
         {options.map(option => {
@@ -50,5 +51,22 @@ const RadioImage = forwardRef(({ className, label, name, options, getSelectOptio
     </div>
   );
 });
+
+RadioImage.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    image: PropTypes.object.isRequired,
+    label: PropTypes.string.isRequired
+  })),
+  getSelectOption: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
+};
+
+RadioImage.defaultProps = {
+
+};
 
 export default RadioImage;

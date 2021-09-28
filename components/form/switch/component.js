@@ -4,6 +4,7 @@ import classnames from "classnames";
 import Switch from "react-switch";
 import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
 import styles from "./switch.module.scss";
+import PropTypes from "prop-types";
 
 const StyledSwitch = forwardRef(({ className, label, isActiveSelector, handleChange }, ref) => {
   const dispatch = useDispatch();
@@ -47,5 +48,16 @@ const StyledSwitch = forwardRef(({ className, label, isActiveSelector, handleCha
     </label>
   );
 });
+
+StyledSwitch.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  isActiveSelector: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
+};
+
+StyledSwitch.defaultProps = {
+
+};
 
 export default StyledSwitch;
