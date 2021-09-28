@@ -68,7 +68,7 @@ function HeadApp({ title, description, thumbnail, hostname, explicitHostname, th
         {/* Fonts */}
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,400&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;1,400&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap"
           rel="stylesheet"
         />
 

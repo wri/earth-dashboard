@@ -4,6 +4,12 @@ import getZoomIn from "constants/control-bar/controls/zoom-in";
 import getZoomOut from "constants/control-bar/controls/zoom-out";
 import projectionTypeToggle from "constants/control-bar/controls/projectionTypeToggle";
 
-const getHomePageControlBarItems = earthServer => [getZoomIn(earthServer), getZoomOut(earthServer), location, projectionTypeToggle, settings];
+const getHomePageControlBarItems = earthServer => [
+  getZoomIn(earthServer),
+  getZoomOut(earthServer),
+  location,
+  projectionTypeToggle,
+  settings
+];
 
 export default getHomePageControlBarItems;

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Link from "next/link";
 import Image from "next/image";
-import nullSchoolLogo from "public/static/images/logo-nullschool.svg";
+import nullSchoolLogo from "public/static/images/logo-earth-hq.svg";
 
 const LogoLink = ({ href, alt, ...rest }) => {
   return (
