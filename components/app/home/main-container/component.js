@@ -154,7 +154,7 @@ const MainContainer = ({ isMobile, setTemplates, isSettingsOpen, layersLabelArr 
         </div>
       )}
 
-      {isSettingsOpen && !isFetchingTemplates && <SettingsMenu />}
+      {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
     </div>
   );
 };
