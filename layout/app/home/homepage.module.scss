@@ -213,6 +213,18 @@
         }
       }
     }
+
+    .scale {
+      position: absolute;
+      right: 24px;
+      top: 111px;
+      height: calc(100vh - 111px - 100px - 24px);
+
+      &--mobile {
+        position: initial;
+        height: 53px;
+      }
+    }
   }
 }
 

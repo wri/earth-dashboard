@@ -12,6 +12,7 @@ const MapControlButton = ({
   className,
   disabled,
   isToggle,
+  forceDark,
   ...rest
 }) => {
   const dispatch = useDispatch();
@@ -31,9 +32,10 @@ const MapControlButton = ({
     <IconButton
       onClick={handleOnClick}
       className={classnames(
-        className,
         "u-margin-right-xs",
-        isToggle && isActive && styles["c-map-control-toggle--active"]
+        isToggle && isActive && styles["c-map-control-toggle--active"],
+        forceDark && "c-button--icon-force-dark",
+        className
       )}
       disabled={isDisabled}
       {...rest}
@@ -47,6 +49,7 @@ MapControlButton.propTypes = {
   shouldDisableOnActive: PropTypes.bool,
   disabled: PropTypes.bool,
   getDispatch: PropTypes.func.isRequired,
+  forceDark: PropTypes.bool,
   isToggle: PropTypes.bool,
   className: PropTypes.string
 };
@@ -55,7 +58,8 @@ MapControlButton.defaultProps = {
   className: "",
   shouldDisableOnActive: false,
   disabled: false,
-  isToggle: false
+  isToggle: false,
+  forceDark: false
 };
 
 export default MapControlButton;
