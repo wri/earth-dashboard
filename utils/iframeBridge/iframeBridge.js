@@ -52,7 +52,7 @@ export const getEarthServer = async (iframe, windowWidth, createEarthClient) => 
 
     return { server, client };
   } catch (err) {
-    console.log("Failed to connect to iframe", err);
+    console.log("Failed to connect to iframe", err.toString(), err);
   }
 };
 
