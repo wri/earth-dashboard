@@ -30,7 +30,7 @@ $transitionDurationMS: 400;
 
   // Animate
   opacity: 0;
-  transition: opacity #{$transitionDurationMS}ms;
+  transition: opacity #{$transitionDurationMS}ms ease-in;
 
   &--open {
     opacity: 1;
