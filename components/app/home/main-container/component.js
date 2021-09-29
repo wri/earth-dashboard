@@ -29,8 +29,6 @@ const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, da
     setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
   });
 
-  const getState = () => earthServer.current.getState().then(console.log);
-
   const overlayLayer = useMemo(() => {
     return layers.find(layer => layer.type === "overlay");
   }, [layers]);
@@ -145,7 +143,6 @@ const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, da
             />
           </div>
         )}
-        <button onClick={getState}>Get state</button>
         <button
           className={classnames(
             actionStyles["c-home-actions__item"],

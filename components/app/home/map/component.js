@@ -1,9 +1,8 @@
-import { forwardRef, useState, useEffect } from "react";
+import { forwardRef, useEffect } from "react";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
-import { nullLiteral } from "@babel/types";
 
 const MapIframe = forwardRef(
   (
@@ -81,7 +80,11 @@ const MapIframe = forwardRef(
           }
         });
         setLayersLabelArr(newLayers);
-        const animation = DATA_LAYER_MAP[animationValue] || { animation_enabled: false };
+
+        let animation = { animation_enabled: false };
+        if (animationEnabled && DATA_LAYER_MAP[animationValue]) {
+          animation = DATA_LAYER_MAP[animationValue]
+        }
         const monitor = DATA_LAYER_MAP[monitorValue] || { annotation_type: "none" };
         const dataset = DATA_LAYER_MAP[datasetValue] || { overlay_type: "none", z_level: "surface" };
 
@@ -89,6 +92,7 @@ const MapIframe = forwardRef(
       }
     }, [
       animationValue,
+      animationEnabled,
       datasetValue,
       monitorValue,
       currentTemplate?.attributes?.data_layers,
