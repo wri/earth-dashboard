@@ -111,7 +111,6 @@ const MapIframe = forwardRef(
     useEffect(() => {
       if (earthServer.current) {
         earthServer.current.saveState({
-          animation_enabled: animationEnabled,
           show_grid_points: showMapGrid,
           hd_enabled: highDefinitionMode,
           map_scene: {
@@ -123,7 +122,7 @@ const MapIframe = forwardRef(
           }
         });
       }
-    }, [earthServer, animationEnabled, showMapGrid, highDefinitionMode, basemapType]);
+    }, [earthServer, showMapGrid, highDefinitionMode, basemapType]);
 
     // Set the current position of the user on the map
     useEffect(() => {
