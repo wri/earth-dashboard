@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import globalSettings from "constants/globalSettings";
+import globalSettings from "schemas/globalSettings";
 
 export const NAME = "globalSettings";
 

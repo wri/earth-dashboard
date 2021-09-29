@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classnames from "classnames";
 import uuid from "react-uuid";
@@ -8,9 +7,9 @@ import PropTypes from "prop-types";
 
 const ID = "radio-image-" + uuid();
 
-const RadioImage = forwardRef(({ className, label, name, options, getSelectOption, handleChange }, ref) => {
+const RadioImage = ({ className, label, name, options, getSelectedOption, handleChange }) => {
   const dispatch = useDispatch();
-  const activeId = useSelector(getSelectOption());
+  const activeId = useSelector(getSelectedOption());
 
   return (
     <div className={classnames(styles["c-radio-image"], className)}>
@@ -31,6 +30,7 @@ const RadioImage = forwardRef(({ className, label, name, options, getSelectOptio
                 value={option.id}
                 checked={checked}
                 onChange={e => dispatch(handleChange(e.currentTarget.value))}
+                data-testid={option.id}
               />
               <label
                 className={classnames(
@@ -50,18 +50,21 @@ const RadioImage = forwardRef(({ className, label, name, options, getSelectOptio
       </div>
     </div>
   );
-});
+};
 
 RadioImage.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
+    image: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]).isRequired,
     label: PropTypes.string.isRequired
-  })),
-  getSelectOption: PropTypes.func.isRequired,
+  })).isRequired,
+  getSelectedOption: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired
 };
 
