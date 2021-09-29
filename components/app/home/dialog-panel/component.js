@@ -1,9 +1,19 @@
+import { useState, useEffect } from "react";
 import { Resizable } from "re-resizable";
+import { CSSTransition } from "react-transition-group";
 import FocusTrap from "focus-trap-react";
 import styles from "./dialog-panel.module.scss";
 import PropTypes from "prop-types";
 
-const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobile, initialFocus }) => {
+const transitionDuration = styles["transitionDuration"];
+
+const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobile, forceClose }) => {
+  const [isIn, setIsIn] = useState(true);
+
+  useEffect(() => {
+    if (forceClose) setIsIn(false);
+  }, [forceClose]);
+
   const handleResize = (e, direction, div) => setDialogHeight({ height: div.offsetHeight });
 
   const resizableProps = {
@@ -33,19 +43,26 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
 
   const focusTrapOptions = Object.assign(
     {
-      onDeactivate: onClose,
+      onDeactivate: () => {
+        setIsIn(false);
+        setTimeout(onClose, transitionDuration);
+      },
       // Close the Modal when user clicks outside
       clickOutsideDeactivates: true
-    },
-    initialFocus && { initialFocus }
+    }
   );
 
   return (
-    <div className={styles["c-dialog-panel"]} role="dialog">
-      <FocusTrap focusTrapOptions={focusTrapOptions}>
-        {isMobile ? <Resizable {...resizableProps}>{children}</Resizable> : children}
-      </FocusTrap>
-    </div>
+    <CSSTransition in={isIn} appear={true} timeout={transitionDuration} classNames={{
+      appear: styles["c-dialog-panel--open"],
+      appearDone: styles["c-dialog-panel--open"]
+     }}>
+      <div className={styles["c-dialog-panel"]} role="dialog">
+        <FocusTrap focusTrapOptions={focusTrapOptions}>
+          {isMobile ? <Resizable {...resizableProps}>{children}</Resizable> : children}
+        </FocusTrap>
+      </div>
+    </CSSTransition>
   );
 };
 
@@ -54,9 +71,11 @@ DialogPanel.propTypes = {
   setDialogHeight: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
-  initialFocus: PropTypes.oneOfType([PropTypes.elementType, PropTypes.string, PropTypes.bool, PropTypes.func])
+  forceClose: PropTypes.bool.isRequired
 };
 
-DialogPanel.defaultProps = {};
+DialogPanel.defaultProps = {
+  forceClose: false
+};
 
 export default DialogPanel;

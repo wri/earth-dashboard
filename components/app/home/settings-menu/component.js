@@ -1,14 +1,16 @@
-import { createElement, useEffect, useRef } from "react";
+import { createElement, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import DialogPanel from "components/app/home/dialog-panel";
 import IconButton from "components/ui/icon-button";
 import styles from "./settings-menu.module.scss";
+import dialogStyles from "components/app/home/dialog-panel/dialog-panel.module.scss";
 import CloseIcon from "public/static/icons/close.svg";
 import settingsFormElements from "schemas/globalSettings";
 import PropTypes from "prop-types";
 
 const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
   const firstInput = useRef(null);
+  const [forceClose, setForceClose] = useState(false);
 
   useEffect(() => {
     if (firstInput.current && isSettingsOpen) {
@@ -17,12 +19,13 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
   }, [firstInput, isSettingsOpen]);
 
   const handleClose = () => {
+    setForceClose(false);
     setSettingsClose();
   };
 
   return (
     isSettingsOpen && (
-      <DialogPanel onClose={handleClose} isMobile={isMobile}>
+      <DialogPanel onClose={handleClose} isMobile={isMobile} forceClose={forceClose}>
         <div className={styles["c-settings-menu-modal"]} aria-labelledby="settingsModalTitle" role="document">
           <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
             <h1
@@ -35,7 +38,10 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
               icon={CloseIcon}
               className={styles["c-settings-menu-modal__close"]}
               aria-label="Close Settings"
-              onClick={handleClose}
+              onClick={() => {
+                setForceClose(true);
+                setTimeout(handleClose, dialogStyles["transitionDuration"]);
+              }}
             />
           </div>
 

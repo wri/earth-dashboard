@@ -1,5 +1,11 @@
 @import "css/settings";
 
+$transitionDurationMS: 400;
+
+:export {
+  transitionDuration: $transitionDurationMS;
+}
+
 .c-dialog-panel {
   position: fixed;
   top: 0;
@@ -20,5 +26,13 @@
       border-radius: 3px;
       transform: translateX(-50%);
     }
+  }
+
+  // Animate
+  opacity: 0;
+  transition: opacity #{$transitionDurationMS}ms;
+
+  &--open {
+    opacity: 1;
   }
 }
