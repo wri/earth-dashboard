@@ -25,7 +25,7 @@ const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, da
   const [homePageMapControlsItems, setHomePageControlBarItems] = useState([]);
   const menuRef = useRef(null);
 
-  const { setRef, earthClient, earthServer, layers } = useIframeBridge(() => {
+  const { setRef, earthClient, earthServer, layers, error } = useIframeBridge(() => {
     setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
   });
 
@@ -179,6 +179,26 @@ const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, da
       </Actions>
 
       {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
+      {error && (
+        <div
+          style={{
+            background: "white",
+            position: "absolute",
+            left: 10,
+            right: 10,
+            top: 10,
+            bottom: 10,
+            color: "black",
+            padding: 10
+          }}
+        >
+          <pre>
+            <code>{JSON.stringify(error)}</code>
+            <br />
+            <code>{error.toString()}</code>
+          </pre>
+        </div>
+      )}
     </div>
   );
 };
