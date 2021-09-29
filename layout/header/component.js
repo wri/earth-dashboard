@@ -7,6 +7,8 @@ import classnames from "classnames";
 import { motion } from "framer-motion";
 import LogoLink from "components/ui/logo-link/index";
 import HeaderTitle from "layout/header/header-title";
+import MegaMenuBtn from "layout/header/header-btn";
+import MegaMenu from "components/mega-menu";
 
 // components
 import About from "./about";
@@ -140,121 +142,126 @@ function Header(props) {
   );
 
   return (
-    <header className={styles.header}>
-      <MediaContextProvider>
-        <Desktop>
-          <div
-            className={classnames({
-              [styles["main-container"]]: true,
-              [styles["-desktop"]]: true
-            })}
-          >
-            {showLogo && !isOpen && getLogoContainer()}
-            {!isOpen && <HeaderTitle />}
-            <button
+    <>
+      <header className={styles.header}>
+        <MediaContextProvider>
+          <Desktop>
+            <div
               className={classnames({
-                [styles["hamburger-button"]]: true,
-                [styles["-center"]]: buttonPosition === "center",
-                [styles["-right"]]: buttonPosition === "right"
+                [styles["main-container"]]: true,
+                [styles["-desktop"]]: true
               })}
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close Menu" : "Open menu"}
             >
-              <div className={styles["hamburger-button-image"]}>
-                <img src={`/static/images/${isOpen ? "close" : "hamburger"}.svg`} role="presentation" alt="" />
-              </div>
-            </button>
-            <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
-              {isOpen && (
-                <div className={styles["menu-container"]}>
-                  <Particles className={styles.particles} params={PARTICLES_DEFINITION} />
-                  <div
-                    className={classnames({
-                      [styles["data-containers"]]: true,
-                      [styles["-desktop"]]: true
-                    })}
-                  >
-                    <div
-                      className={classnames({
-                        [styles["left-container"]]: true,
-                        [styles["-desktop"]]: true
-                      })}
-                    >
-                      <LogoLink />
-                      {getNavigationTags(false)}
-                    </div>
-                    <div
-                      className={classnames({
-                        [styles["right-container"]]: true,
-                        [styles["-desktop"]]: true
-                      })}
-                    >
-                      {getRightContainer(false)}
-                    </div>
-                  </div>
+              {showLogo && !isOpen && getLogoContainer()}
+              {!isOpen && <HeaderTitle />}
+              <MegaMenuBtn />
+              {/* <button
+                className={classnames({
+                  [styles["hamburger-button"]]: true,
+                  [styles["-center"]]: buttonPosition === "center",
+                  [styles["-right"]]: buttonPosition === "right"
+                })}
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close Menu" : "Open menu"}
+              >
+                <div className={styles["hamburger-button-image"]}>
+                  <img src={`/static/images/${isOpen ? "close" : "hamburger"}.svg`} role="presentation" alt="" />
                 </div>
-              )}
-            </motion.div>
-          </div>
-        </Desktop>
-        <Mobile>
-          <div
-            className={classnames({
-              [styles["main-container"]]: true,
-              [styles["-mobile"]]: true
-            })}
-          >
-            {showLogo && !isOpen && getLogoContainer()}
-            <button
-              className={classnames({
-                [styles["hamburger-button"]]: true,
-                [styles["-mobile"]]: true
-              })}
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close Menu" : "Open menu"}
-            >
-              <div className={styles["hamburger-button-image"]}>
-                <img src={`/static/images/${isOpen ? "close" : "hamburger"}.svg`} role="presentation" alt="" />
-              </div>
-            </button>
-            <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
-              {isOpen && (
-                <div className={styles["menu-container"]}>
-                  <Particles className={styles.particles} params={PARTICLES_DEFINITION} />
-                  <div
-                    className={classnames({
-                      [styles["data-containers"]]: true,
-                      [styles["-mobile"]]: true
-                    })}
-                  >
+              </button> */}
+              <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
+                {isOpen && (
+                  <div className={styles["menu-container"]}>
+                    <Particles className={styles.particles} params={PARTICLES_DEFINITION} />
                     <div
                       className={classnames({
-                        [styles["left-container"]]: true,
-                        [styles["-mobile"]]: true
+                        [styles["data-containers"]]: true,
+                        [styles["-desktop"]]: true
                       })}
                     >
-                      {getNavigationTags(true)}
-                    </div>
-                    <div
-                      className={classnames({
-                        [styles["right-container"]]: true,
-                        [styles["-mobile"]]: true
-                      })}
-                    >
-                      {getRightContainer(true)}
-                      <div className={styles["logo-footer"]}>
+                      <div
+                        className={classnames({
+                          [styles["left-container"]]: true,
+                          [styles["-desktop"]]: true
+                        })}
+                      >
                         <LogoLink />
+                        {getNavigationTags(false)}
+                      </div>
+                      <div
+                        className={classnames({
+                          [styles["right-container"]]: true,
+                          [styles["-desktop"]]: true
+                        })}
+                      >
+                        {getRightContainer(false)}
                       </div>
                     </div>
                   </div>
+                )}
+              </motion.div>
+            </div>
+          </Desktop>
+          <Mobile>
+            <div
+              className={classnames({
+                [styles["main-container"]]: true,
+                [styles["-mobile"]]: true
+              })}
+            >
+              {showLogo && !isOpen && getLogoContainer()}
+              <button
+                className={classnames({
+                  [styles["hamburger-button"]]: true,
+                  [styles["-mobile"]]: true
+                })}
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close Menu" : "Open menu"}
+              >
+                <div className={styles["hamburger-button-image"]}>
+                  <img src={`/static/images/${isOpen ? "close" : "hamburger"}.svg`} role="presentation" alt="" />
                 </div>
-              )}
-            </motion.div>
-          </div>
-          <HeaderTitle />
-        </Mobile>
-      </MediaContextProvider>
-    </header>
+              </button>
+              <motion.div animate={{ opacity: isOpen ? 1 : 0 }}>
+                {isOpen && (
+                  <div className={styles["menu-container"]}>
+                    <Particles className={styles.particles} params={PARTICLES_DEFINITION} />
+                    <div
+                      className={classnames({
+                        [styles["data-containers"]]: true,
+                        [styles["-mobile"]]: true
+                      })}
+                    >
+                      <div
+                        className={classnames({
+                          [styles["left-container"]]: true,
+                          [styles["-mobile"]]: true
+                        })}
+                      >
+                        {getNavigationTags(true)}
+                      </div>
+                      <div
+                        className={classnames({
+                          [styles["right-container"]]: true,
+                          [styles["-mobile"]]: true
+                        })}
+                      >
+                        {getRightContainer(true)}
+                        <div className={styles["logo-footer"]}>
+                          <LogoLink />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            </div>
+            <HeaderTitle />
+          </Mobile>
+        </MediaContextProvider>
+      </header>
+
+      <MegaMenu />
+    </>
   );
 }
 
