@@ -83,7 +83,7 @@ const MapIframe = forwardRef(
 
         let animation = { animation_enabled: false };
         if (animationEnabled && DATA_LAYER_MAP[animationValue]) {
-          animation = DATA_LAYER_MAP[animationValue]
+          animation = DATA_LAYER_MAP[animationValue];
         }
         const monitor = DATA_LAYER_MAP[monitorValue] || { annotation_type: "none" };
         const dataset = DATA_LAYER_MAP[datasetValue] || { overlay_type: "none", z_level: "surface" };
