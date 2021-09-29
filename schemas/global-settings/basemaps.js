@@ -11,8 +11,7 @@ const basemapsSchema = {
     label: "Basemaps",
     options: [
       { id: "default", label: "Default", image: imageTest },
-      // PLACEHOLDER TEXT
-      { id: "placeholder", label: "Lorem ipsum", image: imageTest }
+      { id: "geography", label: "Geography", image: imageTest }
     ],
     getSelectOption: () => getSettingValueById(ID),
     handleChange: id => setSettingById({ id: ID, newState: id })

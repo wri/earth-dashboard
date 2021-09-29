@@ -26,7 +26,8 @@ const MapIframe = forwardRef(
       setLayersLabelArr,
       setDateOfDataShown,
       showMapGrid,
-      highDefinitionMode
+      highDefinitionMode,
+      basemapType
     },
     ref
   ) => {
@@ -108,10 +109,17 @@ const MapIframe = forwardRef(
         earthServer.current.saveState({
           animation_enabled: animationEnabled,
           show_grid_points: showMapGrid,
-          hd_enabled: highDefinitionMode
+          hd_enabled: highDefinitionMode,
+          map_scene: {
+            version: 2,
+            elements:
+              basemapType === "geography"
+                ? ["admin_1", "disputed_areas", "pacific_groupings", "admin_0", "rivers", "lakes", "coastline"]
+                : ["rivers", "lakes", "coastline"]
+          }
         });
       }
-    }, [earthServer, animationEnabled, showMapGrid, highDefinitionMode]);
+    }, [earthServer, animationEnabled, showMapGrid, highDefinitionMode, basemapType]);
 
     // Set the current position of the user on the map
     useEffect(() => {
@@ -191,7 +199,8 @@ MapIframe.propTypes = {
   setLayersLabelArr: PropTypes.func.isRequired,
   setDateOfDataShown: PropTypes.func.isRequired,
   showMapGrid: PropTypes.bool.isRequired,
-  highDefinitionMode: PropTypes.bool.isRequired
+  highDefinitionMode: PropTypes.bool.isRequired,
+  basemapType: PropTypes.oneOf(["default", "geography"])
 };
 
 MapIframe.defaultProps = {
