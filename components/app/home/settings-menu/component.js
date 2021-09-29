@@ -25,7 +25,10 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
       <DialogPanel onClose={handleClose} isMobile={isMobile}>
         <div className={styles["c-settings-menu-modal"]} aria-labelledby="settingsModalTitle" role="document">
           <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
-            <h1 id="settingsModalTitle" className={classnames(styles["c-settings-menu-modal__header__title"], "u-margin-bottom-none")}>
+            <h1
+              id="settingsModalTitle"
+              className={classnames(styles["c-settings-menu-modal__header__title"], "u-margin-bottom-none")}
+            >
               Settings
             </h1>
             <IconButton
@@ -53,8 +56,6 @@ SettingsMenu.propTypes = {
   isMobile: PropTypes.bool.isRequired
 };
 
-SettingsMenu.defaultProps = {
-
-};
+SettingsMenu.defaultProps = {};
 
 export default SettingsMenu;

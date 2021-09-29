@@ -13,7 +13,9 @@ const RadioImage = ({ className, label, name, options, getSelectedOption, handle
 
   return (
     <div className={classnames(styles["c-radio-image"], className)}>
-      <span id={ID} className={styles["c-radio-image__label"]}>{label}</span>
+      <span id={ID} className={styles["c-radio-image__label"]}>
+        {label}
+      </span>
 
       <div className={styles["c-radio-image__options"]} role="group" aria-labelledby={ID}>
         {options.map(option => {
@@ -56,20 +58,17 @@ RadioImage.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]).isRequired,
-    label: PropTypes.string.isRequired
-  })).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+      label: PropTypes.string.isRequired
+    })
+  ).isRequired,
   getSelectedOption: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired
 };
 
-RadioImage.defaultProps = {
-
-};
+RadioImage.defaultProps = {};
 
 export default RadioImage;

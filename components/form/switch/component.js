@@ -57,8 +57,6 @@ StyledSwitch.propTypes = {
   handleChange: PropTypes.func.isRequired
 };
 
-StyledSwitch.defaultProps = {
-
-};
+StyledSwitch.defaultProps = {};
 
 export default StyledSwitch;

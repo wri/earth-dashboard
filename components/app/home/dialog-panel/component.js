@@ -50,20 +50,13 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
 };
 
 DialogPanel.propTypes = {
-  dialogHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]).isRequired,
+  dialogHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   setDialogHeight: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
-  initialFocus: PropTypes.oneOfType([
-    PropTypes.elementType,
-    PropTypes.string,
-    PropTypes.bool,
-    PropTypes.func
-  ])
+  initialFocus: PropTypes.oneOfType([PropTypes.elementType, PropTypes.string, PropTypes.bool, PropTypes.func])
 };
 
-DialogPanel.defaultProps = {
-
-};
+DialogPanel.defaultProps = {};
 
 export default DialogPanel;
