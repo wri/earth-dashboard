@@ -13,6 +13,7 @@ const MapIframe = forwardRef(
       setAnimationValue,
       setDatasetValue,
       setMonitorValue,
+      animationEnabled,
       animationValue,
       datasetValue,
       monitorValue,
@@ -23,7 +24,9 @@ const MapIframe = forwardRef(
       earthServer,
       layers,
       setLayersLabelArr,
-      setDateOfDataShown
+      setDateOfDataShown,
+      showMapGrid,
+      highDefinitionMode
     },
     ref
   ) => {
@@ -99,6 +102,17 @@ const MapIframe = forwardRef(
       }
     }, [projectionType, earthServer]);
 
+    // Update state when Global Settings are changed
+    useEffect(() => {
+      if (earthServer.current) {
+        earthServer.current.saveState({
+          animation_enabled: animationEnabled,
+          show_grid_points: showMapGrid,
+          hd_enabled: highDefinitionMode
+        });
+      }
+    }, [earthServer, animationEnabled, showMapGrid, highDefinitionMode]);
+
     // Set the current position of the user on the map
     useEffect(() => {
       if (earthServer && currentPosition) {
@@ -164,6 +178,7 @@ MapIframe.propTypes = {
   setAnimationValue: PropTypes.func.isRequired,
   setDatasetValue: PropTypes.func.isRequired,
   setMonitorValue: PropTypes.func.isRequired,
+  animationEnabled: PropTypes.bool.isRequired,
   animationValue: PropTypes.string,
   datasetValue: PropTypes.string,
   monitorValue: PropTypes.string,
@@ -174,7 +189,9 @@ MapIframe.propTypes = {
   earthServer: PropTypes.object,
   layers: PropTypes.array,
   setLayersLabelArr: PropTypes.func.isRequired,
-  setDateOfDataShown: PropTypes.func.isRequired
+  setDateOfDataShown: PropTypes.func.isRequired,
+  showMapGrid: PropTypes.bool.isRequired,
+  highDefinitionMode: PropTypes.bool.isRequired
 };
 
 MapIframe.defaultProps = {

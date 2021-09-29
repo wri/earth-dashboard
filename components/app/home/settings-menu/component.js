@@ -2,7 +2,7 @@ import { createElement } from "react";
 import classnames from "classnames";
 import DialogPanel from "components/app/home/dialog-panel";
 import styles from "./settings-menu.module.scss";
-import settingsFormElements from "constants/globalSettings";
+import settingsFormElements from "schemas/global-settings";
 
 const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
   if (!isSettingsOpen) return null;
