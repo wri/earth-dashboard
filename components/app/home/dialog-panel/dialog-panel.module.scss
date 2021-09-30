@@ -1,19 +1,19 @@
 @import "css/settings";
 
+$transitionDurationMS: 400;
+
+:export {
+  transitionDuration: $transitionDurationMS;
+}
+
 .c-dialog-panel {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  background: linear-gradient(180deg, $black 0%, rgba($black, 0.6) 100%);
   z-index: 15;
-
-  &__overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, $black 0%, rgba($black, 0.6) 100%);
-  }
 
   &__draggable {
     bottom: 0;
@@ -26,5 +26,13 @@
       border-radius: 3px;
       transform: translateX(-50%);
     }
+  }
+
+  // Animate
+  opacity: 0;
+  transition: opacity #{$transitionDurationMS}ms ease-in;
+
+  &--open {
+    opacity: 1;
   }
 }

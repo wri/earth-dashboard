@@ -1,6 +1,7 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
+@import "css/tools/visuallyHidden";
 
 .c-radio-image {
   $this: &;
@@ -19,8 +20,16 @@
     gap: 14px;
   }
 
-  &__input:checked ~ #{$this}__input-label #{$this}__image {
-    border-color: $colour-flame;
+  &__input {
+    @include visually-hidden;
+
+    &:focus ~ #{$this}__input-label #{$this}__image {
+      box-shadow: 0px 0px 2px 3px $colour-flame;
+    }
+
+    &:checked ~ #{$this}__input-label #{$this}__image {
+      border-color: $colour-flame;
+    }
   }
 
   &__input-label--unchecked {
