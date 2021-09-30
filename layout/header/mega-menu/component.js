@@ -1,8 +1,8 @@
-import styles from "components/mega-menu/mega-menu.module.scss";
+import styles from "./mega-menu.module.scss";
 import PropTypes from "prop-types";
 
 const MegaMenu = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => isMegaMenuOpen && (
-  <div className={styles["c-mega-menu"]}>Mega Menu Open</div>
+  <div className={styles["c-mega-menu"]}>Mega Menu Open!</div>
 );
 
 MegaMenu.propTypes = {
