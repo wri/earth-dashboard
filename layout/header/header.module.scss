@@ -19,6 +19,8 @@
       flex-direction: column;
       background-color: $colour-galaxy;
       border-bottom: 8px solid $colour-flame;
+      overflow: auto;
+      max-height: 100%;
     }
   }
 }

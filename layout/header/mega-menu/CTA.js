@@ -6,7 +6,7 @@ import uuid from "react-uuid";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 
-import LinkIcon from "public/static/icons/arrow-up-right-homepage.svg";
+import LinkIcon from "public/static/icons/arrow-right.svg";
 
 const MegaMenuCTA = ({ className, image, title, body, link }) => {
   const { current: titleID } = useRef("mega-menu-cta-title-" + uuid());
@@ -25,7 +25,7 @@ const MegaMenuCTA = ({ className, image, title, body, link }) => {
           {title}
         </h1>
         <div className={styles["c-mega-menu-cta__body"]}>
-          {body && <p id={bodyID}>{body}</p>}
+          {body && <p id={bodyID} className={styles["c-mega-menu-cta__body__p"]}>{body}</p>}
 
           <Link href={link}>
             <a className={styles["c-mega-menu-cta__link"]} aria-labelledby={titleID} aria-describedby={bodyID}>
