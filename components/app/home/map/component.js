@@ -1,6 +1,7 @@
 import { forwardRef, useEffect } from "react";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
 import useCurrentPosition from "hooks/useCurrentPosition";
+import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
 
@@ -113,13 +114,7 @@ const MapIframe = forwardRef(
         earthServer.current.saveState({
           show_grid_points: showMapGrid,
           hd_enabled: highDefinitionMode,
-          map_scene: {
-            version: 2,
-            elements:
-              basemapType === "geography"
-                ? ["admin_1", "disputed_areas", "pacific_groupings", "admin_0", "rivers", "lakes", "coastline"]
-                : ["rivers", "lakes", "coastline"]
-          }
+          map_scene: basemaps[basemapType]
         });
       }
     }, [earthServer, showMapGrid, highDefinitionMode, basemapType]);
