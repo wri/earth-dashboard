@@ -1,0 +1,16 @@
+@import "css/settings";
+
+.c-social-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 2px solid $white;
+  border-radius: 50%;
+
+  &__link {
+    display: inline-flex;
+  }
+}

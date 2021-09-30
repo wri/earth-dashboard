@@ -3,7 +3,100 @@
 @import "css/tools/fontSize";
 
 .c-mega-menu {
-  text-align: center;
-  padding: 5rem;
-  color: $white;
+  width: 1246px;
+  margin: 0 auto;
+
+  &__ctas {
+    display: grid;
+    grid-template-columns: 544px 1fr 1fr;
+    gap: 24px;
+    padding: 70px 0;
+    border-bottom: 1px solid $white;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    color: $white;
+  }
+}
+
+.c-mega-menu-quick-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  a {
+    color: $white;
+  }
+}
+
+.c-mega-menu-socials {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+
+  &__icon:not(:last-child) {
+    margin-right: 12px;
+  }
+}
+
+.c-mega-menu-cta {
+  position: relative;
+  background-color: $colour-night;
+  mix-blend-mode: normal;
+  opacity: 0.4;
+  backdrop-filter: blur(10.8731px);
+  border-radius: 12px;
+  overflow: hidden;
+
+  &:first-child {
+    grid-row-end: span 2;
+  }
+
+  &:hover {
+    background-color: $colour-flame;
+  }
+
+  &--withImage {
+    display: grid;
+    grid-auto-rows: 160px 1fr;
+  }
+
+  &__image {
+    position: relative;
+  }
+
+  &__content {
+    padding: 20px 20px 17px;
+  }
+
+  &__title,
+  &__body {
+    color: $white;
+  }
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__link {
+    align-self: flex-end;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
 }
