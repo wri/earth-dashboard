@@ -11,7 +11,7 @@ import LinkIcon from "public/static/icons/arrow-up-right-homepage.svg";
 const MegaMenuCTA = ({ image, title, body, link }) => {
   const { current: titleID } = useRef("mega-menu-cta-title-" + uuid());
   const { current: bodyID } = useRef("mega-menu-cta-body-" + uuid());
-  
+
   return (
     <div className={classnames(styles["c-mega-menu-cta"], image && styles["c-mega-menu-cta--withImage"])}>
       {image && (
@@ -21,7 +21,9 @@ const MegaMenuCTA = ({ image, title, body, link }) => {
       )}
 
       <div className={styles["c-mega-menu-cta__content"]}>
-        <h1 id={titleID} className={styles["c-mega-menu-cta__title"]}>{title}</h1>
+        <h1 id={titleID} className={styles["c-mega-menu-cta__title"]}>
+          {title}
+        </h1>
         <div className={styles["c-mega-menu-cta__body"]}>
           {body && <p id={bodyID}>{body}</p>}
 
@@ -33,7 +35,7 @@ const MegaMenuCTA = ({ image, title, body, link }) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 MegaMenuCTA.propTypes = {

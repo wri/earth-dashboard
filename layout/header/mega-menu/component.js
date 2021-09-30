@@ -75,34 +75,39 @@ const MegaMenuSocialLinks = [
   }
 ];
 
-const MegaMenu = ({ isMegaMenuOpen }) => isMegaMenuOpen && (
-  <div className={styles["c-mega-menu"]}>
-    <div className={styles["c-mega-menu__ctas"]}>
-      {MegaMenuCTAs.map(({key, ...ctaProps}) => <CTA key={key} {...ctaProps} />)}
-    </div>
-
-    <div className={styles["c-mega-menu__links"]}>
-      <div>
-        <ul className={styles["c-mega-menu-quick-links"]}>
-          {MegaMenuQuickLinks.map(({key, label, link}) => (
-            <li key={key}>
-              <Link href={link}>
-                <a>{label}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
+const MegaMenu = ({ isMegaMenuOpen }) =>
+  isMegaMenuOpen && (
+    <div className={styles["c-mega-menu"]}>
+      <div className={styles["c-mega-menu__ctas"]}>
+        {MegaMenuCTAs.map(({ key, ...ctaProps }) => (
+          <CTA key={key} {...ctaProps} />
+        ))}
       </div>
 
-      <div>
-        <div className={styles["c-mega-menu-socials"]}>
-          {MegaMenuSocialLinks.map(({key, ...socialLinkProps}) => <SocialIcon key={key} className={styles["c-mega-menu-socials__icon"]} {...socialLinkProps} />)}
+      <div className={styles["c-mega-menu__links"]}>
+        <div>
+          <ul className={styles["c-mega-menu-quick-links"]}>
+            {MegaMenuQuickLinks.map(({ key, label, link }) => (
+              <li key={key}>
+                <Link href={link}>
+                  <a>{label}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-        <span>&#169; 2021 Global Commons Alliance. All Rights Reserved</span>
+
+        <div>
+          <div className={styles["c-mega-menu-socials"]}>
+            {MegaMenuSocialLinks.map(({ key, ...socialLinkProps }) => (
+              <SocialIcon key={key} className={styles["c-mega-menu-socials__icon"]} {...socialLinkProps} />
+            ))}
+          </div>
+          <span>&#169; 2021 Global Commons Alliance. All Rights Reserved</span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 
 MegaMenu.propTypes = {
   isMegaMenuOpen: PropTypes.bool.isRequired
