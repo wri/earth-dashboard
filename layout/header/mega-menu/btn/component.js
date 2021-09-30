@@ -3,11 +3,12 @@ import HamBurgerIcon from "public/static/images/hamburger.svg";
 import CloseIcon from "public/static/images/close.svg";
 import PropTypes from "prop-types";
 
-const MegaMenuBtn = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => (
+const MegaMenuBtn = ({ isMegaMenuOpen, setIsMegaMenuOpen, ...rest }) => (
   <IconButton
     aria-label={isMegaMenuOpen ? "Close Menu" : "Open Menu"}
     icon={isMegaMenuOpen ? CloseIcon : HamBurgerIcon}
     onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+    {...rest}
   />
 );
 

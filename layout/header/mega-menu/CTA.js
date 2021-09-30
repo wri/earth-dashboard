@@ -8,12 +8,12 @@ import PropTypes from "prop-types";
 
 import LinkIcon from "public/static/icons/arrow-up-right-homepage.svg";
 
-const MegaMenuCTA = ({ image, title, body, link }) => {
+const MegaMenuCTA = ({ className, image, title, body, link }) => {
   const { current: titleID } = useRef("mega-menu-cta-title-" + uuid());
   const { current: bodyID } = useRef("mega-menu-cta-body-" + uuid());
 
   return (
-    <div className={classnames(styles["c-mega-menu-cta"], image && styles["c-mega-menu-cta--withImage"])}>
+    <div className={classnames(className, styles["c-mega-menu-cta"], image && styles["c-mega-menu-cta--withImage"])}>
       {image && (
         <div className={styles["c-mega-menu-cta__image"]}>
           <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
@@ -39,6 +39,7 @@ const MegaMenuCTA = ({ image, title, body, link }) => {
 };
 
 MegaMenuCTA.propTypes = {
+  className: PropTypes.string,
   image: PropTypes.object,
   title: PropTypes.string.isRequired,
   body: PropTypes.string,
