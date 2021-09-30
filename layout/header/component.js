@@ -17,14 +17,14 @@ const Header = ({ isMegaMenuOpen }) => {
             <LogoLink />
           </div>
           {!isMegaMenuOpen && <HeaderTitle />}
-          <MegaMenuBtn /> 
+          <MegaMenuBtn />
         </header>
 
-        <MegaMenu /> 
+        <MegaMenu />
       </div>
     </div>
   );
-}
+};
 
 Header.propTypes = {
   isMegaMenuOpen: PropTypes.bool.isRequired
