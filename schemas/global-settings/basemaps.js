@@ -13,7 +13,7 @@ const basemapsSchema = {
       { id: "default", label: "Default", image: imageTest },
       { id: "geography", label: "Geography", image: imageTest }
     ],
-    getSelectOption: () => getSettingValueById(ID),
+    getSelectedOption: () => getSettingValueById(ID),
     handleChange: id => setSettingById({ id: ID, newState: id })
   },
   component: RadioImage,

@@ -117,13 +117,13 @@ const Menu = forwardRef(
                   data-testid="tab-1"
                   ref={ref}
                 >
-                  What’s Happening
+                  Climate Alerts
                 </Tab>
                 <Tab className={classnames(styles["c-home-menu__tab"], "u-margin-right-l")} data-testid="tab-2">
-                  Vital Signs
+                  Data Highlights
                 </Tab>
                 <Tab className={styles["c-home-menu__tab"]} data-testid="tab-3">
-                  Dive Into The Data
+                  Advanced Menu
                 </Tab>
                 <Tab className="u-display-none" data-testid="tab-4">
                   Info
