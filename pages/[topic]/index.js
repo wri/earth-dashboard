@@ -8,10 +8,11 @@ import { fetchTopicData } from "services/data";
 
 // components
 import LayoutTopic from "layout/app/topic";
+import NewsTopicLayout from "layout/app/news";
 
 import { CLIMATE, OCEAN, FRESHWATER, FORESTS } from "utils/topics";
 
-function TopicPage({ topicData, widgets, topicNotFound }) {
+function TopicPage({ topic, topicData, widgets, topicNotFound }) {
   // This includes setting the noindex header because static files always return
   // a status 200 but the rendered not found page page should obviously not be indexed
   if (topicNotFound) {
@@ -25,7 +26,11 @@ function TopicPage({ topicData, widgets, topicNotFound }) {
     );
   }
 
-  return <LayoutTopic topicData={topicData} widgets={widgets} />;
+  return <NewsTopicLayout topic={topic} />;
+
+  // Legacy  
+  //   \/
+  //return <LayoutTopic topicData={topicData} widgets={widgets} />;
 }
 
 TopicPage.getInitialProps = async context => {
@@ -41,7 +46,7 @@ TopicPage.getInitialProps = async context => {
   const dataArray = topicData?.[topic]?.topicPage?.data;
   const widgetIDs = dataArray?.filter(elem => elem?.type === "widget")?.map(elem => elem?.id);
 
-  return { topicData, widgets: widgetIDs, topicNotFound };
+  return { topic, topicData, widgets: widgetIDs, topicNotFound };
 };
 
 TopicPage.propTypes = {

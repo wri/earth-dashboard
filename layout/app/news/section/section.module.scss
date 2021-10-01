@@ -1,0 +1,32 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.o-page-section {
+  &:not(:empty) {
+    padding: 24px 24px 40px;
+  }
+
+  &--pb-none:not(:empty) {
+    padding-bottom: 0;
+  }
+
+  &--space {
+    background-color: $colour-space;
+  }
+
+  &--night {
+    background-color: $colour-night;
+  }
+
+  &--galaxy {
+    background-color: $colour-galaxy;
+  }
+
+  &__title {
+    color: $white;
+    @include font-size(20px, 30px);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+}
