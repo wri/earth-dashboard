@@ -50,6 +50,8 @@ const StyledSwitch = forwardRef(({ className, label, isActiveSelector, handleCha
   );
 });
 
+StyledSwitch.displayName = "StyledSwitch";
+
 StyledSwitch.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
