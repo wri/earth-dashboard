@@ -2,21 +2,46 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
+$video-thumbnail-transition-ms: 1000;
+
+:export {
+  transition: $video-thumbnail-transition-ms;
+}
+
 .c-video-article {
   $this: &;
 
   position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 210px;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
+
+  &:after {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+  }
 
   &:hover {
     #{$this}__title {
       background-color: rgba($colour-flame, 0.8);
     }
+  }
+
+  &:active {
+    #{$this}__title {
+      background-color: rgba($colour-night, 0.8);
+    }
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   &__duration-wrap {
@@ -34,7 +59,6 @@
     font-weight: 700;
     background-color: rgba(46, 46, 46, 0.7);
     border-radius: 8px;
-    z-index: 1;
   }
 
   &__play-icon-wrap {
@@ -59,5 +83,17 @@
     backdrop-filter: blur(10.8731px);
     background-color: rgba($colour-galaxy, 0.8);
     transition: background-color 0.3s ease-in-out;
+  }
+}
+
+.c-video-article-thumbnail {
+  opacity: 1;
+  transition: opacity #{$video-thumbnail-transition-ms}ms ease-in-out;
+
+  &--hiding {
+    opacity: 0;
+  }
+  &--hidden {
+    display: none;
   }
 }
