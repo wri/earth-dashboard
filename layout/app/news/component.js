@@ -4,11 +4,75 @@ import { getColorByTopic } from "utils/topics";
 import Layout from "layout/layout/layout-app";
 import HeroBanner from "./hero-banner";
 import Section from "./section";
+import NewsArticle from "components/news-article";
+
+import TestImage from "public/static/images/star-background.png";
 
 const BANNER_BODY_TEST = "Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. By altering climatic conditions, we undermine food and water security, human and ocean health and the survival of countless species. These threats intensify with each half degree that temperatures climb.";
 
+const NEWS_ARTICLES = [
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    author: "Mongabay",
+    date: new Date("28 August 2021"),
+    image: TestImage,
+    link: "www.google.com"
+  },
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    author: "Mongabay",
+    date: new Date("28 August 2021"),
+    image: TestImage,
+    link: "www.google.com"
+  },
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    author: "Mongabay",
+    date: new Date("28 August 2021"),
+    image: TestImage,
+    link: "www.google.com"
+  },
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    author: "Mongabay",
+    date: new Date("28 August 2021"),
+    image: TestImage,
+    link: "www.google.com"
+  },
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    author: "Mongabay",
+    date: new Date("28 August 2021"),
+    image: TestImage,
+    link: "www.google.com"
+  },
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    author: "Mongabay",
+    date: new Date("28 August 2021"),
+    image: TestImage,
+    link: "www.google.com"
+  },
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    author: "Mongabay",
+    date: new Date("28 August 2021"),
+    image: TestImage,
+    link: "www.google.com"
+  },
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    author: "Mongabay",
+    date: new Date("28 August 2021"),
+    image: TestImage,
+    link: "www.google.com"
+  }
+];
+
 const NewsTopicLayout = ({ topic }) => {
   const pageMetadata = getPageMetadataByTopic(topic) || {};
+
+  const mostRecentArticle = NEWS_ARTICLES.shift();
 
   return (
     <Layout
@@ -23,18 +87,20 @@ const NewsTopicLayout = ({ topic }) => {
 
       <Section title="Most Recent">
         {/* Most Recent */}
+        {mostRecentArticle && <NewsArticle featured={true} {...mostRecentArticle} />}
       </Section>
 
       <Section>
         {/* Full width Widget */}
       </Section>
 
-      <Section>
-        {/* Most Watch */}
+      <Section title="Must Watch">
+        {/* Must Watch */}
       </Section>
 
-      <Section>
+      <Section title="More News">
         {/* More News */}
+        {NEWS_ARTICLES?.map(article => <NewsArticle {...article} />)}
       </Section>
 
 

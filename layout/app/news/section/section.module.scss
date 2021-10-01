@@ -29,4 +29,9 @@
     text-transform: uppercase;
     margin-bottom: 12px;
   }
+
+  &__grid {
+    display: grid;
+    gap: 16px;
+  }
 }
