@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/display-name */
 import { render, fireEvent } from "test-utils";
 import RadioImage from "./component";
 import TestImage from "public/static/images/star-background.png";

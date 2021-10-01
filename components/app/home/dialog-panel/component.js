@@ -41,22 +41,25 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
     maxHeight: "90vh"
   };
 
-  const focusTrapOptions = Object.assign(
-    {
-      onDeactivate: () => {
-        setIsIn(false);
-        setTimeout(onClose, transitionDuration);
-      },
-      // Close the Modal when user clicks outside
-      clickOutsideDeactivates: true
-    }
-  );
+  const focusTrapOptions = Object.assign({
+    onDeactivate: () => {
+      setIsIn(false);
+      setTimeout(onClose, transitionDuration);
+    },
+    // Close the Modal when user clicks outside
+    clickOutsideDeactivates: true
+  });
 
   return (
-    <CSSTransition in={isIn} appear={true} timeout={transitionDuration} classNames={{
-      appear: styles["c-dialog-panel--open"],
-      appearDone: styles["c-dialog-panel--open"]
-     }}>
+    <CSSTransition
+      in={isIn}
+      appear={true}
+      timeout={transitionDuration}
+      classNames={{
+        appear: styles["c-dialog-panel--open"],
+        appearDone: styles["c-dialog-panel--open"]
+      }}
+    >
       <div className={styles["c-dialog-panel"]} role="dialog">
         <FocusTrap focusTrapOptions={focusTrapOptions}>
           {isMobile ? <Resizable {...resizableProps}>{children}</Resizable> : children}
