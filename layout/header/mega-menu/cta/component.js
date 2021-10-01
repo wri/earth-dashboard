@@ -25,7 +25,11 @@ const MegaMenuCTA = ({ className, image, title, body, link }) => {
           {title}
         </h1>
         <div className={styles["c-mega-menu-cta__body"]}>
-          {body && <p id={bodyID} className={styles["c-mega-menu-cta__body__p"]}>{body}</p>}
+          {body && (
+            <p id={bodyID} className={styles["c-mega-menu-cta__body__p"]}>
+              {body}
+            </p>
+          )}
 
           <Link href={link}>
             <a className={styles["c-mega-menu-cta__link"]} aria-labelledby={titleID} aria-describedby={bodyID}>

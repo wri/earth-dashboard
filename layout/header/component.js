@@ -16,7 +16,10 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
   };
 
   return (
-    <div className={classnames(styles["c-mega-menu-wrapper"], isMegaMenuOpen && styles["c-mega-menu-wrapper--open"])} data-testid="header">
+    <div
+      className={classnames(styles["c-mega-menu-wrapper"], isMegaMenuOpen && styles["c-mega-menu-wrapper--open"])}
+      data-testid="header"
+    >
       <FocusTrap active={isMegaMenuOpen} focusTrapOptions={focusTrapOptions}>
         <div className={styles["c-mega-menu-wrapper__bg"]}>
           <header className={styles["c-site-header"]}>

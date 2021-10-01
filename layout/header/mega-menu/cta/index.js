@@ -1,3 +1,3 @@
 import MegaMenuCTAComponent from "./component";
 
-export default MegaMenuCTAComponent
+export default MegaMenuCTAComponent;
