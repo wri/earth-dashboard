@@ -1,0 +1,63 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-video-article {
+  $this: &;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 210px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    #{$this}__title {
+      background-color: rgba($colour-flame, 0.8);
+    }
+  }
+
+  &__duration-wrap {
+    flex: 0 1 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  &__duration {
+    margin: 16px 16px 8px 0px;
+    padding: 4px 8px;
+    color: $white;
+    @include font-size(13.45px, 20.17px);
+    font-weight: 700;
+    background-color: rgba(46, 46, 46, 0.7);
+    border-radius: 8px;
+    z-index: 1;
+  }
+
+  &__play-icon-wrap {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    margin: 8px;
+  }
+
+  &__title-wrap {
+    flex: 0 1 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__title {
+    color: $white;
+    padding: 11px 20px;
+    @include font-size(14px, 21px);
+    font-weight: 500;
+    mix-blend-mode: normal;
+    backdrop-filter: blur(10.8731px);
+    background-color: rgba($colour-galaxy, 0.8);
+    transition: background-color 0.3s ease-in-out;
+  }
+}

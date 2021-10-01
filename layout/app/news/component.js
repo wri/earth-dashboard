@@ -5,6 +5,7 @@ import Layout from "layout/layout/layout-app";
 import HeroBanner from "./hero-banner";
 import Section from "./section";
 import NewsArticle from "components/news-article";
+import VideoArticle from "components/video-article";
 
 import TestImage from "public/static/images/star-background.png";
 
@@ -69,6 +70,27 @@ const NEWS_ARTICLES = [
   }
 ];
 
+const VIDEOS = [
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    duration: "2:30",
+    image: TestImage,
+    videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
+  },
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    duration: "2:30",
+    image: TestImage,
+    videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
+  },
+  {
+    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+    duration: "2:30",
+    image: TestImage,
+    videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
+  }
+];
+
 const NewsTopicLayout = ({ topic }) => {
   const pageMetadata = getPageMetadataByTopic(topic) || {};
 
@@ -96,6 +118,7 @@ const NewsTopicLayout = ({ topic }) => {
 
       <Section title="Must Watch">
         {/* Must Watch */}
+        {VIDEOS?.map(video => <VideoArticle {...video} />)}
       </Section>
 
       <Section title="More News">
