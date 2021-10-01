@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import LogoLink from "components/ui/logo-link/index";
+import LogoLink from "components/ui/logo-link";
 import HeaderTitle from "layout/header/header-title";
 import MegaMenuBtn from "layout/header/mega-menu/btn";
 import MegaMenu from "layout/header/mega-menu";
@@ -16,7 +16,7 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
   };
 
   return (
-    <div className={classnames(styles["c-mega-menu-wrapper"], isMegaMenuOpen && styles["c-mega-menu-wrapper--open"])}>
+    <div className={classnames(styles["c-mega-menu-wrapper"], isMegaMenuOpen && styles["c-mega-menu-wrapper--open"])} data-testid="header">
       <FocusTrap active={isMegaMenuOpen} focusTrapOptions={focusTrapOptions}>
         <div className={styles["c-mega-menu-wrapper__bg"]}>
           <header className={styles["c-site-header"]}>

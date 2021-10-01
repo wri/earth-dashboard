@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./mega-menu.module.scss";
+import styles from "./mega-menu-cta.module.scss";
 import uuid from "react-uuid";
 import classnames from "classnames";
 import PropTypes from "prop-types";
