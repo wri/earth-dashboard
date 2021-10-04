@@ -103,7 +103,9 @@ const MegaMenu = ({ isMegaMenuOpen }) =>
               <SocialIcon key={key} className={styles["c-mega-menu-socials__icon"]} {...socialLinkProps} />
             ))}
           </div>
-          <span className={styles["c-mega-menu__links__copy-right"]}>&#169; 2021 Global Commons Alliance. All Rights Reserved</span>
+          <span className={styles["c-mega-menu__links__copy-right"]}>
+            &#169; 2021 Global Commons Alliance. All Rights Reserved
+          </span>
         </div>
       </div>
     </div>
