@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { render } from "test-utils";
 import MegaMenu from "./component";
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { render, fireEvent } from "test-utils";
 import Header from "./component";
 
