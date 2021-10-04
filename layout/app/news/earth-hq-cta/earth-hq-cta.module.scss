@@ -1,0 +1,43 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-earth-hq-cta {
+  &:not(:empty) {
+    padding: 60px !important;
+  }
+
+  background-image: url("/static/images/star-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__content {
+    padding: 80px 40px;
+    width: 100%;
+    max-width: 600px;
+    backdrop-filter: blur(10.8731px);
+    background-color: rgba($colour-galaxy, 0.6);
+    border-radius: 12px;
+  }
+
+  &__title,
+  &__text {
+    color: $white;
+  }
+
+  &__title {
+    @include font-size(32px, 48px);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  &__text {
+    @include font-size(18px, 27px);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  &__link {
+    min-width: 257px;
+  }
+}

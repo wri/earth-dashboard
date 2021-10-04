@@ -8,13 +8,16 @@ const Section = ({ className, gridClassName, title, bgColour, pb, children }) =>
     className={classnames(
       className,
       styles["o-page-section"],
+      !pb && styles["o-page-section__wrap--pb-none"],
       bgColour && styles[`o-page-section--${bgColour}`]
     )}
   >
-    <div className={classnames(styles["o-page-section__wrap"], !pb && styles["o-page-section__wrap--pb-none"])}>
-      {title && Children.count(children) > 0 && <h1 className={styles["o-page-section__title"]}>{title}</h1>}
-      {Children.count(children) > 0 && <div className={classnames(styles["o-page-section__grid"], gridClassName)}>{children}</div>}
-    </div>
+    {Children.count(children) > 0 && (
+      <div className={styles["o-page-section__wrap"]}>
+        {title && <h1 className={styles["o-page-section__title"]}>{title}</h1>}
+        <div className={classnames(styles["o-page-section__grid"], gridClassName)}>{children}</div>
+      </div>
+    )}
   </div>
 );
 

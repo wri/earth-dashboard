@@ -149,3 +149,13 @@
     }
   }
 }
+
+.c-page-section-grid-news-articles {
+  display: grid;
+  gap: 16px;
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+  }
+}

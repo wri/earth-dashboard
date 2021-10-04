@@ -2,7 +2,23 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
+$o-page-section-padding-y: 24px;
+$o-page-section-padding-x: 24px;
+$o-page-section-padding-bottom: 40px;
+
+$o-page-section-padding-y-desktop: 40px;
+$o-page-section-padding-x-desktop: 60px;
+$o-page-section-padding-bottom-desktop: 60px;
+
 .o-page-section {
+  &:not(:empty) {
+    padding: $o-page-section-padding-y $o-page-section-padding-x $o-page-section-padding-bottom;
+  }
+
+  &--pb-none:not(:empty) {
+    padding-bottom: 0;
+  }
+
   &--space {
     background-color: $colour-space;
   }
@@ -20,16 +36,8 @@
   }
 
   &__wrap {
-    max-width: 1366px;
+    max-width: 1366px - ($o-page-section-padding-x-desktop * 2);
     margin: 0 auto;
-
-    &:not(:empty) {
-      padding: 24px 24px 40px;
-    }
-
-    &--pb-none:not(:empty) {
-      padding-bottom: 0;
-    }
   }
 
   &__title {
@@ -40,31 +48,19 @@
     margin-bottom: 12px;
   }
 
-  &__grid {
-    display: grid;
-    gap: 16px;
-  }
-
   @media screen and (min-width: $global-breakpoint-md) {
-    &__wrap {
-      &:not(:empty) {
-        padding: 40px 60px 60px;
-      }
+    &:not(:empty) {
+      padding: $o-page-section-padding-y-desktop $o-page-section-padding-x-desktop
+        $o-page-section-padding-bottom-desktop;
+    }
 
-      &--pb-none:not(:empty) {
-        padding-bottom: 0;
-      }
+    &--pb-none:not(:empty) {
+      padding-bottom: 0;
     }
 
     &__title {
       @include font-size(24px, 36px);
       margin-bottom: 20px;
-    }
-
-    &__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 40px;
     }
   }
 }

@@ -4,9 +4,13 @@ import { getColorByTopic } from "utils/topics";
 import Layout from "layout/layout/layout-app";
 import HeroBanner from "./hero-banner";
 import Section from "./section";
+import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
 import VideoArticle from "components/video-article";
+import { Desktop, MediaContextProvider } from "utils/responsive";
+import newsArticleStyles from "components/news-article/news-article.module.scss";
 import videoArticleStyles from "components/video-article/video-article.module.scss";
+import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scss";
 
 import TestImage from "public/static/images/star-background.png";
 
@@ -98,7 +102,7 @@ const NewsTopicLayout = ({ topic }) => {
       thumbnail={pageMetadata.thumbnail}
       themeColor={getColorByTopic(topic)}
     >
-      <Section bgColour="galaxy" pb={false}>
+      <Section bgColour="galaxy" pb={false} gridClassName={heroBannerStyles["c-page-section-grid-hero-banner"]}>
         <HeroBanner title={topic} body={BANNER_BODY_TEST} />
       </Section>
 
@@ -116,12 +120,18 @@ const NewsTopicLayout = ({ topic }) => {
         ))}
       </Section>
 
-      <Section title="More News">
+      <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
         {NEWS_ARTICLES?.map(article => (
           <NewsArticle key={article.date.getTime()} {...article} />
         ))}
       </Section>
+
+      <MediaContextProvider>
+        <Desktop>
+          <EarthHQCTA />
+        </Desktop>
+      </MediaContextProvider>
     </Layout>
   );
 };
