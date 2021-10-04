@@ -118,14 +118,14 @@ const NewsTopicLayout = ({ topic }) => {
       <Section title="Must Watch">
         {/* Must Watch */}
         {VIDEOS?.map(video => (
-          <VideoArticle {...video} />
+          <VideoArticle key={video.videoURL} {...video} />
         ))}
       </Section>
 
       <Section title="More News">
         {/* More News */}
         {NEWS_ARTICLES?.map(article => (
-          <NewsArticle {...article} />
+          <NewsArticle key={article.date.getTime()} {...article} />
         ))}
       </Section>
     </Layout>
