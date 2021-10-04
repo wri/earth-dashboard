@@ -5,10 +5,12 @@ import classnames from "classnames";
 import { CSSTransition } from "react-transition-group";
 import styles from "./video-article.module.scss";
 import YouTubePlayIcon from "public/static/icons/youtube-play.svg";
+import ErrorIcon from "public/static/icons/error-circle.svg";
 import PropTypes from "prop-types";
 
 const VideoArticle = ({ className, title, duration, image, videoURL }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const videoPlayerStyles = {
     position: "absolute",
@@ -20,9 +22,9 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
 
   return (
     <article className={classnames(className, styles["c-video-article"])} onClick={() => setIsPlaying(true)}>
-      <ReactPlayer style={videoPlayerStyles} width="100%" height="100%" playing={isPlaying} controls={true} url={videoURL} />
+      <ReactPlayer style={videoPlayerStyles} width="100%" height="100%" playing={isPlaying} controls={true} url={videoURL} onError={() => setHasError(true)} />
 
-      <CSSTransition in={!isPlaying} appear={!isPlaying} timeout={parseInt(styles.transition)} classNames={{
+      <CSSTransition in={!isPlaying || hasError} appear={true} timeout={parseInt(styles.transition)} classNames={{
         exit: styles["c-video-article-thumbnail"],
         exitActive: styles["c-video-article-thumbnail--hiding"],
         exitDone: styles["c-video-article-thumbnail--hidden"],
@@ -36,8 +38,8 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
             </div>
 
             <div className={styles["c-video-article__play-icon-wrap"]}>
-              <button>
-                <Image src={YouTubePlayIcon} role="presentation" alt="" />
+              <button className={styles["c-video-article__play-icon"]}>
+                <Image src={isPlaying && hasError ? ErrorIcon : YouTubePlayIcon} role="presentation" alt="" />
               </button>
             </div>
 

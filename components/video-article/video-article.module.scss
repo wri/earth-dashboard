@@ -68,6 +68,11 @@ $video-thumbnail-transition-ms: 1000;
     margin: 8px;
   }
 
+  &__play-icon {
+    padding: 0;
+    width: 50px;
+  }
+
   &__title-wrap {
     flex: 0 1 100%;
     display: flex;
