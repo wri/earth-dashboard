@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import uuid from "react-uuid";
 import Image from "next/image";
 import ReactPlayer from 'react-player';
 import classnames from "classnames";
@@ -9,20 +10,24 @@ import ErrorIcon from "public/static/icons/error-circle.svg";
 import PropTypes from "prop-types";
 
 const VideoArticle = ({ className, title, duration, image, videoURL }) => {
+  const { current: id } = useRef(uuid());
+  const ref = useRef(null);
+  
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const videoPlayerStyles = {
-    position: "absolute",
-    top: "0",
-    right: "0",
-    bottom: "0",
-    left: "0"
-  };
+  useEffect(() => {
+    if(ref.current && isPlaying && !hasError) {
+      ref.current.querySelector("iframe")?.focus();
+      ref.current.querySelector("video")?.focus();
+    }
+  }, [ref, isPlaying, hasError]);
 
   return (
     <article className={classnames(className, styles["c-video-article"])} onClick={() => setIsPlaying(true)}>
-      <ReactPlayer style={videoPlayerStyles} width="100%" height="100%" playing={isPlaying} controls={true} url={videoURL} onError={() => setHasError(true)} />
+      <div className={classnames(styles["c-video-article__player-wrapper"], !isPlaying && "u-display-none", hasError && "u-display-none")} ref={ref}>
+        <ReactPlayer width="100%" height="100%" playing={isPlaying} controls={true} url={videoURL} onError={() => setHasError(true)} />
+      </div>
 
       <CSSTransition in={!isPlaying || hasError} appear={true} timeout={parseInt(styles.transition)} classNames={{
         exit: styles["c-video-article-thumbnail"],
@@ -38,13 +43,13 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
             </div>
 
             <div className={styles["c-video-article__play-icon-wrap"]}>
-              <button className={styles["c-video-article__play-icon"]}>
+              <button className={styles["c-video-article__play-icon"]} onClick={() => setIsPlaying(true)} aria-label={isPlaying && hasError ? "Error Playing Video" : "Play Video"} disabled={isPlaying && hasError} aria-describedby={!hasError && id}>
                 <Image src={isPlaying && hasError ? ErrorIcon : YouTubePlayIcon} role="presentation" alt="" />
               </button>
             </div>
 
             <div className={styles["c-video-article__title-wrap"]}>
-              <span className={styles["c-video-article__title"]}>{title}</span>
+              <span className={styles["c-video-article__title"]} id={id}>{title}</span>
             </div>
           </div>
         </div>
