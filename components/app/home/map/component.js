@@ -1,9 +1,9 @@
-import { forwardRef, useState, useEffect } from "react";
+import { forwardRef, useEffect } from "react";
 import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
 import useCurrentPosition from "hooks/useCurrentPosition";
+import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
-import { nullLiteral } from "@babel/types";
 
 const MapIframe = forwardRef(
   (
@@ -13,6 +13,7 @@ const MapIframe = forwardRef(
       setAnimationValue,
       setDatasetValue,
       setMonitorValue,
+      animationEnabled,
       animationValue,
       datasetValue,
       monitorValue,
@@ -23,7 +24,10 @@ const MapIframe = forwardRef(
       earthServer,
       layers,
       setLayersLabelArr,
-      setDateOfDataShown
+      setDateOfDataShown,
+      showMapGrid,
+      highDefinitionMode,
+      basemapType
     },
     ref
   ) => {
@@ -77,7 +81,11 @@ const MapIframe = forwardRef(
           }
         });
         setLayersLabelArr(newLayers);
-        const animation = DATA_LAYER_MAP[animationValue] || { animation_enabled: false };
+
+        let animation = { animation_enabled: false };
+        if (animationEnabled && DATA_LAYER_MAP[animationValue]) {
+          animation = DATA_LAYER_MAP[animationValue];
+        }
         const monitor = DATA_LAYER_MAP[monitorValue] || { annotation_type: "none" };
         const dataset = DATA_LAYER_MAP[datasetValue] || { overlay_type: "none", z_level: "surface" };
 
@@ -85,6 +93,7 @@ const MapIframe = forwardRef(
       }
     }, [
       animationValue,
+      animationEnabled,
       datasetValue,
       monitorValue,
       currentTemplate?.attributes?.data_layers,
@@ -98,6 +107,17 @@ const MapIframe = forwardRef(
         earthServer.current.saveState({ projection_type: projectionType });
       }
     }, [projectionType, earthServer]);
+
+    // Update state when Global Settings are changed
+    useEffect(() => {
+      if (earthServer.current) {
+        earthServer.current.saveState({
+          show_grid_points: showMapGrid,
+          hd_enabled: highDefinitionMode,
+          map_scene: basemaps[basemapType]
+        });
+      }
+    }, [earthServer, showMapGrid, highDefinitionMode, basemapType]);
 
     // Set the current position of the user on the map
     useEffect(() => {
@@ -164,6 +184,7 @@ MapIframe.propTypes = {
   setAnimationValue: PropTypes.func.isRequired,
   setDatasetValue: PropTypes.func.isRequired,
   setMonitorValue: PropTypes.func.isRequired,
+  animationEnabled: PropTypes.bool.isRequired,
   animationValue: PropTypes.string,
   datasetValue: PropTypes.string,
   monitorValue: PropTypes.string,
@@ -174,7 +195,10 @@ MapIframe.propTypes = {
   earthServer: PropTypes.object,
   layers: PropTypes.array,
   setLayersLabelArr: PropTypes.func.isRequired,
-  setDateOfDataShown: PropTypes.func.isRequired
+  setDateOfDataShown: PropTypes.func.isRequired,
+  showMapGrid: PropTypes.bool.isRequired,
+  highDefinitionMode: PropTypes.bool.isRequired,
+  basemapType: PropTypes.oneOf(["default", "geography"])
 };
 
 MapIframe.defaultProps = {
