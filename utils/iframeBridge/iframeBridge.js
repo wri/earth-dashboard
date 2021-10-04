@@ -16,12 +16,15 @@ const connect = ({ api, version, initialState, iframe }) => {
       if (origin !== iframeURL.origin || source !== iframe.contentWindow) {
         return;
       }
-      window.removeEventListener("message", listener);
+      // window.removeEventListener("message", listener);
       if (data.success === true) {
         resolve(ports[0]);
-      } else {
-        reject(data);
+        window.removeEventListener("message", listener);
       }
+
+      // else {
+      //   reject(data);
+      // }
     }
 
     window.addEventListener("message", listener);
