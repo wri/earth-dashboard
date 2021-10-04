@@ -4,9 +4,9 @@ import { setSettingsClose, NAME as mapControlsSliceName } from "slices/mapContro
 
 export default connect(
   state => ({
-    isSettingsOpen: state[mapControlsSliceName].isSettingsOpen
+    isOpen: state[mapControlsSliceName].isSettingsOpen
   }),
   {
-    setSettingsClose
+    onClose: setSettingsClose
   }
 )(SettingsMenuComponent);

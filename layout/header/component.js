@@ -23,7 +23,7 @@ import { HEADER_TOPICS_DATA, SHARE_HEADER_TAB, SITE_NAVIGATION_HEADER_TAB, ABOUT
 import styles from "./header.module.scss";
 
 function Header(props) {
-  const { showLogo, openMenu, selectedTab, buttonPosition } = props;
+  const { showLogo, openMenu, selectedTab, buttonPosition, shouldBeFaded } = props;
   const [isOpen, setIsOpen] = useState(openMenu);
   const [tab, setTab] = useState(selectedTab);
   const isServer = typeof window === "undefined";
@@ -140,7 +140,7 @@ function Header(props) {
   );
 
   return (
-    <header className={styles.header}>
+    <header className={classnames(styles.header, shouldBeFaded && "u-opacity-faded")}>
       <MediaContextProvider>
         <Desktop>
           <div
@@ -262,13 +262,15 @@ Header.propTypes = {
   showLogo: PropTypes.bool.isRequired,
   openMenu: PropTypes.bool,
   selectedTab: PropTypes.string,
-  buttonPosition: PropTypes.string
+  buttonPosition: PropTypes.string,
+  shouldBeFaded: PropTypes.bool
 };
 Header.defaultProps = {
   showLogo: true,
   selectedTab: SITE_NAVIGATION_HEADER_TAB,
   openMenu: false,
-  buttonPosition: "center"
+  buttonPosition: "center",
+  shouldBeFaded: false
 };
 
 export default Header;

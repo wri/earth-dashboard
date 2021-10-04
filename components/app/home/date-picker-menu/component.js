@@ -2,51 +2,47 @@ import { createElement } from "react";
 import classnames from "classnames";
 import DialogPanel from "components/app/home/dialog-panel";
 import IconButton from "components/ui/icon-button";
-import styles from "./settings-menu.module.scss";
+import styles from "components/app/home/settings-menu/settings-menu.module.scss";
 import CloseIcon from "public/static/icons/close.svg";
 import settingsFormElements from "schemas/globalSettings";
 import PropTypes from "prop-types";
 import useDialogPanel from "hooks/useDialogPanel";
 
-const SettingsMenu = ({ isOpen, onClose, isMobile }) => {
+const DatePickerMenu = ({ isOpen, onClose, isMobile }) => {
   const { firstInput, shouldAnimate, handleClose } = useDialogPanel(isOpen, onClose);
 
   return (
     isOpen && (
       <DialogPanel onClose={handleClose} isMobile={isMobile} shouldAnimate={shouldAnimate}>
-        <div className={styles["c-settings-menu-modal"]} aria-labelledby="settingsModalTitle" role="document">
+        <div className={styles["c-settings-menu-modal"]} aria-labelledby="dateModalTitle" role="document">
           <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
             <h1
-              id="settingsModalTitle"
+              id="dateModalTitle"
               className={classnames(styles["c-settings-menu-modal__header__title"], "u-margin-bottom-none")}
             >
-              Settings
+              Change Date
             </h1>
             <IconButton
               icon={CloseIcon}
               className={styles["c-settings-menu-modal__close"]}
-              aria-label="Close Settings"
+              aria-label="Close Date Picker"
               onClick={() => handleClose(true)}
             />
           </div>
 
-          <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}>
-            {settingsFormElements.map((formEl, index) =>
-              createElement(formEl.component, { key: formEl.id, ref: !index ? firstInput : null, ...formEl.props })
-            )}
-          </div>
+          <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}></div>
         </div>
       </DialogPanel>
     )
   );
 };
 
-SettingsMenu.propTypes = {
+DatePickerMenu.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired
 };
 
-SettingsMenu.defaultProps = {};
+DatePickerMenu.defaultProps = {};
 
-export default SettingsMenu;
+export default DatePickerMenu;

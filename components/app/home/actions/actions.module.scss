@@ -12,6 +12,7 @@
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
+  transition: opacity 0.3s ease-in;
 
   @media screen and (max-width: $global-breakpoint-md) {
     padding-top: 16px;
