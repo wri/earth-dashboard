@@ -2,9 +2,11 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
+$c-mega-menu-padding-x-desktop: 60px;
+
 .c-mega-menu {
   width: 100%;
-  max-width: 1246px + 60px;
+  max-width: 1246px + $c-mega-menu-padding-x-desktop;
   padding: 0 24px;
   margin: 0 auto;
 
