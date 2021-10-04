@@ -45,7 +45,7 @@ const globalSettings = [
         // PLACEHOLDER TEXT
         { id: "placeholder", label: "Lorem ipsum", image: imageTest }
       ],
-      getSelectOption: () => getSettingValueById("basemaps"),
+      getSelectedOption: () => getSettingValueById("basemaps"),
       handleChange: id => setSettingById({ id: "basemaps", newState: id })
     },
     initialState: "default"
