@@ -45,7 +45,6 @@ const useIframeBridge = callback => {
   const setRef = useCallback(
     node => {
       const connectToNullSchool = async node => {
-        console.log("Connecting to null school iframe", JSON.stringify(earthClient), JSON.stringify(earthServer));
         try {
           setErr(null);
           const resp = await getEarthServer(node, width, createEarthClient);
