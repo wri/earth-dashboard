@@ -28,7 +28,7 @@ function TopicPage({ topic, topicData, widgets, topicNotFound }) {
 
   return <NewsTopicLayout topic={topic} />;
 
-  // Legacy  
+  // Legacy
   //   \/
   //return <LayoutTopic topicData={topicData} widgets={widgets} />;
 }

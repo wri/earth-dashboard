@@ -9,7 +9,8 @@ import VideoArticle from "components/video-article";
 
 import TestImage from "public/static/images/star-background.png";
 
-const BANNER_BODY_TEST = "Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. By altering climatic conditions, we undermine food and water security, human and ocean health and the survival of countless species. These threats intensify with each half degree that temperatures climb.";
+const BANNER_BODY_TEST =
+  "Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. By altering climatic conditions, we undermine food and water security, human and ocean health and the survival of countless species. These threats intensify with each half degree that temperatures climb.";
 
 const NEWS_ARTICLES = [
   {
@@ -112,21 +113,21 @@ const NewsTopicLayout = ({ topic }) => {
         {mostRecentArticle && <NewsArticle featured={true} {...mostRecentArticle} />}
       </Section>
 
-      <Section>
-        {/* Full width Widget */}
-      </Section>
+      <Section>{/* Full width Widget */}</Section>
 
       <Section title="Must Watch">
         {/* Must Watch */}
-        {VIDEOS?.map(video => <VideoArticle {...video} />)}
+        {VIDEOS?.map(video => (
+          <VideoArticle {...video} />
+        ))}
       </Section>
 
       <Section title="More News">
         {/* More News */}
-        {NEWS_ARTICLES?.map(article => <NewsArticle {...article} />)}
+        {NEWS_ARTICLES?.map(article => (
+          <NewsArticle {...article} />
+        ))}
       </Section>
-
-
     </Layout>
   );
 };
