@@ -1,17 +1,14 @@
 @import "css/settings";
+@import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
 .o-page-section {
-  &:not(:empty) {
-    padding: 24px 24px 40px;
-  }
-
-  &--pb-none:not(:empty) {
-    padding-bottom: 0;
-  }
-
   &--space {
     background-color: $colour-space;
+  }
+
+  &--light-space {
+    background-color: rgba($colour-space, 0.96);
   }
 
   &--night {
@@ -20,6 +17,19 @@
 
   &--galaxy {
     background-color: $colour-galaxy;
+  }
+
+  &__wrap {
+    max-width: 1366px;
+    margin: 0 auto;
+
+    &:not(:empty) {
+      padding: 24px 24px 40px;
+    }
+
+    &--pb-none:not(:empty) {
+      padding-bottom: 0;
+    }
   }
 
   &__title {
@@ -33,5 +43,28 @@
   &__grid {
     display: grid;
     gap: 16px;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    &__wrap {
+      &:not(:empty) {
+        padding: 40px 60px 60px;
+      }
+
+      &--pb-none:not(:empty) {
+        padding-bottom: 0;
+      }
+    }
+
+    &__title {
+      @include font-size(24px, 36px);
+      margin-bottom: 20px;
+    }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+    }
   }
 }

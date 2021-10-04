@@ -77,6 +77,7 @@ $video-thumbnail-transition-ms: 1000;
   }
 
   &__play-icon {
+    position: relative;
     padding: 0;
     width: 50px;
 
@@ -92,6 +93,7 @@ $video-thumbnail-transition-ms: 1000;
   }
 
   &__title {
+    width: 100%;
     color: $white;
     padding: 11px 20px;
     @include font-size(14px, 21px);
@@ -100,6 +102,58 @@ $video-thumbnail-transition-ms: 1000;
     backdrop-filter: blur(10.8731px);
     background-color: rgba($colour-galaxy, 0.8);
     transition: background-color 0.3s ease-in-out;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    &__duration {
+      margin: 16px 16px 0 0;
+      padding: 5px 12px;
+      @include font-size(20px, 30px);
+    }
+
+    &__play-icon {
+      width: 60px;
+    }
+
+    &__title {
+      padding: 16px 24px;
+      @include font-size(14px, 21px);
+    }
+  }
+}
+
+@media screen and (min-width: $global-breakpoint-md) {
+  .c-page-section-grid-video-articles {
+    grid-template-columns: 66.66% 1fr !important;
+
+    .c-video-article {
+      $this: ".c-video-article";
+
+      &:nth-child(3n-2) {
+        grid-row-end: span 2;
+
+        #{$this}__duration {
+          margin: 19px 20px 0 0;
+        }
+
+        #{$this}__play-icon {
+          width: 100px;
+        }
+
+        #{$this}__title {
+          padding: 22px 24px;
+          @include font-size(18px, 27px);
+        }
+      }
+
+      &:nth-child(3n-1) {
+        align-self: start;
+      }
+
+      &:nth-child(3n) {
+        align-self: end;
+      }
+    }
   }
 }
 
