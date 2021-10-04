@@ -2,6 +2,8 @@ import { EarthClient } from "./earthClient";
 import * as Comlink from "comlink";
 import * as d3 from "utils/d3";
 
+const CONNECTION_TIMEOUT = 5000;
+
 /**
  * @param {string} api
  * @param {number} version
@@ -16,18 +18,20 @@ const connect = ({ api, version, initialState, iframe }) => {
       if (origin !== iframeURL.origin || source !== iframe.contentWindow) {
         return;
       }
-      // window.removeEventListener("message", listener);
+
       if (data.success === true) {
         resolve(ports[0]);
         window.removeEventListener("message", listener);
       }
-
-      // else {
-      //   reject(data);
-      // }
     }
 
     window.addEventListener("message", listener);
+
+    setTimeout(() => {
+      reject("Timeout on connecting to iframe window");
+      window.removeEventListener("message", listener);
+    }, 5000);
+
     const req = { action: "connect", api, version, initialState };
     iframe.contentWindow.postMessage(req, iframeURL.origin);
   });

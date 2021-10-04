@@ -3,7 +3,6 @@ import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
-import uuid from "react-uuid";
 
 const MapIframe = forwardRef(
   (
@@ -28,10 +27,6 @@ const MapIframe = forwardRef(
     ref
   ) => {
     const { currentPosition } = useCurrentPosition(shouldFetchLocation);
-    const iframeKey = useMemo(() => uuid(), []);
-    useEffect(() => {
-      console.log("Iframe key ", iframeKey);
-    }, [iframeKey]);
 
     // if the current template changes, and there is an earth client, set the data layer values
     useEffect(() => {
@@ -155,7 +150,6 @@ const MapIframe = forwardRef(
         frameBorder="0"
         allowtransparency="true"
         ref={ref}
-        key={iframeKey}
       />
     );
   }
