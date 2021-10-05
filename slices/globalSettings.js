@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import globalSettings from "constants/globalSettings";
+import { ID as showMapGridId } from "schemas/global-settings/show-map-grid";
+import { ID as animationsId } from "schemas/global-settings/animations";
+import { ID as highDefinitionModeId } from "schemas/global-settings/high-definition-mode";
+import { ID as basemapsId } from "schemas/global-settings/basemaps";
 
 export const NAME = "globalSettings";
 
 const initialState = {
-  ...globalSettings.reduce((accumulator, setting) => ({ [setting.id]: setting.initialState, ...accumulator }), {})
+  [showMapGridId]: false,
+  [animationsId]: true,
+  [highDefinitionModeId]: false,
+  [basemapsId]: "default"
 };
 
 const globalSettingsSlice = createSlice({

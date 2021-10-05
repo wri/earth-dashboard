@@ -39,6 +39,7 @@ const Menu = forwardRef(
       currentTemplate,
       setCurrentTemplate,
       animationValue,
+      animationEnabled,
       setAnimationValue,
       datasetValue,
       setDatasetValue,
@@ -116,13 +117,13 @@ const Menu = forwardRef(
                   data-testid="tab-1"
                   ref={ref}
                 >
-                  What’s Happening
+                  Climate Alerts
                 </Tab>
                 <Tab className={classnames(styles["c-home-menu__tab"], "u-margin-right-l")} data-testid="tab-2">
-                  Vital Signs
+                  Data Highlights
                 </Tab>
                 <Tab className={styles["c-home-menu__tab"]} data-testid="tab-3">
-                  Dive Into The Data
+                  Advanced Menu
                 </Tab>
                 <Tab className="u-display-none" data-testid="tab-4">
                   Info
@@ -147,6 +148,7 @@ const Menu = forwardRef(
                     monitorValue={monitorValue}
                     setMonitorValue={setMonitorValue}
                     animationValue={animationValue}
+                    animationEnabled={animationEnabled}
                     setAnimationValue={setAnimationValue}
                     isMobile={isMobile}
                     onSelectInfo={onSelectInfo}
@@ -176,7 +178,8 @@ Menu.propTypes = {
   isMobile: PropTypes.bool.isRequired,
   isClosing: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
-  layers: PropTypes.array.isRequired
+  layers: PropTypes.array.isRequired,
+  animationEnabled: PropTypes.bool.isRequired
 };
 
 export default Menu;

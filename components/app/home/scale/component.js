@@ -30,8 +30,8 @@ Scale.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
   alt: PropTypes.string,
-  min: PropTypes.number,
-  max: PropTypes.number,
+  min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   scaleUnit: PropTypes.string,
   readOnly: PropTypes.bool,
   isHorizontal: PropTypes.bool

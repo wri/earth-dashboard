@@ -15,6 +15,7 @@ const useIframeBridge = callback => {
   const iframeRef = useRef(null);
   const earthServer = useRef(null);
   const [earthClient, setEarthClient] = useState(null);
+  const [err, setErr] = useState(null);
   const [layers, setLayers] = useState([]);
 
   const createEarthClient = useCallback(() => {
@@ -44,10 +45,15 @@ const useIframeBridge = callback => {
   const setRef = useCallback(
     node => {
       const connectToNullSchool = async node => {
-        const resp = await getEarthServer(node, width, createEarthClient);
-        earthServer.current = resp.server;
-        setEarthClient(resp.client);
-        callback();
+        try {
+          setErr(null);
+          const resp = await getEarthServer(node, width, createEarthClient);
+          earthServer.current = resp.server;
+          setEarthClient(resp.client);
+          callback();
+        } catch (err) {
+          setErr(err);
+        }
       };
 
       if (node) {
@@ -63,7 +69,7 @@ const useIframeBridge = callback => {
     [width, createEarthClient, callback]
   );
 
-  return { setRef, iframeRef, earthClient, earthServer, layers };
+  return { setRef, iframeRef, earthClient, earthServer, layers, error: err };
 };
 
 export default useIframeBridge;

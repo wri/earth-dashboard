@@ -25,7 +25,7 @@ const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, da
   const [homePageMapControlsItems, setHomePageControlBarItems] = useState([]);
   const menuRef = useRef(null);
 
-  const { setRef, earthClient, earthServer, layers } = useIframeBridge(() => {
+  const { setRef, earthClient, earthServer, layers, error } = useIframeBridge(() => {
     setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
   });
 
@@ -125,55 +125,66 @@ const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, da
         />
       )}
       <Actions isMobile={isMobile}>
-        {overlayLayer && isMobile && (
-          <div className="u-flex u-flex--align-center u-margin-bottom-xs">
-            <Scale
-              min={scaleData.min}
-              max={scaleData.max}
-              scaleUnit={scaleData.unitSymbol}
-              className={classnames(styles["scale"], styles["scale--mobile"], "u-flex-1 u-margin-right-l")}
-              value="50%"
-              readOnly
-              scaleGradient={overlayLayer.product.scale.getCss(90)}
-              isHorizontal
-            />
-            <MapControls
-              controls={[{ ...settingsButtonConfig, forceDark: true, className: "u-margin-right-none" }]}
-              className="u-margin-top-none"
-            />
-          </div>
-        )}
-        <button
-          className={classnames(
-            actionStyles["c-home-actions__item"],
-            menuButtonStyles["c-home-menu-toggle"],
-            hasMenuOpen && menuButtonStyles["c-home-menu-toggle--open"]
-          )}
-          onClick={toggleMenu}
-          aria-haspopup="true"
-          aria-expanded={hasMenuOpen}
-          aria-controls="menu"
-          id="menu-button"
-          data-testid="toggle"
-        >
-          <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
-            <span>Understand the emergency</span>
-            {layersLabelArr.length > 0 && (
-              <span data-testid="labels-arr">
-                {layersLabelArr.join(", ")}
-                {isMobile && (
-                  <>
-                    <br /> {formatDate(dateOfDataShown)}
-                  </>
-                )}
-              </span>
-            )}
-          </div>
-        </button>
-        {!isMobile && (
+        {error ? (
+          <p role="alert" className="u-text-white">
+            There was an error loading the map, please try again later
+          </p>
+        ) : (
           <>
-            <MapControls controls={homePageMapControlsItems} className={actionStyles["c-home-actions__map-controls"]} />
-            <DatePickerBtn />
+            {overlayLayer && isMobile && (
+              <div className="u-flex u-flex--align-center u-margin-bottom-xs">
+                <Scale
+                  min={scaleData.min}
+                  max={scaleData.max}
+                  scaleUnit={scaleData.unitSymbol}
+                  className={classnames(styles["scale"], styles["scale--mobile"], "u-flex-1 u-margin-right-l")}
+                  value="50%"
+                  readOnly
+                  scaleGradient={overlayLayer.product.scale.getCss(90)}
+                  isHorizontal
+                />
+                <MapControls
+                  controls={[{ ...settingsButtonConfig, forceDark: true, className: "u-margin-right-none" }]}
+                  className="u-margin-top-none"
+                />
+              </div>
+            )}
+            <button
+              className={classnames(
+                actionStyles["c-home-actions__item"],
+                menuButtonStyles["c-home-menu-toggle"],
+                hasMenuOpen && menuButtonStyles["c-home-menu-toggle--open"]
+              )}
+              onClick={toggleMenu}
+              aria-haspopup="true"
+              aria-expanded={hasMenuOpen}
+              aria-controls="menu"
+              id="menu-button"
+              data-testid="toggle"
+            >
+              <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
+                <span>Understand the emergency</span>
+                {layersLabelArr.length > 0 && (
+                  <span data-testid="labels-arr">
+                    {layersLabelArr.join(", ")}
+                    {isMobile && (
+                      <>
+                        <br /> {formatDate(dateOfDataShown)}
+                      </>
+                    )}
+                  </span>
+                )}
+              </div>
+            </button>
+            {!isMobile && (
+              <>
+                <MapControls
+                  controls={homePageMapControlsItems}
+                  className={actionStyles["c-home-actions__map-controls"]}
+                />
+                <DatePickerBtn />
+              </>
+            )}
           </>
         )}
       </Actions>

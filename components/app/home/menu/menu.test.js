@@ -54,7 +54,7 @@ test("<Menu /> renders correctly as desktop", async () => {
               role="tab"
               tabindex="0"
             >
-              What’s Happening
+              Climate Alerts
             </li>
             <li
               aria-controls="react-tabs-3"
@@ -65,7 +65,7 @@ test("<Menu /> renders correctly as desktop", async () => {
               id="react-tabs-2"
               role="tab"
             >
-              Vital Signs
+              Data Highlights
             </li>
             <li
               aria-controls="react-tabs-5"
@@ -76,7 +76,7 @@ test("<Menu /> renders correctly as desktop", async () => {
               id="react-tabs-4"
               role="tab"
             >
-              Dive Into The Data
+              Advanced Menu
             </li>
             <li
               aria-controls="react-tabs-7"
@@ -307,7 +307,7 @@ test("<Menu /> renders correctly as mobile", async () => {
               role="tab"
               tabindex="0"
             >
-              What’s Happening
+              Climate Alerts
             </li>
             <li
               aria-controls="react-tabs-11"
@@ -318,7 +318,7 @@ test("<Menu /> renders correctly as mobile", async () => {
               id="react-tabs-10"
               role="tab"
             >
-              Vital Signs
+              Data Highlights
             </li>
             <li
               aria-controls="react-tabs-13"
@@ -329,7 +329,7 @@ test("<Menu /> renders correctly as mobile", async () => {
               id="react-tabs-12"
               role="tab"
             >
-              Dive Into The Data
+              Advanced Menu
             </li>
             <li
               aria-controls="react-tabs-15"
