@@ -15,6 +15,7 @@ $o-page-section-padding-bottom-desktop: 60px;
     padding: $o-page-section-padding-y $o-page-section-padding-x $o-page-section-padding-bottom;
   }
 
+  // Selector used here to avoid !important
   &--pb-none:not(:empty) {
     padding-bottom: 0;
   }
@@ -54,6 +55,7 @@ $o-page-section-padding-bottom-desktop: 60px;
         $o-page-section-padding-bottom-desktop;
     }
 
+    // Repeated here to avoid !important
     &--pb-none:not(:empty) {
       padding-bottom: 0;
     }

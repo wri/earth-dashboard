@@ -19,6 +19,7 @@ const BANNER_BODY_TEST =
 
 const NEWS_ARTICLES = [
   {
+    key: "1",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
     author: "Mongabay",
     date: new Date("28 August 2021"),
@@ -26,6 +27,7 @@ const NEWS_ARTICLES = [
     link: "www.google.com"
   },
   {
+    key: "2",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
     author: "Mongabay",
     date: new Date("28 August 2021"),
@@ -33,6 +35,7 @@ const NEWS_ARTICLES = [
     link: "www.google.com"
   },
   {
+    key: "3",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
     author: "Mongabay",
     date: new Date("28 August 2021"),
@@ -40,6 +43,7 @@ const NEWS_ARTICLES = [
     link: "www.google.com"
   },
   {
+    key: "4",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
     author: "Mongabay",
     date: new Date("28 August 2021"),
@@ -47,6 +51,7 @@ const NEWS_ARTICLES = [
     link: "www.google.com"
   },
   {
+    key: "5",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
     author: "Mongabay",
     date: new Date("28 August 2021"),
@@ -54,6 +59,7 @@ const NEWS_ARTICLES = [
     link: "www.google.com"
   },
   {
+    key: "6",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
     author: "Mongabay",
     date: new Date("28 August 2021"),
@@ -61,6 +67,7 @@ const NEWS_ARTICLES = [
     link: "www.google.com"
   },
   {
+    key: "7",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
     author: "Mongabay",
     date: new Date("28 August 2021"),
@@ -71,18 +78,21 @@ const NEWS_ARTICLES = [
 
 const VIDEOS = [
   {
+    key: "1",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
     duration: "2:30",
     image: TestImage,
     videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
   },
   {
+    key: "2",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
     duration: "2:30",
     image: TestImage,
     videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
   },
   {
+    key: "3",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
     duration: "2:30",
     image: TestImage,
@@ -116,14 +126,14 @@ const NewsTopicLayout = ({ topic }) => {
       <Section title="Must Watch" bgColour="light-space" gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}>
         {/* Must Watch */}
         {VIDEOS?.map(video => (
-          <VideoArticle key={video.videoURL} {...video} />
+          <VideoArticle {...video} />
         ))}
       </Section>
 
       <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
         {NEWS_ARTICLES?.map(article => (
-          <NewsArticle key={article.date.getTime()} {...article} />
+          <NewsArticle {...article} />
         ))}
       </Section>
 

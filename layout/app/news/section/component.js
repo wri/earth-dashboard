@@ -8,7 +8,7 @@ const Section = ({ className, gridClassName, title, bgColour, pb, children }) =>
     className={classnames(
       className,
       styles["o-page-section"],
-      !pb && styles["o-page-section__wrap--pb-none"],
+      !pb && styles["o-page-section--pb-none"],
       bgColour && styles[`o-page-section--${bgColour}`]
     )}
   >

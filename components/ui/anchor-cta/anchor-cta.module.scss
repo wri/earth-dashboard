@@ -12,8 +12,19 @@
   text-align: center;
   background-color: $colour-flame;
   border-radius: 48px;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: $colour-night;
+  }
+
+  &:active,
+  &:focus {
+    background-color: $colour-galaxy;
+  }
 
   @media screen and (min-width: $global-breakpoint-md) {
+    padding: 8px 40px;
     @include font-size(20px, 30px);
   }
 }

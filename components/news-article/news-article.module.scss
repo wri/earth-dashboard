@@ -11,7 +11,8 @@
   gap: 16px;
   padding: 12px;
   background-color: rgba($colour-night, 0.4);
-  border-radius: 12px;
+  backdrop-filter: blur(10.8731px);
+  border-radius: 16px;
   overflow: hidden;
   transition: background-color 0.3s ease-in-out;
 
@@ -64,8 +65,7 @@
     color: $white;
   }
 
-  &__title,
-  &__link {
+  &__title {
     @include font-size(12px, 18px);
     margin-bottom: 4px;
   }
@@ -78,7 +78,7 @@
   &__link {
     display: flex;
     align-items: center;
-    margin-bottom: 0;
+    @include font-size(12px, 18px);
     text-decoration: underline;
 
     &::after {
@@ -100,8 +100,11 @@
     grid-template-rows: 158px 1fr;
     gap: 0;
     padding: 0;
+    border-radius: 12px;
 
     &--featured {
+      grid-template-rows: 275px 1fr;
+
       #{$this} {
         &__title {
           @include font-size(32px, 48px);
@@ -155,7 +158,16 @@
   gap: 16px;
 
   @media screen and (min-width: $global-breakpoint-md) {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  @media screen and (min-width: $global-breakpoint-lg) {
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+  }
+
+  @media screen and (min-width: $global-breakpoint-xl) {
     gap: 40px;
   }
 }
