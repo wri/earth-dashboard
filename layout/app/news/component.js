@@ -7,6 +7,7 @@ import Section from "./section";
 import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
 import VideoArticle from "components/video-article";
+import Footer from "layout/footer";
 import { Desktop, MediaContextProvider } from "utils/responsive";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import videoArticleStyles from "components/video-article/video-article.module.scss";
@@ -146,6 +147,10 @@ const NewsTopicLayout = ({ topic }) => {
           <EarthHQCTA />
         </Desktop>
       </MediaContextProvider>
+
+      <Section bgColour="galaxy" pb={false}>
+        <Footer />
+      </Section>
     </Layout>
   );
 };
