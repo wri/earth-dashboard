@@ -22,5 +22,8 @@ module.exports = {
     // https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object
     "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }]
   },
-  transformIgnorePatterns: ["^.+\\.module\\.(css|sass|scss)$"]
+  transformIgnorePatterns: [
+    "<rootDir>/node_modules/(?!(d3-selection|d3-zoom|d3-color))",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ]
 };
