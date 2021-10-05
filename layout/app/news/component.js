@@ -129,14 +129,14 @@ const NewsTopicLayout = ({ topic }) => {
         gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
       >
         {/* Must Watch */}
-        {VIDEOS?.map(({key, ...videoProps}) => (
+        {VIDEOS?.map(({ key, ...videoProps }) => (
           <VideoArticle key={key} {...videoProps} />
         ))}
       </Section>
 
       <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
-        {NEWS_ARTICLES?.map(({key, ...articleProps}) => (
+        {NEWS_ARTICLES?.map(({ key, ...articleProps }) => (
           <NewsArticle key={key} {...articleProps} />
         ))}
       </Section>
