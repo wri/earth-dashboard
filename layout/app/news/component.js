@@ -123,17 +123,21 @@ const NewsTopicLayout = ({ topic }) => {
 
       <Section>{/* Full width Widget */}</Section>
 
-      <Section title="Must Watch" bgColour="light-space" gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}>
+      <Section
+        title="Must Watch"
+        bgColour="light-space"
+        gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
+      >
         {/* Must Watch */}
-        {VIDEOS?.map(video => (
-          <VideoArticle {...video} />
+        {VIDEOS?.map(({key, ...videoProps}) => (
+          <VideoArticle key={key} {...videoProps} />
         ))}
       </Section>
 
       <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
-        {NEWS_ARTICLES?.map(article => (
-          <NewsArticle {...article} />
+        {NEWS_ARTICLES?.map(({key, ...articleProps}) => (
+          <NewsArticle key={key} {...articleProps} />
         ))}
       </Section>
 

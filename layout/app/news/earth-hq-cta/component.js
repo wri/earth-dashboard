@@ -8,8 +8,13 @@ const EarthHQCTA = ({ className }) => (
   <Section className={classnames(className, styles["c-earth-hq-cta"])}>
     <div className={styles["c-earth-hq-cta__content"]}>
       <h2 className={styles["c-earth-hq-cta__title"]}>Earth HQ</h2>
-      <p className={styles["c-earth-hq-cta__text"]}>A “Situation Room” for the planet. Earth HQ is an interactive and dynamic platform that tracks the forces imperiling the natural systems that support life on earth. </p>
-      <AnchorLink className={styles["c-earth-hq-cta__link"]} href="/">Explore Earth HQ</AnchorLink>
+      <p className={styles["c-earth-hq-cta__text"]}>
+        A “Situation Room” for the planet. Earth HQ is an interactive and dynamic platform that tracks the forces
+        imperiling the natural systems that support life on earth.{" "}
+      </p>
+      <AnchorLink className={styles["c-earth-hq-cta__link"]} href="/">
+        Explore Earth HQ
+      </AnchorLink>
     </div>
   </Section>
 );

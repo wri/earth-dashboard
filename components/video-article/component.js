@@ -58,7 +58,9 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
 
           <div className={styles["c-video-article__content"]}>
             <div className={styles["c-video-article__duration-wrap"]}>
-              <span className={styles["c-video-article__duration"]} aria-label="Duration">{duration}</span>
+              <span className={styles["c-video-article__duration"]} aria-label="Duration">
+                {duration}
+              </span>
             </div>
 
             <div className={styles["c-video-article__play-icon-wrap"]}>
@@ -69,7 +71,12 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
                 disabled={isPlaying && hasError}
                 aria-describedby={!hasError && id}
               >
-                <Image src={isPlaying && hasError ? ErrorIcon : YouTubePlayIcon} layout="responsive" role="presentation" alt="" />
+                <Image
+                  src={isPlaying && hasError ? ErrorIcon : YouTubePlayIcon}
+                  layout="responsive"
+                  role="presentation"
+                  alt=""
+                />
               </button>
             </div>
 

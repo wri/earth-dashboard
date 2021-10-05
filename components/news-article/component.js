@@ -12,7 +12,9 @@ const NewsArticle = ({ className, featured, title, author, date, image, link }) 
     </div>
 
     <div className={styles["c-news-article__content"]}>
-      {!featured && <span className={classnames(styles["c-news-article__title"], styles["c-news-article__author"])}>{author}</span>}
+      {!featured && (
+        <span className={classnames(styles["c-news-article__title"], styles["c-news-article__author"])}>{author}</span>
+      )}
 
       <span className={styles["c-news-article__title"]}>{title}</span>
       <span className={styles["c-news-article__date"]}>
