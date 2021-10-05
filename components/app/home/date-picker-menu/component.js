@@ -1,12 +1,11 @@
-import { createElement } from "react";
 import classnames from "classnames";
 import DialogPanel from "components/app/home/dialog-panel";
 import IconButton from "components/ui/icon-button";
 import styles from "components/app/home/settings-menu/settings-menu.module.scss";
 import CloseIcon from "public/static/icons/close.svg";
-import settingsFormElements from "schemas/globalSettings";
 import PropTypes from "prop-types";
 import useDialogPanel from "hooks/useDialogPanel";
+import DatePicker from "components/date-picker";
 
 const DatePickerMenu = ({ isOpen, onClose, isMobile }) => {
   const { firstInput, shouldAnimate, handleClose } = useDialogPanel(isOpen, onClose);
@@ -30,7 +29,9 @@ const DatePickerMenu = ({ isOpen, onClose, isMobile }) => {
             />
           </div>
 
-          <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}></div>
+          <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}>
+            <DatePicker />
+          </div>
         </div>
       </DialogPanel>
     )
