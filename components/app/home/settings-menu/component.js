@@ -3,9 +3,9 @@ import classnames from "classnames";
 import DialogPanel from "components/app/home/dialog-panel";
 import IconButton from "components/ui/icon-button";
 import styles from "./settings-menu.module.scss";
+import settingsFormElements from "schemas/global-settings";
 import dialogStyles from "components/app/home/dialog-panel/dialog-panel.module.scss";
 import CloseIcon from "public/static/icons/close.svg";
-import settingsFormElements from "schemas/globalSettings";
 import PropTypes from "prop-types";
 
 const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
