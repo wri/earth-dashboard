@@ -198,7 +198,7 @@ MapIframe.propTypes = {
   setDateOfDataShown: PropTypes.func.isRequired,
   showMapGrid: PropTypes.bool.isRequired,
   highDefinitionMode: PropTypes.bool.isRequired,
-  basemapType: PropTypes.oneOf(["default", "geography"])
+  basemapType: PropTypes.oneOf(Object.keys(basemaps))
 };
 
 MapIframe.defaultProps = {
