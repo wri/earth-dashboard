@@ -8,7 +8,7 @@ import Menu from "components/app/home/menu";
 import SettingsMenu from "components/app/home/settings-menu";
 import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
-import DatePickerBtn from "components/app/home/date-picker/button";
+import DatePickerBtn from "components/app/home/date-picker-menu/button";
 import useIframeBridge from "hooks/useIframeBridge";
 import { fetchTemplates } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
@@ -16,13 +16,22 @@ import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
 import { formatDate } from "utils/dates";
+import DatePickerMenu from "../date-picker-menu";
 
-const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, dateOfDataShown }) => {
+const MainContainer = ({
+  isMobile,
+  setIsMobile,
+  setTemplates,
+  layersLabelArr,
+  dateOfDataShown,
+  shouldFadeControls
+}) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
   const [homePageMapControlsItems, setHomePageControlBarItems] = useState([]);
+
   const menuRef = useRef(null);
 
   const { setRef, earthClient, earthServer, layers, error } = useIframeBridge(() => {
@@ -107,7 +116,7 @@ const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, da
           min={scaleData.min}
           max={scaleData.max}
           scaleUnit={scaleData.unitSymbol}
-          className={styles["scale"]}
+          className={classnames(styles["scale"], shouldFadeControls && "u-opacity-faded")}
           value="50%"
           readOnly
           scaleGradient={overlayLayer.product.scale.getCss(180)}
@@ -124,7 +133,7 @@ const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, da
           layers={layers}
         />
       )}
-      <Actions isMobile={isMobile}>
+      <Actions isMobile={isMobile} className={classnames(shouldFadeControls && "u-opacity-faded")}>
         {error ? (
           <p role="alert" className="u-text-white">
             There was an error loading the map, please try again later
@@ -190,6 +199,7 @@ const MainContainer = ({ isMobile, setIsMobile, setTemplates, layersLabelArr, da
       </Actions>
 
       {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
+      {!isFetchingTemplates && <DatePickerMenu isMobile={isMobile} />}
     </div>
   );
 };

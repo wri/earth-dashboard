@@ -21,6 +21,7 @@ export default connect(
     animationValue: state.templates.animationValue,
     monitorValue: state.templates.monitorValue,
     datasetValue: state.templates.datasetValue,
+    dateOfDataShown: state.templates.dateOfDataShown,
     isSettingsOpen: state[mapControlsSliceName].isSettingsOpen,
     shouldFetchLocation: state[mapControlsSliceName].shouldFetchLocation,
     projectionType: state[mapControlsSliceName].projectionType,

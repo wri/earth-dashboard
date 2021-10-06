@@ -10,6 +10,7 @@
   background-color: $colour-space;
   mix-blend-mode: normal;
   backdrop-filter: blur(10.8731px);
+  box-shadow: 0px 0px 113.425px #000000;
   border-radius: 28px;
   overflow: auto;
 
@@ -44,6 +45,14 @@
     }
   }
 
+  &__body-title {
+    @include font-size(14px, 21px);
+    color: white;
+    font-weight: 500;
+    font-family: "Barlow";
+    margin-bottom: 8px !important;
+  }
+
   @media screen and (min-width: $global-breakpoint-md) {
     top: 40px;
     bottom: 40px;
@@ -51,6 +60,11 @@
     width: 640px;
     height: auto;
     transform: translateX(-50%);
+
+    &__body-title {
+      @include font-size(18px, 27px);
+      margin-bottom: 16px !important;
+    }
 
     &__header {
       padding: 19px 80px 13px;

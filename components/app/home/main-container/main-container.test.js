@@ -80,7 +80,6 @@ test("<MainContainer /> renders correctly as desktop", async () => {
       >
         <button
           class="c-showing-data-for__button"
-          role="button"
         >
           <span
             class="c-showing-data-for__text"
@@ -89,7 +88,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
             <span
               class="c-showing-data-for__date"
             >
-              …
+              2021-10-06
             </span>
           </span>
           <div
@@ -139,6 +138,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
             Wind, Particulate Matter, Fires
             <br />
              
+            2021-10-06
           </span>
         </div>
       </button>

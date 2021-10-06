@@ -8,6 +8,7 @@
   display: flex;
   justify-content: flex-end;
   z-index: 10; // because of navigation dots menu in story telling pages
+  transition: opacity 0.3s ease-in;
 
   .main-container {
     display: flex;

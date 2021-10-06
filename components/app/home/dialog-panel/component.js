@@ -5,14 +5,14 @@ import FocusTrap from "focus-trap-react";
 import styles from "./dialog-panel.module.scss";
 import PropTypes from "prop-types";
 
-const transitionDuration = styles["transitionDuration"];
+const transitionDuration = parseInt(styles["transitionDuration"], 10);
 
-const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobile, forceClose }) => {
+const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobile, shouldAnimate }) => {
   const [isIn, setIsIn] = useState(true);
 
   useEffect(() => {
-    if (forceClose) setIsIn(false);
-  }, [forceClose]);
+    if (shouldAnimate) setIsIn(false);
+  }, [shouldAnimate]);
 
   const handleResize = (e, direction, div) => setDialogHeight({ height: div.offsetHeight });
 
@@ -74,11 +74,11 @@ DialogPanel.propTypes = {
   setDialogHeight: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
-  forceClose: PropTypes.bool.isRequired
+  shouldAnimate: PropTypes.bool.isRequired
 };
 
 DialogPanel.defaultProps = {
-  forceClose: false
+  shouldAnimate: false
 };
 
 export default DialogPanel;
