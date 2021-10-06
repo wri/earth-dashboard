@@ -80,7 +80,6 @@ test("<MainContainer /> renders correctly as desktop", async () => {
       >
         <button
           class="c-showing-data-for__button"
-          role="button"
         >
           <span
             class="c-showing-data-for__text"

@@ -5,7 +5,7 @@ import FocusTrap from "focus-trap-react";
 import styles from "./dialog-panel.module.scss";
 import PropTypes from "prop-types";
 
-const transitionDuration = styles["transitionDuration"];
+const transitionDuration = parseInt(styles["transitionDuration"], 10);
 
 const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobile, shouldAnimate }) => {
   const [isIn, setIsIn] = useState(true);
