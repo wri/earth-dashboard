@@ -31,6 +31,8 @@ Section.propTypes = {
 };
 
 Section.defaultProps = {
+  className: "",
+  gridClassName: "",
   bgColour: "space",
   pb: true
 };

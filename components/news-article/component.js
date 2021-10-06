@@ -40,6 +40,7 @@ NewsArticle.propTypes = {
 };
 
 NewsArticle.defaultProps = {
+  className: "",
   featured: false
 };
 

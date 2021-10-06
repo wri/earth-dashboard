@@ -21,7 +21,7 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
       ref.current.querySelector("iframe")?.focus();
       ref.current.querySelector("video")?.focus();
     }
-  }, [ref, isPlaying, hasError]);
+  }, [isPlaying, hasError]);
 
   return (
     <article className={classnames(className, styles["c-video-article"])} onClick={() => setIsPlaying(true)}>
@@ -100,6 +100,8 @@ VideoArticle.propTypes = {
   videoURL: PropTypes.string.isRequired
 };
 
-VideoArticle.defaultProps = {};
+VideoArticle.defaultProps = {
+  className: ""
+};
 
 export default VideoArticle;

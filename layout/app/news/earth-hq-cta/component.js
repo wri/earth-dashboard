@@ -23,6 +23,8 @@ EarthHQCTA.propTypes = {
   className: PropTypes.string
 };
 
-EarthHQCTA.defaultProps = {};
+EarthHQCTA.defaultProps = {
+  className: ""
+};
 
 export default EarthHQCTA;

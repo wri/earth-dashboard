@@ -13,6 +13,8 @@ AnchorLink.propTypes = {
   href: PropTypes.string.isRequired
 };
 
-AnchorLink.defaultProps = {};
+AnchorLink.defaultProps = {
+  className: ""
+};
 
 export default AnchorLink;
