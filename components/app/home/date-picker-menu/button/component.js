@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 const showingDateForText = "Showing Data for: ";
 
-const DatePickerBtn = ({ isMobile, dateOfDataShown, setIsDatePickerOpen }) => {
+const DatePickerBtn = ({ isMobile, dateOfDataShown, setIsDatePickerOpen, ...rest }) => {
   const handleClick = () => {
     setIsDatePickerOpen(true);
   };
@@ -21,13 +21,14 @@ const DatePickerBtn = ({ isMobile, dateOfDataShown, setIsDatePickerOpen }) => {
           <button
             className={classnames(styles["c-showing-data-for__button"], styles["c-showing-data-for__button--mobile"])}
             onClick={handleClick}
+            {...rest}
           >
             <span className={styles["c-showing-data-for__date"]}>{formatDate(dateOfDataShown) || "\u2026"}</span>
             <IconButton el="div" className={styles["c-showing-data-for__icon"]} icon={chevronRightSVG} />
           </button>
         </>
       ) : (
-        <button className={styles["c-showing-data-for__button"]} onClick={handleClick}>
+        <button className={styles["c-showing-data-for__button"]} onClick={handleClick} {...rest}>
           <span className={styles["c-showing-data-for__text"]}>
             {showingDateForText}
             <span className={styles["c-showing-data-for__date"]}>{formatDate(dateOfDataShown) || "\u2026"}</span>
