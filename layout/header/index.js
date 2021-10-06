@@ -1,8 +1,7 @@
-// component
-import HeaderComponent from "./component";
 import { connect } from "react-redux";
-import { NAME as mapControlsSliceName } from "slices/mapControls";
+import { setIsMegaMenuOpen } from "slices/common";
+import HeaderComponent from "./component";
 
-export default connect(state => ({
-  isFaded: state[mapControlsSliceName].isDatePickerOpen || state[mapControlsSliceName].isSettingsOpen
-}))(HeaderComponent);
+export default connect(state => ({ isMegaMenuOpen: state.common.isMegaMenuOpen }), { setIsMegaMenuOpen })(
+  HeaderComponent
+);
