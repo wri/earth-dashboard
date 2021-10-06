@@ -1,0 +1,41 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-hero-banner {
+  padding-bottom: 16px;
+
+  &__title,
+  &__body {
+    font-weight: 500;
+    color: $white;
+  }
+
+  &__title {
+    @include font-size(20px, 30px);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  &__body {
+    @include font-size(12px, 18px);
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    padding-bottom: 40px;
+
+    &__title {
+      @include font-size(24px, 36px);
+      margin-bottom: 13px;
+    }
+
+    &__body {
+      @include font-size(14px, 21px);
+    }
+  }
+}
+
+.c-page-section-grid-hero-banner {
+  max-width: 600px;
+  margin: 0 auto;
+}
