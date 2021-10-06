@@ -69,6 +69,8 @@ RadioImage.propTypes = {
   handleChange: PropTypes.func.isRequired
 };
 
-RadioImage.defaultProps = {};
+RadioImage.defaultProps = {
+  className: ""
+};
 
 export default RadioImage;
