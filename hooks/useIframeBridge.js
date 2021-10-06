@@ -21,7 +21,6 @@ const useIframeBridge = callback => {
     return new (class EarthClientImpl extends EarthClient {
       layersChanged(layers) {
         const overlayLayer = layers.find(layer => layer.type === "overlay");
-        earthServer.current.getState().then(console.log);
         if (overlayLayer && overlayLayer.product) {
           const { scale } = overlayLayer.product;
           const { colors } = scale;
