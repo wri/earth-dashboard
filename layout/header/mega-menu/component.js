@@ -13,31 +13,31 @@ const MegaMenuCTAs = [
     key: "earth-hq",
     image: TestImage,
     title: "Earth HQ",
-    body: "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata usu.",
+    body: "A “Situation Room” for the planet. Earth HQ is an interactive and dynamic platform that tracks the forces imperiling the natural systems that support life on earth. ",
     link: "/"
   },
   {
     key: "climate",
     title: "Climate",
-    body: "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata usu.",
+    body: "Rising global temperatures pose a threat to every corner of the globe and most aspects of human life.",
     link: "/climate"
   },
   {
     key: "freshwater",
     title: "Freshwater",
-    body: "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata usu.",
+    body: "Rising consumption, climate change and pollution are increasing pressure on water supply. ",
     link: "/freshwater"
   },
   {
     key: "forest",
     title: "Forest",
-    body: "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata usu.",
+    body: "Extreme events and climate change make forest ecosystems even more prone to damage.",
     link: "/forests"
   },
   {
     key: "qcean",
     title: "Ocean",
-    body: "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata usu.",
+    body: "Current pressures on the ocean’s health pose risks to our economies, societies and the environment.",
     link: "/ocean"
   }
 ];
@@ -103,7 +103,9 @@ const MegaMenu = ({ isMegaMenuOpen }) =>
               <SocialIcon key={key} className={styles["c-mega-menu-socials__icon"]} {...socialLinkProps} />
             ))}
           </div>
-          <span>&#169; 2021 Global Commons Alliance. All Rights Reserved</span>
+          <span className={styles["c-mega-menu__links__copy-right"]}>
+            &#169; 2021 Global Commons Alliance. All Rights Reserved
+          </span>
         </div>
       </div>
     </div>

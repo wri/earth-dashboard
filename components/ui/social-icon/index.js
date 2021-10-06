@@ -4,11 +4,15 @@ import styles from "./social-icon.module.scss";
 import PropTypes from "prop-types";
 
 const SocialIcon = ({ className, icon, label, link }) => (
-  <div className={classnames(styles["c-social-icon"], className)}>
-    <a className={styles["c-social-icon__link"]} href={link} aria-label={label}>
-      <Image src={icon} role="presentation" alt="" />
-    </a>
-  </div>
+  <a
+    className={classnames(styles["c-social-icon"], className)}
+    href={link}
+    aria-label={label}
+    target="_blank"
+    rel="nofollow noreferrer"
+  >
+    <Image src={icon} role="presentation" alt="" />
+  </a>
 );
 
 SocialIcon.propTypes = {

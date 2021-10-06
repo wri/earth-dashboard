@@ -1,16 +1,19 @@
 @import "css/settings";
+@import "css/settings/breakpoints";
 
 .c-social-icon {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 10px;
+  width: 36px;
+  height: 36px;
+  padding: 7px;
   border: 2px solid $white;
   border-radius: 50%;
 
-  &__link {
-    display: inline-flex;
+  @media screen and (min-width: $global-breakpoint-md) {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
   }
 }

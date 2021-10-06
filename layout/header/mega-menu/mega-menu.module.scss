@@ -2,24 +2,61 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
+$c-mega-menu-padding-x-desktop: 60px;
+
 .c-mega-menu {
-  width: 1246px;
+  width: 100%;
+  max-width: 1246px + $c-mega-menu-padding-x-desktop;
+  padding: 0 24px;
   margin: 0 auto;
 
   &__ctas {
     display: grid;
-    grid-template-columns: 544px 1fr 1fr;
-    gap: 24px;
-    padding: 70px 0;
+    gap: 12px;
+    padding: 24px 0 20px;
     border-bottom: 1px solid $white;
   }
 
   &__links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 0;
-    color: $white;
+    padding: 20px 0;
+
+    &__copy-right {
+      color: $white;
+      font-weight: 500;
+      @include font-size(12px, 18px);
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    padding: 0 60px;
+
+    &__ctas {
+      gap: 24px;
+    }
+
+    &__links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+
+      &__copy-right {
+        @include font-size(14px, 21px);
+      }
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-lg) {
+    &__ctas {
+      grid-template-columns: 40% 1fr 1fr;
+      padding: 70px 0;
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-xl) {
+    &__ctas {
+      grid-template-columns: 544px 1fr 1fr;
+    }
   }
 }
 
@@ -29,32 +66,56 @@
   list-style: none;
 
   li:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 
   a {
     color: $white;
+    font-weight: 500;
+    @include font-size(14px, 21px);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    li:not(:last-child) {
+      margin-bottom: 8px;
+    }
+
+    a {
+      @include font-size(18px, 27px);
+    }
   }
 }
 
 .c-mega-menu-socials {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 12px;
+  margin: 12px 0 24px;
 
   &__icon:not(:last-child) {
-    margin-right: 12px;
+    margin-right: 8px;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    justify-content: flex-end;
+    margin: 0 0 12px;
+
+    &__icon:not(:last-child) {
+      margin-right: 12px;
+    }
   }
 }
 
 .c-mega-menu-cta {
   position: relative;
-  background-color: $colour-night;
+  background-color: rgba($colour-night, 0.4);
   mix-blend-mode: normal;
-  opacity: 0.4;
   backdrop-filter: blur(10.8731px);
   border-radius: 12px;
   overflow: hidden;
+  transition: background-color 0.16s ease-in-out;
 
   &:first-child {
     grid-row-end: span 2;
@@ -64,9 +125,13 @@
     background-color: $colour-flame;
   }
 
+  &:active {
+    background-color: $colour-night;
+  }
+
   &--withImage {
     display: grid;
-    grid-auto-rows: 160px 1fr;
+    grid-auto-rows: 96px 1fr;
   }
 
   &__image {
@@ -74,21 +139,39 @@
   }
 
   &__content {
-    padding: 20px 20px 17px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+  }
+
+  &__title {
+    @include font-size(20px, 30px);
+    margin-bottom: 4px;
+    text-transform: uppercase;
   }
 
   &__title,
   &__body {
+    font-weight: 500;
     color: $white;
   }
 
   &__body {
     display: flex;
     justify-content: space-between;
+    height: 100%;
+
+    &__p {
+      @include font-size(12px, 18px);
+      margin-bottom: 0;
+    }
   }
 
   &__link {
-    align-self: flex-end;
+    flex: 0 0 24px;
+    margin-left: 28px;
+    align-self: center;
 
     &::after {
       content: "";
@@ -97,6 +180,29 @@
       right: 0;
       bottom: 0;
       left: 0;
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    &--withImage {
+      grid-auto-rows: 160px 1fr;
+    }
+
+    &__content {
+      padding: 20px 20px 17px;
+    }
+
+    &__title {
+      @include font-size(24px, 36px);
+    }
+
+    &__body__p {
+      @include font-size(14px, 21px);
+    }
+
+    &__link {
+      align-self: flex-end;
+      margin-left: 10px;
     }
   }
 }
