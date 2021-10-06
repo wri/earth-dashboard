@@ -61,35 +61,35 @@ describe("Header", () => {
     const { container } = render(<Header isMegaMenuOpen={true} setIsMegaMenuOpen={() => {}} />);
 
     expect(container).toMatchInlineSnapshot(`
-      <div>
+<div>
+  <div
+    class="c-mega-menu-wrapper"
+    data-testid="header"
+  >
+    <div
+      class="c-mega-menu-wrapper__bg"
+    >
+      <header
+        class="c-site-header"
+      >
         <div
-          class="c-mega-menu-wrapper c-mega-menu-wrapper--open"
-          data-testid="header"
+          class="logo-container"
         >
-          <div
-            class="c-mega-menu-wrapper__bg"
-          >
-            <header
-              class="c-site-header"
-            >
-              <div
-                class="logo-container"
-              >
-                <a>
-                  Logo
-                </a>
-              </div>
-              <button>
-                Mega Menu Button
-              </button>
-            </header>
-            <div>
-              Mega Menu
-            </div>
-          </div>
+          <a>
+            Logo
+          </a>
         </div>
+        <button>
+          Mega Menu Button
+        </button>
+      </header>
+      <div>
+        Mega Menu
       </div>
-    `);
+    </div>
+  </div>
+</div>
+`);
   });
 
   test("fires dispatch event when user clicks away", () => {

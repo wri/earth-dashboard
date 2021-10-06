@@ -1,6 +1,14 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
 
+// For the best effect this value should be higher then the transition duration
+// found in: layout/header/mega-menu/mega-menu.module.scss
+$c-mega-menu-wrapper-transition-duration-ms: 800;
+
+:export {
+  transition-duration: $c-mega-menu-wrapper-transition-duration-ms;
+}
+
 .c-mega-menu-wrapper {
   $this: &;
 
@@ -8,7 +16,16 @@
   top: 0;
   right: 0;
   left: 0;
+  background-color: transparent;
   z-index: 1000;
+  transition: background-color #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out;
+
+  &--max-height-override #{$this}__bg {
+    // !important flag used to override the inline style from the component
+    // The animation needs a starting max-height which must be overwritten
+    // by another to work.
+    max-height: calc(var(--vh, 1vh) * 100) !important;
+  }
 
   &--open {
     bottom: 0;
@@ -20,8 +37,31 @@
       background-color: $colour-galaxy;
       border-bottom: 8px solid $colour-flame;
       overflow: auto;
-      max-height: 100%;
     }
+  }
+
+  &--opening {
+    #{$this}__bg {
+      overflow: hidden;
+    }
+  }
+
+  &--closing {
+    background-color: transparent;
+
+    #{$this}__bg {
+      overflow: hidden;
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  &__bg {
+    background-color: transparent;
+    border-color: transparent;
+    transition: background-color #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out,
+      max-height #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out,
+      border-color #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out;
   }
 }
 

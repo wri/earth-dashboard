@@ -2,6 +2,14 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
+// For the best effect this value should be lower then the transition duration
+// found in: layout/header/header.module.scss
+$c-mega-menu-wrapper-transition-duration-ms: 700;
+
+:export {
+  transition-duration: $c-mega-menu-wrapper-transition-duration-ms;
+}
+
 $c-mega-menu-padding-x-desktop: 60px;
 
 .c-mega-menu {
@@ -9,6 +17,12 @@ $c-mega-menu-padding-x-desktop: 60px;
   max-width: 1246px + $c-mega-menu-padding-x-desktop;
   padding: 0 24px;
   margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+
+  &--in {
+    opacity: 1;
+  }
 
   &__ctas {
     display: grid;
