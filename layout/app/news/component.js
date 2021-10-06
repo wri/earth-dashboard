@@ -22,7 +22,7 @@ const NewsTopicLayout = ({ topic }) => {
     const arr = [...NEWS_ARTICLES];
     const first = arr.shift();
     return { firstArticle: first, otherArticles: arr };
-  }, []); 
+  }, []);
 
   return (
     <Layout
