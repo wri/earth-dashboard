@@ -5,7 +5,8 @@ import { setIsDatePickerOpen } from "slices/mapControls";
 export default connect(
   state => ({
     isMobile: state.common.isMobile,
-    dateOfDataShown: new Date(state.templates.dateOfDataShown)
+    dateOfDataShown: new Date(state.templates.dateOfDataShown),
+    disabled: state.mapControls.isDatePickerDisabled
   }),
   {
     setIsDatePickerOpen
