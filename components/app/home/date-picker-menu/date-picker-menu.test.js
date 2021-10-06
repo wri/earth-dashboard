@@ -10,7 +10,7 @@ jest.mock("next/image", () => {
 test("<DatePickerMenu /> fires onClose when close button selected", async () => {
   const mockOnClose = jest.fn();
 
-  const { getByTestId } = render(<DatePickerMenu isOpen isMobile={false} onClose={mockOnClose} />);
+  const { getByTestId } = render(<DatePickerMenu isOpen isMobile={false} onClose={mockOnClose} setDate={() => {}} />);
 
   await waitFor(() => getByTestId("close-button"));
   const button = getByTestId("close-button");
