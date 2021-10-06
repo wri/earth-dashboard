@@ -14,7 +14,7 @@ const MegaMenu = ({ isMegaMenuOpen }) => (
       enterActive: styles["c-mega-menu--in"],
       enterDone: styles["c-mega-menu--in"]
     }}
-    timeout={parseInt(styles["transition-duration"])}
+    timeout={parseInt(styles["transition-duration"], 10)}
     unmountOnExit
   >
     <div className={styles["c-mega-menu"]}>

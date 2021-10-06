@@ -31,7 +31,7 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
         enterDone: classnames(styles["c-mega-menu-wrapper--open"], styles["c-mega-menu-wrapper--max-height-override"]),
         exitActive: classnames(styles["c-mega-menu-wrapper--closing"], styles["c-mega-menu-wrapper--open"])
       }}
-      timeout={parseInt(styles["transition-duration"])}
+      timeout={parseInt(styles["transition-duration"], 10)}
     >
       <div className={styles["c-mega-menu-wrapper"]} data-testid="header">
         <FocusTrap active={isMegaMenuOpen} focusTrapOptions={focusTrapOptions}>
