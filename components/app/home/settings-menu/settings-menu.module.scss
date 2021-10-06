@@ -45,6 +45,14 @@
     }
   }
 
+  &__body-title {
+    @include font-size(14px, 21px);
+    color: white;
+    font-weight: 500;
+    font-family: "Barlow";
+    margin-bottom: 8px !important;
+  }
+
   @media screen and (min-width: $global-breakpoint-md) {
     top: 40px;
     bottom: 40px;
@@ -52,6 +60,11 @@
     width: 640px;
     height: auto;
     transform: translateX(-50%);
+
+    &__body-title {
+      @include font-size(18px, 27px);
+      margin-bottom: 16px !important;
+    }
 
     &__header {
       padding: 19px 80px 13px;

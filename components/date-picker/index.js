@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "./date-picker.module.scss";
@@ -7,7 +7,9 @@ import { format } from "date-fns";
 import IconButton from "components/ui/icon-button";
 import chevronRightSVG from "public/static/icons/chevron-right.svg";
 import chevronLeftSVG from "public/static/icons/chevron-left.svg";
+import liveSVG from "public/static/icons/live.svg";
 import SelectInput from "components/ui/select";
+import Image from "next/image";
 
 const MIN_YEAR = 2013;
 const MAX_YEAR = new Date(new Date().getFullYear() + 5, 11).getFullYear();
@@ -38,20 +40,48 @@ const MONTHS = [
 
 const YEARS = constructYears();
 
-const DatePicker = ({ initialDate, onChange, className }) => {
+const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataButton, className }, ref) => {
   const [selectedDate, setSelectedDate] = useState(initialDate);
   const { cursorDate, headers, body, navigation, view, month, year } = useCalendar();
 
   const setYear = ({ value }) => navigation.setDate(new Date(value, month));
   const setMonth = ({ value }) => navigation.setDate(new Date(year, value));
 
+  const handleDateChange = value => {
+    setSelectedDate(value);
+    onChange(value);
+  };
+
+  const handleSubmit = () => {
+    onSubmit(selectedDate);
+  };
+
+  const handleLiveDate = () => {
+    navigation.setDate(new Date());
+    setSelectedDate(new Date());
+  };
+
+  useEffect(() => {
+    navigation.setDate(new Date(initialDate));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className={classnames(styles["c-date-picker"], className)}>
       <div className={styles["c-date-picker__month-year"]}>
-        <SelectInput options={MONTHS} value={MONTHS.find(option => option.value === month)} onChange={setMonth} />
-        <SelectInput options={YEARS} value={YEARS.find(option => option.value === year)} onChange={setYear} />
+        <SelectInput
+          options={MONTHS}
+          value={MONTHS.find(option => option.value === month)}
+          onChange={setMonth}
+          className={styles["c-date-picker__dropdown"]}
+        />
+        <SelectInput
+          options={YEARS}
+          value={YEARS.find(option => option.value === year)}
+          onChange={setYear}
+          className={styles["c-date-picker__dropdown"]}
+        />
       </div>
-      <button onClick={() => navigation.setDate(new Date(3000, 0))}>Set date to October 22</button>
       <div className={styles["c-date-picker__table-with-nav"]}>
         <div className={styles["c-date-picker__month-buttons"]}>
           <IconButton
@@ -99,7 +129,8 @@ const DatePicker = ({ initialDate, onChange, className }) => {
                             isSelected && styles["c-date-picker__date-button--selected"]
                           )}
                           disabled={!isCurrentMonth}
-                          onClick={() => setSelectedDate(value)}
+                          onClick={() => handleDateChange(value)}
+                          ref={isSelected ? ref : undefined}
                         >
                           {isCurrentMonth && date}
                         </button>
@@ -111,21 +142,41 @@ const DatePicker = ({ initialDate, onChange, className }) => {
             })}
           </tbody>
         </table>
+        {hasLiveDataButton && (
+          <div className={classnames(styles["c-date-picker__live"], "u-margin-top-s")}>
+            <button onClick={handleLiveDate}>
+              <Image src={liveSVG} role="presentation" alt="" /> <span className="u-margin-left-xs">Live Data</span>
+            </button>
+          </div>
+        )}
+        {onSubmit && (
+          <div className={classnames(styles["c-date-picker__submit-container"], "u-text-right")}>
+            <button className="c-button c-button--new-style c-button--flame" onClick={handleSubmit}>
+              Confirm
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
-};
+});
+
+DatePicker.displayName = "DatePicker";
 
 DatePicker.propTypes = {
-  initialDate: PropTypes.date,
+  initialDate: PropTypes.instanceOf(Date),
   onChange: PropTypes.func,
-  className: PropTypes.string
+  onSubmit: PropTypes.func,
+  className: PropTypes.string,
+  hasLiveDataButton: PropTypes.bool
 };
 
 DatePicker.defaultProps = {
   initialDate: new Date(),
   onChange: () => {},
-  className: ""
+  className: "",
+  onSubmit: null,
+  hasLiveDataButton: false
 };
 
 export default DatePicker;
