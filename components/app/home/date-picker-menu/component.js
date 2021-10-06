@@ -13,7 +13,12 @@ const DatePickerMenu = ({ isOpen, onClose, isMobile }) => {
   return (
     isOpen && (
       <DialogPanel onClose={handleClose} isMobile={isMobile} shouldAnimate={shouldAnimate}>
-        <div className={styles["c-settings-menu-modal"]} aria-labelledby="dateModalTitle" role="document">
+        <div
+          className={styles["c-settings-menu-modal"]}
+          aria-labelledby="dateModalTitle"
+          role="document"
+          data-testid="menu"
+        >
           <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
             <h1
               id="dateModalTitle"
@@ -26,6 +31,7 @@ const DatePickerMenu = ({ isOpen, onClose, isMobile }) => {
               className={styles["c-settings-menu-modal__close"]}
               aria-label="Close Date Picker"
               onClick={() => handleClose(true)}
+              data-testid="close-button"
             />
           </div>
 
