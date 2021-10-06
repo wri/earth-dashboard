@@ -23,7 +23,8 @@ const MapIframe = forwardRef(
       earthServer,
       layers,
       setLayersLabelArr,
-      setDateOfDataShown
+      setDateOfDataShown,
+      dateOfDataShown
     },
     ref
   ) => {
@@ -128,18 +129,26 @@ const MapIframe = forwardRef(
       if (dates.length) {
         // Set the current date as the biggest date
         setDateOfDataShown(
-          dates.reduce((accumulator, currentValue) => {
-            if (!accumulator) return currentValue;
+          new Date(
+            dates.reduce((accumulator, currentValue) => {
+              if (!accumulator) return currentValue;
 
-            if (new Date(currentValue).getTime() > new Date(accumulator).getTime()) {
-              return currentValue;
-            } else {
-              return accumulator;
-            }
-          }, null)
-        );
+              if (new Date(currentValue).getTime() > new Date(accumulator).getTime()) {
+                return currentValue;
+              } else {
+                return accumulator;
+              }
+            }, null)
+          )
+        ).toString();
       }
     }, [layers, setDateOfDataShown]);
+
+    useEffect(() => {
+      if (earthServer.current && dateOfDataShown) {
+        earthServer.current.saveState({ time_cursor: dateOfDataShown });
+      }
+    }, [dateOfDataShown, earthServer]);
 
     return (
       <iframe

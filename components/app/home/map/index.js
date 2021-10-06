@@ -18,7 +18,8 @@ export default connect(
     datasetValue: state.templates.datasetValue,
     isSettingsOpen: state[mapControlsSliceName].isSettingsOpen,
     shouldFetchLocation: state[mapControlsSliceName].shouldFetchLocation,
-    projectionType: state[mapControlsSliceName].projectionType
+    projectionType: state[mapControlsSliceName].projectionType,
+    dateOfDataShown: state.templates.dateOfDataShown
   }),
   {
     setAnimationValue: setAnimation,
