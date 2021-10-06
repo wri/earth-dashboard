@@ -10,6 +10,7 @@
   backdrop-filter: blur(1.5px);
   padding: 12px 12px;
   border-radius: 16px;
+  transition: opacity 0.3s ease-in;
 
   label {
     @include font-size(20px, 30px);
