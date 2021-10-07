@@ -35,6 +35,7 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
     #{$this}__bg {
       display: flex;
       flex-direction: column;
+      overflow: hidden;
       background-color: $colour-galaxy;
       border-bottom: 8px solid $colour-flame;
     }
@@ -52,7 +53,7 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
   &__bg {
     background-color: transparent;
     border-color: transparent;
-    overflow: hidden;
+    overflow: visible;
     transition: background-color #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out,
       max-height #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out,
       border-color #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out;
@@ -63,5 +64,28 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 19px 24px 0;
+  padding: 14px 16px 0;
+
+  &__logo {
+    width: 112px;
+  }
+
+  &__btn {
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    padding: 24px 24px 0;
+
+    &__logo {
+      width: 180px;
+    }
+
+    &__btn {
+      width: 48px;
+      height: 48px;
+    }
+  }
 }
