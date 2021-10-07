@@ -11,7 +11,7 @@ const SocialIcon = ({ className, icon, label, link }) => (
     target="_blank"
     rel="nofollow noreferrer"
   >
-    <Image src={icon} role="presentation" alt="" />
+    <Image className={styles["c-social-icon__icon"]} src={icon} role="presentation" alt="" />
   </a>
 );
 
