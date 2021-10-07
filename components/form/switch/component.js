@@ -39,10 +39,10 @@ const StyledSwitch = forwardRef(({ className, label, isActiveSelector, handleCha
         <span className={classnames(styles["c-custom-styled-switch__label"], "u-margin-bottom-none")}>{label}</span>
       )}
       <MediaContextProvider>
-        <Desktop>
+        <Desktop className={styles["c-custom-styled-switch__wrap"]}>
           <Switch {...defaultSwitchProps} {...desktopSwitchProps} />
         </Desktop>
-        <Mobile>
+        <Mobile className={styles["c-custom-styled-switch__wrap"]}>
           <Switch {...defaultSwitchProps} {...mobileSwitchProps} />
         </Mobile>
       </MediaContextProvider>

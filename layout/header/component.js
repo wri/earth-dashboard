@@ -24,7 +24,6 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
       in={isMegaMenuOpen}
       classNames={{
         enterActive: classnames(
-          styles["c-mega-menu-wrapper--opening"],
           styles["c-mega-menu-wrapper--open"],
           styles["c-mega-menu-wrapper--max-height-override"]
         ),
@@ -40,11 +39,11 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
             style={{ maxHeight: headerRef.current && headerRef.current.scrollHeight + "px" }}
           >
             <header className={styles["c-site-header"]} ref={headerRef}>
-              <div className={styles["logo-container"]}>
+              <div className={styles["c-site-header__logo"]}>
                 <LogoLink />
               </div>
               {!isMegaMenuOpen && <HeaderTitle />}
-              <MegaMenuBtn />
+              <MegaMenuBtn className={styles["c-site-header__btn"]} />
             </header>
 
             <MegaMenu />

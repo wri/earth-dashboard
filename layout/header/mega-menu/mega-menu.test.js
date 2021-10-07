@@ -45,41 +45,45 @@ describe("Mega Menu", () => {
     class="c-mega-menu"
   >
     <div
-      class="c-mega-menu__ctas"
+      class="c-mega-menu__scroll"
     >
-      <div>
-        CTA Test
-      </div>
-    </div>
-    <div
-      class="c-mega-menu__links"
-    >
-      <div>
-        <ul
-          class="c-mega-menu-quick-links"
-        >
-          <li>
-            <a>
-              Quick Link Test
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <div
-          class="c-mega-menu-socials"
-        >
-          <a>
-            Social Link Test
-          </a>
+      <div
+        class="c-mega-menu__ctas"
+      >
+        <div>
+          CTA Test
         </div>
-        <span
-          class="c-mega-menu__links__copy-right"
-        >
-          © 
-          2021
-           Global Commons Alliance. All Rights Reserved
-        </span>
+      </div>
+      <div
+        class="c-mega-menu__links"
+      >
+        <div>
+          <ul
+            class="c-mega-menu-quick-links"
+          >
+            <li>
+              <a>
+                Quick Link Test
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div
+            class="c-mega-menu-socials"
+          >
+            <a>
+              Social Link Test
+            </a>
+          </div>
+          <span
+            class="c-mega-menu__links__copy-right"
+          >
+            © 
+            2021
+             Global Commons Alliance. All Rights Reserved
+          </span>
+        </div>
       </div>
     </div>
   </div>

@@ -30,10 +30,12 @@ const SettingsMenu = ({ isOpen, onClose, isMobile }) => {
             />
           </div>
 
-          <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}>
-            {settingsFormElements.map((formEl, index) =>
-              createElement(formEl.component, { key: formEl.id, ref: !index ? firstInput : null, ...formEl.props })
-            )}
+          <div className={styles["c-settings-menu-modal__body"]}>
+            <div className={classnames(styles["c-settings-menu-modal__scroll"], "u-text-white")}>
+              {settingsFormElements.map((formEl, index) =>
+                createElement(formEl.component, { key: formEl.id, ref: !index ? firstInput : null, ...formEl.props })
+              )}
+            </div>
           </div>
         </div>
       </DialogPanel>

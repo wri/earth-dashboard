@@ -1,39 +1,39 @@
-@import 'css/settings';
+@import "css/settings";
+@import "css/settings/zIndex";
 
 .c-layout-app {
+  .gdpr-banner {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    background-color: $grey-darkest;
+    z-index: $z-index-cookies;
 
-    .gdpr-banner {
-        position: fixed;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        background-color: $grey-darkest;
-        z-index: 20;
-
-        &.-desktop {
-            padding: 20px 100px;
-        }
-
-        &.-mobile {
-            padding: 16px 16px;
-        }
-
-        .text {
-            color: $grey-lighter;
-        }
-
-        button {
-            min-width: 70px;
-            height: 34px;
-            color: $white;
-            border: solid 1px $white;
-
-            &:hover {
-                color: $grey-darkest;
-                background-color: $grey-lighter;
-            }
-        }
+    &.-desktop {
+      padding: 20px 100px;
     }
+
+    &.-mobile {
+      padding: 16px 16px;
+    }
+
+    .text {
+      color: $grey-lighter;
+    }
+
+    button {
+      min-width: 70px;
+      height: 34px;
+      color: $white;
+      border: solid 1px $white;
+
+      &:hover {
+        color: $grey-darkest;
+        background-color: $grey-lighter;
+      }
+    }
+  }
 }
