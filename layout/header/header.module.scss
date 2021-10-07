@@ -37,13 +37,6 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
       flex-direction: column;
       background-color: $colour-galaxy;
       border-bottom: 8px solid $colour-flame;
-      overflow: auto;
-    }
-  }
-
-  &--opening {
-    #{$this}__bg {
-      overflow: hidden;
     }
   }
 
@@ -51,7 +44,6 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
     background-color: transparent;
 
     #{$this}__bg {
-      overflow: hidden;
       background-color: transparent;
       border-color: transparent;
     }
@@ -60,6 +52,7 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
   &__bg {
     background-color: transparent;
     border-color: transparent;
+    overflow: hidden;
     transition: background-color #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out,
       max-height #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out,
       border-color #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out;

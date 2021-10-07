@@ -24,7 +24,6 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
       in={isMegaMenuOpen}
       classNames={{
         enterActive: classnames(
-          styles["c-mega-menu-wrapper--opening"],
           styles["c-mega-menu-wrapper--open"],
           styles["c-mega-menu-wrapper--max-height-override"]
         ),

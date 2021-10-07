@@ -1,6 +1,7 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
+@import "css/tools/scrollbar";
 
 // For the best effect this value should be lower then the transition duration
 // found in: layout/header/header.module.scss
@@ -13,26 +14,46 @@ $c-mega-menu-wrapper-transition-duration-ms: 700;
 $c-mega-menu-padding-x-desktop: 60px;
 
 .c-mega-menu {
+  $this: &;
+
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  flex: 0 1 100%;
   max-width: 1246px + $c-mega-menu-padding-x-desktop;
-  padding: 0 24px;
+  padding: 24px 12px 20px;
   margin: 0 auto;
+  overflow: hidden;
   opacity: 0;
-  transition: opacity 0.9s ease-in-out;
+  transition: opacity #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out;
+
+  &--opening,
+  &--closing {
+    #{$this}__scroll {
+      overflow: hidden;
+    }
+  }
 
   &--in {
     opacity: 1;
   }
 
+  &__scroll {
+    flex: 0 1 100%;
+    padding: 0 12px;
+    overflow: auto;
+    @include scrollbars(4px, #b6b8ba, #494d51);
+  }
+
   &__ctas {
     display: grid;
     gap: 12px;
-    padding: 24px 0 20px;
+    padding-bottom: 20px;
     border-bottom: 1px solid $white;
   }
 
   &__links {
-    padding: 20px 0;
+    padding-top: 20px;
 
     &__copy-right {
       color: $white;
@@ -42,7 +63,11 @@ $c-mega-menu-padding-x-desktop: 60px;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
-    padding: 0 60px;
+    padding: 24px 30px;
+
+    &__scroll {
+      padding: 0 30px;
+    }
 
     &__ctas {
       gap: 24px;
@@ -52,7 +77,7 @@ $c-mega-menu-padding-x-desktop: 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 0;
+      padding-top: 24px;
 
       &__copy-right {
         @include font-size(14px, 21px);
@@ -61,9 +86,11 @@ $c-mega-menu-padding-x-desktop: 60px;
   }
 
   @media screen and (min-width: $global-breakpoint-lg) {
+    padding-top: 70px;
+
     &__ctas {
       grid-template-columns: 40% 1fr 1fr;
-      padding: 70px 0;
+      padding-bottom: 70px;
     }
   }
 

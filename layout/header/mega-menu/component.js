@@ -1,4 +1,5 @@
 import CTA from "layout/header/mega-menu/cta";
+import classnames from "classnames";
 import SocialIcon from "components/ui/social-icon";
 import Link from "next/link";
 import { CSSTransition } from "react-transition-group";
@@ -11,41 +12,44 @@ const MegaMenu = ({ isMegaMenuOpen }) => (
   <CSSTransition
     in={isMegaMenuOpen}
     classNames={{
-      enterActive: styles["c-mega-menu--in"],
-      enterDone: styles["c-mega-menu--in"]
+      enterActive: classnames(styles["c-mega-menu--opening"], styles["c-mega-menu--in"]),
+      enterDone: styles["c-mega-menu--in"],
+      exitActive: styles["c-mega-menu--closing"]
     }}
     timeout={parseInt(styles["transition-duration"], 10)}
     unmountOnExit
   >
     <div className={styles["c-mega-menu"]}>
-      <div className={styles["c-mega-menu__ctas"]}>
-        {MegaMenuCTAs.map(({ key, ...ctaProps }) => (
-          <CTA key={key} {...ctaProps} />
-        ))}
-      </div>
-
-      <div className={styles["c-mega-menu__links"]}>
-        <div>
-          <ul className={styles["c-mega-menu-quick-links"]}>
-            {MegaMenuQuickLinks.map(({ key, label, link }) => (
-              <li key={key}>
-                <Link href={link}>
-                  <a>{label}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <div className={styles["c-mega-menu__scroll"]}>
+        <div className={styles["c-mega-menu__ctas"]}>
+          {MegaMenuCTAs.map(({ key, ...ctaProps }) => (
+            <CTA key={key} {...ctaProps} />
+          ))}
         </div>
 
-        <div>
-          <div className={styles["c-mega-menu-socials"]}>
-            {MegaMenuSocialLinks.map(({ key, ...socialLinkProps }) => (
-              <SocialIcon key={key} className={styles["c-mega-menu-socials__icon"]} {...socialLinkProps} />
-            ))}
+        <div className={styles["c-mega-menu__links"]}>
+          <div>
+            <ul className={styles["c-mega-menu-quick-links"]}>
+              {MegaMenuQuickLinks.map(({ key, label, link }) => (
+                <li key={key}>
+                  <Link href={link}>
+                    <a>{label}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-          <span className={styles["c-mega-menu__links__copy-right"]}>
-            &#169; {new Date().getFullYear()} Global Commons Alliance. All Rights Reserved
-          </span>
+
+          <div>
+            <div className={styles["c-mega-menu-socials"]}>
+              {MegaMenuSocialLinks.map(({ key, ...socialLinkProps }) => (
+                <SocialIcon key={key} className={styles["c-mega-menu-socials__icon"]} {...socialLinkProps} />
+              ))}
+            </div>
+            <span className={styles["c-mega-menu__links__copy-right"]}>
+              &#169; {new Date().getFullYear()} Global Commons Alliance. All Rights Reserved
+            </span>
+          </div>
         </div>
       </div>
     </div>
