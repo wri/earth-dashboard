@@ -8,7 +8,7 @@ import { EarthClient } from "utils/iframeBridge/earthClient";
 const MapIframe = forwardRef(
   (
     {
-      currentTemplate,
+      currentMode,
       resetValues,
       setAnimationValue,
       setDatasetValue,
@@ -36,10 +36,10 @@ const MapIframe = forwardRef(
 
     // if the current template changes, and there is an earth client, set the data layer values
     useEffect(() => {
-      if (currentTemplate && earthClient) {
+      if (currentMode && earthClient) {
         const newLayers = [];
         resetValues();
-        const defaults = currentTemplate.attributes.data_layers.default;
+        const defaults = currentMode.attributes.data_layers.default;
         defaults.forEach(layer => {
           let setter = () => {};
           switch (layer.attributes.category.attributes.title) {
@@ -58,32 +58,23 @@ const MapIframe = forwardRef(
         });
         setLayersLabelArr(newLayers);
       }
-    }, [
-      currentTemplate,
-      earthClient,
-      resetValues,
-      setAnimationValue,
-      setDatasetValue,
-      setLayersLabelArr,
-      setMonitorValue
-    ]);
+    }, [currentMode, earthClient, resetValues, setAnimationValue, setDatasetValue, setLayersLabelArr, setMonitorValue]);
 
     // Send the correct state to the map when data layer values change.
     useEffect(() => {
       if (earthServer.current) {
         const newLayers = [];
-        [
-          ...currentTemplate.attributes.data_layers.default,
-          ...currentTemplate?.attributes?.data_layers.available
-        ].forEach(layer => {
-          if (
-            layer.attributes.data_key === animationValue ||
-            layer.attributes.data_key === monitorValue ||
-            layer.attributes.data_key === datasetValue
-          ) {
-            newLayers.push(layer.attributes.title);
+        [...currentMode.attributes.data_layers.default, ...currentMode?.attributes?.data_layers.available].forEach(
+          layer => {
+            if (
+              layer.attributes.data_key === animationValue ||
+              layer.attributes.data_key === monitorValue ||
+              layer.attributes.data_key === datasetValue
+            ) {
+              newLayers.push(layer.attributes.title);
+            }
           }
-        });
+        );
         setLayersLabelArr(newLayers);
 
         let animation = { animation_enabled: false };
@@ -100,7 +91,7 @@ const MapIframe = forwardRef(
       animationEnabled,
       datasetValue,
       monitorValue,
-      currentTemplate?.attributes?.data_layers,
+      currentMode?.attributes?.data_layers,
       earthServer,
       setLayersLabelArr
     ]);
@@ -191,7 +182,7 @@ const MapIframe = forwardRef(
 MapIframe.displayName = "MapIframe";
 
 MapIframe.propTypes = {
-  currentTemplate: PropTypes.object,
+  currentMode: PropTypes.object,
   resetValues: PropTypes.func.isRequired,
   setAnimationValue: PropTypes.func.isRequired,
   setDatasetValue: PropTypes.func.isRequired,
@@ -214,7 +205,7 @@ MapIframe.propTypes = {
 };
 
 MapIframe.defaultProps = {
-  currentTemplate: null,
+  currentMode: null,
   earthServer: null,
   animationValue: null,
   datasetValue: null,

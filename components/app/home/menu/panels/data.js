@@ -12,9 +12,9 @@ import { DATA_LAYER_TYPES } from "constants/datalayers";
 import MobileMapControlsItems from "schemas/control-bar/mobile-home-page";
 
 const DataPanel = ({
-  currentTemplate,
-  setCurrentTemplate,
-  templates,
+  currentMode,
+  setCurrentMode,
+  modes,
   datasetValue,
   setDatasetValue,
   monitorValue,
@@ -26,12 +26,12 @@ const DataPanel = ({
   onSelectInfo,
   layers
 }) => {
-  const animationLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.animation);
-  const datasetLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.dataset);
-  const monitorLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.monitor);
-  const currentTemplateMatch = useMemo(() => {
+  const animationLayers = useDataLayers(currentMode, DATA_LAYER_TYPES.animation);
+  const datasetLayers = useDataLayers(currentMode, DATA_LAYER_TYPES.dataset);
+  const monitorLayers = useDataLayers(currentMode, DATA_LAYER_TYPES.monitor);
+  const currentModeMatch = useMemo(() => {
     // Do the defaults of the template match the current layers.
-    const defaults = currentTemplate.attributes.data_layers.default;
+    const defaults = currentMode.attributes.data_layers.default;
     const defaultKeys = defaults.map(layer => layer.attributes.data_key);
 
     const hasMonitor =
@@ -46,7 +46,7 @@ const DataPanel = ({
       (hasAnimation ? defaultKeys.indexOf(animationValue) > -1 : !Boolean(animationValue)) &&
       (hasDataset ? defaultKeys.indexOf(datasetValue) > -1 : !Boolean(datasetValue))
     );
-  }, [animationValue, currentTemplate.attributes.data_layers, datasetValue, monitorValue]);
+  }, [animationValue, currentMode.attributes.data_layers, datasetValue, monitorValue]);
 
   const source = useMemo(() => {
     const layer = layers.find(layer => layer?.type === "overlay");
@@ -65,19 +65,19 @@ const DataPanel = ({
       </p>
       <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
         <ToggleList
-          selectedValue={currentTemplateMatch ? currentTemplate.id : null}
+          selectedValue={currentModeMatch ? currentMode.id : null}
           onSelect={value => {
-            setCurrentTemplate({ ...templates.find(template => parseInt(value, 10) === template.id) });
+            setCurrentMode({ ...modes.find(template => parseInt(value, 10) === template.id) });
           }}
           title="Templates"
         >
-          {templates.map(template => (
+          {modes.map(template => (
             <ToggleItem value={template.id} className="u-margin-right-xxs u-margin-bottom-xs" key={template.id}>
               {template.attributes.title}
             </ToggleItem>
           ))}
         </ToggleList>
-        <p className={styles["c-home-menu__template-description"]}>{currentTemplate.attributes.description}</p>
+        <p className={styles["c-home-menu__template-description"]}>{currentMode.attributes.description}</p>
         <div className={styles["c-home-menu__data-selection"]}>
           <DataLayers
             title="Dataset"
@@ -120,9 +120,9 @@ const DataPanel = ({
 };
 
 DataPanel.propTypes = {
-  currentTemplate: PropTypes.object,
-  setCurrentTemplate: PropTypes.func.isRequired,
-  templates: PropTypes.array,
+  currentMode: PropTypes.object,
+  setCurrentMode: PropTypes.func.isRequired,
+  modes: PropTypes.array,
   datasetValue: PropTypes.string.isRequired,
   setDatasetValue: PropTypes.func.isRequired,
   monitorValue: PropTypes.string.isRequired,
@@ -137,8 +137,8 @@ DataPanel.propTypes = {
 
 DataPanel.defaultProps = {
   isMobile: false,
-  currentTemplate: null,
-  templates: []
+  currentMode: null,
+  modes: []
 };
 
 export default DataPanel;

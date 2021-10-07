@@ -12,16 +12,17 @@ import {
   setMonitor,
   resetValues,
   setLayersLabelArr,
-  setDateOfDataShown
-} from "slices/templates";
+  setDateOfDataShown,
+  NAME as modesSliceName
+} from "slices/modes";
 
 export default connect(
   state => ({
-    currentTemplate: state.templates.currentTemplate,
-    animationValue: state.templates.animationValue,
-    monitorValue: state.templates.monitorValue,
-    datasetValue: state.templates.datasetValue,
-    dateOfDataShown: state.templates.dateOfDataShown,
+    currentMode: state[modesSliceName].currentMode,
+    animationValue: state[modesSliceName].animationValue,
+    monitorValue: state[modesSliceName].monitorValue,
+    datasetValue: state[modesSliceName].datasetValue,
+    dateOfDataShown: state[modesSliceName].dateOfDataShown,
     isSettingsOpen: state[mapControlsSliceName].isSettingsOpen,
     shouldFetchLocation: state[mapControlsSliceName].shouldFetchLocation,
     projectionType: state[mapControlsSliceName].projectionType,

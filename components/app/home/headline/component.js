@@ -6,12 +6,12 @@ import WidgetPreview from "components/widgets/preview";
 import { useMemo, useEffect } from "react";
 import { logEvent } from "utils/gtag";
 
-const Headline = ({ headline, className, currentTemplate, setIsDatePickerDisabled, ...rest }) => {
+const Headline = ({ headline, className, currentMode, setIsDatePickerDisabled, ...rest }) => {
   const isBrowser = typeof window !== "undefined";
   const activeLayerString = useMemo(() => {
-    const defaultTemplateNames = currentTemplate.attributes.data_layers.default.map(layer => layer.attributes.title);
+    const defaultTemplateNames = currentMode.attributes.data_layers.default.map(layer => layer.attributes.title);
     return defaultTemplateNames.join(", ");
-  }, [currentTemplate]);
+  }, [currentMode]);
 
   useEffect(() => {
     setIsDatePickerDisabled(true);
@@ -87,13 +87,13 @@ const Headline = ({ headline, className, currentTemplate, setIsDatePickerDisable
 Headline.propTypes = {
   headline: PropTypes.object.isRequired,
   className: PropTypes.string,
-  currentTemplate: PropTypes.object,
+  currentMode: PropTypes.object,
   setIsDatePickerDisabled: PropTypes.func.isRequired
 };
 
 Headline.defaultProps = {
   className: "",
-  currentTemplate: null
+  currentMode: null
 };
 
 export default Headline;

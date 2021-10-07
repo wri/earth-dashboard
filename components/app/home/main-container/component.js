@@ -18,14 +18,7 @@ import settingsButtonConfig from "constants/control-bar/controls/settings";
 import { formatDate } from "utils/dates";
 import DatePickerMenu from "../date-picker-menu";
 
-const MainContainer = ({
-  isMobile,
-  setIsMobile,
-  setTemplates,
-  layersLabelArr,
-  dateOfDataShown,
-  shouldFadeControls
-}) => {
+const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOfDataShown, shouldFadeControls }) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
@@ -89,16 +82,16 @@ const MainContainer = ({
     const getTemplates = async () => {
       try {
         const resp = await fetchModes();
-        setTemplates(resp.data.data);
+        setModes(resp.data.data);
       } catch (err) {
-        console.log("Error fetching templates");
+        console.log("Error fetching modes");
       } finally {
         setIsFetchingTemplates(false);
       }
     };
 
     getTemplates();
-  }, [setTemplates]);
+  }, [setModes]);
 
   return (
     <div
@@ -207,7 +200,7 @@ const MainContainer = ({
 MainContainer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
   setIsMobile: PropTypes.func.isRequired,
-  setTemplates: PropTypes.func.isRequired,
+  setModes: PropTypes.func.isRequired,
   layersLabelArr: PropTypes.array.isRequired,
   dateOfDataShown: PropTypes.instanceOf(Date).isRequired
 };

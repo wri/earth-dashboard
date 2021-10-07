@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export const NAME = "modes";
+
 const initialState = {
-  currentTemplate: null,
-  allTemplates: null,
+  currentMode: null,
+  allModes: null,
   animationValue: "",
   datasetValue: "",
   monitorValue: "",
@@ -10,8 +12,8 @@ const initialState = {
   dateOfDataShown: new Date().toString()
 };
 
-const templatesSlice = createSlice({
-  name: "templates",
+const modesSlice = createSlice({
+  name: NAME,
   initialState,
   reducers: {
     resetValues(state) {
@@ -19,14 +21,14 @@ const templatesSlice = createSlice({
       state.datasetValue = "";
       state.monitorValue = "";
     },
-    setTemplates(state, action) {
-      state.allTemplates = action.payload;
-      if (!state.currentTemplate) {
-        state.currentTemplate = action.payload[0];
+    setModes(state, action) {
+      state.allModes = action.payload;
+      if (!state.currentMode) {
+        state.currentMode = action.payload[0];
       }
     },
-    setCurrentTemplate(state, action) {
-      state.currentTemplate = action.payload;
+    setCurrentMode(state, action) {
+      state.currentMode = action.payload;
     },
     setAnimation(state, action) {
       state.animationValue = action.payload;
@@ -51,13 +53,13 @@ const templatesSlice = createSlice({
 });
 
 export const {
-  setTemplates,
-  setCurrentTemplate,
+  setModes,
+  setCurrentMode,
   setAnimation,
   setDataset,
   setMonitor,
   resetValues,
   setLayersLabelArr,
   setDateOfDataShown
-} = templatesSlice.actions;
-export default templatesSlice.reducer;
+} = modesSlice.actions;
+export default modesSlice.reducer;

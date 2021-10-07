@@ -34,10 +34,9 @@ const Menu = forwardRef(
       isMobile,
       onClose,
       isClosing,
-      templates,
-      setTemplates,
-      currentTemplate,
-      setCurrentTemplate,
+      modes,
+      currentMode,
+      setCurrentMode,
       animationValue,
       animationEnabled,
       setAnimationValue,
@@ -140,9 +139,9 @@ const Menu = forwardRef(
                 </TabPanel>
                 <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-3">
                   <DataPanel
-                    currentTemplate={currentTemplate}
-                    setCurrentTemplate={setCurrentTemplate}
-                    templates={templates}
+                    currentMode={currentMode}
+                    setCurrentMode={setCurrentMode}
+                    modes={modes}
                     datasetValue={datasetValue}
                     setDatasetValue={setDatasetValue}
                     monitorValue={monitorValue}
@@ -153,6 +152,7 @@ const Menu = forwardRef(
                     isMobile={isMobile}
                     onSelectInfo={onSelectInfo}
                     layers={layers}
+                    // TODO Refactor Data panel to pull from redux instead of passing props from parent.
                   />
                 </TabPanel>
                 <TabPanel>
