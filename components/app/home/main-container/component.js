@@ -10,7 +10,7 @@ import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
 import DatePickerBtn from "components/app/home/date-picker-menu/button";
 import useIframeBridge from "hooks/useIframeBridge";
-import { fetchTemplates } from "services/gca";
+import { fetchModes } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
@@ -88,7 +88,7 @@ const MainContainer = ({
     setIsFetchingTemplates(true);
     const getTemplates = async () => {
       try {
-        const resp = await fetchTemplates();
+        const resp = await fetchModes();
         setTemplates(resp.data.data);
       } catch (err) {
         console.log("Error fetching templates");
