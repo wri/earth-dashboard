@@ -68,7 +68,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           <span
             data-testid="labels-arr"
           >
-            Wind, Particulate Matter, Fires
+            Smoke, Fires, Wind
           </span>
         </div>
       </button>
@@ -88,7 +88,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
             <span
               class="c-showing-data-for__date"
             >
-              2021-10-06
+              2021-10-07
             </span>
           </span>
           <div
@@ -135,10 +135,10 @@ test("<MainContainer /> renders correctly as mobile", async () => {
           <span
             data-testid="labels-arr"
           >
-            Wind, Particulate Matter, Fires
+            Smoke, Fires, Wind
             <br />
              
-            2021-10-06
+            2021-10-07
           </span>
         </div>
       </button>
