@@ -7,6 +7,10 @@
   justify-content: space-between;
   align-items: center;
 
+  &__wrap {
+    display: flex;
+  }
+
   &__label {
     color: $white;
     @include font-size(14px, 21px);

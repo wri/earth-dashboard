@@ -1,4 +1,5 @@
 @import "css/settings";
+@import "css/settings/zIndex";
 
 $transitionDurationMS: 400;
 
@@ -13,12 +14,11 @@ $transitionDurationMS: 400;
   bottom: 0;
   left: 0;
   background: linear-gradient(180deg, rgba($black, 0.6) 0%, rgba($black, 0.3) 100%);
-  z-index: 15;
+  z-index: $z-index-dialog;
 
   &__draggable {
     bottom: 0;
     left: 0;
-    z-index: 1000;
 
     &__handle {
       background-color: $white;
