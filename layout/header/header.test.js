@@ -23,38 +23,38 @@ describe("Header", () => {
     const { container } = render(<Header isMegaMenuOpen={false} setIsMegaMenuOpen={() => {}} />);
 
     expect(container).toMatchInlineSnapshot(`
-      <div>
+<div>
+  <div
+    class="c-mega-menu-wrapper"
+    data-testid="header"
+  >
+    <div
+      class="c-mega-menu-wrapper__bg"
+    >
+      <header
+        class="c-site-header"
+      >
         <div
-          class="c-mega-menu-wrapper"
-          data-testid="header"
+          class="c-site-header__logo"
         >
-          <div
-            class="c-mega-menu-wrapper__bg"
-          >
-            <header
-              class="c-site-header"
-            >
-              <div
-                class="logo-container"
-              >
-                <a>
-                  Logo
-                </a>
-              </div>
-              <div>
-                Header Title
-              </div>
-              <button>
-                Mega Menu Button
-              </button>
-            </header>
-            <div>
-              Mega Menu
-            </div>
-          </div>
+          <a>
+            Logo
+          </a>
         </div>
+        <div>
+          Header Title
+        </div>
+        <button>
+          Mega Menu Button
+        </button>
+      </header>
+      <div>
+        Mega Menu
       </div>
-    `);
+    </div>
+  </div>
+</div>
+`);
   });
 
   test("Renders Correctly when mega menu is open", () => {
@@ -73,7 +73,7 @@ describe("Header", () => {
         class="c-site-header"
       >
         <div
-          class="logo-container"
+          class="c-site-header__logo"
         >
           <a>
             Logo
