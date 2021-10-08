@@ -1,0 +1,84 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-footer-section {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding-bottom: 24px;
+
+  &__links {
+    margin: 0;
+    padding: 16px 0;
+    list-style: none;
+
+    &--navigation {
+      border-bottom: 1px solid $white;
+    }
+  }
+
+  &__link,
+  &__copyright {
+    color: $white;
+    @include font-size(12px, 18px);
+    font-weight: 500;
+  }
+
+  &__link {
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    flex-direction: row;
+    padding-bottom: 60px;
+
+    &__logo {
+      flex: 0 0 100%;
+      margin-bottom: 48px;
+    }
+
+    &__links {
+      padding: 0;
+      flex: 1 0 300px;
+
+      &--navigation {
+        border: 0;
+      }
+    }
+
+    &__link,
+    &__copyright {
+      @include font-size(14px, 21px);
+    }
+
+    &__socials {
+      flex: 1 1 auto;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.c-footer-section-socials {
+  padding-bottom: 24px;
+
+  &__icon:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    padding-bottom: 16px;
+  }
+}

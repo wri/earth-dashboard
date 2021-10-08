@@ -12,7 +12,7 @@ jest.mock("react-uuid", () => () => "1");
 
 describe("Mega Menu CTA", () => {
   test("Renders correctly without an image", () => {
-    const { container } = render(<CTA className="Test" title="Title" body="Body" link="/" />);
+    const { container } = render(<CTA className="Test" label="Title" body="Body" link="/" />);
 
     expect(container).toMatchInlineSnapshot(`
       <div>
@@ -52,7 +52,7 @@ describe("Mega Menu CTA", () => {
   });
 
   test("Renders correctly with an image", () => {
-    const { container } = render(<CTA className="Test" image={new Object()} title="Title" body="Body" link="/" />);
+    const { container } = render(<CTA className="Test" image={new Object()} label="Title" body="Body" link="/" />);
 
     expect(container).toMatchInlineSnapshot(`
       <div>

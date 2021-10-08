@@ -14,20 +14,20 @@ jest.mock("next/link", () => {
   return ({ children }) => children;
 });
 
-jest.mock("constants/mega-menu-items", () => ({
-  MegaMenuCTAs: [
+jest.mock("constants/menu-items", () => ({
+  MenuItems: [
     {
       key: "ctaTest",
       label: "CTA Test"
     }
   ],
-  MegaMenuQuickLinks: [
+  QuickLinks: [
     {
       key: "quickLinkTest",
       label: "Quick Link Test"
     }
   ],
-  MegaMenuSocialLinks: [
+  SocialLinks: [
     {
       key: "socialLinkTest",
       label: "Social Link Test"
@@ -61,7 +61,9 @@ describe("Mega Menu", () => {
           <ul
             class="c-mega-menu-quick-links"
           >
-            <li>
+            <li
+              class=""
+            >
               <a>
                 Quick Link Test
               </a>
