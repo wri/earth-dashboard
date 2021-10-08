@@ -9,9 +9,7 @@ import { logEvent } from "utils/gtag";
 const Headline = ({ headline, className, currentTemplate, setIsDatePickerDisabled, ...rest }) => {
   const isBrowser = typeof window !== "undefined";
   const activeLayerString = useMemo(() => {
-    const defaultTemplateNames = currentTemplate.attributes.data_layers
-      .filter(layer => layer.attributes.default_on)
-      .map(layer => layer.attributes.title);
+    const defaultTemplateNames = currentTemplate.attributes.data_layers.default.map(layer => layer.attributes.title);
     return defaultTemplateNames.join(", ");
   }, [currentTemplate]);
 

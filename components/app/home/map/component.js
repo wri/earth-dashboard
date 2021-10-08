@@ -39,7 +39,7 @@ const MapIframe = forwardRef(
       if (currentTemplate && earthClient) {
         const newLayers = [];
         resetValues();
-        const defaults = currentTemplate.attributes.data_layers.filter(layer => layer.attributes.default_on);
+        const defaults = currentTemplate.attributes.data_layers.default;
         defaults.forEach(layer => {
           let setter = () => {};
           switch (layer.attributes.category.attributes.title) {
@@ -72,7 +72,10 @@ const MapIframe = forwardRef(
     useEffect(() => {
       if (earthServer.current) {
         const newLayers = [];
-        currentTemplate?.attributes?.data_layers.forEach(layer => {
+        [
+          ...currentTemplate.attributes.data_layers.default,
+          ...currentTemplate?.attributes?.data_layers.available
+        ].forEach(layer => {
           if (
             layer.attributes.data_key === animationValue ||
             layer.attributes.data_key === monitorValue ||

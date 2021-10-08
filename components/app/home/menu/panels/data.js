@@ -31,7 +31,7 @@ const DataPanel = ({
   const monitorLayers = useDataLayers(currentTemplate, DATA_LAYER_TYPES.monitor);
   const currentTemplateMatch = useMemo(() => {
     // Do the defaults of the template match the current layers.
-    const defaults = currentTemplate.attributes.data_layers.filter(layer => layer.attributes.default_on);
+    const defaults = currentTemplate.attributes.data_layers.default;
     const defaultKeys = defaults.map(layer => layer.attributes.data_key);
 
     const hasMonitor =

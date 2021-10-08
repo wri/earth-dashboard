@@ -29,8 +29,8 @@ export const fetchHeadlines = () => {
  * @returns {Array} Array of templates.
  * be included in the response or not.
  */
-export const fetchTemplates = () => {
-  return GCAAPI.get("/templates", {
+export const fetchModes = () => {
+  return GCAAPI.get("/modes", {
     headers: {
       ...GCAAPI.defaults.headers
     }
