@@ -1,53 +1,72 @@
 import TestImage from "public/static/images/forests/challenge.png";
+import TwitterIcon from "public/static/icons/twitter.svg";
+import LinkedInIcon from "public/static/icons/linkedin.svg";
 
-export const MegaMenuCTAs = [
+export const MenuItems = [
   {
     key: "earth-hq",
     image: TestImage,
-    title: "Earth HQ",
+    label: "Earth HQ",
     body: "A “Situation Room” for the planet. Earth HQ is an interactive and dynamic platform that tracks the forces imperiling the natural systems that support life on earth. ",
     link: "/"
   },
   {
     key: "climate",
-    title: "Climate",
+    label: "Climate",
     body: "Rising global temperatures pose a threat to every corner of the globe and most aspects of human life.",
     link: "/climate"
   },
   {
     key: "freshwater",
-    title: "Freshwater",
+    label: "Freshwater",
     body: "Rising consumption, climate change and pollution are increasing pressure on water supply. ",
     link: "/freshwater"
   },
   {
     key: "forest",
-    title: "Forest",
+    label: "Forest",
     body: "Extreme events and climate change make forest ecosystems even more prone to damage.",
     link: "/forests"
   },
   {
     key: "qcean",
-    title: "Ocean",
+    label: "Ocean",
     body: "Current pressures on the ocean’s health pose risks to our economies, societies and the environment.",
     link: "/ocean"
   }
 ];
 
-export const MegaMenuQuickLinks = [
+export const QuickLinks = [
   {
     key: "about-us",
     label: "About Us",
-    link: "/"
+    link: "/about"
   },
   {
     key: "terms-of-use",
     label: "Terms Of Use",
-    link: "/"
+    link: "https://resourcewatch.org/terms-of-service",
+    external: true
   },
   {
     key: "cookies",
     label: "Cookies",
-    link: "/"
+    link: "https://resourcewatch.org/privacy-policy",
+    external: true
+  }
+];
+
+export const SocialLinks = [
+  {
+    key: "twitter",
+    icon: TwitterIcon,
+    label: "Follow us on Twitter",
+    link: "https://twitter.com/globalcommonshq"
+  },
+  {
+    key: "linkedin",
+    icon: LinkedInIcon,
+    label: "Follow us on LinkedIn",
+    link: "https://www.linkedin.com/company/globalcommonsalliance/"
   }
 ];
