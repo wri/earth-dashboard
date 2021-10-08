@@ -2,6 +2,8 @@
 @import "css/settings/breakpoints";
 
 .c-social-icon {
+  $this: &;
+
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -10,6 +12,31 @@
   padding: 7px;
   border: 2px solid $white;
   border-radius: 50%;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $colour-flame;
+    border-color: $colour-flame;
+
+    #{$this}__icon {
+      filter: brightness(0) saturate(100%) invert(11%) sepia(23%) saturate(4485%) hue-rotate(177deg) brightness(99%)
+        contrast(102%);
+    }
+  }
+
+  &:active,
+  &:focus {
+    background-color: $colour-night;
+    border-color: $colour-night;
+
+    #{$this}__icon {
+      filter: none;
+    }
+  }
+
+  &__icon {
+    transition: filter 0.1s ease-in-out;
+  }
 
   @media screen and (min-width: $global-breakpoint-md) {
     width: 44px;
