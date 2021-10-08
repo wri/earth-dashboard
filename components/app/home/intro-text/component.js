@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
 import PropTypes from "prop-types";

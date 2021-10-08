@@ -67,9 +67,9 @@ const DataPanel = ({
         <ToggleList
           selectedValue={currentModeMatch ? currentMode.id : null}
           onSelect={value => {
-            setCurrentMode({ ...modes.find(template => parseInt(value, 10) === template.id) });
+            setCurrentMode({ ...modes.find(mode => parseInt(value, 10) === mode.id) });
           }}
-          title="Templates"
+          title="Modes"
         >
           {modes.map(template => (
             <ToggleItem value={template.id} className="u-margin-right-xxs u-margin-bottom-xs" key={template.id}>

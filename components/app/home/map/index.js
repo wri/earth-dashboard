@@ -13,6 +13,7 @@ import {
   resetValues,
   setLayersLabelArr,
   setDateOfDataShown,
+  setHeight,
   NAME as modesSliceName
 } from "slices/modes";
 
@@ -21,6 +22,7 @@ export default connect(
     currentMode: state[modesSliceName].currentMode,
     animationValue: state[modesSliceName].animationValue,
     monitorValue: state[modesSliceName].monitorValue,
+    heightValue: state[modesSliceName].heightValue,
     datasetValue: state[modesSliceName].datasetValue,
     dateOfDataShown: state[modesSliceName].dateOfDataShown,
     isSettingsOpen: state[mapControlsSliceName].isSettingsOpen,
@@ -36,6 +38,7 @@ export default connect(
     setAnimationValue: setAnimation,
     setMonitorValue: setMonitor,
     setDatasetValue: setDataset,
+    setHeightValue: setHeight,
     resetValues: resetValues,
     setShouldFetchLocation,
     setLayersLabelArr,

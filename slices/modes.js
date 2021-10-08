@@ -8,6 +8,7 @@ const initialState = {
   animationValue: "",
   datasetValue: "",
   monitorValue: "",
+  heightValue: "",
   layersLabelArr: [],
   dateOfDataShown: new Date().toString()
 };
@@ -39,6 +40,9 @@ const modesSlice = createSlice({
     setMonitor(state, action) {
       state.monitorValue = action.payload;
     },
+    setHeight(state, action) {
+      state.heightValue = action.payload;
+    },
     setLayersLabelArr(state, action) {
       state.layersLabelArr = action.payload;
     },
@@ -58,6 +62,7 @@ export const {
   setAnimation,
   setDataset,
   setMonitor,
+  setHeight,
   resetValues,
   setLayersLabelArr,
   setDateOfDataShown

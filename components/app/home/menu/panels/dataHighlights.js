@@ -6,13 +6,9 @@ import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { setCurrentMode, NAME as modesSliceName } from "slices/modes";
 import headlineStyles from "components/app/home/headline-card/headline.module.scss";
-import HeadlineCard from "components/app/home/headline-card";
 import { RadioGroup } from "@headlessui/react";
 
-const DataHighlightsPanel = ({ setCurrentMode, highlights }) => {
-  const [selected, setSelected] = useState(null);
-
-  console.log(highlights);
+const DataHighlightsPanel = ({ setCurrentMode, currentMode, highlights }) => {
   return (
     <>
       <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
@@ -20,12 +16,15 @@ const DataHighlightsPanel = ({ setCurrentMode, highlights }) => {
         Nullschool.
       </p>
       <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
-        <RadioGroup value={selected} onChange={setSelected}>
+        <RadioGroup
+          value={currentMode.id}
+          onChange={id => setCurrentMode(highlights.find(highlight => highlight.id === id))}
+        >
           <RadioGroup.Label className="u-visually-hidden">Data Highlights</RadioGroup.Label>
           {highlights.map(hightlight => (
             <RadioGroup.Option
               key={hightlight.id}
-              value={hightlight}
+              value={hightlight.id}
               className={classnames(headlineStyles["c-headline-card"], "u-margin-bottom-xs")}
             >
               <img
@@ -48,19 +47,6 @@ const DataHighlightsPanel = ({ setCurrentMode, highlights }) => {
             </RadioGroup.Option>
           ))}
         </RadioGroup>
-        {/* {!isFetching ? (
-          headlines.map(headline => (
-            <HeadlineCard
-              key={headline.id}
-              as="button"
-              headline={headline}
-              className={styles["c-home-menu__headline"]}
-              onClick={() => onSelectHeadline(headline)}
-            />
-          ))
-        ) : (
-          <p>Loading</p>
-        )} */}
       </div>
     </>
   );
@@ -68,16 +54,19 @@ const DataHighlightsPanel = ({ setCurrentMode, highlights }) => {
 
 DataHighlightsPanel.propTypes = {
   setCurrentMode: PropTypes.func.isRequired,
+  currentMode: PropTypes.object,
   highlights: PropTypes.array
 };
 
 DataHighlightsPanel.defaultProps = {
-  highlights: []
+  highlights: [],
+  currentMode: null
 };
 
 export default connect(
   state => ({
-    highlights: state[modesSliceName].allModes?.filter(mode => mode.attributes.visibility.data_highlights)
+    highlights: state[modesSliceName].allModes?.filter(mode => mode.attributes.visibility.data_highlights),
+    currentMode: state[modesSliceName].currentMode
   }),
   { setCurrentMode }
 )(DataHighlightsPanel);
