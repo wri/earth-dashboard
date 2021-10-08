@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { useRouter } from "next/router";
 import classnames from "classnames";
 import LogoLink from "components/ui/logo-link";
 import HeaderTitle from "layout/header/header-title";
@@ -13,11 +14,22 @@ import styles from "./header.module.scss";
 
 const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
   const headerRef = useRef(null);
+  const router = useRouter();
 
   const focusTrapOptions = {
     onDeactivate: () => setIsMegaMenuOpen(false),
     clickOutsideDeactivates: true
   };
+
+  useEffect(() => {
+    const handleRouteChange = () => setIsMegaMenuOpen(false);
+
+    router?.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      router?.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, []);
 
   return (
     <CSSTransition
