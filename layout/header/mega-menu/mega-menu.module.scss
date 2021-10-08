@@ -48,6 +48,9 @@ $c-mega-menu-padding-x-desktop: 60px;
   &__ctas {
     display: grid;
     gap: 12px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
     padding-bottom: 20px;
     border-bottom: 1px solid $white;
   }
