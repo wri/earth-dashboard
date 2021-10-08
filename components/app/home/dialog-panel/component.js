@@ -41,14 +41,14 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
     maxHeight: "90vh"
   };
 
-  const focusTrapOptions = Object.assign({
+  const focusTrapOptions = {
     onDeactivate: () => {
       setIsIn(false);
       setTimeout(onClose, transitionDuration);
     },
     // Close the Modal when user clicks outside
     clickOutsideDeactivates: true
-  });
+  };
 
   return (
     <CSSTransition
