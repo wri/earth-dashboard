@@ -1,6 +1,6 @@
 import styles from "layout/app/news/earth-hq-cta/earth-hq-cta.module.scss";
 import Section from "layout/app/news/section";
-import AnchorLink from "components/ui/anchor-cta";
+import AnchorCTA from "components/ui/anchor-cta";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 
@@ -10,11 +10,11 @@ const EarthHQCTA = ({ className }) => (
       <h2 className={styles["c-earth-hq-cta__title"]}>Earth HQ</h2>
       <p className={styles["c-earth-hq-cta__text"]}>
         A “Situation Room” for the planet. Earth HQ is an interactive and dynamic platform that tracks the forces
-        imperiling the natural systems that support life on earth.{" "}
+        imperiling the natural systems that support life on earth.
       </p>
-      <AnchorLink className={styles["c-earth-hq-cta__link"]} href="/">
+      <AnchorCTA className={styles["c-earth-hq-cta__link"]} href="/">
         Explore Earth HQ
-      </AnchorLink>
+      </AnchorCTA>
     </div>
   </Section>
 );

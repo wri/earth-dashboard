@@ -4,6 +4,7 @@ import { getPageMetadataByTopic } from "utils/share";
 import { getColorByTopic } from "utils/topics";
 import Layout from "layout/layout/layout-app";
 import HeroBanner from "./hero-banner";
+import AnchorCTA from "components/ui/anchor-cta";
 import Section from "./section";
 import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
@@ -23,7 +24,7 @@ const NewsTopicLayout = ({ topic }) => {
   const { mostRecentArticle, otherArticles } = useMemo(() => {
     const arr = [...NEWS_ARTICLES];
     const first = arr.shift();
-    return { firstArticle: first, otherArticles: arr };
+    return { mostRecentArticle: first, otherArticles: arr };
   }, []);
 
   return (
@@ -38,7 +39,7 @@ const NewsTopicLayout = ({ topic }) => {
         paddingBottom={false}
         gridClassName={heroBannerStyles["c-page-section-grid-hero-banner"]}
       >
-        <HeroBanner title={topic} body={BANNER_BODY} />
+        <HeroBanner title={topic + " News"} body={BANNER_BODY} />
       </Section>
 
       <Section title="Most Recent">
@@ -64,6 +65,11 @@ const NewsTopicLayout = ({ topic }) => {
         {otherArticles?.map(({ key, ...articleProps }) => (
           <NewsArticle key={key} {...articleProps} />
         ))}
+        <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
+          <AnchorCTA className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]} onClick={() => {}}>
+            Load More
+          </AnchorCTA>
+        </div>
       </Section>
 
       <MediaContextProvider>
