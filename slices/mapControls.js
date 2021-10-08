@@ -7,7 +7,9 @@ const initialState = {
   isSettingsOpen: false,
   shouldFetchLocation: false,
   shouldZoomIn: false,
-  shouldZoomOut: false
+  shouldZoomOut: false,
+  isDatePickerOpen: false,
+  isDatePickerDisabled: false
 };
 
 const mapControlsSlice = createSlice({
@@ -34,6 +36,12 @@ const mapControlsSlice = createSlice({
     },
     setShouldZoomOut(state, action) {
       state.shouldZoomOut = action.payload;
+    },
+    setIsDatePickerOpen(state, action) {
+      state.isDatePickerOpen = action.payload;
+    },
+    setIsDatePickerDisabled(state, action) {
+      state.isDatePickerDisabled = action.payload;
     }
   }
 });
@@ -45,12 +53,16 @@ export const {
   setGlobe2d,
   setGlobe3d,
   setShouldZoomIn,
-  setShouldZoomOut
+  setShouldZoomOut,
+  setIsDatePickerOpen,
+  setIsDatePickerDisabled
 } = mapControlsSlice.actions;
 export const isSettingsOpen = state => state[NAME].isSettingsOpen;
 export const shouldFetchLocation = state => state[NAME].shouldFetchLocation;
 export const isGlobe2d = state => state[NAME].projectionType === "equirectangular";
 export const shouldZoomOut = state => state[NAME].shouldZoomOut;
 export const shouldZoomIn = state => state[NAME].shouldZoomIn;
+export const isDatePickerOpen = state => state[NAME].isDatePickerOpen;
+export const isDatePickerDisabled = state => state[NAME].isDatePickerDisabled;
 
 export default mapControlsSlice.reducer;

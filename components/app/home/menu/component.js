@@ -39,6 +39,7 @@ const Menu = forwardRef(
       currentTemplate,
       setCurrentTemplate,
       animationValue,
+      animationEnabled,
       setAnimationValue,
       datasetValue,
       setDatasetValue,
@@ -147,6 +148,7 @@ const Menu = forwardRef(
                     monitorValue={monitorValue}
                     setMonitorValue={setMonitorValue}
                     animationValue={animationValue}
+                    animationEnabled={animationEnabled}
                     setAnimationValue={setAnimationValue}
                     isMobile={isMobile}
                     onSelectInfo={onSelectInfo}
@@ -176,7 +178,8 @@ Menu.propTypes = {
   isMobile: PropTypes.bool.isRequired,
   isClosing: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
-  layers: PropTypes.array.isRequired
+  layers: PropTypes.array.isRequired,
+  animationEnabled: PropTypes.bool.isRequired
 };
 
 export default Menu;

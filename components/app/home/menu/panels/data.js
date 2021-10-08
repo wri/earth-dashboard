@@ -4,7 +4,7 @@ import DataLayers from "components/ui/toggle-list/data-list";
 import ToggleItem from "components/ui/toggle-list/toggle-item";
 import ToggleList from "components/ui/toggle-list";
 import MapControls from "components/app/home/map-controls";
-import DatePickerBtn from "components/app/home/date-picker/button";
+import DatePickerBtn from "components/app/home/date-picker-menu/button";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import useDataLayers from "hooks/useDataLayers";
@@ -20,6 +20,7 @@ const DataPanel = ({
   monitorValue,
   setMonitorValue,
   animationValue,
+  animationEnabled,
   setAnimationValue,
   isMobile,
   onSelectInfo,
@@ -94,14 +95,16 @@ const DataPanel = ({
             setValue={setMonitorValue}
             layers={monitorLayers}
           />
-          <DataLayers
-            title="Animation"
-            onSelectInfo={onSelectInfo}
-            isMobile={isMobile}
-            value={animationValue}
-            setValue={setAnimationValue}
-            layers={animationLayers}
-          />
+          {animationEnabled && (
+            <DataLayers
+              title="Animation"
+              onSelectInfo={onSelectInfo}
+              isMobile={isMobile}
+              value={animationValue}
+              setValue={setAnimationValue}
+              layers={animationLayers}
+            />
+          )}
         </div>
         {description && <p className={classnames(styles["c-home-menu__source"], "u-margin-none")}>{description}</p>}
         {source && <p className={classnames(styles["c-home-menu__source"], "u-margin-none")}>{source}</p>}
@@ -125,6 +128,7 @@ DataPanel.propTypes = {
   monitorValue: PropTypes.string.isRequired,
   setMonitorValue: PropTypes.func.isRequired,
   animationValue: PropTypes.string.isRequired,
+  animationEnabled: PropTypes.bool.isRequired,
   setAnimationValue: PropTypes.func.isRequired,
   isMobile: PropTypes.bool,
   onSelectInfo: PropTypes.func.isRequired,
