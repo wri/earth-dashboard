@@ -1,5 +1,6 @@
 import { Children } from "react";
 import classnames from "classnames";
+import sectionBgColours, { BG_SPACE } from "constants/section-colours";
 import styles from "./section.module.scss";
 import PropTypes from "prop-types";
 
@@ -25,16 +26,15 @@ Section.propTypes = {
   className: PropTypes.string,
   gridClassName: PropTypes.string,
   title: PropTypes.string,
-  bgColour: PropTypes.oneOf(["space", "light-space", "night", "galaxy"]),
-  // Padding Bottom
-  pb: PropTypes.bool.isRequired
+  bgColour: PropTypes.oneOf(sectionBgColours),
+  paddingBottom: PropTypes.bool.isRequired
 };
 
 Section.defaultProps = {
   className: "",
   gridClassName: "",
-  bgColour: "space",
-  pb: true
+  bgColour: BG_SPACE,
+  paddingBottom: true
 };
 
 export default Section;

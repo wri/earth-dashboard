@@ -76,10 +76,10 @@ const Footer = ({ className }) => (
     <div className={styles["c-footer-section__socials"]}>
       <div className={styles["c-footer-section-socials"]}>
         {SocialLinks.map(({ key, ...socialLinkProps }) => (
-          <SocialIcon  className={styles["c-footer-section-socials__icon"]} key={key} {...socialLinkProps} />
+          <SocialIcon className={styles["c-footer-section-socials__icon"]} key={key} {...socialLinkProps} />
         ))}
       </div>
-      
+
       <span className={styles["c-footer-section__copyright"]}>
         &#169; {new Date().getFullYear()} Global Commons Alliance. All Rights Reserved
       </span>

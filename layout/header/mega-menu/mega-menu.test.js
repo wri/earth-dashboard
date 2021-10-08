@@ -26,8 +26,11 @@ jest.mock("constants/mega-menu-items", () => ({
       key: "quickLinkTest",
       label: "Quick Link Test"
     }
-  ],
-  MegaMenuSocialLinks: [
+  ]
+}));
+
+jest.mock("constants/social-links", () => ({
+  SocialLinks: [
     {
       key: "socialLinkTest",
       label: "Social Link Test"
