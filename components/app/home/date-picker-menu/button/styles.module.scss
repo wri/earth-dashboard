@@ -15,6 +15,12 @@
   &__button {
     display: flex;
     align-items: center;
+    transition: opacity 0.3s ease-in;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
 
     &--mobile {
       justify-content: space-between;

@@ -13,6 +13,15 @@ jest.mock("../../../../utils/axios");
 jest.mock("next/image", () => {
   return () => <></>;
 });
+jest.mock("../../../../utils/dates", () => {
+  const originalModule = jest.requireActual("../../../../utils/dates");
+
+  return {
+    __esModule: true,
+    ...originalModule,
+    formatDate: () => "xxxx-xx-xx"
+  };
+});
 
 const mockIframeBridge = {
   setRef: () => {},
@@ -80,7 +89,6 @@ test("<MainContainer /> renders correctly as desktop", async () => {
       >
         <button
           class="c-showing-data-for__button"
-          role="button"
         >
           <span
             class="c-showing-data-for__text"
@@ -89,7 +97,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
             <span
               class="c-showing-data-for__date"
             >
-              …
+              xxxx-xx-xx
             </span>
           </span>
           <div
@@ -139,6 +147,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
             Wind, Particulate Matter, Fires
             <br />
              
+            xxxx-xx-xx
           </span>
         </div>
       </button>

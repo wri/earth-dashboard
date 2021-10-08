@@ -1,24 +1,26 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
+@import "css/tools/scrollbar";
 
 .c-settings-menu-modal {
   position: absolute;
+  display: flex;
+  flex-direction: column;
   top: 8px;
   height: 100%;
   width: 100%;
   background-color: $colour-space;
   mix-blend-mode: normal;
   backdrop-filter: blur(10.8731px);
+  box-shadow: 0px 0px 113.425px #000000;
   border-radius: 28px;
-  overflow: auto;
+  overflow: hidden;
 
   &__header {
-    position: sticky;
-    top: 0;
+    position: relative;
     padding: 10px 60px;
     background-color: $colour-night;
-    z-index: 1;
 
     &__title {
       color: $white;
@@ -37,11 +39,33 @@
   }
 
   &__body {
-    padding: 24px;
+    position: relative;
+    height: 100%;
+    margin: 24px 12px;
+  }
+
+  &__scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    padding: 0 12px;
+    overflow-y: auto;
+    @include scrollbars(4px, #b6b8ba, #494d51);
 
     > *:not(:last-child) {
       margin-bottom: 16px;
     }
+  }
+
+  &__body-title {
+    @include font-size(14px, 21px);
+    color: white;
+    font-weight: 500;
+    font-family: "Barlow";
+    margin-bottom: 8px !important;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
@@ -52,6 +76,11 @@
     height: auto;
     transform: translateX(-50%);
 
+    &__body-title {
+      @include font-size(18px, 27px);
+      margin-bottom: 16px !important;
+    }
+
     &__header {
       padding: 19px 80px 13px;
 
@@ -61,7 +90,11 @@
     }
 
     &__body {
-      padding: 40px;
+      margin: 40px 20px;
+    }
+
+    &__scroll {
+      padding: 0 20px;
 
       > *:not(:last-child) {
         margin-bottom: 24px;

@@ -7,7 +7,7 @@ const initialState = {
   datasetValue: "",
   monitorValue: "",
   layersLabelArr: [],
-  dateOfDataShown: ""
+  dateOfDataShown: new Date().toString()
 };
 
 const templatesSlice = createSlice({

@@ -1,0 +1,102 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-mega-menu-cta {
+  position: relative;
+  background-color: rgba($colour-night, 0.4);
+  mix-blend-mode: normal;
+  backdrop-filter: blur(10.8731px);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: background-color 0.16s ease-in-out;
+
+  &:first-child {
+    grid-row-end: span 2;
+  }
+
+  &:hover {
+    background-color: $colour-flame;
+  }
+
+  &:active {
+    background-color: $colour-night;
+  }
+
+  &--withImage {
+    display: grid;
+    grid-auto-rows: 96px 1fr;
+  }
+
+  &__image {
+    position: relative;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+  }
+
+  &__title {
+    @include font-size(20px, 30px);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  &__title,
+  &__body {
+    font-weight: 500;
+    color: $white;
+  }
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+
+    &__p {
+      @include font-size(12px, 18px);
+      margin-bottom: 0;
+    }
+  }
+
+  &__link {
+    flex: 0 0 24px;
+    margin-left: 28px;
+    align-self: center;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    &--withImage {
+      grid-auto-rows: 160px 1fr;
+    }
+
+    &__content {
+      padding: 20px 20px 17px;
+    }
+
+    &__title {
+      @include font-size(24px, 36px);
+    }
+
+    &__body__p {
+      @include font-size(14px, 21px);
+    }
+
+    &__link {
+      align-self: flex-end;
+      margin-left: 10px;
+    }
+  }
+}

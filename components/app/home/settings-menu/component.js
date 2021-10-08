@@ -1,31 +1,19 @@
-import { createElement, useEffect, useRef, useState } from "react";
+import { createElement } from "react";
 import classnames from "classnames";
 import DialogPanel from "components/app/home/dialog-panel";
 import IconButton from "components/ui/icon-button";
 import styles from "./settings-menu.module.scss";
-import dialogStyles from "components/app/home/dialog-panel/dialog-panel.module.scss";
+import settingsFormElements from "schemas/global-settings";
 import CloseIcon from "public/static/icons/close.svg";
-import settingsFormElements from "schemas/globalSettings";
 import PropTypes from "prop-types";
+import useDialogPanel from "hooks/useDialogPanel";
 
-const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
-  const firstInput = useRef(null);
-  const [forceClose, setForceClose] = useState(false);
-
-  useEffect(() => {
-    if (firstInput.current && isSettingsOpen) {
-      firstInput.current.$inputRef?.focus();
-    }
-  }, [firstInput, isSettingsOpen]);
-
-  const handleClose = () => {
-    setForceClose(false);
-    setSettingsClose();
-  };
+const SettingsMenu = ({ isOpen, onClose, isMobile }) => {
+  const { firstInput, shouldAnimate, handleClose } = useDialogPanel(isOpen, onClose);
 
   return (
-    isSettingsOpen && (
-      <DialogPanel onClose={handleClose} isMobile={isMobile} forceClose={forceClose}>
+    isOpen && (
+      <DialogPanel onClose={handleClose} isMobile={isMobile} shouldAnimate={shouldAnimate}>
         <div className={styles["c-settings-menu-modal"]} aria-labelledby="settingsModalTitle" role="document">
           <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
             <h1
@@ -38,17 +26,16 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
               icon={CloseIcon}
               className={styles["c-settings-menu-modal__close"]}
               aria-label="Close Settings"
-              onClick={() => {
-                setForceClose(true);
-                setTimeout(handleClose, dialogStyles["transitionDuration"]);
-              }}
+              onClick={() => handleClose(true)}
             />
           </div>
 
-          <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}>
-            {settingsFormElements.map((formEl, index) =>
-              createElement(formEl.component, { key: formEl.id, ref: !index ? firstInput : null, ...formEl.props })
-            )}
+          <div className={styles["c-settings-menu-modal__body"]}>
+            <div className={classnames(styles["c-settings-menu-modal__scroll"], "u-text-white")}>
+              {settingsFormElements.map((formEl, index) =>
+                createElement(formEl.component, { key: formEl.id, ref: !index ? firstInput : null, ...formEl.props })
+              )}
+            </div>
           </div>
         </div>
       </DialogPanel>
@@ -57,8 +44,8 @@ const SettingsMenu = ({ isSettingsOpen, setSettingsClose, isMobile }) => {
 };
 
 SettingsMenu.propTypes = {
-  isSettingsOpen: PropTypes.bool.isRequired,
-  setSettingsClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired
 };
 

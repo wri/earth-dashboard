@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "./headline.module.scss";
 import WidgetPreview from "components/widgets/preview";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { logEvent } from "utils/gtag";
 
-const Headline = ({ headline, className, currentTemplate, ...rest }) => {
+const Headline = ({ headline, className, currentTemplate, setIsDatePickerDisabled, ...rest }) => {
   const isBrowser = typeof window !== "undefined";
   const activeLayerString = useMemo(() => {
     const defaultTemplateNames = currentTemplate.attributes.data_layers
@@ -14,6 +14,11 @@ const Headline = ({ headline, className, currentTemplate, ...rest }) => {
       .map(layer => layer.attributes.title);
     return defaultTemplateNames.join(", ");
   }, [currentTemplate]);
+
+  useEffect(() => {
+    setIsDatePickerDisabled(true);
+    return () => setIsDatePickerDisabled(false);
+  }, [setIsDatePickerDisabled]);
 
   return (
     <article className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
@@ -84,7 +89,8 @@ const Headline = ({ headline, className, currentTemplate, ...rest }) => {
 Headline.propTypes = {
   headline: PropTypes.object.isRequired,
   className: PropTypes.string,
-  currentTemplate: PropTypes.object
+  currentTemplate: PropTypes.object,
+  setIsDatePickerDisabled: PropTypes.func.isRequired
 };
 
 Headline.defaultProps = {
