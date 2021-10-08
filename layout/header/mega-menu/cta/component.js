@@ -51,9 +51,7 @@ MegaMenuCTA.propTypes = {
 };
 
 MegaMenuCTA.defaultProps = {
-  className: "",
-  image: undefined,
-  body: undefined
+  className: ""
 };
 
 export default MegaMenuCTA;
