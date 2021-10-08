@@ -6,7 +6,7 @@ import styles from "layout/footer/footer.module.scss";
 const FooterLink = ({ className, link, label, external }) => (
   <li className={classnames(className, styles["c-footer-section__link"])}>
     <Link href={link}>
-      <a target={external ? "_blank" : "_self"}>{label}</a>
+      <a target={external && "_blank"} rel={external && "nofollow noreferrer"}>{label}</a>
     </Link>
   </li>
 );

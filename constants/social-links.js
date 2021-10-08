@@ -6,12 +6,12 @@ export const SocialLinks = [
     key: "twitter",
     icon: TwitterIcon,
     label: "Twitter",
-    link: "https://twitter.com/"
+    link: "https://twitter.com/globalcommonshq"
   },
   {
     key: "linkedin",
     icon: LinkedInIcon,
     label: "LinkedIn",
-    link: "https://linkedin.com/"
+    link: "https://www.linkedin.com/company/globalcommonsalliance/"
   }
 ];
