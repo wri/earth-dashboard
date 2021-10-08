@@ -2,13 +2,13 @@ import { useRef } from "react";
 import CTA from "layout/header/mega-menu/cta";
 import classnames from "classnames";
 import SocialIcon from "components/ui/social-icon";
-import Link from "next/link";
+import ListLink from "components/ui/list-link";
 import { CSSTransition } from "react-transition-group";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import styles from "./mega-menu.module.scss";
 import PropTypes from "prop-types";
 
-import { MegaMenuCTAs, MegaMenuQuickLinks, MegaMenuSocialLinks } from "constants/mega-menu-items";
+import { MenuItems as MegaMenuCTAs, QuickLinks, SocialLinks } from "constants/menu-items";
 
 const MegaMenu = ({ isMegaMenuOpen }) => {
   const scrollEl = useRef(null);
@@ -37,19 +37,15 @@ const MegaMenu = ({ isMegaMenuOpen }) => {
           <div className={styles["c-mega-menu__links"]}>
             <div>
               <ul className={styles["c-mega-menu-quick-links"]}>
-                {MegaMenuQuickLinks.map(({ key, label, link }) => (
-                  <li key={key}>
-                    <Link href={link}>
-                      <a>{label}</a>
-                    </Link>
-                  </li>
+                {QuickLinks.map(({ key, ...quickLinkProps }) => (
+                  <ListLink key={key} {...quickLinkProps} />
                 ))}
               </ul>
             </div>
 
             <div>
               <div className={styles["c-mega-menu-socials"]}>
-                {MegaMenuSocialLinks.map(({ key, ...socialLinkProps }) => (
+                {SocialLinks.map(({ key, ...socialLinkProps }) => (
                   <SocialIcon key={key} className={styles["c-mega-menu-socials__icon"]} {...socialLinkProps} />
                 ))}
               </div>

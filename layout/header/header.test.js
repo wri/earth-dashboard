@@ -20,7 +20,7 @@ jest.mock("layout/header/mega-menu/btn", () => {
 
 describe("Header", () => {
   test("Renders Correctly when mega menu is closed", () => {
-    const { container } = render(<Header isMegaMenuOpen={false} setIsMegaMenuOpen={() => {}} />);
+    const { container } = render(<Header isMegaMenuOpen={false} setIsMegaMenuOpen={() => {}} showHeaderTitle={true} />);
 
     expect(container).toMatchInlineSnapshot(`
 <div>
@@ -58,7 +58,7 @@ describe("Header", () => {
   });
 
   test("Renders Correctly when mega menu is open", () => {
-    const { container } = render(<Header isMegaMenuOpen={true} setIsMegaMenuOpen={() => {}} />);
+    const { container } = render(<Header isMegaMenuOpen={true} setIsMegaMenuOpen={() => {}} showHeaderTitle={true} />);
 
     expect(container).toMatchInlineSnapshot(`
 <div>

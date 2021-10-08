@@ -24,6 +24,7 @@ InfoLabel.propTypes = {
 };
 
 InfoLabel.defaultProps = {
+  className: "",
   title: ""
 };
 

@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 // styles
 import styles from "./header.module.scss";
 
-const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
+const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen, showHeaderTitle }) => {
   const headerRef = useRef(null);
   const router = useRouter();
 
@@ -54,7 +54,7 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
               <div className={styles["c-site-header__logo"]}>
                 <LogoLink />
               </div>
-              {!isMegaMenuOpen && <HeaderTitle />}
+              {showHeaderTitle && !isMegaMenuOpen && <HeaderTitle />}
               <MegaMenuBtn className={styles["c-site-header__btn"]} />
             </header>
 
@@ -68,7 +68,12 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
 
 Header.propTypes = {
   isMegaMenuOpen: PropTypes.bool.isRequired,
-  setIsMegaMenuOpen: PropTypes.func.isRequired
+  setIsMegaMenuOpen: PropTypes.func.isRequired,
+  showHeaderTitle: PropTypes.bool.isRequired
+};
+
+Header.defaultProps = {
+  showHeaderTitle: false
 };
 
 export default Header;
