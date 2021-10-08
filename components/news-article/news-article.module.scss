@@ -157,9 +157,21 @@
   display: grid;
   gap: 16px;
 
+  &__load-more {
+    display: flex;
+    justify-content: center;
+    grid-column: 1/-1;
+    padding-top: 8px;
+  }
+
   @media screen and (min-width: $global-breakpoint-md) {
     grid-template-columns: 1fr 1fr;
     gap: 25px;
+
+    &__load-more {
+      justify-content: flex-end;
+      padding-top: 0;
+    }
   }
 
   @media screen and (min-width: $global-breakpoint-lg) {

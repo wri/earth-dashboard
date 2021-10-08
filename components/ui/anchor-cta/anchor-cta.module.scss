@@ -6,6 +6,7 @@
   display: inline-block;
   padding: 8px 24px;
   color: $white;
+  font-family: "Barlow Condensed";
   @include font-size(16px, 24px);
   font-weight: 500;
   text-transform: uppercase;
@@ -24,7 +25,7 @@
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
-    padding: 8px 40px;
+    padding: 7px 40px;
     @include font-size(20px, 30px);
   }
 }
