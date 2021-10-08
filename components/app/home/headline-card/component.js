@@ -16,7 +16,7 @@ const HeadlineCard = ({ headline, className, as, ...rest }) => {
       />
       <div>
         <h3 className={styles["c-headline-card__title"]}>{headline.attributes.title}</h3>
-        <p className={styles["c-headline-card__date"]}>
+        <p className={styles["c-headline-card__subtitle"]}>
           {moment(headline.attributes.headline_date).format("Do MMMM YYYY")}
         </p>
       </div>

@@ -7,7 +7,7 @@ import { logger } from "utils/logs";
 /**
  * Fetch all headlines
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
- * @returns {Array} Array of templates.
+ * @returns {Array} Array of modes.
  * be included in the response or not.
  */
 export const fetchHeadlines = () => {
@@ -24,9 +24,9 @@ export const fetchHeadlines = () => {
 };
 
 /**
- * Fetch all templates
+ * Fetch all modes
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
- * @returns {Array} Array of templates.
+ * @returns {Array} Array of modes.
  * be included in the response or not.
  */
 export const fetchModes = () => {
@@ -37,7 +37,7 @@ export const fetchModes = () => {
   }).catch(response => {
     const { status, statusText } = response;
 
-    logger.error(`Error fetching templates: ${status}: ${statusText}`);
-    throw new Error(`Error fetching templates: ${status}: ${statusText}`);
+    logger.error(`Error fetching modes: ${status}: ${statusText}`);
+    throw new Error(`Error fetching modes: ${status}: ${statusText}`);
   });
 };

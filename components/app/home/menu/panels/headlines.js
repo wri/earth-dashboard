@@ -5,12 +5,12 @@ import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { fetchHeadlines } from "services/gca";
 import { setHeadlines } from "slices/headlines";
-import { setCurrentTemplate } from "slices/templates";
+import { setCurrentMode } from "slices/modes";
 
 import HeadlineCard from "components/app/home/headline-card";
 import Headline from "components/app/home/headline";
 
-const HeadlinesPanel = ({ headlines, setHeadlines, onForceInfoPage, forceInfoPage, setCurrentTemplate }) => {
+const HeadlinesPanel = ({ headlines, setHeadlines, onForceInfoPage, forceInfoPage, setCurrentMode }) => {
   const [isFetching, setIsFetching] = useState(true);
   const [currentHeadline, setCurrentHeadline] = useState(null);
 
@@ -23,7 +23,7 @@ const HeadlinesPanel = ({ headlines, setHeadlines, onForceInfoPage, forceInfoPag
   useEffect(() => {
     if (currentHeadline) {
       // Set default template
-      setCurrentTemplate(currentHeadline.attributes.template);
+      setCurrentMode(currentHeadline.attributes.template);
     }
   }, [currentHeadline]);
 
@@ -35,7 +35,7 @@ const HeadlinesPanel = ({ headlines, setHeadlines, onForceInfoPage, forceInfoPag
         const resp = await fetchHeadlines();
         setHeadlines(resp.data.data);
       } catch (err) {
-        console.log("Error fetching templates");
+        console.log("Error fetching modes");
       } finally {
         setIsFetching(false);
       }
@@ -96,5 +96,5 @@ export default connect(
   state => ({
     headlines: state.headlines.headlines
   }),
-  { setHeadlines, setCurrentTemplate }
+  { setHeadlines, setCurrentMode }
 )(HeadlinesPanel);

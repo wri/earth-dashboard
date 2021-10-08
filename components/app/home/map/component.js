@@ -1,22 +1,25 @@
 import { forwardRef, useEffect } from "react";
-import { DATA_LAYER_MAP, DATA_LAYER_TYPES } from "constants/datalayers";
+import { DATA_LAYER_TYPES, LEVELS } from "constants/datalayers";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
+import { mode } from "d3-array";
 
 const MapIframe = forwardRef(
   (
     {
-      currentTemplate,
+      currentMode,
       resetValues,
       setAnimationValue,
       setDatasetValue,
       setMonitorValue,
+      setHeightValue,
       animationEnabled,
       animationValue,
       datasetValue,
       monitorValue,
+      heightValue,
       setShouldFetchLocation,
       shouldFetchLocation,
       projectionType,
@@ -34,12 +37,12 @@ const MapIframe = forwardRef(
   ) => {
     const { currentPosition } = useCurrentPosition(shouldFetchLocation);
 
-    // if the current template changes, and there is an earth client, set the data layer values
+    // if the current mode changes, and there is an earth client, set the data layer values
     useEffect(() => {
-      if (currentTemplate && earthClient) {
+      if (currentMode && earthClient) {
         const newLayers = [];
         resetValues();
-        const defaults = currentTemplate.attributes.data_layers.default;
+        const defaults = currentMode.attributes.data_layers.default;
         defaults.forEach(layer => {
           let setter = () => {};
           switch (layer.attributes.category.attributes.title) {
@@ -52,18 +55,27 @@ const MapIframe = forwardRef(
             case DATA_LAYER_TYPES.monitor:
               setter = setMonitorValue;
               break;
+            case DATA_LAYER_TYPES.height:
+              setter = setHeightValue;
+              break;
           }
           newLayers.push(layer.attributes.title);
           setter(layer.attributes.data_key);
         });
-        setLayersLabelArr(newLayers);
+        if (currentMode.attributes.visibility.data_highlights) {
+          // Only set the name if the current mode is a data highlight
+          setLayersLabelArr([currentMode.attributes.title]);
+        } else {
+          setLayersLabelArr(newLayers);
+        }
       }
     }, [
-      currentTemplate,
+      currentMode,
       earthClient,
       resetValues,
       setAnimationValue,
       setDatasetValue,
+      setHeightValue,
       setLayersLabelArr,
       setMonitorValue
     ]);
@@ -71,38 +83,39 @@ const MapIframe = forwardRef(
     // Send the correct state to the map when data layer values change.
     useEffect(() => {
       if (earthServer.current) {
-        const newLayers = [];
-        [
-          ...currentTemplate.attributes.data_layers.default,
-          ...currentTemplate?.attributes?.data_layers.available
-        ].forEach(layer => {
-          if (
-            layer.attributes.data_key === animationValue ||
-            layer.attributes.data_key === monitorValue ||
-            layer.attributes.data_key === datasetValue
-          ) {
-            newLayers.push(layer.attributes.title);
-          }
-        });
-        setLayersLabelArr(newLayers);
+        // TODO: Update to work with advanced menu only
+        // const newLayers = [];
+        // [...currentMode.attributes.data_layers.default, ...currentMode?.attributes?.data_layers.available].forEach(
+        //   layer => {
+        //     if (
+        //       layer.attributes.data_key === animationValue ||
+        //       layer.attributes.data_key === monitorValue ||
+        //       layer.attributes.data_key === datasetValue
+        //     ) {
+        //       newLayers.push(layer.attributes.title);
+        //     }
+        //   }
+        // );
+        // setLayersLabelArr(newLayers);
 
         let animation = { animation_enabled: false };
-        if (animationEnabled && DATA_LAYER_MAP[animationValue]) {
-          animation = DATA_LAYER_MAP[animationValue];
+        if (animationEnabled) {
+          animation = { animation_type: animationValue, animation_enabled: true };
         }
-        const monitor = DATA_LAYER_MAP[monitorValue] || { annotation_type: "none" };
-        const dataset = DATA_LAYER_MAP[datasetValue] || { overlay_type: "none", z_level: "surface" };
+        const monitor = monitorValue ? { annotation_type: monitorValue } : { annotation_type: "none" };
+        const dataset = datasetValue ? { overlay_type: datasetValue } : { annotation_type: "none" };
+        const height = heightValue ? { z_level: heightValue } : { z_level: LEVELS.surface };
 
-        earthServer.current.saveState({ ...animation, ...monitor, ...dataset });
+        earthServer.current.saveState({ ...animation, ...monitor, ...dataset, ...height });
       }
     }, [
       animationValue,
       animationEnabled,
       datasetValue,
       monitorValue,
-      currentTemplate?.attributes?.data_layers,
-      earthServer,
-      setLayersLabelArr
+      heightValue,
+      currentMode?.attributes?.data_layers,
+      earthServer
     ]);
 
     // Switch between the different projection types available
@@ -191,7 +204,7 @@ const MapIframe = forwardRef(
 MapIframe.displayName = "MapIframe";
 
 MapIframe.propTypes = {
-  currentTemplate: PropTypes.object,
+  currentMode: PropTypes.object,
   resetValues: PropTypes.func.isRequired,
   setAnimationValue: PropTypes.func.isRequired,
   setDatasetValue: PropTypes.func.isRequired,
@@ -206,7 +219,6 @@ MapIframe.propTypes = {
   earthClient: PropTypes.instanceOf(EarthClient),
   earthServer: PropTypes.object,
   layers: PropTypes.array,
-  setLayersLabelArr: PropTypes.func.isRequired,
   setDateOfDataShown: PropTypes.func.isRequired,
   showMapGrid: PropTypes.bool.isRequired,
   highDefinitionMode: PropTypes.bool.isRequired,
@@ -214,7 +226,7 @@ MapIframe.propTypes = {
 };
 
 MapIframe.defaultProps = {
-  currentTemplate: null,
+  currentMode: null,
   earthServer: null,
   animationValue: null,
   datasetValue: null,

@@ -3,7 +3,7 @@ import { render, fireEvent, waitFor } from "test-utils";
 import MainContainer from "./index";
 import useIframeBridge from "../../../../hooks/useIframeBridge";
 import { EarthClient } from "../../../../utils/iframeBridge/earthClient";
-import templates from "../../../../test/templates.json";
+import modes from "../../../../test/modes.json";
 import headlines from "../../../../test/headlines.json";
 import { GCAAPI } from "../../../../utils/axios";
 import { earthServer } from "../../../../test/iframeBridge";
@@ -36,7 +36,7 @@ const mockIframeBridge = {
 };
 
 test("<MainContainer /> renders correctly as desktop", async () => {
-  GCAAPI.get.mockResolvedValue({ data: templates });
+  GCAAPI.get.mockResolvedValue({ data: modes });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
   const { container, getByTestId } = render(<MainContainer isMobile={false} />);
@@ -77,7 +77,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           <span
             data-testid="labels-arr"
           >
-            Smoke, Fires, Wind
+            Particulate Matter, Carbon Monoxide, Smoke, Fires, Wind
           </span>
         </div>
       </button>
@@ -112,7 +112,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
 });
 
 test("<MainContainer /> renders correctly as mobile", async () => {
-  GCAAPI.get.mockResolvedValue({ data: templates });
+  GCAAPI.get.mockResolvedValue({ data: modes });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
   const { container, getByTestId } = render(<MainContainer isMobile={true} />);
@@ -144,7 +144,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
           <span
             data-testid="labels-arr"
           >
-            Smoke, Fires, Wind
+            Particulate Matter, Carbon Monoxide, Smoke, Fires, Wind
             <br />
              
             xxxx-xx-xx
@@ -158,7 +158,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
 });
 
 test("<MainContainer /> toggle class toggles properly", async () => {
-  GCAAPI.get.mockResolvedValue({ data: templates });
+  GCAAPI.get.mockResolvedValue({ data: modes });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
   const { getByTestId, queryAllByTestId } = render(<MainContainer isMobile={false} />);

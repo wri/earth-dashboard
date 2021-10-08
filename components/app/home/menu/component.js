@@ -5,6 +5,7 @@ import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
 import DataPanel from "./panels/data";
 import HeadlinePanel from "./panels/headlines";
+import DataHighlightsPanel from "./panels/dataHighlights";
 
 const INFO_DATA = {
   dataset: {
@@ -34,10 +35,9 @@ const Menu = forwardRef(
       isMobile,
       onClose,
       isClosing,
-      templates,
-      setTemplates,
-      currentTemplate,
-      setCurrentTemplate,
+      modes,
+      currentMode,
+      setCurrentMode,
       animationValue,
       animationEnabled,
       setAnimationValue,
@@ -136,13 +136,13 @@ const Menu = forwardRef(
                   <HeadlinePanel onForceInfoPage={() => setForceInfoPage(true)} forceInfoPage={forceInfoPage} />
                 </TabPanel>
                 <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-2">
-                  <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>Vital Signs</p>
+                  <DataHighlightsPanel />
                 </TabPanel>
                 <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-3">
                   <DataPanel
-                    currentTemplate={currentTemplate}
-                    setCurrentTemplate={setCurrentTemplate}
-                    templates={templates}
+                    currentMode={currentMode}
+                    setCurrentMode={setCurrentMode}
+                    modes={modes}
                     datasetValue={datasetValue}
                     setDatasetValue={setDatasetValue}
                     monitorValue={monitorValue}
@@ -153,6 +153,7 @@ const Menu = forwardRef(
                     isMobile={isMobile}
                     onSelectInfo={onSelectInfo}
                     layers={layers}
+                    // TODO Refactor Data panel to pull from redux instead of passing props from parent.
                   />
                 </TabPanel>
                 <TabPanel>
