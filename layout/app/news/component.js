@@ -66,7 +66,10 @@ const NewsTopicLayout = ({ topic }) => {
           <NewsArticle key={key} {...articleProps} />
         ))}
         <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
-          <AnchorCTA className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]} onClick={() => {}}>
+          <AnchorCTA
+            className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]}
+            onClick={() => {}}
+          >
             Load More
           </AnchorCTA>
         </div>

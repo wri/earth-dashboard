@@ -3,17 +3,18 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 import styles from "components/ui/anchor-cta/anchor-cta.module.scss";
 
-const AnchorCTA = ({ className, href, children, onClick }) =>  href ? (
-  <Link href={href}>
-    <a className={classnames(className, styles["c-anchor-cta"])} onClick={onClick}>
+const AnchorCTA = ({ className, href, children, onClick }) =>
+  href ? (
+    <Link href={href}>
+      <a className={classnames(className, styles["c-anchor-cta"])} onClick={onClick}>
+        {children}
+      </a>
+    </Link>
+  ) : (
+    <button className={classnames(className, styles["c-anchor-cta"])} onClick={onClick}>
       {children}
-    </a>
-  </Link>
-) : (
-  <button className={classnames(className, styles["c-anchor-cta"])} onClick={onClick}>
-    {children}
-  </button>
-);
+    </button>
+  );
 
 AnchorCTA.propTypes = {
   className: PropTypes.string,
