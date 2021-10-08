@@ -89,7 +89,7 @@ const NewsTopicLayout = ({ topic }) => {
 };
 
 NewsTopicLayout.propTypes = {
-  topic: PropTypes.oneOf([CLIMATE, FRESHWATER, OCEAN, FORESTS, BIODIVERSITY])
+  topic: PropTypes.oneOf([CLIMATE, FRESHWATER, OCEAN, FORESTS, BIODIVERSITY]).isRequired
 };
 
 NewsTopicLayout.defaultProps = {};
