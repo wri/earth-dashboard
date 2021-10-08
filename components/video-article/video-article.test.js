@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from "react";
+import { useEffect } from "react";
 import { render, fireEvent } from "test-utils";
 import VideoArticle from "./component";
 import { CSSTransition } from "react-transition-group";
@@ -16,7 +16,7 @@ jest.mock("next/image", () => () => <img />);
 // Here I needed to mock a react component and call one of its props within a useEffect
 // Found the solution in this article: https://ericdcobb.medium.com/advanced-react-component-mocks-with-jest-and-react-testing-library-f1ae8838400b
 const MockReactPlayer = ({ url, onError }) => {
-  React.useEffect(() => {
+  useEffect(() => {
     if (url !== "validURL") {
       onError();
     }
