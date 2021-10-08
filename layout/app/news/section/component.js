@@ -4,12 +4,12 @@ import sectionBgColours, { BG_SPACE } from "constants/section-colours";
 import styles from "./section.module.scss";
 import PropTypes from "prop-types";
 
-const Section = ({ className, gridClassName, title, bgColour, pb, children }) => (
+const Section = ({ className, gridClassName, title, bgColour, paddingBottom, children }) => (
   <div
     className={classnames(
       className,
       styles["o-page-section"],
-      !pb && styles["o-page-section--pb-none"],
+      !paddingBottom && styles["o-page-section--pb-none"],
       bgColour && styles[`o-page-section--${bgColour}`]
     )}
   >
