@@ -68,7 +68,7 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
                 className={styles["c-video-article__play-icon"]}
                 onClick={() => setIsPlaying(true)}
                 aria-label={isPlaying && hasError ? "Error Playing Video" : "Play Video"}
-                disabled={isPlaying && hasError}
+                disabled={isPlaying || hasError}
                 aria-describedby={!hasError && id}
               >
                 <Image
