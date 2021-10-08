@@ -8,7 +8,8 @@ import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import styles from "./mega-menu.module.scss";
 import PropTypes from "prop-types";
 
-import { MegaMenuCTAs, MegaMenuQuickLinks, MegaMenuSocialLinks } from "constants/mega-menu-items";
+import { MegaMenuCTAs, MegaMenuQuickLinks } from "constants/mega-menu-items";
+import { SocialLinks } from "constants/social-links";
 
 const MegaMenu = ({ isMegaMenuOpen }) => {
   const scrollEl = useRef(null);
@@ -49,7 +50,7 @@ const MegaMenu = ({ isMegaMenuOpen }) => {
 
             <div>
               <div className={styles["c-mega-menu-socials"]}>
-                {MegaMenuSocialLinks.map(({ key, ...socialLinkProps }) => (
+                {SocialLinks.map(({ key, ...socialLinkProps }) => (
                   <SocialIcon key={key} className={styles["c-mega-menu-socials__icon"]} {...socialLinkProps} />
                 ))}
               </div>

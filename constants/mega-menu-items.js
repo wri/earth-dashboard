@@ -1,6 +1,4 @@
 import TestImage from "public/static/images/forests/challenge.png";
-import TwitterIcon from "public/static/icons/twitter.svg";
-import LinkedInIcon from "public/static/icons/linkedin.svg";
 
 export const MegaMenuCTAs = [
   {
@@ -51,20 +49,5 @@ export const MegaMenuQuickLinks = [
     key: "cookies",
     label: "Cookies",
     link: "/"
-  }
-];
-
-export const MegaMenuSocialLinks = [
-  {
-    key: "twitter",
-    icon: TwitterIcon,
-    label: "Twitter",
-    link: "https://twitter.com/"
-  },
-  {
-    key: "linkedin",
-    icon: LinkedInIcon,
-    label: "LinkedIn",
-    link: "https://linkedin.com/"
   }
 ];

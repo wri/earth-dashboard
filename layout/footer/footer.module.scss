@@ -70,3 +70,15 @@
     }
   }
 }
+
+.c-footer-section-socials {
+  padding-bottom: 24px;
+
+  &__icon:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    padding-bottom: 16px;
+  }
+}
