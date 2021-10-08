@@ -36,17 +36,19 @@ const FOOTER_QUICK_LINKS = [
   {
     key: "about-us",
     label: "About Us",
-    link: "/"
+    link: "/about"
   },
   {
     key: "terms-of-use",
     label: "Terms Of Use",
-    link: "/"
+    link: "https://resourcewatch.org/terms-of-service",
+    external: true
   },
   {
     key: "cookies",
     label: "Cookies",
-    link: "/"
+    link: "https://resourcewatch.org/privacy-policy",
+    external: true
   }
 ];
 
