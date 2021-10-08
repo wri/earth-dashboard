@@ -24,7 +24,7 @@ test("<HeadlineCard /> renders correctly as a Button", async () => {
         Consequuntur sunt voluptate rerum nemo suscipit et.
       </h3>
       <p
-        class="c-headline-card__date"
+        class="c-headline-card__subtitle"
       >
         9th September 2021
       </p>
@@ -56,7 +56,7 @@ test("<HeadlineCard /> renders correctly by default", async () => {
         Consequuntur sunt voluptate rerum nemo suscipit et.
       </h3>
       <p
-        class="c-headline-card__date"
+        class="c-headline-card__subtitle"
       >
         9th September 2021
       </p>

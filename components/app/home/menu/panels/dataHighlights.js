@@ -17,7 +17,7 @@ const DataHighlightsPanel = ({ setCurrentMode, currentMode, highlights }) => {
       </p>
       <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
         <RadioGroup
-          value={currentMode.id}
+          value={currentMode?.id}
           onChange={id => setCurrentMode(highlights.find(highlight => highlight.id === id))}
         >
           <RadioGroup.Label className="u-visually-hidden">Data Highlights</RadioGroup.Label>

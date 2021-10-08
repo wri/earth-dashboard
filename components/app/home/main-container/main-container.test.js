@@ -77,7 +77,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           <span
             data-testid="labels-arr"
           >
-            Smoke, Fires, Wind
+            Particulate Matter, Carbon Monoxide, Smoke, Fires, Wind
           </span>
         </div>
       </button>
@@ -93,7 +93,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           <span
             class="c-showing-data-for__text"
           >
-            Showing Data for:
+            Showing Data for: 
             <span
               class="c-showing-data-for__date"
             >
@@ -144,9 +144,9 @@ test("<MainContainer /> renders correctly as mobile", async () => {
           <span
             data-testid="labels-arr"
           >
-            Smoke, Fires, Wind
+            Particulate Matter, Carbon Monoxide, Smoke, Fires, Wind
             <br />
-
+             
             xxxx-xx-xx
           </span>
         </div>

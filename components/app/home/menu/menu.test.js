@@ -129,7 +129,7 @@ test("<Menu /> renders correctly as desktop", async () => {
                       Consequuntur sunt voluptate rerum nemo suscipit et.
                     </h3>
                     <p
-                      class="c-headline-card__date"
+                      class="c-headline-card__subtitle"
                     >
                       9th September 2021
                     </p>
@@ -152,7 +152,7 @@ test("<Menu /> renders correctly as desktop", async () => {
                       Minima velit nam sunt.
                     </h3>
                     <p
-                      class="c-headline-card__date"
+                      class="c-headline-card__subtitle"
                     >
                       9th September 2021
                     </p>
@@ -175,7 +175,7 @@ test("<Menu /> renders correctly as desktop", async () => {
                       Praesentium nobis vel necessitatibus.
                     </h3>
                     <p
-                      class="c-headline-card__date"
+                      class="c-headline-card__subtitle"
                     >
                       9th September 2021
                     </p>
@@ -198,7 +198,7 @@ test("<Menu /> renders correctly as desktop", async () => {
                       A ea modi id error qui.
                     </h3>
                     <p
-                      class="c-headline-card__date"
+                      class="c-headline-card__subtitle"
                     >
                       9th September 2021
                     </p>
@@ -221,7 +221,7 @@ test("<Menu /> renders correctly as desktop", async () => {
                       One of four North Atlantic right whale calves spotted so far this breeding season struck by ship
                     </h3>
                     <p
-                      class="c-headline-card__date"
+                      class="c-headline-card__subtitle"
                     >
                       15th September 2021
                     </p>
@@ -382,7 +382,7 @@ test("<Menu /> renders correctly as mobile", async () => {
                       Consequuntur sunt voluptate rerum nemo suscipit et.
                     </h3>
                     <p
-                      class="c-headline-card__date"
+                      class="c-headline-card__subtitle"
                     >
                       9th September 2021
                     </p>
@@ -405,7 +405,7 @@ test("<Menu /> renders correctly as mobile", async () => {
                       Minima velit nam sunt.
                     </h3>
                     <p
-                      class="c-headline-card__date"
+                      class="c-headline-card__subtitle"
                     >
                       9th September 2021
                     </p>
@@ -428,7 +428,7 @@ test("<Menu /> renders correctly as mobile", async () => {
                       Praesentium nobis vel necessitatibus.
                     </h3>
                     <p
-                      class="c-headline-card__date"
+                      class="c-headline-card__subtitle"
                     >
                       9th September 2021
                     </p>
@@ -451,7 +451,7 @@ test("<Menu /> renders correctly as mobile", async () => {
                       A ea modi id error qui.
                     </h3>
                     <p
-                      class="c-headline-card__date"
+                      class="c-headline-card__subtitle"
                     >
                       9th September 2021
                     </p>
@@ -474,7 +474,7 @@ test("<Menu /> renders correctly as mobile", async () => {
                       One of four North Atlantic right whale calves spotted so far this breeding season struck by ship
                     </h3>
                     <p
-                      class="c-headline-card__date"
+                      class="c-headline-card__subtitle"
                     >
                       15th September 2021
                     </p>
