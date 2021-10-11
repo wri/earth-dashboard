@@ -2,6 +2,8 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
+$c-news-article-transition: 0.3s ease-in-out;
+
 .c-news-article {
   $this: &;
 
@@ -14,14 +16,20 @@
   backdrop-filter: blur(10.8731px);
   border-radius: 16px;
   overflow: hidden;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color $c-news-article-transition;
 
   &:hover {
-    background-color: $colour-flame;
+    &,
+    #{$this}__image:after {
+      background-color: $colour-flame;
+    }
   }
 
   &:active {
-    background-color: $colour-night;
+    &,
+    #{$this}__image:after {
+      background-color: $colour-night;
+    }
   }
 
   &--featured {
@@ -55,6 +63,18 @@
     position: relative;
     border-radius: 12px;
     overflow: hidden;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: transparent;
+      opacity: 0.15;
+      transition: background-color $c-news-article-transition;
+    }
   }
 
   &__title,
