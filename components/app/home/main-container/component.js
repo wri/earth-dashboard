@@ -10,6 +10,7 @@ import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
 import DatePickerBtn from "components/app/home/date-picker-menu/button";
 import useIframeBridge from "hooks/useIframeBridge";
+import useWindowDimensions from "hooks/useWindowDimensions";
 import { fetchModes } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
@@ -24,6 +25,7 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOf
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
   const [homePageMapControlsItems, setHomePageControlBarItems] = useState([]);
+  const { width: browserWidth } = useWindowDimensions();
 
   const menuRef = useRef(null);
 
@@ -70,9 +72,36 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOf
     }, 1000);
   }, []);
 
+  // Move globe to the left when menu is open
   useEffect(() => {
-    if (hasMenuOpen && menuRef.current) {
-      menuRef.current.focus();
+    if (!earthServer.current) return;
+
+    const animationDuration = 300;
+    const translateDuration = 25;
+    const totalDistance = browserWidth * 0.2;
+
+    const distanceInterval = totalDistance / (animationDuration / translateDuration);
+    const translateInterval = hasMenuOpen ? distanceInterval : distanceInterval * -1;
+
+    let translateDistance = 0;
+
+    const loop = () => {
+      translateDistance += distanceInterval;
+
+      if (translateDistance <= totalDistance) {
+        earthServer.current.reorient({ translateBy: [translateInterval, 0] });
+        setTimeout(loop, translateDuration);
+      } else if (!hasMenuOpen) {
+        earthServer.current.reorient({ translate: "default" });
+      }
+    }
+
+    loop();
+  }, [hasMenuOpen]);
+
+  useEffect(() => {
+    if (hasMenuOpen) {
+      menuRef.current?.focus();
     }
   }, [hasMenuOpen]);
 
