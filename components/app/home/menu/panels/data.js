@@ -39,8 +39,17 @@ const DataPanel = ({
 
   const description = useMemo(() => {
     const layer = datasetLayers.find(layer => layer.attributes.data_key === datasetValue);
-    return layer ? layer.attributes.description : "";
+    return layer ? `Showing: ${layer.attributes.description}` : "";
   }, [datasetLayers, datasetValue]);
+
+  const availableModes = useMemo(() => {
+    const items = [];
+    if (!currentMode.attributes.visibility.advanced_menu) {
+      // Add it in to the advanced menu temporarily
+      items.push(currentMode);
+    }
+    return [...items, ...modes.filter(mode => mode.attributes.visibility.advanced_menu)];
+  }, [currentMode, modes]);
 
   return (
     <>
@@ -50,7 +59,7 @@ const DataPanel = ({
       </p>
       <div className={classnames(styles["c-home-menu__tab-panel-scroll-area"], "u-padding-top-none")}>
         <ToggleList
-          selectedValue={currentMode.id}
+          selectedValue={currentMode.id || null}
           onSelect={value => {
             setCurrentMode({ ...modes.find(mode => parseInt(value, 10) === mode.id) });
           }}
@@ -58,7 +67,7 @@ const DataPanel = ({
           description="The modes provide an overview of the climatic condition. Each category contains data that will help you understand how that category is affected by different factors."
           className={styles["c-home-menu__data-selection-item"]}
         >
-          {modes.map(template => (
+          {availableModes.map(template => (
             <ToggleItem value={template.id} className="u-margin-right-xxs u-margin-bottom-s" key={template.id}>
               {template.attributes.title}
             </ToggleItem>

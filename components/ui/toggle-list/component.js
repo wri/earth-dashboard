@@ -70,7 +70,7 @@ const ToggleList = ({
 ToggleList.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  selectedValue: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.array.isRequired]),
+  selectedValue: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number, PropTypes.array.isRequired]),
   onSelect: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   legendComponent: PropTypes.node,

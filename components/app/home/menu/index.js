@@ -2,6 +2,8 @@ import { connect } from "react-redux";
 import Menu from "./component";
 import { ID as animationsId } from "schemas/global-settings/animations";
 import { NAME as globalSettingsSliceName } from "slices/globalSettings";
+import { NAME as dialogSliceName, setDialogHeight } from "slices/dialog";
+
 import {
   setCurrentMode,
   setAnimation,
@@ -20,7 +22,8 @@ export default connect(
     monitorValue: state[modesSliceName].monitorValue,
     datasetValue: state[modesSliceName].datasetValue,
     heightValue: state[modesSliceName].heightValue,
-    animationEnabled: state[globalSettingsSliceName][animationsId]
+    animationEnabled: state[globalSettingsSliceName][animationsId],
+    dialogHeight: state[dialogSliceName].dialogHeight
   }),
   {
     setCurrentMode,
@@ -28,7 +31,8 @@ export default connect(
     setMonitorValue: setMonitor,
     setDatasetValue: setDataset,
     setHeightValue: setHeight,
-    resetValues: resetValues
+    resetValues: resetValues,
+    setDialogHeight
   },
   null,
   { forwardRef: true }

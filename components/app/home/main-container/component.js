@@ -21,6 +21,7 @@ import DatePickerMenu from "../date-picker-menu";
 const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOfDataShown, shouldFadeControls }) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
+  const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
   const [homePageMapControlsItems, setHomePageControlBarItems] = useState([]);
 
@@ -49,7 +50,15 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOf
   }, [overlayLayer?.product]);
 
   const toggleMenu = () => {
-    setHasMenuOpen(!hasMenuOpen);
+    if (!hasMenuOpen) {
+      setHasMenuOpen(true);
+    } else {
+      setIsClosingMenu(true);
+      setTimeout(() => {
+        setIsClosingMenu(false);
+        setHasMenuOpen(false);
+      }, 400);
+    }
   };
 
   // Store the isMobile flag in the redux store
@@ -106,13 +115,13 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOf
           scaleGradient={overlayLayer.product.scale.getCss(180)}
         />
       )}
-      {!isFetchingTemplates && (
+      {hasMenuOpen && !isFetchingTemplates && (
         <Menu
           isMobile={isMobile}
-          isOpen={hasMenuOpen}
           onClose={toggleMenu}
           id="menu"
           ref={menuRef}
+          isClosing={isClosingMenu}
           earthServer={earthServer.current}
           layers={layers}
         />

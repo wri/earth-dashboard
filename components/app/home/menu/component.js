@@ -6,8 +6,7 @@ import PropTypes from "prop-types";
 import DataPanel from "./panels/data";
 import HeadlinePanel from "./panels/headlines";
 import DataHighlightsPanel from "./panels/dataHighlights";
-import useDialogPanel from "hooks/useDialogPanel";
-import DialogPanel from "components/app/home/dialog-panel";
+import ResizablePanel from "components/app/home/dialog-panel/resizable-panel";
 
 const INFO_TAB_INDEX = 3;
 const DATA_TAB_INDEX = 2;
@@ -15,9 +14,9 @@ const DATA_TAB_INDEX = 2;
 const Menu = forwardRef(
   (
     {
-      isOpen,
       isMobile,
       onClose,
+      isClosing,
       modes,
       currentMode,
       setCurrentMode,
@@ -33,15 +32,17 @@ const Menu = forwardRef(
       earthServer,
       resetValues,
       layers,
+      setDialogHeight,
+      dialogHeight,
       ...rest
     },
     ref
   ) => {
-    const { shouldAnimate, handleClose } = useDialogPanel(isOpen, onClose);
-
     const [tabIndex, setTabIndex] = useState(0);
     const [infoData, setInfoData] = useState(null);
     const [forceInfoPage, setForceInfoPage] = useState(false);
+    const handleResize = (e, direction, div) => setDialogHeight({ height: div.offsetHeight });
+
     const isInfoPage = useMemo(() => {
       return tabIndex === INFO_TAB_INDEX || forceInfoPage;
     }, [forceInfoPage, tabIndex]);
@@ -55,15 +56,16 @@ const Menu = forwardRef(
     };
 
     return (
-      isOpen && (
-        <DialogPanel
-          onClose={handleClose}
-          isMobile={isMobile}
-          shouldAnimate={shouldAnimate}
-          className={styles["c-home-menu-container"]}
-        >
+      <div
+        className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
+      >
+        <ResizablePanel isMobile={isMobile} height={dialogHeight} onResize={handleResize}>
           <div
-            className={classnames(styles["c-home-menu"], isInfoPage && styles["c-home-menu--is-info-page"])}
+            className={classnames(
+              styles["c-home-menu"],
+              isClosing && styles["c-home-menu--closing"],
+              isInfoPage && styles["c-home-menu--is-info-page"]
+            )}
             {...rest}
           >
             <Tabs
@@ -151,8 +153,8 @@ const Menu = forwardRef(
               </div>
             </Tabs>
           </div>
-        </DialogPanel>
-      )
+        </ResizablePanel>
+      </div>
     );
   }
 );
@@ -161,14 +163,10 @@ Menu.displayName = "Menu";
 
 Menu.propTypes = {
   isMobile: PropTypes.bool.isRequired,
-  isOpen: PropTypes.bool,
+  isClosing: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
   layers: PropTypes.array.isRequired,
   animationEnabled: PropTypes.bool.isRequired
-};
-
-Menu.defaultProps = {
-  isOpen: false
 };
 
 export default Menu;

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Resizable } from "re-resizable";
 import { CSSTransition } from "react-transition-group";
 import FocusTrap from "focus-trap-react";
 import styles from "./dialog-panel.module.scss";
 import PropTypes from "prop-types";
+import ResizablePanel from "./resizable-panel";
 
 const transitionDuration = parseInt(styles["transitionDuration"], 10);
 
@@ -15,31 +15,6 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
   }, [shouldAnimate]);
 
   const handleResize = (e, direction, div) => setDialogHeight({ height: div.offsetHeight });
-
-  const resizableProps = {
-    className: styles["c-dialog-panel__draggable"],
-    // Inline override, otherwise !important is needed in the stylesheet
-    style: { position: "absolute" },
-    handleClasses: { top: styles["c-dialog-panel__draggable__handle"] },
-    // Inline override, otherwise !important is needed in the stylesheet
-    handleStyles: { top: { width: "115px", height: "6px", left: "50%" } },
-    enable: {
-      top: true,
-      right: false,
-      bottom: false,
-      left: false,
-      topRight: false,
-      bottomRight: false,
-      bottomLeft: false,
-      topLeft: false
-    },
-    defaultSize: { width: "100vw", height: dialogHeight },
-    onResizeStop: handleResize,
-    minWidth: "100vw",
-    maxWidth: "100vw",
-    minHeight: "50vh",
-    maxHeight: "90vh"
-  };
 
   const focusTrapOptions = Object.assign({
     onDeactivate: () => {
@@ -62,7 +37,9 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
     >
       <div className={styles["c-dialog-panel"]} role="dialog">
         <FocusTrap focusTrapOptions={focusTrapOptions}>
-          {isMobile ? <Resizable {...resizableProps}>{children}</Resizable> : children}
+          <ResizablePanel isMobile={isMobile} height={dialogHeight} onResize={handleResize}>
+            {children}
+          </ResizablePanel>
         </FocusTrap>
       </div>
     </CSSTransition>
