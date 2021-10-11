@@ -6,6 +6,7 @@ import classnames from "classnames";
 const ToggleList = ({
   title,
   legendComponent,
+  description,
   hasLegend,
   selectedValue,
   onSelect,
@@ -60,13 +61,15 @@ const ToggleList = ({
   return (
     <fieldset className={classnames(styles["c-toggle-list"], className)} {...rest}>
       {hasLegend && (legendComponent ? legendComponent : <legend>{title}</legend>)}
-      {getChildren()}
+      {description && <p className={styles["c-toggle-list__description"]}>{description}</p>}
+      <div className={styles["c-toggle-list__children"]}>{getChildren()}</div>
     </fieldset>
   );
 };
 
 ToggleList.propTypes = {
   title: PropTypes.string.isRequired,
+  description: PropTypes.string,
   selectedValue: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.array.isRequired]),
   onSelect: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
@@ -78,6 +81,7 @@ ToggleList.propTypes = {
 
 ToggleList.defaultProps = {
   className: "",
+  description: "",
   hasLegend: true,
   legendComponent: null,
   singularMode: false

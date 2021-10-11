@@ -118,11 +118,13 @@
   }
 
   &__data-selection {
-    display: grid;
-    grid-template-columns: 126px auto;
-    grid-gap: 0px;
-    row-gap: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 20px;
+  }
+
+  &__data-selection-item {
+    border-bottom: 1px solid #ffffff !important;
+    padding-bottom: 8px !important;
+    margin-top: 20px !important;
   }
 
   &--closing {
@@ -283,7 +285,7 @@
 
     &__tab-panel-scroll-area {
       padding: 12px 12px 12px 24px;
-      top: 52px;
+      top: 70px;
 
       &--slim {
         top: 0px;
@@ -301,8 +303,12 @@
     }
 
     &__data-selection {
-      display: block;
-      border-bottom: 1px;
+      border-bottom: 16px;
+    }
+
+    &__data-selection-item {
+      padding-bottom: 4px !important;
+      margin-top: 16px !important;
     }
 
     &__header-text {

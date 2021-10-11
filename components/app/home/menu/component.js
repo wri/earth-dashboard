@@ -45,6 +45,8 @@ const Menu = forwardRef(
       setDatasetValue,
       monitorValue,
       setMonitorValue,
+      heightValue,
+      setHeightValue,
       earthServer,
       resetValues,
       layers,
@@ -146,12 +148,13 @@ const Menu = forwardRef(
                     datasetValue={datasetValue}
                     setDatasetValue={setDatasetValue}
                     monitorValue={monitorValue}
+                    heightValue={heightValue}
+                    setHeightValue={setHeightValue}
                     setMonitorValue={setMonitorValue}
                     animationValue={animationValue}
                     animationEnabled={animationEnabled}
                     setAnimationValue={setAnimationValue}
                     isMobile={isMobile}
-                    onSelectInfo={onSelectInfo}
                     layers={layers}
                     // TODO Refactor Data panel to pull from redux instead of passing props from parent.
                   />

@@ -7,6 +7,7 @@ import {
   setAnimation,
   setDataset,
   setMonitor,
+  setHeight,
   resetValues,
   NAME as modesSliceName
 } from "slices/modes";
@@ -18,6 +19,7 @@ export default connect(
     animationValue: state[modesSliceName].animationValue,
     monitorValue: state[modesSliceName].monitorValue,
     datasetValue: state[modesSliceName].datasetValue,
+    heightValue: state[modesSliceName].heightValue,
     animationEnabled: state[globalSettingsSliceName][animationsId]
   }),
   {
@@ -25,6 +27,7 @@ export default connect(
     setAnimationValue: setAnimation,
     setMonitorValue: setMonitor,
     setDatasetValue: setDataset,
+    setHeightValue: setHeight,
     resetValues: resetValues
   },
   null,

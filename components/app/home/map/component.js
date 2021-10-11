@@ -175,8 +175,8 @@ const MapIframe = forwardRef(
                 return accumulator;
               }
             }, null)
-          )
-        ).toString();
+          ).toString()
+        );
       }
     }, [layers, setDateOfDataShown]);
 
