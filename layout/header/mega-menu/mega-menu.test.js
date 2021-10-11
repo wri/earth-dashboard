@@ -47,17 +47,23 @@ describe("Mega Menu", () => {
     <div
       class="c-mega-menu__scroll"
     >
-      <div
-        class="c-mega-menu__ctas"
+      <nav
+        aria-label="Main Menu"
       >
-        <div>
-          CTA Test
-        </div>
-      </div>
+        <ul
+          class="c-mega-menu__ctas"
+        >
+          <div>
+            CTA Test
+          </div>
+        </ul>
+      </nav>
       <div
         class="c-mega-menu__links"
       >
-        <div>
+        <nav
+          aria-label="Useful Links Menu"
+        >
           <ul
             class="c-mega-menu-quick-links"
           >
@@ -69,7 +75,7 @@ describe("Mega Menu", () => {
               </a>
             </li>
           </ul>
-        </div>
+        </nav>
         <div>
           <div
             class="c-mega-menu-socials"

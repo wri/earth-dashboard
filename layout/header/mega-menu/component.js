@@ -28,20 +28,22 @@ const MegaMenu = ({ isMegaMenuOpen }) => {
     >
       <div className={styles["c-mega-menu"]}>
         <div className={styles["c-mega-menu__scroll"]} ref={scrollEl}>
-          <div className={styles["c-mega-menu__ctas"]}>
-            {MegaMenuCTAs.map(({ key, ...ctaProps }) => (
-              <CTA key={key} {...ctaProps} />
-            ))}
-          </div>
+          <nav aria-label="Main Menu">
+            <ul className={styles["c-mega-menu__ctas"]}>
+              {MegaMenuCTAs.map(({ key, ...ctaProps }) => (
+                <CTA key={key} {...ctaProps} />
+              ))}
+            </ul>
+          </nav>
 
           <div className={styles["c-mega-menu__links"]}>
-            <div>
+            <nav aria-label="Useful Links Menu">
               <ul className={styles["c-mega-menu-quick-links"]}>
                 {QuickLinks.map(({ key, ...quickLinkProps }) => (
                   <ListLink key={key} {...quickLinkProps} />
                 ))}
               </ul>
-            </div>
+            </nav>
 
             <div>
               <div className={styles["c-mega-menu-socials"]}>
