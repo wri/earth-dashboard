@@ -13,7 +13,7 @@ const MegaMenuCTA = ({ className, image, label, body, link }) => {
   const { current: bodyID } = useRef("mega-menu-cta-body-" + uuid());
 
   return (
-    <div className={classnames(className, styles["c-mega-menu-cta"], image && styles["c-mega-menu-cta--withImage"])}>
+    <li className={classnames(className, styles["c-mega-menu-cta"], image && styles["c-mega-menu-cta--withImage"])}>
       {image && (
         <div className={styles["c-mega-menu-cta__image"]}>
           <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
@@ -38,7 +38,7 @@ const MegaMenuCTA = ({ className, image, label, body, link }) => {
           </Link>
         </div>
       </div>
-    </div>
+    </li>
   );
 };
 

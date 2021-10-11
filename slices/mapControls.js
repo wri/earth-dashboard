@@ -5,6 +5,7 @@ export const NAME = "mapControls";
 const initialState = {
   projectionType: "orthographic",
   isSettingsOpen: false,
+  isFetchLocationDisabled: false,
   shouldFetchLocation: false,
   shouldZoomIn: false,
   shouldZoomOut: false,
@@ -22,8 +23,12 @@ const mapControlsSlice = createSlice({
     setSettingsClose(state) {
       state.isSettingsOpen = false;
     },
-    setShouldFetchLocation(state, action) {
-      state.shouldFetchLocation = action.payload;
+    setIsFetchLocationDisabled(state, { payload }) {
+      state.isFetchLocationDisabled = payload;
+    },
+    setShouldFetchLocation(state, { payload }) {
+      state.isFetchLocationDisabled = payload;
+      state.shouldFetchLocation = payload;
     },
     setGlobe2d(state) {
       state.projectionType = "equirectangular";
@@ -49,6 +54,7 @@ const mapControlsSlice = createSlice({
 export const {
   setSettingsOpen,
   setSettingsClose,
+  setIsFetchLocationDisabled,
   setShouldFetchLocation,
   setGlobe2d,
   setGlobe3d,
@@ -58,6 +64,7 @@ export const {
   setIsDatePickerDisabled
 } = mapControlsSlice.actions;
 export const isSettingsOpen = state => state[NAME].isSettingsOpen;
+export const isFetchLocationDisabled = state => state[NAME].isFetchLocationDisabled;
 export const shouldFetchLocation = state => state[NAME].shouldFetchLocation;
 export const isGlobe2d = state => state[NAME].projectionType === "equirectangular";
 export const shouldZoomOut = state => state[NAME].shouldZoomOut;

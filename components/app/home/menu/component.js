@@ -1,4 +1,4 @@
-import { forwardRef, useState, useMemo } from "react";
+import { forwardRef, useState, useMemo, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
@@ -34,6 +34,7 @@ const Menu = forwardRef(
       layers,
       setDialogHeight,
       dialogHeight,
+      setIsFetchLocationDisabled,
       ...rest
     },
     ref
@@ -55,6 +56,14 @@ const Menu = forwardRef(
       setInfoData(null);
     };
 
+    useEffect(
+      () => () => {
+        // on unmount
+        setIsFetchLocationDisabled(false);
+      },
+      []
+    );
+
     return (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
@@ -70,7 +79,10 @@ const Menu = forwardRef(
           >
             <Tabs
               selectedIndex={tabIndex}
-              onSelect={index => setTabIndex(index)}
+              onSelect={index => {
+                setTabIndex(index);
+                setIsFetchLocationDisabled(false);
+              }}
               className={styles["c-home-menu__tabs"]}
               domRef={el => {
                 if (ref) {
@@ -166,7 +178,8 @@ Menu.propTypes = {
   isClosing: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
   layers: PropTypes.array.isRequired,
-  animationEnabled: PropTypes.bool.isRequired
+  animationEnabled: PropTypes.bool.isRequired,
+  setIsFetchLocationDisabled: PropTypes.func.isRequired
 };
 
 export default Menu;

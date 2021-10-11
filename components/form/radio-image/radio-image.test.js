@@ -2,7 +2,7 @@
 /* eslint-disable react/display-name */
 import { render, fireEvent } from "test-utils";
 import RadioImage from "./component";
-import TestImage from "public/static/images/star-background.png";
+import TestImage from "public/static/images/star-background.jpg";
 import * as redux from "react-redux";
 
 const options = [

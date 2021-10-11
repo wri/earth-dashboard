@@ -1,4 +1,4 @@
-import { setShouldFetchLocation, shouldFetchLocation } from "slices/mapControls";
+import { setShouldFetchLocation, shouldFetchLocation, isFetchLocationDisabled } from "slices/mapControls";
 import locationIcon from "public/static/icons/location.svg";
 
 const location = {
@@ -6,7 +6,7 @@ const location = {
   icon: locationIcon,
   isActiveSelector: shouldFetchLocation,
   getDispatch: () => () => setShouldFetchLocation(true),
-  shouldDisableOnActive: true,
+  isDisabledSelector: isFetchLocationDisabled,
   "aria-label": "Get current location"
 };
 

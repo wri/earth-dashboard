@@ -41,11 +41,13 @@ const DatePickerMenu = ({ isOpen, onClose, isMobile, currentDate, setDate }) => 
             />
           </div>
 
-          <div className={classnames(styles["c-settings-menu-modal__body"], "u-text-white")}>
-            <p className={styles["c-settings-menu-modal__body-title"]}>
-              Showing data for: {format(currentDate, "yyyy-MM-dd")} Local
-            </p>
-            <DatePicker initialDate={currentDate} onSubmit={handleSubmit} hasLiveDataButton ref={firstInput} />
+          <div className={styles["c-settings-menu-modal__body"]}>
+            <div className={classnames(styles["c-settings-menu-modal__scroll"], "u-text-white")}>
+              <p className={styles["c-settings-menu-modal__body-title"]}>
+                Showing data for: {format(currentDate, "yyyy-MM-dd")} Local
+              </p>
+              <DatePicker initialDate={currentDate} onSubmit={handleSubmit} hasLiveDataButton ref={firstInput} />
+            </div>
           </div>
         </div>
       </DialogPanel>

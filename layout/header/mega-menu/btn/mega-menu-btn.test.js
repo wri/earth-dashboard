@@ -19,18 +19,18 @@ describe("Mega Menu Btn", () => {
     const { container } = render(<MegaMenuBtn className="Test" isMegaMenuOpen={false} setIsMegaMenuOpen={() => {}} />);
 
     expect(container).toMatchInlineSnapshot(`
-      <div>
-        <button
-          aria-label="Open Menu"
-          class="Test"
-          data-testid="button"
-        >
-          <img
-            src="close.svg"
-          />
-        </button>
-      </div>
-    `);
+<div>
+  <button
+    aria-label="Open Main Menu"
+    class="Test"
+    data-testid="button"
+  >
+    <img
+      src="close.svg"
+    />
+  </button>
+</div>
+`);
   });
 
   test("Renders correctly when mega menu is open", () => {
@@ -39,7 +39,7 @@ describe("Mega Menu Btn", () => {
     expect(container).toMatchInlineSnapshot(`
 <div>
   <button
-    aria-label="Close Menu"
+    aria-label="Close Main Menu"
     class="Test"
     data-testid="button"
   >

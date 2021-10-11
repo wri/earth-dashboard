@@ -10,10 +10,16 @@
   color: white;
   padding: 10px 12px;
   max-width: 400px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 
   &:hover,
   &:focus {
     background-color: $colour-flame;
+
+    &:before {
+      background-color: $colour-galaxy;
+    }
   }
 
   &__text-container {
@@ -38,13 +44,16 @@
   &:before {
     content: "";
     display: block;
-    background-image: url("/static/icons/home-menu/layers.svg");
-    background-size: contain;
+    background-color: $colour-flame;
+    background-image: url("/static/icons/home-menu/layers-icon.svg");
+    background-size: 25px;
+    background-position: center;
     background-repeat: no-repeat;
     height: 48px;
     width: 48px;
     margin-right: 12px;
     border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
   }
 
   &:after {

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const MegaMenuBtn = ({ isMegaMenuOpen, setIsMegaMenuOpen, ...rest }) => (
   <IconButton
-    aria-label={isMegaMenuOpen ? "Close Menu" : "Open Menu"}
+    aria-label={isMegaMenuOpen ? "Close Main Menu" : "Open Main Menu"}
     icon={isMegaMenuOpen ? CloseIcon : HamBurgerIcon}
     onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
     {...rest}
