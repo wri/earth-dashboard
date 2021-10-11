@@ -11,7 +11,14 @@ import { setIsFetchLocationDisabled } from "slices/mapControls";
 import HeadlineCard from "components/app/home/headline-card";
 import Headline from "components/app/home/headline";
 
-const HeadlinesPanel = ({ headlines, setHeadlines, onForceInfoPage, forceInfoPage, setCurrentMode, setIsFetchLocationDisabled }) => {
+const HeadlinesPanel = ({
+  headlines,
+  setHeadlines,
+  onForceInfoPage,
+  forceInfoPage,
+  setCurrentMode,
+  setIsFetchLocationDisabled
+}) => {
   const [isFetching, setIsFetching] = useState(true);
   const [currentHeadline, setCurrentHeadline] = useState(null);
 

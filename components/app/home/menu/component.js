@@ -73,10 +73,13 @@ const Menu = forwardRef(
       setInfoData(INFO_DATA[key]);
     };
 
-    useEffect(() => () => {
-      // on unmount
-      setIsFetchLocationDisabled(false);
-    }, []);
+    useEffect(
+      () => () => {
+        // on unmount
+        setIsFetchLocationDisabled(false);
+      },
+      []
+    );
 
     return (
       <div

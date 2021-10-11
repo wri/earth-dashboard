@@ -18,7 +18,7 @@ const MapControlButton = ({
   const dispatch = useDispatch();
 
   const isActive = useSelector(isActiveSelector);
-  const isDisabled = isDisabledSelector ? useSelector(isDisabledSelector) : disabled;
+  const isDisabled = useSelector(isDisabledSelector ? isDisabledSelector : () => disabled);
   const dispatchFn = useMemo(() => getDispatch(isActive), [isActive, getDispatch]);
 
   const handleOnClick = () => {
