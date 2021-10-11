@@ -1,6 +1,6 @@
 import RadioImage from "components/form/radio-image";
 import { setSettingById, getSettingValueById } from "slices/globalSettings";
-import imageTest from "public/static/images/star-background.png";
+import imageTest from "public/static/images/star-background.jpg";
 
 export const ID = "basemaps";
 
