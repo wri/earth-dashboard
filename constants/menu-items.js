@@ -1,11 +1,11 @@
-import TestImage from "public/static/images/forests/challenge.png";
+import EarthHQImage from "public/static/images/earth-hq.png";
 import TwitterIcon from "public/static/icons/twitter.svg";
 import LinkedInIcon from "public/static/icons/linkedin.svg";
 
 export const MenuItems = [
   {
     key: "earth-hq",
-    image: TestImage,
+    image: EarthHQImage,
     label: "Earth HQ",
     body: "A “Situation Room” for the planet. Earth HQ is an interactive and dynamic platform that tracks the forces imperiling the natural systems that support life on earth. ",
     link: "/"

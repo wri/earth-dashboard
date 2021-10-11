@@ -2,6 +2,7 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
+$c-video-article-transition: 0.3s ease-in-out;
 $video-thumbnail-transition-ms: 1000;
 
 :export {
@@ -16,21 +17,47 @@ $video-thumbnail-transition-ms: 1000;
   overflow: hidden;
   cursor: pointer;
 
-  &:after {
+  &:before {
     content: "";
     display: block;
     padding-top: 56.25%;
   }
 
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: transparent;
+    opacity: 0.15;
+    transition: background-color $c-video-article-transition;
+  }
+
   &:hover {
+    &:after {
+      background-color: $colour-flame;
+    }
+
     #{$this}__title {
       background-color: rgba($colour-flame, 0.8);
     }
   }
 
   &:active {
+    &:after {
+      background-color: $colour-night;
+    }
+
     #{$this}__title {
       background-color: rgba($colour-night, 0.8);
+    }
+  }
+
+  &--playing {
+    &:after {
+      display: none;
     }
   }
 
@@ -46,6 +73,7 @@ $video-thumbnail-transition-ms: 1000;
   &__content {
     display: flex;
     flex-direction: column;
+    z-index: 1;
   }
 
   &__duration-wrap {
@@ -97,7 +125,7 @@ $video-thumbnail-transition-ms: 1000;
     mix-blend-mode: normal;
     backdrop-filter: blur(10.8731px);
     background-color: rgba($colour-galaxy, 0.8);
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color $c-video-article-transition;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {

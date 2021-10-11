@@ -24,7 +24,14 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
   }, [isPlaying, hasError]);
 
   return (
-    <article className={classnames(className, styles["c-video-article"])} onClick={() => setIsPlaying(true)}>
+    <article
+      className={classnames(
+        className,
+        styles["c-video-article"],
+        isPlaying && !hasError && styles["c-video-article--playing"]
+      )}
+      onClick={() => setIsPlaying(true)}
+    >
       <div
         className={classnames(
           styles["c-video-article__player-wrapper"],

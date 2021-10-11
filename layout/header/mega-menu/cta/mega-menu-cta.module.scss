@@ -2,25 +2,35 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
+$c-mega-menu-cta-transition: 0.16s ease-in-out;
+
 .c-mega-menu-cta {
+  $this: &;
+
   position: relative;
   background-color: rgba($colour-night, 0.4);
   mix-blend-mode: normal;
   backdrop-filter: blur(10.8731px);
   border-radius: 12px;
   overflow: hidden;
-  transition: background-color 0.16s ease-in-out;
+  transition: background-color $c-mega-menu-cta-transition;
 
   &:first-child {
     grid-row-end: span 2;
   }
 
   &:hover {
-    background-color: $colour-flame;
+    &,
+    #{$this}__image:after {
+      background-color: $colour-flame;
+    }
   }
 
   &:active {
-    background-color: $colour-night;
+    &,
+    #{$this}__image:after {
+      background-color: $colour-night;
+    }
   }
 
   &--withImage {
@@ -30,6 +40,18 @@
 
   &__image {
     position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: transparent;
+      opacity: 0.15;
+      transition: background-color $c-mega-menu-cta-transition;
+    }
   }
 
   &__content {
