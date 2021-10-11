@@ -7,7 +7,7 @@ import IconButton from "components/ui/icon-button";
 
 const MapControlButton = ({
   isActiveSelector,
-  shouldDisableOnActive,
+  isDisabledSelector,
   getDispatch,
   className,
   disabled,
@@ -18,10 +18,7 @@ const MapControlButton = ({
   const dispatch = useDispatch();
 
   const isActive = useSelector(isActiveSelector);
-  const isDisabled = useMemo(
-    () => (shouldDisableOnActive ? isActive : disabled),
-    [disabled, isActive, shouldDisableOnActive]
-  );
+  const isDisabled = isDisabledSelector ? useSelector(isDisabledSelector) : disabled;
   const dispatchFn = useMemo(() => getDispatch(isActive), [isActive, getDispatch]);
 
   const handleOnClick = () => {
@@ -46,7 +43,7 @@ const MapControlButton = ({
 MapControlButton.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   isActiveSelector: PropTypes.func.isRequired,
-  shouldDisableOnActive: PropTypes.bool,
+  isDisabledSelector: PropTypes.func,
   disabled: PropTypes.bool,
   getDispatch: PropTypes.func.isRequired,
   forceDark: PropTypes.bool,
@@ -56,7 +53,7 @@ MapControlButton.propTypes = {
 
 MapControlButton.defaultProps = {
   className: "",
-  shouldDisableOnActive: false,
+  isDisabledSelector: null,
   disabled: false,
   isToggle: false,
   forceDark: false

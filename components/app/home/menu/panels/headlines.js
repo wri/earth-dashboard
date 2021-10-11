@@ -6,11 +6,12 @@ import { connect } from "react-redux";
 import { fetchHeadlines } from "services/gca";
 import { setHeadlines } from "slices/headlines";
 import { setCurrentMode } from "slices/modes";
+import { setIsFetchLocationDisabled } from "slices/mapControls";
 
 import HeadlineCard from "components/app/home/headline-card";
 import Headline from "components/app/home/headline";
 
-const HeadlinesPanel = ({ headlines, setHeadlines, onForceInfoPage, forceInfoPage, setCurrentMode }) => {
+const HeadlinesPanel = ({ headlines, setHeadlines, onForceInfoPage, forceInfoPage, setCurrentMode, setIsFetchLocationDisabled }) => {
   const [isFetching, setIsFetching] = useState(true);
   const [currentHeadline, setCurrentHeadline] = useState(null);
 
@@ -47,6 +48,7 @@ const HeadlinesPanel = ({ headlines, setHeadlines, onForceInfoPage, forceInfoPag
   const onSelectHeadline = headline => {
     onForceInfoPage();
     setCurrentHeadline(headline);
+    setIsFetchLocationDisabled(true);
   };
 
   return currentHeadline ? (
@@ -87,7 +89,8 @@ HeadlinesPanel.propTypes = {
   onForceInfoPage: PropTypes.func.isRequired,
   headlines: PropTypes.array.isRequired,
   setHeadlines: PropTypes.func.isRequired,
-  forceInfoPage: PropTypes.bool.isRequired
+  forceInfoPage: PropTypes.bool.isRequired,
+  setIsFetchLocationDisabled: PropTypes.func.isRequired
 };
 
 HeadlinesPanel.defaultProps = {};
@@ -96,5 +99,5 @@ export default connect(
   state => ({
     headlines: state.headlines.headlines
   }),
-  { setHeadlines, setCurrentMode }
+  { setHeadlines, setCurrentMode, setIsFetchLocationDisabled }
 )(HeadlinesPanel);

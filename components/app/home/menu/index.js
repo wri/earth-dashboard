@@ -10,6 +10,7 @@ import {
   resetValues,
   NAME as modesSliceName
 } from "slices/modes";
+import { setIsFetchLocationDisabled } from "slices/mapControls";
 
 export default connect(
   state => ({
@@ -25,7 +26,8 @@ export default connect(
     setAnimationValue: setAnimation,
     setMonitorValue: setMonitor,
     setDatasetValue: setDataset,
-    resetValues: resetValues
+    resetValues: resetValues,
+    setIsFetchLocationDisabled
   },
   null,
   { forwardRef: true }
