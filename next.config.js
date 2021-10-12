@@ -16,6 +16,10 @@ module.exports = {
     NULL_SCHOOL_IFRAME_BASE: process.env.NULL_SCHOOL_IFRAME_BASE
   },
 
+  images: {
+    domains: ["imgs.mongabay.com"]
+  },
+
   eslint: {
     dirs: [
       "pages",
