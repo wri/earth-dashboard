@@ -1,449 +1,1437 @@
 {
-  "data": [
-    {
-      "type": "Mode",
-      "id": 1,
-      "attributes": {
-        "title": "Wildfires",
-        "description": "Eos corporis et culpa alias. Est nisi praesentium placeat earum. Cumque aut et voluptas autem iure vero. Sint non voluptatem recusandae molestiae occaecati magni delectus.",
-        "icon": "https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/I72RU1aw5026v4TJZ7kGH3PmZZylEId6armVibIC.png",
-        "source": null,
-        "data_layers": {
-          "default": [
-            {
-              "type": "DataLayer",
-              "id": 1,
-              "attributes": {
-                "title": "Particulate Matter",
-                "description": "Mass of atmospheric particles with a diameter less than 2.5 micron",
-                "default_on": true,
-                "data_key": "13xvafxz",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 2,
-              "attributes": {
-                "title": "Carbon Monoxide",
-                "description": null,
-                "default_on": false,
-                "data_key": "zbwzorpj",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 3,
-              "attributes": {
-                "title": "Smoke",
-                "description": null,
-                "default_on": false,
-                "data_key": "clc4vjkj",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 16,
-              "attributes": {
-                "title": "Fires",
-                "description": "Active fires on the Earth",
-                "default_on": true,
-                "data_key": "jvafhah4",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 2,
-                  "attributes": {
-                    "title": "Monitor",
-                    "description": "Natus error corrupti veniam dolores quisquam. Laboriosam est neque consequatur hic consectetur. Fugiat autem voluptatibus corporis voluptas iusto quaerat sunt. Qui dolorem ad dolorem fuga. Incidunt aut a repellendus nihil."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 17,
-              "attributes": {
-                "title": "Wind",
-                "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
-                "default_on": true,
-                "data_key": "sze2a0gf",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 3,
-                  "attributes": {
-                    "title": "Animation",
-                    "description": "Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
-                  }
-                },
-                "source": null
-              }
-            }
-          ],
-          "available": [
-
-          ]
-        },
-        "visibility": {
-          "advanced_menu": true,
-          "data_highlights": false
+  "data":[
+     {
+        "type":"Mode",
+        "id":1,
+        "attributes":{
+           "title":"Fires",
+           "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nSource: CAMS \/ Copernicus \/ European Commission + ECMWF",
+           "icon":"https:\/\/gca-earth-hq-api-test.s3.us-west-1.amazonaws.com\/7v0sYUds12E9Y1MBEbkyamiQKIsKHQU7BV0kdFYc.png",
+           "source":null,
+           "data_layers":{
+              "default":[
+                 {
+                    "type":"DataLayer",
+                    "id":16,
+                    "attributes":{
+                       "title":"Fires",
+                       "description":"Active fires on the Earth",
+                       "default_on":false,
+                       "data_key":"fires",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":2,
+                          "attributes":{
+                             "title":"Monitor",
+                             "description":"Natus error corrupti veniam dolores quisquam. Laboriosam est neque consequatur hic consectetur. Fugiat autem voluptatibus corporis voluptas iusto quaerat sunt. Qui dolorem ad dolorem fuga. Incidunt aut a repellendus nihil."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":17,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":"Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":40,
+                    "attributes":{
+                       "title":"PM2.5",
+                       "description":"Particulate Matter < 2.5 \u00b5m @ Surface",
+                       "default_on":false,
+                       "data_key":"pm2.5",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":20,
+                    "attributes":{
+                       "title":"Sfc",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"surface",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 }
+              ],
+              "available":[
+                 {
+                    "type":"DataLayer",
+                    "id":12,
+                    "attributes":{
+                       "title":"COsc",
+                       "description":"Carbon Monoxide Surface Concentration",
+                       "default_on":false,
+                       "data_key":"cosc",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":16,
+                    "attributes":{
+                       "title":"Fires",
+                       "description":"Active fires on the Earth",
+                       "default_on":false,
+                       "data_key":"fires",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":2,
+                          "attributes":{
+                             "title":"Monitor",
+                             "description":"Natus error corrupti veniam dolores quisquam. Laboriosam est neque consequatur hic consectetur. Fugiat autem voluptatibus corporis voluptas iusto quaerat sunt. Qui dolorem ad dolorem fuga. Incidunt aut a repellendus nihil."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":17,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":"Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":40,
+                    "attributes":{
+                       "title":"PM2.5",
+                       "description":"Particulate Matter < 2.5 \u00b5m @ Surface",
+                       "default_on":false,
+                       "data_key":"pm2.5",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":20,
+                    "attributes":{
+                       "title":"Sfc",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"surface",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":21,
+                    "attributes":{
+                       "title":"1000",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"1000hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":22,
+                    "attributes":{
+                       "title":"850",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"850hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":23,
+                    "attributes":{
+                       "title":"700",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"700hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":24,
+                    "attributes":{
+                       "title":"500",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"500hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":25,
+                    "attributes":{
+                       "title":"250",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"250hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":26,
+                    "attributes":{
+                       "title":"70",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"70hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":27,
+                    "attributes":{
+                       "title":"10",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"10hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 }
+              ]
+           },
+           "visibility":{
+              "advanced_menu":false,
+              "data_highlights":true
+           }
         }
-      }
-    },
-    {
-      "type": "Mode",
-      "id": 2,
-      "attributes": {
-        "title": "Winds",
-        "description": "Iusto temporibus ullam nostrum. Doloremque excepturi sunt non praesentium. Ut iusto est repellat debitis quia officiis. Consequatur repudiandae sequi alias debitis dolores minima.",
-        "icon": null,
-        "source": null,
-        "data_layers": {
-          "default": [
-            {
-              "type": "DataLayer",
-              "id": 4,
-              "attributes": {
-                "title": "Jet Stream Wind",
-                "description": null,
-                "default_on": false,
-                "data_key": "6mffa36d",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 5,
-              "attributes": {
-                "title": "Surface Wind",
-                "description": null,
-                "default_on": true,
-                "data_key": "xpo1gqgs",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 6,
-              "attributes": {
-                "title": "Polar Vortex Wind",
-                "description": "Wind speed at 10 hectopascals",
-                "default_on": false,
-                "data_key": "krcrjvpg",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 17,
-              "attributes": {
-                "title": "Wind",
-                "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
-                "default_on": true,
-                "data_key": "sze2a0gf",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 3,
-                  "attributes": {
-                    "title": "Animation",
-                    "description": "Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
-                  }
-                },
-                "source": null
-              }
-            }
-          ],
-          "available": [
+     },
+     {
+        "type":"Mode",
+        "id":2,
+        "attributes":{
+           "title":"Winds",
+           "description":"Iusto temporibus ullam nostrum. Doloremque excepturi sunt non praesentium. Ut iusto est repellat debitis quia officiis. Consequatur repudiandae sequi alias debitis dolores minima.",
+           "icon":null,
+           "source":null,
+           "data_layers":{
+              "default":[
+                 {
+                    "type":"DataLayer",
+                    "id":4,
+                    "attributes":{
+                       "title":"3HPA",
+                       "description":"3-hour Precipitation Accumulation",
+                       "default_on":false,
+                       "data_key":"precip_3hr",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":5,
+                    "attributes":{
+                       "title":"WPD",
+                       "description":"Wind Power Density",
+                       "default_on":false,
+                       "data_key":"wind_power_density",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":6,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":17,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":"Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 }
+              ],
+              "available":[
 
-          ]
-        },
-        "visibility": {
-          "advanced_menu": false,
-          "data_highlights": false
+              ]
+           },
+           "visibility":{
+              "advanced_menu":false,
+              "data_highlights":false
+           }
         }
-      }
-    },
-    {
-      "type": "Mode",
-      "id": 3,
-      "attributes": {
-        "title": "Atmosphere",
-        "description": "Quis fuga labore consequuntur aut impedit ipsam voluptate. In quia est totam reiciendis tempore nostrum commodi. Ut doloremque quaerat id hic consequatur consequuntur deserunt ut.",
-        "icon": null,
-        "source": null,
-        "data_layers": {
-          "default": [
-            {
-              "type": "DataLayer",
-              "id": 7,
-              "attributes": {
-                "title": "Temperature",
-                "description": "Temperature at the Earths surface",
-                "default_on": false,
-                "data_key": "tcvntrxq",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 8,
-              "attributes": {
-                "title": "UVI",
-                "description": "Ultraviolet Index – risk of harm from unprotected sun exposure due to the strength of sunburn-producing ultraviolet (UV) radiation; \n0 - 2 low\n3 - 5 moderate\n6 - 7 high\n8 - 10 very high\n11+ extreme",
-                "default_on": false,
-                "data_key": "0hzxvexv",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 9,
-              "attributes": {
-                "title": "Relative Humidity",
-                "description": null,
-                "default_on": false,
-                "data_key": "kotzxwzb",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 10,
-              "attributes": {
-                "title": "Misery Index",
-                "description": null,
-                "default_on": false,
-                "data_key": "7jb2seh1",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 11,
-              "attributes": {
-                "title": "TPW",
-                "description": "Total precipitable water",
-                "default_on": false,
-                "data_key": "f6fcp2ev",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 17,
-              "attributes": {
-                "title": "Wind",
-                "description": "Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
-                "default_on": true,
-                "data_key": "sze2a0gf",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 3,
-                  "attributes": {
-                    "title": "Animation",
-                    "description": "Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
-                  }
-                },
-                "source": null
-              }
-            }
-          ],
-          "available": [
+     },
+     {
+        "type":"Mode",
+        "id":3,
+        "attributes":{
+           "title":"Atmosphere",
+           "description":"Quis fuga labore consequuntur aut impedit ipsam voluptate. In quia est totam reiciendis tempore nostrum commodi. Ut doloremque quaerat id hic consequatur consequuntur deserunt ut.",
+           "icon":null,
+           "source":null,
+           "data_layers":{
+              "default":[
+                 {
+                    "type":"DataLayer",
+                    "id":7,
+                    "attributes":{
+                       "title":"Temp",
+                       "description":"Temperature at the Earths surface",
+                       "default_on":false,
+                       "data_key":"temp",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":8,
+                    "attributes":{
+                       "title":"UVI",
+                       "description":"Ultraviolet Index and Erythemal Dose",
+                       "default_on":false,
+                       "data_key":"uv_index",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":9,
+                    "attributes":{
+                       "title":"RH",
+                       "description":"Relative Humidity",
+                       "default_on":false,
+                       "data_key":"relative_humidity",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":10,
+                    "attributes":{
+                       "title":"MI",
+                       "description":"Misery Index",
+                       "default_on":false,
+                       "data_key":"misery_index",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":11,
+                    "attributes":{
+                       "title":"CO2sc",
+                       "description":"Carbon Dioxide Surface Concentration",
+                       "default_on":false,
+                       "data_key":"co2sc",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":17,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":"Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 }
+              ],
+              "available":[
 
-          ]
-        },
-        "visibility": {
-          "advanced_menu": false,
-          "data_highlights": false
+              ]
+           },
+           "visibility":{
+              "advanced_menu":false,
+              "data_highlights":false
+           }
         }
-      }
-    },
-    {
-      "type": "Mode",
-      "id": 4,
-      "attributes": {
-        "title": "Ocean",
-        "description": "Ipsa voluptatem quia tempore qui fuga neque eligendi. Dolores enim ut in. At voluptas magnam tenetur minima. Ut quia placeat deleniti harum.",
-        "icon": null,
-        "source": null,
-        "data_layers": {
-          "default": [
-            {
-              "type": "DataLayer",
-              "id": 12,
-              "attributes": {
-                "title": "Sea Temperature",
-                "description": "Temperature at the sea's surface",
-                "default_on": false,
-                "data_key": "hrb7qlk9",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 13,
-              "attributes": {
-                "title": "SSTA",
-                "description": "Sea Surface Temperature Anomaly",
-                "default_on": false,
-                "data_key": "riqtkkov",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 14,
-              "attributes": {
-                "title": "Reef bleaching",
-                "description": "Coral Reef Bleaching",
-                "default_on": true,
-                "data_key": "fzshpfqe",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 1,
-                  "attributes": {
-                    "title": "Data Set",
-                    "description": "Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
-                  }
-                },
-                "source": null
-              }
-            },
-            {
-              "type": "DataLayer",
-              "id": 18,
-              "attributes": {
-                "title": "Current",
-                "description": "Amimation showing oceans currents",
-                "default_on": true,
-                "data_key": "vdma9i9h",
-                "category": {
-                  "type": "LayerCategory",
-                  "id": 3,
-                  "attributes": {
-                    "title": "Animation",
-                    "description": "Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
-                  }
-                },
-                "source": null
-              }
-            }
-          ],
-          "available": [
-
-          ]
-        },
-        "visibility": {
-          "advanced_menu": false,
-          "data_highlights": false
+     },
+     {
+        "type":"Mode",
+        "id":4,
+        "attributes":{
+           "title":"Ocean",
+           "description":"Ipsa voluptatem quia tempore qui fuga neque eligendi. Dolores enim ut in. At voluptas magnam tenetur minima. Ut quia placeat deleniti harum.",
+           "icon":"https:\/\/gca-earth-hq-api-test.s3.us-west-1.amazonaws.com\/2iThEsamx4wto5jOluF0YgIaYWBmYjmYzCTZCptk.png",
+           "source":null,
+           "data_layers":{
+              "default":[
+                 {
+                    "type":"DataLayer",
+                    "id":34,
+                    "attributes":{
+                       "title":"HTSGW",
+                       "description":"Significant Wave Height",
+                       "default_on":false,
+                       "data_key":"significant_wave_height",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":19,
+                    "attributes":{
+                       "title":"Waves",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"waves",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 }
+              ],
+              "available":[
+                 {
+                    "type":"DataLayer",
+                    "id":17,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":"Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":19,
+                    "attributes":{
+                       "title":"Waves",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"waves",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":32,
+                    "attributes":{
+                       "title":"Currents",
+                       "description":"Ocean Currents",
+                       "default_on":false,
+                       "data_key":"currents",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":33,
+                    "attributes":{
+                       "title":"Waves",
+                       "description":"Peak Wave Period",
+                       "default_on":false,
+                       "data_key":"waves",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":34,
+                    "attributes":{
+                       "title":"HTSGW",
+                       "description":"Significant Wave Height",
+                       "default_on":false,
+                       "data_key":"significant_wave_height",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":35,
+                    "attributes":{
+                       "title":"SST",
+                       "description":"Sea Surface Temperature",
+                       "default_on":false,
+                       "data_key":"sea_surface_temp",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":13,
+                    "attributes":{
+                       "title":"SSTA",
+                       "description":"Sea Surface Temperature Anomaly",
+                       "default_on":false,
+                       "data_key":"sea_surface_temp_anomaly",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 }
+              ]
+           },
+           "visibility":{
+              "advanced_menu":true,
+              "data_highlights":false
+           }
         }
-      }
-    }
+     },
+     {
+        "type":"Mode",
+        "id":6,
+        "attributes":{
+           "title":"Air",
+           "description":null,
+           "icon":"https:\/\/gca-earth-hq-api-test.s3.us-west-1.amazonaws.com\/0GZhDPZqNP9XDhb2AtWrB9NSVrNRxjUH4dgBl2iZ.png",
+           "source":null,
+           "data_layers":{
+              "default":[
+                 {
+                    "type":"DataLayer",
+                    "id":6,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":16,
+                    "attributes":{
+                       "title":"Fires",
+                       "description":"Active fires on the Earth",
+                       "default_on":false,
+                       "data_key":"fires",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":2,
+                          "attributes":{
+                             "title":"Monitor",
+                             "description":"Natus error corrupti veniam dolores quisquam. Laboriosam est neque consequatur hic consectetur. Fugiat autem voluptatibus corporis voluptas iusto quaerat sunt. Qui dolorem ad dolorem fuga. Incidunt aut a repellendus nihil."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":26,
+                    "attributes":{
+                       "title":"70",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"70hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 }
+              ],
+              "available":[
+                 {
+                    "type":"DataLayer",
+                    "id":17,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":"Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":18,
+                    "attributes":{
+                       "title":"Current",
+                       "description":"Amimation showing oceans currents",
+                       "default_on":false,
+                       "data_key":"currents",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":19,
+                    "attributes":{
+                       "title":"Waves",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"waves",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":20,
+                    "attributes":{
+                       "title":"Sfc",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"surface",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":21,
+                    "attributes":{
+                       "title":"1000",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"1000hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":22,
+                    "attributes":{
+                       "title":"850",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"850hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":23,
+                    "attributes":{
+                       "title":"700",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"700hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":24,
+                    "attributes":{
+                       "title":"500",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"500hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":25,
+                    "attributes":{
+                       "title":"250",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"250hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":26,
+                    "attributes":{
+                       "title":"70",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"70hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":27,
+                    "attributes":{
+                       "title":"10",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"10hPa",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":4,
+                          "attributes":{
+                             "title":"Height",
+                             "description":"blah blah"
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":6,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":7,
+                    "attributes":{
+                       "title":"Temp",
+                       "description":"Temperature at the Earths surface",
+                       "default_on":false,
+                       "data_key":"temp",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":9,
+                    "attributes":{
+                       "title":"RH",
+                       "description":"Relative Humidity",
+                       "default_on":false,
+                       "data_key":"relative_humidity",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":5,
+                    "attributes":{
+                       "title":"WPD",
+                       "description":"Wind Power Density",
+                       "default_on":false,
+                       "data_key":"wind_power_density",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":4,
+                    "attributes":{
+                       "title":"3HPA",
+                       "description":"3-hour Precipitation Accumulation",
+                       "default_on":false,
+                       "data_key":"precip_3hr",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":28,
+                    "attributes":{
+                       "title":"CAPE",
+                       "description":"Convective Available Potential Energy",
+                       "default_on":false,
+                       "data_key":"cape",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":29,
+                    "attributes":{
+                       "title":"TPW",
+                       "description":"Total Precipitable Water",
+                       "default_on":false,
+                       "data_key":"total_precipitable_water",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":30,
+                    "attributes":{
+                       "title":"TCW",
+                       "description":"Total Cloud Water",
+                       "default_on":false,
+                       "data_key":"total_cloud_water",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":31,
+                    "attributes":{
+                       "title":"MSLP",
+                       "description":"Mean Sea Level Pressure",
+                       "default_on":false,
+                       "data_key":"mean_sea_level_pressure",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":10,
+                    "attributes":{
+                       "title":"MI",
+                       "description":"Misery Index",
+                       "default_on":false,
+                       "data_key":"misery_index",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":8,
+                    "attributes":{
+                       "title":"UVI",
+                       "description":"Ultraviolet Index and Erythemal Dose",
+                       "default_on":false,
+                       "data_key":"uv_index",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 }
+              ]
+           },
+           "visibility":{
+              "advanced_menu":true,
+              "data_highlights":false
+           }
+        }
+     },
+     {
+        "type":"Mode",
+        "id":7,
+        "attributes":{
+           "title":"Air Pollution",
+           "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nSource: CAMS \/ Copernicus \/ European Commission + ECMWF",
+           "icon":"https:\/\/gca-earth-hq-api-test.s3.us-west-1.amazonaws.com\/T2wLMYnMeegJNFS8mm5QGEsZPJUSkOcF9fotdpAT.png",
+           "source":null,
+           "data_layers":{
+              "default":[
+                 {
+                    "type":"DataLayer",
+                    "id":17,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":"Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":11,
+                    "attributes":{
+                       "title":"CO2sc",
+                       "description":"Carbon Dioxide Surface Concentration",
+                       "default_on":false,
+                       "data_key":"co2sc",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 }
+              ],
+              "available":[
+                 {
+                    "type":"DataLayer",
+                    "id":17,
+                    "attributes":{
+                       "title":"Wind",
+                       "description":"Wind speed at the Earth's surface (surface meaning conditions at ground or water level; this layer follows the contours of mountains, valleys, etc.)",
+                       "default_on":false,
+                       "data_key":"wind",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":18,
+                    "attributes":{
+                       "title":"Current",
+                       "description":"Amimation showing oceans currents",
+                       "default_on":false,
+                       "data_key":"currents",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":19,
+                    "attributes":{
+                       "title":"Waves",
+                       "description":null,
+                       "default_on":false,
+                       "data_key":"waves",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":3,
+                          "attributes":{
+                             "title":"Animation",
+                             "description":"Sunt facilis non animi. Velit culpa et est labore fugiat. Unde dolorum impedit et eum blanditiis possimus error sed. Expedita provident fuga cum ut."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":12,
+                    "attributes":{
+                       "title":"COsc",
+                       "description":"Carbon Monoxide Surface Concentration",
+                       "default_on":false,
+                       "data_key":"cosc",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":11,
+                    "attributes":{
+                       "title":"CO2sc",
+                       "description":"Carbon Dioxide Surface Concentration",
+                       "default_on":false,
+                       "data_key":"co2sc",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":36,
+                    "attributes":{
+                       "title":"SO2sm",
+                       "description":"Sulfur Dioxide Surface Mass",
+                       "default_on":false,
+                       "data_key":"so2smass",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 },
+                 {
+                    "type":"DataLayer",
+                    "id":37,
+                    "attributes":{
+                       "title":"NO2",
+                       "description":"Nitrogen Dioxide @ Surface",
+                       "default_on":false,
+                       "data_key":"no2",
+                       "category":{
+                          "type":"LayerCategory",
+                          "id":1,
+                          "attributes":{
+                             "title":"Data Set",
+                             "description":"Voluptas odit tempore ut repellat ex debitis eos sapiente. Rerum voluptatum cum sapiente voluptas velit. Vel facere neque id. Ullam sapiente id molestiae eaque ea quas dolores."
+                          }
+                       },
+                       "source":null
+                    }
+                 }
+              ]
+           },
+           "visibility":{
+              "advanced_menu":false,
+              "data_highlights":true
+           }
+        }
+     }
   ]
 }

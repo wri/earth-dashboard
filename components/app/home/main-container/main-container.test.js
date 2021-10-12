@@ -77,7 +77,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           <span
             data-testid="labels-arr"
           >
-            Particulate Matter, Carbon Monoxide, Smoke, Fires, Wind
+            Fires
           </span>
         </div>
       </button>
@@ -144,7 +144,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
           <span
             data-testid="labels-arr"
           >
-            Particulate Matter, Carbon Monoxide, Smoke, Fires, Wind
+            Fires
             <br />
              
             xxxx-xx-xx

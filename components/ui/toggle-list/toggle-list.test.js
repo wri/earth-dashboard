@@ -45,55 +45,60 @@ test("<ToggleList /> renders correctly", () => {
     <legend>
       Templates
     </legend>
-    <label
-      class="c-toggle-list__item c-toggle-list__item--selected u-margin-right-xxs"
+    
+    <div
+      class="c-toggle-list__children"
     >
-      Wildfires
-       
-      <input
-        checked=""
-        data-testid="toggle-1"
-        name="Templates"
-        type="radio"
-        value="wildfires"
-      />
-    </label>
-    <label
-      class="c-toggle-list__item u-margin-right-xxs"
-    >
-      Winds
-       
-      <input
-        data-testid="toggle-2"
-        name="Templates"
-        type="radio"
-        value="winds"
-      />
-    </label>
-    <label
-      class="c-toggle-list__item u-margin-right-xxs"
-    >
-      Atmosphere
-       
-      <input
-        data-testid="toggle-3"
-        name="Templates"
-        type="radio"
-        value="atmosphere"
-      />
-    </label>
-    <label
-      class="c-toggle-list__item"
-    >
-      Ocean
-       
-      <input
-        data-testid="toggle-4"
-        name="Templates"
-        type="radio"
-        value="ocean"
-      />
-    </label>
+      <label
+        class="c-toggle-list__item c-toggle-list__item--selected u-margin-right-xxs"
+      >
+        Wildfires
+         
+        <input
+          checked=""
+          data-testid="toggle-1"
+          name="Templates"
+          type="radio"
+          value="wildfires"
+        />
+      </label>
+      <label
+        class="c-toggle-list__item u-margin-right-xxs"
+      >
+        Winds
+         
+        <input
+          data-testid="toggle-2"
+          name="Templates"
+          type="radio"
+          value="winds"
+        />
+      </label>
+      <label
+        class="c-toggle-list__item u-margin-right-xxs"
+      >
+        Atmosphere
+         
+        <input
+          data-testid="toggle-3"
+          name="Templates"
+          type="radio"
+          value="atmosphere"
+        />
+      </label>
+      <label
+        class="c-toggle-list__item"
+      >
+        Ocean
+         
+        <input
+          data-testid="toggle-4"
+          name="Templates"
+          type="radio"
+          value="ocean"
+        />
+      </label>
+    </div>
   </fieldset>
 </div>
 `);

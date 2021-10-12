@@ -23,30 +23,14 @@ const DataPanel = ({
   animationEnabled,
   setAnimationValue,
   isMobile,
-  onSelectInfo,
+  heightValue,
+  setHeightValue,
   layers
 }) => {
   const animationLayers = useDataLayers(currentMode, DATA_LAYER_TYPES.animation);
   const datasetLayers = useDataLayers(currentMode, DATA_LAYER_TYPES.dataset);
   const monitorLayers = useDataLayers(currentMode, DATA_LAYER_TYPES.monitor);
-  const currentModeMatch = useMemo(() => {
-    // Do the defaults of the template match the current layers.
-    const defaults = currentMode.attributes.data_layers.default;
-    const defaultKeys = defaults.map(layer => layer.attributes.data_key);
-
-    const hasMonitor =
-      defaults.findIndex(layer => layer.attributes.category.attributes.title === DATA_LAYER_TYPES.monitor) > -1;
-    const hasAnimation =
-      defaults.findIndex(layer => layer.attributes.category.attributes.title === DATA_LAYER_TYPES.animation) > -1;
-    const hasDataset =
-      defaults.findIndex(layer => layer.attributes.category.attributes.title === DATA_LAYER_TYPES.dataset) > -1;
-
-    return (
-      (hasMonitor ? defaultKeys.indexOf(monitorValue) > -1 : !Boolean(monitorValue)) &&
-      (hasAnimation ? defaultKeys.indexOf(animationValue) > -1 : !Boolean(animationValue)) &&
-      (hasDataset ? defaultKeys.indexOf(datasetValue) > -1 : !Boolean(datasetValue))
-    );
-  }, [animationValue, currentMode.attributes.data_layers, datasetValue, monitorValue]);
+  const heightLayers = useDataLayers(currentMode, DATA_LAYER_TYPES.height);
 
   const source = useMemo(() => {
     const layer = layers.find(layer => layer?.type === "overlay");
@@ -55,54 +39,77 @@ const DataPanel = ({
 
   const description = useMemo(() => {
     const layer = datasetLayers.find(layer => layer.attributes.data_key === datasetValue);
-    return layer ? layer.attributes.description : "";
+    return layer ? `Showing: ${layer.attributes.description}` : "";
   }, [datasetLayers, datasetValue]);
+
+  const availableModes = useMemo(() => {
+    const items = [];
+    if (!currentMode.attributes.visibility.advanced_menu) {
+      // Add it in to the advanced menu temporarily
+      items.push(currentMode);
+    }
+    return [...items, ...modes.filter(mode => mode.attributes.visibility.advanced_menu)];
+  }, [currentMode, modes]);
 
   return (
     <>
       <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
-        Understand more about how the globe is being impacted by other factors that contribute to the climate crisis.
+        Dive deeper into the full datasets available. Combine and overlay data to create unique maps and visualizations.
+        Powered by Earth Nullschool.
       </p>
-      <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
+      <div className={classnames(styles["c-home-menu__tab-panel-scroll-area"], "u-padding-top-none")}>
         <ToggleList
-          selectedValue={currentModeMatch ? currentMode.id : null}
+          selectedValue={currentMode.id || null}
           onSelect={value => {
             setCurrentMode({ ...modes.find(mode => parseInt(value, 10) === mode.id) });
           }}
-          title="Modes"
+          title="Choose a mode"
+          description="The modes provide an overview of the climatic condition. Each category contains data that will help you understand how that category is affected by different factors."
+          className={styles["c-home-menu__data-selection-item"]}
         >
-          {modes.map(template => (
-            <ToggleItem value={template.id} className="u-margin-right-xxs u-margin-bottom-xs" key={template.id}>
+          {availableModes.map(template => (
+            <ToggleItem value={template.id} className="u-margin-right-xxs u-margin-bottom-s" key={template.id}>
               {template.attributes.title}
             </ToggleItem>
           ))}
         </ToggleList>
-        <p className={styles["c-home-menu__template-description"]}>{currentMode.attributes.description}</p>
         <div className={styles["c-home-menu__data-selection"]}>
           <DataLayers
-            title="Dataset"
-            onSelectInfo={onSelectInfo}
+            title="Choose Altitude (hPa)"
+            description={`Atmospheric pressure (hPa) corresponds to altitude and it shows data assuming the earth is completely smooth. The "Surface" layer represents conditions at ground or water level.  This layer follows the contours of mountains, valleys, etc.`}
+            isMobile={isMobile}
+            value={heightValue}
+            setValue={setHeightValue}
+            layers={heightLayers}
+            className={styles["c-home-menu__data-selection-item"]}
+          />
+          <DataLayers
+            title="Choose an overlay"
+            description="Overlays display layers of near real-time weather data. Some overlays are valid at surface level while others are valid for the entire thickness of the atmosphere."
             isMobile={isMobile}
             value={datasetValue}
             setValue={setDatasetValue}
             layers={datasetLayers}
+            className={styles["c-home-menu__data-selection-item"]}
           />
           <DataLayers
-            title="Monitor"
-            onSelectInfo={onSelectInfo}
+            title="Choose an annotation"
+            description="Annotations can be added on top of data layers. If you want to find relationships between data layers and annotations you can overlay them to identify patterns and correlations."
             isMobile={isMobile}
             value={monitorValue}
             setValue={setMonitorValue}
             layers={monitorLayers}
+            className={styles["c-home-menu__data-selection-item"]}
           />
           {animationEnabled && (
             <DataLayers
-              title="Animation"
-              onSelectInfo={onSelectInfo}
+              title="Choose an animation"
+              description="Animate the direction of wind, currents or waves on the map."
               isMobile={isMobile}
               value={animationValue}
               setValue={setAnimationValue}
               layers={animationLayers}
+              className={styles["c-home-menu__data-selection-item"]}
             />
           )}
         </div>
@@ -131,7 +138,6 @@ DataPanel.propTypes = {
   animationEnabled: PropTypes.bool.isRequired,
   setAnimationValue: PropTypes.func.isRequired,
   isMobile: PropTypes.bool,
-  onSelectInfo: PropTypes.func.isRequired,
   layers: PropTypes.array.isRequired
 };
 
