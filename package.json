@@ -12,6 +12,7 @@
     "@mapbox/mapbox-gl-draw": "^1.1.2",
     "@mapbox/mapbox-gl-sync-move": "^0.3.0",
     "@reduxjs/toolkit": "^1.6.1",
+    "@sentry/nextjs": "^6.13.3",
     "@veccu/react-calendar": "^2.3.3",
     "@widget-editor/renderer": "^2.6.2",
     "@widget-editor/rw-adapter": "^2.6.2",
