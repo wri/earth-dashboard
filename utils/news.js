@@ -47,8 +47,6 @@ export const GetPostsQuery = gql`
     posts(first: $first, after: $after, where: { tag: $topics }) {
       pageInfo {
         hasNextPage
-        hasPreviousPage
-        startCursor
         endCursor
       }
       nodes {

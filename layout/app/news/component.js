@@ -22,7 +22,7 @@ const NewsTopicLayout = ({ topic }) => {
   const { loading, newsArticles, canFetchMore, isFetchingMore, fetchMore } = useMongabayArticles(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
   let mostRecentArticle,
-    otherArticles = [];
+    otherArticles;
 
   if (!loading) {
     otherArticles = [...newsArticles];
