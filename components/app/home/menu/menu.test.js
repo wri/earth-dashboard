@@ -107,7 +107,7 @@ test("<Menu /> renders correctly as desktop", async () => {
               <p
                 class="c-home-menu__tab-description u-margin-none"
               >
-                Learn more about the top headlines describing the climate emergency. Stay up to date with the news you need to know and the places that are being affected.
+                The effects of human-induced climate change can be seen and felt across the planet. Explore the latest alerts below.
               </p>
               <div
                 class="c-home-menu__tab-panel-scroll-area"
@@ -120,18 +120,18 @@ test("<Menu /> renders correctly as desktop", async () => {
                     alt=""
                     class="c-headline-card__image"
                     role="presentation"
-                    src="http://localhost:9000/gca-earth-hq/dicta.png"
+                    src="http://localhost:9000/gca-earth-hq/NacueP1wLLPka4nSGQVDxp2MDdaHUCJAC324EGqz.jpg"
                   />
                   <div>
                     <h3
                       class="c-headline-card__title"
                     >
-                      Consequuntur sunt voluptate rerum nemo suscipit et.
+                      One of four North Atlantic right whale calves spotted so far this breeding season struck by ship
                     </h3>
                     <p
                       class="c-headline-card__subtitle"
                     >
-                      9th September 2021
+                      15th September 2021
                     </p>
                   </div>
                 </button>
@@ -143,13 +143,13 @@ test("<Menu /> renders correctly as desktop", async () => {
                     alt=""
                     class="c-headline-card__image"
                     role="presentation"
-                    src="http://localhost:9000/gca-earth-hq/et.png"
+                    src="http://localhost:9000/gca-earth-hq/temporibus.png"
                   />
                   <div>
                     <h3
                       class="c-headline-card__title"
                     >
-                      Minima velit nam sunt.
+                      A ea modi id error qui.
                     </h3>
                     <p
                       class="c-headline-card__subtitle"
@@ -189,13 +189,13 @@ test("<Menu /> renders correctly as desktop", async () => {
                     alt=""
                     class="c-headline-card__image"
                     role="presentation"
-                    src="http://localhost:9000/gca-earth-hq/temporibus.png"
+                    src="http://localhost:9000/gca-earth-hq/et.png"
                   />
                   <div>
                     <h3
                       class="c-headline-card__title"
                     >
-                      A ea modi id error qui.
+                      Minima velit nam sunt.
                     </h3>
                     <p
                       class="c-headline-card__subtitle"
@@ -212,18 +212,18 @@ test("<Menu /> renders correctly as desktop", async () => {
                     alt=""
                     class="c-headline-card__image"
                     role="presentation"
-                    src="http://localhost:9000/gca-earth-hq/NacueP1wLLPka4nSGQVDxp2MDdaHUCJAC324EGqz.jpg"
+                    src="http://localhost:9000/gca-earth-hq/dicta.png"
                   />
                   <div>
                     <h3
                       class="c-headline-card__title"
                     >
-                      One of four North Atlantic right whale calves spotted so far this breeding season struck by ship
+                      Consequuntur sunt voluptate rerum nemo suscipit et.
                     </h3>
                     <p
                       class="c-headline-card__subtitle"
                     >
-                      15th September 2021
+                      9th September 2021
                     </p>
                   </div>
                 </button>
@@ -364,7 +364,7 @@ test("<Menu /> renders correctly as mobile", async () => {
                 <p
                   class="c-home-menu__tab-description u-margin-none"
                 >
-                  Learn more about the top headlines describing the climate emergency. Stay up to date with the news you need to know and the places that are being affected.
+                  The effects of human-induced climate change can be seen and felt across the planet. Explore the latest alerts below.
                 </p>
                 <div
                   class="c-home-menu__tab-panel-scroll-area"
@@ -377,18 +377,18 @@ test("<Menu /> renders correctly as mobile", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/dicta.png"
+                      src="http://localhost:9000/gca-earth-hq/NacueP1wLLPka4nSGQVDxp2MDdaHUCJAC324EGqz.jpg"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        Consequuntur sunt voluptate rerum nemo suscipit et.
+                        One of four North Atlantic right whale calves spotted so far this breeding season struck by ship
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        9th September 2021
+                        15th September 2021
                       </p>
                     </div>
                   </button>
@@ -400,13 +400,13 @@ test("<Menu /> renders correctly as mobile", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/et.png"
+                      src="http://localhost:9000/gca-earth-hq/temporibus.png"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        Minima velit nam sunt.
+                        A ea modi id error qui.
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
@@ -446,13 +446,13 @@ test("<Menu /> renders correctly as mobile", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/temporibus.png"
+                      src="http://localhost:9000/gca-earth-hq/et.png"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        A ea modi id error qui.
+                        Minima velit nam sunt.
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
@@ -469,18 +469,18 @@ test("<Menu /> renders correctly as mobile", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/NacueP1wLLPka4nSGQVDxp2MDdaHUCJAC324EGqz.jpg"
+                      src="http://localhost:9000/gca-earth-hq/dicta.png"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        One of four North Atlantic right whale calves spotted so far this breeding season struck by ship
+                        Consequuntur sunt voluptate rerum nemo suscipit et.
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        15th September 2021
+                        9th September 2021
                       </p>
                     </div>
                   </button>
