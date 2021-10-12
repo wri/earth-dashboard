@@ -82,7 +82,7 @@ const MapIframe = forwardRef(
     useEffect(() => {
       if (earthServer.current) {
         // If a data highlight mode, set the layers label
-        if (currentMode.attributes.visibility.advanced_menu) {
+        if (currentMode?.attributes.visibility.advanced_menu) {
           const newLayers = [];
           currentMode?.attributes?.data_layers.available.forEach(layer => {
             if (
@@ -118,11 +118,9 @@ const MapIframe = forwardRef(
       datasetValue,
       monitorValue,
       heightValue,
-      currentMode.attributes?.data_layers,
+      currentMode,
       earthServer,
-      currentMode.attributes.visibility.data_highlights,
-      setLayersLabelArr,
-      currentMode.attributes.visibility.advanced_menu
+      setLayersLabelArr
     ]);
 
     // Switch between the different projection types available

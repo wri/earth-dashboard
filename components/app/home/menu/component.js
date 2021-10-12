@@ -4,8 +4,8 @@ import classnames from "classnames";
 import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
 import DataPanel from "./panels/data";
-import HeadlinePanel from "./panels/headlines";
-import DataHighlightsPanel from "./panels/dataHighlights";
+import HeadlinePanel from "./panels/climate-alerts";
+import DataHighlightsPanel from "./panels/data-highlights";
 import ResizablePanel from "components/app/home/dialog-panel/resizable-panel";
 
 const INFO_TAB_INDEX = 3;

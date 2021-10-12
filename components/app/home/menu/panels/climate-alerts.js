@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
-import { fetchHeadlines } from "services/gca";
+import { fetchClimateAlerts } from "services/gca";
 import { setHeadlines } from "slices/headlines";
 import { setCurrentMode } from "slices/modes";
 import { setIsFetchLocationDisabled } from "slices/mapControls";
 
 import HeadlineCard from "components/app/home/headline-card";
 import Headline from "components/app/home/headline";
+
+const MAX_NUMBER_OF_HEADLINES = 10;
 
 const HeadlinesPanel = ({
   headlines,
@@ -21,6 +23,10 @@ const HeadlinesPanel = ({
 }) => {
   const [isFetching, setIsFetching] = useState(true);
   const [currentHeadline, setCurrentHeadline] = useState(null);
+  const mostRecentHeadlines = useMemo(() => {
+    const reversed = [...headlines].reverse();
+    return reversed.slice(Math.max(reversed.length - MAX_NUMBER_OF_HEADLINES, 0));
+  }, [headlines]);
 
   useEffect(() => {
     if (!forceInfoPage) {
@@ -33,14 +39,14 @@ const HeadlinesPanel = ({
       // Set default template
       setCurrentMode(currentHeadline.attributes.template);
     }
-  }, [currentHeadline]);
+  }, [currentHeadline, setCurrentMode]);
 
   // Fetch Headlines from the GCA CMS
   useEffect(() => {
     setIsFetching(true);
     const getHeadlines = async () => {
       try {
-        const resp = await fetchHeadlines();
+        const resp = await fetchClimateAlerts();
         setHeadlines(resp.data.data);
       } catch (err) {
         console.log("Error fetching modes");
@@ -70,12 +76,12 @@ const HeadlinesPanel = ({
   ) : (
     <>
       <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
-        Learn more about the top headlines describing the climate emergency. Stay up to date with the news you need to
-        know and the places that are being affected.
+        The effects of human-induced climate change can be seen and felt across the planet. Explore the latest alerts
+        below.
       </p>
       <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
         {!isFetching ? (
-          headlines.map(headline => (
+          mostRecentHeadlines.map(headline => (
             <HeadlineCard
               key={headline.id}
               as="button"
