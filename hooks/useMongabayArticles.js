@@ -28,8 +28,10 @@ const useMongabayArticles = (topic, limit = LIMIT) => {
   // When the data object changes, format the articles and
   // save them into the state
   useEffect(() => {
-    setNewsArticles(formatArticles(data.posts.nodes));
-  }, [data]);
+    if (!loading) {
+      setNewsArticles(formatArticles(data.posts.nodes));
+    }
+  }, [loading, data]);
 
   return {
     loading: networkStatus === NetworkStatus.loading || networkStatus === NetworkStatus.refetch,
