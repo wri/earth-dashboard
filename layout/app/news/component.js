@@ -69,9 +69,11 @@ const NewsTopicLayout = ({ topic }) => {
 
       <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
-        {otherArticles ? otherArticles.map(({ key, ...articleProps }) => (
-          <NewsArticle key={key} {...articleProps} />
-        )): <div>{loadingMessage}</div>}
+        {otherArticles ? (
+          otherArticles.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
+        ) : (
+          <div>{loadingMessage}</div>
+        )}
         {canFetchMore && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
             <AnchorCTA

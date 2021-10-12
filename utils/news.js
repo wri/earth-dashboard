@@ -32,7 +32,7 @@ export const NOW_THIS_EARTH_RSS_URL = "https://feeds.groupninemedia.com/feeds/no
 /**
  * Formats the posts so that they can render within the news-article component
  * @see components/news-article
- * 
+ *
  * @param {Array} posts - The array of posts from the endpoint
  * @returns {Array} The formated posts
  */
