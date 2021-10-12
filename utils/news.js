@@ -13,7 +13,7 @@ export const APOLLO_CLIENT = new ApolloClient({
             // Concatenate the incoming list items with
             // the existing list items.
             merge(existing = { nodes: [] }, incoming) {
-              const concatenatedPosts = [...existing.nodes, ...incoming.nodes]
+              const concatenatedPosts = [...existing.nodes, ...incoming.nodes];
               return {
                 ...incoming,
                 nodes: concatenatedPosts
@@ -29,37 +29,46 @@ export const APOLLO_CLIENT = new ApolloClient({
 export const MONGABAY_NEWS_DOMAIN = "https://news.mongabay.com";
 export const NOW_THIS_EARTH_RSS_URL = "https://feeds.groupninemedia.com/feeds/nowthis/earthhq";
 
+export const formatArticles = articles =>
+  articles.reduce((accumulator, currentValue) => {
+    accumulator.push({
+      key: currentValue.id,
+      title: currentValue.title,
+      author: "Mongabay",
+      date: new Date(currentValue.date),
+      image: currentValue.featuredImage.node.mediaItemUrl,
+      link: MONGABAY_NEWS_DOMAIN + currentValue.uri
+    });
+    return accumulator;
+  }, []);
+
 export const GetPostsQuery = gql`
-query GetPosts(
-  $first: Int
-  $after: String
-  $topics: String
-) {
-  posts (first: $first, after: $after, where: { tag: $topics }) {
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-    }
-    nodes {
-      id
-      tags {
-        nodes {
-          name
-        }
+  query GetPosts($first: Int, $after: String, $topics: String) {
+    posts(first: $first, after: $after, where: { tag: $topics }) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
       }
-      title,
-      date,
-      uri,
-      featuredImage {
-        node {
-          mediaItemUrl
+      nodes {
+        id
+        tags {
+          nodes {
+            name
+          }
+        }
+        title
+        date
+        uri
+        featuredImage {
+          node {
+            mediaItemUrl
+          }
         }
       }
     }
   }
-}
 `;
 
 export const GET_NEWS_BY_TOPIC_QUERY = (topics, limit) => gql`
