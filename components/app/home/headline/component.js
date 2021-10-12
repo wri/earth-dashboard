@@ -9,8 +9,12 @@ import { logEvent } from "utils/gtag";
 const Headline = ({ headline, className, currentMode, setIsDatePickerDisabled, ...rest }) => {
   const isBrowser = typeof window !== "undefined";
   const activeLayerString = useMemo(() => {
-    const defaultTemplateNames = currentMode.attributes.data_layers.default.map(layer => layer.attributes.title);
-    return defaultTemplateNames.join(", ");
+    if (currentMode) {
+      const defaultTemplateNames = currentMode.attributes.data_layers.default.map(layer => layer.attributes.title);
+      return defaultTemplateNames.join(", ");
+    }
+
+    return "";
   }, [currentMode]);
 
   useEffect(() => {

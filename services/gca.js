@@ -5,21 +5,21 @@ import { logger } from "utils/logs";
 // API docs: https://resource-watch.github.io/doc-api/index-rw.html#dataset
 
 /**
- * Fetch all headlines
+ * Fetch all climate alerts (headlines)
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
  * @returns {Array} Array of modes.
  * be included in the response or not.
  */
-export const fetchHeadlines = () => {
-  return GCAAPI.get("/headlines", {
+export const fetchClimateAlerts = () => {
+  return GCAAPI.get("/climate-alerts", {
     headers: {
       ...GCAAPI.defaults.headers
     }
   }).catch(response => {
     const { status, statusText } = response;
 
-    logger.error(`Error fetching headlines: ${status}: ${statusText}`);
-    throw new Error(`Error fetching headlines: ${status}: ${statusText}`);
+    logger.error(`Error fetching climate alerts: ${status}: ${statusText}`);
+    throw new Error(`Error fetching climate alerts: ${status}: ${statusText}`);
   });
 };
 
