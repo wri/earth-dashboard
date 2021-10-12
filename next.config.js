@@ -3,7 +3,9 @@ require("dotenv").config();
 const { BundleAnalyzerPlugin } =
   process.env.ED_NODE_ENV === "production" && process.env.BUNDLE_ANALYZER ? require("webpack-bundle-analyzer") : {};
 
-module.exports = {
+const { withSentryConfig } = require("@sentry/nextjs");
+
+const moduleExports = {
   env: {
     ED_NODE_ENV: process.env.ED_NODE_ENV || "development",
     APPLICATIONS: "earthhq",
@@ -66,3 +68,17 @@ module.exports = {
     ];
   }
 };
+
+const SentryWebpackPluginOptions = {
+  // Additional config options for the Sentry Webpack plugin. Keep in mind that
+  // the following options are set automatically, and overriding them is not
+  // recommended:
+  //   release, url, org, project, authToken, configFile, stripPrefix,
+  //   urlPrefix, include, ignore
+
+  silent: true // Suppresses all logs
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options.
+};
+
+module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions);
