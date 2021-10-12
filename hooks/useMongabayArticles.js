@@ -8,7 +8,7 @@ const LIMIT = 10;
 const useMongabayArticles = (topic, limit = LIMIT) => {
   const [ newsArticles, setNewsArticles ] = useState([]);
 
-  const { loading, data, networkStatus, refetch, fetchMore, ...rest } = useQuery(
+  const { loading, data, networkStatus, refetch, fetchMore } = useQuery(
     GetPostsQuery,
     {
       variables: {
@@ -35,8 +35,9 @@ const useMongabayArticles = (topic, limit = LIMIT) => {
 
   return {
     loading: networkStatus === NetworkStatus.loading || networkStatus === NetworkStatus.refetch,
-    fetchingMore: networkStatus === NetworkStatus.fetchMore,
     newsArticles,
+    canFetchMore: data?.posts.pageInfo.hasNextPage && networkStatus !== NetworkStatus.refetch,
+    isFetchingMore: networkStatus === NetworkStatus.fetchMore,
     fetchMore: () => fetchMore({
       variables: {
         first: limit,

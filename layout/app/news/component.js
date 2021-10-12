@@ -19,7 +19,7 @@ import { BANNER_BODY, VIDEOS } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 
 const NewsTopicLayout = ({ topic }) => {
-  const { loading, newsArticles, fetchingMore, fetchMore } = useMongabayArticles(topic);
+  const { loading, newsArticles, canFetchMore, isFetchingMore, fetchMore } = useMongabayArticles(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
   let mostRecentArticle,
     otherArticles = [];
@@ -67,14 +67,16 @@ const NewsTopicLayout = ({ topic }) => {
         {otherArticles?.map(({ key, ...articleProps }) => (
           <NewsArticle key={key} {...articleProps} />
         ))}
-        <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
-          <AnchorCTA
-            className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]}
-            onClick={fetchMore}
-          >
-            Load More {fetchingMore && "Loading..."}
-          </AnchorCTA>
-        </div>
+        {canFetchMore && (
+          <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
+            <AnchorCTA
+              className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]}
+              onClick={fetchMore}
+            >
+              Load More {isFetchingMore && "Loading..."}
+            </AnchorCTA>
+          </div>
+        )}
       </Section>
 
       <MediaContextProvider>
