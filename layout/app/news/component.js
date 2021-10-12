@@ -1,4 +1,4 @@
-import useMongabayArticles from "hooks/useMongabayArticles";
+import useMongabayPosts from "hooks/useMongabayPosts";
 import PropTypes from "prop-types";
 import { getPageMetadataByTopic } from "utils/share";
 import { getColorByTopic } from "utils/topics";
@@ -19,13 +19,13 @@ import { BANNER_BODY, VIDEOS } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 
 const NewsTopicLayout = ({ topic }) => {
-  const { loading, newsArticles, canFetchMore, isFetchingMore, fetchMore } = useMongabayArticles(topic);
+  const { loading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
   let mostRecentArticle,
     otherArticles;
 
   if (!loading) {
-    otherArticles = [...newsArticles];
+    otherArticles = [...posts];
     mostRecentArticle = otherArticles.shift();
   }
 

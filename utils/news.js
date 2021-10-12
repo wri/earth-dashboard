@@ -29,8 +29,15 @@ export const APOLLO_CLIENT = new ApolloClient({
 export const MONGABAY_NEWS_DOMAIN = "https://news.mongabay.com";
 export const NOW_THIS_EARTH_RSS_URL = "https://feeds.groupninemedia.com/feeds/nowthis/earthhq";
 
-export const formatArticles = articles =>
-  articles.reduce((accumulator, currentValue) => {
+/**
+ * Formats the posts so that they can render within the news-article component
+ * @see components/news-article
+ * 
+ * @param {Array} posts - The array of posts from the endpoint
+ * @returns {Array} The formated posts
+ */
+export const formatPosts = posts =>
+  posts.reduce((accumulator, currentValue) => {
     accumulator.push({
       key: currentValue.id,
       title: currentValue.title,
