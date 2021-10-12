@@ -19,14 +19,19 @@ import { BANNER_BODY, VIDEOS } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 
 const NewsTopicLayout = ({ topic }) => {
-  const { loading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(topic);
+  const { isLoading, hasErrored, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
   let mostRecentArticle,
-    otherArticles;
+    otherArticles,
+    loadingMessage = "Loading...";
 
-  if (!loading) {
+  if (!isLoading && !hasErrored) {
     otherArticles = [...posts];
     mostRecentArticle = otherArticles.shift();
+  }
+
+  if (hasErrored) {
+    loadingMessage = "An error has occurred when trying to loading the News Articles, please try again later";
   }
 
   return (
@@ -46,7 +51,7 @@ const NewsTopicLayout = ({ topic }) => {
 
       <Section title="Most Recent">
         {/* Most Recent */}
-        {mostRecentArticle ? <NewsArticle featured={true} {...mostRecentArticle} /> : <div>Loading...</div>}
+        {mostRecentArticle ? <NewsArticle featured={true} {...mostRecentArticle} /> : <div>{loadingMessage}</div>}
       </Section>
 
       <Section>{/* Full width Widget */}</Section>
@@ -64,9 +69,9 @@ const NewsTopicLayout = ({ topic }) => {
 
       <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
-        {otherArticles?.map(({ key, ...articleProps }) => (
+        {otherArticles ? otherArticles.map(({ key, ...articleProps }) => (
           <NewsArticle key={key} {...articleProps} />
-        ))}
+        )): <div>{loadingMessage}</div>}
         {canFetchMore && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
             <AnchorCTA

@@ -15,9 +15,11 @@ const LIMIT = 10;
  *        endpoint
  * 
  * @returns {Object} response
- * @property {Boolean} loading
+ * @property {Boolean} isLoading
  *           True if the initial posts are being fetched from the endpoint,
  *           will be true if refetching posts
+ * @property {Boolean} hasErrored
+ *           True if an error has occurred during the fetch
  * @property {Array} posts
  *           An array of formated posts from the endpoint
  * @property {Boolean} canFetchMore
@@ -32,7 +34,7 @@ const LIMIT = 10;
 const useMongabayPosts = (topic, limit = LIMIT) => {
   const [ posts, setPosts ] = useState([]);
 
-  const { loading, data, networkStatus, refetch, fetchMore } = useQuery(
+  const { loading, error, data, networkStatus, refetch, fetchMore, ...rest } = useQuery(
     GetPostsQuery,
     {
       variables: {
@@ -40,7 +42,8 @@ const useMongabayPosts = (topic, limit = LIMIT) => {
         after: null,
         topics: TOPICS[topic].join(",")
       },
-      notifyOnNetworkStatusChange: true
+      notifyOnNetworkStatusChange: true,
+      errorPolicy: 'all'
     }
   );
 
@@ -52,15 +55,20 @@ const useMongabayPosts = (topic, limit = LIMIT) => {
   // When the data object changes, format the posts and
   // save them into the state
   useEffect(() => {
-    if (!loading) {
+    if (!loading && !error) {
       setPosts(formatPosts(data.posts.nodes));
     }
-  }, [loading, data]);
+
+    if (error) {
+      console.error(error);
+    }
+  }, [loading, error, data]);
 
   return {
-    loading: networkStatus === NetworkStatus.loading || networkStatus === NetworkStatus.refetch,
+    isLoading: networkStatus === NetworkStatus.loading || networkStatus === NetworkStatus.refetch,
+    hasErrored: !!error,
     posts,
-    canFetchMore: data?.posts.pageInfo.hasNextPage && networkStatus !== NetworkStatus.refetch,
+    canFetchMore: data?.posts.pageInfo.hasNextPage && networkStatus !== NetworkStatus.refetch && !error,
     isFetchingMore: networkStatus === NetworkStatus.fetchMore,
     fetchMore: () => fetchMore({
       variables: {
