@@ -159,7 +159,7 @@ describe("News Topic Layout", () => {
 
     const { queryAllByText } = mount;
 
-    // The endpoint will have returned an error, check for at least one error message
+    // The endpoint will return an error, check for at least one error message
     await waitFor(() => {
       const errorMessages = queryAllByText(/error has occurred/i);
       expect(errorMessages).not.toHaveLength(0);
