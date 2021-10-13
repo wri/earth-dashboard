@@ -9,6 +9,7 @@ import Section from "./section";
 import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
 import VideoArticle from "components/video-article";
+import WidgetPreview from "components/widgets/preview";
 import Footer from "layout/footer";
 import { Desktop, MediaContextProvider } from "utils/responsive";
 import { CLIMATE, FRESHWATER, OCEAN, FORESTS, BIODIVERSITY } from "utils/topics";
@@ -47,7 +48,14 @@ const NewsTopicLayout = ({ topic }) => {
         {mostRecentArticle && <NewsArticle featured={true} {...mostRecentArticle} />}
       </Section>
 
-      <Section>{/* Full width Widget */}</Section>
+      <Section>
+        <div style={{ position: "relative", height: "325px" }}>
+          <WidgetPreview
+            widget={{ id: "eddda226-8fec-4c5e-a21b-262bead5f151" }}
+            widgetShouldBeLoaded
+          />
+        </div>
+      </Section>
 
       <Section
         title="Must Watch"
