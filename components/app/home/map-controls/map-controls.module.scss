@@ -6,22 +6,16 @@
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: $global-breakpoint-md) {
-    justify-content: flex-start;
-    margin-top: 12px;
-  }
-}
-
-.c-map-control-toggle {
-  &--active {
-    background-color: $colour-flame;
-  }
-
-  &--2d-toggle {
+  &--projection-type {
     padding: 11px;
 
     @media screen and (min-width: $global-breakpoint-md) {
       padding: 13px;
     }
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    justify-content: flex-start;
+    margin-top: 12px;
   }
 }

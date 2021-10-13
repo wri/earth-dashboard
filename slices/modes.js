@@ -21,6 +21,7 @@ const modesSlice = createSlice({
       state.animationValue = "";
       state.datasetValue = "";
       state.monitorValue = "";
+      state.heightValue = "";
     },
     setModes(state, action) {
       state.allModes = action.payload;
