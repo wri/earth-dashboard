@@ -103,7 +103,7 @@ VideoArticle.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired,
-  image: PropTypes.object.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   videoURL: PropTypes.string.isRequired
 };
 

@@ -78,7 +78,7 @@ describe("Video Article", () => {
   });
 
   test("displays error if the video request fails", async () => {
-    const { container, getByLabelText, queryByLabelText, findByLabelText } = render(
+    const { getByLabelText, findByLabelText } = render(
       <VideoArticle title="Test" duration="1:30" image={{}} videoURL="invalidURL" />
     );
 
