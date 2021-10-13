@@ -53,7 +53,7 @@ describe("News Topic Layout", () => {
     const [canFetchMore, setCanFetchMore] = useState(true);
 
     const fetch = () => {
-      setTimeout(() => {
+      return setTimeout(() => {
         if (!fetchWillError) {
           setPosts(NEWS_ARTICLES);
         } else {
@@ -78,7 +78,11 @@ describe("News Topic Layout", () => {
       }, fetchTimeout);
     };
 
-    useEffect(fetch, [topic]);
+    useEffect(() => {
+      const timeoutID = fetch();
+
+      return () => clearTimeout(timeoutID);
+    }, [topic]);
 
     return {
       isLoading: !posts.length,
@@ -134,6 +138,15 @@ describe("News Topic Layout", () => {
     await waitFor(() => {
       const loadMoreButton = queryByRole("button", { name: /Load More/i });
       expect(loadMoreButton).toBeNull();
+    });
+  });
+
+  test("displays a loading message to the user when fetching posts from the Mongabay endpoint", async () => {
+    const { queryAllByText } = mount;
+
+    await waitFor(() => {
+      const errorMessages = queryAllByText(/Loading/i);
+      expect(errorMessages).not.toHaveLength(0);
     });
   });
 
