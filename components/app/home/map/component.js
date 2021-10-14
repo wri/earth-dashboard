@@ -30,7 +30,10 @@ const MapIframe = forwardRef(
       showMapGrid,
       highDefinitionMode,
       basemapType,
-      dateOfDataShown
+      dateOfDataShown,
+      currentLocation,
+      setCurrentLocation,
+      toolTipDetails
     },
     ref
   ) => {
@@ -143,19 +146,24 @@ const MapIframe = forwardRef(
 
     // Set the current position of the user on the map
     useEffect(() => {
-      if (earthServer && currentPosition) {
-        const long = +currentPosition.longitude;
-        const lat = +currentPosition.latitude;
+      if (currentPosition) {
+        setCurrentLocation([currentPosition.latitude, currentPosition.longitude]);
+        setShouldFetchLocation(false);
+      }
+    }, [currentPosition, earthServer, setCurrentLocation, setShouldFetchLocation]);
+
+    useEffect(() => {
+      if (earthServer && currentLocation) {
+        const long = currentLocation[1];
+        const lat = currentLocation[0];
 
         earthServer.current.reorient({
           rotate: [-long, -lat],
           scale: "default",
           scaleBy: 5
         });
-
-        setShouldFetchLocation(false);
       }
-    }, [currentPosition, earthServer, setShouldFetchLocation]);
+    }, [currentLocation, earthServer]);
 
     // Find the Date of the Data being displayed
     useEffect(() => {
@@ -192,16 +200,35 @@ const MapIframe = forwardRef(
     }, [dateOfDataShown, earthServer]);
 
     return (
-      <iframe
-        id="nullSchoolIframe"
-        width="100%"
-        height="100%"
-        src={process.env.NULL_SCHOOL_IFRAME_BASE}
-        title="Null School"
-        frameBorder="0"
-        allowtransparency="true"
-        ref={ref}
-      />
+      <>
+        {toolTipDetails && (
+          <span
+            style={{
+              position: "absolute",
+              top: toolTipDetails.y + 10,
+              left: toolTipDetails.x + 10,
+              display: toolTipDetails.isVisible ? "block" : "none",
+              zIndex: 999,
+              color: "white",
+              background: "black",
+              padding: 5,
+              borderRadius: 5
+            }}
+          >
+            Tooltip here
+          </span>
+        )}
+        <iframe
+          id="nullSchoolIframe"
+          width="100%"
+          height="100%"
+          src={process.env.NULL_SCHOOL_IFRAME_BASE}
+          title="Null School"
+          frameBorder="0"
+          allowtransparency="true"
+          ref={ref}
+        />
+      </>
     );
   }
 );

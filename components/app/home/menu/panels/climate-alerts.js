@@ -37,7 +37,7 @@ const HeadlinesPanel = ({
   useEffect(() => {
     if (currentHeadline) {
       // Set default template
-      setCurrentMode(currentHeadline.attributes.template);
+      setCurrentMode(currentHeadline.attributes.mode);
     }
   }, [currentHeadline, setCurrentMode]);
 
