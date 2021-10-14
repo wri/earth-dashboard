@@ -38,30 +38,6 @@ export const getNewProjection = payload => {
     .precision(payload.precision);
 };
 
-//   // The spotlight's text or screen location has changed, so update the floating label next to the marker (if any).
-//   function drawSpotlightText() {
-//     const tooltip = d3.select("#tooltip");
-//     const {text} = spotlight;
-//     const {coordinates} = spotlight.marker.geometry;
-//     if (coordinates !== undefined && text !== undefined) {
-//         // Get the screen x,y position for the geo coordinates.
-//         const [x, y] = currentProjection(coordinates) ?? [];
-//         // Ugh. Use a _different_ technique to determine if the marker is actually visible and not hidden on the
-//         // far side of the globe. Ideally the [x,y] point above would be undefined for coordinates on the far side,
-//         // but unfortunately it's not. So do this check to avoid drawing a label for a marker that is not visible.
-//         const isVisible = !!d3.geoPath().projection(currentProjection)(spotlight.marker);
-//         if (isVisible && x >= 0 && y >= 0) {
-//             tooltip
-//                 .text(spotlight.text ?? null)
-//                 .style("left", `${x + 10}px`)
-//                 .style("top", `${y + 10}px`)
-//                 .attr("hidden", null);
-//             return;
-//         }
-//     }
-//     tooltip.text(null).attr("hidden", "");
-// }
-
 export const getMarkerProperties = (marker, projection) => {
   if (marker && projection) {
     const { coordinates } = marker.geometry;
