@@ -21,7 +21,7 @@ const NewsArticle = ({ className, featured, title, author, date, image, link }) 
         {author} . {formatDate(date)}
       </span>
 
-      <a className={styles["c-news-article__link"]} href={link}>
+      <a className={styles["c-news-article__link"]} href={link} target="_blank" rel="nofollow noreferrer">
         <Image src={ExternalLink} role="presentation" alt="" />
         <span>Read full article</span>
       </a>
@@ -35,7 +35,7 @@ NewsArticle.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
-  image: PropTypes.object.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   link: PropTypes.string.isRequired
 };
 

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import useMongabayPosts from "hooks/useMongabayPosts";
 import PropTypes from "prop-types";
 import { getPageMetadataByTopic } from "utils/share";
 import { getColorByTopic } from "utils/topics";
@@ -16,17 +16,24 @@ import { CLIMATE, FRESHWATER, OCEAN, FORESTS, BIODIVERSITY } from "utils/topics"
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import videoArticleStyles from "components/video-article/video-article.module.scss";
 import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scss";
-import { BANNER_BODY, NEWS_ARTICLES, VIDEOS } from "test/topic-articles";
+import { BANNER_BODY, VIDEOS } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 
 const NewsTopicLayout = ({ topic }) => {
+  const { isLoading, hasErrored, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
+  let mostRecentArticle,
+    otherArticles,
+    loadingMessage = "Loading...";
 
-  const { mostRecentArticle, otherArticles } = useMemo(() => {
-    const arr = [...NEWS_ARTICLES];
-    const first = arr.shift();
-    return { mostRecentArticle: first, otherArticles: arr };
-  }, []);
+  if (!isLoading && !hasErrored) {
+    otherArticles = [...posts];
+    mostRecentArticle = otherArticles.shift();
+  }
+
+  if (hasErrored) {
+    loadingMessage = "An error has occurred when trying to loading the News Articles, please try again later";
+  }
 
   return (
     <Layout
@@ -45,7 +52,7 @@ const NewsTopicLayout = ({ topic }) => {
 
       <Section title="Most Recent">
         {/* Most Recent */}
-        {mostRecentArticle && <NewsArticle featured={true} {...mostRecentArticle} />}
+        {mostRecentArticle ? <NewsArticle featured={true} {...mostRecentArticle} /> : <div>{loadingMessage}</div>}
       </Section>
 
       <Section>
@@ -70,17 +77,21 @@ const NewsTopicLayout = ({ topic }) => {
 
       <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
-        {otherArticles?.map(({ key, ...articleProps }) => (
-          <NewsArticle key={key} {...articleProps} />
-        ))}
-        <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
-          <AnchorCTA
-            className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]}
-            onClick={() => {}}
-          >
-            Load More
-          </AnchorCTA>
-        </div>
+        {otherArticles ? (
+          otherArticles.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
+        ) : (
+          <div>{loadingMessage}</div>
+        )}
+        {canFetchMore && (
+          <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
+            <AnchorCTA
+              className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]}
+              onClick={fetchMore}
+            >
+              Load More {isFetchingMore && "Loading..."}
+            </AnchorCTA>
+          </div>
+        )}
       </Section>
 
       <MediaContextProvider>

@@ -4,7 +4,7 @@ import { useMemo } from "react";
 const useDataLayers = (template, dataType) => {
   const filteredLayers = useMemo(() => {
     if (template) {
-      return template.attributes.data_layers.available.filter(
+      return [...template.attributes.data_layers.available, ...template.attributes.data_layers.default].filter(
         layer => layer.attributes.category.attributes.title === dataType
       );
     }

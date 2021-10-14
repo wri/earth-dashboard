@@ -17,7 +17,7 @@ const SocialIcon = ({ className, icon, label, link }) => (
 
 SocialIcon.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.object.isRequired,
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   label: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired
 };
