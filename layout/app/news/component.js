@@ -81,7 +81,9 @@ const NewsTopicLayout = ({ topic }) => {
         )}
       </Section>
 
-      <Section bgColour={BG_GALAXY}>{secondWidget && <Widget data-testid="second-widget" widget={secondWidget} />}</Section>
+      <Section bgColour={BG_GALAXY}>
+        {secondWidget && <Widget data-testid="second-widget" widget={secondWidget} />}
+      </Section>
 
       <Section
         title="Must Watch"

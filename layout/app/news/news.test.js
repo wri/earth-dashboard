@@ -99,7 +99,7 @@ describe("News Topic Layout", () => {
       const [hasErrored, setHasErrored] = useState(false);
       const [isFetchingMore, setIsFetchingMore] = useState(false);
       const [canFetchMore, setCanFetchMore] = useState(true);
-  
+
       const fetch = () => {
         return setTimeout(() => {
           if (!fetchWillError) {
@@ -110,14 +110,14 @@ describe("News Topic Layout", () => {
           }
         }, fetchTimeout);
       };
-  
+
       const fetchMore = () => {
         setIsFetchingMore(true);
-  
+
         setTimeout(() => {
           setIsFetchingMore(false);
           setCanFetchMore(false);
-  
+
           if (!fetchWillError) {
             setPosts([...NEWS_ARTICLES, ...MORE_ARTICLES]);
           } else {
@@ -125,13 +125,13 @@ describe("News Topic Layout", () => {
           }
         }, fetchTimeout);
       };
-  
+
       useEffect(() => {
         const timeoutID = fetch();
-  
+
         return () => clearTimeout(timeoutID);
       }, [topic]);
-  
+
       return {
         isLoading: !posts.length,
         hasErrored,
@@ -141,7 +141,7 @@ describe("News Topic Layout", () => {
         fetchMore
       };
     };
-  
+
     beforeAll(() => {
       useMongabayPosts.mockImplementation(MockUseMongabayPosts);
     });
@@ -149,58 +149,58 @@ describe("News Topic Layout", () => {
     afterAll(() => {
       useMongabayPosts.mockImplementation(mockUseMongabayPostsBlank);
     });
-  
+
     const userRequestsMorePosts = () => {
       const { getByRole } = mount;
-  
+
       const loadMoreButton = getByRole("button", { name: /Load More/i });
       fireEvent.click(loadMoreButton);
     };
-  
+
     test("renders the posts", async () => {
       const { findAllByRole } = mountComponent();
-  
+
       const readArticleButtons = await findAllByRole("link", { name: /Read full article/i });
       expect(readArticleButtons).toHaveLength(NEWS_ARTICLES.length);
     });
-  
+
     test("renders more posts when user clicks 'Load More'", async () => {
       const { getAllByRole } = mountComponent();
-  
+
       userRequestsMorePosts();
-  
+
       await waitFor(() => {
         const readArticleButtons = getAllByRole("link", { name: /Read full article/i });
         expect(readArticleButtons).toHaveLength(NEWS_ARTICLES.length + MORE_ARTICLES.length);
       });
     });
-  
+
     test("user can not load more posts when no more posts are available", async () => {
       const { queryByRole } = mountComponent();
-  
+
       userRequestsMorePosts();
-  
+
       // The endpoint will now have no more posts, check if the load more button is removed
       await waitFor(() => {
         const loadMoreButton = queryByRole("button", { name: /Load More/i });
         expect(loadMoreButton).toBeNull();
       });
     });
-  
+
     test("displays a loading message to the user when fetching posts", async () => {
       const { queryAllByText } = mountComponent();
-  
+
       await waitFor(() => {
         const errorMessages = queryAllByText(/Loading/i);
         expect(errorMessages).not.toHaveLength(0);
       });
     });
-  
+
     test("displays an error message to the user when the request fails", async () => {
       fetchWillError = true;
-  
+
       const { queryAllByText } = mountComponent();
-  
+
       // The endpoint will return an error, check for at least one error message
       await waitFor(() => {
         const errorMessages = queryAllByText(/error has occurred/i);
@@ -212,15 +212,16 @@ describe("News Topic Layout", () => {
   describe("widgets", () => {
     const { fetchWidgets } = GCAServices;
 
-    const MockFetchWidgets = () => new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (!fetchWillError) {
-          resolve(WIDGETS);
-        } else {
-          reject(new Error("error"));
-        }
-      }, fetchTimeout);
-    });
+    const MockFetchWidgets = () =>
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (!fetchWillError) {
+            resolve(WIDGETS);
+          } else {
+            reject(new Error("error"));
+          }
+        }, fetchTimeout);
+      });
 
     beforeAll(() => {
       jest.spyOn(GCAServices, "fetchWidgets").mockImplementation(MockFetchWidgets);
@@ -236,7 +237,7 @@ describe("News Topic Layout", () => {
       return {
         firstWidget: queryByTestId("first-widget"),
         secondWidget: queryByTestId("second-widget")
-      }
+      };
     };
 
     test("renders the widgets", async () => {
@@ -252,7 +253,7 @@ describe("News Topic Layout", () => {
 
     test("renders the widgets in order", async () => {
       mountComponent();
-  
+
       await waitFor(() => {
         const { firstWidget, secondWidget } = queryWidgets();
 
@@ -268,7 +269,7 @@ describe("News Topic Layout", () => {
       mountComponent();
 
       await act(async () => {
-        await expect(fetchWidgets).rejects.toThrow('error');
+        await expect(fetchWidgets).rejects.toThrow("error");
       });
 
       const { firstWidget, secondWidget } = queryWidgets();
