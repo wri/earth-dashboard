@@ -4,6 +4,8 @@
 
 .c-page-section-widget {
   position: relative;
+  height: 100%;
+  max-width: 100%;
   background-color: $colour-galaxy;
   border-radius: 16px;
   overflow: hidden;

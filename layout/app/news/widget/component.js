@@ -14,8 +14,8 @@ const Widget = ({ className, widget }) => (
 Widget.propTypes = {
   className: PropTypes.string,
   widget: PropTypes.shape({
-    widget_id: PropTypes.string.isRequired,
-  }).isRequired,
+    widget_id: PropTypes.string.isRequired
+  }).isRequired
 };
 
 Widget.defaultProps = {

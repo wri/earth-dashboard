@@ -45,10 +45,10 @@ export const fetchModes = () => {
 /**
  * Fetch all Widgets
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
- * 
- * @param {Object} params 
+ *
+ * @param {Object} params
  * @property {String} category - filter widgets by cateogry
- * 
+ *
  * @returns {Array} an array of widgets
  */
 export const fetchWidgets = params => {
@@ -58,22 +58,26 @@ export const fetchWidgets = params => {
     },
     params: {
       ...params
-    },
-  })
-  .then(response => {
-    const { status, statusText, data: { data } } = response;
-
-    if (status >= 300) {
-      logger.error("Error fetching widgets:", `${status}: ${statusText}`);
-      throw new Error(statusText);
     }
-
-    return data;
   })
-  .catch(response => {
-    const { status, statusText } = response;
+    .then(response => {
+      const {
+        status,
+        statusText,
+        data: { data }
+      } = response;
 
-    logger.error(`Error fetching widgets: ${status}: ${statusText}`);
-    throw new Error(`Error fetching widgets: ${status}: ${statusText}`);
-  });
+      if (status >= 300) {
+        logger.error("Error fetching widgets:", `${status}: ${statusText}`);
+        throw new Error(statusText);
+      }
+
+      return data;
+    })
+    .catch(response => {
+      const { status, statusText } = response;
+
+      logger.error(`Error fetching widgets: ${status}: ${statusText}`);
+      throw new Error(`Error fetching widgets: ${status}: ${statusText}`);
+    });
 };

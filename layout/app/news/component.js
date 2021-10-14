@@ -21,16 +21,23 @@ import { BANNER_BODY, VIDEOS } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 
 const NewsTopicLayout = ({ topic }) => {
-  const { isLoading: isPostsLoading, hasErrored: hasPostsErrorred, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(topic);
-  const { widgets } = useGCAWidgets(topic);
+  const {
+    isLoading: isPostsLoading,
+    hasErrored: hasPostsErrorred,
+    posts,
+    canFetchMore,
+    isFetchingMore,
+    fetchMore
+  } = useMongabayPosts(topic);
+  const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
 
   let mostRecentArticle,
     otherArticles,
     postsLoadingMessage = "Loading...",
     availableWidgets = [...widgets],
-    firstWidget = availableWidgets.shift(),
-    secondWidget = availableWidgets.shift();
+    firstWidget = !isWidgetsLoading && !hasWidgetsErrorred && availableWidgets.shift(),
+    secondWidget = !isWidgetsLoading && !hasWidgetsErrorred && availableWidgets.shift();
 
   if (!isPostsLoading && !hasPostsErrorred) {
     otherArticles = [...posts];
@@ -58,13 +65,23 @@ const NewsTopicLayout = ({ topic }) => {
 
       <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>
         {/* Most Recent */}
-        {mostRecentArticle ? <NewsArticle featured={true} {...mostRecentArticle} /> : <div>{postsLoadingMessage}</div>}
-        {firstWidget && <Widget widget={firstWidget} />}
+        {mostRecentArticle ? (
+          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
+            <NewsArticle featured={true} {...mostRecentArticle} />
+          </div>
+        ) : (
+          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
+            <div>{postsLoadingMessage}</div>
+          </div>
+        )}
+        {firstWidget && (
+          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
+            <Widget widget={firstWidget} />
+          </div>
+        )}
       </Section>
 
-      <Section bgColour={BG_GALAXY}>
-        {secondWidget && <Widget className="" widget={secondWidget} />}
-      </Section>
+      <Section bgColour={BG_GALAXY}>{secondWidget && <Widget widget={secondWidget} />}</Section>
 
       <Section
         title="Must Watch"
