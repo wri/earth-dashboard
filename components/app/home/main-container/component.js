@@ -106,7 +106,7 @@ const MainContainer = ({
     };
 
     loop();
-  }, [hasMenuOpen]);
+  }, [browserWidth, earthServer, hasMenuOpen]);
 
   useEffect(() => {
     if (hasMenuOpen) {
@@ -135,12 +135,12 @@ const MainContainer = ({
     if (currentHeadline) {
       enableToolTip(
         [currentHeadline.attributes.location.lng, currentHeadline.attributes.location.lat],
-        currentHeadline.attributes.location.name
+        `${layersLabelArr.join(", ")} in ${currentHeadline.attributes.location.name}`
       );
     } else {
       disableToolTip();
     }
-  }, [currentHeadline, disableToolTip, enableToolTip]);
+  }, [currentHeadline, disableToolTip, enableToolTip, layersLabelArr]);
 
   return (
     <div
