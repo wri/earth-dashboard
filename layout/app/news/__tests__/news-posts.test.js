@@ -37,6 +37,10 @@ jest.mock("hooks/useGCAWidgets", () => () => ({
   widgets: []
 }));
 
+jest.mock("hooks/useNowThisVideos", () => () => ({
+  videos: []
+}));
+
 describe("News Topic Layout - Posts", () => {
   const fetchTimeout = 100;
   let fetchWillError, mount, topic;

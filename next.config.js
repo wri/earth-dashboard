@@ -19,7 +19,7 @@ const moduleExports = {
   },
 
   images: {
-    domains: ["imgs.mongabay.com"]
+    domains: ["imgs.mongabay.com", "content.jwplatform.com"]
   },
 
   eslint: {

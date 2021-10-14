@@ -66,21 +66,18 @@ export const VIDEOS = [
   {
     key: "1",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
-    duration: "2:30",
     image: TestImage,
     videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
   },
   {
     key: "2",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
-    duration: "2:30",
     image: TestImage,
     videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
   },
   {
     key: "3",
     title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
-    duration: "2:30",
     image: TestImage,
     videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
   }

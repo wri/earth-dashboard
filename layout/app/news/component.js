@@ -1,5 +1,6 @@
 import useMongabayPosts from "hooks/useMongabayPosts";
 import useGCAWidgets from "hooks/useGCAWidgets";
+import useNowThisVideos from "hooks/useNowThisVideos";
 import PropTypes from "prop-types";
 import { getPageMetadataByTopic } from "utils/share";
 import { getColorByTopic } from "utils/topics";
@@ -17,7 +18,7 @@ import { CLIMATE, FRESHWATER, OCEAN, FORESTS, BIODIVERSITY } from "utils/topics"
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import videoArticleStyles from "components/video-article/video-article.module.scss";
 import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scss";
-import { BANNER_BODY, VIDEOS } from "test/topic-articles";
+import { BANNER_BODY } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 
 const NewsTopicLayout = ({ topic }) => {
@@ -30,6 +31,7 @@ const NewsTopicLayout = ({ topic }) => {
     fetchMore
   } = useMongabayPosts(topic);
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
+  const { videos: allNowThisVideos } = useNowThisVideos(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
 
   let mostRecentArticle,
@@ -37,7 +39,9 @@ const NewsTopicLayout = ({ topic }) => {
     postsLoadingMessage = "Loading...",
     availableWidgets = [...widgets],
     firstWidget = !isWidgetsLoading && !hasWidgetsErrorred && availableWidgets.shift(),
-    secondWidget = !isWidgetsLoading && !hasWidgetsErrorred && availableWidgets.shift();
+    secondWidget = !isWidgetsLoading && !hasWidgetsErrorred && availableWidgets.shift(),
+    availableVideos = [...allNowThisVideos],
+    videos = availableVideos.splice(0, 3);
 
   if (!isPostsLoading && !hasPostsErrorred) {
     otherArticles = [...posts];
@@ -91,8 +95,8 @@ const NewsTopicLayout = ({ topic }) => {
         gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
       >
         {/* Must Watch */}
-        {VIDEOS?.map(({ key, ...videoProps }) => (
-          <VideoArticle key={key} {...videoProps} />
+        {videos?.map(({ title, thumbnail, link }) => (
+          <VideoArticle key={link.$.url} title={title} duration="1:11" image={thumbnail.$.url} videoURL={link.$.url} />
         ))}
       </Section>
 

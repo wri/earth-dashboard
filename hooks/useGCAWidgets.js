@@ -20,6 +20,7 @@ const useGCAWidgets = topic => {
 
   useEffect(async () => {
     setIsLoading(true);
+    setHasErrored(false);
 
     try {
       const response = await fetchWidgets({ category: topic });

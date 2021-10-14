@@ -47,6 +47,10 @@ jest.mock("services/gca", () => {
 
 jest.mock("components/widgets/preview", () => ({ widget }) => <div data-widgetid={widget.id} />);
 
+jest.mock("hooks/useNowThisVideos", () => () => ({
+  videos: []
+}));
+
 describe("News Topic Layout - Widgets", () => {
   const fetchTimeout = 100;
   let fetchWillError, mount, topic;
