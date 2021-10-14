@@ -1,6 +1,7 @@
 import { EarthClient } from "./earthClient";
 import * as Comlink from "comlink";
 import * as d3 from "utils/d3";
+import uuid from "react-uuid";
 
 const CONNECTION_TIMEOUT = 5000;
 
@@ -12,7 +13,7 @@ const CONNECTION_TIMEOUT = 5000;
  */
 const connect = ({ api, version, initialState, iframe }) => {
   const iframeURL = new URL(process.env.NULL_SCHOOL_IFRAME_BASE);
-  const id = `${Math.random()}${Math.random()}${Math.random()}`;
+  const id = uuid();
 
   return new Promise((resolve, reject) => {
     function listener({ data, origin, source, ports }) {
