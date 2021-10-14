@@ -1,4 +1,5 @@
 import useMongabayPosts from "hooks/useMongabayPosts";
+import useGCAWidgets from "hooks/useGCAWidgets";
 import PropTypes from "prop-types";
 import { getPageMetadataByTopic } from "utils/share";
 import { getColorByTopic } from "utils/topics";
@@ -9,7 +10,7 @@ import Section from "./section";
 import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
 import VideoArticle from "components/video-article";
-import WidgetPreview from "components/widgets/preview";
+import Widget from "layout/app/news/widget";
 import Footer from "layout/footer";
 import { Desktop, MediaContextProvider } from "utils/responsive";
 import { CLIMATE, FRESHWATER, OCEAN, FORESTS, BIODIVERSITY } from "utils/topics";
@@ -20,19 +21,24 @@ import { BANNER_BODY, VIDEOS } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 
 const NewsTopicLayout = ({ topic }) => {
-  const { isLoading, hasErrored, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(topic);
+  const { isLoading: isPostsLoading, hasErrored: hasPostsErrorred, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(topic);
+  const { widgets } = useGCAWidgets(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
+
   let mostRecentArticle,
     otherArticles,
-    loadingMessage = "Loading...";
+    postsLoadingMessage = "Loading...",
+    availableWidgets = [...widgets],
+    firstWidget = availableWidgets.shift(),
+    secondWidget = availableWidgets.shift();
 
-  if (!isLoading && !hasErrored) {
+  if (!isPostsLoading && !hasPostsErrorred) {
     otherArticles = [...posts];
     mostRecentArticle = otherArticles.shift();
   }
 
-  if (hasErrored) {
-    loadingMessage = "An error has occurred when trying to loading the News Articles, please try again later";
+  if (hasPostsErrorred) {
+    postsLoadingMessage = "An error has occurred when trying to loading the News Articles, please try again later";
   }
 
   return (
@@ -50,18 +56,14 @@ const NewsTopicLayout = ({ topic }) => {
         <HeroBanner title={topic + " News"} body={BANNER_BODY} />
       </Section>
 
-      <Section title="Most Recent">
+      <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>
         {/* Most Recent */}
-        {mostRecentArticle ? <NewsArticle featured={true} {...mostRecentArticle} /> : <div>{loadingMessage}</div>}
+        {mostRecentArticle ? <NewsArticle featured={true} {...mostRecentArticle} /> : <div>{postsLoadingMessage}</div>}
+        {firstWidget && <Widget widget={firstWidget} />}
       </Section>
 
-      <Section>
-        <div style={{ position: "relative", height: "325px" }}>
-          <WidgetPreview
-            widget={{ id: "eddda226-8fec-4c5e-a21b-262bead5f151" }}
-            widgetShouldBeLoaded
-          />
-        </div>
+      <Section bgColour={BG_GALAXY}>
+        {secondWidget && <Widget className="" widget={secondWidget} />}
       </Section>
 
       <Section
@@ -80,7 +82,7 @@ const NewsTopicLayout = ({ topic }) => {
         {otherArticles ? (
           otherArticles.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
         ) : (
-          <div>{loadingMessage}</div>
+          <div>{postsLoadingMessage}</div>
         )}
         {canFetchMore && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>

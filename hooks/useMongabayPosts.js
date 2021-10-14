@@ -34,7 +34,7 @@ const LIMIT = 10;
 const useMongabayPosts = (topic, limit = LIMIT) => {
   const [ posts, setPosts ] = useState([]);
 
-  const { loading, error, data, networkStatus, refetch, fetchMore, ...rest } = useQuery(
+  const { loading, error, data, networkStatus, refetch, fetchMore } = useQuery(
     GetPostsQuery,
     {
       variables: {
