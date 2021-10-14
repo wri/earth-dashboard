@@ -76,12 +76,12 @@ const NewsTopicLayout = ({ topic }) => {
         )}
         {firstWidget && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
-            <Widget widget={firstWidget} />
+            <Widget data-testid="first-widget" widget={firstWidget} />
           </div>
         )}
       </Section>
 
-      <Section bgColour={BG_GALAXY}>{secondWidget && <Widget widget={secondWidget} />}</Section>
+      <Section bgColour={BG_GALAXY}>{secondWidget && <Widget data-testid="second-widget" widget={secondWidget} />}</Section>
 
       <Section
         title="Must Watch"
