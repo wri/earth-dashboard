@@ -1,6 +1,7 @@
 import { EarthClient } from "./earthClient";
 import * as Comlink from "comlink";
 import * as d3 from "utils/d3";
+import uuid from "react-uuid";
 
 const CONNECTION_TIMEOUT = 5000;
 
@@ -12,16 +13,24 @@ const CONNECTION_TIMEOUT = 5000;
  */
 const connect = ({ api, version, initialState, iframe }) => {
   const iframeURL = new URL(process.env.NULL_SCHOOL_IFRAME_BASE);
+  const id = uuid();
 
   return new Promise((resolve, reject) => {
     function listener({ data, origin, source, ports }) {
       if (origin !== iframeURL.origin || source !== iframe.contentWindow) {
-        return;
+        return; // ignore message not from the iframe
       }
+
+      if (data.api !== api || data.id !== id) {
+        return; // ignore message that isn't a response to the connection attempt
+      }
+
+      window.removeEventListener("message", listener);
 
       if (data.success === true) {
         resolve(ports[0]);
-        window.removeEventListener("message", listener);
+      } else {
+        reject(data);
       }
     }
 
@@ -30,9 +39,9 @@ const connect = ({ api, version, initialState, iframe }) => {
     setTimeout(() => {
       reject("Timeout on connecting to iframe window");
       window.removeEventListener("message", listener);
-    }, 5000);
+    }, CONNECTION_TIMEOUT);
 
-    const req = { action: "connect", api, version, initialState };
+    const req = { action: "connect", api, version, initialState, id };
     iframe.contentWindow.postMessage(req, iframeURL.origin);
   });
 };
@@ -49,7 +58,7 @@ export const getEarthServer = async (iframe, windowWidth, createEarthClient) => 
   };
 
   try {
-    const port = await connect({ api: "earth", version: 1, initialState, iframe });
+    const port = await connect({ api: "net.nullschool.earth", version: 1, initialState, iframe });
     const server = Comlink.wrap(port);
     const client = createEarthClient ? createEarthClient() : new EarthClient();
     Comlink.expose(client, port);
