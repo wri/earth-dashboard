@@ -4,6 +4,7 @@ import useCurrentPosition from "hooks/useCurrentPosition";
 import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
+import ToolTip from "components/ui/tooltip/component";
 
 const MapIframe = forwardRef(
   (
@@ -201,22 +202,12 @@ const MapIframe = forwardRef(
 
     return (
       <>
-        {toolTipDetails && (
-          <span
-            style={{
-              position: "absolute",
-              top: toolTipDetails.y + 10,
-              left: toolTipDetails.x + 10,
-              display: toolTipDetails.isVisible ? "block" : "none",
-              zIndex: 999,
-              color: "white",
-              background: "black",
-              padding: 5,
-              borderRadius: 5
-            }}
-          >
-            Tooltip here
-          </span>
+        {toolTipDetails && toolTipDetails.isVisible && (
+          <ToolTip x={toolTipDetails.x} y={toolTipDetails.y}>
+            <p className="u-margin-none">
+              Hey &<br /> Something
+            </p>
+          </ToolTip>
         )}
         <iframe
           id="nullSchoolIframe"

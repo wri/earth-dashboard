@@ -16,16 +16,36 @@ const useIframeBridge = callback => {
   const [currentProjection, setCurrentProjection] = useState(null);
   const [currentMarker, setCurrentMarker] = useState(null);
   const [toolTipDetails, setToolTipDetails] = useState(null);
+  const [toolTipVisible, setToolTipVisible] = useState(false);
+  const [toolTipText, setToolTipText] = useState("");
   const currentProjectionFunc = useCallback(() => getNewProjection(currentProjection), [currentProjection]);
 
   useEffect(() => {
-    if (currentProjection && currentMarker) {
+    if (currentProjection && currentMarker && toolTipVisible) {
       const projectionD3Func = currentProjectionFunc();
-      setToolTipDetails(getMarkerProperties(currentMarker, projectionD3Func));
+      setToolTipDetails({ ...getMarkerProperties(currentMarker, projectionD3Func), text: toolTipText });
     } else {
       setToolTipDetails(null);
     }
-  }, [currentProjectionFunc, currentMarker, currentProjection]);
+  }, [currentProjectionFunc, currentMarker, currentProjection, toolTipVisible, toolTipText]);
+
+  const enableToolTip = useCallback((coords, content) => {
+    if (earthServer.current) {
+      setToolTipText(content);
+      setToolTipVisible(true);
+      const marker = getIndicatorGeoJson(coords);
+      setCurrentMarker(marker);
+      earthServer.current.annotate(POINT_INDICATOR, marker);
+    }
+  }, []);
+
+  const disableToolTip = useCallback(() => {
+    if (earthServer.current) {
+      setToolTipVisible(false);
+      setToolTipText("");
+      earthServer.current.annotate(POINT_INDICATOR, null);
+    }
+  }, []);
 
   const createEarthClient = useCallback(() => {
     return new (class EarthClientImpl extends EarthClient {
@@ -92,7 +112,17 @@ const useIframeBridge = callback => {
     [width, createEarthClient, callback]
   );
 
-  return { setRef, iframeRef, earthClient, earthServer, layers, toolTipDetails, error: err };
+  return {
+    setRef,
+    iframeRef,
+    earthClient,
+    earthServer,
+    layers,
+    toolTipDetails,
+    enableToolTip,
+    disableToolTip,
+    error: err
+  };
 };
 
 export default useIframeBridge;

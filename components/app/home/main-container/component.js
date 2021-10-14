@@ -18,7 +18,15 @@ import settingsButtonConfig from "constants/control-bar/controls/settings";
 import { formatDate } from "utils/dates";
 import DatePickerMenu from "../date-picker-menu";
 
-const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOfDataShown, shouldFadeControls }) => {
+const MainContainer = ({
+  isMobile,
+  setIsMobile,
+  setModes,
+  layersLabelArr,
+  dateOfDataShown,
+  shouldFadeControls,
+  currentHeadline
+}) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
@@ -27,9 +35,10 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOf
 
   const menuRef = useRef(null);
 
-  const { setRef, earthClient, earthServer, layers, error, toolTipDetails } = useIframeBridge(() => {
-    setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
-  });
+  const { setRef, earthClient, earthServer, layers, error, toolTipDetails, enableToolTip, disableToolTip } =
+    useIframeBridge(() => {
+      setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
+    });
 
   const overlayLayer = useMemo(() => {
     return layers.find(layer => layer.type === "overlay");
@@ -92,6 +101,17 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOf
 
     getTemplates();
   }, [setModes]);
+
+  useEffect(() => {
+    if (currentHeadline) {
+      enableToolTip(
+        [currentHeadline.attributes.location.lng, currentHeadline.attributes.location.lat],
+        currentHeadline.attributes.location.name
+      );
+    } else {
+      disableToolTip();
+    }
+  }, [currentHeadline, disableToolTip, enableToolTip]);
 
   return (
     <div

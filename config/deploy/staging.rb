@@ -11,4 +11,5 @@ set :default_env, {
   'CALLBACK_URL' => 'https://earthhq.org/sign-in',
   'NULL_SCHOOL_IFRAME_BASE' => 'https://earthhq.nullschool.net',
   'APPLICATIONS' => 'earthhq',
+  'SENTRY_AUTH_TOKEN' => '87ee3f8454304fedab5928029a0f4c2c98b78132f78c437a97d1174b61333b08'
 }

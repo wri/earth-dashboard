@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  headlines: []
+  headlines: [],
+  currentHeadline: null
 };
 
 const headlinesSlice = createSlice({
@@ -10,9 +11,12 @@ const headlinesSlice = createSlice({
   reducers: {
     setHeadlines(state, action) {
       state.headlines = action.payload;
+    },
+    setCurrentHeadline(state, action) {
+      state.currentHeadline = action.payload;
     }
   }
 });
 
-export const { setHeadlines } = headlinesSlice.actions;
+export const { setHeadlines, setCurrentHeadline } = headlinesSlice.actions;
 export default headlinesSlice.reducer;
