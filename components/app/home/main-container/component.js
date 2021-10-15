@@ -81,7 +81,7 @@ const MainContainer = ({
     }, 1000);
   }, []);
 
-  // Move globe to the left when menu is open
+  // Move globe to the right when menu is open
   useEffect(() => {
     if (!earthServer.current || isMobile) return;
 
