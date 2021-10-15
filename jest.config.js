@@ -23,7 +23,8 @@ module.exports = {
     "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }]
   },
   transformIgnorePatterns: [
-    "<rootDir>/node_modules/(?!(d3-selection|d3-zoom|d3-color))",
+    "<rootDir>/node_modules/(?!(d3-selection|d3-zoom|d3-color|d3-geo|d3-array|internmap))",
+    "<rootDir>/node_modules/d3-geo/node_modules/(?!(d3-array))",
     "^.+\\.module\\.(css|sass|scss)$"
   ]
 };
