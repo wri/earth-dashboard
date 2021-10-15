@@ -83,7 +83,7 @@ const MainContainer = ({
 
   // Move globe to the left when menu is open
   useEffect(() => {
-    if (!earthServer.current) return;
+    if (!earthServer.current || isMobile) return;
 
     const animationDuration = 300;
     const translateDuration = 25;
@@ -106,7 +106,7 @@ const MainContainer = ({
     };
 
     loop();
-  }, [browserWidth, earthServer, hasMenuOpen]);
+  }, [browserWidth, earthServer, hasMenuOpen, isMobile]);
 
   useEffect(() => {
     if (hasMenuOpen) {
