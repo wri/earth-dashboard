@@ -278,7 +278,7 @@ test("<Menu /> renders correctly as mobile", async () => {
   >
     <div
       class="c-dialog-panel__draggable"
-      style="position: absolute; user-select: auto; width: 100vw; height: 70vh; max-width: 100vw; max-height: 90vh; min-width: 100vw; min-height: 50vh; box-sizing: border-box; flex-shrink: 0;"
+      style="position: absolute; user-select: auto; width: auto; height: 70vh; max-width: 100vw; max-height: 90vh; min-width: 100vw; min-height: 50vh; box-sizing: border-box; flex-shrink: 0;"
     >
       <div
         class="c-home-menu c-home-menu--closing"
