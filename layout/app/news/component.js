@@ -14,7 +14,8 @@ import VideoArticle from "components/video-article";
 import Widget from "layout/app/news/widget";
 import Footer from "layout/footer";
 import { Desktop, MediaContextProvider } from "utils/responsive";
-import { CLIMATE, FRESHWATER, OCEAN, FORESTS, BIODIVERSITY } from "utils/topics";
+import { CLIMATE } from "utils/topics";
+import TOPICS from "constants/news";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import videoArticleStyles from "components/video-article/video-article.module.scss";
 import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scss";
@@ -133,9 +134,11 @@ const NewsTopicLayout = ({ topic }) => {
 };
 
 NewsTopicLayout.propTypes = {
-  topic: PropTypes.oneOf([CLIMATE, FRESHWATER, OCEAN, FORESTS, BIODIVERSITY]).isRequired
+  topic: PropTypes.oneOf(Object.keys(TOPICS)).isRequired
 };
 
-NewsTopicLayout.defaultProps = {};
+NewsTopicLayout.defaultProps = {
+  topic: CLIMATE
+};
 
 export default NewsTopicLayout;

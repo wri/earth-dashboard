@@ -10,7 +10,7 @@ import { fetchTopicData } from "services/data";
 import LayoutTopic from "layout/app/topic";
 import NewsTopicLayout from "layout/app/news";
 
-import { CLIMATE, OCEAN, FRESHWATER, FORESTS } from "utils/topics";
+import { CLIMATE, OCEAN, FRESHWATER, FORESTS, BIODIVERSITY } from "utils/topics";
 
 function TopicPage({ topic, topicData, widgets, topicNotFound }) {
   // This includes setting the noindex header because static files always return
@@ -37,7 +37,7 @@ TopicPage.getInitialProps = async context => {
   const topic = context?.query?.topic;
   let topicNotFound = false;
 
-  if (![CLIMATE, OCEAN, FRESHWATER, FORESTS].includes(topic)) {
+  if (![CLIMATE, OCEAN, FRESHWATER, FORESTS, BIODIVERSITY].includes(topic)) {
     topicNotFound = true;
   }
   const topicData = await fetchTopicData("/data/TopicPagesData.json");
