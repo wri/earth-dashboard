@@ -76,8 +76,9 @@ const HeadlinesPanel = ({
   ) : (
     <>
       <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
-        The effects of human-induced climate change can be seen and felt across the planet. Explore the latest alerts
-        below.
+        The effects of human-induced climate change can be seen and felt across the planet.
+        <br />
+        Explore the latest alerts from Mongabay below.
       </p>
       <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
         {!isFetching ? (

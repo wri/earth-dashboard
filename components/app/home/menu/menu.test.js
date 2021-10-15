@@ -107,7 +107,9 @@ test("<Menu /> renders correctly as desktop", async () => {
               <p
                 class="c-home-menu__tab-description u-margin-none"
               >
-                The effects of human-induced climate change can be seen and felt across the planet. Explore the latest alerts below.
+                The effects of human-induced climate change can be seen and felt across the planet.
+                <br />
+                Explore the latest alerts from Mongabay below.
               </p>
               <div
                 class="c-home-menu__tab-panel-scroll-area"
@@ -364,7 +366,9 @@ test("<Menu /> renders correctly as mobile", async () => {
                 <p
                   class="c-home-menu__tab-description u-margin-none"
                 >
-                  The effects of human-induced climate change can be seen and felt across the planet. Explore the latest alerts below.
+                  The effects of human-induced climate change can be seen and felt across the planet.
+                  <br />
+                  Explore the latest alerts from Mongabay below.
                 </p>
                 <div
                   class="c-home-menu__tab-panel-scroll-area"
