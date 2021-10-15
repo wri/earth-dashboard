@@ -92,14 +92,8 @@ $c-mega-menu-padding-x-desktop: 60px;
     padding-top: 70px;
 
     &__ctas {
-      grid-template-columns: 40% 1fr 1fr;
       padding-bottom: 70px;
-    }
-  }
-
-  @media screen and (min-width: $global-breakpoint-xl) {
-    &__ctas {
-      grid-template-columns: 544px 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 }
