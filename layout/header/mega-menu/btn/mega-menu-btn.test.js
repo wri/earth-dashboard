@@ -2,13 +2,7 @@
 import { render, fireEvent } from "test-utils";
 import MegaMenuBtn from "./component";
 
-jest.mock("components/ui/icon-button", () => {
-  return ({ icon, ...props }) => (
-    <button data-testid="button" {...props}>
-      <img src={icon} />
-    </button>
-  );
-});
+jest.mock("next/image", () => () => <img />);
 
 jest.mock("public/static/images/close.svg", () => "close.svg");
 
@@ -20,7 +14,7 @@ describe("Mega Menu Btn", () => {
 <div>
   <button
     aria-label="Open Main Menu"
-    class="c-anchor-cta"
+    class="Test c-anchor-cta"
   >
     Breaking News
   </button>
@@ -35,12 +29,9 @@ describe("Mega Menu Btn", () => {
 <div>
   <button
     aria-label="Close Main Menu"
-    class="Test"
-    data-testid="button"
+    class="c-button c-button--icon Test"
   >
-    <img
-      src="close.svg"
-    />
+    <img />
   </button>
 </div>
 `);

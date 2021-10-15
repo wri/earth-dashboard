@@ -12,7 +12,7 @@ const MegaMenuBtn = ({ isMegaMenuOpen, setIsMegaMenuOpen, ...rest }) =>
       {...rest}
     />
   ) : (
-    <AnchorCTA aria-label="Open Main Menu" onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}>
+    <AnchorCTA aria-label="Open Main Menu" onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)} {...rest}>
       Breaking News
     </AnchorCTA>
   );
