@@ -21,7 +21,8 @@ const ResizablePanel = forwardRef(({ isMobile, children, height, onResize }, ref
       topLeft: false
     },
     defaultSize: { width: "100vw", height: height },
-    onResizeStop: onResize,
+    size: { height: height },
+    onResize,
     minWidth: "100vw",
     maxWidth: "100vw",
     minHeight: "50vh",
