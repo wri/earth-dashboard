@@ -27,7 +27,7 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOf
 
   const menuRef = useRef(null);
 
-  const { setRef, earthClient, earthServer, layers, error } = useIframeBridge(() => {
+  const { setRef, earthClient, earthServer, layers, error, toolTipDetails } = useIframeBridge(() => {
     setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
   });
 
@@ -103,7 +103,15 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOf
       })}
       data-testid="iframe-container"
     >
-      {hasIframe && <MapIframe ref={setRef} earthServer={earthServer} earthClient={earthClient} layers={layers} />}
+      {hasIframe && (
+        <MapIframe
+          ref={setRef}
+          earthServer={earthServer}
+          earthClient={earthClient}
+          layers={layers}
+          toolTipDetails={toolTipDetails}
+        />
+      )}
       {overlayLayer && !isMobile && (
         <Scale
           min={scaleData.min}

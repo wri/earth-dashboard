@@ -6,7 +6,7 @@ import WidgetPreview from "components/widgets/preview";
 import { useMemo, useEffect } from "react";
 import { logEvent } from "utils/gtag";
 
-const Headline = ({ headline, className, currentMode, setIsDatePickerDisabled, ...rest }) => {
+const Headline = ({ headline, className, currentMode, setIsDatePickerDisabled, setCurrentLocation, ...rest }) => {
   const isBrowser = typeof window !== "undefined";
   const activeLayerString = useMemo(() => {
     if (currentMode) {
@@ -21,6 +21,12 @@ const Headline = ({ headline, className, currentMode, setIsDatePickerDisabled, .
     setIsDatePickerDisabled(true);
     return () => setIsDatePickerDisabled(false);
   }, [setIsDatePickerDisabled]);
+
+  useEffect(() => {
+    if (headline?.attributes.location) {
+      setCurrentLocation([headline?.attributes.location.lat, headline?.attributes.location.lng]);
+    }
+  }, [headline, setCurrentLocation]);
 
   return (
     <article className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
@@ -92,7 +98,8 @@ Headline.propTypes = {
   headline: PropTypes.object.isRequired,
   className: PropTypes.string,
   currentMode: PropTypes.object,
-  setIsDatePickerDisabled: PropTypes.func.isRequired
+  setIsDatePickerDisabled: PropTypes.func.isRequired,
+  setCurrentLocation: PropTypes.func.isRequired
 };
 
 Headline.defaultProps = {

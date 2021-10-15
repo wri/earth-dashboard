@@ -2,13 +2,9 @@ import { useRef, useCallback, useState } from "react";
 import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
-import * as d3 from "utils/d3";
-
-function colorAt(colors, t) {
-  const n = colors.length / 4;
-  const j = Math.round(t * (n - 1)) * 4;
-  return d3.rgb(colors[j], colors[j + 1], colors[j + 2], colors[j + 3] / 255);
-}
+import { colorAt, getIndicatorGeoJson, getMarkerProperties, getNewProjection } from "utils/map";
+import { POINT_INDICATOR } from "constants/map";
+import { useEffect } from "react/cjs/react.development";
 
 const useIframeBridge = callback => {
   const { width } = useWindowDimensions();
@@ -17,6 +13,19 @@ const useIframeBridge = callback => {
   const [earthClient, setEarthClient] = useState(null);
   const [err, setErr] = useState(null);
   const [layers, setLayers] = useState([]);
+  const [currentProjection, setCurrentProjection] = useState(null);
+  const [currentMarker, setCurrentMarker] = useState(null);
+  const [toolTipDetails, setToolTipDetails] = useState(null);
+  const currentProjectionFunc = useCallback(() => getNewProjection(currentProjection), [currentProjection]);
+
+  useEffect(() => {
+    if (currentProjection && currentMarker) {
+      const projectionD3Func = currentProjectionFunc();
+      setToolTipDetails(getMarkerProperties(currentMarker, projectionD3Func));
+    } else {
+      setToolTipDetails(null);
+    }
+  }, [currentProjectionFunc, currentMarker, currentProjection]);
 
   const createEarthClient = useCallback(() => {
     return new (class EarthClientImpl extends EarthClient {
@@ -38,6 +47,20 @@ const useIframeBridge = callback => {
         }
 
         setLayers(layers);
+      }
+
+      click(point, coords) {
+        const marker = getIndicatorGeoJson(coords);
+        setCurrentMarker(marker);
+        earthServer.current.annotate(POINT_INDICATOR, marker);
+      }
+
+      reorientStep(projection) {
+        setCurrentProjection(projection);
+      }
+
+      reorientEnd(projection) {
+        setCurrentProjection(projection);
       }
     })();
   }, []);
@@ -69,7 +92,7 @@ const useIframeBridge = callback => {
     [width, createEarthClient, callback]
   );
 
-  return { setRef, iframeRef, earthClient, earthServer, layers, error: err };
+  return { setRef, iframeRef, earthClient, earthServer, layers, toolTipDetails, error: err };
 };
 
 export default useIframeBridge;
