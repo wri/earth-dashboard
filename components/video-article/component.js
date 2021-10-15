@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import uuid from "react-uuid";
 import Image from "next/image";
 import ReactPlayer from "react-player";
+import { secondsToHms } from "utils/time";
 import classnames from "classnames";
 import { CSSTransition } from "react-transition-group";
 import styles from "./video-article.module.scss";
@@ -9,12 +10,13 @@ import YouTubePlayIcon from "public/static/icons/youtube-play.svg";
 import ErrorIcon from "public/static/icons/error-circle.svg";
 import PropTypes from "prop-types";
 
-const VideoArticle = ({ className, title, duration, image, videoURL }) => {
+const VideoArticle = ({ className, title, image, videoURL }) => {
   const { current: id } = useRef(uuid());
   const ref = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [duration, setDuration] = useState(undefined);
 
   useEffect(() => {
     if (ref.current && isPlaying && !hasError) {
@@ -47,6 +49,7 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
           controls={true}
           url={videoURL}
           onError={() => setHasError(true)}
+          onDuration={duration => setDuration(duration)}
         />
       </div>
 
@@ -65,9 +68,11 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
 
           <div className={styles["c-video-article__content"]}>
             <div className={styles["c-video-article__duration-wrap"]}>
-              <span className={styles["c-video-article__duration"]} aria-label="Duration">
-                {duration}
-              </span>
+              {duration && (
+                <span className={styles["c-video-article__duration"]} aria-label="Duration">
+                  {secondsToHms(duration)}
+                </span>
+              )}
             </div>
 
             <div className={styles["c-video-article__play-icon-wrap"]}>
@@ -102,7 +107,6 @@ const VideoArticle = ({ className, title, duration, image, videoURL }) => {
 VideoArticle.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
-  duration: PropTypes.string.isRequired,
   image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   videoURL: PropTypes.string.isRequired
 };
