@@ -1,25 +1,18 @@
-@import 'css/settings';
+@import "css/settings";
 
 .c-source-box {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 100%;
-    margin: 20px 0px 20px 0px;
-    font-size: 14px;
-    color: $grey-dark;
-    font-family: 'Barlow';
-    line-height: 24px;
-    
-    .source-container {
-        display: flex;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 12px;
+  font-size: 14px;
+  color: $grey-dark;
+  font-family: "Barlow";
+  line-height: 24px;
 
-        .suffix { 
-            margin-left: 5px;
-        }
-    
-        a {
-            text-decoration: underline;
-        }
-    }
+  .source-container {
+    display: flex;
+  }
 }

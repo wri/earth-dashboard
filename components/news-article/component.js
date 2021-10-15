@@ -2,7 +2,7 @@ import classnames from "classnames";
 import styles from "./news-article.module.scss";
 import Image from "next/image";
 import { formatDate } from "utils/dates";
-import ExternalLink from "public/static/icons/external-link.svg";
+import ExternalLink from "components/ui/external-link";
 import PropTypes from "prop-types";
 
 const NewsArticle = ({ className, featured, title, author, date, image, link }) => (
@@ -21,10 +21,7 @@ const NewsArticle = ({ className, featured, title, author, date, image, link }) 
         {author} . {formatDate(date)}
       </span>
 
-      <a className={styles["c-news-article__link"]} href={link} target="_blank" rel="nofollow noreferrer">
-        <Image src={ExternalLink} role="presentation" alt="" />
-        <span>Read full article</span>
-      </a>
+      <ExternalLink className={styles["c-news-article__link"]} link={link} label="Read full article" />
     </div>
   </article>
 );

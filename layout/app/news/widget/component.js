@@ -5,9 +5,7 @@ import PropTypes from "prop-types";
 
 const Widget = ({ className, widget, ...rest }) => (
   <div className={classnames(className, styles["c-page-section-widget"])} {...rest}>
-    <div className={styles["c-page-section-widget__wrap"]}>
-      <WidgetPreview widget={{ id: widget.attributes["widget_id"] }} widgetShouldBeLoaded />
-    </div>
+    <WidgetPreview widget={{ id: widget.attributes["widget_id"] }} showSource widgetShouldBeLoaded />
   </div>
 );
 

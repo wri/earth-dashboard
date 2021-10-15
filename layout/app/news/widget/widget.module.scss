@@ -9,14 +9,4 @@
   background-color: $colour-galaxy;
   border-radius: 16px;
   overflow: hidden;
-
-  &__wrap {
-    height: 188px;
-  }
-
-  @media screen and (min-width: $global-breakpoint-md) {
-    &__wrap {
-      height: 325px;
-    }
-  }
 }
