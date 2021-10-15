@@ -5,7 +5,13 @@ import { ID as animationsId } from "schemas/global-settings/animations";
 import { ID as highDefinitionModeId } from "schemas/global-settings/high-definition-mode";
 import { ID as basemapsId } from "schemas/global-settings/basemaps";
 import { NAME as globalSettingsSliceName } from "slices/globalSettings";
-import { NAME as mapControlsSliceName, setShouldFetchLocation, setCurrentLocation } from "slices/mapControls";
+import {
+  NAME as mapControlsSliceName,
+  setShouldFetchLocation,
+  setCurrentLocation,
+  setCurrentScale,
+  setCurrentScaleBy
+} from "slices/mapControls";
 import {
   setAnimation,
   setDataset,
@@ -29,6 +35,8 @@ export default connect(
     shouldFetchLocation: state[mapControlsSliceName].shouldFetchLocation,
     projectionType: state[mapControlsSliceName].projectionType,
     currentLocation: state[mapControlsSliceName].currentLocation,
+    currentScale: state[mapControlsSliceName].currentScale,
+    currentScaleBy: state[mapControlsSliceName].currentScaleBy,
     // Global Settings
     showMapGrid: state[globalSettingsSliceName][showMapGridId],
     animationEnabled: state[globalSettingsSliceName][animationsId],
@@ -44,7 +52,9 @@ export default connect(
     setShouldFetchLocation,
     setLayersLabelArr,
     setDateOfDataShown,
-    setCurrentLocation
+    setCurrentLocation,
+    setCurrentScale,
+    setCurrentScaleBy
   },
   null,
   { forwardRef: true }

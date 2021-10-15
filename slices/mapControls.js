@@ -11,7 +11,9 @@ const initialState = {
   shouldZoomOut: false,
   isDatePickerOpen: false,
   isDatePickerDisabled: false,
-  currentLocation: null
+  currentLocation: null,
+  currentScale: "default",
+  currentScaleBy: 1
 };
 
 const mapControlsSlice = createSlice({
@@ -55,6 +57,12 @@ const mapControlsSlice = createSlice({
       if ((Array.isArray(action.payload) && action.payload.length === 2) || action.payload === null) {
         state.currentLocation = action.payload;
       }
+    },
+    setCurrentScale(state, action) {
+      state.currentScale = action.payload;
+    },
+    setCurrentScaleBy(state, action) {
+      state.currentScaleBy = action.payload;
     }
   }
 });
@@ -70,7 +78,9 @@ export const {
   setShouldZoomOut,
   setIsDatePickerOpen,
   setIsDatePickerDisabled,
-  setCurrentLocation
+  setCurrentLocation,
+  setCurrentScale,
+  setCurrentScaleBy
 } = mapControlsSlice.actions;
 export const isSettingsOpen = state => state[NAME].isSettingsOpen;
 export const isFetchLocationDisabled = state => state[NAME].isFetchLocationDisabled;
@@ -81,5 +91,7 @@ export const shouldZoomIn = state => state[NAME].shouldZoomIn;
 export const isDatePickerOpen = state => state[NAME].isDatePickerOpen;
 export const isDatePickerDisabled = state => state[NAME].isDatePickerDisabled;
 export const currentLocation = state => state[NAME].currentLocation;
+export const currentScale = state => state[NAME].currentScale;
+export const currentScaleBy = state => state[NAME].currentScaleBy;
 
 export default mapControlsSlice.reducer;

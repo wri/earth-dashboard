@@ -34,7 +34,11 @@ const MapIframe = forwardRef(
       dateOfDataShown,
       currentLocation,
       setCurrentLocation,
-      toolTipDetails
+      toolTipDetails,
+      currentScale,
+      currentScaleBy,
+      setCurrentScale,
+      setCurrentScaleBy
     },
     ref
   ) => {
@@ -149,6 +153,8 @@ const MapIframe = forwardRef(
     useEffect(() => {
       if (currentPosition) {
         setCurrentLocation([currentPosition.latitude, currentPosition.longitude]);
+        setCurrentScale("default");
+        setCurrentScaleBy(3);
         setShouldFetchLocation(false);
       }
     }, [currentPosition, earthServer, setCurrentLocation, setShouldFetchLocation]);
@@ -158,10 +164,13 @@ const MapIframe = forwardRef(
         const long = currentLocation[1];
         const lat = currentLocation[0];
 
+        const scale = currentScale || "default";
+        const scaleBy = currentScaleBy || 1;
+
         earthServer.current.reorient({
           rotate: [-long, -lat],
-          scale: "default",
-          scaleBy: 5
+          scale,
+          scaleBy
         });
       }
     }, [currentLocation, earthServer]);
@@ -243,7 +252,10 @@ MapIframe.propTypes = {
   setDateOfDataShown: PropTypes.func.isRequired,
   showMapGrid: PropTypes.bool.isRequired,
   highDefinitionMode: PropTypes.bool.isRequired,
-  basemapType: PropTypes.oneOf(Object.keys(basemaps))
+  basemapType: PropTypes.oneOf(Object.keys(basemaps)),
+  setCurrentLocation: PropTypes.func.isRequired,
+  setCurrentScale: PropTypes.func.isRequired,
+  setCurrentScaleBy: PropTypes.func.isRequired
 };
 
 MapIframe.defaultProps = {
