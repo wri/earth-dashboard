@@ -10,7 +10,7 @@ const initialState = {
   [showMapGridId]: false,
   [animationsId]: true,
   [highDefinitionModeId]: false,
-  [basemapsId]: "default"
+  [basemapsId]: "geography"
 };
 
 const globalSettingsSlice = createSlice({

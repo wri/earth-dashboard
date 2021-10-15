@@ -2,6 +2,7 @@ import { EarthClient } from "./earthClient";
 import * as Comlink from "comlink";
 import * as d3 from "utils/d3";
 import uuid from "react-uuid";
+import basemaps from "constants/basemaps";
 
 const CONNECTION_TIMEOUT = 5000;
 
@@ -54,7 +55,8 @@ export const getEarthServer = async (iframe, windowWidth, createEarthClient) => 
   const initialState = {
     animation_enabled: false,
     overlay_type: "temp",
-    orientation: { scale }
+    orientation: { scale },
+    map_scene: basemaps["geography"]
   };
 
   try {
