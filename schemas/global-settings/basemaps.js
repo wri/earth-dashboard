@@ -10,14 +10,13 @@ const basemapsSchema = {
     name: ID,
     label: "Basemaps",
     options: [
-      { id: "default", label: "Default", image: imageTest },
-      { id: "geography", label: "Geography", image: imageTest }
+      { id: "geography", label: "Geography", image: imageTest },
+      { id: "simple", label: "Simple", image: imageTest }
     ],
     getSelectedOption: () => getSettingValueById(ID),
     handleChange: id => setSettingById({ id: ID, newState: id })
   },
-  component: RadioImage,
-  initialState: "default"
+  component: RadioImage
 };
 
 export default basemapsSchema;
