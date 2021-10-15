@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable react/display-name */
 import { render } from "test-utils";
 import ToolTip from "./component";
 import { POSITIONS } from "./component";
