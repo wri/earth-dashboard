@@ -4,8 +4,6 @@ import MegaMenuBtn from "./component";
 
 jest.mock("next/image", () => () => <img />);
 
-jest.mock("public/static/images/close.svg", () => "close.svg");
-
 describe("Mega Menu Btn", () => {
   test("Renders correctly when mega menu is closed", () => {
     const { container } = render(<MegaMenuBtn className="Test" isMegaMenuOpen={false} setIsMegaMenuOpen={() => {}} />);
