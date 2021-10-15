@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 import LinkIcon from "public/static/icons/arrow-right.svg";
 
-const MegaMenuCTA = ({ className, hasArror, image, label, body, link }) => {
+const MegaMenuCTA = ({ className, hasarror, image, label, body, link }) => {
   const { current: titleID } = useRef("mega-menu-cta-title-" + uuid());
   const { current: bodyID } = useRef("mega-menu-cta-body-" + uuid());
 
@@ -33,7 +33,7 @@ const MegaMenuCTA = ({ className, hasArror, image, label, body, link }) => {
 
           <Link href={link}>
             <a className={styles["c-mega-menu-cta__link"]} aria-labelledby={titleID} aria-describedby={bodyID}>
-              {hasArror ? (
+              {hasarror ? (
                 <Image src={LinkIcon} role="presentation" alt="" />
               ) : (
                 <span className="u-visually-hidden">Visit Page</span>
@@ -48,7 +48,7 @@ const MegaMenuCTA = ({ className, hasArror, image, label, body, link }) => {
 
 MegaMenuCTA.propTypes = {
   className: PropTypes.string,
-  hasArror: PropTypes.bool,
+  hasarror: PropTypes.bool,
   image: PropTypes.object,
   label: PropTypes.string.isRequired,
   body: PropTypes.string,
@@ -57,7 +57,7 @@ MegaMenuCTA.propTypes = {
 
 MegaMenuCTA.defaultProps = {
   className: "",
-  hasArror: true
+  hasarror: true
 };
 
 export default MegaMenuCTA;
