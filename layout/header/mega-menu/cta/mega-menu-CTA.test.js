@@ -97,7 +97,7 @@ describe("Mega Menu CTA", () => {
   });
 
   test("Renders correctly without an arrow", () => {
-    const { container } = render(<CTA className="Test" hasarror={false} label="Title" body="Body" link="/" />);
+    const { container } = render(<CTA className="Test" hasarrow={false} label="Title" body="Body" link="/" />);
 
     expect(container).toMatchInlineSnapshot(`
 <div>

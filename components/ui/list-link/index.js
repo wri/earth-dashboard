@@ -7,7 +7,7 @@ const ListLink = ({ className, link, label, external, ...rest }) => {
     { ...rest },
     external && { target: "_blank", rel: "nofollow noreferrer" },
     // Remove some attributes that shouldn't be applied on the anchor element
-    { image: null, body: null, hasarror: null }
+    { image: null, body: null, hasarrow: null }
   );
 
   return (
