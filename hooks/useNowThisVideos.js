@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Parser from "rss-parser";
 import { NOW_THIS_EARTH_RSS_URL } from "utils/news";
 
-const parser = new Parser({
+export const parser = new Parser({
   customFields: {
     item: [
       ["media:thumbnail", "thumbnail"],

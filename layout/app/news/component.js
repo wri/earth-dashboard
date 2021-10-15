@@ -96,7 +96,7 @@ const NewsTopicLayout = ({ topic }) => {
       >
         {/* Must Watch */}
         {videos?.map(({ title, thumbnail, link }) => (
-          <VideoArticle key={link.$.url} title={title} duration="1:11" image={thumbnail.$.url} videoURL={link.$.url} />
+          <VideoArticle key={link.$.url} title={title} image={thumbnail.$.url} videoURL={link.$.url} />
         ))}
       </Section>
 

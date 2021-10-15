@@ -1,9 +1,7 @@
 /* eslint-disable react/display-name */
-
-/* eslint-disable react/display-name */
 import { render, waitFor, act } from "test-utils";
 import NewsTopicLayout from "../component";
-import { fetchWidgets } from "services/gca";
+import * as GCAServices from "services/gca";
 
 const WIDGETS = [
   {
@@ -23,27 +21,14 @@ jest.mock(
 
 jest.mock("next/image", () => () => <img />);
 
-jest.mock("hooks/useMongabayPosts", () => ({
-  __esModule: true,
-  default: jest.fn(() => ({
-    isLoading: false,
-    hasErrored: false,
-    posts: [],
-    canFetchMore: false,
-    isFetchingMore: false,
-    fetchMore: () => {}
-  }))
+jest.mock("hooks/useMongabayPosts", () => () => ({
+  isLoading: false,
+  hasErrored: false,
+  posts: [],
+  canFetchMore: false,
+  isFetchingMore: false,
+  fetchMore: () => {}
 }));
-
-jest.mock("services/gca", () => {
-  const originalModule = jest.requireActual("../../../../services/gca");
-
-  return {
-    __esModule: true,
-    ...originalModule,
-    fetchWidgets: jest.fn()
-  };
-});
 
 jest.mock("components/widgets/preview", () => ({ widget }) => <div data-widgetid={widget.id} />);
 
@@ -53,9 +38,9 @@ jest.mock("hooks/useNowThisVideos", () => () => ({
 
 describe("News Topic Layout - Widgets", () => {
   const fetchTimeout = 100;
-  let fetchWillError, mount, topic;
+  let fetchWillError, mount, topic, fetchWidgetsSpy;
 
-  const MockFetchWidgets = () =>
+  const mockFetchWidgets = () =>
     new Promise((resolve, reject) => {
       setTimeout(() => {
         if (!fetchWillError) {
@@ -67,7 +52,7 @@ describe("News Topic Layout - Widgets", () => {
     });
 
   beforeAll(() => {
-    fetchWidgets.mockImplementation(MockFetchWidgets);
+    fetchWidgetsSpy = jest.spyOn(GCAServices, "fetchWidgets").mockImplementation(mockFetchWidgets);
   });
 
   beforeEach(() => {
@@ -119,7 +104,7 @@ describe("News Topic Layout - Widgets", () => {
     mountComponent();
 
     await act(async () => {
-      await expect(fetchWidgets).rejects.toThrow("error");
+      await expect(fetchWidgetsSpy).rejects.toThrow("error");
     });
 
     const { firstWidget, secondWidget } = queryWidgets();
