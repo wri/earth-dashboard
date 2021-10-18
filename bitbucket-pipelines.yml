@@ -1,6 +1,7 @@
 definitions:
   caches:
     nextcache: .next/cache
+    bundler: vendor/bundle
 pipelines:
   pull-requests:
     "**":
@@ -26,3 +27,13 @@ pipelines:
             - yarn install
             - yarn test
             - yarn build
+      - step:
+          name: Deploy To Staging
+          image: ruby:2.6.3
+          deployment: staging
+          caches:
+            - bundler
+          script:
+            - gem install bundler
+            - bundle install
+            - bundle exec cap staging deploy
