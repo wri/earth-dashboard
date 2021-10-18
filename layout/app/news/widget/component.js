@@ -1,13 +1,61 @@
 import WidgetPreview from "components/widgets/preview";
+import useWidget from "hooks/useWidget";
 import classnames from "classnames";
 import styles from "./widget.module.scss";
 import PropTypes from "prop-types";
 
-const Widget = ({ className, widget, ...rest }) => (
-  <div className={classnames(className, styles["c-page-section-widget"])} {...rest}>
-    <WidgetPreview widget={{ id: widget.attributes["widget_id"] }} showSource widgetShouldBeLoaded />
-  </div>
-);
+// Matches {{...}}
+const nameHighlightWrapperRegex = /\{\{([^\}]+)\}\}/g;
+
+const findWrappedText = (string = "", wrapperRegex) => {
+  const split = string.split(wrapperRegex);
+  const matches = string.match(wrapperRegex);
+
+  return split.map(el => ({
+    string: el,
+    wrapped: matches?.includes(el)
+  }));
+};
+
+const Widget = ({ className, widget, ...rest }) => {
+  const {
+    attributes: { widget_id: widgetId }
+  } = widget;
+  const { loading: widgetLoading, data: widgetData } = useWidget({ id: widgetId }, true);
+
+  if (widgetLoading) return null;
+
+  const { name, description, widgetConfig: { type = "chart" } = {} } = widgetData;
+
+  const includeInfo = ["map", "chart"].includes(type);
+
+  return (
+    <div
+      className={classnames(
+        className,
+        styles["c-page-section-widget"],
+        type && styles[`c-page-section-widget--${type}`]
+      )}
+      {...rest}
+    >
+      {includeInfo && (
+        <div className={styles["c-page-section-widget__info"]}>
+          <div className={styles["c-page-section-widget__name"]}>
+            {findWrappedText(name, nameHighlightWrapperRegex).map(el => (
+              <span className={classnames(el.wrapped && styles["c-page-section-widget__name--highlight"])}>
+                {el.string}
+              </span>
+            ))}
+          </div>
+          <div className={styles["c-page-section-widget__desc"]}>{description}</div>
+        </div>
+      )}
+      <div className={styles["c-page-section-widget__widget"]}>
+        <WidgetPreview widget={{ id: widgetId }} showSource widgetShouldBeLoaded />
+      </div>
+    </div>
+  );
+};
 
 Widget.propTypes = {
   className: PropTypes.string,
