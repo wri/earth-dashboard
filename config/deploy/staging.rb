@@ -10,5 +10,5 @@ set :default_env, {
   'GCA_API_URL' => 'https://api.earthhq.org/api',
   'CALLBACK_URL' => 'https://earthhq.org/sign-in',
   'NULL_SCHOOL_IFRAME_BASE' => 'https://earthhq.nullschool.net',
-  'APPLICATIONS' => 'earthhq',
+  'APPLICATIONS' => 'earthhq'
 }

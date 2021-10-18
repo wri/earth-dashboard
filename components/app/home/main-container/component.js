@@ -10,6 +10,7 @@ import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
 import DatePickerBtn from "components/app/home/date-picker-menu/button";
 import useIframeBridge from "hooks/useIframeBridge";
+import useWindowDimensions from "hooks/useWindowDimensions";
 import { fetchModes } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
@@ -18,18 +19,28 @@ import settingsButtonConfig from "constants/control-bar/controls/settings";
 import { formatDate } from "utils/dates";
 import DatePickerMenu from "../date-picker-menu";
 
-const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOfDataShown, shouldFadeControls }) => {
+const MainContainer = ({
+  isMobile,
+  setIsMobile,
+  setModes,
+  layersLabelArr,
+  dateOfDataShown,
+  shouldFadeControls,
+  currentHeadline
+}) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
   const [homePageMapControlsItems, setHomePageControlBarItems] = useState([]);
+  const { width: browserWidth } = useWindowDimensions();
 
   const menuRef = useRef(null);
 
-  const { setRef, earthClient, earthServer, layers, error, toolTipDetails } = useIframeBridge(() => {
-    setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
-  });
+  const { setRef, earthClient, earthServer, layers, error, toolTipDetails, enableToolTip, disableToolTip } =
+    useIframeBridge(() => {
+      setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
+    });
 
   const overlayLayer = useMemo(() => {
     return layers.find(layer => layer.type === "overlay");
@@ -70,9 +81,36 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOf
     }, 1000);
   }, []);
 
+  // Move globe to the right when menu is open
   useEffect(() => {
-    if (hasMenuOpen && menuRef.current) {
-      menuRef.current.focus();
+    if (!earthServer.current || isMobile) return;
+
+    const animationDuration = 300;
+    const translateDuration = 25;
+    const totalDistance = browserWidth * 0.2;
+
+    const distanceInterval = totalDistance / (animationDuration / translateDuration);
+    const translateInterval = hasMenuOpen ? distanceInterval : distanceInterval * -1;
+
+    let translateDistance = 0;
+
+    const loop = () => {
+      translateDistance += distanceInterval;
+
+      if (translateDistance <= totalDistance) {
+        earthServer.current.reorient({ translateBy: [translateInterval, 0] });
+        setTimeout(loop, translateDuration);
+      } else if (!hasMenuOpen) {
+        earthServer.current.reorient({ translate: "default" });
+      }
+    };
+
+    loop();
+  }, [browserWidth, earthServer, hasMenuOpen, isMobile]);
+
+  useEffect(() => {
+    if (hasMenuOpen) {
+      menuRef.current?.focus();
     }
   }, [hasMenuOpen]);
 
@@ -92,6 +130,17 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, dateOf
 
     getTemplates();
   }, [setModes]);
+
+  useEffect(() => {
+    if (currentHeadline) {
+      enableToolTip(
+        [currentHeadline.attributes.location.lng, currentHeadline.attributes.location.lat],
+        `${layersLabelArr.join(", ")} in ${currentHeadline.attributes.location.name}`
+      );
+    } else {
+      disableToolTip();
+    }
+  }, [currentHeadline, disableToolTip, enableToolTip, layersLabelArr]);
 
   return (
     <div

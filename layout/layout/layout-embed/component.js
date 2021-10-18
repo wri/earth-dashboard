@@ -6,7 +6,7 @@ import { withRouter } from "next/router";
 // components
 import IconsRW from "components/icons";
 import HeadApp from "layout/head/app";
-import Tooltip from "components/ui/tooltip";
+import Tooltip from "components/ui/tooltip-legacy";
 
 // vizzuality-components
 import { Icons } from "vizzuality-components";

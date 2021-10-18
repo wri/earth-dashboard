@@ -8,7 +8,8 @@ export default connect(
   state => ({
     dateOfDataShown: new Date(state[modesSliceName].dateOfDataShown),
     layersLabelArr: state[modesSliceName].layersLabelArr,
-    shouldFadeControls: state[mapControlsSliceName].isDatePickerOpen || state[mapControlsSliceName].isSettingsOpen
+    shouldFadeControls: state[mapControlsSliceName].isDatePickerOpen || state[mapControlsSliceName].isSettingsOpen,
+    currentHeadline: state.headlines.currentHeadline
   }),
   {
     setModes,

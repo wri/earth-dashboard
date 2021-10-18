@@ -4,6 +4,7 @@ import useCurrentPosition from "hooks/useCurrentPosition";
 import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
+import ToolTip from "components/ui/tooltip/component";
 
 const MapIframe = forwardRef(
   (
@@ -33,7 +34,11 @@ const MapIframe = forwardRef(
       dateOfDataShown,
       currentLocation,
       setCurrentLocation,
-      toolTipDetails
+      toolTipDetails,
+      currentScale,
+      currentScaleBy,
+      setCurrentScale,
+      setCurrentScaleBy
     },
     ref
   ) => {
@@ -148,6 +153,8 @@ const MapIframe = forwardRef(
     useEffect(() => {
       if (currentPosition) {
         setCurrentLocation([currentPosition.latitude, currentPosition.longitude]);
+        setCurrentScale("default");
+        setCurrentScaleBy(3);
         setShouldFetchLocation(false);
       }
     }, [currentPosition, earthServer, setCurrentLocation, setShouldFetchLocation]);
@@ -157,10 +164,13 @@ const MapIframe = forwardRef(
         const long = currentLocation[1];
         const lat = currentLocation[0];
 
+        const scale = currentScale || "default";
+        const scaleBy = currentScaleBy || 1;
+
         earthServer.current.reorient({
           rotate: [-long, -lat],
-          scale: "default",
-          scaleBy: 5
+          scale,
+          scaleBy
         });
       }
     }, [currentLocation, earthServer]);
@@ -201,22 +211,10 @@ const MapIframe = forwardRef(
 
     return (
       <>
-        {toolTipDetails && (
-          <span
-            style={{
-              position: "absolute",
-              top: toolTipDetails.y + 10,
-              left: toolTipDetails.x + 10,
-              display: toolTipDetails.isVisible ? "block" : "none",
-              zIndex: 999,
-              color: "white",
-              background: "black",
-              padding: 5,
-              borderRadius: 5
-            }}
-          >
-            Tooltip here
-          </span>
+        {toolTipDetails && toolTipDetails.isVisible && (
+          <ToolTip x={toolTipDetails.x} y={toolTipDetails.y}>
+            <p className="u-margin-none">{toolTipDetails.text}</p>
+          </ToolTip>
         )}
         <iframe
           id="nullSchoolIframe"
@@ -254,7 +252,10 @@ MapIframe.propTypes = {
   setDateOfDataShown: PropTypes.func.isRequired,
   showMapGrid: PropTypes.bool.isRequired,
   highDefinitionMode: PropTypes.bool.isRequired,
-  basemapType: PropTypes.oneOf(Object.keys(basemaps))
+  basemapType: PropTypes.oneOf(Object.keys(basemaps)),
+  setCurrentLocation: PropTypes.func.isRequired,
+  setCurrentScale: PropTypes.func.isRequired,
+  setCurrentScaleBy: PropTypes.func.isRequired
 };
 
 MapIframe.defaultProps = {
