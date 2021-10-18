@@ -12,7 +12,7 @@ describe("Mega Menu Btn", () => {
 <div>
   <button
     aria-label="Open Main Menu"
-    class="Test c-anchor-cta"
+    class="Test c-site-header-btn-open-menu c-anchor-cta"
   >
     Breaking News
   </button>
@@ -27,7 +27,7 @@ describe("Mega Menu Btn", () => {
 <div>
   <button
     aria-label="Close Main Menu"
-    class="c-button c-button--icon Test"
+    class="c-button c-button--icon Test c-site-header-btn-close-menu"
   >
     <img />
   </button>
