@@ -18,7 +18,7 @@ pipelines:
   custom:
     default:
       - step:
-          name: Build
+          name: Test and Build
           image: node:14.16.0
           caches:
             - node
@@ -31,6 +31,7 @@ pipelines:
           name: Deploy To Staging
           image: ruby:2.6.3
           deployment: staging
+          trigger: manual
           caches:
             - bundler
           script:
