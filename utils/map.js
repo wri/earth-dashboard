@@ -113,7 +113,7 @@ export const getFriendlyDataStr = (samples, layers, index) => {
   if (index === SAMPLE_ANNOTATION_INDEX) {
     value = sample.frp;
     symbol = sample.units;
-    date = sample.date ? `(${format(new Date(sample.date), "MMMM yy 'at' HH:mm")})` : "";
+    date = sample.date ? `(${format(new Date(sample.date), "MMMM dd 'at' HH:mm")})` : "";
   }
 
   const unitDescriptor = layer.product.units[symbol];

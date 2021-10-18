@@ -37,10 +37,19 @@ const MainContainer = ({
 
   const menuRef = useRef(null);
 
-  const { setRef, earthClient, earthServer, layers, error, toolTipDetails, enableToolTip, disableToolTip } =
-    useIframeBridge(() => {
-      setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
-    });
+  const {
+    setRef,
+    earthClient,
+    earthServer,
+    layers,
+    error,
+    toolTipDetails,
+    enableToolTip,
+    disableToolTip,
+    scaleData: scaleToolTipData
+  } = useIframeBridge(() => {
+    setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
+  });
 
   const overlayLayer = useMemo(() => {
     return layers.find(layer => layer.type === "overlay");
@@ -142,6 +151,7 @@ const MainContainer = ({
     }
   }, [currentHeadline, disableToolTip, enableToolTip, layersLabelArr]);
 
+  console.log(scaleToolTipData);
   return (
     <div
       className={classnames({
@@ -167,9 +177,9 @@ const MainContainer = ({
           max={scaleData.max}
           scaleUnit={scaleData.unitSymbol}
           className={classnames(styles["scale"], shouldFadeControls && "u-opacity-faded")}
-          value="50%"
           readOnly
           scaleGradient={overlayLayer.product.scale.getCss(180)}
+          toolTipData={scaleToolTipData}
         />
       )}
       {hasMenuOpen && !isFetchingTemplates && (
