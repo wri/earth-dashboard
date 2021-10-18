@@ -69,32 +69,12 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
   justify-content: space-between;
   padding: 14px 16px 0;
 
-  &--open #{$this}__btn {
-    width: 32px;
-    height: 32px;
-    padding: 8px;
-  }
-
-  &--closed #{$this}__btn {
-    padding: 4px 20px;
-  }
-
   &__logo {
     width: 112px;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
     padding: 24px 24px 0;
-
-    &--open #{$this}__btn {
-      width: 48px;
-      height: 48px;
-    }
-
-    &--closed #{$this}__btn {
-      padding: 8px 29px;
-      @include font-size(20px, 30px);
-    }
 
     &__logo {
       width: 180px;

@@ -32,7 +32,7 @@ describe("Header", () => {
       class="c-mega-menu-wrapper__bg"
     >
       <header
-        class="c-site-header c-site-header--closed"
+        class="c-site-header"
       >
         <div
           class="c-site-header__logo"
@@ -70,7 +70,7 @@ describe("Header", () => {
       class="c-mega-menu-wrapper__bg"
     >
       <header
-        class="c-site-header c-site-header--open"
+        class="c-site-header"
       >
         <div
           class="c-site-header__logo"

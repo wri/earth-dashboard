@@ -1,0 +1,23 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+@import "css/settings/breakpoints";
+
+.c-site-header-btn-close-menu {
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.c-site-header-btn-open-menu {
+  padding: 4px 20px;
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    padding: 8px 29px;
+    @include font-size(20px, 30px);
+  }
+}
