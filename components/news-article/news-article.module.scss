@@ -59,6 +59,11 @@ $c-news-article-transition: 0.3s ease-in-out;
     }
   }
 
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__image {
     position: relative;
     border-radius: 12px;
@@ -91,6 +96,7 @@ $c-news-article-transition: 0.3s ease-in-out;
 
   &__date {
     @include font-size(11px, 16.5px);
+    margin-top: auto;
     margin-bottom: 10px;
   }
 
