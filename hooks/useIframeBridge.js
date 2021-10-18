@@ -1,10 +1,9 @@
-import { useRef, useCallback, useState } from "react";
+import { useRef, useCallback, useState, useEffect } from "react";
 import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
 import { colorAt, getIndicatorGeoJson, getMarkerProperties, getNewProjection } from "utils/map";
 import { POINT_INDICATOR } from "constants/map";
-import { useEffect } from "react/cjs/react.development";
 
 const useIframeBridge = callback => {
   const { width } = useWindowDimensions();
