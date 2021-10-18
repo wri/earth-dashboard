@@ -27,11 +27,11 @@ pipelines:
             - yarn install
             - yarn test
             - yarn build
+    "Deploy to staging from GITHUB feature/september-2021-updates":
       - step:
           name: Deploy To Staging
           image: ruby:2.6.3
           deployment: staging
-          trigger: manual
           caches:
             - bundler
           script:
