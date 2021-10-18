@@ -50,7 +50,7 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen, showHeaderTitle }) => {
             className={styles["c-mega-menu-wrapper__bg"]}
             style={{ maxHeight: headerRef.current && headerRef.current.scrollHeight + "px" }}
           >
-            <header className={styles["c-site-header"]} ref={headerRef}>
+            <header className={classnames(styles["c-site-header"], !isMegaMenuOpen && styles["c-site-header--closed"], isMegaMenuOpen && styles["c-site-header--open"])} ref={headerRef}>
               <div className={styles["c-site-header__logo"]}>
                 <LogoLink />
               </div>
