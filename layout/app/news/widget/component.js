@@ -41,8 +41,8 @@ const Widget = ({ className, widget, ...rest }) => {
       {includeInfo && (
         <div className={styles["c-page-section-widget__info"]}>
           <div className={styles["c-page-section-widget__name"]}>
-            {findWrappedText(name, nameHighlightWrapperRegex).map(el => (
-              <span className={classnames(el.wrapped && styles["c-page-section-widget__name--highlight"])}>
+            {findWrappedText(name, nameHighlightWrapperRegex).map((el, index) => (
+              <span key={index} className={classnames(el.wrapped && styles["c-page-section-widget__name--highlight"])}>
                 {el.string}
               </span>
             ))}
