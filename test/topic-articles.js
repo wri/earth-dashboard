@@ -62,26 +62,22 @@ export const NEWS_ARTICLES = [
   }
 ];
 
-export const VIDEOS = [
-  {
-    key: "1",
-    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
-    duration: "2:30",
-    image: TestImage,
-    videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
-  },
-  {
-    key: "2",
-    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
-    duration: "2:30",
-    image: TestImage,
-    videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
-  },
-  {
-    key: "3",
-    title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
-    duration: "2:30",
-    image: TestImage,
-    videoURL: "https://www.youtube.com/watch?v=AXuNQjFJIOg"
-  }
-];
+export const VIDEOS = {
+  items: [
+    {
+      title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+      thumbnail: { $: { url: "test" } },
+      link: { $: { url: "https://www.youtube.com/watch?v=AXuNQjFJIOg" } }
+    },
+    {
+      title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+      thumbnail: { $: { url: "test" } },
+      link: { $: { url: "https://www.youtube.com/watch?v=9xwazD5SyVg" } }
+    },
+    {
+      title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
+      thumbnail: { $: { url: "test" } },
+      link: { $: { url: "https://www.youtube.com/watch?v=-fTX7ltOWVE" } }
+    }
+  ]
+};

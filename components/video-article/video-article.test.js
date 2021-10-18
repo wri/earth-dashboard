@@ -43,7 +43,7 @@ describe("Video Article", () => {
   });
 
   test("requests to play video on button click", () => {
-    const { queryByLabelText } = render(<VideoArticle title="Test" duration="1:30" image={{}} videoURL="validURL" />);
+    const { queryByLabelText } = render(<VideoArticle title="Test" image={{}} videoURL="validURL" />);
 
     // Has the Thumbnail Appeared?
     expect(CSSTransition).toHaveBeenLastCalledWith(

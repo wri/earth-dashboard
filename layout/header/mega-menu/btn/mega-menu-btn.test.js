@@ -2,17 +2,7 @@
 import { render, fireEvent } from "test-utils";
 import MegaMenuBtn from "./component";
 
-jest.mock("components/ui/icon-button", () => {
-  return ({ icon, ...props }) => (
-    <button data-testid="button" {...props}>
-      <img src={icon} />
-    </button>
-  );
-});
-
-jest.mock("public/static/images/hamburger.svg", () => "open.svg");
-
-jest.mock("public/static/images/close.svg", () => "close.svg");
+jest.mock("next/image", () => () => <img />);
 
 describe("Mega Menu Btn", () => {
   test("Renders correctly when mega menu is closed", () => {
@@ -22,12 +12,9 @@ describe("Mega Menu Btn", () => {
 <div>
   <button
     aria-label="Open Main Menu"
-    class="Test"
-    data-testid="button"
+    class="Test c-site-header-btn-open-menu c-anchor-cta"
   >
-    <img
-      src="close.svg"
-    />
+    Breaking News
   </button>
 </div>
 `);
@@ -40,22 +27,28 @@ describe("Mega Menu Btn", () => {
 <div>
   <button
     aria-label="Close Main Menu"
-    class="Test"
-    data-testid="button"
+    class="c-button c-button--icon Test c-site-header-btn-close-menu"
   >
-    <img
-      src="close.svg"
-    />
+    <img />
   </button>
 </div>
 `);
   });
 
-  test("fires dispatch event when user clicks the button", () => {
+  test("fires dispatch event when user opens the mega menu", () => {
     const mockDispatch = jest.fn(state => state);
-    const { getByTestId } = render(<MegaMenuBtn isMegaMenuOpen={true} setIsMegaMenuOpen={mockDispatch} />);
+    const { getByRole } = render(<MegaMenuBtn isMegaMenuOpen={false} setIsMegaMenuOpen={mockDispatch} />);
 
-    fireEvent.click(getByTestId("button"));
+    fireEvent.click(getByRole("button"));
+    expect(mockDispatch).toHaveBeenCalled();
+    expect(mockDispatch).toHaveReturnedWith(true);
+  });
+
+  test("fires dispatch event when user closes the mega menu", () => {
+    const mockDispatch = jest.fn(state => state);
+    const { getByRole } = render(<MegaMenuBtn isMegaMenuOpen={true} setIsMegaMenuOpen={mockDispatch} />);
+
+    fireEvent.click(getByRole("button"));
     expect(mockDispatch).toHaveBeenCalled();
     expect(mockDispatch).toHaveReturnedWith(false);
   });

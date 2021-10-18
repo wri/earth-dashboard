@@ -15,10 +15,6 @@ $c-mega-menu-cta-transition: 0.16s ease-in-out;
   overflow: hidden;
   transition: background-color $c-mega-menu-cta-transition;
 
-  &:first-child {
-    grid-row-end: span 2;
-  }
-
   &:hover {
     &,
     #{$this}__image:after {

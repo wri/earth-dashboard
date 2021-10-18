@@ -12,8 +12,12 @@ const DataHighlightsPanel = ({ setCurrentMode, currentMode, highlights }) => {
   return (
     <>
       <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
-        View dynamic data of weather conditions in near-real time to understand the global crisis. Powered by Earth
-        Nullschool.
+        View dynamic data of weather conditions in near-real time to understand the global crisis.
+        <br />
+        Powered by{" "}
+        <a href="https://earth.nullschool.net" target="_blank" rel="nofollow noreferrer">
+          earth.nullschool.net
+        </a>
       </p>
       <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
         <RadioGroup

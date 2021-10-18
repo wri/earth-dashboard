@@ -1,0 +1,22 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-page-section-widget {
+  position: relative;
+  height: 100%;
+  max-width: 100%;
+  background-color: $colour-galaxy;
+  border-radius: 16px;
+  overflow: hidden;
+
+  &__wrap {
+    height: 188px;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    &__wrap {
+      height: 325px;
+    }
+  }
+}

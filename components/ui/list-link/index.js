@@ -6,8 +6,8 @@ const ListLink = ({ className, link, label, external, ...rest }) => {
   const anchorProps = Object.assign(
     { ...rest },
     external && { target: "_blank", rel: "nofollow noreferrer" },
-    // Remove some attributes that shouldn't be applied to the anchor element
-    { image: null, body: null }
+    // Remove some attributes that shouldn't be applied on the anchor element
+    { image: null, body: null, hasarrow: null }
   );
 
   return (

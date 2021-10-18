@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import { useState, useEffect } from "react";
 import { render, fireEvent, waitFor } from "test-utils";
-import NewsTopicLayout from "./component";
+import NewsTopicLayout from "../component";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import { NEWS_ARTICLES } from "test/topic-articles";
 import TestImage from "public/static/images/star-background.jpg";
@@ -26,25 +26,24 @@ jest.mock(
 
 jest.mock("next/image", () => () => <img />);
 
-jest.mock("utils/dates", () => {
-  const originalModule = jest.requireActual("../../../utils/dates");
-
-  return {
-    __esModule: true,
-    ...originalModule,
-    formatDate: () => "xxxx-xx-xx"
-  };
-});
-
 jest.mock("hooks/useMongabayPosts", () => ({
   __esModule: true,
-  namedExport: jest.fn(),
   default: jest.fn()
 }));
 
-describe("News Topic Layout", () => {
+jest.mock("hooks/useGCAWidgets", () => () => ({
+  isLoading: false,
+  hasErrored: false,
+  widgets: []
+}));
+
+jest.mock("hooks/useNowThisVideos", () => () => ({
+  videos: []
+}));
+
+describe("News Topic Layout - Posts", () => {
   const fetchTimeout = 100;
-  let fetchWillError;
+  let fetchWillError, mount, topic;
 
   const MockUseMongabayPosts = topic => {
     const [posts, setPosts] = useState([]);
@@ -98,11 +97,16 @@ describe("News Topic Layout", () => {
     useMongabayPosts.mockImplementation(MockUseMongabayPosts);
   });
 
-  let mount;
   beforeEach(() => {
     fetchWillError = false;
-    mount = render(<NewsTopicLayout topic="climate" />);
+    mount = null;
+    topic = "climate";
   });
+
+  const mountComponent = () => {
+    mount = render(<NewsTopicLayout topic={topic} />);
+    return mount;
+  };
 
   const userRequestsMorePosts = () => {
     const { getByRole } = mount;
@@ -111,15 +115,15 @@ describe("News Topic Layout", () => {
     fireEvent.click(loadMoreButton);
   };
 
-  test("renders the posts from the Mongabay endpoint", async () => {
-    const { findAllByRole } = mount;
+  test("renders the posts", async () => {
+    const { findAllByRole } = mountComponent();
 
     const readArticleButtons = await findAllByRole("link", { name: /Read full article/i });
     expect(readArticleButtons).toHaveLength(NEWS_ARTICLES.length);
   });
 
-  test("renders more posts from the Mongabay endpoint when user clicks 'Load More'", async () => {
-    const { getAllByRole } = mount;
+  test("renders more posts when user clicks 'Load More'", async () => {
+    const { getAllByRole } = mountComponent();
 
     userRequestsMorePosts();
 
@@ -129,8 +133,8 @@ describe("News Topic Layout", () => {
     });
   });
 
-  test("user can not load more posts when no more posts are available from the Mongabay endpoint", async () => {
-    const { queryByRole } = mount;
+  test("user can not load more posts when no more posts are available", async () => {
+    const { queryByRole } = mountComponent();
 
     userRequestsMorePosts();
 
@@ -141,8 +145,8 @@ describe("News Topic Layout", () => {
     });
   });
 
-  test("displays a loading message to the user when fetching posts from the Mongabay endpoint", async () => {
-    const { queryAllByText } = mount;
+  test("displays a loading message to the user when fetching posts", async () => {
+    const { queryAllByText } = mountComponent();
 
     await waitFor(() => {
       const errorMessages = queryAllByText(/Loading/i);
@@ -150,14 +154,10 @@ describe("News Topic Layout", () => {
     });
   });
 
-  test("displays an error message to the user when the Mongabay endpoint request fails", async () => {
-    // As the fetch takes x amount of time to respond,
-    // setting this flag here will still mean it will error
-    // even though the "call" has already been made when the
-    // component was first mounted.
+  test("displays an error message to the user when the request fails", async () => {
     fetchWillError = true;
 
-    const { queryAllByText } = mount;
+    const { queryAllByText } = mountComponent();
 
     // The endpoint will return an error, check for at least one error message
     await waitFor(() => {
