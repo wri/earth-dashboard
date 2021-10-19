@@ -17,6 +17,7 @@ const Headline = ({
   setCurrentLocation,
   setCurrentScale,
   setCurrentScaleBy,
+  setDateOfDataShown,
   ...rest
 }) => {
   const isBrowser = typeof window !== "undefined";
@@ -43,7 +44,11 @@ const Headline = ({
       setCurrentScale(scale);
       setCurrentScaleBy(1);
     }
-  }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy]);
+
+    if (headline?.attributes.climate_alert_date) {
+      setDateOfDataShown(new Date(headline?.attributes.climate_alert_date).toString());
+    }
+  }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy, setDateOfDataShown]);
 
   return (
     <article className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
@@ -118,7 +123,8 @@ Headline.propTypes = {
   setIsDatePickerDisabled: PropTypes.func.isRequired,
   setCurrentLocation: PropTypes.func.isRequired,
   setCurrentScale: PropTypes.func.isRequired,
-  setCurrentScaleBy: PropTypes.func.isRequired
+  setCurrentScaleBy: PropTypes.func.isRequired,
+  setDateOfDataShown: PropTypes.func.isRequired
 };
 
 Headline.defaultProps = {
