@@ -7,13 +7,13 @@ const LIMIT = 10;
 
 /**
  * Fetches posts from the mongabay graphql endpoint based on predefined topics.
- * 
- * @param {String} topic 
+ *
+ * @param {String} topic
  *        Posts returned from the endpoint will be part of this topic
  * @param {Number} [limit]
  *        Override for the max number of posts that can be returned from the
  *        endpoint
- * 
+ *
  * @returns {Object} response
  * @property {Boolean} isLoading
  *           True if the initial posts are being fetched from the endpoint,
@@ -32,20 +32,17 @@ const LIMIT = 10;
  *           concatenated to the current posts
  */
 const useMongabayPosts = (topic, limit = LIMIT) => {
-  const [ posts, setPosts ] = useState([]);
+  const [posts, setPosts] = useState([]);
 
-  const { loading, error, data, networkStatus, refetch, fetchMore } = useQuery(
-    GetPostsQuery,
-    {
-      variables: {
-        first: limit,
-        after: null,
-        topics: TOPICS[topic].join(",")
-      },
-      notifyOnNetworkStatusChange: true,
-      errorPolicy: 'all'
-    }
-  );
+  const { loading, error, data, networkStatus, refetch, fetchMore } = useQuery(GetPostsQuery, {
+    variables: {
+      first: limit,
+      after: null,
+      topics: TOPICS[topic].join(",")
+    },
+    notifyOnNetworkStatusChange: true,
+    errorPolicy: "all"
+  });
 
   // When the topic or limit changes, refetch the data
   useEffect(() => {
@@ -70,13 +67,14 @@ const useMongabayPosts = (topic, limit = LIMIT) => {
     posts,
     canFetchMore: data?.posts.pageInfo.hasNextPage && networkStatus !== NetworkStatus.refetch && !error,
     isFetchingMore: networkStatus === NetworkStatus.fetchMore,
-    fetchMore: () => fetchMore({
-      variables: {
-        first: limit,
-        after: data.posts.pageInfo.endCursor
-      }
-    })
-  }
+    fetchMore: () =>
+      fetchMore({
+        variables: {
+          first: limit,
+          after: data.posts.pageInfo.endCursor
+        }
+      })
+  };
 };
 
 export default useMongabayPosts;

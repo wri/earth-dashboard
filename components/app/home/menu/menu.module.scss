@@ -18,6 +18,7 @@
   animation: FadeIn 0.3s ease-in;
   box-shadow: 0px 0px 113.425px #000000;
   border-radius: 16px;
+  z-index: 10000;
 
   &__tab,
   &__tab-description,

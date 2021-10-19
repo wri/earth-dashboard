@@ -52,7 +52,7 @@ const DataPanel = ({
 
   const availableModes = useMemo(() => {
     const items = [];
-    if (!currentMode.attributes.visibility.advanced_menu) {
+    if (currentMode && !currentMode.attributes.visibility.advanced_menu) {
       // Add it in to the advanced menu temporarily
       items.push(currentMode);
     }

@@ -4,7 +4,7 @@ import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { fetchClimateAlerts } from "services/gca";
-import { setHeadlines } from "slices/headlines";
+import { setHeadlines, setCurrentHeadline } from "slices/headlines";
 import { setCurrentMode } from "slices/modes";
 import { setIsFetchLocationDisabled } from "slices/mapControls";
 import { fireEvent } from "utils/gtag";
@@ -21,10 +21,11 @@ const HeadlinesPanel = ({
   onForceInfoPage,
   forceInfoPage,
   setCurrentMode,
-  setIsFetchLocationDisabled
+  setIsFetchLocationDisabled,
+  setCurrentHeadline,
+  currentHeadline
 }) => {
   const [isFetching, setIsFetching] = useState(true);
-  const [currentHeadline, setCurrentHeadline] = useState(null);
   const mostRecentHeadlines = useMemo(() => {
     const reversed = [...headlines].reverse();
     return reversed.slice(Math.max(reversed.length - MAX_NUMBER_OF_HEADLINES, 0));
@@ -34,12 +35,12 @@ const HeadlinesPanel = ({
     if (!forceInfoPage) {
       setCurrentHeadline(null);
     }
-  }, [forceInfoPage]);
+  }, [forceInfoPage, setCurrentHeadline]);
 
   useEffect(() => {
     if (currentHeadline) {
       // Set default template
-      setCurrentMode(currentHeadline.attributes.template);
+      setCurrentMode(currentHeadline.attributes.mode);
     }
   }, [currentHeadline, setCurrentMode]);
 
@@ -108,14 +109,19 @@ HeadlinesPanel.propTypes = {
   headlines: PropTypes.array.isRequired,
   setHeadlines: PropTypes.func.isRequired,
   forceInfoPage: PropTypes.bool.isRequired,
-  setIsFetchLocationDisabled: PropTypes.func.isRequired
+  setIsFetchLocationDisabled: PropTypes.func.isRequired,
+  currentHeadline: PropTypes.object,
+  setCurrentHeadline: PropTypes.func.isRequired
 };
 
-HeadlinesPanel.defaultProps = {};
+HeadlinesPanel.defaultProps = {
+  currentHeadline: null
+};
 
 export default connect(
   state => ({
-    headlines: state.headlines.headlines
+    headlines: state.headlines.headlines,
+    currentHeadline: state.headlines.currentHeadline
   }),
-  { setHeadlines, setCurrentMode, setIsFetchLocationDisabled }
+  { setHeadlines, setCurrentMode, setIsFetchLocationDisabled, setCurrentHeadline }
 )(HeadlinesPanel);

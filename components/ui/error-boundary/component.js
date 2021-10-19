@@ -36,7 +36,7 @@ class ErrorBoundary extends PureComponent {
 
 ErrorBoundary.propTypes = {
   message: PropTypes.string,
-  className: PropTypes.object
+  className: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };
 
 ErrorBoundary.defaultProps = {

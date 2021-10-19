@@ -43,6 +43,7 @@ const Menu = forwardRef(
       setDialogHeight,
       dialogHeight,
       setIsFetchLocationDisabled,
+      setCurrentHeadline,
       ...rest
     },
     ref
@@ -77,8 +78,9 @@ const Menu = forwardRef(
       return () => {
         // on unmount
         setIsFetchLocationDisabled(false);
+        setCurrentHeadline(null);
       };
-    }, []);
+    }, [setCurrentHeadline, setIsFetchLocationDisabled]);
 
     return (
       <div
@@ -197,7 +199,8 @@ Menu.propTypes = {
   onClose: PropTypes.func,
   layers: PropTypes.array.isRequired,
   animationEnabled: PropTypes.bool.isRequired,
-  setIsFetchLocationDisabled: PropTypes.func.isRequired
+  setIsFetchLocationDisabled: PropTypes.func.isRequired,
+  setCurrentHeadline: PropTypes.func.isRequired
 };
 
 export default Menu;

@@ -7,7 +7,19 @@ import { useMemo, useEffect } from "react";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME } from "constants/tag-manager";
 
-const Headline = ({ headline, className, currentMode, setIsDatePickerDisabled, ...rest }) => {
+const ZOOM_MIN = 25;
+const ZOOM_MAX = 250000;
+
+const Headline = ({
+  headline,
+  className,
+  currentMode,
+  setIsDatePickerDisabled,
+  setCurrentLocation,
+  setCurrentScale,
+  setCurrentScaleBy,
+  ...rest
+}) => {
   const isBrowser = typeof window !== "undefined";
   const activeLayerString = useMemo(() => {
     if (currentMode) {
@@ -22,6 +34,17 @@ const Headline = ({ headline, className, currentMode, setIsDatePickerDisabled, .
     setIsDatePickerDisabled(true);
     return () => setIsDatePickerDisabled(false);
   }, [setIsDatePickerDisabled]);
+
+  useEffect(() => {
+    if (headline?.attributes.location) {
+      setCurrentLocation([headline?.attributes.location.lat, headline?.attributes.location.lng]);
+
+      // Get the scale, percentage between the min and max;
+      const scale = (headline.attributes.zoom_percentage / 100) * (ZOOM_MAX - ZOOM_MIN) + ZOOM_MIN;
+      setCurrentScale(scale);
+      setCurrentScaleBy(1);
+    }
+  }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy]);
 
   return (
     <article className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
@@ -83,7 +106,10 @@ Headline.propTypes = {
   headline: PropTypes.object.isRequired,
   className: PropTypes.string,
   currentMode: PropTypes.object,
-  setIsDatePickerDisabled: PropTypes.func.isRequired
+  setIsDatePickerDisabled: PropTypes.func.isRequired,
+  setCurrentLocation: PropTypes.func.isRequired,
+  setCurrentScale: PropTypes.func.isRequired,
+  setCurrentScaleBy: PropTypes.func.isRequired
 };
 
 Headline.defaultProps = {

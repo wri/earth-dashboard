@@ -1,14 +1,16 @@
-import { useRef, useCallback, useState } from "react";
+import { useRef, useCallback, useState, useEffect } from "react";
 import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
-import * as d3 from "utils/d3";
-
-function colorAt(colors, t) {
-  const n = colors.length / 4;
-  const j = Math.round(t * (n - 1)) * 4;
-  return d3.rgb(colors[j], colors[j + 1], colors[j + 2], colors[j + 3] / 255);
-}
+import {
+  colorAt,
+  getIndicatorGeoJson,
+  getMarkerProperties,
+  getNewProjection,
+  getOverlayData,
+  getAnnotationData
+} from "utils/map";
+import { POINT_INDICATOR } from "constants/map";
 
 const useIframeBridge = callback => {
   const { width } = useWindowDimensions();
@@ -17,11 +19,47 @@ const useIframeBridge = callback => {
   const [earthClient, setEarthClient] = useState(null);
   const [err, setErr] = useState(null);
   const [layers, setLayers] = useState([]);
+  const [currentProjection, setCurrentProjection] = useState(null);
+  const [currentMarker, setCurrentMarker] = useState(null);
+  const [toolTipDetails, setToolTipDetails] = useState(null);
+  const [toolTipVisible, setToolTipVisible] = useState(false);
+  const [scaleData, setScaleData] = useState({ annotation: null, overlay: null });
+  const [toolTipText, setToolTipText] = useState("");
+  const currentProjectionFunc = useCallback(() => getNewProjection(currentProjection), [currentProjection]);
+
+  useEffect(() => {
+    if (currentProjection && currentMarker && toolTipVisible) {
+      const projectionD3Func = currentProjectionFunc();
+      setToolTipDetails({ ...getMarkerProperties(currentMarker, projectionD3Func), text: toolTipText });
+    } else {
+      setToolTipDetails(null);
+    }
+  }, [currentProjectionFunc, currentMarker, currentProjection, toolTipVisible, toolTipText]);
+
+  const enableToolTip = useCallback((coords, content) => {
+    if (earthServer.current) {
+      setToolTipText(content);
+      setToolTipVisible(true);
+      const marker = getIndicatorGeoJson(coords);
+      setCurrentMarker(marker);
+      earthServer.current.annotate(POINT_INDICATOR, marker);
+    }
+  }, []);
+
+  const disableToolTip = useCallback(() => {
+    if (earthServer.current) {
+      setToolTipVisible(false);
+      setToolTipText("");
+      earthServer.current.annotate(POINT_INDICATOR, null);
+    }
+  }, []);
 
   const createEarthClient = useCallback(() => {
     return new (class EarthClientImpl extends EarthClient {
-      layersChanged(layers) {
-        const overlayLayer = layers.find(layer => layer.type === "overlay");
+      currentLayers = [];
+
+      layersChanged(newLayers) {
+        const overlayLayer = newLayers.find(layer => layer?.type === "overlay");
         if (overlayLayer && overlayLayer.product) {
           const { scale } = overlayLayer.product;
           const { colors } = scale;
@@ -36,8 +74,30 @@ const useIframeBridge = callback => {
           const getCss = deg => `linear-gradient(${deg}deg, ${cssColors.join(", ")})`;
           scale.getCss = getCss;
         }
+        setLayers(newLayers);
+        this.currentLayers = newLayers;
+      }
 
-        setLayers(layers);
+      async click(point, coords) {
+        const marker = getIndicatorGeoJson(coords);
+        setCurrentMarker(marker);
+        earthServer.current.annotate(POINT_INDICATOR, marker);
+
+        const coordinates = marker.geometry.coordinates;
+        const samples = await earthServer.current.sampleAt(point, coordinates);
+        const data = {
+          overlay: getOverlayData(samples, this.currentLayers),
+          annotation: getAnnotationData(samples, this.currentLayers)
+        };
+        setScaleData(data);
+      }
+
+      reorientStep(projection) {
+        setCurrentProjection(projection);
+      }
+
+      reorientEnd(projection) {
+        setCurrentProjection(projection);
       }
     })();
   }, []);
@@ -69,7 +129,18 @@ const useIframeBridge = callback => {
     [width, createEarthClient, callback]
   );
 
-  return { setRef, iframeRef, earthClient, earthServer, layers, error: err };
+  return {
+    setRef,
+    iframeRef,
+    earthClient,
+    earthServer,
+    layers,
+    toolTipDetails,
+    scaleData,
+    enableToolTip,
+    disableToolTip,
+    error: err
+  };
 };
 
 export default useIframeBridge;

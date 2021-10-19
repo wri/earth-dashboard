@@ -4,6 +4,7 @@ import useCurrentPosition from "hooks/useCurrentPosition";
 import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
+import ToolTip from "components/ui/tooltip/component";
 
 const MapIframe = forwardRef(
   (
@@ -30,7 +31,14 @@ const MapIframe = forwardRef(
       showMapGrid,
       highDefinitionMode,
       basemapType,
-      dateOfDataShown
+      dateOfDataShown,
+      currentLocation,
+      setCurrentLocation,
+      toolTipDetails,
+      currentScale,
+      currentScaleBy,
+      setCurrentScale,
+      setCurrentScaleBy
     },
     ref
   ) => {
@@ -143,19 +151,29 @@ const MapIframe = forwardRef(
 
     // Set the current position of the user on the map
     useEffect(() => {
-      if (earthServer && currentPosition) {
-        const long = +currentPosition.longitude;
-        const lat = +currentPosition.latitude;
+      if (currentPosition) {
+        setCurrentLocation([currentPosition.latitude, currentPosition.longitude]);
+        setCurrentScale("default");
+        setCurrentScaleBy(3);
+        setShouldFetchLocation(false);
+      }
+    }, [currentPosition, earthServer, setCurrentLocation, setShouldFetchLocation]);
+
+    useEffect(() => {
+      if (earthServer && currentLocation) {
+        const long = currentLocation[1];
+        const lat = currentLocation[0];
+
+        const scale = currentScale || "default";
+        const scaleBy = currentScaleBy || 1;
 
         earthServer.current.reorient({
           rotate: [-long, -lat],
-          scale: "default",
-          scaleBy: 5
+          scale,
+          scaleBy
         });
-
-        setShouldFetchLocation(false);
       }
-    }, [currentPosition, earthServer, setShouldFetchLocation]);
+    }, [currentLocation, earthServer]);
 
     // Find the Date of the Data being displayed
     useEffect(() => {
@@ -192,16 +210,23 @@ const MapIframe = forwardRef(
     }, [dateOfDataShown, earthServer]);
 
     return (
-      <iframe
-        id="nullSchoolIframe"
-        width="100%"
-        height="100%"
-        src={process.env.NULL_SCHOOL_IFRAME_BASE}
-        title="Null School"
-        frameBorder="0"
-        allowtransparency="true"
-        ref={ref}
-      />
+      <>
+        {toolTipDetails && toolTipDetails.isVisible && (
+          <ToolTip x={`${toolTipDetails.x}px`} y={`${toolTipDetails.y}px`}>
+            <p className="u-margin-none">{toolTipDetails.text}</p>
+          </ToolTip>
+        )}
+        <iframe
+          id="nullSchoolIframe"
+          width="100%"
+          height="100%"
+          src={process.env.NULL_SCHOOL_IFRAME_BASE}
+          title="Null School"
+          frameBorder="0"
+          allowtransparency="true"
+          ref={ref}
+        />
+      </>
     );
   }
 );
@@ -227,7 +252,10 @@ MapIframe.propTypes = {
   setDateOfDataShown: PropTypes.func.isRequired,
   showMapGrid: PropTypes.bool.isRequired,
   highDefinitionMode: PropTypes.bool.isRequired,
-  basemapType: PropTypes.oneOf(Object.keys(basemaps))
+  basemapType: PropTypes.oneOf(Object.keys(basemaps)),
+  setCurrentLocation: PropTypes.func.isRequired,
+  setCurrentScale: PropTypes.func.isRequired,
+  setCurrentScaleBy: PropTypes.func.isRequired
 };
 
 MapIframe.defaultProps = {
