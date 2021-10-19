@@ -52,7 +52,7 @@ const MainContainer = ({
   });
 
   const overlayLayer = useMemo(() => {
-    return layers.find(layer => layer.type === "overlay");
+    return layers.find(layer => layer?.type === "overlay");
   }, [layers]);
 
   const scaleData = useMemo(() => {
@@ -151,7 +151,6 @@ const MainContainer = ({
     }
   }, [currentHeadline, disableToolTip, enableToolTip, layersLabelArr]);
 
-  console.log(scaleToolTipData);
   return (
     <div
       className={classnames({
@@ -178,7 +177,7 @@ const MainContainer = ({
           scaleUnit={scaleData.unitSymbol}
           className={classnames(styles["scale"], shouldFadeControls && "u-opacity-faded")}
           readOnly
-          scaleGradient={overlayLayer.product.scale.getCss(180)}
+          scaleGradient={overlayLayer.product.scale.getCss(0)}
           toolTipData={scaleToolTipData}
         />
       )}

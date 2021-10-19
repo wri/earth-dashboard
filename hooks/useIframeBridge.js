@@ -60,7 +60,6 @@ const useIframeBridge = callback => {
       currentLayers = [];
 
       layersChanged(newLayers) {
-        console.log(newLayers);
         const overlayLayer = newLayers.find(layer => layer?.type === "overlay");
         if (overlayLayer && overlayLayer.product) {
           const { scale } = overlayLayer.product;

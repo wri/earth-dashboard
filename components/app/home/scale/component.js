@@ -5,11 +5,13 @@ import styles from "./scale.module.scss";
 import FocusTrap from "focus-trap-react";
 import ToolTip from "components/ui/tooltip";
 
-const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizontal, toolTipData, ...rest }) => {
+const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizontal, toolTipData, value, ...rest }) => {
   const [shouldShowToolTip, setShouldShowToolTip] = useState(false);
   const minLabel = `${min}${scaleUnit}`.length > 9 ? `${min} ${scaleUnit}` : `${min}${scaleUnit}`;
   const maxLabel = `${max}${scaleUnit}`.length > 9 ? `${max} ${scaleUnit}` : `${max}${scaleUnit}`;
-
+  const minParsed = parseFloat(min);
+  const maxParsed = parseFloat(max);
+  const valueParsed = parseFloat(toolTipData.overlay ? toolTipData.overlay.value : value);
   const style = { "--min": `"${minLabel}"`, "--max": `"${maxLabel}"`, "--gradient": scaleGradient };
 
   useEffect(() => {
@@ -27,29 +29,38 @@ const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizon
     clickOutsideDeactivates: true
   };
 
-  const value = toolTipData.overlay ? toolTipData.overlay.value : rest.value;
-  const percent = value / (max - min) + min;
+  const percent = ((valueParsed - minParsed) * 100) / (maxParsed - minParsed);
+
   console.log(percent);
   return (
     <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>
       <label htmlFor="scale">Scale</label>
       <div className={styles["c-scale__input-container"]}>
         {shouldShowToolTip && (
-          <FocusTrap focusTrapOptions={focusTrapOptions}>
-            <div className={styles["c-scale__tooltip"]}>
-              <ToolTip>
-                {toolTipData.overlay && <p className="u-no-wrap u-margin-none">{toolTipData.overlay.str}</p>}
-                {toolTipData.annotation && <p className="u-no-wrap u-margin-none">{toolTipData.annotation.str}</p>}
-              </ToolTip>
-            </div>
-          </FocusTrap>
+          <>
+            <FocusTrap focusTrapOptions={focusTrapOptions}>
+              <div className={styles["c-scale__tooltip"]}>
+                <ToolTip y={`${100 - percent}%`} x="29px">
+                  <button
+                    className="u-button-no-style"
+                    aria-label="Close tooltip"
+                    onClick={() => setShouldShowToolTip(false)}
+                  >
+                    {toolTipData.overlay && <p className="u-no-wrap u-margin-none">{toolTipData.overlay.str}</p>}
+                    {toolTipData.annotation && <p className="u-no-wrap u-margin-none">{toolTipData.annotation.str}</p>}
+                  </button>
+                </ToolTip>
+              </div>
+            </FocusTrap>
+            <span className={styles["c-scale__input-thumb"]} style={{ top: `${100 - percent}%` }}></span>
+          </>
         )}
         <input
           id="scale"
           type="range"
           orient={isHorizontal ? "horizontal" : "vertical"}
           aria-orientation={isHorizontal ? "horizontal" : "vertical"}
-          value={value}
+          value={valueParsed}
           min={min}
           max={max}
           {...rest}

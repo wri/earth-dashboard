@@ -64,8 +64,11 @@ export const getOverlayData = (samples, layers) => {
     return null;
   }
 
+  const value = samples[SAMPLE_OVERLAY_INDEX][0].value;
+
   return {
     ...samples[SAMPLE_OVERLAY_INDEX][0],
+    value: Array.isArray(value) ? convertVectorToScalar(value) : value,
     str: getFriendlyOverlayDataBySamples(samples, layers)
   };
 };

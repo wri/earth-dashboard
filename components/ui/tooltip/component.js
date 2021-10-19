@@ -14,7 +14,7 @@ const ToolTip = ({ x, y, children, arrowPosition }) => {
     <div
       className={classnames(styles["c-tooltip"], styles[`c-tooltip--${arrowPosition}`])}
       role="tooltip"
-      style={{ top: y + 10, left: x + 10 }}
+      style={{ top: `calc(${y} + 10px)`, left: `calc(${x} + 10px)` }}
     >
       {children}
     </div>
@@ -22,8 +22,8 @@ const ToolTip = ({ x, y, children, arrowPosition }) => {
 };
 
 ToolTip.propTypes = {
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
+  x: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  y: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   arrowPosition: PropTypes.oneOf([POSITIONS.left, POSITIONS.right]),
   children: PropTypes.node
 };
