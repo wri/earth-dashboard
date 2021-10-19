@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import classnames from "classnames";
 import LogoLink from "components/ui/logo-link";
@@ -14,6 +14,7 @@ import styles from "./header.module.scss";
 
 const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen, showHeaderTitle }) => {
   const headerRef = useRef(null);
+  const [isHeaderSticky, setIsHeaderSticky] = useState(false);
   const router = useRouter();
 
   const focusTrapOptions = {
@@ -24,10 +25,20 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen, showHeaderTitle }) => {
   useEffect(() => {
     const handleRouteChange = () => setIsMegaMenuOpen(false);
 
+    const handleScroll = () => {
+      if (window.scrollY > headerRef.current?.scrollHeight) {
+        setIsHeaderSticky(true);
+      } else {
+        setIsHeaderSticky(false);
+      }
+    }
+
     router?.events.on("routeChangeStart", handleRouteChange);
+    window?.addEventListener("scroll", handleScroll);
 
     return () => {
       router?.events.off("routeChangeStart", handleRouteChange);
+      window?.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -50,7 +61,7 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen, showHeaderTitle }) => {
             className={styles["c-mega-menu-wrapper__bg"]}
             style={{ maxHeight: headerRef.current && headerRef.current.scrollHeight + "px" }}
           >
-            <header className={styles["c-site-header"]} ref={headerRef}>
+            <header className={classnames(styles["c-site-header"], isHeaderSticky && styles["c-site-header--sticky"])} ref={headerRef}>
               <div className={styles["c-site-header__logo"]}>
                 <LogoLink />
               </div>

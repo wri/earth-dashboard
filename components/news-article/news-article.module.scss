@@ -41,6 +41,8 @@ $c-news-article-transition: 0.3s ease-in-out;
 
     #{$this} {
       &__image {
+        width: auto;
+        height: auto;
         border-radius: 0px;
       }
 
@@ -59,8 +61,15 @@ $c-news-article-transition: 0.3s ease-in-out;
     }
   }
 
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__image {
     position: relative;
+    width: 104px;
+    height: 104px;
     border-radius: 12px;
     overflow: hidden;
 
@@ -92,6 +101,7 @@ $c-news-article-transition: 0.3s ease-in-out;
 
   &__date {
     @include font-size(11px, 16.5px);
+    margin-top: auto;
     margin-bottom: 10px;
   }
 
@@ -142,6 +152,8 @@ $c-news-article-transition: 0.3s ease-in-out;
     }
 
     &__image {
+      width: auto;
+      height: auto;
       border-radius: 0;
     }
 

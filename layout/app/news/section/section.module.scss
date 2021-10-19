@@ -1,14 +1,7 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
-
-$o-page-section-padding-y: 24px;
-$o-page-section-padding-x: 24px;
-$o-page-section-padding-bottom: 40px;
-
-$o-page-section-padding-y-desktop: 40px;
-$o-page-section-padding-x-desktop: 60px;
-$o-page-section-padding-bottom-desktop: 60px;
+@import "layout/app/news/section/section-settings";
 
 .o-page-section {
   &:not(:empty) {
@@ -37,7 +30,7 @@ $o-page-section-padding-bottom-desktop: 60px;
   }
 
   &__wrap {
-    max-width: 1366px - ($o-page-section-padding-x-desktop * 2);
+    max-width: $o-page-section-wrap-max-width;
     margin: 0 auto;
   }
 

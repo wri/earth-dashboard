@@ -67,14 +67,19 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px 0;
+  padding: 14px 16px;
+  transition: background-color 0.3s ease-in-out;
+
+  &--sticky {
+    background-color: $colour-galaxy;
+  }
 
   &__logo {
     width: 112px;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
-    padding: 24px 24px 0;
+    padding: 24px;
 
     &__logo {
       width: 180px;
