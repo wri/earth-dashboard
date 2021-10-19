@@ -26,7 +26,7 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
     // !important flag used to override the inline style from the component
     // The animation needs a starting max-height which must be overwritten
     // by another to work.
-    max-height: calc(var(--vh, 1vh) * 100) !important;
+    max-height: calc((var(--vh, 1vh) * 100) - 40px) !important;
   }
 
   &--open {
