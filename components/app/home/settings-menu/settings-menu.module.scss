@@ -18,11 +18,13 @@
   overflow: hidden;
 
   &__header {
-    position: relative;
-    padding: 10px 60px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px 10px 60px;
     background-color: $colour-night;
 
     &__title {
+      margin: 0 auto;
       color: $white;
       @include font-size(20px, 30px);
       font-weight: 500;
@@ -31,11 +33,7 @@
   }
 
   &__close {
-    position: absolute;
-    top: 50%;
-    right: 20px;
     background-color: transparent;
-    transform: translateY(-50%);
   }
 
   &__body {
@@ -82,7 +80,7 @@
     }
 
     &__header {
-      padding: 19px 80px 13px;
+      padding: 19px 20px 13px 80px;
 
       &__title {
         @include font-size(24px, 36px);
