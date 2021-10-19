@@ -14,17 +14,25 @@ test("<Scale /> renders correctly with default values", async () => {
     >
       Scale
     </label>
-    <input
-      aria-orientation="vertical"
-      id="scale"
-      max="100"
-      min="0"
-      orient="vertical"
-      readonly=""
-      style="--min: \\"0%\\"; --max: \\"100%\\";"
-      type="range"
-      value="0"
-    />
+    <div
+      class="c-scale__input-container"
+    >
+      <div
+        class="c-scale__gradient"
+        style="--min: \\"0%\\"; --max: \\"100%\\";"
+      />
+      <input
+        aria-orientation="vertical"
+        class="u-visually-hidden"
+        id="scale"
+        max="100"
+        min="0"
+        orient="vertical"
+        readonly=""
+        type="range"
+        value="0"
+      />
+    </div>
   </div>
 </div>
 `);
@@ -52,17 +60,25 @@ test("<Scale /> renders correctly with values", async () => {
     >
       Scale
     </label>
-    <input
-      aria-orientation="vertical"
-      id="scale"
-      max="1000"
-      min="-20"
-      orient="vertical"
-      readonly=""
-      style="--min: \\"-20hpa\\"; --max: \\"1000hpa\\"; --gradient: linear-gradient(180deg, rgba(23,181,254,1) 0%, rgba(17,107,242,1) 100%);"
-      type="range"
-      value="50%"
-    />
+    <div
+      class="c-scale__input-container"
+    >
+      <div
+        class="c-scale__gradient"
+        style="--min: \\"-20hpa\\"; --max: \\"1000hpa\\"; --gradient: linear-gradient(180deg, rgba(23,181,254,1) 0%, rgba(17,107,242,1) 100%);"
+      />
+      <input
+        aria-orientation="vertical"
+        class="u-visually-hidden"
+        id="scale"
+        max="1000"
+        min="-20"
+        orient="vertical"
+        readonly=""
+        type="range"
+        value="50"
+      />
+    </div>
   </div>
 </div>
 `);
@@ -91,17 +107,25 @@ test("<Scale /> renders correctly horizontal", async () => {
     >
       Scale
     </label>
-    <input
-      aria-orientation="horizontal"
-      id="scale"
-      max="1000"
-      min="-20"
-      orient="horizontal"
-      readonly=""
-      style="--min: \\"-20hpa\\"; --max: \\"1000hpa\\"; --gradient: linear-gradient(0deg, rgba(23,181,254,1) 0%, rgba(17,107,242,1) 100%);"
-      type="range"
-      value="50%"
-    />
+    <div
+      class="c-scale__input-container"
+    >
+      <div
+        class="c-scale__gradient"
+        style="--min: \\"-20hpa\\"; --max: \\"1000hpa\\"; --gradient: linear-gradient(0deg, rgba(23,181,254,1) 0%, rgba(17,107,242,1) 100%);"
+      />
+      <input
+        aria-orientation="horizontal"
+        class="u-visually-hidden"
+        id="scale"
+        max="1000"
+        min="-20"
+        orient="horizontal"
+        readonly=""
+        type="range"
+        value="50"
+      />
+    </div>
   </div>
 </div>
 `);

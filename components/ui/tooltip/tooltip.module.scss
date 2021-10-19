@@ -1,6 +1,7 @@
 @import "css/settings";
 @import "css/tools/fontSize";
 @import "css/settings/zIndex";
+@import "css/settings/breakpoints";
 
 .c-tooltip {
   position: absolute;
@@ -14,6 +15,17 @@
     font-family: "Barlow";
     font-weight: 500;
     @include font-size(14px, 21px);
+  }
+
+  &:after {
+    background-color: $colour-galaxy;
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    content: "";
+    display: block;
+    transform: translateY(-8.5px) rotate(45deg);
+    top: 50%;
   }
 
   &--right {
@@ -30,14 +42,29 @@
     }
   }
 
-  &:after {
-    background-color: $colour-galaxy;
-    width: 17px;
-    height: 17px;
-    position: absolute;
-    content: "";
-    display: block;
-    transform: translateY(-8.5px) rotate(45deg);
-    top: 50%;
+  &--bottom {
+    &:after {
+      top: unset;
+      bottom: -8px;
+      right: 50%;
+      transform: translateX(50%) rotate(45deg);
+    }
+  }
+
+  &--none {
+    &:after {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    padding: 8.5px 12px;
+    display: flex;
+    flex-direction: column;
+    p {
+      font-family: "Barlow";
+      font-weight: 500;
+      @include font-size(12px, 18px);
+    }
   }
 }
