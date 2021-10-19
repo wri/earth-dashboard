@@ -6,15 +6,17 @@ import styles from "./tooltip.module.scss";
 
 export const POSITIONS = {
   left: "left",
-  right: "right"
+  right: "right",
+  bottom: "bottom",
+  none: "none"
 };
 
-const ToolTip = ({ x, y, children, arrowPosition }) => {
+const ToolTip = ({ x, y, children, arrowPosition, className }) => {
   return (
     <div
-      className={classnames(styles["c-tooltip"], styles[`c-tooltip--${arrowPosition}`])}
+      className={classnames(styles["c-tooltip"], styles[`c-tooltip--${arrowPosition}`], className)}
       role="tooltip"
-      style={{ top: y + 10, left: x + 10 }}
+      style={{ top: `calc(${y} + 10px)`, left: `calc(${x} + 10px)` }}
     >
       {children}
     </div>
@@ -22,15 +24,17 @@ const ToolTip = ({ x, y, children, arrowPosition }) => {
 };
 
 ToolTip.propTypes = {
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
-  arrowPosition: PropTypes.oneOf([POSITIONS.left, POSITIONS.right]),
-  children: PropTypes.node
+  x: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  y: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  arrowPosition: PropTypes.oneOf([POSITIONS.left, POSITIONS.right, POSITIONS.bottom, POSITIONS.none]),
+  children: PropTypes.node,
+  className: PropTypes.string
 };
 
 ToolTip.defaultProps = {
   children: null,
-  arrowPosition: POSITIONS.right
+  arrowPosition: POSITIONS.right,
+  className: ""
 };
 
 export default ToolTip;

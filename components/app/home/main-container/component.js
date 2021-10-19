@@ -37,13 +37,22 @@ const MainContainer = ({
 
   const menuRef = useRef(null);
 
-  const { setRef, earthClient, earthServer, layers, error, toolTipDetails, enableToolTip, disableToolTip } =
-    useIframeBridge(() => {
-      setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
-    });
+  const {
+    setRef,
+    earthClient,
+    earthServer,
+    layers,
+    error,
+    toolTipDetails,
+    enableToolTip,
+    disableToolTip,
+    scaleData: scaleToolTipData
+  } = useIframeBridge(() => {
+    setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
+  });
 
   const overlayLayer = useMemo(() => {
-    return layers.find(layer => layer.type === "overlay");
+    return layers.find(layer => layer?.type === "overlay");
   }, [layers]);
 
   const scaleData = useMemo(() => {
@@ -167,9 +176,9 @@ const MainContainer = ({
           max={scaleData.max}
           scaleUnit={scaleData.unitSymbol}
           className={classnames(styles["scale"], shouldFadeControls && "u-opacity-faded")}
-          value="50%"
           readOnly
-          scaleGradient={overlayLayer.product.scale.getCss(180)}
+          scaleGradient={overlayLayer.product.scale.getCss(0)}
+          toolTipData={scaleToolTipData}
         />
       )}
       {hasMenuOpen && !isFetchingTemplates && (
@@ -201,6 +210,7 @@ const MainContainer = ({
                   readOnly
                   scaleGradient={overlayLayer.product.scale.getCss(90)}
                   isHorizontal
+                  toolTipData={scaleToolTipData}
                 />
                 <MapControls
                   controls={[{ ...settingsButtonConfig, forceDark: true, className: "u-margin-right-none" }]}

@@ -212,7 +212,7 @@ const MapIframe = forwardRef(
     return (
       <>
         {toolTipDetails && toolTipDetails.isVisible && (
-          <ToolTip x={toolTipDetails.x} y={toolTipDetails.y}>
+          <ToolTip x={`${toolTipDetails.x}px`} y={`${toolTipDetails.y}px`}>
             <p className="u-margin-none">{toolTipDetails.text}</p>
           </ToolTip>
         )}

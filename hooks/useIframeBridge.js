@@ -2,7 +2,14 @@ import { useRef, useCallback, useState, useEffect } from "react";
 import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
-import { colorAt, getIndicatorGeoJson, getMarkerProperties, getNewProjection } from "utils/map";
+import {
+  colorAt,
+  getIndicatorGeoJson,
+  getMarkerProperties,
+  getNewProjection,
+  getOverlayData,
+  getAnnotationData
+} from "utils/map";
 import { POINT_INDICATOR } from "constants/map";
 
 const useIframeBridge = callback => {
@@ -16,6 +23,7 @@ const useIframeBridge = callback => {
   const [currentMarker, setCurrentMarker] = useState(null);
   const [toolTipDetails, setToolTipDetails] = useState(null);
   const [toolTipVisible, setToolTipVisible] = useState(false);
+  const [scaleData, setScaleData] = useState({ annotation: null, overlay: null });
   const [toolTipText, setToolTipText] = useState("");
   const currentProjectionFunc = useCallback(() => getNewProjection(currentProjection), [currentProjection]);
 
@@ -48,8 +56,10 @@ const useIframeBridge = callback => {
 
   const createEarthClient = useCallback(() => {
     return new (class EarthClientImpl extends EarthClient {
-      layersChanged(layers) {
-        const overlayLayer = layers.find(layer => layer.type === "overlay");
+      currentLayers = [];
+
+      layersChanged(newLayers) {
+        const overlayLayer = newLayers.find(layer => layer?.type === "overlay");
         if (overlayLayer && overlayLayer.product) {
           const { scale } = overlayLayer.product;
           const { colors } = scale;
@@ -64,14 +74,22 @@ const useIframeBridge = callback => {
           const getCss = deg => `linear-gradient(${deg}deg, ${cssColors.join(", ")})`;
           scale.getCss = getCss;
         }
-
-        setLayers(layers);
+        setLayers(newLayers);
+        this.currentLayers = newLayers;
       }
 
-      click(point, coords) {
+      async click(point, coords) {
         const marker = getIndicatorGeoJson(coords);
         setCurrentMarker(marker);
         earthServer.current.annotate(POINT_INDICATOR, marker);
+
+        const coordinates = marker.geometry.coordinates;
+        const samples = await earthServer.current.sampleAt(point, coordinates);
+        const data = {
+          overlay: getOverlayData(samples, this.currentLayers),
+          annotation: getAnnotationData(samples, this.currentLayers)
+        };
+        setScaleData(data);
       }
 
       reorientStep(projection) {
@@ -118,6 +136,7 @@ const useIframeBridge = callback => {
     earthServer,
     layers,
     toolTipDetails,
+    scaleData,
     enableToolTip,
     disableToolTip,
     error: err
