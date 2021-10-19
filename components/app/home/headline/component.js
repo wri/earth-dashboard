@@ -4,7 +4,8 @@ import classnames from "classnames";
 import styles from "./headline.module.scss";
 import WidgetPreview from "components/widgets/preview";
 import { useMemo, useEffect } from "react";
-import { logEvent } from "utils/gtag";
+import { fireEvent } from "utils/gtag";
+import { CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME } from "constants/tag-manager";
 
 const Headline = ({ headline, className, currentMode, setIsDatePickerDisabled, ...rest }) => {
   const isBrowser = typeof window !== "undefined";
@@ -40,18 +41,7 @@ const Headline = ({ headline, className, currentMode, setIsDatePickerDisabled, .
             <div className={styles["c-headline__widget-source"]}>
               <p className="u-margin-vertical-xs">
                 Source:
-                <a
-                  href="https://resourcewatch.org/"
-                  target="_blank"
-                  onClick={() =>
-                    logEvent({
-                      action: "click",
-                      category: "Outbound traffic - ResourceWatch",
-                      label: window.location.href
-                    })
-                  }
-                  rel="noreferrer"
-                >
+                <a href="https://resourcewatch.org/" target="_blank" rel="noreferrer">
                   {" "}
                   ResourceWatch
                 </a>
@@ -80,6 +70,7 @@ const Headline = ({ headline, className, currentMode, setIsDatePickerDisabled, .
           target="_blank"
           rel="noreferrer"
           className={classnames("c-button c-button--new-style c-button--flame", styles["c-headline__cta"])}
+          onClick={() => fireEvent(CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME, headline.attributes.title)}
         >
           View full article
         </a>

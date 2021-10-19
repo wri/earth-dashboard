@@ -1,3 +1,7 @@
+// Set this to true if you wish to debug Google Analytics in a non production
+// environment for example on localhost
+export const DEBUG = false;
+
 // export const GA_TRACKING_ID = "G-CSQTS8BFK6";
 export const GA_TRACKING_ID = "GTM-W4WTJL2";
 
@@ -21,5 +25,27 @@ export const logEvent = ({ action, category, label, value }) => {
     });
   } else {
     console.log(`GA event: ${action} - ${category} - ${label} - ${value}`);
+  }
+};
+
+export const fireEvent = (eventName, param, ...rest) => {
+  if (!eventName) {
+    console.log("An Event name is required to fire a GA Event");
+  }
+
+  const payload = Object.assign(
+    rest.reduce((o, e) => ({ ...o, ...e }), {}),
+    param && { param: param },
+    { event: eventName }
+  );
+  let hasFired = false;
+
+  if (process.env.ED_NODE_ENV === "production" || DEBUG) {
+    window.dataLayer?.push(payload);
+    hasFired = true;
+  }
+
+  if (!hasFired || DEBUG) {
+    console.log("GA Event", payload);
   }
 };

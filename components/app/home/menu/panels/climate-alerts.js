@@ -7,6 +7,8 @@ import { fetchClimateAlerts } from "services/gca";
 import { setHeadlines } from "slices/headlines";
 import { setCurrentMode } from "slices/modes";
 import { setIsFetchLocationDisabled } from "slices/mapControls";
+import { fireEvent } from "utils/gtag";
+import { CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
 
 import HeadlineCard from "components/app/home/headline-card";
 import Headline from "components/app/home/headline";
@@ -62,6 +64,8 @@ const HeadlinesPanel = ({
     onForceInfoPage();
     setCurrentHeadline(headline);
     setIsFetchLocationDisabled(true);
+
+    fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
   };
 
   return currentHeadline ? (
