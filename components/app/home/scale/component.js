@@ -48,7 +48,7 @@ const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizon
                         : "-90px"
                       : `${100 - percent}%`
                   }
-                  x={isHorizontal ? `50%` : "30px"}
+                  x={isHorizontal ? `50%` : "19px"}
                   arrowPosition={isHorizontal ? POSITIONS.none : POSITIONS.right}
                   className={styles["c-scale__tooltip-item"]}
                 >
@@ -65,10 +65,11 @@ const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizon
             </FocusTrap>
             <span
               className={styles["c-scale__input-thumb"]}
-              style={{ top: isHorizontal ? 13 : `${100 - percent}%`, left: isHorizontal ? `${percent}%` : 22 }}
+              style={{ top: isHorizontal ? 9 : `${100 - percent}%`, left: isHorizontal ? `${percent}%` : 10 }}
             ></span>
           </>
         )}
+        <div className={styles["c-scale__gradient"]} style={style} />
         <input
           id="scale"
           type="range"
@@ -78,7 +79,7 @@ const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizon
           min={min}
           max={max}
           {...rest}
-          style={style}
+          className="u-visually-hidden"
         />
       </div>
     </div>

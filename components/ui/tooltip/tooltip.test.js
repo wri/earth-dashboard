@@ -15,7 +15,7 @@ describe("Tooltip", () => {
   <div
     class="c-tooltip c-tooltip--right"
     role="tooltip"
-    style="top: 30px; left: 30px;"
+    style="top: calc(20 + 10px); left: calc(20 + 10px);"
   >
     Hello world
   </div>
@@ -35,7 +35,7 @@ describe("Tooltip", () => {
   <div
     class="c-tooltip c-tooltip--right"
     role="tooltip"
-    style="top: 30px; left: 30px;"
+    style="top: calc(20 + 10px); left: calc(20 + 10px);"
   >
     Hello world
   </div>
@@ -55,7 +55,7 @@ describe("Tooltip", () => {
   <div
     class="c-tooltip c-tooltip--right"
     role="tooltip"
-    style="top: 30px; left: 30px;"
+    style="top: calc(20 + 10px); left: calc(20 + 10px);"
   >
     Hello world
   </div>

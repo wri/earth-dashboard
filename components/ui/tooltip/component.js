@@ -26,7 +26,7 @@ const ToolTip = ({ x, y, children, arrowPosition, className }) => {
 ToolTip.propTypes = {
   x: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   y: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  arrowPosition: PropTypes.oneOf([POSITIONS.left, POSITIONS.right, POSITIONS.bottom]),
+  arrowPosition: PropTypes.oneOf([POSITIONS.left, POSITIONS.right, POSITIONS.bottom, POSITIONS.none]),
   children: PropTypes.node,
   className: PropTypes.string
 };
