@@ -33,7 +33,7 @@ describe("Map utility", () => {
   });
 
   test("getFriendlyAnnotationDataBySamples returns a friendly format for annotation scale data", () => {
-    const expected = "Fire Detections: 1.13 MW (October 18 at 00:20)";
+    const expected = "Fire Detections: 1.13 MW (October 17 at 23:20)";
 
     expect(getFriendlyAnnotationDataBySamples(windParticulateFireSample, fires)).toEqual(expected);
   });
@@ -54,7 +54,7 @@ describe("Map utility", () => {
       coordinates: [29.542999267578125, -16.76799964904785],
       frp: 1.1299999952316284,
       units: "MW",
-      str: "Fire Detections: 1.13 MW (October 18 at 00:20)"
+      str: "Fire Detections: 1.13 MW (October 17 at 23:20)"
     };
 
     expect(getAnnotationData(windParticulateFireSample, fires)).toEqual(expected);
