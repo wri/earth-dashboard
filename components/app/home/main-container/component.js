@@ -210,6 +210,7 @@ const MainContainer = ({
                   readOnly
                   scaleGradient={overlayLayer.product.scale.getCss(90)}
                   isHorizontal
+                  toolTipData={scaleToolTipData}
                 />
                 <MapControls
                   controls={[{ ...settingsButtonConfig, forceDark: true, className: "u-margin-right-none" }]}

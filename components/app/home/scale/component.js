@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./scale.module.scss";
 import FocusTrap from "focus-trap-react";
 import ToolTip from "components/ui/tooltip";
+import { POSITIONS } from "components/ui/tooltip/component";
 
 const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizontal, toolTipData, value, ...rest }) => {
   const [shouldShowToolTip, setShouldShowToolTip] = useState(false);
@@ -31,7 +32,6 @@ const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizon
 
   const percent = ((valueParsed - minParsed) * 100) / (maxParsed - minParsed);
 
-  console.log(percent);
   return (
     <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>
       <label htmlFor="scale">Scale</label>
@@ -40,7 +40,18 @@ const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizon
           <>
             <FocusTrap focusTrapOptions={focusTrapOptions}>
               <div className={styles["c-scale__tooltip"]}>
-                <ToolTip y={`${100 - percent}%`} x="29px">
+                <ToolTip
+                  y={
+                    isHorizontal
+                      ? toolTipData.overlay && toolTipData.annotation
+                        ? "-110px"
+                        : "-90px"
+                      : `${100 - percent}%`
+                  }
+                  x={isHorizontal ? `50%` : "30px"}
+                  arrowPosition={isHorizontal ? POSITIONS.none : POSITIONS.right}
+                  className={styles["c-scale__tooltip-item"]}
+                >
                   <button
                     className="u-button-no-style"
                     aria-label="Close tooltip"
@@ -52,7 +63,10 @@ const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizon
                 </ToolTip>
               </div>
             </FocusTrap>
-            <span className={styles["c-scale__input-thumb"]} style={{ top: `${100 - percent}%` }}></span>
+            <span
+              className={styles["c-scale__input-thumb"]}
+              style={{ top: isHorizontal ? 13 : `${100 - percent}%`, left: isHorizontal ? `${percent}%` : 22 }}
+            ></span>
           </>
         )}
         <input
