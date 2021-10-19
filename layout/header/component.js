@@ -31,7 +31,7 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen, showHeaderTitle }) => {
       } else {
         setIsHeaderSticky(false);
       }
-    }
+    };
 
     router?.events.on("routeChangeStart", handleRouteChange);
     window?.addEventListener("scroll", handleScroll);
@@ -61,7 +61,10 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen, showHeaderTitle }) => {
             className={styles["c-mega-menu-wrapper__bg"]}
             style={{ maxHeight: headerRef.current && headerRef.current.scrollHeight + "px" }}
           >
-            <header className={classnames(styles["c-site-header"], isHeaderSticky && styles["c-site-header--sticky"])} ref={headerRef}>
+            <header
+              className={classnames(styles["c-site-header"], isHeaderSticky && styles["c-site-header--sticky"])}
+              ref={headerRef}
+            >
               <div className={styles["c-site-header__logo"]}>
                 <LogoLink />
               </div>
