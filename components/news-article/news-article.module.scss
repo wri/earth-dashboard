@@ -33,6 +33,7 @@ $c-news-article-transition: 0.3s ease-in-out;
   }
 
   &--featured {
+    height: 100%;
     grid-template-columns: 1fr;
     grid-template-rows: 132px 1fr;
     gap: 0;
@@ -100,17 +101,20 @@ $c-news-article-transition: 0.3s ease-in-out;
 
   &__date {
     @include font-size(11px, 16.5px);
-    margin-top: auto;
     margin-bottom: 10px;
   }
 
-  &__link:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  &__link {
+    margin-top: auto;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
   }
 
   @media screen and (min-width: $global-breakpoint-md) {

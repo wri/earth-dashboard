@@ -7,7 +7,6 @@
   justify-items: center;
   align-items: flex-start;
   flex-direction: column;
-  padding: 16px 20px;
   width: 100%;
   min-height: 291px;
 
@@ -22,8 +21,6 @@
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
-    padding: 24px 32px;
-
     .text-container {
       &.-headline,
       &.-insight-title {

@@ -17,7 +17,7 @@ const findWrappedText = (string = "", wrapperRegex) => {
   }));
 };
 
-const Widget = ({ className, widget, ...rest }) => {
+const Widget = ({ className, widget, bordered, ...rest }) => {
   const {
     attributes: { widget_id: widgetId }
   } = widget;
@@ -34,7 +34,8 @@ const Widget = ({ className, widget, ...rest }) => {
       className={classnames(
         className,
         styles["c-page-section-widget"],
-        type && styles[`c-page-section-widget--${type}`]
+        type && styles[`c-page-section-widget--${type}`],
+        bordered && styles["c-page-section-widget--bordered"]
       )}
       {...rest}
     >
@@ -59,6 +60,7 @@ const Widget = ({ className, widget, ...rest }) => {
 
 Widget.propTypes = {
   className: PropTypes.string,
+  bordered: PropTypes.bool,
   widget: PropTypes.shape({
     attributes: PropTypes.shape({
       widget_id: PropTypes.string.isRequired
@@ -67,7 +69,8 @@ Widget.propTypes = {
 };
 
 Widget.defaultProps = {
-  className: ""
+  className: "",
+  bordered: false
 };
 
 export default Widget;
