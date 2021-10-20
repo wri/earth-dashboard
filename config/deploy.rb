@@ -66,7 +66,7 @@ end
 
 set :rvm_ruby_version, '2.6.3'
 set :nvm_type, :user
-set :nvm_node, 'v10.22.1'
+set :nvm_node, 'v14.16.0'
 set :nvm_map_bins, %w{node npm yarn}
 
 set :yarn_flags, '--production --silent --no-progress --frozen-lockfile --no-cache'

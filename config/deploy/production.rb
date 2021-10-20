@@ -2,7 +2,7 @@ server '3.93.90.210', user: 'ubuntu', roles: %w{web app db}, primary: true
 
 set :ssh_options, forward_agent: true
 
-set :branch, 'main'
+set :branch, 'feature/main-rollback'
 
 set :default_env, {
   'ED_NODE_ENV' => 'production',
