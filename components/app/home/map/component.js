@@ -5,6 +5,7 @@ import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
 import ToolTip from "components/ui/tooltip/component";
+import moment from "moment";
 
 const MapIframe = forwardRef(
   (
@@ -182,23 +183,24 @@ const MapIframe = forwardRef(
       layers?.forEach(layer => {
         if (!layer || !layer.product || !layer.product.validTime) return;
 
-        dates.push(layer.product.validTime);
+        // Safari does not like the format given. Pass through Moment to get a standard date object
+        dates.push(moment(layer.product.validTime).toDate());
       });
 
       if (dates.length) {
         // Set the current date as the biggest date
         setDateOfDataShown(
-          new Date(
-            dates.reduce((accumulator, currentValue) => {
+          dates
+            .reduce((accumulator, currentValue) => {
               if (!accumulator) return currentValue;
 
-              if (new Date(currentValue).getTime() > new Date(accumulator).getTime()) {
+              if (currentValue.getTime() > accumulator.getTime()) {
                 return currentValue;
               } else {
                 return accumulator;
               }
             }, null)
-          ).toString()
+            .toString()
         );
       }
     }, [layers, setDateOfDataShown]);
