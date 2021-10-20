@@ -8,5 +8,7 @@ set :default_env, {
   'ED_NODE_ENV' => 'production',
   'WRI_API_URL' => 'https://api.resourcewatch.org',
   'CALLBACK_URL' => 'https://earthhq.org/sign-in',
-  'APPLICATIONS' => 'earthhq'
+  'APPLICATIONS' => 'earthhq',
+  'SENTRY_AUTH_TOKEN' => ENV['SENTRY_AUTH_TOKEN'],
+  'GA4_ID' => 'GTM-W4WTJL2'
 }
