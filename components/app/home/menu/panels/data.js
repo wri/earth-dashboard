@@ -10,6 +10,14 @@ import styles from "../menu.module.scss";
 import useDataLayers from "hooks/useDataLayers";
 import { DATA_LAYER_TYPES } from "constants/datalayers";
 import MobileMapControlsItems from "schemas/control-bar/mobile-home-page";
+import { fireEvent } from "utils/gtag";
+import {
+  ADVANCED_MENU_MODE,
+  ADVANCED_MENU_AIR_HEIGHT,
+  ADVANCED_MENU_OVERLAY,
+  ADVANCED_MENU_ANNOTATION,
+  ADVANCED_MENU_ANIMATION
+} from "constants/tag-manager";
 
 const DataPanel = ({
   currentMode,
@@ -61,7 +69,9 @@ const DataPanel = ({
         <ToggleList
           selectedValue={currentMode.id || null}
           onSelect={value => {
-            setCurrentMode({ ...modes.find(mode => parseInt(value, 10) === mode.id) });
+            const mode = modes.find(mode => parseInt(value, 10) === mode.id);
+            setCurrentMode({ ...mode });
+            fireEvent(ADVANCED_MENU_MODE, mode.attributes.title);
           }}
           title="Choose a mode"
           description="The modes provide an overview of the climatic condition. Each category contains data that will help you understand how that category is affected by different factors."
@@ -82,6 +92,7 @@ const DataPanel = ({
             setValue={setHeightValue}
             layers={heightLayers}
             className={styles["c-home-menu__data-selection-item"]}
+            gaEventName={ADVANCED_MENU_AIR_HEIGHT}
           />
           <DataLayers
             title="Choose an overlay"
@@ -91,6 +102,8 @@ const DataPanel = ({
             setValue={setDatasetValue}
             layers={datasetLayers}
             className={styles["c-home-menu__data-selection-item"]}
+            gaEventName={ADVANCED_MENU_OVERLAY}
+            currentModeTitle={currentMode.attributes?.title}
           />
           <DataLayers
             title="Choose an annotation"
@@ -100,6 +113,7 @@ const DataPanel = ({
             setValue={setMonitorValue}
             layers={monitorLayers}
             className={styles["c-home-menu__data-selection-item"]}
+            gaEventName={ADVANCED_MENU_ANNOTATION}
           />
           {animationEnabled && (
             <DataLayers
@@ -110,6 +124,7 @@ const DataPanel = ({
               setValue={setAnimationValue}
               layers={animationLayers}
               className={styles["c-home-menu__data-selection-item"]}
+              gaEventName={ADVANCED_MENU_ANIMATION}
             />
           )}
         </div>

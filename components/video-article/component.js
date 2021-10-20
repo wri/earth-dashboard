@@ -9,8 +9,10 @@ import styles from "./video-article.module.scss";
 import YouTubePlayIcon from "public/static/icons/youtube-play.svg";
 import ErrorIcon from "public/static/icons/error-circle.svg";
 import PropTypes from "prop-types";
+import { fireEvent } from "utils/gtag";
+import { VIDEO_START } from "constants/tag-manager";
 
-const VideoArticle = ({ className, title, image, videoURL }) => {
+const VideoArticle = ({ className, topic, title, image, videoURL }) => {
   const { current: id } = useRef(uuid());
   const ref = useRef(null);
 
@@ -49,6 +51,7 @@ const VideoArticle = ({ className, title, image, videoURL }) => {
           controls={true}
           url={videoURL}
           onError={() => setHasError(true)}
+          onStart={() => fireEvent(VIDEO_START, topic)}
           onDuration={duration => setDuration(duration)}
         />
       </div>
@@ -106,13 +109,15 @@ const VideoArticle = ({ className, title, image, videoURL }) => {
 
 VideoArticle.propTypes = {
   className: PropTypes.string,
+  topic: PropTypes.string,
   title: PropTypes.string.isRequired,
   image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   videoURL: PropTypes.string.isRequired
 };
 
 VideoArticle.defaultProps = {
-  className: ""
+  className: "",
+  topic: ""
 };
 
 export default VideoArticle;

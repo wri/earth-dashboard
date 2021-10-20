@@ -72,7 +72,7 @@ const NewsTopicLayout = ({ topic }) => {
         {/* Most Recent */}
         {mostRecentArticle ? (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
-            <NewsArticle featured={true} {...mostRecentArticle} />
+            <NewsArticle featured={true} topic={topic} {...mostRecentArticle} />
           </div>
         ) : (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
@@ -97,14 +97,14 @@ const NewsTopicLayout = ({ topic }) => {
       >
         {/* Must Watch */}
         {videos?.map(({ title, thumbnail, link }) => (
-          <VideoArticle key={link.$.url} title={title} image={thumbnail.$.url} videoURL={link.$.url} />
+          <VideoArticle key={link.$.url} topic={topic} title={title} image={thumbnail.$.url} videoURL={link.$.url} />
         ))}
       </Section>
 
       <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
         {otherArticles ? (
-          otherArticles.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
+          otherArticles.map(({ key, ...articleProps }) => <NewsArticle key={key} topic={topic} {...articleProps} />)
         ) : (
           <div>{postsLoadingMessage}</div>
         )}
