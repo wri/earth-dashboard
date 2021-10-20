@@ -27,7 +27,7 @@ pipelines:
             - yarn install
             - yarn test
             - yarn build
-    "Deploy to staging from GITHUB feature/september-2021-updates":
+    "Deploy to staging from GITHUB develop":
       - step:
           name: Deploy To Staging
           image: ruby:2.6.3
@@ -38,3 +38,14 @@ pipelines:
             - gem install bundler
             - bundle install
             - bundle exec cap staging deploy
+    "Deploy to production from GITHUB main":
+      - step:
+          name: Deploy To Production
+          image: ruby:2.6.3
+          deployment: production
+          caches:
+            - bundler
+          script:
+            - gem install bundler
+            - bundle install
+            - bundle exec cap production deploy
