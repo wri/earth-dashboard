@@ -41,6 +41,8 @@ $c-news-article-transition: 0.3s ease-in-out;
 
     #{$this} {
       &__image {
+        width: auto;
+        height: auto;
         border-radius: 0px;
       }
 
@@ -66,6 +68,8 @@ $c-news-article-transition: 0.3s ease-in-out;
 
   &__image {
     position: relative;
+    width: 104px;
+    height: 104px;
     border-radius: 12px;
     overflow: hidden;
 
@@ -136,6 +140,8 @@ $c-news-article-transition: 0.3s ease-in-out;
     }
 
     &__image {
+      width: auto;
+      height: auto;
       border-radius: 0;
     }
 
@@ -179,6 +185,11 @@ $c-news-article-transition: 0.3s ease-in-out;
 
   @media screen and (min-width: $global-breakpoint-lg) {
     margin: 0 -15px;
+
+    &__column:first-child {
+      flex-grow: 1;
+      max-width: 100%;
+    }
 
     &__column {
       flex: 0 0 50%;
