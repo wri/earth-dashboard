@@ -1,0 +1,37 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+
+.c-social-icon {
+  $this: &;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 7px;
+  border: 2px solid $white;
+  border-radius: 50%;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $colour-flame;
+    border-color: $colour-flame;
+  }
+
+  &:active,
+  &:focus {
+    background-color: $colour-night;
+    border-color: $colour-night;
+  }
+
+  &__icon {
+    transition: filter 0.1s ease-in-out;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+  }
+}

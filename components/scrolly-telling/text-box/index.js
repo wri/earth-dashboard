@@ -1,3 +1,3 @@
-import TextBoxComponent from './component';
+import TextBoxComponent from "./component";
 
 export default TextBoxComponent;

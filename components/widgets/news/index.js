@@ -1,3 +1,3 @@
-import NewsWidgetComponent from './component';
+import NewsWidgetComponent from "./component";
 
 export default NewsWidgetComponent;

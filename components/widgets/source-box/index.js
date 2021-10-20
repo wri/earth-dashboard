@@ -1,3 +1,3 @@
-import SourceBoxComponent from './component';
+import SourceBoxComponent from "./component";
 
 export default SourceBoxComponent;

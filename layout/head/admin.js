@@ -1,8 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import HeadNext from 'next/head';
+/* eslint-disable @next/next/no-sync-scripts */
+import { Component } from "react";
+import PropTypes from "prop-types";
+import HeadNext from "next/head";
 
-export default class HeadAdmin extends React.Component {
+export default class HeadAdmin extends Component {
   render() {
     const { title, description } = this.props;
 

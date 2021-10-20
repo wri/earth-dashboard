@@ -1,12 +1,13 @@
-import React from 'react';
-import { useRouter } from 'next/router'
-import PropTypes from 'prop-types';
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
 
 // Components
-import DatasetsForm from 'components/datasets/form';
+import DatasetsForm from "components/datasets/form";
 
 function DatasetsNew(props) {
-  const { user: { token } } = props;
+  const {
+    user: { token }
+  } = props;
   const router = useRouter();
   const handleSubmit = id => router.push(`/admin/data/datasets/${id}`);
 
@@ -25,4 +26,3 @@ function DatasetsNew(props) {
 DatasetsNew.propTypes = { user: PropTypes.object.isRequired };
 
 export default DatasetsNew;
-

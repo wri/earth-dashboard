@@ -1,3 +1,3 @@
-import ShareModalComponent from './component';
+import ShareModalComponent from "./component";
 
 export default ShareModalComponent;

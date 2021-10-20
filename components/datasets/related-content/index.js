@@ -1,3 +1,3 @@
-import RelatedContent from './component';
+import RelatedContent from "./component";
 
 export default RelatedContent;

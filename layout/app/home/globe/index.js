@@ -1,3 +1,3 @@
-import GlobeComponent from './component';
+import GlobeComponent from "./component";
 
 export default GlobeComponent;

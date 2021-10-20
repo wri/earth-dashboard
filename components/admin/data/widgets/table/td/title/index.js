@@ -1,3 +1,3 @@
-import TitleTD from './component';
+import TitleTD from "./component";
 
 export default TitleTD;

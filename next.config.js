@@ -1,33 +1,54 @@
-require('dotenv').load();
+require("dotenv").config();
 
-const { BundleAnalyzerPlugin } = (process.env.ED_NODE_ENV === 'production' && process.env.BUNDLE_ANALYZER) ?
-  require('webpack-bundle-analyzer') : {};
+const { BundleAnalyzerPlugin } =
+  process.env.ED_NODE_ENV === "production" && process.env.BUNDLE_ANALYZER ? require("webpack-bundle-analyzer") : {};
 
-module.exports = {
+const { withSentryConfig } = require("@sentry/nextjs");
+
+const moduleExports = {
   env: {
-    ED_NODE_ENV: process.env.ED_NODE_ENV || 'development',
-    APPLICATIONS: 'earthhq',
+    ED_NODE_ENV: process.env.ED_NODE_ENV || "development",
+    APPLICATIONS: "earthhq",
     CALLBACK_URL: process.env.CALLBACK_URL,
     WRI_API_URL: process.env.WRI_API_URL,
+    GCA_API_URL: process.env.GCA_API_URL,
     API_ENV: process.env.API_ENV,
     RW_GOGGLE_API_TOKEN_SHORTENER: process.env.RW_GOGGLE_API_TOKEN_SHORTENER,
-    NEXTAUTH_URL: 'https://earthhq.org'
+    NEXTAUTH_URL: "https://earthhq.org",
+    NULL_SCHOOL_IFRAME_BASE: process.env.NULL_SCHOOL_IFRAME_BASE
+  },
+
+  images: {
+    domains: ["imgs.mongabay.com", "content.jwplatform.com"]
+  },
+
+  eslint: {
+    dirs: [
+      "pages",
+      "lib",
+      "utils",
+      "components",
+      "config",
+      "constants",
+      "layout",
+      "redactions",
+      "selectors",
+      "services",
+      "slices"
+    ]
   },
 
   experimental: { documentMiddleware: true },
 
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     const _config = Object.assign({}, config);
 
-    _config.node = {
-      console: true,
-      fs: 'empty',
-      net: 'empty',
-      tls: 'empty'
-    };
+    if (!isServer) {
+      _config.resolve.fallback.fs = false;
+    }
 
     _config.module.rules.push({
-      loader: 'webpack-glsl-loader',
+      loader: "webpack-glsl-loader",
       test: /\.glsl$/
     });
 
@@ -39,15 +60,29 @@ module.exports = {
   async redirects() {
     return [
       {
-        source: '/admin',
-        destination: '/admin/data/datasets',
+        source: "/admin",
+        destination: "/admin/data/datasets",
         permanent: true
       },
       {
-        source: '/admin/data',
-        destination: '/admin/data/datasets',
+        source: "/admin/data",
+        destination: "/admin/data/datasets",
         permanent: true
       }
     ];
   }
 };
+
+const SentryWebpackPluginOptions = {
+  // Additional config options for the Sentry Webpack plugin. Keep in mind that
+  // the following options are set automatically, and overriding them is not
+  // recommended:
+  //   release, url, org, project, authToken, configFile, stripPrefix,
+  //   urlPrefix, include, ignore
+
+  silent: true // Suppresses all logs
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options.
+};
+
+module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions);

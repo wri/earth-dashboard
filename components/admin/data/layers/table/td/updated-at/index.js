@@ -1,3 +1,3 @@
-import UpdatedAtTD from './component';
+import UpdatedAtTD from "./component";
 
 export default UpdatedAtTD;

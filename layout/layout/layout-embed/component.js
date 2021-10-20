@@ -1,15 +1,15 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { withRouter } from 'next/router'
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import { withRouter } from "next/router";
 
 // components
-import IconsRW from 'components/icons';
-import HeadApp from 'layout/head/app';
-import Tooltip from 'components/ui/tooltip';
+import IconsRW from "components/icons";
+import HeadApp from "layout/head/app";
+import Tooltip from "components/ui/tooltip-legacy";
 
 // vizzuality-components
-import { Icons } from 'vizzuality-components';
+import { Icons } from "vizzuality-components";
 
 class LayoutEmbed extends PureComponent {
   static propTypes = {
@@ -25,7 +25,7 @@ class LayoutEmbed extends PureComponent {
   static defaultProps = {
     thumbnailUrl: null,
     className: null
-  }
+  };
 
   UNSAFE_componentWillMount() {
     // When a tooltip is shown and the router navigates to
@@ -54,17 +54,13 @@ class LayoutEmbed extends PureComponent {
   render() {
     const { title, description, className, thumbnailUrl } = this.props;
     const pageClass = classnames({
-      'l-page': true,
+      "l-page": true,
       [className]: !!className
     });
 
     return (
       <div className={pageClass}>
-        <HeadApp
-          title={title}
-          description={description}
-          thumbnail={thumbnailUrl}
-        />
+        <HeadApp title={title} description={description} thumbnail={thumbnailUrl} />
 
         <Icons />
         <IconsRW />

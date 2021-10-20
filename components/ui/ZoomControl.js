@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Icon from 'components/ui/icon';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import Icon from "components/ui/icon";
 
-class ZoomControl extends React.Component {
+class ZoomControl extends Component {
   static propTypes = {
     // maxValue: PropTypes.number,
     // minValue: PropTypes.number,
@@ -53,13 +53,11 @@ class ZoomControl extends React.Component {
     const { className, onZoomIn, onZoomOut } = this.props;
 
     return (
-      <div
-        className={`c-zoom-control btn-group ${className || ''}`}
-      >
-        <button onClick={(onZoomIn) ? this.triggerZoomIn : null}>
+      <div className={`c-zoom-control btn-group ${className || ""}`}>
+        <button onClick={onZoomIn ? this.triggerZoomIn : null}>
           <Icon className="-small" name="icon-plus" />
         </button>
-        <button onClick={(onZoomOut) ? this.triggerZoomOut : null} >
+        <button onClick={onZoomOut ? this.triggerZoomOut : null}>
           <Icon className="-small" name="icon-minus" />
         </button>
       </div>

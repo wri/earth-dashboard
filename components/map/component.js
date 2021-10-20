@@ -1,16 +1,16 @@
-import React, { PureComponent, createRef } from 'react';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS } from 'react-map-gl';
-import WebMercatorViewport from 'viewport-mercator-project';
-import isEqual from 'react-fast-compare';
-import isEmpty from 'lodash/isEmpty';
+import { PureComponent, createRef } from "react";
+import classnames from "classnames";
+import PropTypes from "prop-types";
+import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS } from "react-map-gl";
+import WebMercatorViewport from "viewport-mercator-project";
+import isEqual from "react-fast-compare";
+import isEmpty from "lodash/isEmpty";
 
 // constants
-import { DEFAULT_VIEWPORT } from './constants';
+import { DEFAULT_VIEWPORT } from "./constants";
 
 // styles
-import styles from  './map.module.scss';
+import styles from "./map.module.scss";
 
 class Map extends PureComponent {
   static propTypes = {
@@ -22,7 +22,7 @@ class Map extends PureComponent {
 
     /** An object that defines the viewport
      * @see https://uber.github.io/react-map-gl/#/Documentation/api-reference/interactive-map?section=initialization
-    */
+     */
     viewport: PropTypes.shape({}),
 
     /** An object that defines the bounds */
@@ -71,7 +71,7 @@ class Map extends PureComponent {
 
     /** A function that exposes the viewport */
     getCursor: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     children: null,
@@ -91,11 +91,11 @@ class Map extends PureComponent {
     onViewportChange: () => {},
     onLoad: () => {},
     getCursor: ({ isHovering, isDragging }) => {
-      if (isHovering) return 'pointer';
-      if (isDragging) return 'grabbing';
-      return 'grab';
+      if (isHovering) return "pointer";
+      if (isDragging) return "grabbing";
+      return "grab";
     }
-  }
+  };
 
   state = {
     viewport: {
@@ -104,7 +104,7 @@ class Map extends PureComponent {
     },
     flying: false,
     loaded: false
-  }
+  };
 
   componentDidUpdate(prevProps) {
     const {
@@ -114,13 +114,7 @@ class Map extends PureComponent {
       labels: prevLabels,
       boundaries: prevBoundaries
     } = prevProps;
-    const {
-      viewport,
-      bounds,
-      labels,
-      basemap,
-      boundaries
-    } = this.props;
+    const { viewport, bounds, labels, basemap, boundaries } = this.props;
     const { viewport: stateViewport } = this.state;
     const basemapChanged = prevBasemap !== basemap;
     const labelsChanged = prevLabels !== labels;
@@ -158,16 +152,17 @@ class Map extends PureComponent {
       map: this.map.current.getMap(),
       mapContainer: this.mapContainer.current
     });
-  }
+  };
 
-  onViewportChange = (_viewport) => {
+  onViewportChange = _viewport => {
     const { onViewportChange } = this.props;
 
-    this.setState({ viewport: _viewport },
-      () => { onViewportChange(_viewport); });
-  }
+    this.setState({ viewport: _viewport }, () => {
+      onViewportChange(_viewport);
+    });
+  };
 
-  onResize = (_viewport) => {
+  onResize = _viewport => {
     const { onViewportChange } = this.props;
     const { viewport } = this.state;
     const newViewport = {
@@ -177,15 +172,15 @@ class Map extends PureComponent {
 
     this.setState({ viewport: newViewport });
     onViewportChange(newViewport);
-  }
+  };
 
   setBasemap = () => {
     const { basemap } = this.props;
-    const BASEMAP_GROUPS = ['basemap'];
+    const BASEMAP_GROUPS = ["basemap"];
     const { layers, metadata } = this.map.current.getMap().getStyle();
 
-    const basemapGroups = Object.keys(metadata['mapbox:groups']).filter((k) => {
-      const { name } = metadata['mapbox:groups'][k];
+    const basemapGroups = Object.keys(metadata["mapbox:groups"]).filter(k => {
+      const { name } = metadata["mapbox:groups"][k];
 
       const matchedGroups = BASEMAP_GROUPS.map(rgr => name.toLowerCase().includes(rgr));
 
@@ -193,41 +188,41 @@ class Map extends PureComponent {
     });
 
     const basemapsWithMeta = basemapGroups.map(_groupId => ({
-      ...metadata['mapbox:groups'][_groupId],
+      ...metadata["mapbox:groups"][_groupId],
       id: _groupId
     }));
     const basemapToDisplay = basemapsWithMeta.find(_basemap => _basemap.name.includes(basemap));
 
-    const basemapLayers = layers.filter((l) => {
+    const basemapLayers = layers.filter(l => {
       const { metadata: layerMetadata } = l;
       if (!layerMetadata) return false;
 
-      const gr = layerMetadata['mapbox:group'];
+      const gr = layerMetadata["mapbox:group"];
       return basemapGroups.includes(gr);
     });
 
     if (!basemapToDisplay) return false;
 
-    basemapLayers.forEach((_layer) => {
-      const match = _layer.metadata['mapbox:group'] === basemapToDisplay.id;
+    basemapLayers.forEach(_layer => {
+      const match = _layer.metadata["mapbox:group"] === basemapToDisplay.id;
       if (!match) {
-        this.map.current.getMap().setLayoutProperty(_layer.id, 'visibility', 'none');
+        this.map.current.getMap().setLayoutProperty(_layer.id, "visibility", "none");
       } else {
-        this.map.current.getMap().setLayoutProperty(_layer.id, 'visibility', 'visible');
+        this.map.current.getMap().setLayoutProperty(_layer.id, "visibility", "visible");
       }
     });
 
     return true;
-  }
+  };
 
   setLabels = () => {
     const { labels } = this.props;
 
-    const LABELS_GROUP = ['labels'];
+    const LABELS_GROUP = ["labels"];
     const { layers, metadata } = this.map.current.getMap().getStyle();
 
-    const labelGroups = Object.keys(metadata['mapbox:groups']).filter((k) => {
-      const { name } = metadata['mapbox:groups'][k];
+    const labelGroups = Object.keys(metadata["mapbox:groups"]).filter(k => {
+      const { name } = metadata["mapbox:groups"][k];
 
       const matchedGroups = LABELS_GROUP.filter(rgr => name.toLowerCase().includes(rgr));
 
@@ -235,52 +230,52 @@ class Map extends PureComponent {
     });
 
     const labelsWithMeta = labelGroups.map(_groupId => ({
-      ...metadata['mapbox:groups'][_groupId],
+      ...metadata["mapbox:groups"][_groupId],
       id: _groupId
     }));
     const labelsToDisplay = labelsWithMeta.find(_basemap => _basemap.name.includes(labels)) || {};
 
-    const labelLayers = layers.filter((l) => {
+    const labelLayers = layers.filter(l => {
       const { metadata: layerMetadata } = l;
       if (!layerMetadata) return false;
 
-      const gr = layerMetadata['mapbox:group'];
+      const gr = layerMetadata["mapbox:group"];
       return labelGroups.includes(gr);
     });
 
-    labelLayers.forEach((_layer) => {
-      const match = _layer.metadata['mapbox:group'] === labelsToDisplay.id;
-      this.map.current.getMap().setLayoutProperty(_layer.id, 'visibility', match ? 'visible' : 'none');
+    labelLayers.forEach(_layer => {
+      const match = _layer.metadata["mapbox:group"] === labelsToDisplay.id;
+      this.map.current.getMap().setLayoutProperty(_layer.id, "visibility", match ? "visible" : "none");
     });
 
     return true;
-  }
+  };
 
   setBoundaries = () => {
     const { boundaries } = this.props;
-    const LABELS_GROUP = ['boundaries'];
+    const LABELS_GROUP = ["boundaries"];
     const { layers, metadata } = this.map.current.getMap().getStyle();
 
-    const boundariesGroups = Object.keys(metadata['mapbox:groups']).filter((k) => {
-      const { name } = metadata['mapbox:groups'][k];
+    const boundariesGroups = Object.keys(metadata["mapbox:groups"]).filter(k => {
+      const { name } = metadata["mapbox:groups"][k];
 
       const labelsGroup = LABELS_GROUP.map(rgr => name.toLowerCase().includes(rgr));
 
       return labelsGroup.some(bool => bool);
     });
 
-    const boundariesLayers = layers.filter((l) => {
+    const boundariesLayers = layers.filter(l => {
       const { metadata: layerMetadata } = l;
       if (!layerMetadata) return false;
 
-      const gr = layerMetadata['mapbox:group'];
+      const gr = layerMetadata["mapbox:group"];
       return boundariesGroups.includes(gr);
     });
 
-    boundariesLayers.forEach((l) => {
-      this.map.current.getMap().setLayoutProperty(l.id, 'visibility', boundaries ? 'visible' : 'none');
+    boundariesLayers.forEach(l => {
+      this.map.current.getMap().setLayoutProperty(l.id, "visibility", boundaries ? "visible" : "none");
     });
-  }
+  };
 
   map = createRef();
 
@@ -298,9 +293,12 @@ class Map extends PureComponent {
     };
 
     const { longitude, latitude, zoom } = new WebMercatorViewport(viewport).fitBounds(
-      [[bbox[0], bbox[1]], [bbox[2], bbox[3]]],
+      [
+        [bbox[0], bbox[1]],
+        [bbox[2], bbox[3]]
+      ],
       options
-    );    
+    );
 
     const newViewport = {
       ...currentViewport,
@@ -348,15 +346,12 @@ class Map extends PureComponent {
       >
         <ReactMapGL
           ref={this.map}
-
           // CUSTOM PROPS FROM REACT MAPBOX API
           {...mapboxProps}
-
           // VIEWPORT
           {...viewport}
           width="100%"
           height="100%"
-
           // INTERACTIVE
           dragPan={!flying && dragPan}
           dragRotate={!flying && dragRotate}
@@ -365,15 +360,13 @@ class Map extends PureComponent {
           touchRotate={!flying && touchRotate}
           doubleClickZoom={!flying && doubleClickZoom}
           getCursor={getCursor}
-
           // DEFAULT FUC IMPLEMENTATIONS
           onViewportChange={this.onViewportChange}
           onResize={this.onResize}
           onLoad={this.onLoad}
-
           transitionInterpolator={new FlyToInterpolator()}
         >
-          {loaded && !!this.map && typeof children === 'function' && children(this.map.current.getMap())}
+          {loaded && !!this.map && typeof children === "function" && children(this.map.current.getMap())}
         </ReactMapGL>
       </div>
     );

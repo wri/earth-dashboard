@@ -1,3 +1,3 @@
-import HeadlineSectionComponent from './component';
+import HeadlineSectionComponent from "./component";
 
 export default HeadlineSectionComponent;

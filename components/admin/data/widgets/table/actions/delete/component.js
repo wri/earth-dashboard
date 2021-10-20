@@ -1,16 +1,16 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { toastr } from 'react-redux-toastr';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import { toastr } from "react-redux-toastr";
 
 // services
-import { deleteWidget } from 'services/widget';
+import { deleteWidget } from "services/widget";
 
 class DeleteAction extends PureComponent {
   static propTypes = {
     user: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,
     onRowDelete: PropTypes.func.isRequired
-  }
+  };
 
   handleOnClickDelete = () => {
     const {
@@ -23,22 +23,19 @@ class DeleteAction extends PureComponent {
         deleteWidget(id, dataset, token)
           .then(() => {
             this.props.onRowDelete(id);
-            toastr.success('Success', `The widget "${id}" - "${name}" has been removed correctly`);
+            toastr.success("Success", `The widget "${id}" - "${name}" has been removed correctly`);
           })
-          .catch((err) => {
-            toastr.error('Error', `The widget "${id}" - "${name}" was not deleted. Try again. ${err}`);
+          .catch(err => {
+            toastr.error("Error", `The widget "${id}" - "${name}" was not deleted. Try again. ${err}`);
           });
       }
     });
-  }
+  };
 
   render() {
     return (
       <span>
-        <button
-          className="c-btn"
-          onClick={this.handleOnClickDelete}
-        >
+        <button className="c-btn" onClick={this.handleOnClickDelete}>
           Remove
         </button>
       </span>

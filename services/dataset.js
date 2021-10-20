@@ -1,8 +1,8 @@
-import WRISerializer from 'wri-json-api-serializer';
+import WRISerializer from "wri-json-api-serializer";
 
 // utils
-import { WRIAPI } from 'utils/axios';
-import { logger } from 'utils/logs';
+import { WRIAPI } from "utils/axios";
+import { logger } from "utils/logs";
 
 // API docs: https://resource-watch.github.io/doc-api/index-rw.html#dataset
 
@@ -16,12 +16,12 @@ import { logger } from 'utils/logs';
  * be included in the response or not.
  */
 export const fetchDatasets = (params = {}, headers = {}, _meta = false) => {
-  logger.info('Fetch datasets');
-  return WRIAPI.get('/dataset', {
+  logger.info("Fetch datasets");
+  return WRIAPI.get("/dataset", {
     headers: {
       ...WRIAPI.defaults.headers,
       // TO-DO: forces the API to not cache, this should be removed at some point
-      'Upgrade-Insecure-Requests': 1,
+      "Upgrade-Insecure-Requests": 1,
       ...headers
     },
     params: {
@@ -29,17 +29,14 @@ export const fetchDatasets = (params = {}, headers = {}, _meta = false) => {
       application: process.env.APPLICATIONS,
       ...params
     },
-    transformResponse: [].concat(
-      WRIAPI.defaults.transformResponse,
-      (({ data, meta }) => ({ datasets: data, meta }))
-    )
+    transformResponse: [].concat(WRIAPI.defaults.transformResponse, ({ data, meta }) => ({ datasets: data, meta }))
   })
-    .then((response) => {
+    .then(response => {
       const { status, statusText, data } = response;
       const { datasets, meta } = data;
 
       if (status >= 300) {
-        logger.error('Error fetching datasets:', `${status}: ${statusText}`);
+        logger.error("Error fetching datasets:", `${status}: ${statusText}`);
         throw new Error(statusText);
       }
 
@@ -52,14 +49,13 @@ export const fetchDatasets = (params = {}, headers = {}, _meta = false) => {
 
       return WRISerializer({ data: datasets });
     })
-    .catch((response) => {
+    .catch(response => {
       const { status, statusText } = response;
 
       logger.error(`Error fetching datasets: ${status}: ${statusText}`);
       throw new Error(`Error fetching datasets: ${status}: ${statusText}`);
     });
 };
-
 
 /**
  * Fetches a dataset by id.
@@ -69,18 +65,18 @@ export const fetchDatasets = (params = {}, headers = {}, _meta = false) => {
  * @returns {Object} serialized specified dataset.
  */
 export const fetchDataset = (id, params = {}) => {
-  if (!id) throw Error('dataset id is mandatory to perform this fetching.');
+  if (!id) throw Error("dataset id is mandatory to perform this fetching.");
   logger.info(`Fetch dataset: ${id}`);
 
   return WRIAPI.get(`/dataset/${id}`, {
     headers: {
       ...WRIAPI.defaults.headers,
       // TO-DO: forces the API to not cache, this should be removed at some point
-      'Upgrade-Insecure-Requests': 1
+      "Upgrade-Insecure-Requests": 1
     },
     params: { ...params }
   })
-    .then((response) => {
+    .then(response => {
       const { status, statusText, data } = response;
 
       if (status >= 300) {
@@ -110,13 +106,12 @@ export const fetchDataset = (id, params = {}) => {
  */
 export const fetchDatasetTags = (datasetId, params = {}) => {
   logger.info(`Fetch dataset tags: ${datasetId}`);
-  return WRIAPI.get(`dataset/${datasetId}/vocabulary`,
-    {
-      headers: { 'Upgrade-Insecure-Requests': 1 },
-      params: { ...params }
-    })
+  return WRIAPI.get(`dataset/${datasetId}/vocabulary`, {
+    headers: { "Upgrade-Insecure-Requests": 1 },
+    params: { ...params }
+  })
     .then(response => WRISerializer(response.data))
-    .catch((response) => {
+    .catch(response => {
       const { status, statusText } = response;
       logger.error(`Error fetching dataset tags ${datasetId}: ${status}: ${statusText}`);
       throw new Error(`Error fetching dataset tags ${datasetId}: ${status}: ${statusText}`);
@@ -140,7 +135,7 @@ export const deleteDataset = (id, token) => {
       Authorization: token
     }
   })
-    .then((response) => {
+    .then(response => {
       const { status, statusText } = response;
 
       if (status >= 300) {
@@ -170,11 +165,9 @@ export const deleteDataset = (id, token) => {
  * @returns {Object}
  */
 export const createDataset = (token, params = {}, headers) => {
-  logger.info('Create dataset');
+  logger.info("Create dataset");
 
-  return WRIAPI.post('dataset',
-    params,
-    { headers: { Authorization: token, ...headers } })
+  return WRIAPI.post("dataset", params, { headers: { Authorization: token, ...headers } })
     .then(response => WRISerializer(response.data))
     .catch(({ response }) => {
       const { status, statusText } = response;
@@ -218,22 +211,25 @@ export const updateDatasetTags = (datasetId, tags, token, usePatch = false) => {
   logger.info(`Update dataset tags: ${datasetId}`);
 
   if (usePatch) {
-    return WRIAPI.patch(`dataset/${datasetId}/vocabulary/knowledge_graph`,
+    return WRIAPI.patch(
+      `dataset/${datasetId}/vocabulary/knowledge_graph`,
       {
         tags,
         application: process.env.APPLICATIONS,
         env: process.env.API_ENV
       },
-      { headers: { Authorization: token } })
+      { headers: { Authorization: token } }
+    )
       .then(response => WRISerializer(response.data))
-      .catch((response) => {
+      .catch(response => {
         const { status, statusText } = response;
         logger.error(`Error updating dataset tags ${datasetId}: ${status}: ${statusText}`);
         throw new Error(`Error updating dataset tags ${datasetId}: ${status}: ${statusText}`);
       });
   }
   if (tags.length > 0) {
-    return WRIAPI.post(`dataset/${datasetId}/vocabulary`,
+    return WRIAPI.post(
+      `dataset/${datasetId}/vocabulary`,
       {
         knowledge_graph: {
           tags,
@@ -241,24 +237,24 @@ export const updateDatasetTags = (datasetId, tags, token, usePatch = false) => {
           env: process.env.API_ENV
         }
       },
-      { headers: { Authorization: token } })
+      { headers: { Authorization: token } }
+    )
       .then(response => WRISerializer(response.data))
-      .catch((response) => {
+      .catch(response => {
         const { status, statusText } = response;
         logger.error(`Error updating dataset tags ${datasetId}: ${status}: ${statusText}`);
         throw new Error(`Error updating dataset tags ${datasetId}: ${status}: ${statusText}`);
       });
   }
-  return WRIAPI.delete(`dataset/${datasetId}/vocabulary/knowledge_graph`,
-    {
-      headers: { Authorization: token },
-      params: {
-        application: process.env.APPLICATIONS,
-        env: process.env.API_ENV
-      }
-    })
+  return WRIAPI.delete(`dataset/${datasetId}/vocabulary/knowledge_graph`, {
+    headers: { Authorization: token },
+    params: {
+      application: process.env.APPLICATIONS,
+      env: process.env.API_ENV
+    }
+  })
     .then(response => WRISerializer(response.data))
-    .catch((response) => {
+    .catch(response => {
       const { status, statusText } = response;
       logger.error(`Error updating dataset tags ${datasetId}: ${status}: ${statusText}`);
       throw new Error(`Error updating dataset tags ${datasetId}: ${status}: ${statusText}`);
@@ -277,14 +273,12 @@ export const updateDatasetTags = (datasetId, tags, token, usePatch = false) => {
 export const createMetadata = (datasetId, params = {}, token, headers = {}) => {
   logger.info(`Create metadata for dataset ${datasetId}`);
 
-  return WRIAPI.post(`dataset/${datasetId}/metadata`,
-    params,
-    {
-      headers: {
-        Authorization: token,
-        ...headers
-      }
-    })
+  return WRIAPI.post(`dataset/${datasetId}/metadata`, params, {
+    headers: {
+      Authorization: token,
+      ...headers
+    }
+  })
     .then(({ data }) => WRISerializer(data))
     .catch(({ response }) => {
       const { status, statusText } = response;
@@ -306,14 +300,12 @@ export const createMetadata = (datasetId, params = {}, token, headers = {}) => {
 export const updateMetadata = (datasetId, params = {}, token, headers = {}) => {
   logger.info(`Update metadata for dataset ${datasetId}`);
 
-  return WRIAPI.patch(`dataset/${datasetId}/metadata`,
-    params,
-    {
-      headers: {
-        Authorization: token,
-        ...headers
-      }
-    })
+  return WRIAPI.patch(`dataset/${datasetId}/metadata`, params, {
+    headers: {
+      Authorization: token,
+      ...headers
+    }
+  })
     .then(({ data }) => WRISerializer(data))
     .catch(({ response }) => {
       const { status, statusText } = response;
@@ -334,4 +326,3 @@ export default {
   createMetadata,
   updateMetadata
 };
-

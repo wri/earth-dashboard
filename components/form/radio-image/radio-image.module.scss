@@ -1,0 +1,76 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+@import "css/tools/visuallyHidden";
+
+.c-radio-image {
+  $this: &;
+
+  &__label {
+    display: block;
+    margin-bottom: 8px;
+    color: $white;
+    @include font-size(14px, 21px);
+    font-weight: 500;
+  }
+
+  &__options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  &__input {
+    @include visually-hidden;
+
+    &:checked ~ #{$this}__input-label #{$this}__image {
+      border-color: $colour-flame;
+    }
+  }
+
+  &__input-label--unchecked {
+    cursor: pointer;
+  }
+
+  &__image {
+    position: relative;
+    margin-bottom: 6px;
+    height: 120px;
+    background-color: $colour-night;
+    border: 4px solid transparent;
+    border-radius: 16px;
+    overflow: hidden;
+
+    &:hover {
+      border-color: rgba($colour-flame, 0.6);
+    }
+
+    &__label {
+      @include font-size(12px, 18px);
+      font-weight: 500;
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-sm) {
+    &__options {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    &__label {
+      margin-bottom: 16px;
+      @include font-size(18px, 27px);
+    }
+
+    &__image {
+      margin-bottom: 8px;
+      border-radius: 28px;
+
+      &__label {
+        @include font-size(14px, 21px);
+      }
+    }
+  }
+}

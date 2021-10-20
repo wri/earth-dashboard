@@ -1,30 +1,26 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import omit from 'lodash/omit';
-import { toastr } from 'react-redux-toastr';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import omit from "lodash/omit";
+import { toastr } from "react-redux-toastr";
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // services
-import {
-  fetchDataset,
-  createDataset,
-  updateDataset
-} from 'services/dataset';
-import { fetchFields } from 'services/fields';
+import { fetchDataset, createDataset, updateDataset } from "services/dataset";
+import { fetchFields } from "services/fields";
 
 // components
-import Navigation from 'components/form/navigation';
-import Step1 from 'components/datasets/form/steps';
-import Spinner from 'components/ui/spinner';
+import Navigation from "components/form/navigation";
+import Step1 from "components/datasets/form/steps";
+import Spinner from "components/ui/spinner";
 
 // utils
-import { sortLayers } from 'utils/layers';
-import { getFieldUrl, getFields } from 'utils/fields';
+import { sortLayers } from "utils/layers";
+import { getFieldUrl, getFields } from "utils/fields";
 
 // constants
-import { STATE_DEFAULT, FORM_ELEMENTS } from './constants';
+import { STATE_DEFAULT, FORM_ELEMENTS } from "./constants";
 
 class DatasetsForm extends PureComponent {
   static propTypes = {
@@ -34,13 +30,13 @@ class DatasetsForm extends PureComponent {
     dataset: PropTypes.string,
     basic: PropTypes.bool,
     onSubmit: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     dataset: null,
     basic: true,
     onSubmit: null
-  }
+  };
 
   state = Object.assign({}, STATE_DEFAULT, {
     loading: !!this.props.dataset,
@@ -53,8 +49,8 @@ class DatasetsForm extends PureComponent {
     const { dataset: datasetId } = this.props;
     // Get the dataset and fill the state with its params if it exists
     if (datasetId) {
-      fetchDataset(datasetId, { includes: 'layer' })
-        .then((dataset) => {
+      fetchDataset(datasetId, { includes: "layer" })
+        .then(dataset => {
           const { provider, applicationConfig, layer: layers } = dataset;
           let _layers = layers;
 
@@ -63,7 +59,8 @@ class DatasetsForm extends PureComponent {
             applicationConfig &&
             applicationConfig[process.env.APPLICATIONS] &&
             applicationConfig[process.env.APPLICATIONS].layerOrder &&
-            layers.length > 1) {
+            layers.length > 1
+          ) {
             const { layerOrder } = applicationConfig[process.env.APPLICATIONS];
             _layers = sortLayers(layers, layerOrder);
           }
@@ -76,11 +73,11 @@ class DatasetsForm extends PureComponent {
             dataDataset: dataset
           });
 
-          if (provider !== 'wms') {
+          if (provider !== "wms") {
             // fetchs column fields based on dataset type
             const url = getFieldUrl(dataset);
             fetchFields(url)
-              .then((rawFields) => {
+              .then(rawFields => {
                 const { type } = dataset;
                 const columns = getFields(rawFields, provider, type);
                 this.setState({
@@ -90,7 +87,9 @@ class DatasetsForm extends PureComponent {
               })
               .catch(({ message }) => {
                 const { id } = dataset;
-                this.setState({ loadingColumns: false }, () => { toastr.error(`Error fetching fields from dataset ${id}`); });
+                this.setState({ loadingColumns: false }, () => {
+                  toastr.error(`Error fetching fields from dataset ${id}`);
+                });
                 console.error(`Error fetching fields from dataset ${id}`, message);
               });
           } else {
@@ -98,13 +97,15 @@ class DatasetsForm extends PureComponent {
           }
         })
         .catch(({ message }) => {
-          this.setState({ loading: false }, () => { toastr.error('Error fetching dataset'); });
+          this.setState({ loading: false }, () => {
+            toastr.error("Error fetching dataset");
+          });
           console.error(`Error fetching dataset: ${message}`);
         });
     }
   }
 
-  onSubmit = (event) => {
+  onSubmit = event => {
     const { authorization, dataset } = this.props;
     event.preventDefault();
 
@@ -126,10 +127,8 @@ class DatasetsForm extends PureComponent {
 
           // Set the request
           const requestOptions = {
-            type: dataset ? 'PATCH' : 'POST',
-            omit: dataset
-              ? ['connectorUrlHint', 'connectorType', 'provider']
-              : ['connectorUrlHint']
+            type: dataset ? "PATCH" : "POST",
+            omit: dataset ? ["connectorUrlHint", "connectorType", "provider"] : ["connectorUrlHint"]
           };
 
           let bodyObj = omit(form, requestOptions.omit);
@@ -155,59 +154,53 @@ class DatasetsForm extends PureComponent {
             };
           }
 
-          if (requestOptions.type === 'PATCH') {
+          if (requestOptions.type === "PATCH") {
             updateDataset(dataset, authorization, bodyObj)
-              .then((data) => {
+              .then(data => {
                 this.setState({ submitting: false });
-                toastr.success(
-                  'Success',
-                  `The dataset "${data.id}" - "${data.name}" has been updated correctly`
-                );
+                toastr.success("Success", `The dataset "${data.id}" - "${data.name}" has been updated correctly`);
                 if (this.props.onSubmit) this.props.onSubmit(data.id);
               })
-              .catch((err) => {
+              .catch(err => {
                 this.setState({ submitting: false });
-                toastr.error('There was an error updating the dataset', err);
+                toastr.error("There was an error updating the dataset", err);
               });
-          } else if (requestOptions.type === 'POST') {
+          } else if (requestOptions.type === "POST") {
             createDataset(authorization, bodyObj)
-              .then((data) => {
+              .then(data => {
                 this.setState({ submitting: false });
-                toastr.success(
-                  'Success',
-                  `The dataset "${data.id}" - "${data.name}" has been created correctly`
-                );
+                toastr.success("Success", `The dataset "${data.id}" - "${data.name}" has been created correctly`);
                 if (this.props.onSubmit) this.props.onSubmit(data.id);
               })
-              .catch((err) => {
+              .catch(err => {
                 this.setState({ submitting: false });
-                toastr.error('There was an error creating the dataset', err);
+                toastr.error("There was an error creating the dataset", err);
               });
           }
         } else {
           this.setState({ step: this.state.step + 1 });
         }
       } else {
-        toastr.error('Error', 'Fill all the required fields or correct the invalid values');
+        toastr.error("Error", "Fill all the required fields or correct the invalid values");
       }
     }, 0);
-  }
+  };
 
-  onChange = (obj) => {
+  onChange = obj => {
     const form = Object.assign({}, this.state.form, obj);
     this.setState({ form });
-  }
+  };
 
-  onStepChange = (step) => {
+  onStepChange = step => {
     this.setState({ step });
-  }
+  };
 
   // HELPERS
   setFormFromParams(params) {
     const form = Object.keys(this.state.form);
     const newForm = {};
 
-    form.forEach((f) => {
+    form.forEach(f => {
       if (params[f] || this.state.form[f]) {
         newForm[f] = params[f] || this.state.form[f];
       }
@@ -216,17 +209,7 @@ class DatasetsForm extends PureComponent {
   }
 
   render() {
-    const {
-      layers,
-      loading,
-      step,
-      form,
-      loadingColumns,
-      columns,
-      stepLength,
-      submitting,
-      dataDataset
-    } = this.state;
+    const { layers, loading, step, form, loadingColumns, columns, stepLength, submitting, dataDataset } = this.state;
     const { dataset, basic, authorization } = this.props;
 
     return (
@@ -248,22 +231,13 @@ class DatasetsForm extends PureComponent {
         )}
 
         {!loading && (
-          <Navigation
-            step={step}
-            stepLength={stepLength}
-            submitting={submitting}
-            onStepChange={this.onStepChange}
-          />
+          <Navigation step={step} stepLength={stepLength} submitting={submitting} onStepChange={this.onStepChange} />
         )}
       </form>
     );
   }
 }
 
-
 const mapStateToProps = state => ({ locale: state.common.locale });
 
-export default connect(
-  mapStateToProps,
-  null
-)(DatasetsForm);
+export default connect(mapStateToProps, null)(DatasetsForm);

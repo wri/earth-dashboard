@@ -1,3 +1,3 @@
-import PublishedTD from './component';
+import PublishedTD from "./component";
 
 export default PublishedTD;

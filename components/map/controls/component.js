@@ -1,34 +1,37 @@
-import React, { PureComponent } from 'react';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
+import { Children, isValidElement, cloneElement, PureComponent } from "react";
+import classnames from "classnames";
+import PropTypes from "prop-types";
 
 // styles
-import './map-controls.module.scss';
+import "./map-controls.module.scss";
 
 class MapControls extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     customClass: PropTypes.string
-  }
+  };
 
-  static defaultProps = { customClass: null }
+  static defaultProps = { customClass: null };
 
   render() {
     const { customClass, children } = this.props;
     const componentClass = classnames({
-      [styles['c-map-controls']]: true,
+      [styles["c-map-controls"]]: true,
       [customClass]: !!customClass
     });
 
     return (
       <div className={componentClass}>
         <ul className="map-controls--list">
-          {React.Children.map(children, (c, i) => (
-            React.isValidElement(c) && (
-            <li className="map-controls--list-item" key={i}>
-              {React.cloneElement(c)}
-            </li>)
-          ))}
+          {Children.map(
+            children,
+            (c, i) =>
+              isValidElement(c) && (
+                <li className="map-controls--list-item" key={i}>
+                  {cloneElement(c)}
+                </li>
+              )
+          )}
         </ul>
       </div>
     );

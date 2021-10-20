@@ -1,17 +1,15 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
 
 class OwnerTD extends PureComponent {
-  static propTypes = { row: PropTypes.object.isRequired }
+  static propTypes = { row: PropTypes.object.isRequired };
 
   render() {
-    const { row: { owner } } = this.props;
+    const {
+      row: { owner }
+    } = this.props;
 
-    return (
-      <td>
-        {owner}
-      </td>
-    );
+    return <td>{owner}</td>;
   }
 }
 

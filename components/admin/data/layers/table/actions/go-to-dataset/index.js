@@ -1,3 +1,3 @@
-import GoToDatasetAction from './component';
+import GoToDatasetAction from "./component";
 
 export default GoToDatasetAction;

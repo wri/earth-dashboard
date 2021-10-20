@@ -1,18 +1,5 @@
-import React from 'react';
+import AboutUsLayout from "layout/app/about-us";
 
-// components
-import LayoutHome from 'layout/app/home';
+const AboutUsPage = () => <AboutUsLayout />;
 
-// constants
-import { ABOUT_HEADER_TAB } from 'layout/header/constants';
-
-function HomePage() {
-  return (<LayoutHome 
-    openHeaderMenu={true} 
-    headerTabSelected={ABOUT_HEADER_TAB}
-    title="What is the Earth Dashboard?"
-    description="We created the Earth Dashboard as a “Situation Room” for the planet."
-  />);
-}
-
-export default HomePage;
+export default AboutUsPage;

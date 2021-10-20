@@ -1,25 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { toastr } from 'react-redux-toastr';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import { toastr } from "react-redux-toastr";
 
 // Components
-import Navigation from 'components/form/navigation';
-import Step1 from 'components/widgets/metadata/form/steps/Step1';
+import Navigation from "components/form/navigation";
+import Step1 from "components/widgets/metadata/form/steps/Step1";
 
 // Services
-import {
-  fetchWidget,
-  updateWidgetMetadata,
-  createWidgetMetadata
-} from 'services/widget';
+import { fetchWidget, updateWidgetMetadata, createWidgetMetadata } from "services/widget";
 
 // Contants
-import { STATE_DEFAULT, FORM_ELEMENTS } from 'components/widgets/metadata/form/constants';
+import { STATE_DEFAULT, FORM_ELEMENTS } from "components/widgets/metadata/form/constants";
 
 // styles
-import styles from './widget-metadata-form.module.scss';
+import styles from "./widget-metadata-form.module.scss";
 
-class MetadataForm extends React.Component {
+class MetadataForm extends Component {
   static propTypes = {
     widget: PropTypes.string.isRequired,
     authorization: PropTypes.string.isRequired,
@@ -42,21 +38,19 @@ class MetadataForm extends React.Component {
   UNSAFE_componentWillMount() {
     const { widget } = this.props;
     if (widget) {
-      fetchWidget(widget, { includes: 'metadata' })
+      fetchWidget(widget, { includes: "metadata" })
         .then(({ metadata, dataset }) => {
           this.setState({
-            form: (metadata && metadata.length) ?
-              this.setFormFromParams(metadata[0]) :
-              this.state.form,
+            form: metadata && metadata.length ? this.setFormFromParams(metadata[0]) : this.state.form,
             metadata,
             dataset,
             // Stop the loading
             loading: false
           });
         })
-        .catch((err) => {
+        .catch(err => {
           this.setState({ loading: false });
-          toastr.error('Error', err);
+          toastr.error("Error", err);
         });
     }
   }
@@ -65,8 +59,8 @@ class MetadataForm extends React.Component {
    * UI EVENTS
    * - onSubmit
    * - onChange
-  */
-  onSubmit = (event) => {
+   */
+  onSubmit = event => {
     event.preventDefault();
 
     // Validate the form
@@ -83,64 +77,66 @@ class MetadataForm extends React.Component {
         this.setState({ submitting: true });
 
         // Check if the metadata alerady exists
-        const thereIsMetadata = Boolean(metadata.find((m) => {
-          const hasLang = m.language === form.language;
-          const hasApp = m.application === form.application;
+        const thereIsMetadata = Boolean(
+          metadata.find(m => {
+            const hasLang = m.language === form.language;
+            const hasApp = m.application === form.application;
 
-          return hasLang && hasApp;
-        }));
+            return hasLang && hasApp;
+          })
+        );
 
         // Remove the id field
         const formObj = this.state.form;
-        formObj.info.widgetLinks = formObj.info.widgetLinks && formObj.info.widgetLinks.map(elem =>
-          ({ link: elem.link, name: elem.name }));
+        formObj.info.widgetLinks =
+          formObj.info.widgetLinks && formObj.info.widgetLinks.map(elem => ({ link: elem.link, name: elem.name }));
 
         if (widget && thereIsMetadata) {
           updateWidgetMetadata(widget, dataset, formObj, authorization)
             .then(() => {
-              toastr.success('Success', 'Metadata has been updated correctly');
+              toastr.success("Success", "Metadata has been updated correctly");
               if (this.props.onSubmit) {
                 this.props.onSubmit();
               }
             })
-            .catch((err) => {
+            .catch(err => {
               this.setState({ submitting: false });
-              toastr.error('Error', err);
+              toastr.error("Error", err);
             });
         } else {
           createWidgetMetadata(widget, dataset, formObj, authorization)
             .then(() => {
-              toastr.success('Success', 'Metadata has been updated correctly');
+              toastr.success("Success", "Metadata has been updated correctly");
               if (this.props.onSubmit) {
                 this.props.onSubmit();
               }
             })
-            .catch((err) => {
+            .catch(err => {
               this.setState({ submitting: false });
-              toastr.error('Error', err);
+              toastr.error("Error", err);
             });
         }
       } else {
-        toastr.error('Error', 'Fill all the required fields or correct the invalid values');
+        toastr.error("Error", "Fill all the required fields or correct the invalid values");
       }
     }, 0);
-  }
+  };
 
-  onChange = (obj) => {
+  onChange = obj => {
     const form = Object.assign({}, this.state.form, obj);
     this.setState({ form });
-  }
+  };
 
-  onStepChange = (step) => {
+  onStepChange = step => {
     this.setState({ step });
-  }
+  };
 
   // HELPERS
   setFormFromParams(params) {
     const form = Object.keys(this.state.form);
     const newForm = {};
 
-    form.forEach((f) => {
+    form.forEach(f => {
       if (params[f] || this.state.form[f]) {
         newForm[f] = params[f] || this.state.form[f];
       }
@@ -151,24 +147,19 @@ class MetadataForm extends React.Component {
 
   render() {
     return (
-      <div className={styles['c-widget-metadata-form']}>
+      <div className={styles["c-widget-metadata-form"]}>
         <form className="c-form" onSubmit={this.onSubmit} noValidate>
-          {this.state.loading && 'loading'}
-          {!this.state.loading &&
-            <Step1
-              onChange={value => this.onChange(value)}
-              form={this.state.form}
-            />
-          }
+          {this.state.loading && "loading"}
+          {!this.state.loading && <Step1 onChange={value => this.onChange(value)} form={this.state.form} />}
 
-          {!this.state.loading &&
+          {!this.state.loading && (
             <Navigation
               step={this.state.step}
               stepLength={this.state.stepLength}
               submitting={this.state.submitting}
               onStepChange={this.onStepChange}
             />
-          }
+          )}
         </form>
       </div>
     );

@@ -1,3 +1,3 @@
-import PopUpComponent from './component';
+import PopUpComponent from "./component";
 
 export default PopUpComponent;

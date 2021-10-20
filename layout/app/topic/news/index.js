@@ -1,3 +1,3 @@
-import TopicNewsComponent from './component';
+import TopicNewsComponent from "./component";
 
 export default TopicNewsComponent;

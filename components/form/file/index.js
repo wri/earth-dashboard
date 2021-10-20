@@ -1,3 +1,3 @@
-import FileComponent from './component';
+import FileComponent from "./component";
 
 export default FileComponent;

@@ -1,21 +1,20 @@
-const SET_LOCALE = 'common/SET_LOCALE';
-const SET_EMBED = 'common/SET_EMBED';
-const SET_WEBSHOT = 'common/SET_WEBSHOT';
-const SET_IS_LOADED_EXTERNALY = 'common/SET_IS_LOADED_EXTERNALY';
-const SET_IS_SERVER = 'common/SET_IS_SERVER';
-const SET_HOSTNAME = 'common/SET_HOSTNAME';
-
+const SET_LOCALE = "common/SET_LOCALE";
+const SET_EMBED = "common/SET_EMBED";
+const SET_WEBSHOT = "common/SET_WEBSHOT";
+const SET_IS_LOADED_EXTERNALY = "common/SET_IS_LOADED_EXTERNALY";
+const SET_IS_SERVER = "common/SET_IS_SERVER";
+const SET_HOSTNAME = "common/SET_HOSTNAME";
 
 const initialState = {
-  locale: 'en',
+  locale: "en",
   embed: false,
   webshot: false,
   isLoadedExternally: false,
   isServer: true,
-  hostname: 'https://earthhq.org'
+  hostname: "https://earthhq.org"
 };
 
-export default function (state = initialState, action) {
+export default function Common(state = initialState, action) {
   switch (action.type) {
     case SET_LOCALE:
       return Object.assign({}, state, { locale: action.payload });

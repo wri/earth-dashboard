@@ -1,0 +1,419 @@
+@import "css/_settings.scss";
+@import "css/settings/breakpoints";
+@import "css/settings/zIndex";
+@import "css/tools/scrollbar.scss";
+@import "css/tools/fontSize.scss";
+
+.c-home-menu {
+  position: absolute;
+  width: 100%;
+  max-width: 740px;
+  top: 100px;
+  left: 24px;
+  bottom: 120px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  animation: FadeIn 0.3s ease-in;
+  box-shadow: 0px 0px 113.425px #000000;
+  border-radius: 16px;
+  z-index: $z-index-menu;
+
+  &__tab,
+  &__tab-description,
+  &__data-label,
+  &__template-description,
+  &__source {
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 21px);
+  }
+
+  &__tabs {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__tab-list {
+    color: white;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: flex;
+  }
+
+  &__tab {
+    color: white;
+    cursor: pointer;
+    padding-bottom: 8px;
+    border-bottom: 3px solid transparent;
+    &[aria-selected="true"] {
+      border-bottom: 3px solid $colour-flame;
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-bottom: 3px solid white;
+      outline: 0px;
+    }
+  }
+
+  &__tab-container {
+    background: rgba($colour-space, 0.8);
+    backdrop-filter: blur(10.8731px);
+    padding: 86px 28px 40px 28px;
+    position: relative;
+    flex-grow: 1;
+    border-radius: 0 0 16px 16px;
+  }
+
+  &__tab-description {
+    display: block;
+    background-color: $colour-galaxy;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 12px 28px;
+    min-height: 66px;
+    &:after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 24px solid $colour-galaxy;
+      position: absolute;
+      right: 40px;
+      top: -18px;
+    }
+  }
+
+  &__tab-panel-scroll-area {
+    position: absolute;
+    top: 66px;
+    bottom: 0px;
+    left: 0px;
+    right: 12px;
+    overflow-y: auto;
+    padding: 20px 12px 20px 28px;
+    @include scrollbars(4px, #b6b8ba, #494d51);
+    &::-webkit-scrollbar-track {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    &--slim {
+      top: 0px;
+      padding-bottom: 40px;
+    }
+    &--extra-top {
+      top: 87px;
+    }
+  }
+
+  &__template-description {
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+  }
+
+  &__powered-by {
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 21px);
+    color: white;
+    margin-top: 12px;
+  }
+
+  &__headline {
+    margin-bottom: 12px;
+  }
+
+  &__data-selection {
+    margin-bottom: 20px;
+  }
+
+  &__data-selection-item {
+    border-bottom: 1px solid #ffffff !important;
+    padding-bottom: 8px !important;
+    margin-top: 20px !important;
+    &--no-top-margin {
+      margin-top: 0px !important; // TODO - sort this important nightmare!
+    }
+  }
+
+  &--closing {
+    opacity: 0;
+    animation: FadeOut 0.3s ease-in;
+  }
+
+  &__header {
+    background-color: rgba($colour-night, 0.4);
+    backdrop-filter: blur(10.8731px);
+    padding: 14px 28px 0px 28px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  &__header-content {
+    display: flex;
+    align-items: center;
+
+    &:before {
+      content: "";
+      display: block;
+      background-image: url("/static/icons/home-menu/layers.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 40px;
+      width: 40px;
+      margin-right: 12px;
+    }
+
+    &--no-icon {
+      justify-content: space-between;
+      &:before {
+        content: initial;
+      }
+    }
+  }
+
+  &__header-text {
+    @include font-size(24px, 36px);
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: "Barlow Condensed";
+    color: white;
+    margin: 0px;
+    flex-grow: 1;
+  }
+
+  &__close-button,
+  &__back-button {
+    display: block;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+
+    &:focus,
+    &:hover {
+      background-color: $colour-flame;
+    }
+  }
+
+  &__close-button {
+    background-image: url("/static/icons/close.svg");
+    background-size: 24px 24px;
+    background-position: 50% 9px;
+    width: 40px;
+    height: 40px;
+    margin-right: -20px;
+  }
+
+  &__back-button {
+    background-image: url("/static/icons/back-chevron.svg");
+    background-size: 10px 18px;
+    background-position: 43% 11px;
+    width: 40px;
+    height: 40px;
+    margin-left: -17px;
+  }
+
+  &__content {
+    flex-grow: 1;
+    border-radius: 0 0 16px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__info-title {
+    font-family: "Barlow";
+    font-style: normal;
+    font-weight: 500;
+    @include font-size(18px, 27px);
+    margin-bottom: 12px;
+    color: white;
+  }
+
+  &--is-info-page {
+    .c-home-menu__header-content {
+      justify-content: space-between;
+      &:before {
+        content: initial;
+      }
+    }
+    .c-home-menu__header {
+      padding: 14px 28px 14px 28px;
+    }
+    .c-home-menu__tab-list {
+      display: none;
+    }
+    .c-home-menu__tab-container {
+      padding: 20px 28px 40px 28px;
+    }
+  }
+
+  @media screen and (max-width: 1700px) {
+    max-width: 558px;
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    top: 8px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: unset;
+
+    &__header {
+      border-radius: 16px 16px 0 0;
+      padding: 11px 24px 0px 24px;
+    }
+
+    &__header-content {
+      &:before {
+        height: 28px;
+        width: 28px;
+        margin-right: 8px;
+      }
+    }
+
+    &__tab-container {
+      background: $colour-space;
+      padding: 64px 24px 40px 24px;
+    }
+
+    &__powered-by {
+      @include font-size(12px, 18px);
+    }
+
+    &__tab,
+    &__tab-description,
+    &__data-label,
+    &__template-description,
+    &__source {
+      @include font-size(12px, 18px);
+    }
+
+    &__tab-description {
+      padding: 8px 24px;
+      min-height: unset;
+      &:after {
+        right: 24px;
+        top: -14px;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 16px solid $colour-galaxy;
+      }
+    }
+
+    &__tab-panel-scroll-area {
+      padding: 12px 12px 12px 24px;
+      top: 52px;
+
+      &--slim {
+        top: 0px;
+      }
+
+      &--extra-top {
+        top: 70px;
+      }
+
+      &::-webkit-scrollbar-track {
+        margin-top: 12px;
+        margin-bottom: 12px;
+      }
+    }
+
+    &__template-description {
+      padding-bottom: 12px;
+      margin-top: 4px;
+    }
+
+    &__data-selection {
+      border-bottom: 16px;
+    }
+
+    &__data-selection-item {
+      padding-bottom: 4px !important;
+      margin-top: 16px !important;
+    }
+
+    &__header-text {
+      @include font-size(20px, 30px);
+    }
+
+    &__close-button {
+      margin-right: -12px;
+      background-size: 19px 19px;
+      background-position: 50% 7px;
+      width: 31px;
+      height: 31px;
+    }
+
+    &__toggle-list {
+      margin-bottom: 4px;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    &__tab-container {
+      padding: 80px 24px 40px 24px;
+    }
+
+    &__tab-description {
+      &::after {
+        display: none;
+      }
+    }
+
+    &__tab-panel-scroll-area {
+      padding: 12px 12px 0px 24px;
+      &--slim {
+        top: 0px;
+      }
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) and (max-height: 760px) {
+    top: 100px;
+    height: unset;
+  }
+}
+
+.c-home-menu-container {
+  @media screen and (max-width: $global-breakpoint-md) {
+    background: rgba($colour-space, 0.4);
+    backdrop-filter: blur(10.8731px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0px;
+    position: absolute;
+    z-index: $z-index-dialog;
+  }
+
+  animation: FadeIn 0.3s ease-in;
+
+  &--closing {
+    opacity: 0;
+    animation: FadeOut 0.3s ease-in;
+  }
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes FadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

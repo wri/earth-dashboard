@@ -1,3 +1,3 @@
-import MetadataFormComponent from './component';
+import MetadataFormComponent from "./component";
 
 export default MetadataFormComponent;

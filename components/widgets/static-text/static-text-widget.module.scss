@@ -1,30 +1,31 @@
-@import 'css/settings';
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
 
 .c-static-text-widget {
-    display: flex;
-    justify-items: center;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  min-height: 291px;
 
-    .text-container {
-
-        &.-headline {
-            font-family: 'Barlow Condensed';
-            font-size: $font-size-h2;
-            line-height: $line-height-h2;
-            font-weight: 400;
-        }
-
-        &.-insight-title {
-            font-family: 'Barlow Condensed';
-            font-size: $font-size-h5;
-            line-height: $line-height-h5;
-            font-weight: 400;
-        }
-
-        .parameter {
-            font-style: italic;
-        }
+  .text-container {
+    &.-headline,
+    &.-insight-title {
+      @include font-size(22px, 33px);
+      font-weight: 500;
+      color: $white;
+      margin-top: auto;
     }
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    .text-container {
+      &.-headline,
+      &.-insight-title {
+        @include font-size(32px, 48px);
+      }
+    }
+  }
 }

@@ -1,0 +1,27 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+
+.c-home-actions {
+  width: 100%;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background: rgba($colour-galaxy, 0.4);
+  backdrop-filter: blur(10.8731px);
+  position: absolute;
+  bottom: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  transition: opacity 0.3s ease-in;
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    display: block;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1,3 +1,3 @@
-import GuardianNewsComponent from './component';
+import GuardianNewsComponent from "./component";
 
 export default GuardianNewsComponent;

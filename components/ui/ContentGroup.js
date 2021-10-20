@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { Component } from "react";
+import PropTypes from "prop-types";
 
-export default class ContentGroup extends React.Component {
+export default class ContentGroup extends Component {
   static propTypes = {
     component: PropTypes.any.isRequired,
     componentProps: PropTypes.object,
@@ -17,7 +17,7 @@ export default class ContentGroup extends React.Component {
   renderComponent(index, values = {}) {
     const { componentProps } = this.props;
     const newComponentProps = { ...componentProps, index, values };
-    return (<this.props.component key={index} {...newComponentProps} />);
+    return <this.props.component key={index} {...newComponentProps} />;
   }
 
   render() {
@@ -39,9 +39,7 @@ export default class ContentGroup extends React.Component {
             </div>
           </div>
         </div>
-        {content.map((item, index) =>
-          this.renderComponent(index, item)
-        )}
+        {content.map((item, index) => this.renderComponent(index, item))}
       </div>
     );
   }

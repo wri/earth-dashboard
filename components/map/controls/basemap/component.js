@@ -1,17 +1,17 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
 
 // components
-import TetherComponent from 'react-tether';
-import Icon from 'components/ui/icon';
-import RadioGroup from 'components/form/RadioGroup';
-import Checkbox from 'components/form/checkbox';
+import TetherComponent from "react-tether";
+import Icon from "components/ui/icon";
+import RadioGroup from "components/form/RadioGroup";
+import Checkbox from "components/form/checkbox";
 
 // constants
-import { BASEMAPS, LABELS } from 'components/map/constants';
+import { BASEMAPS, LABELS } from "components/map/constants";
 
 // styles
-import styles from './basemap-control.module.scss';
+import styles from "./basemap-control.module.scss";
 
 class BasemapControls extends PureComponent {
   static propTypes = {
@@ -30,52 +30,58 @@ class BasemapControls extends PureComponent {
     boundaries: false,
 
     // ACTIONS
-    onChangeBasemap: (b) => { console.info(b); },
-    onChangeLabels: (l) => { console.info(l); },
-    onChangeBoundaries: (b) => { console.info(b); }
+    onChangeBasemap: b => {
+      console.info(b);
+    },
+    onChangeLabels: l => {
+      console.info(l);
+    },
+    onChangeBoundaries: b => {
+      console.info(b);
+    }
   };
 
-  state = { active: false }
+  state = { active: false };
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.onScreenClick);
+    document.removeEventListener("click", this.onScreenClick);
   }
 
-  onScreenClick = (e) => {
-    const el = document.querySelector('.c-tooltip');
+  onScreenClick = e => {
+    const el = document.querySelector(".c-tooltip");
     const clickOutside = el && el.contains && !el.contains(e.target);
 
     if (clickOutside) {
       this.toggleDropdown(false);
     }
-  }
+  };
 
-  onBasemapChange = (basemap) => {
+  onBasemapChange = basemap => {
     this.props.onChangeBasemap(BASEMAPS[basemap]);
-  }
+  };
 
-  onLabelsChange = (labels) => {
+  onLabelsChange = labels => {
     this.props.onChangeLabels(LABELS[labels]);
-  }
+  };
 
-  onBoundariesChange = (boundaries) => {
+  onBoundariesChange = boundaries => {
     this.props.onChangeBoundaries(boundaries.checked);
-  }
+  };
 
-  toggleDropdown = (to) => {
-    const active = (typeof to !== 'undefined' && to !== null) ? to : !this.state.active;
+  toggleDropdown = to => {
+    const active = typeof to !== "undefined" && to !== null ? to : !this.state.active;
 
     this.setState({ active });
 
     requestAnimationFrame(() => {
       if (to) {
-        window.addEventListener('click', this.onScreenClick);
+        window.addEventListener("click", this.onScreenClick);
       } else {
-        window.removeEventListener('click', this.onScreenClick);
+        window.removeEventListener("click", this.onScreenClick);
       }
     });
     this.setState({ active });
-  }
+  };
 
   // RENDER
   render() {
@@ -83,30 +89,23 @@ class BasemapControls extends PureComponent {
     const { active } = this.state;
 
     return (
-      <div className={styles['c-basemap-control']}>
+      <div className={styles["c-basemap-control"]}>
         <TetherComponent
           attachment="top right"
-          constraints={[{ to: 'window' }]}
+          constraints={[{ to: "window" }]}
           targetOffset="8px 100%"
-          classes={{ element: 'c-tooltip -arrow-right' }}
+          classes={{ element: "c-tooltip -arrow-right" }}
         >
           {/* First child: This is what the item will be tethered to */}
-          <button
-            type="button"
-            className="basemap-control--btn"
-            onClick={() => this.toggleDropdown(true)}
-          >
-            <Icon
-              name="icon-layers"
-              className="-small"
-            />
+          <button type="button" className="basemap-control--btn" onClick={() => this.toggleDropdown(true)}>
+            <Icon name="icon-layers" className="-small" />
           </button>
 
           {/* Second child: If present, this item will be tethered to the the first child */}
-          {active &&
+          {active && (
             <div>
               <RadioGroup
-                options={Object.keys(BASEMAPS).map((k) => {
+                options={Object.keys(BASEMAPS).map(k => {
                   const bs = BASEMAPS[k];
                   return {
                     label: bs.label,
@@ -134,15 +133,15 @@ class BasemapControls extends PureComponent {
 
               <Checkbox
                 properties={{
-                  name: 'boundaries',
-                  title: 'Boundaries',
-                  value: 'boundaries',
+                  name: "boundaries",
+                  title: "Boundaries",
+                  value: "boundaries",
                   checked: boundaries
                 }}
                 onChange={this.onBoundariesChange}
               />
             </div>
-          }
+          )}
         </TetherComponent>
       </div>
     );

@@ -1,3 +1,3 @@
-import EmbedBoxComponent from './component';
+import EmbedBoxComponent from "./component";
 
 export default EmbedBoxComponent;

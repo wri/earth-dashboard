@@ -1,17 +1,16 @@
-import React from 'react';
-import Document, { Html, Main, NextScript, Head } from 'next/document';
+/* eslint-disable @next/next/no-sync-scripts */
+import Document, { Html, Main, NextScript, Head } from "next/document";
 
 // utils
-import { GA_TRACKING_ID } from "utils/gtag";
+import { DEBUG as GA_DEBUG, GA_TRACKING_ID } from "utils/gtag";
 
 class MyDocument extends Document {
-
   static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
+    const initialProps = await Document.getInitialProps(ctx);
     return {
       ...initialProps,
-      includeGA: !ctx.asPath.startsWith('/admin') && !ctx.asPath.startsWith('/sign-in')
-    }
+      includeGA: !ctx.asPath.startsWith("/admin") && !ctx.asPath.startsWith("/sign-in")
+    };
   }
 
   render() {
@@ -30,7 +29,7 @@ class MyDocument extends Document {
           <link
             rel="stylesheet"
             media="screen"
-            href="https://fonts.googleapis.com/css?family=Lato:400,300,700"
+            href="https://fonts.googleapis.com/css?family=Lato:400,300,700&display=swap"
           />
           <link rel="shortcut icon" href="/static/cropped-favicon-32x32.png"></link>
 
@@ -40,7 +39,7 @@ class MyDocument extends Document {
 
           {/* NETCDFJS library to read NETCDF files */}
           <script src="https://www.lactame.com/lib/netcdfjs/0.7.0/netcdfjs.min.js"></script>
-          
+
           {/* Leaflet CDN */}
           {/* leaflet script necessary for the Widget Editor */}
           <script
@@ -48,55 +47,38 @@ class MyDocument extends Document {
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossOrigin=""
           />
-          <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js"
-            crossOrigin=""
-          />
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js" crossOrigin="" />
           <script
             src="https://unpkg.com/esri-leaflet@2.1.3/dist/esri-leaflet.js"
             integrity="sha512-pijLQd2FbV/7+Jwa86Mk3ACxnasfIMzJRrIlVQsuPKPCfUBCDMDUoLiBQRg7dAQY6D1rkmCcR8286hVTn/wlIg=="
             crossOrigin=""
           />
-          <script
-            src="https://unpkg.com/leaflet-utfgrid/L.UTFGrid-min.js"
-            crossOrigin=""
-          />
+          <script src="https://unpkg.com/leaflet-utfgrid/L.UTFGrid-min.js" crossOrigin="" />
 
           {/* Google API */}
           <script
-            src={`https://maps.googleapis.com/maps/api/js?v=weekly&key=${process.env.RW_GOGGLE_API_TOKEN_SHORTENER
-              }&libraries=places`}
+            src={`https://maps.googleapis.com/maps/api/js?v=weekly&key=${process.env.RW_GOGGLE_API_TOKEN_SHORTENER}&libraries=places`}
           />
 
           {/* Polifyll */}
           {/* TO-DO: remove once axios is completely implemented */}
           <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
 
+          {/* Google Tag Manager */}
+          {(GA_DEBUG || (process.env.ED_NODE_ENV === "production" && includeGA)) && (
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GA_TRACKING_ID}');`
+              }}
+            />
+          )}
 
-          {/* GOOGLE ANALYTICS */}
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
-          {process.env.ED_NODE_ENV === 'production' && includeGA &&
-            <>
-              <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-              />
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_TRACKING_ID}',+ {
-                page_path: window.location.pathname,
-              });
-          `
-                }}
-              />
-            </>
-          }
           {/* ------ HOTJAR TRACKING CODE ------ */}
-          {process.env.ED_NODE_ENV === 'production' && includeGA &&
+          {process.env.ED_NODE_ENV === "production" && includeGA && (
             <script
               dangerouslySetInnerHTML={{
                 __html: `
@@ -109,14 +91,23 @@ class MyDocument extends Document {
                 a.appendChild(r);
                 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
               `
-              }} />
-          }
+              }}
+            />
+          )}
           {/* ------ CRAZY EGG ------ */}
-          {process.env.ED_NODE_ENV === 'production' && includeGA &&
+          {process.env.ED_NODE_ENV === "production" && includeGA && (
             <script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0069/4623.js" async="async" />
-          }
+          )}
         </Head>
         <body>
+          {(GA_DEBUG || (process.env.ED_NODE_ENV === "production" && includeGA)) && (
+            <noscript
+              dangerouslySetInnerHTML={{
+                __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GA_TRACKING_ID}"
+              height="0" width="0" style="display:none;visibility:hidden"></iframe>`
+              }}
+            />
+          )}
           <Main />
           <NextScript />
         </body>

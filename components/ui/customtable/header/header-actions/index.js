@@ -1,3 +1,3 @@
-import TableHeaderActionsComponent from './component';
+import TableHeaderActionsComponent from "./component";
 
 export default TableHeaderActionsComponent;

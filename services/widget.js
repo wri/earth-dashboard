@@ -1,24 +1,24 @@
-import WRISerializer from 'wri-json-api-serializer';
+import WRISerializer from "wri-json-api-serializer";
 
 // utils
-import { WRIAPI } from 'utils/axios';
-import { logger } from 'utils/logs';
+import { WRIAPI } from "utils/axios";
+import { logger } from "utils/logs";
 
 /**
  * Fetch widgets according to params.
-  * Check out the API docs for this endpoint {@link https://resource-watch.github.io/doc-api/index-rw.html#how-to-obtain-all-widgets|here}
+ * Check out the API docs for this endpoint {@link https://resource-watch.github.io/doc-api/index-rw.html#how-to-obtain-all-widgets|here}
  * @param {Object} params - params sent to the API.
  * @param {Object} headers - headers used in the request
  * @param {boolean} _meta - flag indicating whether meta information should be
  * included in the response or not
  */
 export const fetchWidgets = (params = {}, headers = {}, _meta = false) => {
-  logger.info('fetches widgets');
-  return WRIAPI.get('widget', {
+  logger.info("fetches widgets");
+  return WRIAPI.get("widget", {
     headers: {
       ...WRIAPI.defaults.headers,
       // TO-DO: forces the API to not cache, this should be removed at some point
-      'Upgrade-Insecure-Requests': 1,
+      "Upgrade-Insecure-Requests": 1,
       ...headers
     },
     params: {
@@ -26,16 +26,13 @@ export const fetchWidgets = (params = {}, headers = {}, _meta = false) => {
       application: process.env.APPLICATIONS,
       ...params
     },
-    transformResponse: [].concat(
-      WRIAPI.defaults.transformResponse,
-      (({ data, meta }) => ({ widgets: data, meta }))
-    )
+    transformResponse: [].concat(WRIAPI.defaults.transformResponse, ({ data, meta }) => ({ widgets: data, meta }))
   })
-    .then((response) => {
+    .then(response => {
       const { status, statusText, data } = response;
       const { widgets, meta } = data;
       if (status >= 300) {
-        logger.error('Error fetching widgets:', `${status}: ${statusText}`);
+        logger.error("Error fetching widgets:", `${status}: ${statusText}`);
         throw new Error(statusText);
       }
 
@@ -48,14 +45,13 @@ export const fetchWidgets = (params = {}, headers = {}, _meta = false) => {
 
       return WRISerializer({ data: widgets });
     })
-    .catch((response) => {
+    .catch(response => {
       const { status, statusText } = response;
 
       logger.error(`Error fetching widgets: ${status}: ${statusText}`);
       throw new Error(`Error fetching widgets: ${status}: ${statusText}`);
     });
 };
-
 
 /**
  * Fetches data for a specific widget.
@@ -64,14 +60,14 @@ export const fetchWidgets = (params = {}, headers = {}, _meta = false) => {
  * @param {Object} params - params sent to the API.
  */
 export const fetchWidget = (id, params = {}) => {
-  if (!id) throw Error('The widget id is mandatory to perform this request (fetchWidget).');
+  if (!id) throw Error("The widget id is mandatory to perform this request (fetchWidget).");
   logger.info(`Fetch widget: ${id}`);
 
   return WRIAPI.get(`widget/${id}`, {
     headers: {
       ...WRIAPI.defaults.headers,
       // TO-DO: forces the API to not cache, this should be removed at some point
-      'Upgrade-Insecure-Requests': 1
+      "Upgrade-Insecure-Requests": 1
     },
     params: {
       ...params,
@@ -79,7 +75,7 @@ export const fetchWidget = (id, params = {}) => {
       application: process.env.APPLICATIONS
     }
   })
-    .then((response) => {
+    .then(response => {
       const { status, statusText, data } = response;
 
       if (status >= 300) {
@@ -117,7 +113,7 @@ export const deleteWidget = (widgetId, datasetId, token) => {
       Authorization: token
     }
   })
-    .then((response) => {
+    .then(response => {
       const { status, statusText } = response;
 
       if (status >= 300) {
@@ -163,14 +159,16 @@ export const updateWidget = (widget, token) => {
  * @param {string} token - user's token.
  */
 export const createWidget = (widget, datasetId, token) => {
-  logger.info('Create widget');
-  return WRIAPI.post(`dataset/${datasetId}/widget`,
+  logger.info("Create widget");
+  return WRIAPI.post(
+    `dataset/${datasetId}/widget`,
     {
-      application: process.env.APPLICATIONS.split(','),
+      application: process.env.APPLICATIONS.split(","),
       env: process.env.API_ENV,
       ...widget
     },
-    { headers: { Authorization: token } })
+    { headers: { Authorization: token } }
+  )
     .then(response => WRISerializer(response.data))
     .catch(({ response }) => {
       const { status, statusText } = response;
@@ -189,15 +187,14 @@ export const createWidget = (widget, datasetId, token) => {
  */
 export const fetchWidgetMetadata = (widgetId, datasetId, token, params = {}) => {
   logger.info(`Update widget metadata: ${widgetId}`);
-  return WRIAPI.fetch(`dataset/${datasetId}/widget/${widgetId}/metadata`,
-    {
-      headers: { Authorization: token },
-      params: {
-        application: process.env.APPLICATIONS,
-        env: process.env.API_ENV,
-        ...params
-      }
-    })
+  return WRIAPI.fetch(`dataset/${datasetId}/widget/${widgetId}/metadata`, {
+    headers: { Authorization: token },
+    params: {
+      application: process.env.APPLICATIONS,
+      env: process.env.API_ENV,
+      ...params
+    }
+  })
     .then(response => WRISerializer(response.data))
     .catch(({ response }) => {
       const { status, statusText } = response;
@@ -216,9 +213,9 @@ export const fetchWidgetMetadata = (widgetId, datasetId, token, params = {}) => 
  */
 export const updateWidgetMetadata = (widgetId, datasetId, metadata, token) => {
   logger.info(`Update widget metadata: ${widgetId}`);
-  return WRIAPI.patch(`dataset/${datasetId}/widget/${widgetId}/metadata`,
-    metadata,
-    { headers: { Authorization: token } })
+  return WRIAPI.patch(`dataset/${datasetId}/widget/${widgetId}/metadata`, metadata, {
+    headers: { Authorization: token }
+  })
     .then(response => WRISerializer(response.data))
     .catch(({ response }) => {
       const { status, statusText } = response;
@@ -237,13 +234,15 @@ export const updateWidgetMetadata = (widgetId, datasetId, metadata, token) => {
  */
 export const createWidgetMetadata = (widgetId, datasetId, metadata, token) => {
   logger.info(`Update widget metadata: ${widgetId}`);
-  return WRIAPI.post(`dataset/${datasetId}/widget/${widgetId}/metadata`,
+  return WRIAPI.post(
+    `dataset/${datasetId}/widget/${widgetId}/metadata`,
     {
       ...metadata,
       application: process.env.APPLICATIONS,
       env: process.env.API_ENV
     },
-    { headers: { Authorization: token } })
+    { headers: { Authorization: token } }
+  )
     .then(response => WRISerializer(response.data))
     .catch(({ response }) => {
       const { status, statusText } = response;

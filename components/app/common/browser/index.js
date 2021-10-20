@@ -1,3 +1,3 @@
-import BrowserComponent from './component';
+import BrowserComponent from "./component";
 
 export default BrowserComponent;

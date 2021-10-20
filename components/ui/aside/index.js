@@ -1,3 +1,3 @@
-import AsideComponent from './component';
+import AsideComponent from "./component";
 
 export default AsideComponent;

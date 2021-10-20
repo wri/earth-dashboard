@@ -1,3 +1,3 @@
-import CreditsResourcesSectionComponent from './component';
+import CreditsResourcesSectionComponent from "./component";
 
 export default CreditsResourcesSectionComponent;

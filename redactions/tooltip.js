@@ -1,12 +1,12 @@
 // CONSTANTS
-const TOOLTIP_TOGGLE = 'TOOLTIP_TOGGLE';
-const TOOLTIP_SET_CHILDREN = 'TOOLTIP_SET_CHILDREN';
-const TOOLTIP_LOADING = 'TOOLTIP_LOADING';
-const TOOLTIP_SET_CHILDREN_PROPS = 'TOOLTIP_SET_CHILDREN_PROPS';
-const TOOLTIP_SET_POSITION = 'TOOLTIP_SET_POSITION';
-const TOOLTIP_FOLLOW_TOGGLE = 'TOOLTIP_FOLLOW_TOGGLE';
-const TOOLTIP_DIRECTION = 'TOOLTIP_DIRECTION';
-const TOOLTIP_CLASSNAME = 'TOOLTIP_CLASSNAME';
+const TOOLTIP_TOGGLE = "TOOLTIP_TOGGLE";
+const TOOLTIP_SET_CHILDREN = "TOOLTIP_SET_CHILDREN";
+const TOOLTIP_LOADING = "TOOLTIP_LOADING";
+const TOOLTIP_SET_CHILDREN_PROPS = "TOOLTIP_SET_CHILDREN_PROPS";
+const TOOLTIP_SET_POSITION = "TOOLTIP_SET_POSITION";
+const TOOLTIP_FOLLOW_TOGGLE = "TOOLTIP_FOLLOW_TOGGLE";
+const TOOLTIP_DIRECTION = "TOOLTIP_DIRECTION";
+const TOOLTIP_CLASSNAME = "TOOLTIP_CLASSNAME";
 
 // REDUCER
 const initialState = {
@@ -14,8 +14,8 @@ const initialState = {
   children: null,
   loading: false,
   follow: false,
-  className: '',
-  direction: 'bottom',
+  className: "",
+  direction: "bottom",
   childrenProps: {},
   position: {
     x: 0,
@@ -23,7 +23,7 @@ const initialState = {
   }
 };
 
-export default function (state = initialState, action) {
+export default function Tooltip(state = initialState, action) {
   switch (action.type) {
     case TOOLTIP_TOGGLE:
       return Object.assign({}, state, { opened: action.payload });

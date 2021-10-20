@@ -1,12 +1,9 @@
-import React from 'react';
-
-// styles
-import './placeholder-chart.module.scss';
+import "./placeholder-chart.module.scss";
 
 function DatasetPlaceholderChart() {
   return (
-    <div className={styles['c-placeholder-chart']}>
-      <div className={styles['c-we-chart']} />
+    <div className={styles["c-placeholder-chart"]}>
+      <div className={styles["c-we-chart"]} />
     </div>
   );
 }

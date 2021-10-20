@@ -1,3 +1,3 @@
-import ListWidgetComponent from './component';
+import ListWidgetComponent from "./component";
 
 export default ListWidgetComponent;

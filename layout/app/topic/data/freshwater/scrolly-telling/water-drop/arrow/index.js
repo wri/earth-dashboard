@@ -1,3 +1,3 @@
-import ArrowComponent from './component';
+import ArrowComponent from "./component";
 
 export default ArrowComponent;

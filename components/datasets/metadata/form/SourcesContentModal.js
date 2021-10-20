@@ -1,19 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { toastr } from 'react-redux-toastr';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import { toastr } from "react-redux-toastr";
 
 // redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // redactions
-import { setTmpSources, setSources } from 'redactions/admin/sources';
+import { setTmpSources, setSources } from "redactions/admin/sources";
 
 // components
-import ContentGroup from 'components/ui/ContentGroup';
-import Source from 'components/datasets/metadata/form/source';
-import { SOURCE_ELEMENTS } from 'components/datasets/metadata/form/constants';
+import ContentGroup from "components/ui/ContentGroup";
+import Source from "components/datasets/metadata/form/source";
+import { SOURCE_ELEMENTS } from "components/datasets/metadata/form/constants";
 
-class SourcesContentModal extends React.Component {
+class SourcesContentModal extends Component {
   static propTypes = {
     sources: PropTypes.array,
     tmpSources: PropTypes.array,
@@ -37,7 +37,7 @@ class SourcesContentModal extends React.Component {
     this.props.setTmpSources(sources);
   }
 
-  onSubmitForm = (event) => {
+  onSubmitForm = event => {
     const { tmpSources } = this.props;
     event.preventDefault();
 
@@ -51,10 +51,10 @@ class SourcesContentModal extends React.Component {
         this.props.onSubmit();
         this.props.setSources(tmpSources);
       } else {
-        toastr.error('Error', 'Fill all the required fields or correct the invalid values');
+        toastr.error("Error", "Fill all the required fields or correct the invalid values");
       }
     }, 0);
-  }
+  };
 
   render() {
     const { tmpSources } = this.props;
@@ -72,19 +72,12 @@ class SourcesContentModal extends React.Component {
           <div className="c-button-container -j-center">
             <ul>
               <li>
-                <button
-                  className="c-button -primary"
-                  disabled={!tmpSources.length}
-                >
+                <button className="c-button -primary" disabled={!tmpSources.length}>
                   Submit
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  className="c-button -secondary"
-                  onClick={() => this.props.onClose()}
-                >
+                <button type="button" className="c-button -secondary" onClick={() => this.props.onClose()}>
                   Cancel
                 </button>
               </li>

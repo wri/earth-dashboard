@@ -29,3 +29,6 @@ static/images/widget-editor
 
 # Don't upload npm lock file
 package-lock.json
+
+# Sentry
+.sentryclirc

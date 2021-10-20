@@ -2,7 +2,7 @@ export const FORM_ELEMENTS = {
   elements: {},
   validate() {
     const { elements } = this;
-    Object.keys(elements).forEach((k) => {
+    Object.keys(elements).forEach(k => {
       elements[k].validate();
     });
   },

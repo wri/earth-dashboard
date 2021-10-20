@@ -1,3 +1,3 @@
-import SearchInputComponent from './component';
+import SearchInputComponent from "./component";
 
 export default SearchInputComponent;

@@ -1,114 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+/* eslint-disable @next/next/no-img-element */
+import { useEffect } from "react";
+
+import PropTypes from "prop-types";
 
 // components
-import Layout from 'layout/layout/layout-app';
+import Layout from "layout/layout/layout-app";
 
 // utils
-import { Mobile, Desktop, MediaContextProvider } from 'utils/responsive';
+import { Mobile, Desktop, MediaContextProvider } from "utils/responsive";
 
 // styles
-import styles from './homepage.module.scss';
+import styles from "./homepage.module.scss";
+import MainContainer from "components/app/home/main-container";
+import useWindowDimensions from "hooks/useWindowDimensions";
 
 function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
-  const [showIntroAndBanner, setShowIntroAndBanner] = useState(true);
-  const [showBanner, setShowBanner] = useState(true);
-  const [timeOutReached, setTimeoutReached] = useState(false);
-
-  const clickHandler = () => {
-    setShowIntroAndBanner(false);
-    window.removeEventListener('click', clickHandler);
-    setTimeout(() => setTimeoutReached(true), 500)
-  }
+  const { height } = useWindowDimensions();
 
   useEffect(() => {
-    window.addEventListener('click', clickHandler);
-    setTimeout(() => {
-      if (showIntroAndBanner && showBanner) {
-        setShowBanner(false);
-      }
-    }, 10000);
-    return () => window.removeEventListener('click', clickHandler);
-  }, []);
+    const vh = height * 0.01;
 
-  const getBanner = mobile =>
-  (<div className={classnames({
-    [styles['banner']]: true,
-    [styles['-mobile']]: mobile,
-    [styles['-desktop']]: !mobile,
-  })}>
-    <h1>This is not a drill</h1>
-    <h1>It's a <span className={styles.gradient}>Planetary emergency</span>.</h1>
-  </div>);
-
-  const getIntroText = mobile =>
-  (<div className={classnames({
-    [styles['intro-text']]: true,
-    [styles['-mobile']]: mobile,
-    [styles['-desktop']]: !mobile,
-    [styles['-fade-out']]: !showIntroAndBanner,
-  })}>
-    <div className={classnames({
-      [styles['topic-links-intro-text']]: true,
-      [styles['-mobile']]: mobile,
-      [styles['-desktop']]: !mobile,
-    })}>
-      {!mobile && <img src="/static/icons/arrow-up-homepage.svg" />}
-      <p>What you need to know about Earth's life support systems, the global commons</p>
-      {mobile && <img src="/static/icons/arrow-up-right-homepage.svg" />}
-    </div>
-    <div className={classnames({
-      [styles['globe-menu-intro-text']]: true,
-      [styles['-mobile']]: mobile,
-      [styles['-desktop']]: !mobile,
-    })}>
-      <img src="/static/icons/arrow-down-homepage.svg" />
-      <p>Explore Earth's planetary emergency in near-real-time</p>
-    </div>
-    <div className={classnames({
-      [styles['cog-overlay']]: true,
-      [styles['-mobile']]: mobile,
-      [styles['-desktop']]: !mobile,
-    })}>
-      <img src="/static/icons/cog.svg" />
-      <span>Globe</span>
-    </div>
-  </div>);
-
-  const getMainContainer = (mobile) => {
-    return (
-      <div className={classnames({
-        [styles['main-container']]: true,
-        [styles['-desktop']]: !mobile,
-        [styles['-mobile']]: mobile
-      })}
-      >
-        <iframe
-          id="nullSchoolIframe"
-          width="100%"
-          height="100%"
-          src={mobile ? 'https://earth.nullschool.net/?kiosk' : 'https://earth.nullschool.net/?kiosk#current/wind/surface/level/orthographic=-330.00,0.00,306'}
-          title="Null School"
-          frameBorder="0"
-        />
-        {!timeOutReached &&
-          <>
-            <div className={classnames({
-              [styles['text-container']]: true,
-              [styles['-desktop']]: !mobile,
-              [styles['-mobile']]: mobile,
-              [styles['-fade-out']]: !showIntroAndBanner || !showBanner,
-            })}
-            >
-              {getBanner(mobile)}
-            </div>
-            {getIntroText(mobile)}
-          </>
-        }
-
-      </div>);
-  };
+    if (process.browser) {
+      // https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ Fix issue with elements hiding behind UI elements on mobile!
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    }
+  }, [height]);
 
   return (
     <Layout
@@ -119,18 +35,18 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
       headerButtonPosition="right"
-      headerShowTopicLinks={true}
       themeColor="#1a2128"
+      showHeaderTitle={true}
     >
       <MediaContextProvider>
         <Desktop>
-          {getMainContainer(false)}
+          <MainContainer isMobile={false} />
         </Desktop>
         <Mobile>
-          {getMainContainer(true)}
+          <MainContainer isMobile={true} />
         </Mobile>
       </MediaContextProvider>
-    </Layout >
+    </Layout>
   );
 }
 
@@ -141,7 +57,7 @@ LayoutHome.propTypes = {
 
 LayoutHome.defaultProps = {
   openHeaderMenu: false,
-  headerTabSelected: 'site-navigation'
+  headerTabSelected: "site-navigation"
 };
 
 export default LayoutHome;

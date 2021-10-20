@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { toastr } from 'react-redux-toastr';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import { toastr } from "react-redux-toastr";
 
 // services
-import { deleteLayer } from 'services/layer';
+import { deleteLayer } from "services/layer";
 
 class DeleteAction extends PureComponent {
   static propTypes = {
@@ -12,7 +12,7 @@ class DeleteAction extends PureComponent {
     onRowDelete: PropTypes.func.isRequired
   };
 
-  static defaultProps = { data: {} }
+  static defaultProps = { data: {} };
 
   handleOnClickDelete = () => {
     const {
@@ -26,25 +26,18 @@ class DeleteAction extends PureComponent {
         deleteLayer(id, dataset, token)
           .then(() => {
             onRowDelete(id);
-            toastr.success('Success', `The layer "${id}" - "${name}" has been removed correctly`);
+            toastr.success("Success", `The layer "${id}" - "${name}" has been removed correctly`);
           })
-          .catch((err) => {
-            toastr.error(
-              'Error',
-              `The layer "${id}" - "${name}" was not deleted. Try again. ${err.message}`
-            );
+          .catch(err => {
+            toastr.error("Error", `The layer "${id}" - "${name}" was not deleted. Try again. ${err.message}`);
           });
       }
     });
-  }
+  };
 
   render() {
     return (
-      <button
-        type="button"
-        className="c-btn"
-        onClick={this.handleOnClickDelete}
-      >
+      <button type="button" className="c-btn" onClick={this.handleOnClickDelete}>
         Remove
       </button>
     );

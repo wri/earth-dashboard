@@ -1,24 +1,24 @@
-import React from 'react';
-import Proptypes from 'prop-types';
-import isEqual from 'lodash/isEqual';
+import { Component } from "react";
+import Proptypes from "prop-types";
+import isEqual from "lodash/isEqual";
 
 // redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // redactions
-import { setTmpSources } from 'redactions/admin/sources';
+import { setTmpSources } from "redactions/admin/sources";
 
 // components
-import Field from 'components/form/Field';
-import Input from 'components/form/Input';
+import Field from "components/form/Field";
+import Input from "components/form/Input";
 
 // constants
-import { SOURCE_ELEMENTS } from 'components/datasets/metadata/form/constants';
+import { SOURCE_ELEMENTS } from "components/datasets/metadata/form/constants";
 
 // styles
-import styles from './dataset-metadata-form-source.module.scss';
+import styles from "./dataset-metadata-form-source.module.scss";
 
-class Source extends React.Component {
+class Source extends Component {
   static propTypes = {
     index: Proptypes.number,
     values: Proptypes.object,
@@ -44,15 +44,18 @@ class Source extends React.Component {
   }
 
   onChange = (name, value) => {
-    this.setState({
-      values: {
-        ...this.state.values,
-        [name]: value
+    this.setState(
+      {
+        values: {
+          ...this.state.values,
+          [name]: value
+        }
+      },
+      () => {
+        this.onAddSource(this.state.values, this.props.index);
       }
-    }, () => {
-      this.onAddSource(this.state.values, this.props.index);
-    });
-  }
+    );
+  };
 
   onAddSource = (value, index) => {
     const sources = [...this.props.tmpSources];
@@ -65,7 +68,7 @@ class Source extends React.Component {
     }
 
     this.props.setTmpSources(sources);
-  }
+  };
 
   onRemoveSource(index) {
     const sources = [...this.props.tmpSources];
@@ -82,19 +85,21 @@ class Source extends React.Component {
     const { values } = this.state;
 
     return (
-      <div className={styles['c-dataset-metadata-form-source']}>
+      <div className={styles["c-dataset-metadata-form-source"]}>
         <div className="l-row row">
           <div className="column small-4">
             <Field
-              ref={(c) => { if (c) SOURCE_ELEMENTS.elements[`source-name-${index + 1}`] = c; }}
-              onChange={value => this.onChange('source-name', value)}
-              validations={['url']}
+              ref={c => {
+                if (c) SOURCE_ELEMENTS.elements[`source-name-${index + 1}`] = c;
+              }}
+              onChange={value => this.onChange("source-name", value)}
+              validations={["url"]}
               properties={{
-                name: 'source-name',
-                label: 'Source',
-                type: 'text',
-                default: values['source-name'] || '',
-                value: values['source-name'] || ''
+                name: "source-name",
+                label: "Source",
+                type: "text",
+                default: values["source-name"] || "",
+                value: values["source-name"] || ""
               }}
             >
               {Input}
@@ -103,15 +108,17 @@ class Source extends React.Component {
 
           <div className="column small-5">
             <Field
-              ref={(c) => { if (c) SOURCE_ELEMENTS.elements[`source-description-${index + 1}`] = c; }}
-              onChange={value => this.onChange('source-description', value)}
+              ref={c => {
+                if (c) SOURCE_ELEMENTS.elements[`source-description-${index + 1}`] = c;
+              }}
+              onChange={value => this.onChange("source-description", value)}
               validations={[]}
               properties={{
-                name: 'source-description',
-                label: 'Description',
-                type: 'text',
-                default: values['source-description'] || '',
-                value: values['source-description'] || ''
+                name: "source-description",
+                label: "Description",
+                type: "text",
+                default: values["source-description"] || "",
+                value: values["source-description"] || ""
               }}
             >
               {Input}

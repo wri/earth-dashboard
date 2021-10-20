@@ -1,3 +1,3 @@
-import FreshwaterScrollyTellingComponent from './component';
+import FreshwaterScrollyTellingComponent from "./component";
 
 export default FreshwaterScrollyTellingComponent;

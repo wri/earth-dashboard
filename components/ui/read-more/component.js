@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import truncate from 'lodash/truncate';
-import ReactMarkdown from 'react-markdown';
-import classnames from 'classnames';
+import { useState } from "react";
+import PropTypes from "prop-types";
+import truncate from "lodash/truncate";
+import ReactMarkdown from "react-markdown";
+import classnames from "classnames";
 
 // Styles
-import styles from './read-more.module.scss';
+import styles from "./read-more.module.scss";
 
 function ReadMore(props) {
   const [visible, setVisible] = useState(false);
@@ -13,19 +13,17 @@ function ReadMore(props) {
 
   if (text.length <= limitChar) {
     return (
-      <div className={styles['c-read-more']}>
+      <div className={styles["c-read-more"]}>
         {markdown && <ReactMarkdown linkTarget="_blank" source={text} />}
         {!markdown && <p>{text}</p>}
       </div>
     );
   }
 
-  const shortenedText = (visible) ?
-    text :
-    truncate(text, { length: limitChar, separator: '', omission: '...' });
+  const shortenedText = visible ? text : truncate(text, { length: limitChar, separator: "", omission: "..." });
   const classValue = classnames({
-    [styles['c-read-more']]: true,
-    '-truncated': !visible
+    [styles["c-read-more"]]: true,
+    "-truncated": !visible
   });
 
   return (
@@ -42,7 +40,7 @@ function ReadMore(props) {
           setVisible(!visible);
         }}
       >
-        {visible ? 'Read less' : 'Read more'}
+        {visible ? "Read less" : "Read more"}
       </button>
     </div>
   );
@@ -56,7 +54,7 @@ ReadMore.propTypes = {
 };
 
 ReadMore.defaultProps = {
-  text: '',
+  text: "",
   limitChar: 1300,
   markdown: false,
   readMoreClicked: null

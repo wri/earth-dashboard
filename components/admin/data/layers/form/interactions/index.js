@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
-import * as actions from './actions';
-import * as reducers from './reducer';
-import initialState from './initial-state';
+import { connect } from "react-redux";
+import * as actions from "./actions";
+import * as reducers from "./reducer";
+import initialState from "./initial-state";
 
 // component
-import InteractionManager from './component';
+import InteractionManager from "./component";
 
 export { actions, reducers, initialState };
 

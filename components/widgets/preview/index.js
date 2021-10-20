@@ -1,3 +1,6 @@
-import WidgetPreviewComponent from './component';
+import { connect } from "react-redux";
+import WidgetPreviewComponent from "./component";
 
-export default WidgetPreviewComponent;
+export default connect(state => ({
+  isMobile: state.common.isMobile
+}))(WidgetPreviewComponent);

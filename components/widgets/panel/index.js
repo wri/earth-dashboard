@@ -1,3 +1,3 @@
-import WidgetPanelComponent from './component';
+import WidgetPanelComponent from "./component";
 
 export default WidgetPanelComponent;

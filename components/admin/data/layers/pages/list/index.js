@@ -1,4 +1,4 @@
 // component
-import LayersIndex from './component';
+import LayersIndex from "./component";
 
 export default LayersIndex;

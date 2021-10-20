@@ -1,22 +1,22 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import Progress from 'react-progress-2';
-import { withRouter } from 'next/router';
+import { PureComponent } from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import Progress from "react-progress-2";
+import { withRouter } from "next/router";
 
 // Utils
-import { checkAuth } from 'services/user';
+import { checkAuth } from "services/user";
 
 // Components
-import IconsRW from 'components/icons';
+import IconsRW from "components/icons";
 
 // vizzuality-components
-import { Icons } from 'vizzuality-components';
+import { Icons } from "vizzuality-components";
 
-import Head from 'layout/head/admin';
-import Header from 'layout/header-admin';
+import Head from "layout/head/admin";
+import Header from "layout/header-admin";
 
-import Toastr from 'react-redux-toastr';
+import Toastr from "react-redux-toastr";
 
 class LayoutAdmin extends PureComponent {
   static propTypes = {
@@ -34,7 +34,7 @@ class LayoutAdmin extends PureComponent {
   state = {
     loggedIn: !!this.props.user.email,
     loggingIn: false
-  }
+  };
 
   UNSAFE_componentWillMount() {
     // When a tooltip is shown and the router navigates to a
@@ -52,21 +52,21 @@ class LayoutAdmin extends PureComponent {
   componentDidMount() {
     const { router, setUser } = this.props;
     const { loggedIn } = this.state;
-    const isServer = typeof window === 'undefined';
+    const isServer = typeof window === "undefined";
 
     if (!loggedIn) {
       this.setState({ loggingIn: true });
       checkAuth()
-        .then((response) => {
+        .then(response => {
           setUser({
             ...response,
-            token: `Bearer ${!isServer && localStorage.getItem('userToken')}`
+            token: `Bearer ${!isServer && localStorage.getItem("userToken")}`
           });
           this.setState({ loggingIn: false, loggedIn: true });
         })
         .catch(() => {
           this.setState({ loggingIn: false });
-          router.push('/sign-in');
+          router.push("/sign-in");
         });
     }
 
@@ -82,21 +82,15 @@ class LayoutAdmin extends PureComponent {
   }
 
   render() {
-    const {
-      title,
-      description,
-      className
-    } = this.props;
+    const { title, description, className } = this.props;
     const { loggingIn, loggedIn } = this.state;
-    const componentClass = classnames('l-page', { [className]: !!className });
+    const componentClass = classnames("l-page", { [className]: !!className });
 
     return (
       <div id="#main" className={componentClass}>
         <Head title={title} description={description} />
 
-        {loggingIn && (
-          <div>Logging in...</div>
-        )}
+        {loggingIn && <div>Logging in...</div>}
         {!loggingIn && loggedIn && (
           <>
             <Icons />
@@ -107,7 +101,6 @@ class LayoutAdmin extends PureComponent {
             <Toastr preventDuplicates transitionIn="fadeIn" transitionOut="fadeOut" />
           </>
         )}
-
       </div>
     );
   }

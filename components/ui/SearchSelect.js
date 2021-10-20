@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import isEqual from 'lodash/isEqual';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import isEqual from "lodash/isEqual";
 
 // Components
-import Icon from 'components/ui/icon';
+import Icon from "components/ui/icon";
 
-export default class SearchSelect extends React.Component {
+export default class SearchSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +40,7 @@ export default class SearchSelect extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this.onScreenClick);
+    window.removeEventListener("click", this.onScreenClick);
   }
 
   // Event handler for event keyup on search input
@@ -49,17 +49,15 @@ export default class SearchSelect extends React.Component {
     switch (evt.keyCode) {
       // key up
       case 38: {
-        const index = this.state.selectedIndex > 0 ?
-          this.state.selectedIndex - 1 :
-          this.state.filteredOptions.length - 1;
+        const index =
+          this.state.selectedIndex > 0 ? this.state.selectedIndex - 1 : this.state.filteredOptions.length - 1;
         this.setSelectedIndex(index);
         break;
       }
       // key down
       case 40: {
-        const index = (this.state.selectedIndex < this.state.filteredOptions.length - 1) ?
-          this.state.selectedIndex + 1 :
-          0;
+        const index =
+          this.state.selectedIndex < this.state.filteredOptions.length - 1 ? this.state.selectedIndex + 1 : 0;
         this.setSelectedIndex(index);
         break;
       }
@@ -80,10 +78,9 @@ export default class SearchSelect extends React.Component {
       // Typing text
       default: {
         const value = evt.currentTarget.value;
-        const filteredOptions = this.props.options.filter(item => item.label
-          .toLowerCase().match(value.toLowerCase()));
+        const filteredOptions = this.props.options.filter(item => item.label.toLowerCase().match(value.toLowerCase()));
         this.setState({ filteredOptions }, () => {
-          if (this.props.onKeyPressed) this.props.onKeyPressed({ value }, [], 'name');
+          if (this.props.onKeyPressed) this.props.onKeyPressed({ value }, [], "name");
         });
         break;
       }
@@ -98,7 +95,7 @@ export default class SearchSelect extends React.Component {
   onScreenClick(evt) {
     if (this.el.contains && !this.el.contains(evt.target)) {
       this.close();
-      window.removeEventListener('click', this.onScreenClick);
+      window.removeEventListener("click", this.onScreenClick);
     }
   }
 
@@ -124,7 +121,7 @@ export default class SearchSelect extends React.Component {
   // Method than shows the option list
   open() {
     // Close select when clicking outside it
-    window.addEventListener('click', this.onScreenClick);
+    window.addEventListener("click", this.onScreenClick);
 
     this.setState({ closed: false }, () => {
       if (this.input) this.input.focus();
@@ -133,34 +130,44 @@ export default class SearchSelect extends React.Component {
 
   // Method that closes the options list
   close() {
-    window.removeEventListener('click', this.onScreenClick);
+    window.removeEventListener("click", this.onScreenClick);
 
-    this.setState({
-      closed: true,
-      filteredOptions: this.props.options,
-      value: this.input.value
-    }, this.resetSelectedIndex);
+    this.setState(
+      {
+        closed: true,
+        filteredOptions: this.props.options,
+        value: this.input.value
+      },
+      this.resetSelectedIndex
+    );
   }
 
   render() {
     // Class names
-    const cNames = ['c-custom-select -search'];
+    const cNames = ["c-custom-select -search"];
     if (this.props.className) cNames.push(this.props.className);
-    if (this.state.closed) cNames.push('-closed');
+    if (this.state.closed) cNames.push("-closed");
 
     const noResults = !!(this.props.options.length && !this.state.filteredOptions.length);
 
     return (
-      <div ref={(node) => { this.el = node; }} className={cNames.join(' ')}>
+      <div
+        ref={node => {
+          this.el = node;
+        }}
+        className={cNames.join(" ")}
+      >
         <span className="custom-select-text" onClick={this.toggle}>
           <div>
-            <span>{ this.state.value ? this.state.value : this.props.placeholder }</span>
+            <span>{this.state.value ? this.state.value : this.props.placeholder}</span>
             <button className="icon-btn" onClick={this.toggle}>
               <Icon name="icon-search" className="-small" />
             </button>
           </div>
           <input
-            ref={(node) => { this.input = node; }}
+            ref={node => {
+              this.input = node;
+            }}
             className="custom-select-search"
             type="search"
             defaultValue={this.props.value}
@@ -169,18 +176,18 @@ export default class SearchSelect extends React.Component {
             onChange={this.onType}
           />
         </span>
-        {noResults &&
-          <span className="no-results">No results</span>
-        }
-        {!this.state.closed && !this.props.hideList &&
+        {noResults && <span className="no-results">No results</span>}
+        {!this.state.closed && !this.props.hideList && (
           <ul className="custom-select-options">
             {this.state.filteredOptions.map((item, index) => {
-              const cName = (index === this.state.selectedIndex) ? '-selected' : '';
+              const cName = index === this.state.selectedIndex ? "-selected" : "";
               return (
                 <li
                   className={cName}
                   key={item.id || item.label}
-                  onMouseEnter={() => { this.setSelectedIndex(index); }}
+                  onMouseEnter={() => {
+                    this.setSelectedIndex(index);
+                  }}
                   onMouseDown={() => this.selectItem(item)}
                 >
                   <span className="label">{item.label}</span>
@@ -188,7 +195,7 @@ export default class SearchSelect extends React.Component {
               );
             })}
           </ul>
-        }
+        )}
       </div>
     );
   }

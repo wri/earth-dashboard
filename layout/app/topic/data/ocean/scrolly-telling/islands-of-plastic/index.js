@@ -1,3 +1,3 @@
-import IslandsOfPlasticComponent from './component';
+import IslandsOfPlasticComponent from "./component";
 
 export default IslandsOfPlasticComponent;

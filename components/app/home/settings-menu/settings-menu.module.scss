@@ -1,0 +1,102 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+@import "css/tools/scrollbar";
+
+.c-settings-menu-modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 8px;
+  height: 100%;
+  width: 100%;
+  background-color: $colour-space;
+  mix-blend-mode: normal;
+  backdrop-filter: blur(10.8731px);
+  box-shadow: 0px 0px 113.425px #000000;
+  border-radius: 28px;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 60px;
+    background-color: $colour-night;
+
+    &__title {
+      margin: 0 auto;
+      color: $white;
+      @include font-size(20px, 30px);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+
+  &__close {
+    background-color: transparent;
+  }
+
+  &__body {
+    position: relative;
+    height: 100%;
+    margin: 24px 12px;
+  }
+
+  &__scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    padding: 0 12px;
+    overflow-y: auto;
+    @include scrollbars(4px, #b6b8ba, #494d51);
+
+    > *:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__body-title {
+    @include font-size(14px, 21px);
+    color: white;
+    font-weight: 500;
+    font-family: "Barlow";
+    margin-bottom: 8px !important;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    top: 40px;
+    bottom: 40px;
+    left: 50%;
+    width: 640px;
+    height: auto;
+    transform: translateX(-50%);
+
+    &__body-title {
+      @include font-size(18px, 27px);
+      margin-bottom: 16px !important;
+    }
+
+    &__header {
+      padding: 19px 10px 13px 80px;
+
+      &__title {
+        @include font-size(24px, 36px);
+      }
+    }
+
+    &__body {
+      margin: 40px 20px;
+    }
+
+    &__scroll {
+      padding: 0 20px;
+
+      > *:not(:last-child) {
+        margin-bottom: 24px;
+      }
+    }
+  }
+}

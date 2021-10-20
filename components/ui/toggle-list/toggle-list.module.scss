@@ -1,0 +1,116 @@
+@import "css/settings";
+@import "css/tools/_visuallyHidden";
+@import "css/tools/_fontSize";
+@import "css/settings/breakpoints";
+
+.c-toggle-list {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+
+  legend {
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 21px);
+    color: white;
+  }
+
+  &__description {
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(12px, 18px);
+    color: white;
+    margin-top: 4px;
+  }
+
+  &__children {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  &__item {
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 18px);
+    padding: 6px 10px;
+    cursor: pointer;
+    max-height: 33px;
+    background-color: $colour-night;
+    border: 2px solid transparent;
+    &:focus,
+    &:hover,
+    &:active,
+    &:focus-within {
+      border: 2px solid $colour-flame;
+      color: $colour-space;
+      background: white;
+    }
+
+    &--selected {
+      color: $colour-space;
+      background: white;
+    }
+  }
+  input {
+    @include visually-hidden();
+  }
+  @media screen and (max-width: $global-breakpoint-md) {
+    legend {
+      @include font-size(12px, 18px);
+    }
+
+    &__description {
+      @include font-size(11px, 16px);
+    }
+
+    &__item {
+      @include font-size(12px, 14px);
+      padding: 8px 10px;
+    }
+  }
+}
+
+.c-info-label {
+  background-color: rgba($colour-night, 0.4);
+  border-radius: 48px;
+  padding: 6px 6.5px 6px 12px;
+  display: inline-flex;
+  align-items: center;
+
+  font-family: "Barlow";
+  font-weight: 500;
+  @include font-size(14px, 21px);
+
+  &__button {
+    background: transparent;
+    margin-left: 8px;
+    border: 0px;
+    padding: 0px;
+    width: 20px;
+    height: 20px;
+    background-image: url("/static/icons/home-menu/info.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px solid transparent;
+    border-radius: 50%;
+
+    &:hover,
+    &:focus {
+      border: 1px solid $colour-flame;
+    }
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    @include font-size(12px, 14px);
+    margin-top: 2px;
+
+    &___button {
+      width: 16px;
+      height: 16px;
+      margin-left: 6px;
+    }
+  }
+}

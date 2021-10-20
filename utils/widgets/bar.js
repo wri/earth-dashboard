@@ -1,7 +1,7 @@
-import deepClone from 'lodash/cloneDeep';
+import deepClone from "lodash/cloneDeep";
 
 // Helpers
-import { getTimeFormat } from 'utils/widgets/WidgetHelper';
+import { getTimeFormat } from "utils/widgets/WidgetHelper";
 
 /* eslint-disable */
 const defaultChart = {
@@ -203,7 +203,7 @@ const defaultChart = {
  * @export
  * @param {any} { columns, data, url, embedData, provider, band, templateMode }
  */
-export default function ({ columns, data, url, embedData, provider, band, templateMode  }) {
+export default function Bar({ columns, data, url, embedData, provider, band, templateMode  }) {
   const config = deepClone(defaultChart);
 
   // Simple template used in the advanced mode of the editor

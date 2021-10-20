@@ -1,34 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import ExternalLink from "components/ui/external-link";
 
 // styles
-import styles from './source-box.module.scss';
+import styles from "./source-box.module.scss";
 
 function SourceBox({ source }) {
-    return (
-        <div className={styles['c-source-box']}>
-            {Array.isArray(source) && source.map((sourceObj) => {
-                const sourcePrefix = sourceObj.prefix;
-                const sourceSuffix = sourceObj.suffix;
+  return (
+    <div className={styles["c-source-box"]}>
+      {Array.isArray(source) &&
+        source.map(sourceObj => {
+          const sourcePrefix = sourceObj.prefix;
+          const sourceSuffix = sourceObj.suffix;
 
-                return (
-                    <div 
-                        className={styles['source-container']}
-                        key={`container-${sourcePrefix?.label}-${sourceSuffix?.label}`}
-                    >
-                        <div className={styles.prefix}>
-                            {sourcePrefix?.link && sourcePrefix?.label && <a href={sourcePrefix?.link} target="_blank">{sourcePrefix?.label}</a>}
-                            {!sourcePrefix?.link && sourcePrefix?.label && <span>{sourcePrefix?.label}</span>}
-                        </div>
-                        <div className={styles.suffix}>
-                            {sourceSuffix?.link && sourceSuffix?.label && <a href={sourceSuffix?.link} target="_blank">({sourceSuffix?.label})</a>}
-                            {!sourceSuffix?.link && sourceSuffix?.label && <span>{sourceSuffix?.label}</span>}
-                        </div>
-                    </div>);
-            })
-            }
-        </div>
-    );
+          return (
+            <div className={styles["source-container"]} key={`container-${sourcePrefix?.label}-${sourceSuffix?.label}`}>
+              <div className={styles.prefix}>
+                {sourcePrefix?.link && sourcePrefix?.label && (
+                  <ExternalLink link={sourcePrefix?.link} label={sourcePrefix?.label} />
+                )}
+              </div>
+            </div>
+          );
+        })}
+    </div>
+  );
 }
 
 SourceBox.propTypes = { source: PropTypes.array.isRequired };

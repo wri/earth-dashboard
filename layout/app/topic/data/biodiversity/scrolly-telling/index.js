@@ -1,3 +1,3 @@
-import BiodiversityScrollyTellingComponent from './component';
+import BiodiversityScrollyTellingComponent from "./component";
 
 export default BiodiversityScrollyTellingComponent;

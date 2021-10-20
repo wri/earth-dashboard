@@ -1,10 +1,7 @@
-import React from 'react';
-
-// components
-import LayoutAdminDataDetail from 'layout/admin/data-detail';
+import LayoutAdminDataDetail from "layout/admin/data-detail";
 
 function AdminPage() {
-  return (<LayoutAdminDataDetail />);
+  return <LayoutAdminDataDetail />;
 }
 
 export default AdminPage;

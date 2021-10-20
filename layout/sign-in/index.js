@@ -1,13 +1,10 @@
 // Redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // actions
-import { setUser } from 'slices/user';
+import { setUser } from "slices/user";
 
 // component
-import SigIn from './component';
+import SigIn from "./component";
 
-export default connect(
-  null,
-  { setUser }
-)(SigIn);
+export default connect(null, { setUser })(SigIn);

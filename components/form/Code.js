@@ -1,11 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // Components
-import FormElement from './FormElement';
+import FormElement from "./FormElement";
 
 let AceEditor;
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   /* eslint-disable */
   require('brace');
   require('brace/mode/json');
@@ -43,7 +42,7 @@ class Code extends FormElement {
   /**
    * UI EVENTS
    * - triggerChange
-  */
+   */
   triggerChange(value) {
     this.setState({ value: value || JSON.stringify({}, null, 2) }, () => {
       try {
@@ -59,7 +58,7 @@ class Code extends FormElement {
   }
 
   render() {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       return (
         <AceEditor
           name={this.props.properties.name}

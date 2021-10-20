@@ -1,0 +1,149 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize.scss";
+
+.c-scale {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: rgba($colour-galaxy, 0.4);
+  backdrop-filter: blur(1.5px);
+  padding: 12px 24px;
+  border-radius: 16px;
+  transition: opacity 0.3s ease-in;
+
+  label {
+    @include font-size(20px, 30px);
+    font-family: "Barlow Condensed";
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+  }
+
+  &__gradient {
+    max-width: 18px;
+    flex: 1;
+    background: var(--gradient);
+    border-radius: 20px;
+    &::before,
+    &::after {
+      position: absolute;
+      color: white;
+      left: 50%;
+      @include font-size(20px, 20px);
+      min-height: 45px;
+      font-family: "Barlow Condensed";
+      font-weight: 500;
+      transform: translateX(-50%);
+      text-align: center;
+      display: flex;
+      align-items: center;
+    }
+
+    &::before {
+      top: -51px;
+      content: var(--max);
+    }
+    &::after {
+      content: var(--min);
+      bottom: -51px;
+    }
+  }
+
+  &__input-container {
+    position: relative;
+    margin: 55px 0px 60px 0px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__input-thumb {
+    position: absolute;
+    background-color: $colour-flame;
+    display: block;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 4px solid white;
+    left: 22px;
+    transform: translateY(-10px);
+    z-index: 1;
+    transition: all 0.3s linear;
+  }
+
+  &__tooltip {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    p {
+      @include font-size(14px, 21px);
+    }
+  }
+
+  &__tooltip-item {
+    transition: all 0.3s linear;
+  }
+
+  &--horizontal {
+    display: flex;
+    flex-direction: row;
+    height: 12px;
+    padding: 8px 16px 8px 8px;
+    border-radius: 8px;
+    label {
+      @include font-size(16px, 19px);
+      margin-right: 8px;
+    }
+
+    .c-scale__input-container {
+      margin: 0px;
+      margin-bottom: 19px;
+      margin-top: 4px;
+      width: 100%;
+      height: unset;
+      display: flex;
+    }
+
+    .c-scale__input-thumb {
+      width: 14px;
+      height: 14px;
+      border: 2px solid white;
+      transform: translateY(-10px) translateX(3px);
+    }
+
+    .c-scale__tooltip-item {
+      transform: translateX(-50%);
+    }
+
+    .c-scale__gradient {
+      width: 100%;
+      transform: rotate(0deg);
+      max-width: unset;
+      height: 12px;
+
+      &::before,
+      &::after {
+        transform: rotate(0deg);
+        top: unset;
+        bottom: -21px;
+        @include font-size(16px, 19px);
+        min-height: unset;
+      }
+
+      &::before {
+        left: 0px;
+        content: var(--min);
+      }
+      &::after {
+        content: var(--max);
+        left: unset;
+        right: 0;
+      }
+    }
+  }
+}

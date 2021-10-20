@@ -1,8 +1,5 @@
-import React from 'react';
+import SignIn from "layout/sign-in";
 
-// components
-import SignIn from 'layout/sign-in';
+const SignInPage = () => <SignIn />;
 
-export default () => (
-  <SignIn />
-);
+export default SignInPage;

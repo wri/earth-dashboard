@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { toastr } from 'react-redux-toastr';
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { toastr } from "react-redux-toastr";
 
 // components
-import Spinner from 'components/ui/spinner';
+import Spinner from "components/ui/spinner";
 
 // styles
-import styles from './list-widget.module.scss';
+import styles from "./list-widget.module.scss";
 
 function ListWidget(props) {
   const { widget } = props;
@@ -21,29 +21,28 @@ function ListWidget(props) {
 
     fetch(query)
       .then(resp => resp.json())
-      .then((response) => {
+      .then(response => {
         setListdata(response.data);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch(err => {
         toastr.error(`There was an error loading the widget ${widget.name} query: ${err}`);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [widget]);
 
-  const ListTag = numbers ? 'ol' : 'ul';
+  const ListTag = numbers ? "ol" : "ul";
 
   return (
-    <div className={styles['c-list-widget']}>
+    <div className={styles["c-list-widget"]}>
       <Spinner isLoading={loading} className="-relative -light" />
-      <div className={styles['list-heading']}>
-        {heading}
-      </div>
+      <div className={styles["list-heading"]}>{heading}</div>
       <ListTag>
-        {listData.map(elem =>
-            <li>
-                {elem.key}: {elem.value}
-            </li>
-        )}
+        {listData.map(elem => (
+          <li key={elem.key}>
+            {elem.key}: {elem.value}
+          </li>
+        ))}
       </ListTag>
     </div>
   );
