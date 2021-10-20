@@ -23,7 +23,13 @@ const NewsArticle = ({ className, topic, featured, title, author, date, image, l
         {author} . {formatDate(date)}
       </span>
 
-      <a className={styles["c-news-article__link"]} href={link} target="_blank" rel="nofollow noreferrer" onClick={() => fireEvent(NEWS_VIEW_FULL_ARTICLE, topic)}>
+      <a
+        className={styles["c-news-article__link"]}
+        href={link}
+        target="_blank"
+        rel="nofollow noreferrer"
+        onClick={() => fireEvent(NEWS_VIEW_FULL_ARTICLE, topic)}
+      >
         <Image src={ExternalLink} role="presentation" alt="" />
         <span>Read full article</span>
       </a>
