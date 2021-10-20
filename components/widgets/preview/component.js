@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import useWidget from "hooks/useWidget";
@@ -27,8 +28,9 @@ import {
 import styles from "./widget-preview.module.scss";
 import RandomPlaceholder from "components/widgets/random-placeholder";
 
-function WidgetPreview({ widget, showSource, widgetShouldBeLoaded, showLoadingPlaceholder }) {
+function WidgetPreview({ widget, showSource, widgetShouldBeLoaded, showLoadingPlaceholder, isMobile }) {
   const widgetData = useWidget(widget, widgetShouldBeLoaded);
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
   const isServer = typeof window === "undefined";
   const { loading, data } = widgetData;
@@ -44,8 +46,28 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded, showLoadingPl
   const isStaticText = widgetType === STATIC_TEXT_WIDGET_TYPE;
   const widgetEmbedUrl = isEmbed && widgetConfig.url;
 
+  const isMap = widgetType === "map";
+
   return (
-    <ErrorBoundary className={styles["c-widget-preview"]}>
+    <ErrorBoundary
+      className={classnames(styles["c-widget-preview"], isFullScreen && styles["c-widget-preview--full-screen"])}
+    >
+      {isMobile && isMap && !isFullScreen && (
+        <button className={styles["c-widget-preview__open-button"]} onClick={() => setIsFullScreen(true)}>
+          Open map
+        </button>
+      )}
+      {isFullScreen && (
+        <button
+          className={classnames(
+            styles["c-widget-preview__close-button"],
+            "c-button c-button--new-style c-button--flame"
+          )}
+          onClick={() => setIsFullScreen(false)}
+        >
+          Close map
+        </button>
+      )}
       {loading && showLoadingPlaceholder && <RandomPlaceholder />}
       {!loading && !isServer && (
         <div
@@ -72,13 +94,15 @@ WidgetPreview.propTypes = {
   widget: PropTypes.object.isRequired,
   showSource: PropTypes.bool,
   widgetShouldBeLoaded: PropTypes.bool,
-  showLoadingPlaceholder: PropTypes.bool
+  showLoadingPlaceholder: PropTypes.bool,
+  isMobile: PropTypes.bool
 };
 
 WidgetPreview.defaultProps = {
   showSource: false,
   widgetShouldBeLoaded: false,
-  showLoadingPlaceholder: false
+  showLoadingPlaceholder: false,
+  isMobile: false
 };
 
 export default WidgetPreview;

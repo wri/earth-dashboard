@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import useGCAWidgets from "hooks/useGCAWidgets";
 import useNowThisVideos from "hooks/useNowThisVideos";
@@ -22,7 +23,7 @@ import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scs
 import { BANNER_BODY } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 
-const NewsTopicLayout = ({ topic }) => {
+const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
   const {
     isLoading: isPostsLoading,
     hasErrored: hasPostsErrorred,
@@ -34,6 +35,8 @@ const NewsTopicLayout = ({ topic }) => {
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
   const { videos: allNowThisVideos } = useNowThisVideos(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
+  // Store the isMobile flag in the redux store
+  useEffect(() => setIsMobile(isMobile), [isMobile, setIsMobile]);
 
   let mostRecentArticle,
     otherArticles,

@@ -61,6 +61,7 @@
 
   &__cta {
     margin-right: 6px;
+    z-index: 0;
   }
 
   @media screen and (max-width: $global-breakpoint-md) {
