@@ -112,7 +112,8 @@ const MapIframe = forwardRef(
 
         // Set the data layers
         let animation = { animation_enabled: false };
-        if (animationEnabled) {
+
+        if (animationEnabled && animationValue) {
           animation = { animation_type: animationValue, animation_enabled: true };
         }
         const monitor = monitorValue ? { annotation_type: monitorValue } : { annotation_type: "none" };
@@ -175,35 +176,6 @@ const MapIframe = forwardRef(
         });
       }
     }, [currentLocation, earthServer]);
-
-    // Find the Date of the Data being displayed
-    useEffect(() => {
-      const dates = [];
-
-      layers?.forEach(layer => {
-        if (!layer || !layer.product || !layer.product.validTime) return;
-
-        // Safari does not like the format given. Pass through Moment to get a standard date object
-        dates.push(moment(layer.product.validTime).toDate());
-      });
-
-      if (dates.length) {
-        // Set the current date as the biggest date
-        setDateOfDataShown(
-          dates
-            .reduce((accumulator, currentValue) => {
-              if (!accumulator) return currentValue;
-
-              if (currentValue.getTime() > accumulator.getTime()) {
-                return currentValue;
-              } else {
-                return accumulator;
-              }
-            }, null)
-            .toString()
-        );
-      }
-    }, [layers, setDateOfDataShown]);
 
     useEffect(() => {
       if (earthServer.current && dateOfDataShown) {
