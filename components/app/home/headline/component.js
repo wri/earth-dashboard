@@ -7,9 +7,6 @@ import { useMemo, useEffect } from "react";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME } from "constants/tag-manager";
 
-const ZOOM_MIN = 600;
-const ZOOM_MAX = 25000;
-
 const Headline = ({
   headline,
   className,
@@ -39,11 +36,7 @@ const Headline = ({
   useEffect(() => {
     if (headline?.attributes.location) {
       setCurrentLocation([headline?.attributes.location.lat, headline?.attributes.location.lng]);
-
-      // Get the scale, percentage between the min and max;
-      const scale = (headline.attributes.zoom_percentage / 100) * (ZOOM_MAX - ZOOM_MIN) + ZOOM_MIN;
-
-      setCurrentScale(scale);
+      setCurrentScale(headline.attributes.zoom_level);
       setCurrentScaleBy(1);
     }
 
