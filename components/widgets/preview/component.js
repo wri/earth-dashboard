@@ -30,7 +30,7 @@ import RandomPlaceholder from "components/widgets/random-placeholder";
 
 function WidgetPreview({ widget, showSource, widgetShouldBeLoaded, showLoadingPlaceholder, isMobile }) {
   const widgetData = useWidget(widget, widgetShouldBeLoaded);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isMapOpen, setIsMapOpen] = useState(false);
 
   const isServer = typeof window === "undefined";
   const { loading, data } = widgetData;
@@ -49,21 +49,19 @@ function WidgetPreview({ widget, showSource, widgetShouldBeLoaded, showLoadingPl
   const isMap = widgetType === "map";
 
   return (
-    <ErrorBoundary
-      className={classnames(styles["c-widget-preview"], isFullScreen && styles["c-widget-preview--full-screen"])}
-    >
-      {isMobile && isMap && !isFullScreen && (
-        <button className={styles["c-widget-preview__open-button"]} onClick={() => setIsFullScreen(true)}>
+    <ErrorBoundary className={classnames(styles["c-widget-preview"])}>
+      {isMobile && isMap && !isMapOpen && (
+        <button className={styles["c-widget-preview__open-button"]} onClick={() => setIsMapOpen(true)}>
           Open map
         </button>
       )}
-      {isFullScreen && (
+      {isMapOpen && (
         <button
           className={classnames(
             styles["c-widget-preview__close-button"],
             "c-button c-button--new-style c-button--flame"
           )}
-          onClick={() => setIsFullScreen(false)}
+          onClick={() => setIsMapOpen(false)}
         >
           Close map
         </button>

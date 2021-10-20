@@ -162,7 +162,7 @@ const MapIframe = forwardRef(
     }, [currentPosition, earthServer, setCurrentLocation, setShouldFetchLocation]);
 
     useEffect(() => {
-      if (earthServer && currentLocation) {
+      if (earthServer.current && currentLocation) {
         const long = currentLocation[1];
         const lat = currentLocation[0];
 
@@ -175,7 +175,7 @@ const MapIframe = forwardRef(
           scaleBy
         });
       }
-    }, [currentLocation, earthServer]);
+    }, [currentLocation, earthServer.current]);
 
     useEffect(() => {
       if (earthServer.current && dateOfDataShown) {
