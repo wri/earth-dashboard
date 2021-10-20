@@ -67,10 +67,10 @@ const useMongabayPosts = (topic, limit = LIMIT) => {
     posts,
     canFetchMore: data?.posts.pageInfo.hasNextPage && networkStatus !== NetworkStatus.refetch && !error,
     isFetchingMore: networkStatus === NetworkStatus.fetchMore,
-    fetchMore: () =>
+    fetchMore: (loadMoreLimit = limit) =>
       fetchMore({
         variables: {
-          first: limit,
+          first: loadMoreLimit,
           after: data.posts.pageInfo.endCursor
         }
       })

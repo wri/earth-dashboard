@@ -22,6 +22,9 @@ import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scs
 import { BANNER_BODY } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 
+const LIMIT = 10;
+const LOAD_MORE_LIMIT = 9;
+
 const NewsTopicLayout = ({ topic }) => {
   const {
     isLoading: isPostsLoading,
@@ -30,7 +33,7 @@ const NewsTopicLayout = ({ topic }) => {
     canFetchMore,
     isFetchingMore,
     fetchMore
-  } = useMongabayPosts(topic);
+  } = useMongabayPosts(topic, LIMIT);
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
   const { videos: allNowThisVideos } = useNowThisVideos(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
@@ -112,7 +115,7 @@ const NewsTopicLayout = ({ topic }) => {
           <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
             <AnchorCTA
               className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]}
-              onClick={fetchMore}
+              onClick={() => fetchMore(LOAD_MORE_LIMIT)}
             >
               Load More {isFetchingMore && "Loading..."}
             </AnchorCTA>
