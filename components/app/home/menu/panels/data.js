@@ -42,7 +42,7 @@ const DataPanel = ({
 
   const source = useMemo(() => {
     const layer = layers.find(layer => layer?.type === "overlay");
-    return layer ? `Source: ${layer.product.source}` : "";
+    return layer?.product?.source ? `Source: ${layer.product.source}` : "";
   }, [layers]);
 
   const description = useMemo(() => {
@@ -62,10 +62,15 @@ const DataPanel = ({
   return (
     <>
       <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
-        Dive deeper into the full datasets available. Combine and overlay data to create unique maps and visualizations.
-        Powered by Earth Nullschool.
+        {description} <br /> {source}
       </p>
-      <div className={classnames(styles["c-home-menu__tab-panel-scroll-area"], "u-padding-top-none")}>
+      <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
+        <p className={classnames(styles["c-home-menu__powered-by"], "u-text-right", "u-margin-none")}>
+          Powered by{" "}
+          <a href="https://earth.nullschool.net" target="_blank" rel="nofollow noreferrer">
+            earth.nullschool.net
+          </a>
+        </p>
         <ToggleList
           selectedValue={currentMode.id || null}
           onSelect={value => {
@@ -75,7 +80,10 @@ const DataPanel = ({
           }}
           title="Choose a mode"
           description="The modes provide an overview of the climatic condition. Each category contains data that will help you understand how that category is affected by different factors."
-          className={styles["c-home-menu__data-selection-item"]}
+          className={classnames(
+            styles["c-home-menu__data-selection-item"],
+            styles["c-home-menu__data-selection-item--no-top-margin"]
+          )}
         >
           {availableModes.map(template => (
             <ToggleItem value={template.id} className="u-margin-right-xxs u-margin-bottom-s" key={template.id}>
