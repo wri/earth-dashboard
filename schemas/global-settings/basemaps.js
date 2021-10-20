@@ -1,6 +1,7 @@
 import RadioImage from "components/form/radio-image";
 import { setSettingById, getSettingValueById } from "slices/globalSettings";
-import imageTest from "public/static/images/star-background.jpg";
+import geographyImage from "public/static/images/basemaps/geography-basemap-thumbnail.png";
+import simpleImage from "public/static/images/basemaps/simple-basemap-thumbnail.png";
 
 export const ID = "basemaps";
 
@@ -10,8 +11,8 @@ const basemapsSchema = {
     name: ID,
     label: "Basemaps",
     options: [
-      { id: "geography", label: "Geography", image: imageTest },
-      { id: "simple", label: "Simple", image: imageTest }
+      { id: "geography", label: "Geography", image: geographyImage },
+      { id: "simple", label: "Simple", image: simpleImage }
     ],
     getSelectedOption: () => getSettingValueById(ID),
     handleChange: id => setSettingById({ id: ID, newState: id })
