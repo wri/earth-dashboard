@@ -2,7 +2,7 @@ import classnames from "classnames";
 import styles from "./news-article.module.scss";
 import Image from "next/image";
 import { formatDate } from "utils/dates";
-import ExternalLink from "public/static/icons/external-link.svg";
+import ExternalLink from "components/ui/external-link";
 import PropTypes from "prop-types";
 import { fireEvent } from "utils/gtag";
 import { NEWS_VIEW_FULL_ARTICLE } from "constants/tag-manager";
@@ -23,16 +23,7 @@ const NewsArticle = ({ className, topic, featured, title, author, date, image, l
         {author} . {formatDate(date)}
       </span>
 
-      <a
-        className={styles["c-news-article__link"]}
-        href={link}
-        target="_blank"
-        rel="nofollow noreferrer"
-        onClick={() => fireEvent(NEWS_VIEW_FULL_ARTICLE, topic)}
-      >
-        <Image src={ExternalLink} role="presentation" alt="" />
-        <span>Read full article</span>
-      </a>
+      <ExternalLink className={styles["c-news-article__link"]} onClick={() => fireEvent(NEWS_VIEW_FULL_ARTICLE, topic)} link={link} label="Read full article" />
     </div>
   </article>
 );

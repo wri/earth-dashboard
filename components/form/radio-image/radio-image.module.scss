@@ -23,10 +23,6 @@
   &__input {
     @include visually-hidden;
 
-    &:focus ~ #{$this}__input-label #{$this}__image {
-      box-shadow: 0px 0px 2px 3px $colour-flame;
-    }
-
     &:checked ~ #{$this}__input-label #{$this}__image {
       border-color: $colour-flame;
     }

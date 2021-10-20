@@ -30,6 +30,11 @@ jest.mock("hooks/useMongabayPosts", () => () => ({
   fetchMore: () => {}
 }));
 
+jest.mock("hooks/useWidget", () => () => ({
+  loading: false,
+  data: []
+}));
+
 jest.mock("components/widgets/preview", () => ({ widget }) => <div data-widgetid={widget.id} />);
 
 jest.mock("hooks/useNowThisVideos", () => () => ({

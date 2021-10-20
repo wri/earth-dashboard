@@ -7,8 +7,8 @@ import { useMemo, useEffect } from "react";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME } from "constants/tag-manager";
 
-const ZOOM_MIN = 25;
-const ZOOM_MAX = 250000;
+const ZOOM_MIN = 600;
+const ZOOM_MAX = 25000;
 
 const Headline = ({
   headline,
@@ -18,6 +18,7 @@ const Headline = ({
   setCurrentLocation,
   setCurrentScale,
   setCurrentScaleBy,
+  setDateOfDataShown,
   ...rest
 }) => {
   const isBrowser = typeof window !== "undefined";
@@ -41,10 +42,15 @@ const Headline = ({
 
       // Get the scale, percentage between the min and max;
       const scale = (headline.attributes.zoom_percentage / 100) * (ZOOM_MAX - ZOOM_MIN) + ZOOM_MIN;
+
       setCurrentScale(scale);
       setCurrentScaleBy(1);
     }
-  }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy]);
+
+    if (headline?.attributes.climate_alert_date) {
+      setDateOfDataShown(new Date(headline?.attributes.climate_alert_date).toString());
+    }
+  }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy, setDateOfDataShown]);
 
   return (
     <article className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
@@ -109,7 +115,8 @@ Headline.propTypes = {
   setIsDatePickerDisabled: PropTypes.func.isRequired,
   setCurrentLocation: PropTypes.func.isRequired,
   setCurrentScale: PropTypes.func.isRequired,
-  setCurrentScaleBy: PropTypes.func.isRequired
+  setCurrentScaleBy: PropTypes.func.isRequired,
+  setDateOfDataShown: PropTypes.func.isRequired
 };
 
 Headline.defaultProps = {

@@ -70,9 +70,9 @@ export const formatDate = (date, format = "YYYY-MM-DD") => {
   return compact([year, month, day]).join("-");
 };
 
-export const getYear = date => new Date(date).getUTCFullYear();
+export const getYear = date => (date ? new Date(date).getUTCFullYear() : new Date().getUTCFullYear());
 
-export const getDayOfYear = date => new Date(date).getDate();
+export const getDayOfYear = date => (date ? new Date(date).getDate() : new Date().getDate());
 
 export const formatDatePretty = (date, dateFormat = "YYYY-MM-DD") => {
   const d = new Date(date);

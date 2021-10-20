@@ -21,7 +21,7 @@ $c-mega-menu-padding-x-desktop: 60px;
   width: 100%;
   flex: 0 1 100%;
   max-width: 1246px + $c-mega-menu-padding-x-desktop;
-  padding: 24px 12px 20px;
+  padding: 10px 12px 20px;
   margin: 0 auto;
   overflow: hidden;
   opacity: 0;
@@ -66,7 +66,7 @@ $c-mega-menu-padding-x-desktop: 60px;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
-    padding: 24px 30px;
+    padding: 0 30px 24px;
 
     &__scroll {
       padding: 0 30px;
@@ -89,7 +89,7 @@ $c-mega-menu-padding-x-desktop: 60px;
   }
 
   @media screen and (min-width: $global-breakpoint-lg) {
-    padding-top: 70px;
+    padding-top: 46px;
 
     &__ctas {
       padding-bottom: 70px;

@@ -5,7 +5,6 @@ import styles from "components/app/home/map-controls/map-controls.module.scss";
 
 const projectionTypeConfig = {
   key: "projection-type-control",
-  className: styles["c-map-controls--projection-type"],
   icon: twoDIcon,
   activeIcon: threeDIcon,
   isActiveSelector: isGlobe2d,

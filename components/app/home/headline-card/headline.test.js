@@ -15,18 +15,18 @@ test("<HeadlineCard /> renders correctly as a Button", async () => {
       alt=""
       class="c-headline-card__image"
       role="presentation"
-      src="http://localhost:9000/gca-earth-hq/dicta.png"
+      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/eXMDncblKbGWuE4Rrt3Ywa6682IzfGfIPIabGKoq.jpg"
     />
     <div>
       <h3
         class="c-headline-card__title"
       >
-        Consequuntur sunt voluptate rerum nemo suscipit et.
+        Rerum illo excepturi nobis quam earum corrupti at.
       </h3>
       <p
         class="c-headline-card__subtitle"
       >
-        9th September 2021
+        14th September 2021
       </p>
     </div>
   </button>
@@ -47,18 +47,18 @@ test("<HeadlineCard /> renders correctly by default", async () => {
       alt=""
       class="c-headline-card__image"
       role="presentation"
-      src="http://localhost:9000/gca-earth-hq/dicta.png"
+      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/eXMDncblKbGWuE4Rrt3Ywa6682IzfGfIPIabGKoq.jpg"
     />
     <div>
       <h3
         class="c-headline-card__title"
       >
-        Consequuntur sunt voluptate rerum nemo suscipit et.
+        Rerum illo excepturi nobis quam earum corrupti at.
       </h3>
       <p
         class="c-headline-card__subtitle"
       >
-        9th September 2021
+        14th September 2021
       </p>
     </div>
   </div>
