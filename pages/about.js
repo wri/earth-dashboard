@@ -1,17 +1,5 @@
-import LayoutHome from "layout/app/home";
+import AboutUsLayout from "layout/app/about-us";
 
-// constants
-import { ABOUT_HEADER_TAB } from "layout/header/constants";
+const AboutUsPage = () => <AboutUsLayout />;
 
-function HomePage() {
-  return (
-    <LayoutHome
-      openHeaderMenu={true}
-      headerTabSelected={ABOUT_HEADER_TAB}
-      title="What is the Earth Dashboard?"
-      description="We created the Earth Dashboard as a “Situation Room” for the planet."
-    />
-  );
-}
-
-export default HomePage;
+export default AboutUsPage;

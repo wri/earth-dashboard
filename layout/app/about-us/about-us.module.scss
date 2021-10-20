@@ -1,0 +1,22 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-about-us {
+  &,
+  > * {
+    color: $white;
+    @include font-size(14px, 21px);
+    font-weight: 500;
+  }
+
+  &__list {
+    margin: 0;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
