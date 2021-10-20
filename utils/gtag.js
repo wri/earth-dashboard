@@ -2,8 +2,7 @@
 // environment for example on localhost
 export const DEBUG = false;
 
-// export const GA_TRACKING_ID = "G-CSQTS8BFK6";
-export const GA_TRACKING_ID = "GTM-W4WTJL2";
+export const GA_TRACKING_ID = process.env.GA4_ID;
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = url => {
@@ -28,6 +27,18 @@ export const logEvent = ({ action, category, label, value }) => {
   }
 };
 
+/**
+ * Will fire the event using the dataLayer array from Tag Manager
+ * Or, if not in production will log the payload to the console.
+ *
+ * @param {String} eventName
+ *        The event name that is recognised by Tag Manager,
+ *         either a default event or a custom one
+ * @param {String} param
+ *        The extra dataLayer param that can be passed along with each Tag
+ * @param {...Object} rest
+ *        Any extra params that need to be passed along with the event
+ */
 export const fireEvent = (eventName, param, ...rest) => {
   if (!eventName) {
     console.log("An Event name is required to fire a GA Event");
