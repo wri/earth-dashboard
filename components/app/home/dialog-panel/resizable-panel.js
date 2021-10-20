@@ -34,7 +34,10 @@ const ResizablePanel = forwardRef(({ isMobile, children, height, onResize }, ref
       {children}
     </Resizable>
   ) : (
-    children
+    <div ref={ref}>
+      {/* <FocusTrap> needs to be able to get a reference to the underlying HTML element */}
+      {children}
+    </div>
   );
 });
 
