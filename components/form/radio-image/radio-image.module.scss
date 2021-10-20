@@ -51,15 +51,17 @@
     }
   }
 
+  @media screen and (min-width: $global-breakpoint-sm) {
+    &__options {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+  }
+
   @media screen and (min-width: $global-breakpoint-md) {
     &__label {
       margin-bottom: 16px;
       @include font-size(18px, 27px);
-    }
-
-    &__options {
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
     }
 
     &__image {
