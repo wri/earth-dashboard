@@ -77,7 +77,6 @@
     right: 0;
     top: 0;
     padding: 12px 28px;
-    min-height: 66px;
     &:after {
       content: "";
       display: block;
@@ -141,6 +140,9 @@
     margin-top: 20px !important;
     &--no-top-margin {
       margin-top: 0px !important; // TODO - sort this important nightmare!
+    }
+    &--no-bottom-border {
+      border-bottom: 0px !important;
     }
   }
 

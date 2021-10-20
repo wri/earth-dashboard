@@ -1,4 +1,6 @@
-*, *:after, *:before {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
 }
 
@@ -27,7 +29,7 @@ body {
 
 hr {
   margin: 50px 0;
-  border-top: 1px solid #CBCCD0;
+  border-top: 1px solid #cbccd0;
 }
 
 a {
@@ -87,10 +89,15 @@ button {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-top: 0;
   color: $header-font-color;
-  font-family: 'Barlow Condensed';
+  font-family: "Barlow Condensed";
 }
 
 h1 {
@@ -140,7 +147,10 @@ p {
   }
 }
 
-input, button, select, textarea {
+input,
+button,
+select,
+textarea {
   font-family: $body-font-family;
   font-size: $font-size-normal;
 }
@@ -160,10 +170,9 @@ input, button, select, textarea {
 
 .-desktopOnly {
   @media screen and (max-width: map-get($breakpoints, medium)) {
-    display: none!important;
+    display: none !important;
   }
 }
-
 
 // --------------------- EXTERNAL LINKS -----------------------
 .external-link {
@@ -171,42 +180,42 @@ input, button, select, textarea {
 
   &.-forests {
     box-shadow: inset 0 -0.125em $forests;
-    &:hover{
+    &:hover {
       box-shadow: inset 0 -0.25em $forests;
     }
   }
 
   &.-ocean {
     box-shadow: inset 0 -0.125em $ocean;
-    &:hover{
+    &:hover {
       box-shadow: inset 0 -0.25em $ocean;
     }
   }
 
   &.-climate {
     box-shadow: inset 0 -0.125em $climate;
-    &:hover{
+    &:hover {
       box-shadow: inset 0 -0.25em $climate;
     }
   }
 
   &.-freshwater {
     box-shadow: inset 0 -0.125em $freshwater;
-    &:hover{
+    &:hover {
       box-shadow: inset 0 -0.25em $freshwater;
     }
   }
 
   &.-biodiversity {
     box-shadow: inset 0 -0.125em $grey-darker;
-    &:hover{
+    &:hover {
       box-shadow: inset 0 -0.25em $grey-darker;
     }
   }
 
   &.-white {
     box-shadow: inset 0 -0.125em $white;
-    &:hover{
+    &:hover {
       box-shadow: inset 0 -0.25em $white;
     }
   }
@@ -257,4 +266,8 @@ input, button, select, textarea {
 
 .bold {
   font-weight: 500;
+}
+
+.map-leaflet {
+  border-radius: 16px;
 }
