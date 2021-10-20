@@ -20,7 +20,6 @@ import TOPICS from "constants/news";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import videoArticleStyles from "components/video-article/video-article.module.scss";
 import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scss";
-import { BANNER_BODY } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 import heroBannerTexts from "constants/news/banners";
 
