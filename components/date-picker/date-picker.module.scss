@@ -43,6 +43,10 @@
     height: 32px;
     background-color: $colour-flame;
 
+    &--rotate {
+      transform: rotate(180deg);
+    }
+
     &:hover,
     &:focus {
       background-color: $colour-space;
