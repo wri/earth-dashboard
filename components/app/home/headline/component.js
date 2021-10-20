@@ -6,8 +6,8 @@ import WidgetPreview from "components/widgets/preview";
 import { useMemo, useEffect } from "react";
 import { logEvent } from "utils/gtag";
 
-const ZOOM_MIN = 25;
-const ZOOM_MAX = 250000;
+const ZOOM_MIN = 600;
+const ZOOM_MAX = 25000;
 
 const Headline = ({
   headline,
@@ -41,6 +41,7 @@ const Headline = ({
 
       // Get the scale, percentage between the min and max;
       const scale = (headline.attributes.zoom_percentage / 100) * (ZOOM_MAX - ZOOM_MIN) + ZOOM_MIN;
+
       setCurrentScale(scale);
       setCurrentScaleBy(1);
     }
