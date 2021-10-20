@@ -10,3 +10,7 @@ export const ADVANCED_MENU_AIR_HEIGHT = "advanced_menu_air_height";
 export const ADVANCED_MENU_OVERLAY = "advanced_menu_overlay";
 export const ADVANCED_MENU_ANNOTATION = "advanced_menu_annotation";
 export const ADVANCED_MENU_ANIMATION = "advanced_menu_animation";
+
+export const VIDEO_START = "video_start";
+
+export const NEWS_VIEW_FULL_ARTICLE = "news_view_full_article";
