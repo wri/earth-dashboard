@@ -206,6 +206,11 @@ $c-news-article-transition: 0.3s ease-in-out;
   @media screen and (min-width: $global-breakpoint-lg) {
     margin: 0 -15px;
 
+    &__column:first-child {
+      flex-grow: 1;
+      max-width: 100%;
+    }
+
     &__column {
       flex: 0 0 50%;
       max-width: 50%;
