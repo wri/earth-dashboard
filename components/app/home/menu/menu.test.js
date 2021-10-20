@@ -123,18 +123,18 @@ test("<Menu /> renders correctly as desktop", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/NacueP1wLLPka4nSGQVDxp2MDdaHUCJAC324EGqz.jpg"
+                      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/p2qlispRhUW2G6pMaV4xPeRO9tLODNREChXAo901.jpg"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        One of four North Atlantic right whale calves spotted so far this breeding season struck by ship
+                        After surge, Amazon deforestation slows for second straight month
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        15th September 2021
+                        10th September 2021
                       </p>
                     </div>
                   </button>
@@ -146,18 +146,18 @@ test("<Menu /> renders correctly as desktop", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/temporibus.png"
+                      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/gNIuBNcbSCvyqleVuLNA5OwpOU8YeWvSZ2dxr9dp.png"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        A ea modi id error qui.
+                        Air Quality Widget Example
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        9th September 2021
+                        14th September 2021
                       </p>
                     </div>
                   </button>
@@ -169,18 +169,18 @@ test("<Menu /> renders correctly as desktop", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/reiciendis.png"
+                      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/Gnx6T2S0oyiq5YCKmrfNJpe0K5fwrWcdKV2H0kqo.png"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        Praesentium nobis vel necessitatibus.
+                        Another Widget Example
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        9th September 2021
+                        14th September 2021
                       </p>
                     </div>
                   </button>
@@ -192,18 +192,18 @@ test("<Menu /> renders correctly as desktop", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/et.png"
+                      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/qtPyJsfODBzLyWbi2ekjlMY8dqNJChePahN8JJNj.png"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        Minima velit nam sunt.
+                        Repellat quasi quia quasi dolorem provident sed.
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        9th September 2021
+                        14th September 2021
                       </p>
                     </div>
                   </button>
@@ -215,18 +215,18 @@ test("<Menu /> renders correctly as desktop", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/dicta.png"
+                      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/eXMDncblKbGWuE4Rrt3Ywa6682IzfGfIPIabGKoq.jpg"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        Consequuntur sunt voluptate rerum nemo suscipit et.
+                        Rerum illo excepturi nobis quam earum corrupti at.
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        9th September 2021
+                        14th September 2021
                       </p>
                     </div>
                   </button>
@@ -383,18 +383,18 @@ test("<Menu /> renders correctly as mobile", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/NacueP1wLLPka4nSGQVDxp2MDdaHUCJAC324EGqz.jpg"
+                      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/p2qlispRhUW2G6pMaV4xPeRO9tLODNREChXAo901.jpg"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        One of four North Atlantic right whale calves spotted so far this breeding season struck by ship
+                        After surge, Amazon deforestation slows for second straight month
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        15th September 2021
+                        10th September 2021
                       </p>
                     </div>
                   </button>
@@ -406,18 +406,18 @@ test("<Menu /> renders correctly as mobile", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/temporibus.png"
+                      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/gNIuBNcbSCvyqleVuLNA5OwpOU8YeWvSZ2dxr9dp.png"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        A ea modi id error qui.
+                        Air Quality Widget Example
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        9th September 2021
+                        14th September 2021
                       </p>
                     </div>
                   </button>
@@ -429,18 +429,18 @@ test("<Menu /> renders correctly as mobile", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/reiciendis.png"
+                      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/Gnx6T2S0oyiq5YCKmrfNJpe0K5fwrWcdKV2H0kqo.png"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        Praesentium nobis vel necessitatibus.
+                        Another Widget Example
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        9th September 2021
+                        14th September 2021
                       </p>
                     </div>
                   </button>
@@ -452,18 +452,18 @@ test("<Menu /> renders correctly as mobile", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/et.png"
+                      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/qtPyJsfODBzLyWbi2ekjlMY8dqNJChePahN8JJNj.png"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        Minima velit nam sunt.
+                        Repellat quasi quia quasi dolorem provident sed.
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        9th September 2021
+                        14th September 2021
                       </p>
                     </div>
                   </button>
@@ -475,18 +475,18 @@ test("<Menu /> renders correctly as mobile", async () => {
                       alt=""
                       class="c-headline-card__image"
                       role="presentation"
-                      src="http://localhost:9000/gca-earth-hq/dicta.png"
+                      src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/eXMDncblKbGWuE4Rrt3Ywa6682IzfGfIPIabGKoq.jpg"
                     />
                     <div>
                       <h3
                         class="c-headline-card__title"
                       >
-                        Consequuntur sunt voluptate rerum nemo suscipit et.
+                        Rerum illo excepturi nobis quam earum corrupti at.
                       </h3>
                       <p
                         class="c-headline-card__subtitle"
                       >
-                        9th September 2021
+                        14th September 2021
                       </p>
                     </div>
                   </button>

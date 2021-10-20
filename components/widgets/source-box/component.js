@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import ExternalLink from "components/ui/external-link";
 
 // styles
 import styles from "./source-box.module.scss";
@@ -15,19 +16,8 @@ function SourceBox({ source }) {
             <div className={styles["source-container"]} key={`container-${sourcePrefix?.label}-${sourceSuffix?.label}`}>
               <div className={styles.prefix}>
                 {sourcePrefix?.link && sourcePrefix?.label && (
-                  <a href={sourcePrefix?.link} target="_blank" rel="noreferrer">
-                    {sourcePrefix?.label}
-                  </a>
+                  <ExternalLink link={sourcePrefix?.link} label={sourcePrefix?.label} />
                 )}
-                {!sourcePrefix?.link && sourcePrefix?.label && <span>{sourcePrefix?.label}</span>}
-              </div>
-              <div className={styles.suffix}>
-                {sourceSuffix?.link && sourceSuffix?.label && (
-                  <a href={sourceSuffix?.link} target="_blank" rel="noreferrer">
-                    ({sourceSuffix?.label})
-                  </a>
-                )}
-                {!sourceSuffix?.link && sourceSuffix?.label && <span>{sourceSuffix?.label}</span>}
               </div>
             </div>
           );

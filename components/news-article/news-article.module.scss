@@ -41,6 +41,8 @@ $c-news-article-transition: 0.3s ease-in-out;
 
     #{$this} {
       &__image {
+        width: auto;
+        height: auto;
         border-radius: 0px;
       }
 
@@ -59,8 +61,15 @@ $c-news-article-transition: 0.3s ease-in-out;
     }
   }
 
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__image {
     position: relative;
+    width: 104px;
+    height: 104px;
     border-radius: 12px;
     overflow: hidden;
 
@@ -78,8 +87,7 @@ $c-news-article-transition: 0.3s ease-in-out;
   }
 
   &__title,
-  &__date,
-  &__link {
+  &__date {
     display: block;
     font-weight: 500;
     color: $white;
@@ -92,27 +100,17 @@ $c-news-article-transition: 0.3s ease-in-out;
 
   &__date {
     @include font-size(11px, 16.5px);
+    margin-top: auto;
     margin-bottom: 10px;
   }
 
-  &__link {
-    display: flex;
-    align-items: center;
-    @include font-size(12px, 18px);
-    text-decoration: underline;
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
-
-    > span {
-      margin-left: 6px;
-    }
+  &__link:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
@@ -142,6 +140,8 @@ $c-news-article-transition: 0.3s ease-in-out;
     }
 
     &__image {
+      width: auto;
+      height: auto;
       border-radius: 0;
     }
 
@@ -161,14 +161,6 @@ $c-news-article-transition: 0.3s ease-in-out;
     &__date {
       @include font-size(12px, 18px);
       margin-bottom: 12px;
-    }
-
-    &__link {
-      @include font-size(14px, 21px);
-
-      > span {
-        margin-left: 8px;
-      }
     }
   }
 }
@@ -193,6 +185,11 @@ $c-news-article-transition: 0.3s ease-in-out;
 
   @media screen and (min-width: $global-breakpoint-lg) {
     margin: 0 -15px;
+
+    &__column:first-child {
+      flex-grow: 1;
+      max-width: 100%;
+    }
 
     &__column {
       flex: 0 0 50%;
