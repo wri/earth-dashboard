@@ -7,9 +7,17 @@ import DataPanel from "./panels/data";
 import HeadlinePanel from "./panels/climate-alerts";
 import DataHighlightsPanel from "./panels/data-highlights";
 import ResizablePanel from "components/app/home/dialog-panel/resizable-panel";
+import { fireEvent } from "utils/gtag";
+import { MENU_TAB_CHANGE_EVENT_NAME } from "constants/tag-manager";
 
 const INFO_TAB_INDEX = 3;
 const DATA_TAB_INDEX = 2;
+
+const TAB_NAME_BY_TAB_INDEX = {
+  0: "Climate Alerts",
+  1: "Data Highlights",
+  2: "Advanced Menu"
+};
 
 const Menu = forwardRef(
   (
@@ -49,6 +57,12 @@ const Menu = forwardRef(
       return tabIndex === INFO_TAB_INDEX || forceInfoPage;
     }, [forceInfoPage, tabIndex]);
 
+    const fireGAEvent = (index = tabIndex) => {
+      if (TAB_NAME_BY_TAB_INDEX[index]) {
+        fireEvent(MENU_TAB_CHANGE_EVENT_NAME, TAB_NAME_BY_TAB_INDEX[index]);
+      }
+    };
+
     const onBack = () => {
       if (tabIndex === INFO_TAB_INDEX) {
         setTabIndex(DATA_TAB_INDEX);
@@ -57,14 +71,16 @@ const Menu = forwardRef(
       setInfoData(null);
     };
 
-    useEffect(
-      () => () => {
+    useEffect(() => {
+      // on mount
+      fireGAEvent();
+
+      return () => {
         // on unmount
         setIsFetchLocationDisabled(false);
         setCurrentHeadline(null);
-      },
-      [setCurrentHeadline, setIsFetchLocationDisabled]
-    );
+      };
+    }, [setCurrentHeadline, setIsFetchLocationDisabled]);
 
     return (
       <div
@@ -84,6 +100,8 @@ const Menu = forwardRef(
               onSelect={index => {
                 setTabIndex(index);
                 setIsFetchLocationDisabled(false);
+
+                fireGAEvent(index);
               }}
               className={styles["c-home-menu__tabs"]}
               domRef={el => {
