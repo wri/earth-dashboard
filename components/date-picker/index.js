@@ -6,7 +6,6 @@ import useCalendar from "@veccu/react-calendar";
 import { format } from "date-fns";
 import IconButton from "components/ui/icon-button";
 import chevronRightSVG from "public/static/icons/chevron-right.svg";
-import chevronLeftSVG from "public/static/icons/chevron-left.svg";
 import liveSVG from "public/static/icons/live.svg";
 import SelectInput from "components/ui/select";
 import Image from "next/image";
@@ -86,8 +85,8 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
         <div className={styles["c-date-picker__month-buttons"]}>
           <IconButton
             onClick={navigation.toPrev}
-            className={styles["c-date-picker__month-button"]}
-            icon={chevronLeftSVG}
+            className={classnames(styles["c-date-picker__month-button"], styles["c-date-picker__month-button--rotate"])}
+            icon={chevronRightSVG}
             disabled={month === 0 && year === MIN_YEAR}
           />
 
