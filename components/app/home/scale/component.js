@@ -32,6 +32,11 @@ const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizon
 
   const percent = ((valueParsed - minParsed) * 100) / (maxParsed - minParsed);
 
+  // TODO - use log percent when we know what the scale type will be.
+  const logPercent =
+    ((Math.log(valueParsed) - Math.log(minParsed)) * 100) / (Math.log(maxParsed) - Math.log(minParsed));
+
+  // console.log({percent, logPercent});
   return (
     <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>
       <label htmlFor="scale">Scale</label>
