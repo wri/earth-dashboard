@@ -88,7 +88,7 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
         )}
         {firstWidget && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
-            <Widget data-testid="first-widget" widget={firstWidget} />
+            <Widget data-testid="first-widget" widget={firstWidget} bordered={true} />
           </div>
         )}
       </Section>

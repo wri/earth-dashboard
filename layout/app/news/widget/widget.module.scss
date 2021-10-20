@@ -17,6 +17,13 @@
     }
   }
 
+  &--bordered {
+    padding: 24px 32px;
+    background-color: $colour-galaxy;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
   &__widget {
     height: 100%;
     width: 100%;
