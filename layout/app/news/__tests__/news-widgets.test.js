@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import { render, waitFor, act } from "test-utils";
-import NewsTopicLayout from "../component";
+import NewsTopicLayout from "../index";
 import * as GCAServices from "services/gca";
 
 const WIDGETS = [
