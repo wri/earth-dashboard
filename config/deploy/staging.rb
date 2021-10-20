@@ -12,5 +12,5 @@ set :default_env, {
   'NULL_SCHOOL_IFRAME_BASE' => 'https://earthhq.nullschool.net',
   'APPLICATIONS' => 'earthhq',
   'SENTRY_AUTH_TOKEN' => ENV['SENTRY_AUTH_TOKEN'],
-  'GA4_ID' => ENV['GA4_ID'],
+  'GA4_ID' => ENV['GA4_ID']
 }
