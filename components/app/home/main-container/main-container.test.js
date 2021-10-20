@@ -32,7 +32,9 @@ const mockIframeBridge = {
   iframeRef: {
     current: null
   },
-  layers: []
+  layers: [],
+  disableToolTip: () => {},
+  enableToolTip: () => {}
 };
 
 test("<MainContainer /> renders correctly as desktop", async () => {

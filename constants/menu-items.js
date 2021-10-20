@@ -1,38 +1,43 @@
-import EarthHQImage from "public/static/images/earth-hq.png";
 import TwitterIcon from "public/static/icons/twitter.svg";
 import LinkedInIcon from "public/static/icons/linkedin.svg";
 
 export const MenuItems = [
   {
     key: "earth-hq",
-    image: EarthHQImage,
-    label: "Earth HQ",
-    body: "A “Situation Room” for the planet. Earth HQ is an interactive and dynamic platform that tracks the forces imperiling the natural systems that support life on earth. ",
+    hasarrow: false,
+    label: "Back to Earth HQ",
+    body: "See the latest climate alerts and discover near-real time data on Earth HQ – the “Situation Room” for the planet.",
     link: "/"
   },
   {
     key: "climate",
-    label: "Climate",
+    label: "Climate News",
     body: "Rising global temperatures pose a threat to every corner of the globe and most aspects of human life.",
     link: "/climate"
   },
   {
     key: "freshwater",
-    label: "Freshwater",
-    body: "Rising consumption, climate change and pollution are increasing pressure on water supply. ",
+    label: "Freshwater News",
+    body: "Rising consumption, climate change and pollution are increasing pressure on water supply.",
     link: "/freshwater"
   },
   {
     key: "forest",
-    label: "Forest",
-    body: "Extreme events and climate change make forest ecosystems even more prone to damage.",
+    label: "Forest News",
+    body: "Extreme events, human impact and climate change make forest ecosystems even more prone to damage.",
     link: "/forests"
   },
   {
-    key: "qcean",
-    label: "Ocean",
+    key: "ocean",
+    label: "Ocean News",
     body: "Current pressures on the ocean’s health pose risks to our economies, societies and the environment.",
     link: "/ocean"
+  },
+  {
+    key: "biodiversity",
+    label: "Biodiveristy News",
+    body: "Key natural ecosystems are heading towards tipping points with dangerous consequences for the stability of our planet.",
+    link: "/biodiversity"
   }
 ];
 

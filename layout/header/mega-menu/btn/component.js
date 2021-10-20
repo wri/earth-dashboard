@@ -1,16 +1,29 @@
+import AnchorCTA from "components/ui/anchor-cta";
+import classnames from "classnames";
 import IconButton from "components/ui/icon-button";
-import HamBurgerIcon from "public/static/images/hamburger.svg";
 import CloseIcon from "public/static/images/close.svg";
+import styles from "layout/header/mega-menu/btn/btn.module.scss";
 import PropTypes from "prop-types";
 
-const MegaMenuBtn = ({ isMegaMenuOpen, setIsMegaMenuOpen, ...rest }) => (
-  <IconButton
-    aria-label={isMegaMenuOpen ? "Close Main Menu" : "Open Main Menu"}
-    icon={isMegaMenuOpen ? CloseIcon : HamBurgerIcon}
-    onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
-    {...rest}
-  />
-);
+const MegaMenuBtn = ({ className, isMegaMenuOpen, setIsMegaMenuOpen, ...rest }) =>
+  isMegaMenuOpen ? (
+    <IconButton
+      className={classnames(className, styles["c-site-header-btn-close-menu"])}
+      aria-label="Close Main Menu"
+      icon={CloseIcon}
+      onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+      {...rest}
+    />
+  ) : (
+    <AnchorCTA
+      className={classnames(className, styles["c-site-header-btn-open-menu"])}
+      aria-label="Open Main Menu"
+      onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+      {...rest}
+    >
+      Breaking News
+    </AnchorCTA>
+  );
 
 MegaMenuBtn.propTypes = {
   isMegaMenuOpen: PropTypes.bool.isRequired,

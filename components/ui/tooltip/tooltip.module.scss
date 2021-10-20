@@ -1,93 +1,70 @@
-@import 'css/settings';
+@import "css/settings";
+@import "css/tools/fontSize";
+@import "css/settings/zIndex";
+@import "css/settings/breakpoints";
 
 .c-tooltip {
-    position: fixed;
-    padding: $margin-size-extra-small;
-    background-color: $white;
-    border-radius: 4px;
-    border: 1px solid $border-color-1;
-    box-shadow: 0 20px 30px 0 rgba(0, 0, 0, .1);
-    z-index: 10001;
-  
-    &.-no-interaction {
-      pointer-events: none;
-    }
-  
-    &.-arrow {
-      &-top {
-        .tip {
-          display: block;
-          position: absolute;
-          top: -8px;
-          left: 50%;
-          width: 15px;
-          height: 15px;
-          background-color: $white;
-          border: 1px solid rgba(26, 28, 34, .1);
-          border-bottom-color: transparent;
-          border-left-color: transparent;
-          transform: translateX(-50%) rotate(-45deg);
-          content: '';
-        }
-      }
-  
-      &-bottom {
-        .tip {
-          display: block;
-          position: absolute;
-          bottom: -8px;
-          left: 50%;
-          width: 15px;
-          height: 15px;
-          background-color: $white;
-          border: 1px solid rgba(26, 28, 34, .1);
-          border-top-color: transparent;
-          border-left-color: transparent;
-          transform: translateX(-50%) rotate(45deg);
-          content: '';
-          z-index: -1;
-        }
-      }
-  
-      // TODO: Legacy, check if used somewhere
-      &-right {
-        &:after {
-          content: '';
-          position: absolute;
-          right: 8px;
-          top: -14px;
-          border-top: 7px solid $white;
-          border-bottom: 7px solid transparent;
-          border-right: 7px solid transparent;
-          border-left: 7px solid transparent;
-          transform: rotate(180deg);
-        }
-      }
-      &-left {
-        &:after {
-          content: '';
-          position: absolute;
-          left: 20px;
-          top: -14px;
-          border-top: 7px solid $white;
-          border-bottom: 7px solid transparent;
-          border-right: 7px solid transparent;
-          border-left: 7px solid transparent;
-          transform: rotate(180deg);
-        }
-      }
-    }
-  
-    .divisor {
-      height: 0;
-      border-top: 1px solid $border-color-1;
-      margin: $margin-size-extra-small 0;
-    }
+  position: absolute;
+  z-index: $z-index-tooltip;
+  background-color: $colour-galaxy;
+  padding: 13px 16px;
+  color: white;
+  border-radius: 12px;
+
+  p {
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 21px);
   }
-  
-  .c-tooltip-invisible-div {
+
+  &:after {
+    background-color: $colour-galaxy;
+    width: 17px;
+    height: 17px;
     position: absolute;
-    width: 1px;
-    height: 1px;
+    content: "";
+    display: block;
+    transform: translateY(-8.5px) rotate(45deg);
+    top: 50%;
   }
-  
+
+  &--right {
+    transform: translateY(calc(-50% - 9px)) translateX(calc(-100% - 36px));
+    &:after {
+      right: -8px;
+    }
+  }
+
+  &--left {
+    transform: translateY(calc(-50% - 9px)) translateX(16px);
+    &:after {
+      left: -8px;
+    }
+  }
+
+  &--bottom {
+    &:after {
+      top: unset;
+      bottom: -8px;
+      right: 50%;
+      transform: translateX(50%) rotate(45deg);
+    }
+  }
+
+  &--none {
+    &:after {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    padding: 8.5px 12px;
+    display: flex;
+    flex-direction: column;
+    p {
+      font-family: "Barlow";
+      font-weight: 500;
+      @include font-size(12px, 18px);
+    }
+  }
+}

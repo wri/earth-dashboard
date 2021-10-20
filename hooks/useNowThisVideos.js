@@ -12,9 +12,9 @@ export const parser = new Parser({
 });
 
 const useNowThisVideos = topic => {
-  const [ videos, setVideos ] = useState([]);
-  const [ isLoading, setIsLoading ] = useState(true);
-  const [ hasErrored, setHasErrored ] = useState(false);
+  const [videos, setVideos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasErrored, setHasErrored] = useState(false);
 
   useEffect(async () => {
     setIsLoading(true);

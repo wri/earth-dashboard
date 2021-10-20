@@ -3,7 +3,7 @@ import { fetchWidgets } from "services/gca";
 
 /**
  * Fetches widgets from the GCA endpoint based on predefined topics.
- * 
+ *
  * @param {String} topic - Widgets returned from the endpoint will be part of this topic
  * @returns {Object} response
  * @property {Boolean} isLoading
@@ -14,9 +14,9 @@ import { fetchWidgets } from "services/gca";
  *           An array of widgets from the endpoint
  */
 const useGCAWidgets = topic => {
-  const [ widgets, setWidgets ] = useState([]);
-  const [ isLoading, setIsLoading ] = useState(true);
-  const [ hasErrored, setHasErrored ] = useState(false);
+  const [widgets, setWidgets] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasErrored, setHasErrored] = useState(false);
 
   useEffect(async () => {
     setIsLoading(true);
@@ -30,7 +30,7 @@ const useGCAWidgets = topic => {
 
       setWidgets(response);
     } catch (err) {
-      setHasErrored(true)
+      setHasErrored(true);
     }
 
     setIsLoading(false);

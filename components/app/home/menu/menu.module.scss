@@ -1,5 +1,6 @@
 @import "css/_settings.scss";
 @import "css/settings/breakpoints";
+@import "css/settings/zIndex";
 @import "css/tools/scrollbar.scss";
 @import "css/tools/fontSize.scss";
 
@@ -17,6 +18,7 @@
   animation: FadeIn 0.3s ease-in;
   box-shadow: 0px 0px 113.425px #000000;
   border-radius: 16px;
+  z-index: 10000;
 
   &__tab,
   &__tab-description,
@@ -364,7 +366,7 @@
     bottom: 0;
     top: 0px;
     position: absolute;
-    z-index: 11;
+    z-index: $z-index-dialog;
   }
 
   animation: FadeIn 0.3s ease-in;
