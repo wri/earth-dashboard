@@ -15,7 +15,7 @@ const Section = ({ className, gridClassName, title, bgColour, paddingBottom, chi
   >
     {Children.count(children) > 0 && (
       <div className={styles["o-page-section__wrap"]}>
-        {title && <h1 className={styles["o-page-section__title"]}>{title}</h1>}
+        {title && <h2 className={styles["o-page-section__title"]}>{title}</h2>}
         <div className={classnames(styles["o-page-section__grid"], gridClassName)}>{children}</div>
       </div>
     )}

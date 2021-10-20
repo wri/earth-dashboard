@@ -18,11 +18,11 @@ describe("Page Section", () => {
     <div
       class="o-page-section__wrap"
     >
-      <h1
+      <h2
         class="o-page-section__title"
       >
         Test
-      </h1>
+      </h2>
       <div
         class="o-page-section__grid Test"
       >
