@@ -23,7 +23,12 @@ const NewsArticle = ({ className, topic, featured, title, author, date, image, l
         {author} . {formatDate(date)}
       </span>
 
-      <ExternalLink className={styles["c-news-article__link"]} onClick={() => fireEvent(NEWS_VIEW_FULL_ARTICLE, topic)} link={link} label="Read full article" />
+      <ExternalLink
+        className={styles["c-news-article__link"]}
+        onClick={() => fireEvent(NEWS_VIEW_FULL_ARTICLE, topic)}
+        link={link}
+        label="Read full article"
+      />
     </div>
   </article>
 );
