@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import { useState, useEffect } from "react";
 import { render, fireEvent, waitFor } from "test-utils";
-import NewsTopicLayout from "../component";
+import NewsTopicLayout from "../index";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import { NEWS_ARTICLES } from "test/topic-articles";
 import TestImage from "public/static/images/star-background.jpg";

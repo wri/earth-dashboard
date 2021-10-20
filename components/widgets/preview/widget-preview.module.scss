@@ -1,7 +1,41 @@
+@import "css/settings";
+@import "css/tools/_fontSize.scss";
+
 .c-widget-preview {
   display: flex;
   height: 100%;
   width: 100%;
+  position: relative;
+
+  &__close-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 999;
+  }
+
+  &__open-button {
+    background: grey;
+    color: white;
+    border: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    background: rgba($colour-galaxy, 0.4);
+    backdrop-filter: blur(10.8731px);
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(18px, 21px);
+    color: white;
+    border-radius: 12px;
+  }
 
   .preview-container {
     display: flex;

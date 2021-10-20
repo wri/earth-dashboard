@@ -7,8 +7,8 @@ import Head from "next/head";
 import { fetchTopicData } from "services/data";
 
 // components
-import LayoutTopic from "layout/app/topic";
 import NewsTopicLayout from "layout/app/news";
+import { Mobile, Desktop, MediaContextProvider } from "utils/responsive";
 
 import { CLIMATE, OCEAN, FRESHWATER, FORESTS, BIODIVERSITY } from "utils/topics";
 
@@ -26,7 +26,16 @@ function TopicPage({ topic, topicData, widgets, topicNotFound }) {
     );
   }
 
-  return <NewsTopicLayout topic={topic} />;
+  return (
+    <MediaContextProvider>
+      <Desktop>
+        <NewsTopicLayout topic={topic} isMobile={false} />
+      </Desktop>
+      <Mobile>
+        <NewsTopicLayout topic={topic} isMobile={true} />
+      </Mobile>
+    </MediaContextProvider>
+  );
 
   // Legacy
   //   \/

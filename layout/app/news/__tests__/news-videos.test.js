@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import { render, act } from "test-utils";
 import { parser } from "hooks/useNowThisVideos";
-import NewsTopicLayout from "../component";
+import NewsTopicLayout from "../index";
 import { VIDEOS } from "test/topic-articles";
 
 jest.mock(
