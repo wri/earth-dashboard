@@ -1,0 +1,24 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-external-link {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: $white;
+  @include font-size(12px, 18px);
+  text-decoration: underline;
+
+  > span {
+    margin-left: 6px;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    @include font-size(14px, 21px);
+
+    > span {
+      margin-left: 8px;
+    }
+  }
+}
