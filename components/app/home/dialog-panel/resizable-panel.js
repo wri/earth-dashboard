@@ -9,7 +9,7 @@ const ResizablePanel = forwardRef(({ isMobile, children, height, onResize }, ref
     style: { position: "absolute" },
     handleClasses: { top: styles["c-dialog-panel__draggable__handle"] },
     // Inline override, otherwise !important is needed in the stylesheet
-    handleStyles: { top: { width: "115px", height: "6px", left: "50%" } },
+    handleStyles: { top: { width: "100%", height: "50px", left: "0", top: "-42px" } },
     enable: {
       top: true,
       right: false,

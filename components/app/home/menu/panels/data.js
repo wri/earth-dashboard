@@ -131,13 +131,14 @@ const DataPanel = ({
               value={animationValue}
               setValue={setAnimationValue}
               layers={animationLayers}
-              className={styles["c-home-menu__data-selection-item"]}
+              className={classnames(
+                styles["c-home-menu__data-selection-item"],
+                styles["c-home-menu__data-selection-item--no-bottom-border"]
+              )}
               gaEventName={ADVANCED_MENU_ANIMATION}
             />
           )}
         </div>
-        {description && <p className={classnames(styles["c-home-menu__source"], "u-margin-none")}>{description}</p>}
-        {source && <p className={classnames(styles["c-home-menu__source"], "u-margin-none")}>{source}</p>}
         {isMobile && (
           <>
             <DatePickerBtn />

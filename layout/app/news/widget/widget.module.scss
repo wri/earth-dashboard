@@ -18,9 +18,9 @@
   }
 
   &--bordered {
-    padding: 24px 32px;
+    padding: 16px 20px;
     background-color: $colour-galaxy;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
   }
 
@@ -28,7 +28,7 @@
     height: 100%;
     width: 100%;
     background-color: $colour-galaxy;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
   }
 
@@ -49,11 +49,20 @@
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
+    &--bordered {
+      padding: 24px 32px;
+      border-radius: 16px;
+    }
+
     &--map,
     &--chart {
       #{$this}__widget {
         height: 325px;
       }
+    }
+
+    &__widget {
+      border-radius: 16px;
     }
 
     &__name {

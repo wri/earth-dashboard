@@ -126,6 +126,8 @@ $video-thumbnail-transition-ms: 1000;
     backdrop-filter: blur(10.8731px);
     background-color: rgba($colour-galaxy, 0.8);
     transition: background-color $c-video-article-transition;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {

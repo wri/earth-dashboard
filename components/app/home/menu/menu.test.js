@@ -519,7 +519,7 @@ test("<Menu /> renders correctly as mobile", async () => {
       <div>
         <div
           class="c-dialog-panel__draggable__handle"
-          style="position: absolute; user-select: none; width: 115px; height: 6px; top: -5px; left: 50%; cursor: row-resize;"
+          style="position: absolute; user-select: none; width: 100%; height: 50px; top: -42px; left: 0px; cursor: row-resize;"
         />
       </div>
     </div>
