@@ -18,7 +18,7 @@
   animation: FadeIn 0.3s ease-in;
   box-shadow: 0px 0px 113.425px #000000;
   border-radius: 16px;
-  z-index: $z-index-menu;
+  z-index: 10000;
 
   &__tab,
   &__tab-description,
@@ -77,6 +77,7 @@
     right: 0;
     top: 0;
     padding: 12px 28px;
+    min-height: 66px;
     &:after {
       content: "";
       display: block;
@@ -93,7 +94,7 @@
 
   &__tab-panel-scroll-area {
     position: absolute;
-    top: 87px;
+    top: 66px;
     bottom: 0px;
     left: 0px;
     right: 12px;
@@ -108,11 +109,22 @@
       top: 0px;
       padding-bottom: 40px;
     }
+    &--extra-top {
+      top: 87px;
+    }
   }
 
   &__template-description {
     padding-bottom: 20px;
     border-bottom: 1px solid white;
+  }
+
+  &__powered-by {
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 21px);
+    color: white;
+    margin-top: 12px;
   }
 
   &__headline {
@@ -127,6 +139,9 @@
     border-bottom: 1px solid #ffffff !important;
     padding-bottom: 8px !important;
     margin-top: 20px !important;
+    &--no-top-margin {
+      margin-top: 0px !important; // TODO - sort this important nightmare!
+    }
   }
 
   &--closing {
@@ -267,6 +282,10 @@
       padding: 64px 24px 40px 24px;
     }
 
+    &__powered-by {
+      @include font-size(12px, 18px);
+    }
+
     &__tab,
     &__tab-description,
     &__data-label,
@@ -277,6 +296,7 @@
 
     &__tab-description {
       padding: 8px 24px;
+      min-height: unset;
       &:after {
         right: 24px;
         top: -14px;
@@ -288,10 +308,14 @@
 
     &__tab-panel-scroll-area {
       padding: 12px 12px 12px 24px;
-      top: 70px;
+      top: 52px;
 
       &--slim {
         top: 0px;
+      }
+
+      &--extra-top {
+        top: 70px;
       }
 
       &::-webkit-scrollbar-track {
@@ -344,7 +368,6 @@
 
     &__tab-panel-scroll-area {
       padding: 12px 12px 0px 24px;
-      top: 88px;
       &--slim {
         top: 0px;
       }

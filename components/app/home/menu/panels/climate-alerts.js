@@ -81,7 +81,12 @@ const HeadlinesPanel = ({
         <br />
         Explore the latest alerts from Mongabay below.
       </p>
-      <div className={styles["c-home-menu__tab-panel-scroll-area"]}>
+      <div
+        className={classnames(
+          styles["c-home-menu__tab-panel-scroll-area"],
+          styles["c-home-menu__tab-panel-scroll-area--extra-top"]
+        )}
+      >
         {!isFetching ? (
           mostRecentHeadlines.map(headline => (
             <HeadlineCard
