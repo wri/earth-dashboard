@@ -47,8 +47,11 @@ const MainContainer = ({
     enableToolTip,
     disableToolTip,
     scaleData: scaleToolTipData
-  } = useIframeBridge(() => {
-    setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
+  } = useIframeBridge({
+    callback: () => {
+      setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
+    },
+    allowClickEvents: !currentHeadline
   });
 
   const overlayLayer = useMemo(() => {

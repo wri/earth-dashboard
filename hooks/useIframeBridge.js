@@ -12,7 +12,7 @@ import {
 } from "utils/map";
 import { POINT_INDICATOR } from "constants/map";
 
-const useIframeBridge = callback => {
+const useIframeBridge = ({ callback, allowClickEvents }) => {
   const { width } = useWindowDimensions();
   const iframeRef = useRef(null);
   const earthServer = useRef(null);
@@ -36,6 +36,12 @@ const useIframeBridge = callback => {
     }
   }, [currentProjectionFunc, currentMarker, currentProjection, toolTipVisible, toolTipText]);
 
+  useEffect(() => {
+    if (earthClient) {
+      earthClient.allowClickEvents = allowClickEvents;
+    }
+  }, [earthClient, allowClickEvents]);
+
   const enableToolTip = useCallback((coords, content) => {
     if (earthServer.current) {
       setToolTipText(content);
@@ -57,6 +63,7 @@ const useIframeBridge = callback => {
   const createEarthClient = useCallback(() => {
     return new (class EarthClientImpl extends EarthClient {
       currentLayers = [];
+      allowClickEvents = true;
 
       layersChanged(newLayers) {
         const overlayLayer = newLayers.find(layer => layer?.type === "overlay");
@@ -79,17 +86,19 @@ const useIframeBridge = callback => {
       }
 
       async click(point, coords) {
-        const marker = getIndicatorGeoJson(coords);
-        setCurrentMarker(marker);
-        earthServer.current.annotate(POINT_INDICATOR, marker);
+        if (this.allowClickEvents) {
+          const marker = getIndicatorGeoJson(coords);
+          setCurrentMarker(marker);
+          earthServer.current.annotate(POINT_INDICATOR, marker);
 
-        const coordinates = marker.geometry.coordinates;
-        const samples = await earthServer.current.sampleAt(point, coordinates);
-        const data = {
-          overlay: getOverlayData(samples, this.currentLayers),
-          annotation: getAnnotationData(samples, this.currentLayers)
-        };
-        setScaleData(data);
+          const coordinates = marker.geometry.coordinates;
+          const samples = await earthServer.current.sampleAt(point, coordinates);
+          const data = {
+            overlay: getOverlayData(samples, this.currentLayers),
+            annotation: getAnnotationData(samples, this.currentLayers)
+          };
+          setScaleData(data);
+        }
       }
 
       reorientStep(projection) {
