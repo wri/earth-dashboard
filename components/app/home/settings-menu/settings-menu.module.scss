@@ -20,7 +20,7 @@
   &__header {
     display: flex;
     align-items: center;
-    padding: 10px 20px 10px 60px;
+    padding: 10px 10px 10px 60px;
     background-color: $colour-night;
 
     &__title {
@@ -80,7 +80,7 @@
     }
 
     &__header {
-      padding: 19px 20px 13px 80px;
+      padding: 19px 10px 13px 80px;
 
       &__title {
         @include font-size(24px, 36px);
