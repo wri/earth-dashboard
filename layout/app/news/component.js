@@ -21,6 +21,7 @@ import videoArticleStyles from "components/video-article/video-article.module.sc
 import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scss";
 import { BANNER_BODY } from "test/topic-articles";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
+import heroBannerTexts from "constants/news/banners";
 
 const NewsTopicLayout = ({ topic }) => {
   const {
@@ -65,7 +66,7 @@ const NewsTopicLayout = ({ topic }) => {
         paddingBottom={false}
         gridClassName={heroBannerStyles["c-page-section-grid-hero-banner"]}
       >
-        <HeroBanner title={topic + " News"} body={BANNER_BODY} />
+        <HeroBanner title={heroBannerTexts[topic]?.title || `${topic} News`} body={heroBannerTexts[topic]?.body} />
       </Section>
 
       <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>

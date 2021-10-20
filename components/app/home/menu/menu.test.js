@@ -113,7 +113,7 @@ test("<Menu /> renders correctly as desktop", async () => {
                   Explore the latest alerts from Mongabay below.
                 </p>
                 <div
-                  class="c-home-menu__tab-panel-scroll-area"
+                  class="c-home-menu__tab-panel-scroll-area c-home-menu__tab-panel-scroll-area--extra-top"
                 >
                   <button
                     class="c-headline-card c-home-menu__headline"
@@ -373,7 +373,7 @@ test("<Menu /> renders correctly as mobile", async () => {
                   Explore the latest alerts from Mongabay below.
                 </p>
                 <div
-                  class="c-home-menu__tab-panel-scroll-area"
+                  class="c-home-menu__tab-panel-scroll-area c-home-menu__tab-panel-scroll-area--extra-top"
                 >
                   <button
                     class="c-headline-card c-home-menu__headline"
