@@ -47,7 +47,7 @@ const DataPanel = ({
 
   const description = useMemo(() => {
     const layer = datasetLayers.find(layer => layer.attributes.data_key === datasetValue);
-    return layer ? `Showing: ${layer.attributes.description}` : "";
+    return layer?.attributes?.description ? `Showing: ${layer.attributes.description}` : "";
   }, [datasetLayers, datasetValue]);
 
   const availableModes = useMemo(() => {
