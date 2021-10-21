@@ -98,3 +98,19 @@ export const windDataSample = [
   ],
   null
 ];
+
+export const baaSample = [
+  [
+    {
+      value: [-5.505629843617928, -4.460238571648064],
+      units: "s"
+    }
+  ],
+  [
+    {
+      value: 1,
+      units: "heat_stress_level"
+    }
+  ],
+  null
+];

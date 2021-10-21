@@ -8,7 +8,8 @@ import {
   getMarkerProperties,
   getNewProjection,
   getOverlayData,
-  getAnnotationData
+  getAnnotationData,
+  SAMPLE_OVERLAY_INDEX
 } from "utils/map";
 import { POINT_INDICATOR } from "constants/map";
 
@@ -25,6 +26,7 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
   const [toolTipVisible, setToolTipVisible] = useState(false);
   const [scaleData, setScaleData] = useState({ annotation: null, overlay: null });
   const [toolTipText, setToolTipText] = useState("");
+  const [hasIframeConnected, setHasIframeConnected] = useState(false);
   const currentProjectionFunc = useCallback(() => getNewProjection(currentProjection), [currentProjection]);
 
   useEffect(() => {
@@ -95,7 +97,8 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
           const samples = await earthServer.current.sampleAt(point, coordinates);
           const data = {
             overlay: getOverlayData(samples, this.currentLayers),
-            annotation: getAnnotationData(samples, this.currentLayers)
+            annotation: getAnnotationData(samples, this.currentLayers),
+            layer: this.currentLayers[SAMPLE_OVERLAY_INDEX]
           };
           setScaleData(data);
         }
@@ -115,10 +118,12 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
     node => {
       const connectToNullSchool = async node => {
         try {
+          setHasIframeConnected(false);
           setErr(null);
           const resp = await getEarthServer(node, width, createEarthClient);
           earthServer.current = resp.server;
           setEarthClient(resp.client);
+          setHasIframeConnected(true);
           callback();
         } catch (err) {
           setErr(err);
@@ -148,7 +153,8 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
     scaleData,
     enableToolTip,
     disableToolTip,
-    error: err
+    error: err,
+    hasIframeConnected
   };
 };
 

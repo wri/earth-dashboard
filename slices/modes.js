@@ -28,6 +28,10 @@ const modesSlice = createSlice({
       if (!state.currentMode) {
         state.currentMode = action.payload[0];
       }
+
+      if (!state.allModes) {
+        state.currentMode = null;
+      }
     },
     setCurrentMode(state, action) {
       state.currentMode = action.payload;

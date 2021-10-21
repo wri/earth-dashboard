@@ -5,7 +5,6 @@ import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
 import ToolTip from "components/ui/tooltip/component";
-import moment from "moment";
 
 const MapIframe = forwardRef(
   (
@@ -26,9 +25,7 @@ const MapIframe = forwardRef(
       projectionType,
       earthClient,
       earthServer,
-      layers,
       setLayersLabelArr,
-      setDateOfDataShown,
       showMapGrid,
       highDefinitionMode,
       basemapType,
@@ -39,7 +36,8 @@ const MapIframe = forwardRef(
       currentScale,
       currentScaleBy,
       setCurrentScale,
-      setCurrentScaleBy
+      setCurrentScaleBy,
+      hasIframeConnected
     },
     ref
   ) => {
@@ -89,7 +87,7 @@ const MapIframe = forwardRef(
 
     // Send the correct state to the map when data layer values change.
     useEffect(() => {
-      if (earthServer.current) {
+      if (earthServer.current && hasIframeConnected) {
         // If a data highlight mode, set the layers label
         if (currentMode?.attributes.visibility.advanced_menu) {
           const newLayers = [];
@@ -130,7 +128,8 @@ const MapIframe = forwardRef(
       heightValue,
       currentMode,
       earthServer,
-      setLayersLabelArr
+      setLayersLabelArr,
+      hasIframeConnected
     ]);
 
     // Switch between the different projection types available
@@ -229,7 +228,8 @@ MapIframe.propTypes = {
   basemapType: PropTypes.oneOf(Object.keys(basemaps)),
   setCurrentLocation: PropTypes.func.isRequired,
   setCurrentScale: PropTypes.func.isRequired,
-  setCurrentScaleBy: PropTypes.func.isRequired
+  setCurrentScaleBy: PropTypes.func.isRequired,
+  hasIframeConnected: PropTypes.bool
 };
 
 MapIframe.defaultProps = {
@@ -237,7 +237,8 @@ MapIframe.defaultProps = {
   earthServer: null,
   animationValue: null,
   datasetValue: null,
-  monitorValue: null
+  monitorValue: null,
+  hasIframeConnected: false
 };
 
 export default MapIframe;
