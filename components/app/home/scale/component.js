@@ -1,19 +1,58 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import styles from "./scale.module.scss";
 import FocusTrap from "focus-trap-react";
 import ToolTip from "components/ui/tooltip";
 import { POSITIONS } from "components/ui/tooltip/component";
+import { SCALE_TYPES } from "constants/map";
 
-const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizontal, toolTipData, value, ...rest }) => {
+const Scale = ({
+  className,
+  title,
+  min,
+  max,
+  scaleUnit,
+  scaleGradient,
+  isHorizontal,
+  toolTipData,
+  value,
+  hasSmallLabels,
+  ...rest
+}) => {
   const [shouldShowToolTip, setShouldShowToolTip] = useState(false);
   const minLabel = `${min}${scaleUnit}`.length > 9 ? `${min} ${scaleUnit}` : `${min}${scaleUnit}`;
   const maxLabel = `${max}${scaleUnit}`.length > 9 ? `${max} ${scaleUnit}` : `${max}${scaleUnit}`;
-  const minParsed = parseFloat(min);
-  const maxParsed = parseFloat(max);
-  const valueParsed = parseFloat(toolTipData.overlay ? toolTipData.overlay.value : value);
   const style = { "--min": `"${minLabel}"`, "--max": `"${maxLabel}"`, "--gradient": scaleGradient };
+
+  const valueParsed = useMemo(
+    () => parseFloat(toolTipData.overlay ? toolTipData.overlay.value : value),
+    [toolTipData.overlay?.value, value]
+  );
+
+  const percent = useMemo(() => {
+    const minParsed = parseFloat(min);
+    const maxParsed = parseFloat(max);
+
+    const linearPercent = ((valueParsed - minParsed) * 100) / (maxParsed - minParsed);
+    const logPercent =
+      ((Math.log(valueParsed) - Math.log(minParsed)) * 100) / (Math.log(maxParsed) - Math.log(minParsed));
+
+    let percent = 0;
+
+    if (toolTipData.layer) {
+      percent = toolTipData.layer.product.scale.type === SCALE_TYPES.log ? logPercent : linearPercent;
+      if (percent > 100) {
+        percent = 100;
+      }
+
+      if (percent < 0) {
+        percent = 0;
+      }
+    }
+
+    return percent;
+  }, [min, max, valueParsed, toolTipData.layer]);
 
   useEffect(() => {
     if (toolTipData.overlay || toolTipData.annotation) {
@@ -30,18 +69,11 @@ const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizon
     clickOutsideDeactivates: true
   };
 
-  const percent = ((valueParsed - minParsed) * 100) / (maxParsed - minParsed);
-
-  // TODO - use log percent when we know what the scale type will be.
-  const logPercent =
-    ((Math.log(valueParsed) - Math.log(minParsed)) * 100) / (Math.log(maxParsed) - Math.log(minParsed));
-
-  // console.log({percent, logPercent});
   return (
     <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>
       <label htmlFor="scale">Scale</label>
       <div className={styles["c-scale__input-container"]}>
-        {shouldShowToolTip && (
+        {shouldShowToolTip && !Number.isNaN(percent) && (
           <>
             <FocusTrap focusTrapOptions={focusTrapOptions}>
               <div className={styles["c-scale__tooltip"]}>
@@ -74,7 +106,13 @@ const Scale = ({ className, title, min, max, scaleUnit, scaleGradient, isHorizon
             ></span>
           </>
         )}
-        <div className={styles["c-scale__gradient"]} style={style} />
+        <div
+          className={classnames(
+            styles["c-scale__gradient"],
+            hasSmallLabels && styles["c-scale__gradient--small-labels"]
+          )}
+          style={style}
+        />
         <input
           id="scale"
           type="range"
@@ -97,6 +135,7 @@ Scale.propTypes = {
   alt: PropTypes.string,
   min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  hasSmallLabels: PropTypes.bool,
   scaleUnit: PropTypes.string,
   readOnly: PropTypes.bool,
   isHorizontal: PropTypes.bool,
@@ -112,9 +151,11 @@ Scale.defaultProps = {
   scaleUnit: "%",
   readOnly: true,
   isHorizontal: false,
+  hasSmallLabels: false,
   toolTipData: {
     annotation: null,
-    overlay: null
+    overlay: null,
+    layer: null
   }
 };
 

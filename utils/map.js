@@ -3,6 +3,14 @@ import { format } from "date-fns";
 
 export const SAMPLE_OVERLAY_INDEX = 1;
 export const SAMPLE_ANNOTATION_INDEX = 2;
+export const UNIT_DESCRIPTOR_TYPES = {
+  enum: "enum",
+  quantity: "quantity"
+};
+
+export const UNIT_LABEL_MAP = {
+  heat_stress_level: "Stress Level"
+};
 
 export const colorAt = (colors, t) => {
   const n = colors.length / 4;
@@ -120,7 +128,13 @@ export const getFriendlyDataStr = (samples, layers, index) => {
   }
 
   const unitDescriptor = layer.product.units[symbol];
+  const unitDescriptorType = layer.product.units[symbol].type;
   const layerDescription = layer.product.description ? `${layer.product.description}: ` : "";
   const v = Array.isArray(value) ? convertVectorToScalar(value) : value; // convert wind vector to scalar
-  return v === +v ? `${layerDescription}${v.toFixed(unitDescriptor.precision)} ${symbol} ${date}`.trim() : undefined;
+
+  if (unitDescriptorType === UNIT_DESCRIPTOR_TYPES.enum) {
+    return v === +v ? `${layerDescription}${unitDescriptor.elements[v]} ${date}`.trim() : undefined;
+  } else {
+    return v === +v ? `${layerDescription}${v.toFixed(unitDescriptor.precision)} ${symbol} ${date}`.trim() : undefined;
+  }
 };

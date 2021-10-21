@@ -4,8 +4,8 @@ import {
   getOverlayData,
   getAnnotationData
 } from "./map";
-import { windParticulateFireSample, windParticulateOnlySample, windDataSample } from "../test/mapSamples";
-import { fires, wind } from "../test/layerSamples";
+import { windParticulateFireSample, windParticulateOnlySample, windDataSample, baaSample } from "../test/mapSamples";
+import { fires, wind, hasEnumOverlay } from "../test/layerSamples";
 
 describe("Map utility", () => {
   test("getFriendlyOverlayDataBySamples returns a friendly format for overlaying scale data", () => {
@@ -58,5 +58,15 @@ describe("Map utility", () => {
     };
 
     expect(getAnnotationData(windParticulateFireSample, fires)).toEqual(expected);
+  });
+
+  test("getOverlayData returns the correct data when an enum overlay unit is given", () => {
+    const expected = {
+      str: "Bleaching Alert Area: Bleaching Watch",
+      units: "heat_stress_level",
+      value: 1
+    };
+
+    expect(getOverlayData(baaSample, hasEnumOverlay)).toEqual(expected);
   });
 });

@@ -49,6 +49,13 @@
       content: var(--min);
       bottom: -51px;
     }
+
+    &--small-labels {
+      &::before,
+      &::after {
+        @include font-size(16px, 14px);
+      }
+    }
   }
 
   &__input-container {
@@ -113,7 +120,7 @@
       width: 14px;
       height: 14px;
       border: 2px solid white;
-      transform: translateY(-10px) translateX(3px);
+      transform: translateY(-10px) translateX(-50%);
     }
 
     .c-scale__tooltip-item {
