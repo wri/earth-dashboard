@@ -8,7 +8,8 @@ import {
   getMarkerProperties,
   getNewProjection,
   getOverlayData,
-  getAnnotationData
+  getAnnotationData,
+  SAMPLE_OVERLAY_INDEX
 } from "utils/map";
 import { POINT_INDICATOR } from "constants/map";
 
@@ -95,7 +96,8 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
           const samples = await earthServer.current.sampleAt(point, coordinates);
           const data = {
             overlay: getOverlayData(samples, this.currentLayers),
-            annotation: getAnnotationData(samples, this.currentLayers)
+            annotation: getAnnotationData(samples, this.currentLayers),
+            layer: this.currentLayers[SAMPLE_OVERLAY_INDEX]
           };
           setScaleData(data);
         }

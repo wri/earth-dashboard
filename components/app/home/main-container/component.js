@@ -18,6 +18,7 @@ import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
 import { formatDate } from "utils/dates";
 import DatePickerMenu from "../date-picker-menu";
+import { UNIT_LABEL_MAP } from "utils/map";
 
 const MainContainer = ({
   isMobile,
@@ -62,12 +63,18 @@ const MainContainer = ({
     if (overlayLayer?.product) {
       const { units } = overlayLayer.product;
       const [unitSymbol, [lo, hi]] = Object.entries(overlayLayer.product.scale.range)[0];
-      const precision = units[unitSymbol]?.precision ?? 4;
+      const precision = units[unitSymbol]?.precision ?? 0;
+
+      let alternateSymbol;
+      if (UNIT_LABEL_MAP[unitSymbol]) {
+        alternateSymbol = UNIT_LABEL_MAP[unitSymbol];
+      }
 
       return {
         min: lo.toFixed(precision),
         max: hi.toFixed(precision),
-        unitSymbol
+        unitSymbol: alternateSymbol ? alternateSymbol : unitSymbol,
+        hasSmallLabels: alternateSymbol ? alternateSymbol.length >= 10 : false
       };
     }
   }, [overlayLayer?.product]);
@@ -182,6 +189,7 @@ const MainContainer = ({
           readOnly
           scaleGradient={overlayLayer.product.scale.getCss(0)}
           toolTipData={scaleToolTipData}
+          hasSmallLabels={scaleData.hasSmallLabels}
         />
       )}
       {hasMenuOpen && !isFetchingTemplates && (

@@ -11,25 +11,29 @@ export const fires = [
           symbol: "km/h",
           symbolHTML: "km/h",
           precision: 0,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         },
         "m/s": {
           symbol: "m/s",
           symbolHTML: "m/s",
           precision: 1,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         },
         kn: {
           symbol: "kn",
           symbolHTML: "kn",
           precision: 0,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         },
         mph: {
           symbol: "mph",
           symbolHTML: "mph",
           precision: 0,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         }
       },
       timeline: [
@@ -90,7 +94,8 @@ export const fires = [
         "µg/m^3": {
           symbol: "µg/m^3",
           symbolHTML: "µg/m<sup>3</sup>",
-          precision: 0
+          precision: 0,
+          type: "quantity"
         }
       },
       timeline: [
@@ -138,7 +143,8 @@ export const fires = [
         MW: {
           symbol: "MW",
           symbolHTML: "MW",
-          precision: 2
+          precision: 2,
+          type: "quantity"
         }
       },
       timeline: [
@@ -182,25 +188,29 @@ export const wind = [
           symbol: "km/h",
           symbolHTML: "km/h",
           precision: 0,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         },
         "m/s": {
           symbol: "m/s",
           symbolHTML: "m/s",
           precision: 1,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         },
         kn: {
           symbol: "kn",
           symbolHTML: "kn",
           precision: 0,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         },
         mph: {
           symbol: "mph",
           symbolHTML: "mph",
           precision: 0,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         }
       },
       timeline: [
@@ -262,25 +272,29 @@ export const wind = [
           symbol: "km/h",
           symbolHTML: "km/h",
           precision: 0,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         },
         "m/s": {
           symbol: "m/s",
           symbolHTML: "m/s",
           precision: 1,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         },
         kn: {
           symbol: "kn",
           symbolHTML: "kn",
           precision: 0,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         },
         mph: {
           symbol: "mph",
           symbolHTML: "mph",
           precision: 0,
-          convention: "into"
+          convention: "into",
+          type: "quantity"
         }
       },
       timeline: [
@@ -326,6 +340,70 @@ export const wind = [
           8: 0,
           9: 4,
           10: 254
+        }
+      }
+    }
+  },
+  null
+];
+
+export const hasEnumOverlay = [
+  null,
+  {
+    type: "overlay",
+    product: {
+      name: "bleaching_alert_area",
+      source: "Coral Reef Watch / NOAA",
+      description: "Bleaching Alert Area",
+      validTime: "2021-10-19 12:00Z",
+      units: {
+        heat_stress_level: {
+          type: "enum",
+          name: "heat_stress_level",
+          elements: ["No Stress", "Bleaching Watch", "Bleaching Warning", "Alert Level 1", "Alert Level 2"]
+        }
+      },
+      timeline: [
+        {
+          type: "recurring_interval",
+          start: "2014-01-01T00:00Z",
+          frequency: {
+            days: 1
+          }
+        }
+      ],
+      nav: {
+        prev2: "-5 days",
+        prev1: "-1 day",
+        next1: "+1 day",
+        next2: "+5 days"
+      },
+      scale: {
+        type: "linear",
+        range: {
+          heat_stress_level: [0, 4]
+        },
+        colors: {
+          0: 110,
+          1: 149,
+          2: 149,
+          3: 255,
+          4: 252,
+          5: 239,
+          6: 80,
+          7: 255,
+          8: 238,
+          9: 171,
+          10: 62,
+          11: 255,
+          12: 220,
+          13: 46,
+          14: 33,
+          15: 255,
+          16: 137,
+          17: 26,
+          18: 16,
+          19: 255
         }
       }
     }

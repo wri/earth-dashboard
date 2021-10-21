@@ -5,7 +5,6 @@ import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
 import ToolTip from "components/ui/tooltip/component";
-import moment from "moment";
 
 const MapIframe = forwardRef(
   (
@@ -26,9 +25,7 @@ const MapIframe = forwardRef(
       projectionType,
       earthClient,
       earthServer,
-      layers,
       setLayersLabelArr,
-      setDateOfDataShown,
       showMapGrid,
       highDefinitionMode,
       basemapType,
