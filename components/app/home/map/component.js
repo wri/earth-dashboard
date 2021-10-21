@@ -10,6 +10,7 @@ const MapIframe = forwardRef(
   (
     {
       currentMode,
+      loadDefaultModeValues,
       resetValues,
       setAnimationValue,
       setDatasetValue,
@@ -44,7 +45,7 @@ const MapIframe = forwardRef(
     const { currentPosition } = useCurrentPosition(shouldFetchLocation);
     // if the current mode changes, and there is an earth client, set the data layer values
     useEffect(() => {
-      if (currentMode && earthClient) {
+      if (currentMode && earthClient && loadDefaultModeValues) {
         const newLayers = [];
         resetValues();
         const defaults = currentMode.attributes.data_layers.default;
@@ -82,7 +83,8 @@ const MapIframe = forwardRef(
       setDatasetValue,
       setHeightValue,
       setLayersLabelArr,
-      setMonitorValue
+      setMonitorValue,
+      loadDefaultModeValues
     ]);
 
     // Send the correct state to the map when data layer values change.
@@ -229,7 +231,8 @@ MapIframe.propTypes = {
   setCurrentLocation: PropTypes.func.isRequired,
   setCurrentScale: PropTypes.func.isRequired,
   setCurrentScaleBy: PropTypes.func.isRequired,
-  hasIframeConnected: PropTypes.bool
+  hasIframeConnected: PropTypes.bool,
+  loadDefaultModeValues: PropTypes.bool.isRequired
 };
 
 MapIframe.defaultProps = {

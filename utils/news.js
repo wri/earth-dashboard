@@ -50,8 +50,8 @@ export const formatPosts = posts =>
   }, []);
 
 export const GetPostsQuery = gql`
-  query GetPosts($first: Int, $after: String, $topics: String) {
-    posts(first: $first, after: $after, where: { tag: $topics }) {
+  query GetPosts($first: Int, $after: String, $topics: [String]) {
+    posts(first: $first, after: $after, where: { tagSlugIn: $topics }) {
       pageInfo {
         hasNextPage
         endCursor

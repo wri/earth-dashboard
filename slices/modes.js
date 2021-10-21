@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const NAME = "modes";
 
 const initialState = {
+  currentModeId: null,
   currentMode: null,
+  loadDefaultModeValues: true,
   allModes: null,
   animationValue: "",
   datasetValue: "",
@@ -25,16 +27,31 @@ const modesSlice = createSlice({
     },
     setModes(state, action) {
       state.allModes = action.payload;
-      if (!state.currentMode) {
+      if (!state.currentMode && !state.currentModeId) {
+        state.loadDefaultModeValues = true;
         state.currentMode = action.payload[0];
+        state.currentModeId = action.payload[0].id;
+      }
+
+      if (state.currentModeId) {
+        state.loadDefaultModeValues = false;
+        const newMode = action.payload.find(mode => mode.id === state.currentModeId);
+        if (newMode) {
+          state.currentMode = newMode;
+        }
       }
 
       if (!state.allModes) {
         state.currentMode = null;
       }
     },
+    setCurrentModeId(state, action) {
+      state.currentModeId = action.payload;
+    },
     setCurrentMode(state, action) {
+      state.loadDefaultModeValues = true;
       state.currentMode = action.payload;
+      state.currentModeId = action.payload.id;
     },
     setAnimation(state, action) {
       state.animationValue = action.payload;
@@ -70,6 +87,7 @@ export const {
   setHeight,
   resetValues,
   setLayersLabelArr,
-  setDateOfDataShown
+  setDateOfDataShown,
+  setCurrentModeId
 } = modesSlice.actions;
 export default modesSlice.reducer;
