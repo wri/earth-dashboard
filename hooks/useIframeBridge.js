@@ -26,6 +26,7 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
   const [toolTipVisible, setToolTipVisible] = useState(false);
   const [scaleData, setScaleData] = useState({ annotation: null, overlay: null });
   const [toolTipText, setToolTipText] = useState("");
+  const [hasIframeConnected, setHasIframeConnected] = useState(false);
   const currentProjectionFunc = useCallback(() => getNewProjection(currentProjection), [currentProjection]);
 
   useEffect(() => {
@@ -117,10 +118,12 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
     node => {
       const connectToNullSchool = async node => {
         try {
+          setHasIframeConnected(false);
           setErr(null);
           const resp = await getEarthServer(node, width, createEarthClient);
           earthServer.current = resp.server;
           setEarthClient(resp.client);
+          setHasIframeConnected(true);
           callback();
         } catch (err) {
           setErr(err);
@@ -150,7 +153,8 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
     scaleData,
     enableToolTip,
     disableToolTip,
-    error: err
+    error: err,
+    hasIframeConnected
   };
 };
 

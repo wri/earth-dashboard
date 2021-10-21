@@ -47,7 +47,8 @@ const MainContainer = ({
     toolTipDetails,
     enableToolTip,
     disableToolTip,
-    scaleData: scaleToolTipData
+    scaleData: scaleToolTipData,
+    hasIframeConnected
   } = useIframeBridge({
     callback: () => {
       setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
@@ -178,6 +179,7 @@ const MainContainer = ({
           earthClient={earthClient}
           layers={layers}
           toolTipDetails={toolTipDetails}
+          hasIframeConnected={hasIframeConnected}
         />
       )}
       {overlayLayer && !isMobile && (

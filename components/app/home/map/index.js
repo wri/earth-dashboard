@@ -20,6 +20,7 @@ import {
   setLayersLabelArr,
   setDateOfDataShown,
   setHeight,
+  setCurrentMode,
   NAME as modesSliceName
 } from "slices/modes";
 
@@ -54,7 +55,8 @@ export default connect(
     setDateOfDataShown,
     setCurrentLocation,
     setCurrentScale,
-    setCurrentScaleBy
+    setCurrentScaleBy,
+    setCurrentMode
   },
   null,
   { forwardRef: true }
