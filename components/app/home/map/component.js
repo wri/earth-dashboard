@@ -46,7 +46,6 @@ const MapIframe = forwardRef(
     const { currentPosition } = useCurrentPosition(shouldFetchLocation);
     // if the current mode changes, and there is an earth client, set the data layer values
     useEffect(() => {
-      console.log("Setting layers", loadDefaultModeValues);
       if (currentMode && earthClient && loadDefaultModeValues) {
         const newLayers = [];
         resetValues();
@@ -133,7 +132,6 @@ const MapIframe = forwardRef(
             ? { z_level: heightValue }
             : { z_level: LEVELS.surface };
 
-        console.log({ ...animation, ...monitor, ...dataset, ...height });
         earthServer.current.saveState({ ...animation, ...monitor, ...dataset, ...height });
       }
     }, [
