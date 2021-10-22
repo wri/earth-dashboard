@@ -21,6 +21,7 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
   background-color: transparent;
   z-index: $z-index-header;
   transition: background-color #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out;
+  pointer-events: none;
 
   &--max-height-override #{$this}__bg {
     // !important flag used to override the inline style from the component
@@ -39,6 +40,7 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
       overflow: hidden;
       background-color: $colour-galaxy;
       border-bottom: 8px solid $colour-flame;
+      pointer-events: all;
     }
   }
 
@@ -69,6 +71,11 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
   justify-content: space-between;
   padding: 14px 16px;
   transition: background-color 0.3s ease-in-out;
+
+  button,
+  a {
+    pointer-events: initial;
+  }
 
   &--sticky {
     background-color: $colour-galaxy;
