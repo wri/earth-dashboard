@@ -1,3 +1,8 @@
+/**
+ * Map specific URL queries to the redux state.
+ * Useful for sharing the current data layer state in the URL.
+ */
+
 import {
   setAnimation,
   setDataset,

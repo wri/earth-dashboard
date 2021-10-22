@@ -31,13 +31,14 @@ const modesSlice = createSlice({
         state.loadDefaultModeValues = true;
         state.currentMode = action.payload[0];
         state.currentModeId = action.payload[0].id;
-      }
-
-      if (state.currentModeId) {
+      } else if (state.currentModeId) {
         state.loadDefaultModeValues = false;
         const newMode = action.payload.find(mode => mode.id === state.currentModeId);
         if (newMode) {
           state.currentMode = newMode;
+        } else {
+          state.currentMode = action.payload[0];
+          state.currentModeId = action.payload[0].id;
         }
       }
 

@@ -5,6 +5,7 @@ import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
 import ToolTip from "components/ui/tooltip/component";
+import { validateDataLayer } from "utils/map";
 
 const MapIframe = forwardRef(
   (
@@ -45,6 +46,7 @@ const MapIframe = forwardRef(
     const { currentPosition } = useCurrentPosition(shouldFetchLocation);
     // if the current mode changes, and there is an earth client, set the data layer values
     useEffect(() => {
+      console.log("Setting layers", loadDefaultModeValues);
       if (currentMode && earthClient && loadDefaultModeValues) {
         const newLayers = [];
         resetValues();
@@ -93,33 +95,45 @@ const MapIframe = forwardRef(
         // If a data highlight mode, set the layers label
         if (currentMode?.attributes.visibility.advanced_menu) {
           const newLayers = [];
-          currentMode?.attributes?.data_layers.available.forEach(layer => {
-            if (
-              (layer.attributes.data_key === animationValue &&
-                layer.attributes.category.attributes.title === DATA_LAYER_TYPES.animation) ||
-              (layer.attributes.data_key === monitorValue &&
-                layer.attributes.category.attributes.title === DATA_LAYER_TYPES.monitor) ||
-              (layer.attributes.data_key === datasetValue &&
-                layer.attributes.category.attributes.title === DATA_LAYER_TYPES.dataset) ||
-              (layer.attributes.data_key === heightValue &&
-                layer.attributes.category.attributes.title === DATA_LAYER_TYPES.height)
-            ) {
-              newLayers.push(layer.attributes.title);
+          [...currentMode?.attributes?.data_layers.available, ...currentMode?.attributes?.data_layers.default].forEach(
+            layer => {
+              if (
+                (layer.attributes.data_key === animationValue &&
+                  layer.attributes.category.attributes.title === DATA_LAYER_TYPES.animation) ||
+                (layer.attributes.data_key === monitorValue &&
+                  layer.attributes.category.attributes.title === DATA_LAYER_TYPES.monitor) ||
+                (layer.attributes.data_key === datasetValue &&
+                  layer.attributes.category.attributes.title === DATA_LAYER_TYPES.dataset) ||
+                (layer.attributes.data_key === heightValue &&
+                  layer.attributes.category.attributes.title === DATA_LAYER_TYPES.height)
+              ) {
+                newLayers.push(layer.attributes.title);
+              }
             }
-          });
+          );
           setLayersLabelArr(newLayers);
         }
 
         // Set the data layers
         let animation = { animation_enabled: false };
 
-        if (animationEnabled && animationValue) {
+        if (animationEnabled && animationValue && validateDataLayer(animationValue, currentMode)) {
           animation = { animation_type: animationValue, animation_enabled: true };
         }
-        const monitor = monitorValue ? { annotation_type: monitorValue } : { annotation_type: "none" };
-        const dataset = datasetValue ? { overlay_type: datasetValue } : { annotation_type: "none" };
-        const height = heightValue ? { z_level: heightValue } : { z_level: LEVELS.surface };
+        const monitor =
+          monitorValue && validateDataLayer(monitorValue, currentMode)
+            ? { annotation_type: monitorValue }
+            : { annotation_type: "none" };
+        const dataset =
+          datasetValue && validateDataLayer(datasetValue, currentMode)
+            ? { overlay_type: datasetValue }
+            : { annotation_type: "none" };
+        const height =
+          heightValue && validateDataLayer(heightValue, currentMode)
+            ? { z_level: heightValue }
+            : { z_level: LEVELS.surface };
 
+        console.log({ ...animation, ...monitor, ...dataset, ...height });
         earthServer.current.saveState({ ...animation, ...monitor, ...dataset, ...height });
       }
     }, [
@@ -160,7 +174,7 @@ const MapIframe = forwardRef(
         setCurrentScaleBy(3);
         setShouldFetchLocation(false);
       }
-    }, [currentPosition, earthServer, setCurrentLocation, setShouldFetchLocation]);
+    }, [currentPosition, earthServer, setCurrentLocation, setShouldFetchLocation, setCurrentScale, setCurrentScaleBy]);
 
     useEffect(() => {
       if (earthServer.current && currentLocation) {
@@ -176,7 +190,7 @@ const MapIframe = forwardRef(
           scaleBy
         });
       }
-    }, [currentLocation, earthServer.current]);
+    }, [currentLocation, currentScale, currentScaleBy, earthServer]);
 
     useEffect(() => {
       if (earthServer.current && dateOfDataShown) {
