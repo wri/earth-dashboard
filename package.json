@@ -88,6 +88,7 @@
     "react-tooltip": "^4.2.10",
     "react-transition-group": "^4.4.2",
     "react-uuid": "^1.0.2",
+    "redux-query-sync": "^0.1.10",
     "reselect": "3.0.1",
     "rss-parser": "^3.9.0",
     "sass": "1.26.11",

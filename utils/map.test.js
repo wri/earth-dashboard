@@ -2,10 +2,12 @@ import {
   getFriendlyOverlayDataBySamples,
   getFriendlyAnnotationDataBySamples,
   getOverlayData,
-  getAnnotationData
+  getAnnotationData,
+  validateDataLayer
 } from "./map";
 import { windParticulateFireSample, windParticulateOnlySample, windDataSample, baaSample } from "../test/mapSamples";
 import { fires, wind, hasEnumOverlay } from "../test/layerSamples";
+import modes from "test/modes.json";
 
 describe("Map utility", () => {
   test("getFriendlyOverlayDataBySamples returns a friendly format for overlaying scale data", () => {
@@ -68,5 +70,15 @@ describe("Map utility", () => {
     };
 
     expect(getOverlayData(baaSample, hasEnumOverlay)).toEqual(expected);
+  });
+
+  test("validateDataLayer correctly validates a data layer when it exists", () => {
+    expect(validateDataLayer("fires", modes.data[0])).toBeTruthy();
+    expect(validateDataLayer("pm2.5", modes.data[0])).toBeTruthy();
+    expect(validateDataLayer("850hPa", modes.data[0])).toBeTruthy();
+  });
+
+  test("validateDataLayer correctly validates a data layer when it exists", () => {
+    expect(validateDataLayer("HEYHO", modes.data[0])).toBeFalsy();
   });
 });

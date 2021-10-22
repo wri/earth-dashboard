@@ -27,6 +27,7 @@ import {
 export default connect(
   state => ({
     currentMode: state[modesSliceName].currentMode,
+    loadDefaultModeValues: state[modesSliceName].loadDefaultModeValues,
     animationValue: state[modesSliceName].animationValue,
     monitorValue: state[modesSliceName].monitorValue,
     heightValue: state[modesSliceName].heightValue,

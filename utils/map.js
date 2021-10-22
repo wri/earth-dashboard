@@ -138,3 +138,17 @@ export const getFriendlyDataStr = (samples, layers, index) => {
     return v === +v ? `${layerDescription}${v.toFixed(unitDescriptor.precision)} ${symbol} ${date}`.trim() : undefined;
   }
 };
+
+/**
+ * Does the data layer belong to the given mode.
+ */
+export const validateDataLayer = (value, mode) => {
+  if (!value || !mode) {
+    return false;
+  }
+
+  const { data_layers } = mode.attributes;
+  const allLayers = [...data_layers.default, ...data_layers.available];
+
+  return Boolean(allLayers.find(layer => layer.attributes.data_key === value));
+};

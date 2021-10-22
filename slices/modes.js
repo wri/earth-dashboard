@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const NAME = "modes";
 
 const initialState = {
+  currentModeId: null,
   currentMode: null,
+  loadDefaultModeValues: true,
   allModes: null,
   animationValue: "",
   datasetValue: "",
@@ -25,16 +27,32 @@ const modesSlice = createSlice({
     },
     setModes(state, action) {
       state.allModes = action.payload;
-      if (!state.currentMode) {
+      if (!state.currentMode && !state.currentModeId) {
+        state.loadDefaultModeValues = true;
         state.currentMode = action.payload[0];
+        state.currentModeId = action.payload[0].id;
+      } else if (state.currentModeId) {
+        state.loadDefaultModeValues = false;
+        const newMode = action.payload.find(mode => mode.id === state.currentModeId);
+        if (newMode) {
+          state.currentMode = newMode;
+        } else {
+          state.currentMode = action.payload[0];
+          state.currentModeId = action.payload[0].id;
+        }
       }
 
       if (!state.allModes) {
         state.currentMode = null;
       }
     },
+    setCurrentModeId(state, action) {
+      state.currentModeId = action.payload;
+    },
     setCurrentMode(state, action) {
+      state.loadDefaultModeValues = true;
       state.currentMode = action.payload;
+      state.currentModeId = action.payload.id;
     },
     setAnimation(state, action) {
       state.animationValue = action.payload;
@@ -55,6 +73,7 @@ const modesSlice = createSlice({
       // Make sure only serialisable data is stored in the redux state.
       // Can't store a Date Object in the state for example.
       if (typeof payload !== "string") return;
+      if (isNaN(new Date(payload).getTime())) return;
 
       state.dateOfDataShown = payload;
     }
@@ -70,6 +89,7 @@ export const {
   setHeight,
   resetValues,
   setLayersLabelArr,
-  setDateOfDataShown
+  setDateOfDataShown,
+  setCurrentModeId
 } = modesSlice.actions;
 export default modesSlice.reducer;
