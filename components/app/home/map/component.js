@@ -194,7 +194,6 @@ const MapIframe = forwardRef(
           width="100%"
           height="100%"
           src={process.env.NULL_SCHOOL_IFRAME_BASE}
-          title="Null School"
           frameBorder="0"
           allowtransparency="true"
           ref={ref}
