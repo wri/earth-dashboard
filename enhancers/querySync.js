@@ -9,7 +9,8 @@ import {
   setMonitor,
   setHeight,
   setCurrentModeId,
-  NAME as modesSliceName
+  NAME as modesSliceName,
+  setDateOfDataShown
 } from "slices/modes";
 import ReduxQuerySync from "redux-query-sync";
 
@@ -36,6 +37,12 @@ const querySyncEnhancer = ReduxQuerySync.enhancer({
       action: setCurrentModeId,
       stringToValue: string => Number.parseInt(string, 10) || 1,
       valueToString: value => `${value}`
+    },
+    date: {
+      selector: state => state[modesSliceName].dateOfDataShown,
+      action: setDateOfDataShown,
+      stringToValue: string => new Date(Number.parseInt(string, 10)).toString(),
+      valueToString: value => new Date(value).getTime()
     }
   },
   initialTruth: "location",

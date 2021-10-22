@@ -73,6 +73,7 @@ const modesSlice = createSlice({
       // Make sure only serialisable data is stored in the redux state.
       // Can't store a Date Object in the state for example.
       if (typeof payload !== "string") return;
+      if (isNaN(new Date(payload).getTime())) return;
 
       state.dateOfDataShown = payload;
     }
