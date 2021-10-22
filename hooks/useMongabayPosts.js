@@ -38,7 +38,7 @@ const useMongabayPosts = (topic, limit = LIMIT) => {
     variables: {
       first: limit,
       after: null,
-      topics: TOPICS[topic].map(item => item.replace(/\s/g, "-").toLowerCase())
+      topics: TOPICS[topic].join(",")
     },
     notifyOnNetworkStatusChange: true,
     errorPolicy: "all"
