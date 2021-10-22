@@ -56,7 +56,6 @@ test("<MainContainer /> renders correctly as desktop", async () => {
       frameborder="0"
       height="100%"
       id="nullSchoolIframe"
-      title="Null School"
       width="100%"
     />
     <div
