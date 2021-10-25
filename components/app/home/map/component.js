@@ -69,12 +69,8 @@ const MapIframe = forwardRef(
           newLayers.push(layer.attributes.title);
           setter(layer.attributes.data_key);
         });
-        if (currentMode.attributes.visibility.data_highlights) {
-          // Only set the name if the current mode is a data highlight
-          setLayersLabelArr([currentMode.attributes.title]);
-        } else {
-          setLayersLabelArr(newLayers);
-        }
+
+        setLayersLabelArr(newLayers);
       }
     }, [
       currentMode,
