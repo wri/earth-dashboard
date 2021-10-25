@@ -54,6 +54,11 @@ const Widget = ({ className, widget, bordered, ...rest }) => {
       <div className={styles["c-page-section-widget__widget"]}>
         <WidgetPreview widget={{ id: widgetId }} showSource widgetShouldBeLoaded />
       </div>
+      {includeInfo && (
+        <div className={styles["c-page-section-widget__source"]}>
+          
+        </div>
+      )}
     </div>
   );
 };
