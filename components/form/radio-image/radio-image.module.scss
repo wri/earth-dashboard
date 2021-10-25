@@ -26,6 +26,10 @@
     &:checked ~ #{$this}__input-label #{$this}__image {
       border-color: $colour-flame;
     }
+
+    &:focus ~ #{$this}__input-label #{$this}__image {
+      box-shadow: 0 0 0 2px $white;
+    }
   }
 
   &__input-label--unchecked {

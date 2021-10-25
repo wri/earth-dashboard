@@ -40,13 +40,18 @@
     max-height: 33px;
     background-color: $colour-night;
     border: 2px solid transparent;
-    &:focus,
+
     &:hover,
-    &:active,
-    &:focus-within {
+    &:active {
       border: 2px solid $colour-flame;
       color: $colour-space;
       background: white;
+    }
+
+    &:focus,
+    &:focus-within {
+      box-shadow: 0 0 0 2px $white;
+      border: 2px solid $colour-flame;
     }
 
     &--selected {

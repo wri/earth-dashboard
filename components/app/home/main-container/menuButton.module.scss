@@ -13,13 +13,17 @@
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: $colour-flame;
 
     &:before {
       background-color: $colour-galaxy;
     }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px $white;
+    border: 2px solid $colour-flame;
   }
 
   &__text-container {
