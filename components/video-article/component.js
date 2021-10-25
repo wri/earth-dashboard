@@ -22,8 +22,15 @@ const VideoArticle = ({ className, topic, title, image, videoURL }) => {
 
   useEffect(() => {
     if (ref.current && isPlaying && !hasError) {
-      ref.current.querySelector("iframe")?.focus();
-      ref.current.querySelector("video")?.focus();
+      const player = ref.current.getInternalPlayer();
+
+      const handleBlur = () => {
+        setIsPlaying(false);
+        player.removeEventListener("blur", handleBlur);
+      };
+
+      player.focus();
+      player.addEventListener("blur", handleBlur);
     }
   }, [isPlaying, hasError]);
 
@@ -42,9 +49,9 @@ const VideoArticle = ({ className, topic, title, image, videoURL }) => {
           !isPlaying && "u-display-none",
           hasError && "u-display-none"
         )}
-        ref={ref}
       >
         <ReactPlayer
+          ref={ref}
           width="100%"
           height="100%"
           playing={isPlaying}
