@@ -55,7 +55,7 @@ describe("Video Article", () => {
     expect(playButtonNode).not.toBeNull();
     expect(playButtonNode).not.toBeDisabled();
     // Was the React Player called correctly and told not to play the video?
-    expect(ReactPlayer).toHaveBeenLastCalledWith(
+    expect(ReactPlayer).toHaveBeenCalledWith(
       expect.objectContaining({ playing: false, url: "validURL", ...defaultReactPlayerProps }),
       context
     );

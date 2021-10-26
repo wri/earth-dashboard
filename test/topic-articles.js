@@ -67,16 +67,19 @@ export const VIDEOS = {
     {
       title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
       thumbnail: { $: { url: "test" } },
+      topic: "climate",
       link: { $: { url: "https://www.youtube.com/watch?v=AXuNQjFJIOg" } }
     },
     {
       title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
       thumbnail: { $: { url: "test" } },
+      topic: "climate",
       link: { $: { url: "https://www.youtube.com/watch?v=9xwazD5SyVg" } }
     },
     {
       title: "‘Everything is on fire’: Siberia hit by unprecedented burning",
       thumbnail: { $: { url: "test" } },
+      topic: "forest",
       link: { $: { url: "https://www.youtube.com/watch?v=-fTX7ltOWVE" } }
     }
   ]

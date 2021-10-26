@@ -6,7 +6,8 @@ export const parser = new Parser({
   customFields: {
     item: [
       ["media:thumbnail", "thumbnail"],
-      ["media:content", "link"]
+      ["media:content", "link"],
+      ["media:keywords", "topic"]
     ]
   }
 });
@@ -19,16 +20,19 @@ const useNowThisVideos = topic => {
   useEffect(async () => {
     setIsLoading(true);
     setHasErrored(false);
+    setVideos([]);
 
     try {
       const feed = await parser.parseURL(NOW_THIS_EARTH_RSS_URL);
-      setVideos(feed.items);
+      const videos = feed.items.filter(video => video.topic === topic);
+
+      setVideos(videos);
     } catch (error) {
       setHasErrored(true);
     }
 
     setIsLoading(false);
-  }, []); // TODO: Add "topic" to this array when keywords are added to the feed
+  }, [ topic ]);
 
   return {
     videos,
