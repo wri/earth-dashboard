@@ -30,7 +30,11 @@ const Headline = ({
 
   useEffect(() => {
     setIsDatePickerDisabled(true);
-    return () => setIsDatePickerDisabled(false);
+
+    return () => {
+      setIsDatePickerDisabled(false);
+      setDateOfDataShown(new Date().toString());
+    };
   }, [setIsDatePickerDisabled]);
 
   useEffect(() => {
