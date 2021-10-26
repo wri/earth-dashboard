@@ -32,12 +32,12 @@ const MegaMenuCTA = ({ className, hasarrow, image, label, body, link }) => {
           )}
 
           <Link href={link}>
-            <a className={classnames(styles["c-mega-menu-cta__link"], !hasarrow && "u-visually-hidden-focusable")} aria-labelledby={titleID} aria-describedby={bodyID}>
-              {hasarrow ? (
-                <Image src={LinkIcon} role="presentation" alt="" />
-              ) : (
-                <span>Visit Page</span>
-              )}
+            <a
+              className={classnames(styles["c-mega-menu-cta__link"], !hasarrow && "u-visually-hidden-focusable")}
+              aria-labelledby={titleID}
+              aria-describedby={bodyID}
+            >
+              {hasarrow ? <Image src={LinkIcon} role="presentation" alt="" /> : <span>Visit Page</span>}
             </a>
           </Link>
         </div>

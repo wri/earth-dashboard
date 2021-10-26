@@ -202,7 +202,7 @@
     }
 
     &:focus {
-      background-position: 50% 5px;
+      background-position: 50% 7px;
       box-shadow: 0 0 0 2px $white;
       border: 2px solid $colour-flame;
     }
@@ -347,6 +347,13 @@
 
     &__header-text {
       @include font-size(20px, 30px);
+    }
+
+    &__close-button,
+    &__back-button {
+      &:focus {
+        background-position: 50% 5px;
+      }
     }
 
     &__close-button {
