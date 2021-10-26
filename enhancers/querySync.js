@@ -36,7 +36,7 @@ const querySyncEnhancer = ReduxQuerySync.enhancer({
     headline: {
       selector: state => state[headlineSliceName].currentHeadlineId,
       action: setCurrentHeadlineId,
-      stringToValue: string => Number.parseInt(string, 10) || null,
+      stringToValue: string => Number.parseInt(string, 10) || undefined,
       valueToString: value => `${value}`
     },
     mode: {

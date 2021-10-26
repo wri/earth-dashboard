@@ -21,7 +21,7 @@ const headlinesSlice = createSlice({
         if (headline) {
           state.currentHeadline = headline;
         } else {
-          state.currentHeadlineId = null;
+          state.currentHeadlineId = undefined;
         }
       }
     },
