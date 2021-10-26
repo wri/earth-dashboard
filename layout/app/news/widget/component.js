@@ -1,6 +1,8 @@
 import WidgetPreview from "components/widgets/preview";
 import useWidget from "hooks/useWidget";
 import classnames from "classnames";
+import ExternalLink from "components/ui/external-link";
+import { RESOURCE_WATCH_WIDGET_LINK } from "constants/widgets";
 import styles from "./widget.module.scss";
 import PropTypes from "prop-types";
 
@@ -54,6 +56,15 @@ const Widget = ({ className, widget, bordered, ...rest }) => {
       <div className={styles["c-page-section-widget__widget"]}>
         <WidgetPreview widget={{ id: widgetId }} showSource widgetShouldBeLoaded />
       </div>
+      {includeInfo && (
+        <div>
+          <ExternalLink
+            className={styles["c-page-section-widget__source"]}
+            link={RESOURCE_WATCH_WIDGET_LINK + widgetId}
+            label="Source"
+          />
+        </div>
+      )}
     </div>
   );
 };

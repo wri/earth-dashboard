@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "./headline.module.scss";
 import WidgetPreview from "components/widgets/preview";
+import { RESOURCE_WATCH_WIDGET_LINK } from "constants/widgets";
 import { useMemo, useEffect } from "react";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME } from "constants/tag-manager";
@@ -67,7 +68,11 @@ const Headline = ({
             <div className={styles["c-headline__widget-source"]}>
               <p className="u-margin-vertical-xs">
                 Source:
-                <a href="https://resourcewatch.org/" target="_blank" rel="noreferrer">
+                <a
+                  href={RESOURCE_WATCH_WIDGET_LINK + headline.attributes.content.media.widget.attributes.widget_id}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {" "}
                   ResourceWatch
                 </a>
