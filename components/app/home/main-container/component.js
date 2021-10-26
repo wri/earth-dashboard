@@ -101,13 +101,19 @@ const MainContainer = ({
     }, 1000);
   }, []);
 
+  // https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often
+  const browserWidthMutable = useRef(browserWidth);
+  useEffect(() => {
+    browserWidthMutable.current = browserWidth;
+  });
+
   // Move globe to the right when menu is open
   useEffect(() => {
     if (!earthServer.current || isMobile) return;
 
     const animationDuration = 300;
     const translateDuration = 25;
-    const totalDistance = browserWidth * 0.2;
+    const totalDistance = browserWidthMutable.current * 0.2;
 
     const distanceInterval = totalDistance / (animationDuration / translateDuration);
     const translateInterval = hasMenuOpen ? distanceInterval : distanceInterval * -1;
@@ -126,7 +132,7 @@ const MainContainer = ({
     };
 
     loop();
-  }, [browserWidth, earthServer, hasMenuOpen, isMobile]);
+  }, [earthServer, hasMenuOpen, isMobile]);
 
   useEffect(() => {
     if (hasMenuOpen) {
