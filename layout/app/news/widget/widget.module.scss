@@ -48,6 +48,10 @@
     margin-bottom: 16px;
   }
 
+  &__source {
+    margin-top: 8px;
+  }
+
   @media screen and (min-width: $global-breakpoint-md) {
     &--bordered {
       padding: 24px 32px;
@@ -73,6 +77,11 @@
     &__desc {
       @include font-size(14px, 21px);
       margin-bottom: 24px;
+    }
+
+    &__source {
+      margin-top: 12px;
+      justify-content: flex-end;
     }
   }
 }

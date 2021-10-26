@@ -62,11 +62,11 @@ describe("News Topic Layout - Videos", () => {
     return mount;
   };
 
-  test("renders the videos", async () => {
+  test("renders the videos filtered by topic", async () => {
     const { findAllByLabelText } = mountComponent();
 
     const playVideoButtons = await findAllByLabelText(/play video/i);
-    expect(playVideoButtons).toHaveLength(VIDEOS.items.length);
+    expect(playVideoButtons).toHaveLength(VIDEOS.items.filter(video => video.topic === topic).length);
   });
 
   test("doesn't render any videos if the requests fails", async () => {

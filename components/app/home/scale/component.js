@@ -4,12 +4,13 @@ import PropTypes from "prop-types";
 import styles from "./scale.module.scss";
 import FocusTrap from "focus-trap-react";
 import ToolTip from "components/ui/tooltip";
+import useDataLayers from "hooks/useDataLayers";
 import { POSITIONS } from "components/ui/tooltip/component";
 import { SCALE_TYPES } from "constants/map";
+import { DATA_LAYER_TYPES } from "constants/datalayers";
 
 const Scale = ({
   className,
-  title,
   min,
   max,
   scaleUnit,
@@ -18,12 +19,21 @@ const Scale = ({
   toolTipData,
   value,
   hasSmallLabels,
+  currentMode,
+  datasetValue,
   ...rest
 }) => {
+  const datasetLayers = useDataLayers(currentMode, DATA_LAYER_TYPES.dataset);
   const [shouldShowToolTip, setShouldShowToolTip] = useState(false);
   const minLabel = `${min}${scaleUnit}`.length > 9 ? `${min} ${scaleUnit}` : `${min}${scaleUnit}`;
   const maxLabel = `${max}${scaleUnit}`.length > 9 ? `${max} ${scaleUnit}` : `${max}${scaleUnit}`;
   const style = { "--min": `"${minLabel}"`, "--max": `"${maxLabel}"`, "--gradient": scaleGradient };
+
+  const scaleLabel = useMemo(() => {
+    const layer = datasetLayers.find(layer => layer.attributes.data_key === datasetValue);
+
+    return layer?.attributes?.title || "Scale";
+  }, [datasetValue]);
 
   const valueParsed = useMemo(
     () => parseFloat(toolTipData.overlay ? toolTipData.overlay.value : value),
@@ -71,7 +81,7 @@ const Scale = ({
 
   return (
     <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>
-      <label htmlFor="scale">Scale</label>
+      <label htmlFor="scale">{scaleLabel}</label>
       <div className={styles["c-scale__input-container"]}>
         {shouldShowToolTip && !Number.isNaN(percent) && (
           <>
@@ -131,7 +141,6 @@ const Scale = ({
 
 Scale.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string,
   alt: PropTypes.string,
   min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -139,12 +148,13 @@ Scale.propTypes = {
   scaleUnit: PropTypes.string,
   readOnly: PropTypes.bool,
   isHorizontal: PropTypes.bool,
-  toolTipData: PropTypes.object
+  toolTipData: PropTypes.object,
+  currentMode: PropTypes.string,
+  datasetValue: PropTypes.string
 };
 
 Scale.defaultProps = {
   className: "",
-  title: "Scale",
   min: 0,
   max: 100,
   value: 0,
