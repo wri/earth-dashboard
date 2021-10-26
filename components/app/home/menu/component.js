@@ -63,11 +63,13 @@ const Menu = forwardRef(
       }
     };
 
+    // Handle the headline info panel back button click
     const onBack = () => {
       if (tabIndex === INFO_TAB_INDEX) {
         setTabIndex(DATA_TAB_INDEX);
       }
       setForceInfoPage(false);
+      setCurrentHeadline(null);
       setInfoData(null);
     };
 

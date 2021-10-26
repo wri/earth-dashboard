@@ -12,6 +12,7 @@ import {
   NAME as modesSliceName,
   setDateOfDataShown
 } from "slices/modes";
+import { setCurrentHeadlineId, NAME as headlineSliceName } from "slices/headlines";
 import ReduxQuerySync from "redux-query-sync";
 
 const querySyncEnhancer = ReduxQuerySync.enhancer({
@@ -31,6 +32,12 @@ const querySyncEnhancer = ReduxQuerySync.enhancer({
     animation: {
       selector: state => state[modesSliceName].animationValue,
       action: setAnimation
+    },
+    headline: {
+      selector: state => state[headlineSliceName].currentHeadlineId,
+      action: setCurrentHeadlineId,
+      stringToValue: string => Number.parseInt(string, 10) || null,
+      valueToString: value => `${value}`
     },
     mode: {
       selector: state => state[modesSliceName].currentModeId,

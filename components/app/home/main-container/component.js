@@ -27,7 +27,8 @@ const MainContainer = ({
   layersLabelArr,
   dateOfDataShown,
   shouldFadeControls,
-  currentHeadline
+  currentHeadline,
+  currentHeadlineId
 }) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
@@ -152,7 +153,7 @@ const MainContainer = ({
   }, [setModes]);
 
   useEffect(() => {
-    if (currentHeadline) {
+    if (currentHeadline && earthServer.current) {
       enableToolTip(
         [currentHeadline.attributes.location.lng, currentHeadline.attributes.location.lat],
         `${layersLabelArr.join(", ")} in ${currentHeadline.attributes.location.name}`
@@ -160,7 +161,13 @@ const MainContainer = ({
     } else {
       disableToolTip();
     }
-  }, [currentHeadline, disableToolTip, enableToolTip, layersLabelArr]);
+  }, [earthServer.current, currentHeadline, disableToolTip, enableToolTip, layersLabelArr]);
+
+  useEffect(() => {
+    if (currentHeadlineId && earthServer.current) {
+      setHasMenuOpen(true);
+    }
+  }, [currentHeadlineId, earthServer.current, setHasMenuOpen]);
 
   return (
     <div
@@ -282,7 +289,9 @@ MainContainer.propTypes = {
   setIsMobile: PropTypes.func.isRequired,
   setModes: PropTypes.func.isRequired,
   layersLabelArr: PropTypes.array.isRequired,
-  dateOfDataShown: PropTypes.instanceOf(Date).isRequired
+  dateOfDataShown: PropTypes.instanceOf(Date).isRequired,
+  currentHeadline: PropTypes.object.isRequired,
+  currentHeadlineId: PropTypes.number.isRequired
 };
 
 export default MainContainer;

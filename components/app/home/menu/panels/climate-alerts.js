@@ -4,7 +4,7 @@ import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { fetchClimateAlerts } from "services/gca";
-import { setHeadlines, setCurrentHeadline } from "slices/headlines";
+import { setHeadlines, setCurrentHeadline, NAME as headlineSliceName } from "slices/headlines";
 import { setCurrentMode } from "slices/modes";
 import { setIsFetchLocationDisabled } from "slices/mapControls";
 import { fireEvent } from "utils/gtag";
@@ -19,7 +19,6 @@ const HeadlinesPanel = ({
   headlines,
   setHeadlines,
   onForceInfoPage,
-  forceInfoPage,
   setCurrentMode,
   setIsFetchLocationDisabled,
   setCurrentHeadline,
@@ -32,15 +31,11 @@ const HeadlinesPanel = ({
   }, [headlines]);
 
   useEffect(() => {
-    if (!forceInfoPage) {
-      setCurrentHeadline(null);
-    }
-  }, [forceInfoPage, setCurrentHeadline]);
-
-  useEffect(() => {
     if (currentHeadline) {
       // Set default template
       setCurrentMode(currentHeadline.attributes.mode);
+      // Open the info panel
+      onForceInfoPage();
     }
   }, [currentHeadline, setCurrentMode]);
 
@@ -62,7 +57,6 @@ const HeadlinesPanel = ({
   }, [setHeadlines]);
 
   const onSelectHeadline = headline => {
-    onForceInfoPage();
     setCurrentHeadline(headline);
     setIsFetchLocationDisabled(true);
 
@@ -125,8 +119,8 @@ HeadlinesPanel.defaultProps = {
 
 export default connect(
   state => ({
-    headlines: state.headlines.headlines,
-    currentHeadline: state.headlines.currentHeadline
+    headlines: state[headlineSliceName].headlines,
+    currentHeadline: state[headlineSliceName].currentHeadline
   }),
   { setHeadlines, setCurrentMode, setIsFetchLocationDisabled, setCurrentHeadline }
 )(HeadlinesPanel);
