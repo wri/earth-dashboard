@@ -35,6 +35,9 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
     isFetchingMore,
     fetchMore
   } = useMongabayPosts(topic, LIMIT);
+
+  return null;
+
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
   const { videos: allNowThisVideos } = useNowThisVideos(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};

@@ -50,31 +50,51 @@ export const formatPosts = posts =>
   }, []);
 
 export const GetPostsQuery = gql`
-  query GetPosts($first: Int, $after: String, $topics: String) {
-    posts(first: $first, after: $after, where: { tag: $topics }) {
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-      nodes {
-        id
-        tags {
-          nodes {
-            name
-          }
-        }
-        title
-        date
-        uri
-        featuredImage {
-          node {
-            mediaItemUrl
-          }
+query MyQuery {
+  topics(where: {slug: ["covid-19", "oceans"]}) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      posts {
+        nodes {
+          title
+          link
         }
       }
     }
   }
+}
 `;
+
+
+// export const GetPostsQuery = gql`
+//   query GetPosts($first: Int, $after: String, $topics: String) {
+//     posts(first: $first, after: $after, where: { tag: $topics }) {
+//       pageInfo {
+//         hasNextPage
+//         endCursor
+//       }
+//       nodes {
+//         id
+//         tags {
+//           nodes {
+//             name
+//           }
+//         }
+//         title
+//         date
+//         uri
+//         featuredImage {
+//           node {
+//             mediaItemUrl
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
 
 export const GET_NEWS_BY_TOPIC_QUERY = (topics, limit) => gql`
 query {
