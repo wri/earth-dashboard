@@ -17,6 +17,7 @@ const Headline = ({
   setCurrentScale,
   setCurrentScaleBy,
   setDateOfDataShown,
+  setIsFetchLocationDisabled,
   ...rest
 }) => {
   const isBrowser = typeof window !== "undefined";
@@ -31,9 +32,11 @@ const Headline = ({
 
   useEffect(() => {
     setIsDatePickerDisabled(true);
+    setIsFetchLocationDisabled(true);
 
     return () => {
       setIsDatePickerDisabled(false);
+      setIsFetchLocationDisabled(false);
       setDateOfDataShown(new Date().toString());
     };
   }, [setIsDatePickerDisabled]);

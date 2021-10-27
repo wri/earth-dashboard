@@ -14,7 +14,6 @@ import {
   resetValues,
   NAME as modesSliceName
 } from "slices/modes";
-import { setIsFetchLocationDisabled } from "slices/mapControls";
 
 export default connect(
   state => ({
@@ -35,7 +34,6 @@ export default connect(
     setHeightValue: setHeight,
     resetValues: resetValues,
     setDialogHeight,
-    setIsFetchLocationDisabled,
     setCurrentHeadline
   },
   null,
