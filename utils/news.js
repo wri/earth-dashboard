@@ -54,19 +54,7 @@ export const GetPostsQuery = gql`
     posts(
       first: $first
       after: $after
-      where: {
-        taxQuery: {
-          relation: OR
-          taxArray: [
-            {
-              terms: $topics
-              taxonomy: TOPIC
-              operator: IN
-              field: SLUG
-            }
-          ]
-        }
-      }
+      where: { taxQuery: { relation: OR, taxArray: [{ terms: $topics, taxonomy: TOPIC, operator: IN, field: SLUG }] } }
     ) {
       pageInfo {
         hasNextPage
