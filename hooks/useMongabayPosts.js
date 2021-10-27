@@ -38,7 +38,7 @@ const useMongabayPosts = (topic, limit = LIMIT) => {
     variables: {
       first: limit,
       after: null,
-      topics: TOPICS[topic].join(",")
+      topics: TOPICS[topic]
     },
     notifyOnNetworkStatusChange: true,
     errorPolicy: "all"
