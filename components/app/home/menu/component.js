@@ -141,9 +141,6 @@ const Menu = forwardRef(
                   <Tab className={styles["c-home-menu__tab"]} data-testid="tab-3">
                     Advanced Menu
                   </Tab>
-                  <Tab className="u-display-none" data-testid="tab-4">
-                    Info
-                  </Tab>
                 </TabList>
               </div>
               <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>
@@ -172,14 +169,6 @@ const Menu = forwardRef(
                       layers={layers}
                       // TODO Refactor Data panel to pull from redux instead of passing props from parent.
                     />
-                  </TabPanel>
-                  <TabPanel>
-                    {infoData && (
-                      <>
-                        {!isMobile && <h2 className={styles["c-home-menu__info-title"]}>{infoData.title}</h2>}
-                        <p className="u-text-pre-line">{infoData.description}</p>
-                      </>
-                    )}
                   </TabPanel>
                 </div>
               </div>

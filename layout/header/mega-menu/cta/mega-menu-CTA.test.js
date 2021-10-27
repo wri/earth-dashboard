@@ -125,11 +125,9 @@ describe("Mega Menu CTA", () => {
         <a
           aria-describedby="mega-menu-cta-body-1"
           aria-labelledby="mega-menu-cta-title-1"
-          class="c-mega-menu-cta__link"
+          class="c-mega-menu-cta__link u-visually-hidden-focusable"
         >
-          <span
-            class="u-visually-hidden"
-          >
+          <span>
             Visit Page
           </span>
         </a>

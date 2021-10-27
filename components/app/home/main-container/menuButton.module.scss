@@ -8,18 +8,23 @@
   display: flex;
   align-items: center;
   color: white;
-  padding: 10px 12px;
+  padding: 8px 10px;
   max-width: 400px;
   cursor: pointer;
+  border: 2px solid transparent;
   transition: background-color 0.3s ease-in-out;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: $colour-flame;
 
     &:before {
       background-color: $colour-galaxy;
     }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px $white;
+    border-color: $colour-flame;
   }
 
   &__text-container {
@@ -85,7 +90,7 @@
   @media screen and (max-width: $global-breakpoint-md) {
     width: 100%;
     max-width: unset;
-    padding: 6.5px 10px;
+    padding: 4.5px 8px;
 
     &:before {
       height: 36px;

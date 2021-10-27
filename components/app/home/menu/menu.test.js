@@ -79,17 +79,6 @@ test("<Menu /> renders correctly as desktop", async () => {
               >
                 Advanced Menu
               </li>
-              <li
-                aria-controls="react-tabs-7"
-                aria-disabled="false"
-                aria-selected="false"
-                class="u-display-none"
-                data-testid="tab-4"
-                id="react-tabs-6"
-                role="tab"
-              >
-                Info
-              </li>
             </ul>
           </div>
           <div
@@ -246,12 +235,6 @@ test("<Menu /> renders correctly as desktop", async () => {
                 id="react-tabs-5"
                 role="tabpanel"
               />
-              <div
-                aria-labelledby="react-tabs-6"
-                class="react-tabs__tab-panel"
-                id="react-tabs-7"
-                role="tabpanel"
-              />
             </div>
           </div>
         </div>
@@ -306,49 +289,38 @@ test("<Menu /> renders correctly as mobile", async () => {
               role="tablist"
             >
               <li
-                aria-controls="react-tabs-9"
+                aria-controls="react-tabs-7"
                 aria-disabled="false"
                 aria-selected="true"
                 class="c-home-menu__tab u-margin-right-l react-tabs__tab--selected"
                 data-testid="tab-1"
-                id="react-tabs-8"
+                id="react-tabs-6"
                 role="tab"
                 tabindex="0"
               >
                 Climate Alerts
               </li>
               <li
-                aria-controls="react-tabs-11"
+                aria-controls="react-tabs-9"
                 aria-disabled="false"
                 aria-selected="false"
                 class="c-home-menu__tab u-margin-right-l"
                 data-testid="tab-2"
-                id="react-tabs-10"
+                id="react-tabs-8"
                 role="tab"
               >
                 Data Highlights
               </li>
               <li
-                aria-controls="react-tabs-13"
+                aria-controls="react-tabs-11"
                 aria-disabled="false"
                 aria-selected="false"
                 class="c-home-menu__tab"
                 data-testid="tab-3"
-                id="react-tabs-12"
+                id="react-tabs-10"
                 role="tab"
               >
                 Advanced Menu
-              </li>
-              <li
-                aria-controls="react-tabs-15"
-                aria-disabled="false"
-                aria-selected="false"
-                class="u-display-none"
-                data-testid="tab-4"
-                id="react-tabs-14"
-                role="tab"
-              >
-                Info
               </li>
             </ul>
           </div>
@@ -359,10 +331,10 @@ test("<Menu /> renders correctly as mobile", async () => {
               class="c-home-menu__tab-container"
             >
               <div
-                aria-labelledby="react-tabs-8"
+                aria-labelledby="react-tabs-6"
                 class="c-home-menu__tab-panel react-tabs__tab-panel--selected"
                 data-testid="panel-1"
-                id="react-tabs-9"
+                id="react-tabs-7"
                 role="tabpanel"
               >
                 <p
@@ -493,23 +465,17 @@ test("<Menu /> renders correctly as mobile", async () => {
                 </div>
               </div>
               <div
-                aria-labelledby="react-tabs-10"
+                aria-labelledby="react-tabs-8"
                 class="c-home-menu__tab-panel"
                 data-testid="panel-2"
-                id="react-tabs-11"
+                id="react-tabs-9"
                 role="tabpanel"
               />
               <div
-                aria-labelledby="react-tabs-12"
+                aria-labelledby="react-tabs-10"
                 class="c-home-menu__tab-panel"
                 data-testid="panel-3"
-                id="react-tabs-13"
-                role="tabpanel"
-              />
-              <div
-                aria-labelledby="react-tabs-14"
-                class="react-tabs__tab-panel"
-                id="react-tabs-15"
+                id="react-tabs-11"
                 role="tabpanel"
               />
             </div>

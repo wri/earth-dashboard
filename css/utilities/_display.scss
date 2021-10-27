@@ -10,6 +10,10 @@
   @include visually-hidden();
 }
 
+.u-visually-hidden-focusable:not(:focus):not(:focus-within) {
+  @include visually-hidden();
+}
+
 .u-flex {
   display: flex;
 
