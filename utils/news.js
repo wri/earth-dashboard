@@ -77,6 +77,11 @@ export const GetPostsQuery = gql`
         title
         date
         uri
+        topics(where: { name: $topics }) {
+          nodes {
+            name
+          }
+        }
         featuredImage {
           node {
             mediaItemUrl
