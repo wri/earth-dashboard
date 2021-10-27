@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { fetchClimateAlerts } from "services/gca";
 import { setHeadlines, setCurrentHeadline, NAME as headlineSliceName } from "slices/headlines";
 import { setCurrentMode } from "slices/modes";
-import { setIsFetchLocationDisabled } from "slices/mapControls";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
 
@@ -20,7 +19,6 @@ const HeadlinesPanel = ({
   setHeadlines,
   onForceInfoPage,
   setCurrentMode,
-  setIsFetchLocationDisabled,
   setCurrentHeadline,
   currentHeadline
 }) => {
@@ -58,7 +56,6 @@ const HeadlinesPanel = ({
 
   const onSelectHeadline = headline => {
     setCurrentHeadline(headline);
-    setIsFetchLocationDisabled(true);
 
     fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
   };
@@ -108,7 +105,6 @@ HeadlinesPanel.propTypes = {
   headlines: PropTypes.array.isRequired,
   setHeadlines: PropTypes.func.isRequired,
   forceInfoPage: PropTypes.bool.isRequired,
-  setIsFetchLocationDisabled: PropTypes.func.isRequired,
   currentHeadline: PropTypes.object,
   setCurrentHeadline: PropTypes.func.isRequired
 };
@@ -122,5 +118,5 @@ export default connect(
     headlines: state[headlineSliceName].headlines,
     currentHeadline: state[headlineSliceName].currentHeadline
   }),
-  { setHeadlines, setCurrentMode, setIsFetchLocationDisabled, setCurrentHeadline }
+  { setHeadlines, setCurrentMode, setCurrentHeadline }
 )(HeadlinesPanel);

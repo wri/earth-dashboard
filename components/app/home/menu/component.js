@@ -42,7 +42,6 @@ const Menu = forwardRef(
       layers,
       setDialogHeight,
       dialogHeight,
-      setIsFetchLocationDisabled,
       setCurrentHeadline,
       ...rest
     },
@@ -79,10 +78,9 @@ const Menu = forwardRef(
 
       return () => {
         // on unmount
-        setIsFetchLocationDisabled(false);
         setCurrentHeadline(null);
       };
-    }, [setCurrentHeadline, setIsFetchLocationDisabled]);
+    }, [setCurrentHeadline]);
 
     return (
       <div
@@ -101,7 +99,6 @@ const Menu = forwardRef(
               selectedIndex={tabIndex}
               onSelect={index => {
                 setTabIndex(index);
-                setIsFetchLocationDisabled(false);
 
                 fireGAEvent(index);
               }}
@@ -201,7 +198,6 @@ Menu.propTypes = {
   onClose: PropTypes.func,
   layers: PropTypes.array.isRequired,
   animationEnabled: PropTypes.bool.isRequired,
-  setIsFetchLocationDisabled: PropTypes.func.isRequired,
   setCurrentHeadline: PropTypes.func.isRequired
 };
 
