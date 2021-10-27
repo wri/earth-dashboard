@@ -38,7 +38,7 @@ const useMongabayPosts = (topic, limit = LIMIT) => {
     variables: {
       first: limit,
       after: null,
-      topics: TOPICS[topic].join(",")
+      topics: TOPICS[topic]
     },
     notifyOnNetworkStatusChange: true,
     errorPolicy: "all"
@@ -53,9 +53,7 @@ const useMongabayPosts = (topic, limit = LIMIT) => {
   // save them into the state
   useEffect(() => {
     if (!loading && !error) {
-      console.log(data);
-
-      //setPosts(formatPosts(data.posts.nodes));
+      setPosts(formatPosts(data.posts.nodes));
     }
 
     if (error) {
@@ -67,8 +65,8 @@ const useMongabayPosts = (topic, limit = LIMIT) => {
     isLoading: networkStatus === NetworkStatus.loading || networkStatus === NetworkStatus.refetch,
     hasErrored: !!error,
     posts,
-    //canFetchMore: data?.posts.pageInfo.hasNextPage && networkStatus !== NetworkStatus.refetch && !error,
-    //isFetchingMore: networkStatus === NetworkStatus.fetchMore,
+    canFetchMore: data?.posts.pageInfo.hasNextPage && networkStatus !== NetworkStatus.refetch && !error,
+    isFetchingMore: networkStatus === NetworkStatus.fetchMore,
     fetchMore: (loadMoreLimit = limit) =>
       fetchMore({
         variables: {
