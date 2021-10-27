@@ -112,7 +112,7 @@ const Scale = ({
             </FocusTrap>
             <span
               className={styles["c-scale__input-thumb"]}
-              style={{ top: isHorizontal ? 9 : `${100 - percent}%`, left: isHorizontal ? `${percent}%` : 10 }}
+              style={{ top: isHorizontal ? 9 : `${100 - percent}%`, left: isHorizontal ? `${percent}%` : `50%` }}
             ></span>
           </>
         )}
