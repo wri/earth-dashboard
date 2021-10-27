@@ -6,6 +6,15 @@ import { biodiversityTopics } from "constants/news/biodiversity";
 
 import { CLIMATE, FRESHWATER, OCEAN, FORESTS, BIODIVERSITY } from "utils/topics";
 
+// Pluralised topics - needed for the NowThis video keywords...
+export const pluralisedTopicNames = {
+  [CLIMATE]: "climates",
+  [FORESTS]: "forests",
+  [OCEAN]: "oceans",
+  [FRESHWATER]: "freshwaters",
+  [BIODIVERSITY]: "biodiversities"
+};
+
 const topics = {
   [CLIMATE]: climateTopics,
   [FORESTS]: forestsTopics,
