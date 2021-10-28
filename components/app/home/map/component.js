@@ -188,7 +188,8 @@ const MapIframe = forwardRef(
 
     useEffect(() => {
       if (earthServer.current && dateOfDataShown) {
-        earthServer.current.saveState({ time_cursor: dateOfDataShown });
+        const isToday = new Date(dateOfDataShown).toDateString() === new Date().toDateString();
+        earthServer.current.saveState({ time_cursor: isToday ? "now" : dateOfDataShown });
       }
     }, [dateOfDataShown, earthServer]);
 

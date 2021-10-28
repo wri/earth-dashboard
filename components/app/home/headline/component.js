@@ -37,7 +37,7 @@ const Headline = ({
     return () => {
       setIsDatePickerDisabled(false);
       setIsFetchLocationDisabled(false);
-      setDateOfDataShown("now");
+      setDateOfDataShown(new Date().toString());
     };
   }, [setIsDatePickerDisabled]);
 
