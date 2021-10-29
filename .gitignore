@@ -32,3 +32,6 @@ package-lock.json
 
 # Sentry
 .sentryclirc
+
+# WebStorm
+.idea/
