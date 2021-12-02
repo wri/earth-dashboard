@@ -25,7 +25,7 @@ const HeadlinesPanel = ({
   const [isFetching, setIsFetching] = useState(true);
   const mostRecentHeadlines = useMemo(() => {
     const reversed = [...headlines].reverse();
-    return reversed.slice(Math.max(reversed.length - MAX_NUMBER_OF_HEADLINES, 0));
+    return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
   }, [headlines]);
 
   useEffect(() => {

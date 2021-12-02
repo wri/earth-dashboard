@@ -149,7 +149,7 @@ Scale.propTypes = {
   readOnly: PropTypes.bool,
   isHorizontal: PropTypes.bool,
   toolTipData: PropTypes.object,
-  currentMode: PropTypes.string,
+  currentMode: PropTypes.object,
   datasetValue: PropTypes.string
 };
 
