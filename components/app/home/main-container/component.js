@@ -296,8 +296,13 @@ MainContainer.propTypes = {
   setModes: PropTypes.func.isRequired,
   layersLabelArr: PropTypes.array.isRequired,
   dateOfDataShown: PropTypes.instanceOf(Date).isRequired,
-  currentHeadline: PropTypes.object.isRequired,
-  currentHeadlineId: PropTypes.number.isRequired
+  currentHeadline: PropTypes.object,
+  currentHeadlineId: PropTypes.number
+};
+
+MainContainer.defaultProps = {
+  currentHeadline: null,
+  currentHeadlineId: null
 };
 
 export default MainContainer;
