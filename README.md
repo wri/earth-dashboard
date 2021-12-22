@@ -95,12 +95,10 @@ Pages are the first component to be loaded according _Next_ specification. They 
 
 There are the main pages/groups of pages:
 
-- _[topic]_: contains the two pages that are related to each specific topic i) **indicators page** _(index.js)_ and ii) **"scrolly-telling" page** _(data.js)_.
-- _admin_: contains the pages that are rendered as part of the back office.
+- _[topic]_: contains the news page related to each specific topic
 - _index_: homepage.
 - _about_: about page _(it's actually loading the homepage with the navigation menu open and the about tab selected)_.
 - _404_: custom page not found layout.
-- _sign-in_: back office log in page.
 
 _NOTE: The way pages and routing works have changed in the last versions of `Next.js` has changed in the most recent versions of the library. For more information about how this works in the version that ED uses - `9.5.3` please check the [official routing documentation](https://nextjs.org/docs/routing/introduction)._
 

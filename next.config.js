@@ -55,21 +55,6 @@ const moduleExports = {
     if (process.env.BUNDLE_ANALYZER) _config.plugins.push(new BundleAnalyzerPlugin());
 
     return _config;
-  },
-
-  async redirects() {
-    return [
-      {
-        source: "/admin",
-        destination: "/admin/data/datasets",
-        permanent: true
-      },
-      {
-        source: "/admin/data",
-        destination: "/admin/data/datasets",
-        permanent: true
-      }
-    ];
   }
 };
 
