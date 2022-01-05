@@ -88,7 +88,7 @@ describe("Mega Menu", () => {
             class="c-mega-menu__links__copy-right"
           >
             © 
-            2021
+            2022
              Global Commons Alliance. All Rights Reserved
           </span>
         </div>

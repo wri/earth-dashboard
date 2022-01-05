@@ -8,16 +8,27 @@ jest.mock("next/image", () => {
 
 describe("DatePicker", () => {
   let initialDate,
-    hasLiveDataButton,
-    ref = React.createRef();
+    onSubmit,
+    onChange,
+    ref = React.createRef(),
+    props;
 
   beforeEach(() => {
     initialDate = new Date(2022, 0, 4);
-    hasLiveDataButton = false;
+    onSubmit = jest.fn();
+    onChange = jest.fn();
+
+    props = {
+      initialDate,
+      onSubmit,
+      onChange,
+      ref,
+      hasLiveDataButton: false
+    };
   });
 
   const render = () => {
-    utilRender(<DatePicker initialDate={initialDate} ref={ref} hasLiveDataButton={hasLiveDataButton} />);
+    utilRender(<DatePicker {...props} />);
   };
 
   const getSelectedDate = () => screen.getByTestId("selectedDate");
@@ -135,6 +146,33 @@ describe("DatePicker", () => {
     expect(numOfNextSiblings).toEqual(7 - 4);
   });
 
+  test("when user selects a new date, onChange() is called with the selected date passed", () => {
+    render();
+
+    // Select the 3rd of January
+    fireEvent.click(screen.getByRole("button", { name: "3" }));
+
+    const jan3rdDate = new Date(initialDate);
+    jan3rdDate.setDate(3);
+
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith(jan3rdDate);
+  });
+
+  test("when user presses confirm, onSubmit() is called with the selected date passed", () => {
+    render();
+
+    // Select the 3rd of January
+    fireEvent.click(screen.getByRole("button", { name: "3" }));
+    fireEvent.click(screen.getByRole("button", { name: "Confirm" }));
+
+    const jan3rdDate = new Date(initialDate);
+    jan3rdDate.setDate(3);
+
+    expect(onSubmit).toHaveBeenCalled();
+    expect(onSubmit).toHaveBeenCalledWith(jan3rdDate);
+  });
+
   describe("Live Data Button", () => {
     test("does not display when prop is false", () => {
       render();
@@ -143,7 +181,10 @@ describe("DatePicker", () => {
     });
 
     test("displays when prop is true", () => {
-      hasLiveDataButton = true;
+      props = {
+        ...props,
+        hasLiveDataButton: true
+      };
 
       render();
 
@@ -151,7 +192,10 @@ describe("DatePicker", () => {
     });
 
     test("when clicked the date picker will switch to the current month and select the current date", () => {
-      hasLiveDataButton = true;
+      props = {
+        ...props,
+        hasLiveDataButton: true
+      };
 
       render();
 
