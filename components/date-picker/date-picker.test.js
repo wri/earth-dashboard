@@ -1,10 +1,11 @@
-/* eslint-disable react/display-name */
 import React from "react";
 import { render as utilRender, fireEvent, screen } from "test-utils";
 import DatePicker, { defaultWeekStart } from "components/date-picker";
 
 jest.mock("next/image", () => {
-  return () => <img />;
+  return function nextImage() {
+    return <img />;
+  };
 });
 
 describe("DatePicker", () => {
