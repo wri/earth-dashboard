@@ -7,7 +7,11 @@ const useDialogPanel = (isOpen, onClose) => {
 
   useEffect(() => {
     if (firstInput.current && isOpen) {
-      firstInput.current.$inputRef?.focus();
+      if (firstInput.current.$inputRef) {
+        firstInput.current.$inputRef.focus();
+      } else {
+        firstInput.current.focus();
+      }
     }
   }, [firstInput, isOpen]);
 

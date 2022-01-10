@@ -10,6 +10,8 @@ import liveSVG from "public/static/icons/live.svg";
 import SelectInput from "components/ui/select";
 import Image from "next/image";
 
+// 0 | 1 | 2 | 3 | 4 | 5 | 6
+export const defaultWeekStart = 0;
 const MIN_YEAR = 2013;
 const MAX_YEAR = new Date(new Date().getFullYear() + 5, 11).getFullYear();
 
@@ -41,7 +43,7 @@ const YEARS = constructYears();
 
 const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataButton, className }, ref) => {
   const [selectedDate, setSelectedDate] = useState(initialDate);
-  const { cursorDate, headers, body, navigation, view, month, year } = useCalendar();
+  const { cursorDate, headers, body, navigation, view, month, year } = useCalendar({ defaultWeekStart });
 
   const setYear = ({ value }) => navigation.setDate(new Date(value, month));
   const setMonth = ({ value }) => navigation.setDate(new Date(year, value));
@@ -73,17 +75,20 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
           value={MONTHS.find(option => option.value === month)}
           onChange={setMonth}
           className={styles["c-date-picker__dropdown"]}
+          aria-label="Quick Select Month"
         />
         <SelectInput
           options={YEARS}
           value={YEARS.find(option => option.value === year)}
           onChange={setYear}
           className={styles["c-date-picker__dropdown"]}
+          aria-label="Quick Select Year"
         />
       </div>
       <div className={styles["c-date-picker__table-with-nav"]}>
         <div className={styles["c-date-picker__month-buttons"]}>
           <IconButton
+            aria-label="Previous Month"
             onClick={navigation.toPrev}
             className={classnames(styles["c-date-picker__month-button"], styles["c-date-picker__month-button--rotate"])}
             icon={chevronRightSVG}
@@ -92,6 +97,7 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
 
           <span> {format(cursorDate, "MMMM yyyy")} </span>
           <IconButton
+            aria-label="Next Month"
             onClick={navigation.toNext}
             className={styles["c-date-picker__month-button"]}
             icon={chevronRightSVG}
@@ -101,9 +107,11 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
         <table className={styles["c-date-picker__table"]}>
           <thead className={styles["c-date-picker__table-head"]}>
             <tr className={styles["c-date-picker__table-header-row"]}>
-              {headers.weekDays.map(({ key, value }) => {
-                return <th key={key}>{format(value, "E")}</th>;
-              })}
+              {headers.weekDays.map(({ key, value }) => (
+                <th key={key} scope="col" abbr={format(value, "EEEE")}>
+                  {format(value, "E")}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody className={styles["c-date-picker__table-body"]}>
@@ -130,6 +138,7 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
                           disabled={!isCurrentMonth}
                           onClick={() => handleDateChange(value)}
                           ref={isSelected ? ref : undefined}
+                          data-testid={isSelected ? "selectedDate" : undefined}
                         >
                           {isCurrentMonth && date}
                         </button>

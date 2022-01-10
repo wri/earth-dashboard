@@ -36,10 +36,6 @@ function TopicPage({ topic, topicData, widgets, topicNotFound }) {
       </Mobile>
     </MediaContextProvider>
   );
-
-  // Legacy
-  //   \/
-  //return <LayoutTopic topicData={topicData} widgets={widgets} />;
 }
 
 TopicPage.getInitialProps = async context => {
