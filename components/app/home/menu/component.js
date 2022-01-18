@@ -43,6 +43,8 @@ const Menu = forwardRef(
       setDialogHeight,
       dialogHeight,
       setCurrentHeadline,
+      setCurrentHeadlineId,
+      setDateOfDataShown,
       ...rest
     },
     ref
@@ -68,8 +70,11 @@ const Menu = forwardRef(
         setTabIndex(DATA_TAB_INDEX);
       }
       setForceInfoPage(false);
-      setCurrentHeadline(null);
       setInfoData(null);
+
+      setCurrentHeadline(null);
+      setCurrentHeadlineId(undefined);
+      setDateOfDataShown(new Date().toString());
     };
 
     useEffect(() => {
@@ -78,7 +83,10 @@ const Menu = forwardRef(
 
       return () => {
         // on unmount
-        setCurrentHeadline(null);
+        if (!isMobile) {
+          setCurrentHeadline(null);
+          setCurrentHeadlineId(undefined);
+        }
       };
     }, [setCurrentHeadline]);
 
@@ -187,7 +195,9 @@ Menu.propTypes = {
   onClose: PropTypes.func,
   layers: PropTypes.array.isRequired,
   animationEnabled: PropTypes.bool.isRequired,
-  setCurrentHeadline: PropTypes.func.isRequired
+  setCurrentHeadline: PropTypes.func.isRequired,
+  setCurrentHeadlineId: PropTypes.func.isRequired,
+  setDateOfDataShown: PropTypes.func.isRequired
 };
 
 export default Menu;

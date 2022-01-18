@@ -27,7 +27,10 @@ const headlinesSlice = createSlice({
     },
     setCurrentHeadline(state, action) {
       state.currentHeadline = action.payload;
-      state.currentHeadlineId = action.payload?.id;
+
+      if (action.payload) {
+        state.currentHeadlineId = action.payload.id;
+      }
     },
     setCurrentHeadlineId(state, action) {
       state.currentHeadlineId = action.payload;
