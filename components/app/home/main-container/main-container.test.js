@@ -339,7 +339,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           <span
             class="c-showing-data-for__text"
           >
-            Showing Data for:
+            Showing Data for: 
             <span
               class="c-showing-data-for__date"
             >
@@ -392,7 +392,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
           >
             Fires, Wind, PM2.5, Sfc
             <br />
-
+             
             xxxx-xx-xx
           </span>
         </div>
