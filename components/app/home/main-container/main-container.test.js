@@ -79,7 +79,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                 <h2
                   class="c-home-menu__header-text"
                 >
-                  Understand the emergency
+                  Latest Extreme Events
                 </h2>
                 <button
                   aria-label="Close menu"
@@ -100,7 +100,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                   role="tab"
                   tabindex="0"
                 >
-                  Climate Alerts
+                  Latest Extreme Events
                 </li>
                 <li
                   aria-controls="react-tabs-3"
@@ -318,7 +318,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           class="c-home-menu-toggle__text-container"
         >
           <span>
-            Understand the emergency
+            Latest Extreme Events
           </span>
           <span
             data-testid="labels-arr"
@@ -339,7 +339,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           <span
             class="c-showing-data-for__text"
           >
-            Showing Data for: 
+            Showing Data for:
             <span
               class="c-showing-data-for__date"
             >
@@ -385,14 +385,14 @@ test("<MainContainer /> renders correctly as mobile", async () => {
           class="c-home-menu-toggle__text-container"
         >
           <span>
-            Understand the emergency
+            Latest Extreme Events
           </span>
           <span
             data-testid="labels-arr"
           >
             Fires, Wind, PM2.5, Sfc
             <br />
-             
+
             xxxx-xx-xx
           </span>
         </div>

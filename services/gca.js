@@ -5,7 +5,7 @@ import { logger } from "utils/logs";
 // API docs: https://resource-watch.github.io/doc-api/index-rw.html#dataset
 
 /**
- * Fetch all climate alerts (headlines)
+ * Fetch all Latest Extreme Events (headlines)
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
  * @returns {Array} Array of modes.
  * be included in the response or not.
@@ -18,8 +18,8 @@ export const fetchClimateAlerts = () => {
   }).catch(response => {
     const { status, statusText } = response;
 
-    logger.error(`Error fetching climate alerts: ${status}: ${statusText}`);
-    throw new Error(`Error fetching climate alerts: ${status}: ${statusText}`);
+    logger.error(`Error fetching Latest Extreme Events: ${status}: ${statusText}`);
+    throw new Error(`Error fetching Latest Extreme Events: ${status}: ${statusText}`);
   });
 };
 

@@ -259,7 +259,7 @@ const MainContainer = ({
               data-testid="toggle"
             >
               <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
-                <span>Understand the emergency</span>
+                <span>Latest Extreme Events</span>
                 {layersLabelArr.length > 0 && (
                   <span data-testid="labels-arr">
                     {layersLabelArr.join(", ")}

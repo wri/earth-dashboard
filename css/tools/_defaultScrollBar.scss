@@ -1,0 +1,6 @@
+@import "css/settings/scrollbar";
+@import "css/tools/scrollbar";
+
+@mixin defaultScrollBar() {
+  @include scrollbars($default-scrollbar-size, $default-scrollbar-foreground-colour, $default-scrollbar-background-colour);
+}

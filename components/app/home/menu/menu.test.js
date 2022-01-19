@@ -38,7 +38,7 @@ test("<Menu /> renders correctly as desktop", async () => {
               <h2
                 class="c-home-menu__header-text"
               >
-                Understand the emergency
+                Latest Extreme Events
               </h2>
             </div>
             <ul
@@ -55,7 +55,7 @@ test("<Menu /> renders correctly as desktop", async () => {
                 role="tab"
                 tabindex="0"
               >
-                Climate Alerts
+                Latest Extreme Events
               </li>
               <li
                 aria-controls="react-tabs-3"
@@ -281,7 +281,7 @@ test("<Menu /> renders correctly as mobile", async () => {
               <h2
                 class="c-home-menu__header-text"
               >
-                Understand the emergency
+                Latest Extreme Events
               </h2>
             </div>
             <ul
@@ -298,7 +298,7 @@ test("<Menu /> renders correctly as mobile", async () => {
                 role="tab"
                 tabindex="0"
               >
-                Climate Alerts
+                Latest Extreme Events
               </li>
               <li
                 aria-controls="react-tabs-9"
