@@ -22,7 +22,12 @@ const VideoArticle = ({ className, topic, title, image, videoURL }) => {
 
   useEffect(() => {
     if (ref.current && isPlaying && !hasError) {
-      const player = ref.current.getInternalPlayer();
+      let player = ref.current.getInternalPlayer();
+
+      // Available on YouTube Players
+      if (player.getIframe) {
+        player = player.getIframe();
+      }
 
       const handleBlur = () => {
         setIsPlaying(false);
@@ -30,6 +35,7 @@ const VideoArticle = ({ className, topic, title, image, videoURL }) => {
       };
 
       player.focus();
+
       player.addEventListener("blur", handleBlur);
     }
   }, [isPlaying, hasError]);
@@ -74,7 +80,13 @@ const VideoArticle = ({ className, topic, title, image, videoURL }) => {
         }}
       >
         <div>
-          <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
+          <Image
+            src={`/api/imageproxy?url=${encodeURIComponent(image)}`}
+            layout="fill"
+            objectFit="cover"
+            role="presentation"
+            alt=""
+          />
 
           <div className={styles["c-video-article__content"]}>
             <div className={styles["c-video-article__duration-wrap"]}>
