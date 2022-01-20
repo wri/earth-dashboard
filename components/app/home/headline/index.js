@@ -9,7 +9,7 @@ import {
 } from "slices/mapControls";
 import { NAME as modesSliceName, setDateOfDataShown } from "slices/modes";
 
-export default connect(state => ({ currentMode: state[modesSliceName].currentMode }), {
+export default connect(state => ({ currentMode: state[modesSliceName].currentMode, isMobile: state.common.isMobile }), {
   setIsDatePickerDisabled,
   setIsFetchLocationDisabled,
   setCurrentLocation,
