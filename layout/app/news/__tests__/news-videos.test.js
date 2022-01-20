@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import { render, act } from "test-utils";
-import { parser } from "hooks/useNowThisVideos";
+import * as servicesGCA from "services/gca";
 import NewsTopicLayout from "../index";
 import { VIDEOS } from "test/topic-articles";
 
@@ -34,9 +34,9 @@ jest.mock("hooks/useGCAWidgets", () => () => ({
 
 describe("News Topic Layout - Videos", () => {
   const fetchTimeout = 100;
-  let fetchWillError, mount, topic, parseURLSpy;
+  let fetchWillError, mount, topic, fetchVideoSpy;
 
-  const mockParseURL = () =>
+  const mockFetchVideos = () =>
     new Promise((resolve, reject) => {
       setTimeout(() => {
         if (!fetchWillError) {
@@ -48,7 +48,7 @@ describe("News Topic Layout - Videos", () => {
     });
 
   beforeAll(() => {
-    parseURLSpy = jest.spyOn(parser, "parseURL").mockImplementation(mockParseURL);
+    fetchVideoSpy = jest.spyOn(servicesGCA, "fetchVideos").mockImplementation(mockFetchVideos);
   });
 
   beforeEach(() => {
@@ -66,7 +66,7 @@ describe("News Topic Layout - Videos", () => {
     const { findAllByLabelText } = mountComponent();
 
     const playVideoButtons = await findAllByLabelText(/play video/i);
-    expect(playVideoButtons).toHaveLength(VIDEOS.items.filter(video => video.topic === topic).length);
+    expect(playVideoButtons).toHaveLength(VIDEOS.data.data.length);
   });
 
   test("doesn't render any videos if the requests fails", async () => {
@@ -75,7 +75,7 @@ describe("News Topic Layout - Videos", () => {
     const { queryAllByLabelText } = mountComponent();
 
     await act(async () => {
-      await expect(parseURLSpy).rejects.toThrow("error");
+      await expect(fetchVideoSpy).rejects.toThrow("error");
     });
 
     const playVideoButtons = queryAllByLabelText(/play video/i);
