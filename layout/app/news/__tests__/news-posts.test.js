@@ -37,7 +37,7 @@ jest.mock("hooks/useGCAWidgets", () => () => ({
   widgets: []
 }));
 
-jest.mock("hooks/useNowThisVideos", () => () => ({
+jest.mock("hooks/useCMSVideos", () => () => ({
   videos: []
 }));
 

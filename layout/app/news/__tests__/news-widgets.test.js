@@ -37,7 +37,7 @@ jest.mock("hooks/useWidget", () => () => ({
 
 jest.mock("components/widgets/preview", () => ({ widget }) => <div data-widgetid={widget.id} />);
 
-jest.mock("hooks/useNowThisVideos", () => () => ({
+jest.mock("hooks/useCMSVideos", () => () => ({
   videos: []
 }));
 

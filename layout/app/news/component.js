@@ -102,9 +102,9 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
         gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
       >
         {/* Must Watch */}
-        {videos?.map(({ attributes: video }) => (
+        {videos?.map(({ id, attributes: video }) => (
           <VideoArticle
-            key={video["url"]}
+            key={id}
             topic={topic}
             title={video["title"]}
             image={video["thumbnail_image"]}
