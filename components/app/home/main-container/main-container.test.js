@@ -38,7 +38,8 @@ const mockIframeBridge = {
 };
 
 test("<MainContainer /> renders correctly as desktop", async () => {
-  GCAAPI.get.mockResolvedValue({ data: modes });
+  GCAAPI.get.mockResolvedValueOnce({ data: modes });
+  GCAAPI.get.mockResolvedValueOnce({ data: headlines });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
   const { container, getByTestId } = utilRender(<MainContainer isMobile={false} />);
@@ -79,7 +80,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                 <h2
                   class="c-home-menu__header-text"
                 >
-                  Understand the emergency
+                  Latest Extreme Events
                 </h2>
                 <button
                   aria-label="Close menu"
@@ -100,7 +101,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                   role="tab"
                   tabindex="0"
                 >
-                  Climate Alerts
+                  Latest Extreme Events
                 </li>
                 <li
                   aria-controls="react-tabs-3"
@@ -157,17 +158,18 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                         alt=""
                         class="c-headline-card__image"
                         role="presentation"
+                        src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/p2qlispRhUW2G6pMaV4xPeRO9tLODNREChXAo901.jpg"
                       />
                       <div>
                         <h3
                           class="c-headline-card__title"
                         >
-                          Air Pollution
+                          After surge, Amazon deforestation slows for second straight month
                         </h3>
                         <p
                           class="c-headline-card__subtitle"
                         >
-                          18th January 2022
+                          10th September 2021
                         </p>
                       </div>
                     </button>
@@ -179,17 +181,18 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                         alt=""
                         class="c-headline-card__image"
                         role="presentation"
+                        src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/gNIuBNcbSCvyqleVuLNA5OwpOU8YeWvSZ2dxr9dp.png"
                       />
                       <div>
                         <h3
                           class="c-headline-card__title"
                         >
-                          Air
+                          Air Quality Widget Example
                         </h3>
                         <p
                           class="c-headline-card__subtitle"
                         >
-                          18th January 2022
+                          14th September 2021
                         </p>
                       </div>
                     </button>
@@ -201,17 +204,18 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                         alt=""
                         class="c-headline-card__image"
                         role="presentation"
+                        src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/Gnx6T2S0oyiq5YCKmrfNJpe0K5fwrWcdKV2H0kqo.png"
                       />
                       <div>
                         <h3
                           class="c-headline-card__title"
                         >
-                          Ocean
+                          Another Widget Example
                         </h3>
                         <p
                           class="c-headline-card__subtitle"
                         >
-                          18th January 2022
+                          14th September 2021
                         </p>
                       </div>
                     </button>
@@ -223,17 +227,18 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                         alt=""
                         class="c-headline-card__image"
                         role="presentation"
+                        src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/qtPyJsfODBzLyWbi2ekjlMY8dqNJChePahN8JJNj.png"
                       />
                       <div>
                         <h3
                           class="c-headline-card__title"
                         >
-                          Atmosphere
+                          Repellat quasi quia quasi dolorem provident sed.
                         </h3>
                         <p
                           class="c-headline-card__subtitle"
                         >
-                          18th January 2022
+                          14th September 2021
                         </p>
                       </div>
                     </button>
@@ -245,39 +250,18 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                         alt=""
                         class="c-headline-card__image"
                         role="presentation"
+                        src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/eXMDncblKbGWuE4Rrt3Ywa6682IzfGfIPIabGKoq.jpg"
                       />
                       <div>
                         <h3
                           class="c-headline-card__title"
                         >
-                          Winds
+                          Rerum illo excepturi nobis quam earum corrupti at.
                         </h3>
                         <p
                           class="c-headline-card__subtitle"
                         >
-                          18th January 2022
-                        </p>
-                      </div>
-                    </button>
-                    <button
-                      class="c-headline-card c-home-menu__headline"
-                      data-testid="headline"
-                    >
-                      <img
-                        alt=""
-                        class="c-headline-card__image"
-                        role="presentation"
-                      />
-                      <div>
-                        <h3
-                          class="c-headline-card__title"
-                        >
-                          Fires
-                        </h3>
-                        <p
-                          class="c-headline-card__subtitle"
-                        >
-                          18th January 2022
+                          14th September 2021
                         </p>
                       </div>
                     </button>
@@ -318,7 +302,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           class="c-home-menu-toggle__text-container"
         >
           <span>
-            Understand the emergency
+            Latest Extreme Events
           </span>
           <span
             data-testid="labels-arr"
@@ -385,7 +369,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
           class="c-home-menu-toggle__text-container"
         >
           <span>
-            Understand the emergency
+            Latest Extreme Events
           </span>
           <span
             data-testid="labels-arr"
@@ -408,6 +392,9 @@ describe("<MainContainer />", () => {
 
   beforeEach(() => {
     isMobile = false;
+
+    GCAAPI.get.mockResolvedValueOnce({ data: modes });
+    GCAAPI.get.mockResolvedValueOnce({ data: headlines });
   });
 
   const render = () => {

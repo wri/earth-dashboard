@@ -6,7 +6,7 @@ export const MenuItems = [
     key: "earth-hq",
     hasarrow: false,
     label: "Back to Earth HQ",
-    body: "See the latest climate alerts and discover near-real time data on Earth HQ – the “Situation Room” for the planet.",
+    body: "See the latest extreme events and discover near-real time data on Earth HQ – the “Situation Room” for the planet.",
     link: "/"
   },
   {
