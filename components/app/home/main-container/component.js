@@ -169,11 +169,12 @@ const MainContainer = ({
     }
   }, [earthServer.current, currentHeadline, disableToolTip, enableToolTip, layersLabelArr]);
 
+  // When the Globe loads, open the menu on Desktop
   useEffect(() => {
-    if (currentHeadlineId && earthServer.current) {
+    if (earthServer.current && !isMobile) {
       setHasMenuOpen(true);
     }
-  }, [currentHeadlineId, earthServer.current, setHasMenuOpen]);
+  }, [earthServer.current, setHasMenuOpen, isMobile]);
 
   return (
     <div

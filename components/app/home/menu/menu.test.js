@@ -494,7 +494,7 @@ test("<Menu /> renders correctly as mobile", async () => {
 `);
 });
 
-test("<Menu /> toggles tabs prooperly", async () => {
+test("<Menu /> toggles tabs properly", async () => {
   GCAAPI.get.mockResolvedValue({ data: headlines });
 
   const { getByTestId, queryByTestId, queryAllByTestId, getByText } = render(
