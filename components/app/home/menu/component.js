@@ -14,7 +14,7 @@ const INFO_TAB_INDEX = 3;
 const DATA_TAB_INDEX = 2;
 
 const TAB_NAME_BY_TAB_INDEX = {
-  0: "Climate Alerts",
+  0: "Latest Extreme Events",
   1: "Data Highlights",
   2: "Advanced Menu"
 };
@@ -43,6 +43,8 @@ const Menu = forwardRef(
       setDialogHeight,
       dialogHeight,
       setCurrentHeadline,
+      setCurrentHeadlineId,
+      setDateOfDataShown,
       ...rest
     },
     ref
@@ -68,8 +70,11 @@ const Menu = forwardRef(
         setTabIndex(DATA_TAB_INDEX);
       }
       setForceInfoPage(false);
-      setCurrentHeadline(null);
       setInfoData(null);
+
+      setCurrentHeadline(null);
+      setCurrentHeadlineId(undefined);
+      setDateOfDataShown(new Date().toString());
     };
 
     useEffect(() => {
@@ -78,7 +83,10 @@ const Menu = forwardRef(
 
       return () => {
         // on unmount
-        setCurrentHeadline(null);
+        if (!isMobile) {
+          setCurrentHeadline(null);
+          setCurrentHeadlineId(undefined);
+        }
       };
     }, [setCurrentHeadline]);
 
@@ -111,7 +119,7 @@ const Menu = forwardRef(
             >
               <div className={classnames(styles["c-home-menu__header"])}>
                 <div className={classnames(styles["c-home-menu__header-content"])}>
-                  {!isInfoPage && <h2 className={styles["c-home-menu__header-text"]}>Understand the emergency</h2>}
+                  {!isInfoPage && <h2 className={styles["c-home-menu__header-text"]}>Latest Extreme Events</h2>}
                   {isInfoPage && (
                     <>
                       <button className={styles["c-home-menu__back-button"]} onClick={onBack} aria-label="Back" />
@@ -132,7 +140,7 @@ const Menu = forwardRef(
                     data-testid="tab-1"
                     ref={ref}
                   >
-                    Climate Alerts
+                    Latest Extreme Events
                   </Tab>
                   <Tab className={classnames(styles["c-home-menu__tab"], "u-margin-right-l")} data-testid="tab-2">
                     Data Highlights
@@ -187,7 +195,9 @@ Menu.propTypes = {
   onClose: PropTypes.func,
   layers: PropTypes.array.isRequired,
   animationEnabled: PropTypes.bool.isRequired,
-  setCurrentHeadline: PropTypes.func.isRequired
+  setCurrentHeadline: PropTypes.func.isRequired,
+  setCurrentHeadlineId: PropTypes.func.isRequired,
+  setDateOfDataShown: PropTypes.func.isRequired
 };
 
 export default Menu;

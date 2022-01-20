@@ -1,7 +1,7 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
-@import "css/tools/scrollbar";
+@import "css/tools/defaultScrollBar";
 
 .c-settings-menu-modal {
   position: absolute;
@@ -51,7 +51,7 @@
     height: 100%;
     padding: 0 12px;
     overflow-y: auto;
-    @include scrollbars(4px, #b6b8ba, #494d51);
+    @include defaultScrollBar();
 
     > *:not(:last-child) {
       margin-bottom: 16px;

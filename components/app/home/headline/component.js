@@ -9,6 +9,7 @@ import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME } from "constants/tag-manager";
 
 const Headline = ({
+  isMobile,
   headline,
   className,
   currentMode,
@@ -37,9 +38,12 @@ const Headline = ({
     return () => {
       setIsDatePickerDisabled(false);
       setIsFetchLocationDisabled(false);
-      setDateOfDataShown(new Date().toString());
+
+      if (!isMobile) {
+        setDateOfDataShown(new Date().toString());
+      }
     };
-  }, [setIsDatePickerDisabled]);
+  }, [setIsDatePickerDisabled, setIsFetchLocationDisabled, setDateOfDataShown]);
 
   useEffect(() => {
     if (headline?.attributes.location) {
@@ -114,6 +118,7 @@ const Headline = ({
 };
 
 Headline.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
   headline: PropTypes.object.isRequired,
   className: PropTypes.string,
   currentMode: PropTypes.object,

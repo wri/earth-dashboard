@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import useGCAWidgets from "hooks/useGCAWidgets";
-import useNowThisVideos from "hooks/useNowThisVideos";
+import useCMSVideos from "hooks/useCMSVideos";
 import PropTypes from "prop-types";
 import { getPageMetadataByTopic } from "utils/share";
 import { getColorByTopic } from "utils/topics";
@@ -36,7 +36,7 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
     fetchMore
   } = useMongabayPosts(topic, LIMIT);
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
-  const { videos: allNowThisVideos } = useNowThisVideos(topic);
+  const { videos: allCMSVideos } = useCMSVideos(topic);
   const pageMetadata = getPageMetadataByTopic(topic) || {};
   // Store the isMobile flag in the redux store
   useEffect(() => setIsMobile(isMobile), [isMobile, setIsMobile]);
@@ -47,7 +47,7 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
     availableWidgets = [...widgets],
     firstWidget = !isWidgetsLoading && !hasWidgetsErrorred && availableWidgets.shift(),
     secondWidget = !isWidgetsLoading && !hasWidgetsErrorred && availableWidgets.shift(),
-    availableVideos = [...allNowThisVideos],
+    availableVideos = [...allCMSVideos],
     videos = availableVideos.splice(0, 3);
 
   if (!isPostsLoading && !hasPostsErrorred) {
@@ -102,8 +102,14 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
         gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
       >
         {/* Must Watch */}
-        {videos?.map(({ title, thumbnail, link }) => (
-          <VideoArticle key={link.$.url} topic={topic} title={title} image={thumbnail.$.url} videoURL={link.$.url} />
+        {videos?.map(({ id, attributes: video }) => (
+          <VideoArticle
+            key={id}
+            topic={topic}
+            title={video["title"]}
+            image={video["thumbnail_image"]}
+            videoURL={video["url"]}
+          />
         ))}
       </Section>
 
