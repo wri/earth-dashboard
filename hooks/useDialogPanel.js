@@ -6,12 +6,8 @@ const useDialogPanel = (isOpen, onClose) => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
-    if (firstInput.current && isOpen) {
-      if (firstInput.current.$inputRef) {
-        firstInput.current.$inputRef.focus();
-      } else {
-        firstInput.current.focus();
-      }
+    if (isOpen && firstInput.current && typeof firstInput.current.focus === "function") {
+      firstInput.current.focus();
     }
   }, [firstInput, isOpen]);
 
