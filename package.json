@@ -4,6 +4,9 @@
   "description": "Earth Dashboard",
   "author": "Vizzuality",
   "license": "MIT",
+  "engines": {
+    "node": "~16"
+  },
   "dependencies": {
     "@apollo/client": "^3.4.8",
     "@artsy/fresnel": "^1.3.0",
