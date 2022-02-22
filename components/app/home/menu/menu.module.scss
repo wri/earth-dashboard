@@ -225,6 +225,10 @@
     width: 40px;
     height: 40px;
     margin-left: -17px;
+
+    &:focus {
+      background-position: 43% 9px;
+    }
   }
 
   &__content {
