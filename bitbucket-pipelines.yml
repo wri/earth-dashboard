@@ -27,7 +27,7 @@ pipelines:
             - yarn install
             - yarn test
             - yarn build
-    "Deploy to staging":
+    "Deploy develop to staging":
       - step:
           name: Deploy To Staging
           image: ruby:2.6.3
@@ -38,7 +38,7 @@ pipelines:
             - gem install bundler
             - bundle install
             - bundle exec cap staging deploy
-    "Deploy to production":
+    "Deploy main to production":
       - step:
           name: Deploy To Production
           image: ruby:2.6.3
