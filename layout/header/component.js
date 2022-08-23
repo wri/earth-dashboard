@@ -67,7 +67,11 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
               <div className={styles["c-site-header__logo"]}>
                 <LogoLink />
               </div>
-              <HeaderLink />
+              <div className={styles["c-site-header__links"]}>
+                <HeaderLink href="/" text="Earth HQ" />
+                <HeaderLink href="/" text="News" />
+                <HeaderLink href="/" text="About" />
+              </div>
               {/* <MegaMenuBtn className={styles["c-site-header__btn"]} /> */}
             </header>
 

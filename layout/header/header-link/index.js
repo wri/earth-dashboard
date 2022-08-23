@@ -1,15 +1,19 @@
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import styles from "./header-link.module.scss";
+import Link from "next/link";
 
-const HeaderLink = ({ className, ...rest }) => {
+const HeaderLink = ({ href, text, className, ...rest }) => {
   return (
-    <a className={classnames(className)} {...rest}>
-      Text
-    </a>
+    <Link href={href} {...rest}>
+      <a className={classnames(styles["c-header-link"], className)}>{text}</a>
+    </Link>
   );
 };
 
 HeaderLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   className: PropTypes.string
 };
 

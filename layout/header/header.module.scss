@@ -91,5 +91,11 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
     &__logo {
       width: 180px;
     }
+    &__links {
+      display: flex;
+      & > a:not(:last-child) {
+        margin-right: 60px;
+      }
+    }
   }
 }
