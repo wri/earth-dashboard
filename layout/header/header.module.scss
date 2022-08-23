@@ -21,7 +21,6 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
   background-color: transparent;
   z-index: $z-index-header;
   transition: background-color #{$c-mega-menu-wrapper-transition-duration-ms}ms ease-in-out;
-  pointer-events: none;
 
   &--max-height-override #{$this}__bg {
     // !important flag used to override the inline style from the component
