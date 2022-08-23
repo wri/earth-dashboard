@@ -7,6 +7,7 @@ import { CSSTransition } from "react-transition-group";
 import MegaMenu from "layout/header/mega-menu";
 import FocusTrap from "focus-trap-react";
 import PropTypes from "prop-types";
+import HeaderOptions from "layout/header/header-options";
 
 // styles
 import styles from "./header.module.scss";
@@ -64,15 +65,24 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
               className={classnames(styles["c-site-header"], isHeaderSticky && styles["c-site-header--sticky"])}
               ref={headerRef}
             >
+              {/* Logo */}
               <div className={styles["c-site-header__logo"]}>
                 <LogoLink />
               </div>
+
+              {/* Navigation links */}
               <div className={styles["c-site-header__links"]}>
                 <HeaderLink href="/" text="Earth HQ" />
                 <HeaderLink href="/news" text="News" />
                 <HeaderLink href="/about" text="About" />
               </div>
-              {/* <MegaMenuBtn className={styles["c-site-header__btn"]} /> */}
+
+              {/* Options */}
+              <HeaderOptions />
+
+              {/* TODO: Need to remove after refactor of news page.
+                <MegaMenuBtn className={styles["c-site-header__btn"]} />
+              */}
             </header>
 
             <MegaMenu />

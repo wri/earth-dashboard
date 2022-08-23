@@ -19,7 +19,7 @@ const HeaderLink = ({ href, text, ...rest }) => {
         <a>{text}</a>
       </Link>
 
-      <div className={classnames(styles["underline"])} />
+      <div className={styles["underline"]} />
     </div>
   );
 };
