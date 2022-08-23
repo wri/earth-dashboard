@@ -93,7 +93,7 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
     }
     &__links {
       display: flex;
-      & > a:not(:last-child) {
+      & > div:not(:last-child) {
         margin-right: 60px;
       }
     }

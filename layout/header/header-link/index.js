@@ -2,23 +2,31 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import styles from "./header-link.module.scss";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-const HeaderLink = ({ href, text, className, ...rest }) => {
+/** Navigation link for header with active underline indicator. */
+const HeaderLink = ({ href, text, ...rest }) => {
+  const router = useRouter();
+
   return (
-    <Link href={href} {...rest}>
-      <a className={classnames(styles["c-header-link"], className)}>{text}</a>
-    </Link>
+    <div
+      className={classnames({
+        [styles["c-header-link"]]: true,
+        [styles["c-header-link__active"]]: router.pathname === href
+      })}
+    >
+      <Link href={href} {...rest}>
+        <a>{text}</a>
+      </Link>
+
+      <div className={classnames(styles["underline"])} />
+    </div>
   );
 };
 
 HeaderLink.propTypes = {
   href: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  className: PropTypes.string
-};
-
-HeaderLink.defaultProps = {
-  className: ""
+  text: PropTypes.string.isRequired
 };
 
 export default HeaderLink;
