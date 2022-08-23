@@ -2,9 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import classnames from "classnames";
 import LogoLink from "components/ui/logo-link";
-import HeaderTitle from "layout/header/header-title";
+import HeaderLink from "layout/header/header-link";
 import { CSSTransition } from "react-transition-group";
-import MegaMenuBtn from "layout/header/mega-menu/btn";
 import MegaMenu from "layout/header/mega-menu";
 import FocusTrap from "focus-trap-react";
 import PropTypes from "prop-types";
@@ -12,7 +11,7 @@ import PropTypes from "prop-types";
 // styles
 import styles from "./header.module.scss";
 
-const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen, showHeaderTitle }) => {
+const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
   const headerRef = useRef(null);
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
   const router = useRouter();
@@ -68,8 +67,8 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen, showHeaderTitle }) => {
               <div className={styles["c-site-header__logo"]}>
                 <LogoLink />
               </div>
-              {showHeaderTitle && !isMegaMenuOpen && <HeaderTitle />}
-              <MegaMenuBtn className={styles["c-site-header__btn"]} />
+              <HeaderLink />
+              {/* <MegaMenuBtn className={styles["c-site-header__btn"]} /> */}
             </header>
 
             <MegaMenu />
@@ -82,12 +81,7 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen, showHeaderTitle }) => {
 
 Header.propTypes = {
   isMegaMenuOpen: PropTypes.bool.isRequired,
-  setIsMegaMenuOpen: PropTypes.func.isRequired,
-  showHeaderTitle: PropTypes.bool.isRequired
-};
-
-Header.defaultProps = {
-  showHeaderTitle: false
+  setIsMegaMenuOpen: PropTypes.func.isRequired
 };
 
 export default Header;
