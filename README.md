@@ -45,6 +45,13 @@ Happy coding!
 
 ## Deploying to servers
 
+### Test:
+This is done automatically on Vercel when we merge into develop
+
+### Staging and Production
+This is done via bitbucket pipelines. Do not deploy to production without sign off from PM / Support team.
+
+### Digging deeper on bitbucket deployments 
 Deployment is done using [Capistrano](https://capistranorb.com/), a [Ruby](https://www.ruby-lang.org/en/) gem. It also requires you to have SSH access to the server using a public/private key pair.
 
 Once you have Capistrano and its dependencies up and running, simply run:
