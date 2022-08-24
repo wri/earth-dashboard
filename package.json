@@ -139,9 +139,6 @@
     "lint:fix": "next lint --fix"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.{js,jsx}": ["eslint --fix", "git add"]
   }
 }

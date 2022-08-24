@@ -6,77 +6,40 @@ jest.mock("components/ui/logo-link", () => {
   return Logo;
 });
 
+jest.mock("layout/header/header-link", () => {
+  const Logo = () => <a>Link</a>;
+  return Logo;
+});
+
+jest.mock("layout/header/header-options", () => {
+  const Logo = () => <div>Options</div>;
+  return Logo;
+});
+
 describe("Header", () => {
   test("Renders Correctly when mega menu is closed", () => {
     const { container } = render(<Header />);
 
     expect(container).toMatchInlineSnapshot(`
-<div>
+<header
+  class="c-site-header"
+>
   <div
-    class="c-mega-menu-wrapper"
-    data-testid="header"
+    class="c-site-header__logo"
   >
-    <div
-      class="c-mega-menu-wrapper__bg"
-    >
-      <header
-        class="c-site-header"
-      >
-        <div
-          class="c-site-header__logo"
-        >
-          <a>
-            Logo
-          </a>
-        </div>
-        <div>
-          Header Title
-        </div>
-        <button>
-          Mega Menu Button
-        </button>
-      </header>
-      <div>
-        Mega Menu
-      </div>
-    </div>
+    <a>Logo</a>
   </div>
-</div>
-`);
-  });
 
-  test("Renders Correctly when mega menu is open", () => {
-    const { container } = render(<Header />);
-
-    expect(container).toMatchInlineSnapshot(`
-<div>
-  <div
-    class="c-mega-menu-wrapper"
-    data-testid="header"
-  >
-    <div
-      class="c-mega-menu-wrapper__bg"
-    >
-      <header
-        class="c-site-header"
-      >
-        <div
-          class="c-site-header__logo"
-        >
-          <a>
-            Logo
-          </a>
-        </div>
-        <button>
-          Mega Menu Button
-        </button>
-      </header>
-      <div>
-        Mega Menu
-      </div>
-    </div>
+  <div class="c-site-header__links">
+    <a>Link</a>
+    <a>Link</a>
+    <a>Link</a>
   </div>
-</div>
+
+  <div>Options</div> 
+</header>
 `);
   });
 });
+
+export {};
