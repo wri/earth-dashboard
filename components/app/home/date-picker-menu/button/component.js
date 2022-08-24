@@ -1,8 +1,6 @@
 import classnames from "classnames";
 import IconButton from "components/ui/icon-button";
 import { formatDate } from "utils/dates";
-import chevronDownSVG from "public/static/icons/toggle-arrow-down.svg";
-import chevronRightSVG from "public/static/icons/chevron-right.svg";
 import styles from "components/app/home/date-picker-menu/button/styles.module.scss";
 import PropTypes from "prop-types";
 
@@ -24,7 +22,7 @@ const DatePickerBtn = ({ isMobile, dateOfDataShown, setIsDatePickerOpen, ...rest
             {...rest}
           >
             <span className={styles["c-showing-data-for__date"]}>{formatDate(dateOfDataShown) || "\u2026"}</span>
-            <IconButton el="div" className={styles["c-showing-data-for__icon"]} icon={chevronRightSVG} />
+            <IconButton name="chevron-right" type="decorative" className={styles["c-showing-data-for__icon"]} />
           </button>
         </>
       ) : (
@@ -33,7 +31,7 @@ const DatePickerBtn = ({ isMobile, dateOfDataShown, setIsDatePickerOpen, ...rest
             {showingDateForText}
             <span className={styles["c-showing-data-for__date"]}>{formatDate(dateOfDataShown) || "\u2026"}</span>
           </span>
-          <IconButton el="div" className={styles["c-showing-data-for__icon"]} icon={chevronDownSVG} />
+          <IconButton name="toggle-arrow-down" type="decorative" className={styles["c-showing-data-for__icon"]} />
         </button>
       )}
     </div>

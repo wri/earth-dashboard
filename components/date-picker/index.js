@@ -5,7 +5,6 @@ import styles from "./date-picker.module.scss";
 import useCalendar from "@veccu/react-calendar";
 import { format } from "date-fns";
 import IconButton from "components/ui/icon-button";
-import chevronRightSVG from "public/static/icons/chevron-right.svg";
 import liveSVG from "public/static/icons/live.svg";
 import SelectInput from "components/ui/select";
 import Image from "next/image";
@@ -89,18 +88,20 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
         <div className={styles["c-date-picker__month-buttons"]}>
           <IconButton
             aria-label="Previous Month"
-            onClick={navigation.toPrev}
+            name="chevron-right"
+            type="decorative"
             className={classnames(styles["c-date-picker__month-button"], styles["c-date-picker__month-button--rotate"])}
-            icon={chevronRightSVG}
+            onClick={navigation.toPrev}
             disabled={month === 0 && year === MIN_YEAR}
           />
 
           <span> {format(cursorDate, "MMMM yyyy")} </span>
           <IconButton
             aria-label="Next Month"
-            onClick={navigation.toNext}
+            name="chevron-right"
+            type="decorative"
             className={styles["c-date-picker__month-button"]}
-            icon={chevronRightSVG}
+            onClick={navigation.toNext}
             disabled={month === 11 && year === MAX_YEAR}
           />
         </div>

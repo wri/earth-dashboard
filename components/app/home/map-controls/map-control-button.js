@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import IconButton from "components/ui/icon-button";
 
 const MapControlButton = ({
-  icon,
-  activeIcon,
+  name,
+  activeName,
   isActiveSelector,
   isDisabledSelector,
   getDispatch,
@@ -27,20 +27,17 @@ const MapControlButton = ({
     dispatch(dispatchFn());
   };
 
-  if (isActive && activeIcon) {
-    icon = activeIcon;
-  }
-
   return (
     <IconButton
-      icon={icon}
-      onClick={handleOnClick}
+      name={isActive && activeName ? activeName : name}
+      type="decorative"
       className={classnames(
         className,
         isActive && activeClassName,
         "u-margin-right-xs",
         forceDark && "c-button--icon-force-dark"
       )}
+      onClick={handleOnClick}
       disabled={isDisabled}
       {...rest}
     />
@@ -48,8 +45,8 @@ const MapControlButton = ({
 };
 
 MapControlButton.propTypes = {
-  icon: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
-  activeIcon: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  name: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  activeName: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   isActiveSelector: PropTypes.func.isRequired,
   isDisabledSelector: PropTypes.func,
   disabled: PropTypes.bool,
@@ -62,7 +59,7 @@ MapControlButton.propTypes = {
 MapControlButton.defaultProps = {
   className: "",
   activeClassName: "",
-  activeIcon: null,
+  activeName: null,
   isDisabledSelector: null,
   disabled: false,
   forceDark: false
