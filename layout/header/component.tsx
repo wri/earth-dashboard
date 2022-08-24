@@ -24,22 +24,20 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }: HeaderProps) => {
   // Reference
   const headerRef = useRef<HTMLElement>(null);
 
+  /** Closes mega menu on click outside. */
   const focusTrapOptions = {
     onDeactivate: () => setIsMegaMenuOpen(false),
     clickOutsideDeactivates: true
   };
 
+  // Styling changes on scroll and navigation.
   useEffect(() => {
     const handleRouteChange = () => setIsMegaMenuOpen(false);
 
     const handleScroll = () => {
       if (!headerRef.current) return;
 
-      if (window.scrollY > headerRef.current.scrollHeight) {
-        setIsHeaderSticky(true);
-      } else {
-        setIsHeaderSticky(false);
-      }
+      setIsHeaderSticky(window.scrollY > headerRef.current.scrollHeight);
     };
 
     router?.events.on("routeChangeStart", handleRouteChange);
