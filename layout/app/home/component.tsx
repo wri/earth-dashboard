@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect } from "react";
-
-import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 
 // components
 import Layout from "layout/layout/layout-app";
@@ -14,7 +12,14 @@ import styles from "./homepage.module.scss";
 import MainContainer from "components/app/home/main-container";
 import useWindowDimensions from "hooks/useWindowDimensions";
 
-function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
+type LayoutHomeProps = {
+  openHeaderMenu: boolean;
+  headerTabSelected: string;
+  title: string;
+  description: string;
+};
+
+const LayoutHome = ({ openHeaderMenu, headerTabSelected = "site-navigation", title, description }: LayoutHomeProps) => {
   const { height } = useWindowDimensions();
 
   useEffect(() => {
@@ -37,7 +42,10 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       headerButtonPosition="right"
       themeColor="#1a2128"
     >
+      {/* TODO: convert to TS so no need for expect error */}
+      {/* @ts-expect-error */}
       <MediaContextProvider>
+        {/* @ts-expect-error */}
         <Desktop>
           <MainContainer isMobile={false} />
         </Desktop>
@@ -47,16 +55,6 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       </MediaContextProvider>
     </Layout>
   );
-}
-
-LayoutHome.propTypes = {
-  openHeaderMenu: PropTypes.bool,
-  headerTabSelected: PropTypes.string
-};
-
-LayoutHome.defaultProps = {
-  openHeaderMenu: false,
-  headerTabSelected: "site-navigation"
 };
 
 export default LayoutHome;
