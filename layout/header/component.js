@@ -76,9 +76,9 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
 
               {/* Navigation links */}
               <div className={styles["c-site-header__links"]}>
-                <HeaderLink href="/" text="Earth HQ" />
-                <HeaderLink href="/news" text="News" />
-                <HeaderLink href="/about" text="About" />
+                <HeaderLink href="/" text="Earth HQ" active={router.pathname === "/" && !isMegaMenuOpen} />
+                <HeaderLink text="News" onClick={() => setIsMegaMenuOpen(true)} active={isMegaMenuOpen} />
+                <HeaderLink href="/about" text="About" active={router.pathname === "/about" && !isMegaMenuOpen} />
               </div>
 
               {/* Options */}
