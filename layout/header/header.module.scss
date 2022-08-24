@@ -14,7 +14,7 @@ $c-mega-menu-wrapper-transition-duration-ms: 800;
 .c-mega-menu-wrapper {
   $this: &;
 
-  position: fixed;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0;
