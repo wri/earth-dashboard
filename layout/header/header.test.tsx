@@ -1,9 +1,9 @@
-/* eslint-disable react/display-name */
+import Header from ".";
 import { render } from "test-utils";
-import Header from "./component";
 
 jest.mock("components/ui/logo-link", () => {
-  return () => <a>Logo</a>;
+  const Logo = () => <a>Logo</a>;
+  return Logo;
 });
 
 describe("Header", () => {
