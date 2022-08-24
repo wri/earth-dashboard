@@ -8,6 +8,7 @@ const LANGUAGES = [
   { value: "de", label: "German" }
 ];
 
+/** Header options for languages, share, and more. */
 const HeaderOptions = () => {
   const [language, setLanguage] = useState("en");
 
