@@ -28,7 +28,7 @@ const HeaderOptions = () => {
         className={styles["c-header-options__language"]}
       />
 
-      {/* Share */}
+      {/* Share or search */}
       {router.pathname !== "/about" && (
         <IconButton
           name={router.pathname === "/" ? "share" : "search"}
