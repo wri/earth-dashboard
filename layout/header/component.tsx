@@ -6,19 +6,23 @@ import HeaderLink from "layout/header/header-link";
 import { CSSTransition } from "react-transition-group";
 import MegaMenu from "layout/header/mega-menu";
 import FocusTrap from "focus-trap-react";
-import PropTypes from "prop-types";
 import HeaderOptions from "layout/header/header-options";
 import styles from "./header.module.scss";
 
+type HeaderProps = {
+  isMegaMenuOpen: boolean;
+  setIsMegaMenuOpen: any;
+};
+
 /** Header component for the site with the logo, links, and controls. */
-const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
+const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }: HeaderProps) => {
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
 
   // Navigation
   const router = useRouter();
 
   // Reference
-  const headerRef = useRef(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   const focusTrapOptions = {
     onDeactivate: () => setIsMegaMenuOpen(false),
@@ -29,7 +33,9 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
     const handleRouteChange = () => setIsMegaMenuOpen(false);
 
     const handleScroll = () => {
-      if (window.scrollY > headerRef.current?.scrollHeight) {
+      if (!headerRef.current) return;
+
+      if (window.scrollY > headerRef.current.scrollHeight) {
         setIsHeaderSticky(true);
       } else {
         setIsHeaderSticky(false);
@@ -63,11 +69,11 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
         <FocusTrap active={isMegaMenuOpen} focusTrapOptions={focusTrapOptions}>
           <div
             className={styles["c-mega-menu-wrapper__bg"]}
-            style={{ maxHeight: headerRef.current && headerRef.current.scrollHeight + "px" }}
+            style={{ maxHeight: `${headerRef.current?.scrollHeight ?? 0}px` }}
           >
             <header
-              className={classnames(styles["c-site-header"], isHeaderSticky && styles["c-site-header--sticky"])}
               ref={headerRef}
+              className={classnames(styles["c-site-header"], isHeaderSticky && styles["c-site-header--sticky"])}
             >
               {/* Logo */}
               <div className={styles["c-site-header__logo"]}>
@@ -95,11 +101,6 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
       </div>
     </CSSTransition>
   );
-};
-
-Header.propTypes = {
-  isMegaMenuOpen: PropTypes.bool.isRequired,
-  setIsMegaMenuOpen: PropTypes.func.isRequired
 };
 
 export default Header;

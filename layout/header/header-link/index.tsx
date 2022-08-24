@@ -1,10 +1,16 @@
 import classnames from "classnames";
-import PropTypes from "prop-types";
 import styles from "./header-link.module.scss";
 import Link from "next/link";
 
+type HeaderLinkProps = {
+  text: string;
+  active: boolean;
+  onClick?: () => void;
+  href?: string;
+};
+
 /** Navigation link for header with active underline indicator. */
-const HeaderLink = ({ text, active, onClick, href, ...rest }) => {
+const HeaderLink = ({ text, active, onClick, href, ...rest }: HeaderLinkProps) => {
   return (
     <div
       className={classnames({
@@ -17,21 +23,16 @@ const HeaderLink = ({ text, active, onClick, href, ...rest }) => {
           {text}
         </button>
       ) : (
-        <Link href={href} {...rest}>
-          <a className={styles["text"]}>{text}</a>
-        </Link>
+        href && (
+          <Link href={href} {...rest}>
+            <a className={styles["text"]}>{text}</a>
+          </Link>
+        )
       )}
 
       <div className={styles["underline"]} />
     </div>
   );
-};
-
-HeaderLink.propTypes = {
-  text: PropTypes.string.isRequired,
-  active: PropTypes.bool.isRequired,
-  onClick: PropTypes.func,
-  href: PropTypes.string
 };
 
 export default HeaderLink;
