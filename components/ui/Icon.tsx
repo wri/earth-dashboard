@@ -16,7 +16,8 @@ type CommonProps = {
 
 export type IconProps = CommonProps & AccessibilityProps;
 
-/** Accessible icon component with dynamic import.
+/**
+ * Accessible icon component with dynamic import.
  * meaningful - Requires accessibilityText, use this for icons which needs context.
  * decorative - Will apply aria-hidden, use this if the icon is accompanied with some text or doesn't need more context.
  */
