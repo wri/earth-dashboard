@@ -8,14 +8,17 @@ import MegaMenu from "layout/header/mega-menu";
 import FocusTrap from "focus-trap-react";
 import PropTypes from "prop-types";
 import HeaderOptions from "layout/header/header-options";
-
-// styles
 import styles from "./header.module.scss";
 
+/** Header component for the site with the logo, links, and controls. */
 const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
-  const headerRef = useRef(null);
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
+
+  // Navigation
   const router = useRouter();
+
+  // Reference
+  const headerRef = useRef(null);
 
   const focusTrapOptions = {
     onDeactivate: () => setIsMegaMenuOpen(false),
@@ -40,6 +43,7 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }) => {
       router?.events.off("routeChangeStart", handleRouteChange);
       window?.removeEventListener("scroll", handleScroll);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
