@@ -2,6 +2,7 @@ import { useState } from "react";
 import SelectInput from "components/ui/select";
 import styles from "./header-options.module.scss";
 import IconButton from "components/ui/icon-button";
+import { useRouter } from "next/router";
 
 const LANGUAGES = [
   { value: "en", label: "English" },
@@ -12,6 +13,9 @@ const LANGUAGES = [
 /** Header options for languages, share, and more. */
 const HeaderOptions = () => {
   const [language, setLanguage] = useState("en");
+
+  // Navigation
+  const router = useRouter();
 
   return (
     <div className={styles["c-header-options"]}>
@@ -25,13 +29,15 @@ const HeaderOptions = () => {
       />
 
       {/* Share */}
-      <IconButton
-        name="share"
-        type="meaningful"
-        accessibilityText="Share"
-        className={styles["c-header-options__share"]}
-        onClick={() => console.log("share")}
-      />
+      {router.pathname !== "/about" && (
+        <IconButton
+          name={router.pathname === "/" ? "share" : "search"}
+          type="meaningful"
+          accessibilityText="Share"
+          className={styles["c-header-options__share"]}
+          onClick={() => console.log("share")}
+        />
+      )}
 
       {/* More */}
       <IconButton name="more" type="meaningful" accessibilityText="Share" onClick={() => console.log("more")} />
