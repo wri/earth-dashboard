@@ -3,11 +3,12 @@ import Section from "layout/app/news/section";
 import TopicCard from "layout/app/news/topic-card";
 import styles from "layout/app/news/news.module.scss";
 import { MenuItems } from "constants/menu-items";
+import { BG_GALAXY } from "constants/section-colours";
 
 // TODO: Temporary bridging design, need to remove later
 const NewsPage = () => (
   <Layout>
-    <Section gridClassName={styles["c-topics"]} noWrap>
+    <Section bgColour={BG_GALAXY} gridClassName={styles["c-topics"]} noWrap>
       {MenuItems.map(link => (
         <TopicCard key={link.key} {...link} />
       ))}
