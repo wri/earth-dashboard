@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import classnames from "classnames";
 import LogoLink from "components/ui/logo-link";
 import HeaderLink from "layout/header/header-link";
@@ -8,15 +7,11 @@ import { useRouter } from "next/router";
 
 /** Header component for the site with the logo, links, and controls. */
 const Header = () => {
-  // Reference
-  const headerRef = useRef<HTMLElement>(null);
-
   // Navigation
   const router = useRouter();
 
   return (
     <header
-      ref={headerRef}
       className={classnames(styles["c-site-header"], router.pathname === "/" ? styles["fixed"] : styles["sticky"])}
     >
       {/* Logo */}
