@@ -9,4 +9,9 @@
   border-radius: 50%;
   background-color: $white;
   color: $colour-galaxy;
+
+  &:hover {
+    background-color: $colour-flame;
+    color: $white;
+  }
 }
