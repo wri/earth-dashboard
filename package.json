@@ -66,6 +66,7 @@
     "react-globe": "^5.0.2",
     "react-globe.gl": "^2.14.6",
     "react-graph-vis": "1.0.2",
+    "react-inlinesvg": "^3.0.1",
     "react-input-range": "^1.2.1",
     "react-intersection-observer": "^8.29.0",
     "react-map-gl": "^5.0.7",
@@ -139,6 +140,9 @@
     "lint:fix": "next lint --fix"
   },
   "lint-staged": {
-    "*.{js,jsx}": ["eslint --fix", "git add"]
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
