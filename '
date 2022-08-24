@@ -1,11 +1,8 @@
 @import "css/settings";
 
 .c-icon-button {
-  height: 48px;
-  width: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
   background-color: $white;
   color: $colour-galaxy;

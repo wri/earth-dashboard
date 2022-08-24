@@ -9,6 +9,7 @@ type IconButtonProps = {
   disabled?: boolean;
 } & IconProps;
 
+/** Styled icon button. */
 const IconButton = ({ onClick, className = "", disabled, ...rest }: IconButtonProps) => {
   return (
     <button className={classnames(styles["c-icon-button"], className)} onClick={onClick} disabled={disabled}>

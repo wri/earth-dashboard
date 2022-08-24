@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SelectInput from "components/ui/select";
 import styles from "./header-options.module.scss";
+import IconButton from "components/ui/icon-button";
 
 const LANGUAGES = [
   { value: "en", label: "English" },
@@ -14,6 +15,7 @@ const HeaderOptions = () => {
 
   return (
     <div className={styles["c-header-options"]}>
+      {/* Languages */}
       <SelectInput
         options={LANGUAGES}
         value={LANGUAGES.find(option => option.value === language)}
@@ -21,6 +23,18 @@ const HeaderOptions = () => {
         aria-label="Select a language"
         className={styles["c-header-options__language"]}
       />
+
+      {/* Share */}
+      <IconButton
+        name="share"
+        type="meaningful"
+        accessibilityText="Share"
+        className={styles["c-header-options__share"]}
+        onClick={() => console.log("share")}
+      />
+
+      {/* More */}
+      <IconButton name="more" type="meaningful" accessibilityText="Share" onClick={() => console.log("more")} />
     </div>
   );
 };

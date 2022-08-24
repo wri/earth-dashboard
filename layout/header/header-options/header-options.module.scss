@@ -4,4 +4,9 @@
   &__language {
     width: 137px;
   }
+
+  &__language,
+  &__share {
+    margin-right: 12px;
+  }
 }
