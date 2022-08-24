@@ -87,10 +87,6 @@ const Header = ({ isMegaMenuOpen, setIsMegaMenuOpen }: HeaderProps) => {
 
               {/* Options */}
               <HeaderOptions />
-
-              {/* TODO: Need to remove after refactor of news page.
-                <MegaMenuBtn className={styles["c-site-header__btn"]} />
-              */}
             </header>
 
             <MegaMenu />
