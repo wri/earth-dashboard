@@ -1,9 +1,0 @@
-@import "css/settings";
-
-.c-icon-button {
-  height: 24px;
-  width: 24px;
-  border-radius: 50%;
-  background-color: $white;
-  color: $colour-galaxy;
-}
