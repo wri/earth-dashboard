@@ -37,6 +37,7 @@ const LayoutHome = ({ headerTabSelected = "site-navigation", title, description 
       className={styles.homepage}
       headerTabSelected={headerTabSelected}
       headerButtonPosition="right"
+      test="ok"
       themeColor="#1a2128"
     >
       {/* TODO: convert to TS so no need for expect error */}
