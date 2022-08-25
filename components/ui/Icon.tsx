@@ -1,6 +1,33 @@
 import { CSSProperties, useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 
+type IconNames =
+  | "2d"
+  | "3d"
+  | "arrow-down-homepage"
+  | "arrow-right"
+  | "arrow-up-homepage"
+  | "arrow up-right-homepage"
+  | "back-chevron"
+  | "chevron-left"
+  | "chevron-right"
+  | "chevron-up"
+  | "close"
+  | "cog"
+  | "error-circle"
+  | "external-link"
+  | "linkedin"
+  | "live"
+  | "location"
+  | "more"
+  | "search"
+  | "share"
+  | "toggle-arrow-down"
+  | "twitter"
+  | "youtube-play"
+  | "zoom-in"
+  | "zoom-out";
+
 type AccessibilityProps =
   | { type: "meaningful"; accessibilityText: string }
   | {
@@ -9,7 +36,7 @@ type AccessibilityProps =
     };
 
 type CommonProps = {
-  name: string;
+  name: IconNames;
   size?: number;
   className?: string;
   style?: CSSProperties;
