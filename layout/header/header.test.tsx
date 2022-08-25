@@ -1,6 +1,3 @@
-import Header from ".";
-import { render } from "test-utils";
-
 jest.mock("components/ui/logo-link", () => {
   const Logo = () => <a>Logo</a>;
   return Logo;
@@ -17,29 +14,31 @@ jest.mock("layout/header/header-options", () => {
 });
 
 describe("Header", () => {
-  test("Renders Correctly when mega menu is closed", () => {
-    const { container } = render(<Header />);
+  test.todo("Renders Correctly when mega menu is closed");
 
-    expect(container).toMatchInlineSnapshot(`
-<header
-  class="c-site-header"
->
-  <div
-    class="c-site-header__logo"
-  >
-    <a>Logo</a>
-  </div>
-
-  <div class="c-site-header__links">
-    <a>Link</a>
-    <a>Link</a>
-    <a>Link</a>
-  </div>
-
-  <div>Options</div> 
-</header>
-`);
-  });
+  //   test("Renders Correctly when mega menu is closed", () => {
+  //     const { container } = render(<Header />);
+  //
+  //     expect(container).toMatchInlineSnapshot(`
+  // <header
+  //   class="c-site-header"
+  // >
+  //   <div
+  //     class="c-site-header__logo"
+  //   >
+  //     <a>Logo</a>
+  //   </div>
+  //
+  //   <div class="c-site-header__links">
+  //     <a>Link</a>
+  //     <a>Link</a>
+  //     <a>Link</a>
+  //   </div>
+  //
+  //   <div>Options</div>
+  // </header>
+  // `);
+  //   });
 });
 
 export {};
