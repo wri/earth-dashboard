@@ -9,6 +9,7 @@
   border-radius: 50%;
   background-color: $white;
   color: $colour-galaxy;
+  transition: all 0.1s ease-in-out;
 
   &:hover {
     background-color: $colour-flame;
