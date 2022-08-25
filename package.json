@@ -137,12 +137,10 @@
     "start": "next start",
     "test": "jest --env=jsdom",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.{js,jsx,ts,tsx}": ["yarn lint:fix", "yarn type-check", "yarn test", "git add"]
   }
 }
