@@ -34,4 +34,8 @@ $c-topic-card-transition: 0.16s ease-in-out;
       text-transform: uppercase;
     }
   }
+
+  > svg {
+    color: white;
+  }
 }
