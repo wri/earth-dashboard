@@ -1,9 +1,9 @@
 import classnames from "classnames";
 import styles from "./social-icon.module.scss";
-import Icon from "../Icon";
+import Icon, { IconNames } from "../Icon";
 
 type SocialIconProps = {
-  name: string;
+  name: IconNames;
   label: string;
   link: string;
   className?: string;

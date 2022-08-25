@@ -4,7 +4,6 @@ import Icon, { IconProps } from "../Icon";
 import styles from "./icon-button.module.scss";
 
 type IconButtonProps = {
-  name: string;
   onClick: () => void;
   className?: string;
   disabled?: boolean;

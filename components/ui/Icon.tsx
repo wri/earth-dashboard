@@ -1,7 +1,7 @@
 import { CSSProperties, useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 
-type IconNames =
+export type IconNames =
   | "2d"
   | "3d"
   | "arrow-down-homepage"
