@@ -5,9 +5,8 @@ import styles from "./date-picker.module.scss";
 import useCalendar from "@veccu/react-calendar";
 import { format } from "date-fns";
 import IconButton from "components/ui/icon-button";
-import liveSVG from "public/static/icons/live.svg";
 import SelectInput from "components/ui/select";
-import Image from "next/image";
+import Icon from "components/ui/Icon";
 
 // 0 | 1 | 2 | 3 | 4 | 5 | 6
 export const defaultWeekStart = 0;
@@ -42,7 +41,7 @@ const YEARS = constructYears();
 
 const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataButton, className }, ref) => {
   const [selectedDate, setSelectedDate] = useState(initialDate);
-  const { cursorDate, headers, body, navigation, view, month, year } = useCalendar({ defaultWeekStart });
+  const { cursorDate, headers, body, navigation, month, year } = useCalendar({ defaultWeekStart });
 
   const setYear = ({ value }) => navigation.setDate(new Date(value, month));
   const setMonth = ({ value }) => navigation.setDate(new Date(year, value));
@@ -120,7 +119,7 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
               return (
                 <tr key={key} className={styles["c-date-picker__table-row"]}>
                   {days.map(day => {
-                    const { key, date, isCurrentDate, isCurrentMonth, isWeekend, value } = day;
+                    const { key, date, isCurrentMonth, value } = day;
 
                     const isSelected =
                       selectedDate.getFullYear() === value.getFullYear() &&
@@ -152,7 +151,8 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
         {hasLiveDataButton && (
           <div className={classnames(styles["c-date-picker__live"], "u-margin-top-s")}>
             <button onClick={handleLiveDate}>
-              <Image src={liveSVG} role="presentation" alt="" /> <span className="u-margin-left-xs">Live Data</span>
+              <Icon name="live" size={20} type="decorative" />
+              <span className="u-margin-left-xs">Live Data</span>
             </button>
           </div>
         )}

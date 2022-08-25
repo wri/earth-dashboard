@@ -100,14 +100,23 @@
   }
 
   &__live {
-    span {
-      font-family: "Barlow Condensed";
-      font-style: normal;
-      font-weight: 500;
-      text-transform: uppercase;
-      @include font-size(20px, 30px);
-      cursor: pointer;
-      color: white;
+    button {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-family: "Barlow Condensed";
+        font-style: normal;
+        font-weight: 500;
+        text-transform: uppercase;
+        @include font-size(20px, 30px);
+        cursor: pointer;
+        color: white;
+      }
+
+      svg {
+        color: white;
+      }
     }
   }
 
