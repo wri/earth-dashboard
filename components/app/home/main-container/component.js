@@ -211,8 +211,18 @@ const MainContainer = ({
           />
           <div className={classnames(styles["controls"])}>
             <div className={classnames(styles["zooms"])}>
-              <IconButton name="zoom-in" />
-              <IconButton name="zoom-out" />
+              <IconButton
+                name="zoom-in"
+                onClick={() => {
+                  earthServer?.current?.reorient({ scaleBy: 1.05 });
+                }}
+              />
+              <IconButton
+                name="zoom-out"
+                onClick={() => {
+                  earthServer?.current?.reorient({ scaleBy: 0.95 });
+                }}
+              />
             </div>
             <IconButton name="location" />
           </div>
