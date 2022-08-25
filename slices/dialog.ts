@@ -1,8 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const NAME = "dialog";
 
-const initialState = {
+export type DialogState = {
+  dialogHeight: string;
+};
+
+const initialState: DialogState = {
   dialogHeight: "70vh"
 };
 
@@ -10,7 +14,7 @@ const dialogSlice = createSlice({
   name: NAME,
   initialState,
   reducers: {
-    setDialogHeight(state, { payload }) {
+    setDialogHeight: (state, { payload }: PayloadAction<{ height: string }>) => {
       state.dialogHeight = payload.height;
     }
   }
