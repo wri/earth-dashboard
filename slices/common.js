@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   hostname: "https://earthhq.org/",
-  isMobile: true,
-  isMegaMenuOpen: false
+  isMobile: true
 };
 
 const commonSlice = createSlice({
@@ -17,14 +16,9 @@ const commonSlice = createSlice({
       if (typeof payload !== "boolean") return;
 
       state.isMobile = payload;
-    },
-    setIsMegaMenuOpen(state, { payload }) {
-      if (typeof payload !== "boolean") return;
-
-      state.isMegaMenuOpen = payload;
     }
   }
 });
 
-export const { setHostname, setIsMobile, setIsMegaMenuOpen } = commonSlice.actions;
+export const { setHostname, setIsMobile } = commonSlice.actions;
 export default commonSlice.reducer;

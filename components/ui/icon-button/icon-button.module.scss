@@ -1,0 +1,17 @@
+@import "css/settings";
+
+.c-icon-button {
+  height: 48px;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: $white;
+  color: $colour-galaxy;
+
+  &:hover {
+    background-color: $colour-flame;
+    color: $white;
+  }
+}

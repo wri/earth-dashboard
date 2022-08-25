@@ -29,6 +29,10 @@
     background-color: $colour-galaxy;
   }
 
+  &__nowrap {
+    margin: 0 auto;
+  }
+
   &__wrap {
     max-width: $o-page-section-wrap-max-width;
     margin: 0 auto;

@@ -4,7 +4,6 @@ import DialogPanel from "components/app/home/dialog-panel";
 import IconButton from "components/ui/icon-button";
 import styles from "./settings-menu.module.scss";
 import settingsFormElements from "schemas/global-settings";
-import CloseIcon from "public/static/icons/close.svg";
 import PropTypes from "prop-types";
 import useDialogPanel from "hooks/useDialogPanel";
 
@@ -23,9 +22,9 @@ const SettingsMenu = ({ isOpen, onClose, isMobile }) => {
               Settings
             </h1>
             <IconButton
-              icon={CloseIcon}
-              className={styles["c-settings-menu-modal__close"]}
+              name="close"
               aria-label="Close Settings"
+              className={styles["c-settings-menu-modal__close"]}
               onClick={() => handleClose(true)}
             />
           </div>
