@@ -1,23 +1,41 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
+import menuButtonStyles from "./menuButton.module.scss";
+import actionStyles from "components/app/home/actions/actions.module.scss";
 import PropTypes from "prop-types";
 import Menu from "components/app/home/menu";
+import SettingsMenu from "components/app/home/settings-menu";
+import Actions from "components/app/home/actions";
+import MapControls from "components/app/home/map-controls";
+import DatePickerBtn from "components/app/home/date-picker-menu/button";
 import useIframeBridge from "hooks/useIframeBridge";
 import useWindowDimensions from "hooks/useWindowDimensions";
 import { fetchModes } from "services/gca";
 import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
+import settingsButtonConfig from "constants/control-bar/controls/settings";
+import { formatDate } from "utils/dates";
+import DatePickerMenu from "../date-picker-menu";
 import { UNIT_LABEL_MAP } from "utils/map";
 import IconButton from "components/ui/icon-button";
 
-const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, shouldFadeControls, currentHeadline }) => {
+const MainContainer = ({
+  isMobile,
+  setIsMobile,
+  setModes,
+  layersLabelArr,
+  dateOfDataShown,
+  shouldFadeControls,
+  currentHeadline,
+  currentHeadlineId
+}) => {
   const [hasMenuOpen, setHasMenuOpen] = useState(false);
   const [hasIframe, setHasIframe] = useState(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
-  const [_, setHomePageControlBarItems] = useState([]);
+  const [homePageMapControlsItems, setHomePageControlBarItems] = useState([]);
   const { width: browserWidth } = useWindowDimensions();
 
   const menuRef = useRef(null);
@@ -27,6 +45,7 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, should
     earthClient,
     earthServer,
     layers,
+    error,
     toolTipDetails,
     enableToolTip,
     disableToolTip,
@@ -221,7 +240,6 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, should
         />
       )}
 
-      {/* TODO: Need to move/update
       <Actions isMobile={isMobile} className={classnames(shouldFadeControls && "u-opacity-faded")}>
         {error ? (
           <p role="alert" className="u-text-white">
@@ -275,24 +293,11 @@ const MainContainer = ({ isMobile, setIsMobile, setModes, layersLabelArr, should
                 )}
               </div>
             </button>
-            {!isMobile && (
-              <>
-                <MapControls
-                  controls={homePageMapControlsItems}
-                  className={actionStyles["c-home-actions__map-controls"]}
-                />
-                <DatePickerBtn />
-              </>
-            )}
           </>
         )}
       </Actions>
-      */}
-
-      {/* TODO: Need to move/update
-        {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
-        {!isFetchingTemplates && <DatePickerMenu isMobile={isMobile} />}
-      */}
+      {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
+      {!isFetchingTemplates && <DatePickerMenu isMobile={isMobile} />}
     </div>
   );
 };
