@@ -138,9 +138,15 @@
     "test": "jest --env=jsdom",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["yarn lint:fix", "yarn type-check", "yarn test", "git add"]
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint:fix",
+      "yarn type-check",
+      "yarn test",
+      "git add"
+    ]
   }
 }
