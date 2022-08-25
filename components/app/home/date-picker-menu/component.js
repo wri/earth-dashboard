@@ -35,7 +35,6 @@ const DatePickerMenu = ({ isOpen, onClose, isMobile, currentDate, setDate }) => 
               data-testid="close-button"
               aria-label="Close Date Picker"
               name="close"
-              type="decorative"
               onClick={() => handleClose(true)}
               className={styles["c-settings-menu-modal__close"]}
             />

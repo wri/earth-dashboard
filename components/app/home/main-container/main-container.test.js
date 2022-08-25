@@ -330,9 +330,6 @@ test("<MainContainer /> renders correctly as desktop", async () => {
               xxxx-xx-xx
             </span>
           </span>
-          <div
-            class="c-button c-button--icon c-showing-data-for__icon"
-          />
         </button>
       </div>
     </div>

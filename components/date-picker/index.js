@@ -89,7 +89,6 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
           <IconButton
             aria-label="Previous Month"
             name="chevron-right"
-            type="decorative"
             className={classnames(styles["c-date-picker__month-button"], styles["c-date-picker__month-button--rotate"])}
             onClick={navigation.toPrev}
             disabled={month === 0 && year === MIN_YEAR}
@@ -99,7 +98,6 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
           <IconButton
             aria-label="Next Month"
             name="chevron-right"
-            type="decorative"
             className={styles["c-date-picker__month-button"]}
             onClick={navigation.toNext}
             disabled={month === 11 && year === MAX_YEAR}

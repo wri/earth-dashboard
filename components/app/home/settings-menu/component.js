@@ -23,7 +23,6 @@ const SettingsMenu = ({ isOpen, onClose, isMobile }) => {
             </h1>
             <IconButton
               name="close"
-              type="decorative"
               aria-label="Close Settings"
               className={styles["c-settings-menu-modal__close"]}
               onClick={() => handleClose(true)}
