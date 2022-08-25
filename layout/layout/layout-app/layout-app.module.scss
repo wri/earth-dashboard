@@ -4,16 +4,17 @@
 .c-layout-app {
   .gdpr-banner {
     position: fixed;
-    top: 0px;
+    bottom: 0px;
     left: 0px;
     width: 100vw;
     display: flex;
+    justify-content: center;
     align-items: center;
-    background-color: $grey-darkest;
+    background-color: $black;
     z-index: $z-index-cookies;
 
     &.-desktop {
-      padding: 20px 100px;
+      padding: 30px 100px;
     }
 
     &.-mobile {
@@ -23,17 +24,59 @@
     .text {
       color: $grey-lighter;
     }
-
-    button {
-      min-width: 70px;
-      height: 34px;
+    .main-banner{
+      display: flex;
+      margin: auto;
+      width: 80%;
+    }
+    .left-content {
+      display: flex;
+      flex-direction: column;
+      flex: 2;
+    }
+    .cookie {
+      display: flex;
+      align-self: flex-start;
+    }
+    .cookie-svg {
+      margin: 3px;
+    }
+    .cookie-text {
       color: $white;
+      font-weight: 600;
+      margin: auto;
+    }
+
+    .button-group {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+    }
+    .acceptButton {
+      background-color: $colour-flame;
+      // margin: 3rem;
+      &:hover {
+        background-color: $grey-darker;
+      }
+    }
+
+    .rejectButton {
       border: solid 1px $white;
 
       &:hover {
         color: $grey-darkest;
         background-color: $grey-lighter;
       }
+    }
+
+    button {
+      // min-width: 70px;
+      margin: 0.5rem;
+      padding: 0 13px;
+      height: 34px;
+      color: $white;
+      border-radius: 20px;
     }
   }
 }

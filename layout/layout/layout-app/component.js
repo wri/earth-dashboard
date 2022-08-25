@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+/* eslint-disable @next/next/no-img-element */
+import { useState, useEffect, Image } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import Modal from "react-modal";
@@ -53,27 +54,39 @@ function LayoutApp(props) {
         [styles["-desktop"]]: !mobile
       })}
     >
-      <div className={styles["text"]}>
-        This website uses cookies to provide you with an improved user experience. By continuing to browse this site,
-        you consent to the use of cookies and similar technologies. Please visit our{" "}
-        <a
-          className="external-link -white"
-          href="https://resourcewatch.org/privacy-policy"
-          target="_blank"
-          rel="noreferrer"
-        >
-          privacy policy
-        </a>{" "}
-        for further details.
+      <div className={styles["main-banner"]}>
+        <div className={styles["left-content"]}>
+          <div className={styles["cookie"]}>
+            <img className={styles["cookie-svg"]} src="/static/icons/cookie.svg" role="presentation" alt="" />
+            <h3 className={styles["cookie-text"]}>COOKIES</h3>
+          </div>
+          <div className={styles["text"]}>
+            This website uses cookies to provide you with an improved user experience. By continuing to browse this
+            site, you consent to the use of cookies and similar technologies. Please visit our privacy policy for
+            further details.
+          </div>
+        </div>
+        <div className={styles["button-group"]}>
+          <button
+            className={styles["rejectButton"]}
+            onClick={() => {
+              setShowGDPRBanner(false);
+              localStorage.setItem(GDPR_ACCEPTED_KEY, "false");
+            }}
+          >
+            REJECT
+          </button>
+          <button
+            className={styles["acceptButton"]}
+            onClick={() => {
+              setShowGDPRBanner(false);
+              localStorage.setItem(GDPR_ACCEPTED_KEY, "true");
+            }}
+          >
+            ACCEPT ALL COOKIES
+          </button>
+        </div>
       </div>
-      <button
-        onClick={() => {
-          setShowGDPRBanner(false);
-          localStorage.setItem(GDPR_ACCEPTED_KEY, "true");
-        }}
-      >
-        I agree
-      </button>
     </div>
   );
 
