@@ -293,15 +293,6 @@ const MainContainer = ({
                 )}
               </div>
             </button>
-            {!isMobile && (
-              <>
-                <MapControls
-                  controls={homePageMapControlsItems}
-                  className={actionStyles["c-home-actions__map-controls"]}
-                />
-                <DatePickerBtn />
-              </>
-            )}
           </>
         )}
       </Actions>

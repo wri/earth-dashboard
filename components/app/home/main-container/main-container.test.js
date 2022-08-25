@@ -311,27 +311,6 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           </span>
         </div>
       </button>
-      <div
-        class="c-map-controls c-home-actions__map-controls"
-      />
-      <div
-        class="c-showing-data-for"
-      >
-        <button
-          class="c-showing-data-for__button"
-        >
-          <span
-            class="c-showing-data-for__text"
-          >
-            Showing Data for: 
-            <span
-              class="c-showing-data-for__date"
-            >
-              xxxx-xx-xx
-            </span>
-          </span>
-        </button>
-      </div>
     </div>
   </div>
 </div>
@@ -352,7 +331,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
     data-testid="iframe-container"
   >
     <div
-      class="c-home-actions u-padding-horizontal-l"
+      class="c-home-actions mobile u-padding-horizontal-l"
     >
       <button
         aria-controls="menu"
