@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import Icon from "components/ui/Icon";
 import uuid from "react-uuid";
 import Image from "next/image";
 import ReactPlayer from "react-player";
@@ -6,8 +7,6 @@ import { secondsToHms } from "utils/time";
 import classnames from "classnames";
 import { CSSTransition } from "react-transition-group";
 import styles from "./video-article.module.scss";
-import YouTubePlayIcon from "public/static/icons/youtube-play.svg";
-import ErrorIcon from "public/static/icons/error-circle.svg";
 import PropTypes from "prop-types";
 import { fireEvent } from "utils/gtag";
 import { VIDEO_START } from "constants/tag-manager";
@@ -105,12 +104,7 @@ const VideoArticle = ({ className, topic, title, image, videoURL }) => {
                 disabled={isPlaying || hasError}
                 aria-describedby={!hasError && id}
               >
-                <Image
-                  src={isPlaying && hasError ? ErrorIcon : YouTubePlayIcon}
-                  layout="responsive"
-                  role="presentation"
-                  alt=""
-                />
+                <Icon name={isPlaying && hasError ? "error-circle" : "youtube-play"} />
               </button>
             </div>
 
