@@ -1,6 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+type CommonState = {
+  hostname: string;
+  isMobile: boolean;
+};
+
+const initialState: CommonState = {
   hostname: "https://earthhq.org/",
   isMobile: true
 };
@@ -9,10 +14,10 @@ const commonSlice = createSlice({
   name: "common",
   initialState,
   reducers: {
-    setHostname(state, action) {
-      state.hostname = action.payload;
+    setHostname: (state, { payload }: PayloadAction<string>) => {
+      state.hostname = payload;
     },
-    setIsMobile(state, { payload }) {
+    setIsMobile: (state, { payload }: PayloadAction<boolean>) => {
       if (typeof payload !== "boolean") return;
 
       state.isMobile = payload;
