@@ -19,6 +19,7 @@ import settingsButtonConfig from "constants/control-bar/controls/settings";
 import { formatDate } from "utils/dates";
 import DatePickerMenu from "../date-picker-menu";
 import { UNIT_LABEL_MAP } from "utils/map";
+import IconButton from "components/ui/icon-button";
 
 const MainContainer = ({
   isMobile,
@@ -197,16 +198,25 @@ const MainContainer = ({
         />
       )}
       {overlayLayer && !isMobile && (
-        <Scale
-          min={scaleData.min}
-          max={scaleData.max}
-          scaleUnit={scaleData.unitSymbol}
-          className={classnames(styles["scale"], shouldFadeControls && "u-opacity-faded")}
-          readOnly
-          scaleGradient={overlayLayer.product.scale.getCss(0)}
-          toolTipData={scaleToolTipData}
-          hasSmallLabels={scaleData.hasSmallLabels}
-        />
+        <div className={classnames(styles["right"])}>
+          <Scale
+            min={scaleData.min}
+            max={scaleData.max}
+            scaleUnit={scaleData.unitSymbol}
+            className={classnames(styles["scale"], shouldFadeControls && "u-opacity-faded")}
+            readOnly
+            scaleGradient={overlayLayer.product.scale.getCss(0)}
+            toolTipData={scaleToolTipData}
+            hasSmallLabels={scaleData.hasSmallLabels}
+          />
+          <div className={classnames(styles["controls"])}>
+            <div className={classnames(styles["zooms"])}>
+              <IconButton name="zoom-in" />
+              <IconButton name="zoom-out" />
+            </div>
+            <IconButton name="location" />
+          </div>
+        </div>
       )}
       {hasMenuOpen && !isFetchingTemplates && (
         <Menu
