@@ -12,13 +12,12 @@ import MainContainer from "components/app/home/main-container";
 import useWindowDimensions from "hooks/useWindowDimensions";
 
 type LayoutHomeProps = {
-  openHeaderMenu: boolean;
   headerTabSelected: string;
   title: string;
   description: string;
 };
 
-const LayoutHome = ({ openHeaderMenu, headerTabSelected = "site-navigation", title, description }: LayoutHomeProps) => {
+const LayoutHome = ({ headerTabSelected = "site-navigation", title, description }: LayoutHomeProps) => {
   const { height } = useWindowDimensions();
 
   useEffect(() => {
@@ -36,7 +35,6 @@ const LayoutHome = ({ openHeaderMenu, headerTabSelected = "site-navigation", tit
       description={description}
       thumbnail="https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg"
       className={styles.homepage}
-      openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
       headerButtonPosition="right"
       themeColor="#1a2128"
