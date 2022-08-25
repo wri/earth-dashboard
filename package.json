@@ -141,6 +141,10 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["eslint --fix", "git add", "yarn test --passWithNoTests"]
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add",
+      "yarn test --passWithNoTests"
+    ]
   }
 }
