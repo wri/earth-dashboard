@@ -32,15 +32,14 @@ const HeaderOptions = () => {
       {router.pathname !== "/about" && (
         <IconButton
           name={router.pathname === "/" ? "share" : "search"}
-          type="meaningful"
-          accessibilityText="Share"
+          aria-label="Share"
           className={styles["c-header-options__share"]}
           onClick={() => console.log("share")}
         />
       )}
 
       {/* More */}
-      <IconButton name="more" type="meaningful" accessibilityText="Share" onClick={() => console.log("more")} />
+      <IconButton name="more" aria-label="More" onClick={() => console.log("more")} />
     </div>
   );
 };

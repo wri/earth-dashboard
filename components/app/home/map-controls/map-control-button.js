@@ -30,7 +30,6 @@ const MapControlButton = ({
   return (
     <IconButton
       name={isActive && activeName ? activeName : name}
-      type="decorative"
       className={classnames(
         className,
         isActive && activeClassName,
