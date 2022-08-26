@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CommonState } from "./types";
 
-type CommonState = {
-  hostname: string;
-  isMobile: boolean;
-};
+export * from "./types";
 
 const initialState: CommonState = {
   hostname: "https://earthhq.org/",

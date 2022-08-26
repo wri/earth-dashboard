@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { DialogState } from "./types";
+
+export * from "./types";
 
 export const NAME = "dialog";
-
-export type DialogState = {
-  dialogHeight: string;
-};
 
 const initialState: DialogState = {
   dialogHeight: "70vh"
