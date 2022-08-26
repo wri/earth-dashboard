@@ -1,7 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
 import { useEffect } from "react";
-
-import PropTypes from "prop-types";
 
 // components
 import Layout from "layout/layout/layout-app";
@@ -14,7 +11,13 @@ import styles from "./homepage.module.scss";
 import MainContainer from "components/app/home/main-container";
 import useWindowDimensions from "hooks/useWindowDimensions";
 
-function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
+type LayoutHomeProps = {
+  headerTabSelected: string;
+  title: string;
+  description: string;
+};
+
+const LayoutHome = ({ headerTabSelected = "site-navigation", title, description }: LayoutHomeProps) => {
   const { height } = useWindowDimensions();
 
   useEffect(() => {
@@ -32,13 +35,14 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       description={description}
       thumbnail="https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg"
       className={styles.homepage}
-      openHeaderMenu={openHeaderMenu}
       headerTabSelected={headerTabSelected}
       headerButtonPosition="right"
       themeColor="#1a2128"
-      showHeaderTitle={true}
     >
+      {/* TODO: convert to TS so no need for expect error */}
+      {/* @ts-expect-error */}
       <MediaContextProvider>
+        {/* @ts-expect-error */}
         <Desktop>
           <MainContainer isMobile={false} />
         </Desktop>
@@ -48,16 +52,6 @@ function LayoutHome({ openHeaderMenu, headerTabSelected, title, description }) {
       </MediaContextProvider>
     </Layout>
   );
-}
-
-LayoutHome.propTypes = {
-  openHeaderMenu: PropTypes.bool,
-  headerTabSelected: PropTypes.string
-};
-
-LayoutHome.defaultProps = {
-  openHeaderMenu: false,
-  headerTabSelected: "site-navigation"
 };
 
 export default LayoutHome;

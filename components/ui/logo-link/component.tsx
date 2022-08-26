@@ -1,9 +1,14 @@
-import PropTypes from "prop-types";
 import Link from "next/link";
 import Image from "next/image";
 import nullSchoolLogo from "public/static/images/logo-earth-hq.svg";
 
-const LogoLink = ({ href, alt, ...rest }) => {
+type LogoLinkProps = {
+  href?: string;
+  alt?: string;
+};
+
+/** Logo with link interaction. */
+const LogoLink = ({ href = "/", alt = "Home page", ...rest }: LogoLinkProps) => {
   return (
     <Link href={href} {...rest}>
       <a>
@@ -11,16 +16,6 @@ const LogoLink = ({ href, alt, ...rest }) => {
       </a>
     </Link>
   );
-};
-
-LogoLink.propTypes = {
-  href: PropTypes.string,
-  alt: PropTypes.string
-};
-
-LogoLink.defaultProps = {
-  href: "/",
-  alt: "Home page"
 };
 
 export default LogoLink;

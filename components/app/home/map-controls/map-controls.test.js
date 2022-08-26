@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react/display-name */
 import { render, fireEvent } from "test-utils";
 import MapControls from "./index";
 import settingControls from "constants/control-bar/controls/settings";
@@ -8,10 +5,6 @@ import locationControls from "constants/control-bar/controls/location";
 import * as redux from "react-redux";
 
 const controls = [settingControls, locationControls];
-
-jest.mock("next/image", () => {
-  return () => <img />;
-});
 
 test("<MapControls /> renders correctly", () => {
   const { container } = render(<MapControls controls={controls} />);
@@ -22,16 +15,12 @@ test("<MapControls /> renders correctly", () => {
   >
     <button
       aria-label="Settings"
-      class="c-button c-button--icon u-margin-right-xs"
-    >
-      <img />
-    </button>
+      class="c-icon-button u-margin-right-xs"
+    />
     <button
       aria-label="Get current location"
-      class="c-button c-button--icon u-margin-right-xs"
-    >
-      <img />
-    </button>
+      class="c-icon-button u-margin-right-xs"
+    />
   </div>
 </div>
 `);

@@ -2,7 +2,6 @@ import classnames from "classnames";
 import DialogPanel from "components/app/home/dialog-panel";
 import IconButton from "components/ui/icon-button";
 import styles from "components/app/home/settings-menu/settings-menu.module.scss";
-import CloseIcon from "public/static/icons/close.svg";
 import PropTypes from "prop-types";
 import useDialogPanel from "hooks/useDialogPanel";
 import DatePicker from "components/date-picker";
@@ -33,11 +32,11 @@ const DatePickerMenu = ({ isOpen, onClose, isMobile, currentDate, setDate }) => 
               Change Date
             </h1>
             <IconButton
-              icon={CloseIcon}
-              className={styles["c-settings-menu-modal__close"]}
-              aria-label="Close Date Picker"
-              onClick={() => handleClose(true)}
               data-testid="close-button"
+              aria-label="Close Date Picker"
+              name="close"
+              onClick={() => handleClose(true)}
+              className={styles["c-settings-menu-modal__close"]}
             />
           </div>
 

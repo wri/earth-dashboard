@@ -1,0 +1,12 @@
+.c-header-options {
+  display: flex;
+
+  &__language {
+    width: 137px;
+  }
+
+  &__language,
+  &__share {
+    margin-right: 12px;
+  }
+}

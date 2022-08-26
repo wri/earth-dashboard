@@ -2,7 +2,7 @@
 lock "~> 3.16.0"
 
 set :application, "earth_dashboard"
-set :repo_url, "git@github.com:wri/earth-dashboard.git"
+set :repo_url, "git@bitbucket.org:3sidedcube/gca-earth-hq.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

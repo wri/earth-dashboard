@@ -1,0 +1,37 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+@import "css/settings/breakpoints";
+
+$c-topic-card-transition: 0.16s ease-in-out;
+
+.c-topic-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background-color: rgba($colour-night, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: background-color $c-topic-card-transition;
+  height: 100%;
+  padding: 20px;
+
+  &:hover {
+    background-color: $colour-flame;
+  }
+
+  > div {
+    max-width: 20rem;
+
+    h2,
+    p {
+      font-weight: 500;
+      color: $white;
+    }
+
+    h2 {
+      @include font-size(20px, 30px);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+  }
+}
