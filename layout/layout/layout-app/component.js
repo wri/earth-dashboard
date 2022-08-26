@@ -18,6 +18,7 @@ import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
 import styles from "./layout-app.module.scss";
 
 import Icon from "components/ui/Icon";
+import OnboardingModal from "layout/onboarding-modal";
 
 function LayoutApp(props) {
   const {
@@ -120,7 +121,7 @@ function LayoutApp(props) {
         themeColor={themeColor}
       />
 
-      {showHeader && (
+      {true && (
         <Header
           showLogo={showHeaderLogo}
           selectedTab={headerTabSelected}
@@ -134,6 +135,14 @@ function LayoutApp(props) {
         <MediaContextProvider>
           <Desktop>{getGDPRContainer(false)}</Desktop>
           <Mobile>{getGDPRContainer(true)}</Mobile>
+        </MediaContextProvider>
+      )}
+
+      {/* MODAL BANNER */}
+      {true && (
+        <MediaContextProvider>
+          <Desktop>{OnboardingModal(false)}</Desktop>
+          <Mobile>{OnboardingModal(true)}</Mobile>
         </MediaContextProvider>
       )}
 
