@@ -1,9 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react/display-name */
 import Select from "react-select";
-import chevronUpIcon from "public/static/icons/orange-chevron-up.svg";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
+import Icon from "../Icon";
 
 const theme = {
   borderRadius: 0,
@@ -15,7 +13,7 @@ const theme = {
 };
 
 const DropdownIndicator = props => {
-  return <img src={chevronUpIcon.src} role="presentation" alt="" style={props.getStyles("dropdownIndicator", props)} />;
+  return <Icon name="chevron-up" style={props.getStyles("dropdownIndicator", props)} />;
 };
 
 const SelectInput = ({ isMobile, ...rest }) => {
@@ -30,7 +28,7 @@ const SelectInput = ({ isMobile, ...rest }) => {
     };
 
     return {
-      option: (provided, state) => ({
+      option: (_, state) => ({
         border: 0,
         borderBottom: "2px solid #D63C00",
         background: state.isFocused ? "#D63C00" : "#38444F",
@@ -41,7 +39,7 @@ const SelectInput = ({ isMobile, ...rest }) => {
         },
         ...fontStyle
       }),
-      control: (provided, state) => ({
+      control: (_, state) => ({
         display: "flex",
         background: "#38444F",
         borderRadius: state.menuIsOpen ? "26px 26px 0px 0px" : "26px",
@@ -50,20 +48,20 @@ const SelectInput = ({ isMobile, ...rest }) => {
         border: state.menuIsOpen || state.isFocused ? "2px solid #D63C00" : "2px solid transparent",
         cursor: "pointer"
       }),
-      singleValue: (provided, state) => ({
+      singleValue: provided => ({
         ...provided,
         ...fontStyle
       }),
       indicatorSeparator: () => ({
         display: "none"
       }),
-      dropdownIndicator: (provided, state) => ({
+      dropdownIndicator: (_, state) => ({
         transform: state.selectProps.menuIsOpen ? "rotate(0deg)" : "rotate(180deg)",
         transition: "transform 0.3s ease-in",
         width: isMobile ? 28 : 32,
         height: isMobile ? 28 : 32
       }),
-      menu: (provided, state) => ({
+      menu: provided => ({
         ...provided,
         borderRadius: "0px 0px 26px 26px",
         overflow: "hidden",
@@ -73,7 +71,7 @@ const SelectInput = ({ isMobile, ...rest }) => {
           display: "none"
         }
       }),
-      menuList: (provided, state) => ({
+      menuList: provided => ({
         ...provided,
         "::-webkit-scrollbar": {
           display: "none"

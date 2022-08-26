@@ -1,6 +1,3 @@
-import TwitterIcon from "public/static/icons/twitter.svg";
-import LinkedInIcon from "public/static/icons/linkedin.svg";
-
 export const MenuItems = [
   {
     key: "earth-hq",
@@ -64,13 +61,13 @@ export const QuickLinks = [
 export const SocialLinks = [
   {
     key: "twitter",
-    icon: TwitterIcon,
+    name: "twitter",
     label: "Follow us on Twitter",
     link: "https://twitter.com/globalcommonshq"
   },
   {
     key: "linkedin",
-    icon: LinkedInIcon,
+    name: "linkedin",
     label: "Follow us on LinkedIn",
     link: "https://www.linkedin.com/company/globalcommonsalliance/"
   }

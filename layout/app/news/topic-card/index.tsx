@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styles from "./topic-card.module.scss";
-import ArrowRight from "public/static/icons/arrow-right.svg";
-import Image from "next/image";
+import Icon from "components/ui/Icon";
 
 type TopicCardProps = {
   label: string;
@@ -20,7 +19,7 @@ const TopicCard = ({ label, body, link }: TopicCardProps) => {
             <p>{body}</p>
           </div>
 
-          <Image src={ArrowRight} role="presentation" alt="" />
+          <Icon name="arrow-right" size={25} type="decorative" />
         </div>
       </a>
     </Link>

@@ -1,5 +1,32 @@
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
+
+export type IconNames =
+  | "2d"
+  | "3d"
+  | "arrow-down-homepage"
+  | "arrow-right"
+  | "arrow-up-homepage"
+  | "arrow up-right-homepage"
+  | "back-chevron"
+  | "chevron-left"
+  | "chevron-right"
+  | "chevron-up"
+  | "close"
+  | "cog"
+  | "error-circle"
+  | "external-link"
+  | "linkedin"
+  | "live"
+  | "location"
+  | "more"
+  | "search"
+  | "share"
+  | "toggle-arrow-down"
+  | "twitter"
+  | "youtube-play"
+  | "zoom-in"
+  | "zoom-out";
 
 type AccessibilityProps =
   | { type: "meaningful"; accessibilityText: string }
@@ -9,9 +36,10 @@ type AccessibilityProps =
     };
 
 type CommonProps = {
-  name: string;
+  name: IconNames;
   size?: number;
   className?: string;
+  style?: CSSProperties;
 };
 
 export type IconProps = CommonProps & AccessibilityProps;
@@ -21,7 +49,7 @@ export type IconProps = CommonProps & AccessibilityProps;
  * meaningful - Requires accessibilityText, use this for icons which needs context.
  * decorative - Will apply aria-hidden, use this if the icon is accompanied with some text or doesn't need more context.
  */
-const Icon = ({ name, size, className, accessibilityText, type }: IconProps): JSX.Element => {
+const Icon = ({ name, size, className, accessibilityText, type, style }: IconProps): JSX.Element => {
   const [path, setPath] = useState<string>();
 
   // Imports the SVG
@@ -45,6 +73,7 @@ const Icon = ({ name, size, className, accessibilityText, type }: IconProps): JS
             width: size
           }
         : {})}
+      style={style}
     />
   );
 };
