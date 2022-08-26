@@ -1,28 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Mode } from "./modes";
+import { Headline, HeadlinesState } from "./types";
+
+export * from "./types";
 
 export const NAME = "headlines";
-
-export type Headline = {
-  id: number;
-  type: string;
-  attributes: {
-    climate_alert_date: string;
-    content: {};
-    location: {};
-    mode: Mode;
-    title: string;
-    summary: string;
-    thumbnail_image: string;
-    zoom_level: number;
-  };
-};
-
-export type HeadlinesState = {
-  headlines: Headline[];
-  currentHeadline?: Headline;
-  currentHeadlineId?: number;
-};
 
 const initialState: HeadlinesState = {
   headlines: [],
