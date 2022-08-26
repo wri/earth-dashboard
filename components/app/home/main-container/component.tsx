@@ -57,12 +57,11 @@ const MainContainer = ({
 
   // Redux
   const dispatch = useDispatch();
-  const isLocationActive = useSelector(shouldFetchLocation);
   const isLocationDisabled = useSelector(isFetchLocationDisabled);
 
   /** Toggles the current location setting. */
   const handleToggleLocation = () => {
-    dispatch((() => setShouldFetchLocation(!isLocationActive))());
+    dispatch((() => setShouldFetchLocation(true))());
   };
 
   const {
