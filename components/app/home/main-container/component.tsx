@@ -1,14 +1,14 @@
+//TODO: Will add more typings to fix errors in upcoming PR
+// @ts-nocheck
 import { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menuButton.module.scss";
 import actionStyles from "components/app/home/actions/actions.module.scss";
-import PropTypes from "prop-types";
 import Menu from "components/app/home/menu";
 import SettingsMenu from "components/app/home/settings-menu";
 import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
-import DatePickerBtn from "components/app/home/date-picker-menu/button";
 import useIframeBridge from "hooks/useIframeBridge";
 import useWindowDimensions from "hooks/useWindowDimensions";
 import { fetchModes } from "services/gca";
@@ -20,6 +20,20 @@ import { formatDate } from "utils/dates";
 import DatePickerMenu from "../date-picker-menu";
 import { UNIT_LABEL_MAP } from "utils/map";
 import IconButton from "components/ui/icon-button";
+import { Headline } from "slices/headlines";
+import { EarthLayer } from "./types";
+import { useDispatch, useSelector } from "react-redux";
+import { isFetchLocationDisabled, setShouldFetchLocation, shouldFetchLocation } from "slices/mapControls";
+
+type MainContainerProps = {
+  isMobile: boolean;
+  setIsMobile: any;
+  setModes: any;
+  layersLabelArr: string[];
+  dateOfDataShown: Date;
+  currentHeadline?: Headline;
+  currentHeadlineId?: number;
+};
 
 const MainContainer = ({
   isMobile,
@@ -28,17 +42,27 @@ const MainContainer = ({
   layersLabelArr,
   dateOfDataShown,
   shouldFadeControls,
-  currentHeadline,
-  currentHeadlineId
-}) => {
-  const [hasMenuOpen, setHasMenuOpen] = useState(false);
-  const [hasIframe, setHasIframe] = useState(false);
+  currentHeadline
+}: MainContainerProps) => {
+  const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
+  const [hasIframe, setHasIframe] = useState<boolean>(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
-  const [isFetchingTemplates, setIsFetchingTemplates] = useState(null);
-  const [homePageMapControlsItems, setHomePageControlBarItems] = useState([]);
+  const [isFetchingTemplates, setIsFetchingTemplates] = useState<boolean>(false);
+  const [_, setHomePageControlBarItems] = useState([]);
+
   const { width: browserWidth } = useWindowDimensions();
 
-  const menuRef = useRef(null);
+  // References
+  const menuRef = useRef<HTMLDivElement>();
+
+  // Redux
+  const dispatch = useDispatch();
+  const isLocationDisabled = useSelector(isFetchLocationDisabled);
+
+  /** Toggles the current location setting. */
+  const handleToggleLocation = () => {
+    dispatch((() => setShouldFetchLocation(true))());
+  };
 
   const {
     setRef,
@@ -59,7 +83,7 @@ const MainContainer = ({
   });
 
   const overlayLayer = useMemo(() => {
-    return layers.find(layer => layer?.type === "overlay");
+    return (layers as EarthLayer[]).find(layer => layer?.type === "overlay");
   }, [layers]);
 
   const scaleData = useMemo(() => {
@@ -126,10 +150,10 @@ const MainContainer = ({
       translateDistance += distanceInterval;
 
       if (translateDistance <= totalDistance) {
-        earthServer.current.reorient({ translateBy: [translateInterval, 0] });
+        earthServer.current?.reorient({ translateBy: [translateInterval, 0] });
         setTimeout(loop, translateDuration);
       } else if (!hasMenuOpen) {
-        earthServer.current.reorient({ translate: "default" });
+        earthServer.current?.reorient({ translate: "default" });
       }
     };
 
@@ -147,7 +171,7 @@ const MainContainer = ({
     setIsFetchingTemplates(true);
     const getTemplates = async () => {
       try {
-        const resp = await fetchModes();
+        const resp: any = await fetchModes();
         setModes(resp.data.data);
       } catch (err) {
         console.log("Error fetching modes");
@@ -168,6 +192,7 @@ const MainContainer = ({
     } else {
       disableToolTip();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [earthServer.current, currentHeadline, disableToolTip, enableToolTip, layersLabelArr]);
 
   // When the Globe loads, open the menu on Desktop
@@ -175,6 +200,7 @@ const MainContainer = ({
     if (earthServer.current && !isMobile) {
       setHasMenuOpen(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [earthServer.current, setHasMenuOpen, isMobile]);
 
   return (
@@ -224,7 +250,7 @@ const MainContainer = ({
                 }}
               />
             </div>
-            <IconButton name="location" />
+            <IconButton name="location" onClick={handleToggleLocation} disabled={isLocationDisabled} />
           </div>
         </div>
       )}
@@ -300,21 +326,6 @@ const MainContainer = ({
       {!isFetchingTemplates && <DatePickerMenu isMobile={isMobile} />}
     </div>
   );
-};
-
-MainContainer.propTypes = {
-  isMobile: PropTypes.bool.isRequired,
-  setIsMobile: PropTypes.func.isRequired,
-  setModes: PropTypes.func.isRequired,
-  layersLabelArr: PropTypes.array.isRequired,
-  dateOfDataShown: PropTypes.instanceOf(Date).isRequired,
-  currentHeadline: PropTypes.object,
-  currentHeadlineId: PropTypes.number
-};
-
-MainContainer.defaultProps = {
-  currentHeadline: null,
-  currentHeadlineId: null
 };
 
 export default MainContainer;

@@ -15,4 +15,13 @@
     background-color: $colour-flame;
     color: $white;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: gray;
+
+    &:hover {
+      color: $colour-galaxy;
+    }
+  }
 }
