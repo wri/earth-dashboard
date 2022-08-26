@@ -1,5 +1,5 @@
 import { useRef, useCallback, useState, useEffect } from "react";
-import useWindowDimensions from "../useWindowDimensions";
+import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
 import {

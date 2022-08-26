@@ -7,7 +7,6 @@ import Menu from "components/app/home/menu";
 import SettingsMenu from "components/app/home/settings-menu";
 import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
-import useIframeBridge from "hooks/useIframeBridge";
 import useWindowDimensions from "hooks/useWindowDimensions";
 import { fetchModes } from "services/gca";
 import MapIframe from "components/app/home/map";
@@ -21,6 +20,7 @@ import { Headline } from "slices/headlines";
 import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
+import useIframeBridge from "hooks/useIframeBridge";
 
 type MainContainerProps = {
   isMobile: boolean;
