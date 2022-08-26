@@ -12,7 +12,7 @@ const reducer = combineReducers({
   ...slices
 });
 
-const makeStore = context => {
+const makeStore = () => {
   const store = configureStore({
     reducer,
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(WEmiddleware),
