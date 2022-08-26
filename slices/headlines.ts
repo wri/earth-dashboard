@@ -1,45 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Mode } from "./modes";
 
 export const NAME = "headlines";
-
-export type DataLayer = {
-  type: "DataLayer";
-  id: number;
-  attributes: {
-    title: string;
-    description: string;
-    default_on: boolean;
-    data_key: string;
-    category: {
-      type: "LayerCategory";
-      id: number;
-      attributes: {
-        title: string;
-        description: string;
-      };
-    };
-    source: null;
-  };
-};
-
-export type Mode = {
-  type: "Mode";
-  id: number;
-  attributes: {
-    title: string;
-    description: string;
-    icon: string;
-    source: null;
-    data_layers: {
-      default: DataLayer[];
-      available: DataLayer[];
-    };
-    visibility: {
-      advanced_menu: boolean;
-      data_highlights: boolean;
-    };
-  };
-};
 
 export type Headline = {
   id: number;
