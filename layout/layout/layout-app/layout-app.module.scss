@@ -4,16 +4,17 @@
 .c-layout-app {
   .gdpr-banner {
     position: fixed;
-    top: 0px;
+    bottom: 0px;
     left: 0px;
     width: 100vw;
     display: flex;
+    justify-content: center;
     align-items: center;
-    background-color: $grey-darkest;
+    background-color: #1B2127;
     z-index: $z-index-cookies;
 
     &.-desktop {
-      padding: 20px 100px;
+      padding: 30px 60px;
     }
 
     &.-mobile {
@@ -21,19 +22,71 @@
     }
 
     .text {
+      margin: 10px auto;
       color: $grey-lighter;
     }
+    .main-banner {
+      display: flex;
+      margin: auto;
+      width: 90%;
 
-    button {
-      min-width: 70px;
-      height: 34px;
+      &.-mobile {
+        flex-direction: column;
+      }
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      flex: 2;
+    }
+    .cookie {
+      display: flex;
+      align-self: flex-start;
+    }
+    .cookie-svg {
+      margin: 3px;
+    }
+    .cookie-text {
       color: $white;
+      font-weight: 500;
+      margin: auto 10px;
+    }
+
+    .button-group {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+    .acceptButton {
+      background-color: $colour-flame;
+      padding: 0 20px;
+      &:hover {
+        background-color: $grey-darker;
+      }
+    }
+
+    .cookie-icon {
+      color: #002841;
+    }
+
+    .rejectButton {
       border: solid 1px $white;
+      padding: 0 13px;
 
       &:hover {
         color: $grey-darkest;
         background-color: $grey-lighter;
       }
+    }
+
+    button {
+      margin: 0.5rem;
+      height: 34px;
+      color: $white;
+      border-radius: 20px;
+      font-weight: bold;
     }
   }
 }
