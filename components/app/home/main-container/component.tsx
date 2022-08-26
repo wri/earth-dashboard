@@ -22,6 +22,8 @@ import { UNIT_LABEL_MAP } from "utils/map";
 import IconButton from "components/ui/icon-button";
 import { Headline } from "slices/headlines";
 import { EarthLayer } from "./types";
+import { useDispatch, useSelector } from "react-redux";
+import { isFetchLocationDisabled, setShouldFetchLocation, shouldFetchLocation } from "slices/mapControls";
 
 type MainContainerProps = {
   isMobile: boolean;
@@ -47,9 +49,21 @@ const MainContainer = ({
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState<boolean>(false);
   const [_, setHomePageControlBarItems] = useState([]);
+
   const { width: browserWidth } = useWindowDimensions();
 
+  // References
   const menuRef = useRef<HTMLDivElement>();
+
+  // Redux
+  const dispatch = useDispatch();
+  const isLocationActive = useSelector(shouldFetchLocation);
+  const isLocationDisabled = useSelector(isFetchLocationDisabled);
+
+  /** Toggles the current location setting. */
+  const handleToggleLocation = () => {
+    dispatch((() => setShouldFetchLocation(!isLocationActive))());
+  };
 
   const {
     setRef,
@@ -237,7 +251,7 @@ const MainContainer = ({
                 }}
               />
             </div>
-            <IconButton name="location" onClick={() => console.log("Set location")} />
+            <IconButton name="location" onClick={handleToggleLocation} disabled={isLocationDisabled} />
           </div>
         </div>
       )}

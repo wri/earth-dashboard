@@ -209,6 +209,7 @@
       position: absolute;
       right: 24px;
       top: 111px;
+      z-index: 10;
 
       .scale {
         height: calc(84vh - 111px - 100px - 24px);
