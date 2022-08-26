@@ -97,4 +97,5 @@ export const {
   setDateOfDataShown,
   setCurrentModeId
 } = modesSlice.actions;
+
 export default modesSlice.reducer;

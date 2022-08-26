@@ -24,4 +24,5 @@ const commonSlice = createSlice({
 });
 
 export const { setHostname, setIsMobile } = commonSlice.actions;
+
 export default commonSlice.reducer;

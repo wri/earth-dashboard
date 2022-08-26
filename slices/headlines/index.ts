@@ -42,4 +42,5 @@ const headlinesSlice = createSlice({
 });
 
 export const { setHeadlines, setCurrentHeadline, setCurrentHeadlineId } = headlinesSlice.actions;
+
 export default headlinesSlice.reducer;

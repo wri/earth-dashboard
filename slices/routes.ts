@@ -3,22 +3,22 @@ import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {};
 
-const userSlice = createSlice({
-  name: "user",
+const routesSlice = createSlice({
+  name: "routes",
   initialState,
   reducers: {
-    setUser: (state, { payload }: PayloadAction<Record<string, string>>) => {
+    setRouter: (state, { payload }: PayloadAction<Record<string, string>>) => {
       // @ts-expect-error
       Object.keys(payload).forEach(propertyKey => (state[propertyKey] = payload[propertyKey]));
     }
   },
   extraReducers: {
-    [HYDRATE]: (_, { payload }: PayloadAction<{ user: any }>) => {
-      return payload.user;
+    [HYDRATE]: (_, { payload }: PayloadAction<{ routes: any }>) => {
+      return payload.routes;
     }
   }
 });
 
-export const { setUser } = userSlice.actions;
+export const { setRouter } = routesSlice.actions;
 
-export default userSlice.reducer;
+export default routesSlice.reducer;
