@@ -1,5 +1,3 @@
-//TODO: Will add more typings to fix errors in upcoming PR
-// @ts-nocheck
 import { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
@@ -12,7 +10,6 @@ import MapControls from "components/app/home/map-controls";
 import useIframeBridge from "hooks/useIframeBridge";
 import useWindowDimensions from "hooks/useWindowDimensions";
 import { fetchModes } from "services/gca";
-import getHomePageControlBarItems from "schemas/control-bar/home-page";
 import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
@@ -23,7 +20,7 @@ import IconButton from "components/ui/icon-button";
 import { Headline } from "slices/headlines";
 import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
-import { isFetchLocationDisabled, setShouldFetchLocation, shouldFetchLocation } from "slices/mapControls";
+import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 
 type MainContainerProps = {
   isMobile: boolean;
@@ -33,6 +30,7 @@ type MainContainerProps = {
   dateOfDataShown: Date;
   currentHeadline?: Headline;
   currentHeadlineId?: number;
+  shouldFadeControls: boolean;
 };
 
 const MainContainer = ({
@@ -48,7 +46,6 @@ const MainContainer = ({
   const [hasIframe, setHasIframe] = useState<boolean>(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState<boolean>(false);
-  const [_, setHomePageControlBarItems] = useState([]);
 
   const { width: browserWidth } = useWindowDimensions();
 
@@ -76,9 +73,6 @@ const MainContainer = ({
     scaleData: scaleToolTipData,
     hasIframeConnected
   } = useIframeBridge({
-    callback: () => {
-      setHomePageControlBarItems(getHomePageControlBarItems(earthServer));
-    },
     allowClickEvents: !currentHeadline
   });
 
@@ -216,6 +210,7 @@ const MainContainer = ({
       {hasIframe && (
         <MapIframe
           ref={setRef}
+          // @ts-expect-error
           earthServer={earthServer}
           earthClient={earthClient}
           layers={layers}
@@ -226,14 +221,14 @@ const MainContainer = ({
       {overlayLayer && !isMobile && (
         <div className={classnames(styles["right"])}>
           <Scale
-            min={scaleData.min}
-            max={scaleData.max}
-            scaleUnit={scaleData.unitSymbol}
+            min={scaleData?.min}
+            max={scaleData?.max}
+            scaleUnit={scaleData?.unitSymbol}
             className={classnames(styles["scale"], shouldFadeControls && "u-opacity-faded")}
             readOnly
             scaleGradient={overlayLayer.product.scale.getCss(0)}
             toolTipData={scaleToolTipData}
-            hasSmallLabels={scaleData.hasSmallLabels}
+            hasSmallLabels={scaleData?.hasSmallLabels}
           />
           <div className={classnames(styles["controls"])}>
             <div className={classnames(styles["zooms"])}>
@@ -256,6 +251,7 @@ const MainContainer = ({
       )}
       {hasMenuOpen && !isFetchingTemplates && (
         <Menu
+          // @ts-expect-error
           isMobile={isMobile}
           onClose={toggleMenu}
           id="menu"
@@ -276,9 +272,9 @@ const MainContainer = ({
             {overlayLayer && isMobile && (
               <div className="u-flex u-flex--align-center u-margin-bottom-xs">
                 <Scale
-                  min={scaleData.min}
-                  max={scaleData.max}
-                  scaleUnit={scaleData.unitSymbol}
+                  min={scaleData?.min}
+                  max={scaleData?.max}
+                  scaleUnit={scaleData?.unitSymbol}
                   className={classnames(styles["scale"], styles["scale--mobile"], "u-flex-1 u-margin-right-l")}
                   value="50%"
                   readOnly
@@ -287,6 +283,7 @@ const MainContainer = ({
                   toolTipData={scaleToolTipData}
                 />
                 <MapControls
+                  // @ts-expect-error
                   controls={[{ ...settingsButtonConfig, forceDark: true, className: "u-margin-right-none" }]}
                   className="u-margin-top-none"
                 />
