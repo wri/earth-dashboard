@@ -22,6 +22,7 @@
     }
 
     .text {
+      margin-top: 10px ;
       color: $grey-lighter;
     }
     .main-banner{
@@ -43,8 +44,8 @@
     }
     .cookie-text {
       color: $white;
-      font-weight: 600;
-      margin: auto;
+      font-weight: 500;
+      margin: auto 10px;
     }
 
     .button-group {

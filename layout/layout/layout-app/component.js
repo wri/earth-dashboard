@@ -57,7 +57,14 @@ function LayoutApp(props) {
       <div className={styles["main-banner"]}>
         <div className={styles["left-content"]}>
           <div className={styles["cookie"]}>
-            <img className={styles["cookie-svg"]} src="/static/icons/cookie.svg" role="presentation" alt="" />
+            <img
+              width={32}
+              height={32}
+              className={styles["cookie-svg"]}
+              src="/static/icons/cookie.svg"
+              role="presentation"
+              alt=""
+            />
             <h3 className={styles["cookie-text"]}>COOKIES</h3>
           </div>
           <div className={styles["text"]}>
