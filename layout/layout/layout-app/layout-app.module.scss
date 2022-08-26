@@ -14,7 +14,7 @@
     z-index: $z-index-cookies;
 
     &.-desktop {
-      padding: 30px 100px;
+      padding: 30px 60px;
     }
 
     &.-mobile {
@@ -22,13 +22,17 @@
     }
 
     .text {
-      margin-top: 10px ;
+      margin: 10px auto;
       color: $grey-lighter;
     }
     .main-banner{
       display: flex;
       margin: auto;
-      width: 80%;
+      width: 90%;
+
+      &.-mobile {
+        flex-direction: column;
+      }
     }
     .left-content {
       display: flex;
@@ -53,10 +57,10 @@
       flex: 1;
       align-items: center;
       justify-content: center;
+      white-space: nowrap;
     }
     .acceptButton {
       background-color: $colour-flame;
-      // margin: 3rem;
       &:hover {
         background-color: $grey-darker;
       }
@@ -78,6 +82,7 @@
       height: 34px;
       color: $white;
       border-radius: 20px;
+      font-weight: bold;
     }
   }
 }

@@ -54,7 +54,13 @@ function LayoutApp(props) {
         [styles["-desktop"]]: !mobile
       })}
     >
-      <div className={styles["main-banner"]}>
+      <div
+        className={classnames({
+          [styles["main-banner"]]: true,
+          [styles["-mobile"]]: mobile,
+          [styles["-desktop"]]: !mobile
+        })}
+      >
         <div className={styles["left-content"]}>
           <div className={styles["cookie"]}>
             <img
