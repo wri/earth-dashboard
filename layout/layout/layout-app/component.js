@@ -18,6 +18,8 @@ import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
 // styles
 import styles from "./layout-app.module.scss";
 
+import Icon from "components/ui/Icon";
+
 function LayoutApp(props) {
   const {
     title,
@@ -62,7 +64,7 @@ function LayoutApp(props) {
       >
         <div className={styles["content"]}>
           <div className={styles["cookie"]}>
-            <img className={styles["cookie-svg"]} src="/static/icons/cookie.svg" role="presentation" alt="" />
+            <Icon name="cookie" size={32} type="decorative" className={styles["cookie-icon"]} />
             <h3 className={styles["cookie-text"]}>COOKIES</h3>
           </div>
           <div className={styles["text"]}>

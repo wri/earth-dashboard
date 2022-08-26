@@ -25,7 +25,7 @@
       margin: 10px auto;
       color: $grey-lighter;
     }
-    .main-banner{
+    .main-banner {
       display: flex;
       margin: auto;
       width: 90%;
@@ -65,6 +65,10 @@
       &:hover {
         background-color: $grey-darker;
       }
+    }
+
+    .cookie-icon {
+      color: #002841;
     }
 
     .rejectButton {
