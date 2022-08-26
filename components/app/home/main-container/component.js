@@ -19,6 +19,7 @@ import settingsButtonConfig from "constants/control-bar/controls/settings";
 import { formatDate } from "utils/dates";
 import DatePickerMenu from "../date-picker-menu";
 import { UNIT_LABEL_MAP } from "utils/map";
+import IconButton from "components/ui/icon-button";
 
 const MainContainer = ({
   isMobile,
@@ -197,16 +198,35 @@ const MainContainer = ({
         />
       )}
       {overlayLayer && !isMobile && (
-        <Scale
-          min={scaleData.min}
-          max={scaleData.max}
-          scaleUnit={scaleData.unitSymbol}
-          className={classnames(styles["scale"], shouldFadeControls && "u-opacity-faded")}
-          readOnly
-          scaleGradient={overlayLayer.product.scale.getCss(0)}
-          toolTipData={scaleToolTipData}
-          hasSmallLabels={scaleData.hasSmallLabels}
-        />
+        <div className={classnames(styles["right"])}>
+          <Scale
+            min={scaleData.min}
+            max={scaleData.max}
+            scaleUnit={scaleData.unitSymbol}
+            className={classnames(styles["scale"], shouldFadeControls && "u-opacity-faded")}
+            readOnly
+            scaleGradient={overlayLayer.product.scale.getCss(0)}
+            toolTipData={scaleToolTipData}
+            hasSmallLabels={scaleData.hasSmallLabels}
+          />
+          <div className={classnames(styles["controls"])}>
+            <div className={classnames(styles["zooms"])}>
+              <IconButton
+                name="zoom-in"
+                onClick={() => {
+                  earthServer?.current?.reorient({ scaleBy: 1.05 });
+                }}
+              />
+              <IconButton
+                name="zoom-out"
+                onClick={() => {
+                  earthServer?.current?.reorient({ scaleBy: 0.95 });
+                }}
+              />
+            </div>
+            <IconButton name="location" />
+          </div>
+        </div>
       )}
       {hasMenuOpen && !isFetchingTemplates && (
         <Menu
@@ -219,6 +239,7 @@ const MainContainer = ({
           layers={layers}
         />
       )}
+
       <Actions isMobile={isMobile} className={classnames(shouldFadeControls && "u-opacity-faded")}>
         {error ? (
           <p role="alert" className="u-text-white">
@@ -272,19 +293,9 @@ const MainContainer = ({
                 )}
               </div>
             </button>
-            {!isMobile && (
-              <>
-                <MapControls
-                  controls={homePageMapControlsItems}
-                  className={actionStyles["c-home-actions__map-controls"]}
-                />
-                <DatePickerBtn />
-              </>
-            )}
           </>
         )}
       </Actions>
-
       {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
       {!isFetchingTemplates && <DatePickerMenu isMobile={isMobile} />}
     </div>
