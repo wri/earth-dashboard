@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import IconButton from "components/ui/icon-button";
 import Icon from "components/ui/Icon";
 
-const OnboardingModal = () => {
+const OnboardingModal = (showModal: any, setShowModal: any) => {
   const router = useRouter();
 
   return (
@@ -16,7 +16,7 @@ const OnboardingModal = () => {
               <Icon name="earth-hq" size={32} type="decorative" className={styles["earth-hq"]} />
               <h3 className={styles["modal-title"]}>WELCOME TO EARTH HQ</h3>
             </div>
-            <IconButton name="close" className={styles["close-button"]} onClick={() => console.log("Close Modal")} />
+            <IconButton name="close" className={styles["close-button"]} onClick={() => setShowModal(false)} />
           </div>
         </div>
         <div className={styles["modal-main-content"]}>

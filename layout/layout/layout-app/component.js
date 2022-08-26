@@ -35,6 +35,7 @@ function LayoutApp(props) {
     themeColor
   } = props;
   const [showGDPRBanner, setShowGDPRBanner] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const isServer = typeof window === "undefined";
 
   useEffect(() => {
@@ -139,9 +140,9 @@ function LayoutApp(props) {
       )}
 
       {/* MODAL BANNER */}
-      {true && (
+      {showModal && (
         <MediaContextProvider>
-          <Desktop>{OnboardingModal(false)}</Desktop>
+          <Desktop>{OnboardingModal(showModal, setShowModal)}</Desktop>
           <Mobile>{OnboardingModal(true)}</Mobile>
         </MediaContextProvider>
       )}
