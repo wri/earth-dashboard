@@ -8,13 +8,11 @@ import { RootState } from "store/types";
 
 export default connect(
   (state: RootState) => {
-    console.log(state);
     return {
       dateOfDataShown: new Date(state[modesSliceName].dateOfDataShown),
       layersLabelArr: state[modesSliceName].layersLabelArr,
       shouldFadeControls: state[mapControlsSliceName].isDatePickerOpen || state[mapControlsSliceName].isSettingsOpen,
-      currentHeadline: state[headlineSliceName].currentHeadline,
-      currentHeadlineId: state[headlineSliceName].currentHeadlineId
+      currentHeadline: state[headlineSliceName].currentHeadline
     };
   },
   {
