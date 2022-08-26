@@ -17,6 +17,8 @@ import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
 // styles
 import styles from "./layout-app.module.scss";
 
+import Icon from "components/ui/Icon";
+
 function LayoutApp(props) {
   const {
     title,
@@ -52,27 +54,53 @@ function LayoutApp(props) {
         [styles["-desktop"]]: !mobile
       })}
     >
-      <div className={styles["text"]}>
-        This website uses cookies to provide you with an improved user experience. By continuing to browse this site,
-        you consent to the use of cookies and similar technologies. Please visit our{" "}
-        <a
-          className="external-link -white"
-          href="https://resourcewatch.org/privacy-policy"
-          target="_blank"
-          rel="noreferrer"
-        >
-          privacy policy
-        </a>{" "}
-        for further details.
-      </div>
-      <button
-        onClick={() => {
-          setShowGDPRBanner(false);
-          localStorage.setItem(GDPR_ACCEPTED_KEY, "true");
-        }}
+      <div
+        className={classnames({
+          [styles["main-banner"]]: true,
+          [styles["-mobile"]]: mobile,
+          [styles["-desktop"]]: !mobile
+        })}
       >
-        I agree
-      </button>
+        <div className={styles["content"]}>
+          <div className={styles["cookie"]}>
+            <Icon name="cookie" size={32} type="decorative" className={styles["cookie-icon"]} />
+            <h3 className={styles["cookie-text"]}>COOKIES</h3>
+          </div>
+          <div className={styles["text"]}>
+            This website uses cookies to provide you with an improved user experience. By continuing to browse this
+            site, you consent to the use of cookies and similar technologies. Please visit our{" "}
+            <a
+              className="external-link -white"
+              href="https://resourcewatch.org/privacy-policy"
+              target="_blank"
+              rel="noreferrer"
+            >
+              privacy policy
+            </a>{" "}
+            for further details.
+          </div>
+        </div>
+        <div className={styles["button-group"]}>
+          <button
+            className={styles["rejectButton"]}
+            onClick={() => {
+              setShowGDPRBanner(false);
+              localStorage.setItem(GDPR_ACCEPTED_KEY, "false");
+            }}
+          >
+            REJECT
+          </button>
+          <button
+            className={styles["acceptButton"]}
+            onClick={() => {
+              setShowGDPRBanner(false);
+              localStorage.setItem(GDPR_ACCEPTED_KEY, "true");
+            }}
+          >
+            ACCEPT ALL COOKIES
+          </button>
+        </div>
+      </div>
     </div>
   );
 
