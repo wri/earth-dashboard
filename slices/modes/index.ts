@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Mode, ModesState } from "./types";
 
+export * from "./types";
+
 export const NAME = "modes";
 
 const initialState: ModesState = {
