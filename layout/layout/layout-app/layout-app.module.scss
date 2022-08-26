@@ -34,7 +34,7 @@
         flex-direction: column;
       }
     }
-    .left-content {
+    .content {
       display: flex;
       flex-direction: column;
       flex: 2;
@@ -61,6 +61,7 @@
     }
     .acceptButton {
       background-color: $colour-flame;
+      padding: 0 20px;
       &:hover {
         background-color: $grey-darker;
       }
@@ -68,6 +69,7 @@
 
     .rejectButton {
       border: solid 1px $white;
+      padding: 0 13px;
 
       &:hover {
         color: $grey-darkest;
@@ -77,7 +79,6 @@
 
     button {
       margin: 0.5rem;
-      padding: 0 13px;
       height: 34px;
       color: $white;
       border-radius: 20px;
