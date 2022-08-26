@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {};
@@ -7,12 +7,13 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser(state, action) {
-      Object.keys(action.payload).forEach(propertyKey => (state[propertyKey] = action.payload[propertyKey]));
+    setUser: (state, { payload }: PayloadAction<Record<string, string>>) => {
+      // @ts-expect-error
+      Object.keys(payload).forEach(propertyKey => (state[propertyKey] = payload[propertyKey]));
     }
   },
   extraReducers: {
-    [HYDRATE]: (state, action) => {
+    [HYDRATE]: (_, action) => {
       return action.payload.user;
     }
   }
