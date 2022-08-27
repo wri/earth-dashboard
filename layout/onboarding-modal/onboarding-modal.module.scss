@@ -16,10 +16,11 @@
 
 .modal {
   background-color: $black;
-  width: 40rem;
+  width: 38.75rem;
   height: 70%;
   margin: auto;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .modal-header {
@@ -29,6 +30,10 @@
   padding: 1.5rem;
   border-radius: 10px 10px 0 0;
   background-color: $bg-backdrop-lighter;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .modal-title {
@@ -47,8 +52,8 @@
 }
 
 .modal-top {
-  background-color: red;
-  border-radius: 10px 10px 0 0; // another border radius
+  position: relative;
+  overflow: hidden;
   height: 55%;
 }
 .modal-main-content {
@@ -56,8 +61,9 @@
 }
 .text {
   color: $white;
-  font-size: $font-size-h4;
+  font-size: 23px;
   text-align: center;
+  line-height: 2rem;
 }
 
 .close-button {
