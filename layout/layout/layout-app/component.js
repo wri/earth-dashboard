@@ -35,7 +35,7 @@ function LayoutApp(props) {
     themeColor
   } = props;
   const [showGDPRBanner, setShowGDPRBanner] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(true); // TODO: Link to localStorage
   const isServer = typeof window === "undefined";
 
   useEffect(() => {
@@ -142,8 +142,12 @@ function LayoutApp(props) {
       {/* MODAL BANNER */}
       {showModal && (
         <MediaContextProvider>
-          <Desktop>{OnboardingModal(showModal, setShowModal)}</Desktop>
-          <Mobile>{OnboardingModal(true)}</Mobile>
+          <Desktop>
+            <OnboardingModal showModal={showModal} setShowModal={setShowModal} />
+          </Desktop>
+          <Mobile>
+            <OnboardingModal showModal={showModal} setShowModal={setShowModal} />
+          </Mobile>
         </MediaContextProvider>
       )}
 

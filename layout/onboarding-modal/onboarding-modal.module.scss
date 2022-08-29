@@ -27,7 +27,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
   border-radius: 10px 10px 0 0;
   background-color: $bg-backdrop-lighter;
   position: absolute;
@@ -57,13 +57,66 @@
   height: 55%;
 }
 .modal-main-content {
-  padding: 4rem 5rem;
+  padding: 4rem;
 }
 .text {
   color: $white;
-  font-size: 23px;
+  font-size: 27px;
   text-align: center;
   line-height: 2rem;
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    margin: 0.5rem;
+    height: 2.875rem;
+    padding: 0.5rem 0.7rem;
+    color: $white;
+    border-radius: 30px;
+    font-weight: bold;
+  }
+}
+
+.continue-button {
+  display: flex;
+  align-items: center;
+  width: 11rem;
+  justify-content: space-between;
+  background-color: $colour-flame;
+}
+
+.button-text {
+  font-size: 1.5rem;
+  color: $white;
+  text-align: left;
+  margin-bottom: 0;
+  margin-left: 15px;
+  // margin: auto;
+}
+
+.continue-icon {
+  background-color: $white;
+  border-radius: 50px;
+  padding: 5px;
+  color: $colour-galaxy;
+}
+
+.backButton {
+  border: solid 1px $white;
+  width: 5rem;
+  padding: 0 13px;
+
+  &:hover {
+    color: $grey-darkest;
+    background-color: $grey-lighter;
+  }
+}
+
+.hide {
+  visibility: hidden;
 }
 
 .close-button {

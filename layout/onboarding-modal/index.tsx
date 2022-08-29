@@ -1,12 +1,14 @@
-// import classnames from "classnames";
+import classnames from "classnames";
 import styles from "./onboarding-modal.module.scss";
 import { useRouter } from "next/router";
 import IconButton from "components/ui/icon-button";
 import Icon from "components/ui/Icon";
 import mypic from "public/static/images/about/cover.png";
 import Image from "next/image";
+import { useState } from "react";
 
-const OnboardingModal = (showModal: any, setShowModal: any) => {
+const OnboardingModal = ({ showModal, setShowModal }: any) => {
+  const [counter, setCounter] = useState(0);
   const router = useRouter();
 
   return (
@@ -26,6 +28,24 @@ const OnboardingModal = (showModal: any, setShowModal: any) => {
           <h4 className={styles["text"]}>
             The effects of human-induced climate change can be seen and felt across the planet.
           </h4>
+          <div className={styles["controls"]}>
+            <button
+              className={classnames({
+                [styles["backButton"]]: true,
+                [styles["hide"]]: counter === 0
+              })}
+              onClick={() => setCounter(state => state - 1)}
+            >
+              BACK
+            </button>
+            <button
+              className={styles["continue-button"]}
+              onClick={() => setCounter(state => (state === 2 ? state : state + 1))}
+            >
+              <h4 className={styles["button-text"]}>CONTINUE</h4>
+              <Icon name="arrow-right" size={32} type="decorative" className={styles["continue-icon"]} />
+            </button>
+          </div>
         </div>
       </div>
     </div>
