@@ -10,12 +10,24 @@ const LANGUAGES = [
   { value: "de", label: "German" }
 ];
 
+type HeaderOptionsProps = {
+  isSettingsOpen: boolean;
+  setSettingsOpen: any;
+  setSettingsClose: any;
+};
+
 /** Header options for languages, share, and more. */
-const HeaderOptions = () => {
+const HeaderOptions = ({ isSettingsOpen, setSettingsOpen, setSettingsClose }: HeaderOptionsProps) => {
   const [language, setLanguage] = useState("en");
 
   // Navigation
   const router = useRouter();
+
+  /** Opens the more menu. */
+  const handleOpenMore = () => {
+    if (isSettingsOpen) return setSettingsClose();
+    setSettingsOpen();
+  };
 
   return (
     <div className={styles["c-header-options"]}>
@@ -39,7 +51,7 @@ const HeaderOptions = () => {
       )}
 
       {/* More */}
-      <IconButton name="more" aria-label="More" onClick={() => console.log("more")} />
+      <IconButton name="more" aria-label="More" onClick={handleOpenMore} />
     </div>
   );
 };
