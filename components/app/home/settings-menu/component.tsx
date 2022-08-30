@@ -6,6 +6,7 @@ import useDialogPanel from "hooks/useDialogPanel";
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 import Preferences from "./preferences";
 import Icon from "components/ui/Icon";
+import Basemaps from "./basemaps";
 
 type SettingsMenuProps = {
   isOpen: boolean;
@@ -44,6 +45,7 @@ const SettingsMenu = ({ isOpen, onClose, isMobile }: SettingsMenuProps) => {
         <div className={styles["c-settings-menu-modal__body"]}>
           <div className={styles["c-settings-menu-modal__scroll"]}>
             <Preferences />
+            <Basemaps />
           </div>
         </div>
       </div>

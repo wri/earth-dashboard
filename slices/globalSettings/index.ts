@@ -27,12 +27,12 @@ const globalSettingsSlice = createSlice({
         payload
       }: PayloadAction<{
         id: GlobalSetting;
-        checked: boolean;
+        newState: any;
       }>
     ) => {
       if (!state.hasOwnProperty(payload.id)) return;
 
-      state[payload.id] = payload.checked;
+      state[payload.id] = payload.newState;
     }
   }
 });
