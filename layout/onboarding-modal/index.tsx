@@ -32,7 +32,12 @@ const OnboardingModal = ({ showModal, setShowModal }: any) => {
                 <Icon name="earth-hq" size={32} type="decorative" className={styles["earth-hq"]} />
                 <h3 className={styles["modal-title"]}>WELCOME TO EARTH HQ</h3>
               </div>
-              <IconButton name="close" className={styles["close-button"]} onClick={() => setShowModal(false)} />
+              <IconButton
+                name="close"
+                size={13}
+                className={styles["close-button"]}
+                onClick={() => setShowModal(false)}
+              />
             </div>
             <div className={styles["image-container"]}>
               <img
