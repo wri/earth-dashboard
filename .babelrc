@@ -33,7 +33,8 @@
           "selectors": "./selectors",
           "static": "./public/static",
           "services": "./services",
-          "constants": "./constants"
+          "constants": "./constants",
+          "hooks": "./hooks"
         },
         "cwd": "babelrc"
       }
