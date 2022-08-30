@@ -33,11 +33,16 @@
 }
 
 .modal-main-image {
+  visibility: hidden;
   position: absolute;
   inset: unset;
   height: unset;
   width: unset;
-  bottom: 0; 
+  bottom: 0;
+}
+
+.show-image {
+  visibility: visible;
 }
 
 .modal-image-container {

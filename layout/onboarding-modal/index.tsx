@@ -45,7 +45,18 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
                   <IconButton name="close-new" size={13} className={styles["close-button"]} onClick={close} />
                 </div>
                 <div className={styles["modal-image-container"]}>
-                  <img src={data[counter].url} alt="hello" className={styles["modal-main-image"]} />
+                  {/* Renders list images beforehand */}
+                  {data.map((image, index) => (
+                    <img
+                      key={image.id}
+                      src={image.url}
+                      alt={image.title}
+                      className={classnames({
+                        [styles["modal-main-image"]]: true,
+                        [styles["show-image"]]: counter === index
+                      })}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
