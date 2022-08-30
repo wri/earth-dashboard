@@ -17,7 +17,6 @@
 .modal {
   background-color: $black;
   width: 38.75rem;
-  height: 43rem;
   margin: auto;
   border-radius: 10px;
   overflow: hidden;
@@ -38,10 +37,10 @@
   inset: unset;
   height: unset;
   width: unset;
-  bottom: 0;
+  bottom: 0; 
 }
 
-.image-container {
+.modal-image-container {
   height: 100%;
   width: 100%;
   position: relative;
@@ -68,6 +67,15 @@
   align-items: center;
 }
 
+.close-button {
+  color: $colour-galaxy;
+  width: 32px;
+  height: 32px;
+
+  &:hover {
+    background-color: $colour-galaxy;
+  }
+}
 .earth-hq {
   margin-right: 10px;
 }
@@ -75,14 +83,14 @@
 .modal-top {
   position: relative;
   overflow: hidden;
-  height: 60%;
+  height: 25rem;
 }
 .modal-main-content {
   padding: 3rem 4rem;
 }
 .text {
   color: $white;
-  font-size: 25px;
+  @include font-size(24px, 33px);
   text-align: center;
   line-height: 2rem;
 }
@@ -103,14 +111,14 @@
   flex: 1;
   display: flex;
   justify-content: center;
-}
 
-.box:first-child > span {
-  margin-right: auto;
-}
+  &.box:first-child > span {
+    margin-right: auto;
+  }
 
-.box:last-child > span {
-  margin-left: auto;
+  &.box:last-child > span {
+    margin-left: auto;
+  }
 }
 
 .continue-button {
@@ -126,7 +134,6 @@
 }
 
 .button-text {
-  font-size: 1.5rem;
   color: $white;
   text-align: left;
   margin-bottom: 0;
@@ -149,23 +156,13 @@
     color: $grey-darkest;
     background-color: $grey-lighter;
   }
-}
 
-.hide {
-  visibility: hidden;
-}
-
-.close-button {
-  color: $colour-galaxy;
-  width: 32px;
-  height: 32px;
-
-  &:hover {
-    background-color: $colour-galaxy;
+  &.hide {
+    visibility: hidden;
   }
 }
 
-// DIVIDER
+// Slideshow dots
 .divider {
   display: flex;
   align-self: center;

@@ -2,7 +2,15 @@ import halfEarth from "public/static/images/half-earth.png";
 import halfEarth2 from "public/static/images/half-earth2.png";
 import threeCards from "public/static/images/three-cards.png";
 
-export const data = [
+interface IOnBoarding {
+  id: number;
+  title: string;
+  url: string;
+  width: number;
+  height: number;
+}
+
+export const data: IOnBoarding[] = [
   {
     id: 1,
     title: "The effects of human-induced climate change can be seen and felt across the planet.",
