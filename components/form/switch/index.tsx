@@ -1,24 +1,25 @@
-import { forwardRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import classnames from "classnames";
 import Switch from "react-switch";
 import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
 import styles from "./switch.module.scss";
-import PropTypes from "prop-types";
 
-const StyledSwitch = forwardRef(({ className, label, isActiveSelector, handleChange }, ref) => {
-  const dispatch = useDispatch();
-  const isActive = useSelector(isActiveSelector());
+type FormSwitchProps = {
+  label: string;
+  onChange: (checked: boolean) => void;
+  isActive: boolean;
+  className?: string;
+};
 
+/** Styled toggle switch. */
+const FormSwitch = ({ label, isActive, onChange, className = "" }: FormSwitchProps) => {
   const defaultSwitchProps = {
-    ref,
-    onChange: checked => dispatch(handleChange(checked)),
     checked: isActive,
     offColor: "#38444F",
     onColor: "#D63C00",
     uncheckedIcon: false,
     checkedIcon: false,
-    "data-testid": "test-switch"
+    "data-testid": "test-switch",
+    onChange
   };
 
   const desktopSwitchProps = {
@@ -38,6 +39,7 @@ const StyledSwitch = forwardRef(({ className, label, isActiveSelector, handleCha
       {label && (
         <span className={classnames(styles["c-custom-styled-switch__label"], "u-margin-bottom-none")}>{label}</span>
       )}
+      {/* @ts-expect-error */}
       <MediaContextProvider>
         <Desktop className={styles["c-custom-styled-switch__wrap"]}>
           <Switch {...defaultSwitchProps} {...desktopSwitchProps} />
@@ -48,19 +50,6 @@ const StyledSwitch = forwardRef(({ className, label, isActiveSelector, handleCha
       </MediaContextProvider>
     </label>
   );
-});
-
-StyledSwitch.displayName = "StyledSwitch";
-
-StyledSwitch.propTypes = {
-  className: PropTypes.string,
-  label: PropTypes.string.isRequired,
-  isActiveSelector: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired
 };
 
-StyledSwitch.defaultProps = {
-  className: ""
-};
-
-export default StyledSwitch;
+export default FormSwitch;

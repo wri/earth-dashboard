@@ -1,11 +1,19 @@
+import FormSwitch from "components/form/switch";
 import SelectInput from "components/ui/select";
 import { LANGUAGES, UNITS } from "constants/settings";
 import { useState } from "react";
 import styles from "./preferences.module.scss";
 
+/** Contains all preference global settings. */
 const Preferences = () => {
-  const [language, setLanguage] = useState("en");
-  const [unit, setUnit] = useState("metric");
+  const [language, setLanguage] = useState<string>("en");
+  const [unit, setUnit] = useState<string>("metric");
+  const [mapGridActive, setMapGridActive] = useState<boolean>(false);
+
+  /** Toggles and sets the checked state for map grid. */
+  const handleGridChange = (checked: boolean) => {
+    setMapGridActive(checked);
+  };
 
   return (
     <div className={styles["c-preferences"]}>
@@ -32,6 +40,8 @@ const Preferences = () => {
           aria-label="Select a unit"
         />
       </div>
+
+      <FormSwitch label="Show Map Grid" onChange={handleGridChange} isActive={mapGridActive} />
     </div>
   );
 };
