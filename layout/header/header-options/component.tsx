@@ -4,15 +4,17 @@ import styles from "./header-options.module.scss";
 import IconButton from "components/ui/icon-button";
 import { useRouter } from "next/router";
 import { LANGUAGES } from "constants/settings";
+import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 
 type HeaderOptionsProps = {
   isSettingsOpen: boolean;
-  setSettingsOpen: any;
-  setSettingsClose: any;
+  isMobile: boolean;
+  setSettingsOpen: ActionCreatorWithoutPayload<string>;
+  setSettingsClose: ActionCreatorWithoutPayload<string>;
 };
 
 /** Header options for languages, share, and more. */
-const HeaderOptions = ({ isSettingsOpen, setSettingsOpen, setSettingsClose }: HeaderOptionsProps) => {
+const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsClose }: HeaderOptionsProps) => {
   const [language, setLanguage] = useState("en");
 
   // Navigation
@@ -27,13 +29,15 @@ const HeaderOptions = ({ isSettingsOpen, setSettingsOpen, setSettingsClose }: He
   return (
     <div className={styles["c-header-options"]}>
       {/* Languages */}
-      <SelectInput
-        options={LANGUAGES}
-        value={LANGUAGES.find(option => option.value === language)}
-        onChange={setLanguage}
-        aria-label="Select a language"
-        className={styles["c-header-options__language"]}
-      />
+      {!isMobile && (
+        <SelectInput
+          options={LANGUAGES}
+          value={LANGUAGES.find(option => option.value === language)}
+          onChange={setLanguage}
+          aria-label="Select a language"
+          className={styles["c-header-options__language"]}
+        />
+      )}
 
       {/* Share or search */}
       {router.pathname !== "/about" && (
