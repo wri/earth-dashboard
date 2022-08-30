@@ -29,7 +29,8 @@ export type IconNames =
   | "zoom-out"
   | "cookie"
   | "earth-hq"
-  | "check";
+  | "check"
+  | "close-new";
 
 type AccessibilityProps =
   | { type: "meaningful"; accessibilityText: string }

@@ -23,6 +23,11 @@ const OnboardingModal = ({ showModal, setShowModal }: any) => {
     setCounter(state => (state += 1));
   };
 
+  const close = () => {
+    localStorage.setItem(ONBOARDING_COMPLETED, "true");
+    setShowModal(false);
+  };
+
   return (
     showModal && (
       <div className={styles["modal-backdrop"]}>
@@ -35,12 +40,7 @@ const OnboardingModal = ({ showModal, setShowModal }: any) => {
                   <Icon name="earth-hq" size={32} type="decorative" className={styles["earth-hq"]} />
                   <h3 className={styles["modal-title"]}>WELCOME TO EARTH HQ</h3>
                 </div>
-                <IconButton
-                  name="close"
-                  size={13}
-                  className={styles["close-button"]}
-                  onClick={() => setShowModal(false)}
-                />
+                <IconButton name="close-new" size={13} className={styles["close-button"]} onClick={close} />
               </div>
               <div className={styles["image-container"]}>
                 <img
