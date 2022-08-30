@@ -1,10 +1,11 @@
 import { connect } from "react-redux";
-import { getSettingValueById, setSettingById } from "slices/globalSettings";
+import { BasemapType, getSettingValueById, setSettingById } from "slices/globalSettings";
+import { RootState } from "store/types";
 import BasemapsComponent from "./component";
 
 export default connect(
-  () => ({
-    activeOptionId: getSettingValueById("basemaps")
+  (state: RootState) => ({
+    activeOptionId: getSettingValueById("basemap")(state) as BasemapType
   }),
   {
     setSettingById

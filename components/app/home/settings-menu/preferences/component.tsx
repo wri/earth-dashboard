@@ -3,7 +3,7 @@ import FormSwitch from "components/form/switch";
 import SelectInput from "components/ui/select";
 import { LANGUAGES, UNITS } from "constants/settings";
 import { useState } from "react";
-import { GlobalSetting } from "slices/globalSettings";
+import { BasemapType, GlobalSetting } from "slices/globalSettings";
 import styles from "./preferences.module.scss";
 
 type ToggleType = "show-map-grid" | "animations" | "high-definition-mode" | "3d";
@@ -14,7 +14,7 @@ type PreferencesProps = {
   highDefinitionActive: boolean;
   is2D: boolean;
   isMobile: boolean;
-  setSettingById: ActionCreatorWithPayload<{ id: GlobalSetting; newState: boolean }, string>;
+  setSettingById: ActionCreatorWithPayload<{ id: GlobalSetting; newState: boolean | BasemapType }, string>;
   setGlobe3d: ActionCreatorWithoutPayload<string>;
   setGlobe2d: ActionCreatorWithoutPayload<string>;
 };
@@ -38,19 +38,19 @@ const Preferences = ({
     switch (type) {
       case "show-map-grid":
         setSettingById({
-          id: "show-map-grid",
+          id: "showMapGrid",
           newState
         });
         break;
       case "animations":
         setSettingById({
-          id: "animations",
+          id: "showAnimations",
           newState
         });
         break;
       case "high-definition-mode":
         setSettingById({
-          id: "high-definition-mode",
+          id: "showHighDefinition",
           newState
         });
         break;
