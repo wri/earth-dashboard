@@ -19,16 +19,30 @@
 
   &__header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px 10px 10px 60px;
-    background-color: $colour-night;
+    padding: 24px;
+    background-color: #{$colour-night}20;
 
-    &__title {
-      margin: 0 auto;
-      color: $white;
-      @include font-size(20px, 30px);
-      font-weight: 500;
-      text-transform: uppercase;
+    > div:first-child {
+      display: flex;
+      align-items: center;
+
+      & .icon {
+        color: $white;
+        background-color: $colour-galaxy;
+        padding: 7px;
+        border-radius: 50%;
+        margin-right: 12px;
+      }
+
+      & .title {
+        margin: 0 auto;
+        color: $white;
+        @include font-size(20px, 30px);
+        font-weight: 500;
+        text-transform: uppercase;
+      }
     }
   }
 
@@ -80,10 +94,12 @@
     }
 
     &__header {
-      padding: 19px 10px 13px 80px;
+      padding: 24px;
 
-      &__title {
-        @include font-size(24px, 36px);
+      > div:first-child {
+        & .title {
+          @include font-size(24px, 36px);
+        }
       }
     }
 
