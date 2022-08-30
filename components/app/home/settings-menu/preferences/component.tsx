@@ -1,33 +1,48 @@
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import FormSwitch from "components/form/switch";
 import SelectInput from "components/ui/select";
 import { LANGUAGES, UNITS } from "constants/settings";
 import { useState } from "react";
+import { GlobalSetting } from "slices/globalSettings";
 import styles from "./preferences.module.scss";
 
-type ToggleType = "grid" | "animations" | "hd" | "3d";
+type ToggleType = "show-map-grid" | "animations" | "high-definition-mode" | "3d";
+
+type PreferencesProps = {
+  mapGridActive: boolean;
+  animationsActive: boolean;
+  highDefinitionActive: boolean;
+  setSettingById: ActionCreatorWithPayload<{ id: GlobalSetting; checked: boolean }, string>;
+};
 
 /** Contains all preference global settings. */
-const Preferences = () => {
+const Preferences = ({ mapGridActive, animationsActive, highDefinitionActive, setSettingById }: PreferencesProps) => {
   const [language, setLanguage] = useState<string>("en");
   const [unit, setUnit] = useState<string>("metric");
 
   // Toggle states
-  const [mapGridActive, setMapGridActive] = useState<boolean>(false);
-  const [animationsActive, setAnimationsActive] = useState<boolean>(false);
-  const [hdActive, setHdActive] = useState<boolean>(false);
   const [threeDActive, setThreeDActive] = useState<boolean>(false);
 
   /** Toggles and sets the checked state for map grid. */
   const handleGridChange = (checked: boolean, type: ToggleType) => {
     switch (type) {
-      case "grid":
-        setMapGridActive(checked);
+      case "show-map-grid":
+        setSettingById({
+          id: "show-map-grid",
+          checked
+        });
         break;
       case "animations":
-        setAnimationsActive(checked);
+        setSettingById({
+          id: "animations",
+          checked
+        });
         break;
-      case "hd":
-        setHdActive(checked);
+      case "high-definition-mode":
+        setSettingById({
+          id: "high-definition-mode",
+          checked
+        });
         break;
       case "3d":
         setThreeDActive(checked);
@@ -64,7 +79,7 @@ const Preferences = () => {
       {/* Map grid toggle */}
       <FormSwitch
         label="Show Map Grid"
-        onChange={checked => handleGridChange(checked, "grid")}
+        onChange={checked => handleGridChange(checked, "show-map-grid")}
         isActive={mapGridActive}
         className={styles["c-preferences__toggle--grid"]}
       />
@@ -80,8 +95,8 @@ const Preferences = () => {
       {/* HD toggle */}
       <FormSwitch
         label="High Definition Mode"
-        onChange={checked => handleGridChange(checked, "hd")}
-        isActive={hdActive}
+        onChange={checked => handleGridChange(checked, "high-definition-mode")}
+        isActive={highDefinitionActive}
         className={styles["c-preferences__toggle--hd"]}
       />
 
