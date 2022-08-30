@@ -43,39 +43,49 @@ const OnboardingModal = ({ showModal, setShowModal }: any) => {
                 <IconButton name="close-new" size={13} className={styles["close-button"]} onClick={close} />
               </div>
               <div className={styles["image-container"]}>
-                <img
-                  // width={data[counter].width}
-                  // height={data[counter].height}
-                  src={data[counter].url}
-                  // layout="fill"
-                  // objectFit="cover"
-                  alt="hello"
-                  className={styles["modal-main-image"]}
-                />
+                <img src={data[counter].url} alt="hello" className={styles["modal-main-image"]} />
               </div>
             </div>
           </div>
           <div className={styles["modal-main-content"]}>
             <h4 className={styles["text"]}>{data[counter].title}</h4>
             <div className={styles["controls"]}>
-              <button
-                className={classnames({
-                  [styles["backButton"]]: true,
-                  [styles["hide"]]: counter === 0
-                })}
-                onClick={() => setCounter(state => state - 1)}
-              >
-                BACK
-              </button>
-              <button className={styles["continue-button"]} onClick={nextStep}>
-                <h4 className={styles["button-text"]}>{counter === 2 ? "EXPLORE" : "CONTINUE"}</h4>
-                <Icon
-                  name={counter === 2 ? "check" : "arrow-right"}
-                  size={32}
-                  type="decorative"
-                  className={styles["continue-icon"]}
-                />
-              </button>
+              <div className={styles["box"]}>
+                <button
+                  className={classnames({
+                    [styles["backButton"]]: true,
+                    [styles["hide"]]: counter === 0
+                  })}
+                  onClick={() => setCounter(state => state - 1)}
+                >
+                  BACK
+                </button>
+              </div>
+              <div className={styles["box"]}>
+                <div className={styles["divider"]}>
+                  {[0, 1, 2].map(point => (
+                    <div
+                      key={point}
+                      className={classnames({
+                        [styles["unselected"]]: counter !== point,
+                        [styles["selected"]]: counter === point
+                      })}
+                      onClick={() => setCounter(point)}
+                    ></div>
+                  ))}
+                </div>
+              </div>
+              <div className={styles["box"]}>
+                <button className={styles["continue-button"]} onClick={nextStep}>
+                  <h4 className={styles["button-text"]}>{counter === 2 ? "EXPLORE" : "CONTINUE"}</h4>
+                  <Icon
+                    name={counter === 2 ? "check" : "arrow-right"}
+                    size={32}
+                    type="decorative"
+                    className={styles["continue-icon"]}
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>

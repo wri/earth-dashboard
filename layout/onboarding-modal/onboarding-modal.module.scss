@@ -17,7 +17,6 @@
 .modal {
   background-color: $black;
   width: 38.75rem;
-  // height: 80%;
   height: 43rem;
   margin: auto;
   border-radius: 10px;
@@ -76,10 +75,10 @@
 .modal-top {
   position: relative;
   overflow: hidden;
-  height: 57%;
+  height: 60%;
 }
 .modal-main-content {
-  padding: 4rem;
+  padding: 3rem 4rem;
 }
 .text {
   color: $white;
@@ -89,8 +88,6 @@
 }
 .controls {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 
   button {
     margin: 0.5rem;
@@ -102,10 +99,24 @@
   }
 }
 
+.box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.box:first-child > span {
+  margin-right: auto;
+}
+
+.box:last-child > span {
+  margin-left: auto;
+}
+
 .continue-button {
   display: flex;
   align-items: center;
-  width: 11rem;
+  width: 10rem;
   justify-content: space-between;
   background-color: $colour-flame;
 
@@ -148,9 +159,31 @@
   color: $colour-galaxy;
   width: 32px;
   height: 32px;
-  // padding: 9px;
 
   &:hover {
     background-color: $colour-galaxy;
   }
+}
+
+// DIVIDER
+.divider {
+  display: flex;
+  align-self: center;
+}
+.selected {
+  background-color: $colour-flame;
+  height: 10px;
+  width: 32px;
+  border-radius: 10px;
+  margin: 0 3px;
+  transition: width 0.5s;
+}
+
+.unselected {
+  background-color: $white;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  margin: 0 3px;
+  transition: width 0.5s;
 }
