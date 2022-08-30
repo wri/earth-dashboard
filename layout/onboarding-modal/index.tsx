@@ -5,10 +5,9 @@ import { useRouter } from "next/router";
 import IconButton from "components/ui/icon-button";
 import Icon from "components/ui/Icon";
 import mypic from "public/static/images/star-background.jpg";
-// import halfEarth from "public/static/images/three-cards.png";
-import halfEarth from "public/static/images/half-earth2.png";
 import Image from "next/image";
 import { useState } from "react";
+import { data } from "./onboarding";
 
 const OnboardingModal = ({ showModal, setShowModal }: any) => {
   const [counter, setCounter] = useState(0);
@@ -28,7 +27,15 @@ const OnboardingModal = ({ showModal, setShowModal }: any) => {
               <IconButton name="close" className={styles["close-button"]} onClick={() => setShowModal(false)} />
             </div>
             <div className={styles["image-container"]}>
-              <img src={halfEarth.src} alt="hello" className={styles["modal-main-image"]} />
+              <img
+                // width={data[counter].width}
+                // height={data[counter].height}
+                src={data[counter].url}
+                // layout="fill"
+                // objectFit="cover"
+                alt="hello"
+                className={styles["modal-main-image"]}
+              />
             </div>
           </div>
         </div>
