@@ -4,6 +4,7 @@ import IconButton from "components/ui/icon-button";
 import styles from "./settings-menu.module.scss";
 import useDialogPanel from "hooks/useDialogPanel";
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
+import Preferences from "./preferences";
 
 type SettingsMenuProps = {
   isOpen: boolean;
@@ -20,12 +21,12 @@ const SettingsMenu = ({ isOpen, onClose, isMobile }: SettingsMenuProps) => {
       <div className={styles["c-settings-menu-modal"]} aria-labelledby="settingsModalTitle" role="document">
         {/* Settings */}
         <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
-          <h1
+          <h2
             id="settingsModalTitle"
             className={classnames(styles["c-settings-menu-modal__header__title"], "u-margin-bottom-none")}
           >
             Settings
-          </h1>
+          </h2>
           <IconButton
             name="close"
             aria-label="Close Settings"
@@ -36,7 +37,9 @@ const SettingsMenu = ({ isOpen, onClose, isMobile }: SettingsMenuProps) => {
 
         {/* Form content */}
         <div className={styles["c-settings-menu-modal__body"]}>
-          <div className={classnames(styles["c-settings-menu-modal__scroll"], "u-text-white")}></div>
+          <div className={styles["c-settings-menu-modal__scroll"]}>
+            <Preferences />
+          </div>
         </div>
       </div>
     </DialogPanel>

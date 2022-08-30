@@ -3,12 +3,7 @@ import SelectInput from "components/ui/select";
 import styles from "./header-options.module.scss";
 import IconButton from "components/ui/icon-button";
 import { useRouter } from "next/router";
-
-const LANGUAGES = [
-  { value: "en", label: "English" },
-  { value: "fr", label: "French" },
-  { value: "de", label: "German" }
-];
+import { LANGUAGES } from "constants/settings";
 
 type HeaderOptionsProps = {
   isSettingsOpen: boolean;

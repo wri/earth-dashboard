@@ -44,10 +44,10 @@ const LayoutHome = ({ headerTabSelected = "site-navigation", title, description 
       <MediaContextProvider>
         {/* @ts-expect-error */}
         <Desktop>
-          <MainContainer />
+          <MainContainer isMobile={false} />
         </Desktop>
         <Mobile>
-          <MainContainer />
+          <MainContainer isMobile={true} />
         </Mobile>
       </MediaContextProvider>
     </Layout>

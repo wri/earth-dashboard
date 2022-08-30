@@ -9,8 +9,7 @@ export default connect(
     dateOfDataShown: new Date(state.modes.dateOfDataShown),
     layersLabelArr: state.modes.layersLabelArr,
     shouldFadeControls: state.mapControls.isDatePickerOpen || state.mapControls.isSettingsOpen,
-    currentHeadline: state.headlines.currentHeadline,
-    isMobile: state.common.isMobile
+    currentHeadline: state.headlines.currentHeadline
   }),
   {
     setModes,
