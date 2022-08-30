@@ -13,6 +13,7 @@ type PreferencesProps = {
   animationsActive: boolean;
   highDefinitionActive: boolean;
   is2D: boolean;
+  isMobile: boolean;
   setSettingById: ActionCreatorWithPayload<{ id: GlobalSetting; checked: boolean }, string>;
   setGlobe3d: ActionCreatorWithoutPayload<string>;
   setGlobe2d: ActionCreatorWithoutPayload<string>;
@@ -24,6 +25,7 @@ const Preferences = ({
   animationsActive,
   highDefinitionActive,
   is2D,
+  isMobile,
   setSettingById,
   setGlobe3d,
   setGlobe2d
@@ -63,15 +65,17 @@ const Preferences = ({
       <h3>Preferences</h3>
 
       {/* Languages */}
-      <div className={styles["c-preferences__language"]}>
-        <h4>Language</h4>
-        <SelectInput
-          options={LANGUAGES}
-          value={LANGUAGES.find(option => option.value === language)}
-          onChange={setLanguage}
-          aria-label="Select a language"
-        />
-      </div>
+      {isMobile && (
+        <div className={styles["c-preferences__language"]}>
+          <h4>Language</h4>
+          <SelectInput
+            options={LANGUAGES}
+            value={LANGUAGES.find(option => option.value === language)}
+            onChange={setLanguage}
+            aria-label="Select a language"
+          />
+        </div>
+      )}
 
       {/* Units */}
       <div className={styles["c-preferences__unit"]}>

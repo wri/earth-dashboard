@@ -9,7 +9,8 @@ export default connect(
     mapGridActive: getSettingValueById("show-map-grid")(state),
     animationsActive: getSettingValueById("animations")(state),
     highDefinitionActive: getSettingValueById("high-definition-mode")(state),
-    is2D: isGlobe2d(state)
+    is2D: isGlobe2d(state),
+    isMobile: state.common.isMobile
   }),
   {
     setSettingById,
