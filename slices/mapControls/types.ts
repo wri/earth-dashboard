@@ -1,5 +1,5 @@
 export type MapControlsState = {
-  projectionType: string;
+  projectionType: "orthographic" | "equirectangular";
   isSettingsOpen: boolean;
   isFetchLocationDisabled: boolean;
   shouldFetchLocation: boolean;

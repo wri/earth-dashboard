@@ -1,4 +1,4 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import FormSwitch from "components/form/switch";
 import SelectInput from "components/ui/select";
 import { LANGUAGES, UNITS } from "constants/settings";
@@ -12,16 +12,24 @@ type PreferencesProps = {
   mapGridActive: boolean;
   animationsActive: boolean;
   highDefinitionActive: boolean;
+  is2D: boolean;
   setSettingById: ActionCreatorWithPayload<{ id: GlobalSetting; checked: boolean }, string>;
+  setGlobe3d: ActionCreatorWithoutPayload<string>;
+  setGlobe2d: ActionCreatorWithoutPayload<string>;
 };
 
 /** Contains all preference global settings. */
-const Preferences = ({ mapGridActive, animationsActive, highDefinitionActive, setSettingById }: PreferencesProps) => {
+const Preferences = ({
+  mapGridActive,
+  animationsActive,
+  highDefinitionActive,
+  is2D,
+  setSettingById,
+  setGlobe3d,
+  setGlobe2d
+}: PreferencesProps) => {
   const [language, setLanguage] = useState<string>("en");
   const [unit, setUnit] = useState<string>("metric");
-
-  // Toggle states
-  const [threeDActive, setThreeDActive] = useState<boolean>(false);
 
   /** Toggles and sets the checked state for map grid. */
   const handleGridChange = (checked: boolean, type: ToggleType) => {
@@ -45,7 +53,7 @@ const Preferences = ({ mapGridActive, animationsActive, highDefinitionActive, se
         });
         break;
       case "3d":
-        setThreeDActive(checked);
+        is2D ? setGlobe3d() : setGlobe2d();
         break;
     }
   };
@@ -104,7 +112,7 @@ const Preferences = ({ mapGridActive, animationsActive, highDefinitionActive, se
       <FormSwitch
         label="3D"
         onChange={checked => handleGridChange(checked, "3d")}
-        isActive={threeDActive}
+        isActive={!is2D}
         className={styles["c-preferences__toggle--3d"]}
       />
     </div>
