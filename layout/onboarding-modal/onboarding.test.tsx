@@ -1,7 +1,5 @@
 import React from "react";
 import { render as utilRender, fireEvent, screen } from "test-utils";
-import DatePicker, { defaultWeekStart } from "components/date-picker";
-import { render } from "@testing-library/react";
 import OnboardingModal from "./index";
 describe("Onboarding Testing", () => {
   let props: any;
