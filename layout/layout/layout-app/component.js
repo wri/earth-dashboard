@@ -9,7 +9,7 @@ import HeadApp from "layout/head/app";
 import Header from "layout/header";
 
 // constants
-import { GDPR_ACCEPTED_KEY } from "./constants";
+import { GDPR_ACCEPTED_KEY, ONBOARDING_COMPLETED } from "./constants";
 
 // utils
 import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
@@ -35,7 +35,7 @@ function LayoutApp(props) {
     themeColor
   } = props;
   const [showGDPRBanner, setShowGDPRBanner] = useState(false);
-  const [showModal, setShowModal] = useState(true); // TODO: Link to localStorage
+  const [showModal, setShowModal] = useState(false);
   const isServer = typeof window === "undefined";
 
   useEffect(() => {
@@ -45,6 +45,11 @@ function LayoutApp(props) {
     // Check if GDPR has been accepted
     if (localStorage.getItem(GDPR_ACCEPTED_KEY) !== "true") {
       setShowGDPRBanner("true");
+    }
+
+    // Check if user as completed the onboarding phase
+    if (localStorage.getItem(ONBOARDING_COMPLETED) !== "true") {
+      setShowModal(true);
     }
   }, []);
 
@@ -122,7 +127,7 @@ function LayoutApp(props) {
         themeColor={themeColor}
       />
 
-      {true && (
+      {showHeader && (
         <Header
           showLogo={showHeaderLogo}
           selectedTab={headerTabSelected}
