@@ -13,6 +13,14 @@ const OnboardingModal = ({ showModal, setShowModal }: any) => {
   const [counter, setCounter] = useState(0);
   const router = useRouter();
 
+  const nextStep = () => {
+    if (counter === 2) {
+      setShowModal(false);
+      return;
+    }
+    setCounter(state => (state += 1));
+  };
+
   return (
     <div className={styles["modal-backdrop"]}>
       <div className={styles["modal"]}>
@@ -40,9 +48,7 @@ const OnboardingModal = ({ showModal, setShowModal }: any) => {
           </div>
         </div>
         <div className={styles["modal-main-content"]}>
-          <h4 className={styles["text"]}>
-            The effects of human-induced climate change can be seen and felt across the planet.
-          </h4>
+          <h4 className={styles["text"]}>{data[counter].title}</h4>
           <div className={styles["controls"]}>
             <button
               className={classnames({
@@ -53,12 +59,14 @@ const OnboardingModal = ({ showModal, setShowModal }: any) => {
             >
               BACK
             </button>
-            <button
-              className={styles["continue-button"]}
-              onClick={() => setCounter(state => (state === 2 ? state : state + 1))}
-            >
-              <h4 className={styles["button-text"]}>CONTINUE</h4>
-              <Icon name="arrow-right" size={32} type="decorative" className={styles["continue-icon"]} />
+            <button className={styles["continue-button"]} onClick={nextStep}>
+              <h4 className={styles["button-text"]}>{counter === 2 ? "EXPLORE" : "CONTINUE"}</h4>
+              <Icon
+                name={counter === 2 ? "check" : "arrow-right"}
+                size={32}
+                type="decorative"
+                className={styles["continue-icon"]}
+              />
             </button>
           </div>
         </div>
