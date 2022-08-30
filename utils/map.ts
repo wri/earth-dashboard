@@ -1,5 +1,19 @@
 import * as d3 from "utils/d3";
 import { format } from "date-fns";
+import { EarthLayer } from "components/app/home/main-container/types";
+import { GeoProjection } from "d3-geo";
+import { Mode } from "slices/modes";
+
+export type GeoMarker = {
+  type: "Feature";
+  geometry: { type: "Point"; coordinates: [number, number] };
+  properties: {
+    fill: string;
+    stroke: string;
+    strokeWidth: number;
+    pointRadius: number;
+  };
+};
 
 export const SAMPLE_OVERLAY_INDEX = 1;
 export const SAMPLE_ANNOTATION_INDEX = 2;
@@ -8,17 +22,17 @@ export const UNIT_DESCRIPTOR_TYPES = {
   quantity: "quantity"
 };
 
-export const UNIT_LABEL_MAP = {
+export const UNIT_LABEL_MAP: Record<string, string> = {
   heat_stress_level: "Stress Level"
 };
 
-export const colorAt = (colors, t) => {
+export const colorAt = (colors: Record<string, number>, t: number) => {
   const n = colors.length / 4;
   const j = Math.round(t * (n - 1)) * 4;
   return d3.rgb(colors[j], colors[j + 1], colors[j + 2], colors[j + 3] / 255);
 };
 
-export const getIndicatorGeoJson = coordinates => {
+export const getIndicatorGeoJson = (coordinates: [number, number]): GeoMarker => {
   return {
     type: "Feature",
     geometry: { type: "Point", coordinates },
@@ -31,11 +45,10 @@ export const getIndicatorGeoJson = coordinates => {
   };
 };
 
-/**
- * @param {array} payload a deconstructed d3 projection
- * @returns {Function} the reconstructed d3 projection
- */
-export const getNewProjection = payload => {
+/** Gets the reconstructed d3 projection. */
+export const getNewProjection = (payload: any) => {
+  if (!payload) return;
+
   const proj = payload.name === "orthographic" ? d3.geoOrthographic() : d3.geoEquirectangular();
   return proj
     .clipAngle(payload.clipAngle)
@@ -50,7 +63,7 @@ export const getNewProjection = payload => {
     .precision(payload.precision);
 };
 
-export const getMarkerProperties = (marker, projection) => {
+export const getMarkerProperties = (marker: GeoMarker, projection?: GeoProjection) => {
   if (marker && projection) {
     const { coordinates } = marker.geometry;
     const [x, y] = projection(coordinates) ?? [];
@@ -62,12 +75,12 @@ export const getMarkerProperties = (marker, projection) => {
   return null;
 };
 
-const convertVectorToScalar = vector => {
+const convertVectorToScalar = (vector: number[]) => {
   const [x, y] = vector;
   return Math.sqrt(x * x + y * y);
 };
 
-export const getOverlayData = (samples, layers) => {
+export const getOverlayData = (samples: any, layers: EarthLayer[]) => {
   if (!samples || !samples[SAMPLE_OVERLAY_INDEX] || !samples[SAMPLE_OVERLAY_INDEX][0]) {
     return null;
   }
@@ -81,7 +94,7 @@ export const getOverlayData = (samples, layers) => {
   };
 };
 
-export const getAnnotationData = (samples, layers) => {
+export const getAnnotationData = (samples: any, layers: EarthLayer[]) => {
   if (!samples || !samples[SAMPLE_ANNOTATION_INDEX]) {
     return null;
   }
@@ -92,15 +105,15 @@ export const getAnnotationData = (samples, layers) => {
   };
 };
 
-export const getFriendlyOverlayDataBySamples = (samples, layers) => {
+export const getFriendlyOverlayDataBySamples = (samples: any, layers: EarthLayer[]) => {
   return getFriendlyDataStr(samples, layers, SAMPLE_OVERLAY_INDEX);
 };
 
-export const getFriendlyAnnotationDataBySamples = (samples, layers) => {
+export const getFriendlyAnnotationDataBySamples = (samples: any, layers: EarthLayer[]) => {
   return getFriendlyDataStr(samples, layers, SAMPLE_ANNOTATION_INDEX);
 };
 
-export const getFriendlyDataStr = (samples, layers, index) => {
+export const getFriendlyDataStr = (samples: any, layers: EarthLayer[], index: number) => {
   if (!samples || !layers || layers.length < 3 || samples.length < 3) {
     return null;
   }
@@ -133,16 +146,15 @@ export const getFriendlyDataStr = (samples, layers, index) => {
   const v = Array.isArray(value) ? convertVectorToScalar(value) : value; // convert wind vector to scalar
 
   if (unitDescriptorType === UNIT_DESCRIPTOR_TYPES.enum) {
+    // @ts-expect-error
     return v === +v ? `${layerDescription}${unitDescriptor.elements[v]} ${date}`.trim() : undefined;
   } else {
     return v === +v ? `${layerDescription}${v.toFixed(unitDescriptor.precision)} ${symbol} ${date}`.trim() : undefined;
   }
 };
 
-/**
- * Does the data layer belong to the given mode.
- */
-export const validateDataLayer = (value, mode) => {
+/** Does the data layer belong to the given mode. */
+export const validateDataLayer = (value: string, mode: Mode) => {
   if (!value || !mode) {
     return false;
   }

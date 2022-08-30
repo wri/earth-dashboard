@@ -1,5 +1,8 @@
+import { EarthLayer } from "components/app/home/main-container/types";
+
 export class EarthClient {
-  state = {};
+  public state = {};
+  public allowClickEvents: boolean = false;
 
   /**
    * Invoked when any of the globe's state variables change.
@@ -12,12 +15,8 @@ export class EarthClient {
    *
    * @see EarthServer.getState
    * @see EarthServer.saveState
-   *
-   * @param {object} delta {k:v} pairs that changed
-   * @param {object} old {k:v} pairs of the previous values
-   * @param {*} meta metadata passed in during the save operation, if any
    */
-  stateChanged(delta, old, meta) {
+  public stateChanged(delta: Record<string, string>, old: Record<string, string>) {
     this.state = { ...this.state, ...delta };
   }
 
@@ -46,10 +45,8 @@ export class EarthClient {
    *         {type: "overlay", product: {name: "temp", ...}},
    *         undefined,
    *     ]);
-   *
-   * @param {object[]} layers all the globe's current layers
    */
-  layersChanged(layers) {
+  public layersChanged(layers: EarthLayer[]) {
     console.log("layers changed:", { layers });
   }
 
@@ -59,23 +56,20 @@ export class EarthClient {
    * Example:
    *
    *     click([150, 273], [139.7, 35.7]);  // click occurred at x=150,y=273, corresponding to lon=139.7, lat=35.7
-   *
-   * @param {number[]} point [x, y] screen position of the click
-   * @param {number[]} coords [lon, lat] coordinates of the click
    */
-  click(point, coords) {
+  public click(point: [number, number], coords: [number, number]) {
     console.log("click:", { point, coords });
   }
 
-  reorientStart(payload) {
+  public reorientStart(payload: any) {
     console.log("reorientStart:", { payload });
   }
 
-  reorientStep(payload) {
+  public reorientStep(payload: any) {
     console.log("reorientStep:", { payload });
   }
 
-  reorientEnd(payload) {
+  public reorientEnd(payload: any) {
     console.log("reorientEnd:", { payload });
   }
 }

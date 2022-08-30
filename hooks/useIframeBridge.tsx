@@ -9,24 +9,36 @@ import {
   getNewProjection,
   getOverlayData,
   getAnnotationData,
-  SAMPLE_OVERLAY_INDEX
+  SAMPLE_OVERLAY_INDEX,
+  GeoMarker
 } from "utils/map";
 import { POINT_INDICATOR } from "constants/map";
+import { EarthLayer } from "components/app/home/main-container/types";
+import { GeoProjection } from "d3-geo";
 
-const useIframeBridge = ({ callback, allowClickEvents }) => {
-  const { width } = useWindowDimensions();
-  const iframeRef = useRef(null);
-  const earthServer = useRef(null);
-  const [earthClient, setEarthClient] = useState(null);
-  const [err, setErr] = useState(null);
-  const [layers, setLayers] = useState([]);
-  const [currentProjection, setCurrentProjection] = useState(null);
-  const [currentMarker, setCurrentMarker] = useState(null);
-  const [toolTipDetails, setToolTipDetails] = useState(null);
-  const [toolTipVisible, setToolTipVisible] = useState(false);
+type UseIframeBridgeConfig = {
+  callback?: () => void;
+  allowClickEvents: boolean;
+};
+
+const useIframeBridge = ({ callback, allowClickEvents }: UseIframeBridgeConfig) => {
+  const [earthClient, setEarthClient] = useState<EarthClient>();
+  const [error, setError] = useState<Error>();
+  const [layers, setLayers] = useState<EarthLayer[]>([]);
+  const [currentProjection, setCurrentProjection] = useState<GeoProjection>();
+  const [currentMarker, setCurrentMarker] = useState<GeoMarker>();
+  const [toolTipDetails, setToolTipDetails] = useState<{ isVisible?: boolean; x?: number; y?: number; text: string }>();
+  const [toolTipVisible, setToolTipVisible] = useState<boolean>(false);
   const [scaleData, setScaleData] = useState({ annotation: null, overlay: null });
-  const [toolTipText, setToolTipText] = useState("");
-  const [hasIframeConnected, setHasIframeConnected] = useState(false);
+  const [toolTipText, setToolTipText] = useState<string>("");
+  const [hasIframeConnected, setHasIframeConnected] = useState<boolean>(false);
+
+  const { width } = useWindowDimensions();
+
+  // References
+  const iframeRef = useRef<any>();
+  const earthServer = useRef<any>();
+
   const currentProjectionFunc = useCallback(() => getNewProjection(currentProjection), [currentProjection]);
 
   useEffect(() => {
@@ -34,7 +46,7 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
       const projectionD3Func = currentProjectionFunc();
       setToolTipDetails({ ...getMarkerProperties(currentMarker, projectionD3Func), text: toolTipText });
     } else {
-      setToolTipDetails(null);
+      setToolTipDetails(undefined);
     }
   }, [currentProjectionFunc, currentMarker, currentProjection, toolTipVisible, toolTipText]);
 
@@ -44,7 +56,7 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
     }
   }, [earthClient, allowClickEvents]);
 
-  const enableToolTip = useCallback((coords, content) => {
+  const enableToolTip = useCallback((coords: [number, number], content: string) => {
     if (earthServer.current) {
       setToolTipText(content);
       setToolTipVisible(true);
@@ -64,10 +76,10 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
 
   const createEarthClient = useCallback(() => {
     return new (class EarthClientImpl extends EarthClient {
-      currentLayers = [];
-      allowClickEvents = true;
+      currentLayers: EarthLayer[] = [];
+      allowClickEvents: boolean = true;
 
-      layersChanged(newLayers) {
+      layersChanged(newLayers: EarthLayer[]) {
         const overlayLayer = newLayers.find(layer => layer?.type === "overlay");
         if (overlayLayer && overlayLayer.product) {
           const { scale } = overlayLayer.product;
@@ -75,26 +87,26 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
 
           const height = 100;
 
-          const cssColors = [];
+          const cssColors: string[] = [];
           for (let i = 0; i < height; i++) {
             const color = String(colorAt(colors, i / (height - 1)));
             cssColors.push(`${color} ${(i / height) * 100}%`);
           }
-          const getCss = deg => `linear-gradient(${deg}deg, ${cssColors.join(", ")})`;
+          const getCss = (deg: number) => `linear-gradient(${deg}deg, ${cssColors.join(", ")})`;
           scale.getCss = getCss;
         }
         setLayers(newLayers);
         this.currentLayers = newLayers;
       }
 
-      async click(point, coords) {
+      async click(point: [number, number], coords: [number, number]) {
         if (this.allowClickEvents) {
           const marker = getIndicatorGeoJson(coords);
           setCurrentMarker(marker);
-          earthServer.current.annotate(POINT_INDICATOR, marker);
+          earthServer.current?.annotate(POINT_INDICATOR, marker);
 
           const coordinates = marker.geometry.coordinates;
-          const samples = await earthServer.current.sampleAt(point, coordinates);
+          const samples = await earthServer.current?.sampleAt(point, coordinates);
           const data = {
             overlay: getOverlayData(samples, this.currentLayers),
             annotation: getAnnotationData(samples, this.currentLayers),
@@ -104,29 +116,29 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
         }
       }
 
-      reorientStep(projection) {
+      reorientStep(projection: any) {
         setCurrentProjection(projection);
       }
 
-      reorientEnd(projection) {
+      reorientEnd(projection: any) {
         setCurrentProjection(projection);
       }
     })();
   }, []);
 
   const setRef = useCallback(
-    node => {
-      const connectToNullSchool = async node => {
+    (node: any) => {
+      const connectToNullSchool = async (node: any) => {
         try {
           setHasIframeConnected(false);
-          setErr(null);
+          setError(undefined);
           const resp = await getEarthServer(node, width, createEarthClient);
-          earthServer.current = resp.server;
+          earthServer.current = resp.server as any;
           setEarthClient(resp.client);
           setHasIframeConnected(true);
-          callback();
-        } catch (err) {
-          setErr(err);
+          if (callback) callback();
+        } catch (e) {
+          setError(e as Error);
         }
       };
 
@@ -153,7 +165,7 @@ const useIframeBridge = ({ callback, allowClickEvents }) => {
     scaleData,
     enableToolTip,
     disableToolTip,
-    error: err,
+    error,
     hasIframeConnected
   };
 };
