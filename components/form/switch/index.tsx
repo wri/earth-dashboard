@@ -10,7 +10,7 @@ type FormSwitchProps = {
   className?: string;
 };
 
-/** Styled toggle switch. */
+/** Styled toggle switch with on-change event handler. */
 const FormSwitch = ({ label, isActive, onChange, className = "" }: FormSwitchProps) => {
   const defaultSwitchProps = {
     checked: isActive,
