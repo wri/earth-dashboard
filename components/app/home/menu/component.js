@@ -8,10 +8,12 @@ import HeadlinePanel from "./panels/climate-alerts";
 import DataHighlightsPanel from "./panels/data-highlights";
 import ResizablePanel from "components/app/home/dialog-panel/resizable-panel";
 import { fireEvent } from "utils/gtag";
-import { MENU_TAB_CHANGE_EVENT_NAME } from "constants/tag-manager";
+import { MENU_TAB_CHANGE_EVENT_NAME, CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
 
 const INFO_TAB_INDEX = 3;
 const DATA_TAB_INDEX = 2;
+const MAX_NUMBER_OF_HEADLINES = 10;
+const MIN_SWIPE_DISTANCE = 50;
 
 const TAB_NAME_BY_TAB_INDEX = {
   0: "Latest Extreme Events",
@@ -45,6 +47,8 @@ const Menu = forwardRef(
       setCurrentHeadline,
       setCurrentHeadlineId,
       setDateOfDataShown,
+      currentHeadline,
+      headlines,
       ...rest
     },
     ref
@@ -53,6 +57,16 @@ const Menu = forwardRef(
     const [infoData, setInfoData] = useState(null);
     const [forceInfoPage, setForceInfoPage] = useState(false);
     const handleResize = (e, direction, div) => setDialogHeight({ height: div.offsetHeight });
+    const [disableBackButton, setDisableBackButton] = useState(false);
+    const [disableNextButton, setDisableNextButton] = useState(false);
+    const [footerHeading, setFooterHeading] = useState("");
+    const [touchStart, setTouchStart] = useState(null);
+    const [touchEnd, setTouchEnd] = useState(null);
+
+    const mostRecentHeadlines = useMemo(() => {
+      const reversed = [...headlines].reverse();
+      return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
+    }, [headlines]);
 
     const isInfoPage = useMemo(() => {
       return tabIndex === INFO_TAB_INDEX || forceInfoPage;
@@ -61,6 +75,32 @@ const Menu = forwardRef(
     const fireGAEvent = (index = tabIndex) => {
       if (TAB_NAME_BY_TAB_INDEX[index]) {
         fireEvent(MENU_TAB_CHANGE_EVENT_NAME, TAB_NAME_BY_TAB_INDEX[index]);
+      }
+    };
+
+    const getCurrentHeadlineIndex = () => {
+      return currentHeadline ? mostRecentHeadlines.findIndex(headline => headline.id === currentHeadline.id) : null;
+    };
+
+    // Checks current headline position to disable back/next buttons
+    const checkCurrentHeadline = () => {
+      const currentHeadlineIndex = getCurrentHeadlineIndex();
+
+      if (currentHeadline) {
+        const type = currentHeadline.type.replace(/([A-Z])/g, " $1");
+        const typeHeading = type.charAt(0).toUpperCase() + type.slice(1);
+        const text = `${currentHeadlineIndex + 1}/${mostRecentHeadlines.length} ${typeHeading}`;
+        setFooterHeading(text);
+      }
+
+      // For disabling back button
+      if (currentHeadline && currentHeadlineIndex === 0) {
+        setDisableBackButton(true);
+      } else if (currentHeadline && currentHeadlineIndex === mostRecentHeadlines.length - 1) {
+        setDisableNextButton(true);
+      } else {
+        setDisableBackButton(false);
+        setDisableNextButton(false);
       }
     };
 
@@ -75,6 +115,40 @@ const Menu = forwardRef(
       setCurrentHeadline(null);
       setCurrentHeadlineId(undefined);
       setDateOfDataShown(new Date().toString());
+      setDisableBackButton(false);
+      setDisableNextButton(false);
+    };
+
+    const navigateHeadline = action => {
+      const headlineIndex = getCurrentHeadlineIndex();
+      let headline = null;
+
+      if (action === "back") {
+        headline = mostRecentHeadlines[headlineIndex - 1];
+        setCurrentHeadline(headline);
+        fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
+      } else {
+        headline = mostRecentHeadlines[headlineIndex + 1];
+        setCurrentHeadline(headline);
+        fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
+      }
+    };
+
+    const onTouchStart = e => {
+      setTouchEnd(null);
+      setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const onTouchMove = e => setTouchEnd(e.targetTouches[0].clientX);
+
+    const onTouchEnd = () => {
+      if (!touchStart || !touchEnd) return;
+      const distance = touchStart - touchEnd;
+      const isRightSwipe = distance > MIN_SWIPE_DISTANCE;
+      const isLeftSwipe = distance < -MIN_SWIPE_DISTANCE;
+
+      if (isLeftSwipe) navigateHeadline("back");
+      else navigateHeadline("next");
     };
 
     useEffect(() => {
@@ -89,6 +163,10 @@ const Menu = forwardRef(
         }
       };
     }, [setCurrentHeadline]);
+
+    useEffect(() => {
+      checkCurrentHeadline();
+    }, [currentHeadline]);
 
     return (
       <div
@@ -178,6 +256,30 @@ const Menu = forwardRef(
                     />
                   </TabPanel>
                 </div>
+                {currentHeadline && (
+                  <div
+                    className={classnames(styles["c-home-menu__footer"])}
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                  >
+                    <button
+                      className={classnames(styles["c-home-menu__footer-button"], styles["left"])}
+                      disabled={disableBackButton}
+                      aria-label="Back"
+                      onClick={() => navigateHeadline("back")}
+                    />
+                    <div className={classnames(styles["c-home-menu__footer-info"])}>
+                      <h3>{footerHeading}</h3>
+                    </div>
+                    <button
+                      className={classnames(styles["c-home-menu__footer-button"], styles["right"])}
+                      disabled={disableNextButton}
+                      aria-label="Next"
+                      onClick={() => navigateHeadline("next")}
+                    />
+                  </div>
+                )}
               </div>
             </Tabs>
           </div>
