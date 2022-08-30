@@ -4,15 +4,35 @@ import { LANGUAGES, UNITS } from "constants/settings";
 import { useState } from "react";
 import styles from "./preferences.module.scss";
 
+type ToggleType = "grid" | "animations" | "hd" | "3d";
+
 /** Contains all preference global settings. */
 const Preferences = () => {
   const [language, setLanguage] = useState<string>("en");
   const [unit, setUnit] = useState<string>("metric");
+
+  // Toggle states
   const [mapGridActive, setMapGridActive] = useState<boolean>(false);
+  const [animationsActive, setAnimationsActive] = useState<boolean>(false);
+  const [hdActive, setHdActive] = useState<boolean>(false);
+  const [threeDActive, setThreeDActive] = useState<boolean>(false);
 
   /** Toggles and sets the checked state for map grid. */
-  const handleGridChange = (checked: boolean) => {
-    setMapGridActive(checked);
+  const handleGridChange = (checked: boolean, type: ToggleType) => {
+    switch (type) {
+      case "grid":
+        setMapGridActive(checked);
+        break;
+      case "animations":
+        setAnimationsActive(checked);
+        break;
+      case "hd":
+        setHdActive(checked);
+        break;
+      case "3d":
+        setThreeDActive(checked);
+        break;
+    }
   };
 
   return (
@@ -41,7 +61,37 @@ const Preferences = () => {
         />
       </div>
 
-      <FormSwitch label="Show Map Grid" onChange={handleGridChange} isActive={mapGridActive} />
+      {/* Map grid toggle */}
+      <FormSwitch
+        label="Show Map Grid"
+        onChange={checked => handleGridChange(checked, "grid")}
+        isActive={mapGridActive}
+        className={styles["c-preferences__toggle--grid"]}
+      />
+
+      {/* Animations toggle */}
+      <FormSwitch
+        label="Animations"
+        onChange={checked => handleGridChange(checked, "animations")}
+        isActive={animationsActive}
+        className={styles["c-preferences__toggle--animations"]}
+      />
+
+      {/* HD toggle */}
+      <FormSwitch
+        label="High Definition Mode"
+        onChange={checked => handleGridChange(checked, "hd")}
+        isActive={hdActive}
+        className={styles["c-preferences__toggle--hd"]}
+      />
+
+      {/* 3D toggle */}
+      <FormSwitch
+        label="3D"
+        onChange={checked => handleGridChange(checked, "3d")}
+        isActive={threeDActive}
+        className={styles["c-preferences__toggle--3d"]}
+      />
     </div>
   );
 };

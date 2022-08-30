@@ -29,4 +29,12 @@
   &__unit {
     margin-bottom: 20px;
   }
+
+  &__toggle {
+    &--grid,
+    &--animations,
+    &--hd {
+      margin-bottom: 16px;
+    }
+  }
 }
