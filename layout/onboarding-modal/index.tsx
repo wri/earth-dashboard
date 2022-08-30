@@ -1,9 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 import classnames from "classnames";
 import styles from "./onboarding-modal.module.scss";
 import { useRouter } from "next/router";
 import IconButton from "components/ui/icon-button";
 import Icon from "components/ui/Icon";
-import mypic from "public/static/images/about/cover.png";
+import mypic from "public/static/images/star-background.jpg";
+// import halfEarth from "public/static/images/three-cards.png";
+import halfEarth from "public/static/images/half-earth2.png";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -16,12 +19,17 @@ const OnboardingModal = ({ showModal, setShowModal }: any) => {
       <div className={styles["modal"]}>
         <div className={styles["modal-top"]}>
           <Image layout="fill" objectFit="cover" src={mypic.src} alt="hello" />
-          <div className={styles["modal-header"]}>
-            <div className={styles["modal-logo"]}>
-              <Icon name="earth-hq" size={32} type="decorative" className={styles["earth-hq"]} />
-              <h3 className={styles["modal-title"]}>WELCOME TO EARTH HQ</h3>
+          <div className={styles["contain"]}>
+            <div className={styles["modal-header"]}>
+              <div className={styles["modal-logo"]}>
+                <Icon name="earth-hq" size={32} type="decorative" className={styles["earth-hq"]} />
+                <h3 className={styles["modal-title"]}>WELCOME TO EARTH HQ</h3>
+              </div>
+              <IconButton name="close" className={styles["close-button"]} onClick={() => setShowModal(false)} />
             </div>
-            <IconButton name="close" className={styles["close-button"]} onClick={() => setShowModal(false)} />
+            <div className={styles["image-container"]}>
+              <img src={halfEarth.src} alt="hello" className={styles["modal-main-image"]} />
+            </div>
           </div>
         </div>
         <div className={styles["modal-main-content"]}>

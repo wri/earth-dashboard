@@ -17,7 +17,8 @@
 .modal {
   background-color: $black;
   width: 38.75rem;
-  height: 70%;
+  // height: 80%;
+  height: 43rem;
   margin: auto;
   border-radius: 10px;
   overflow: hidden;
@@ -30,12 +31,32 @@
   padding: 1rem 1.5rem;
   border-radius: 10px 10px 0 0;
   background-color: $bg-backdrop-lighter;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
 }
 
+.modal-main-image {
+  position: absolute;
+  inset: unset;
+  height: unset;
+  width: unset;
+  bottom: 0;
+}
+
+.image-container{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  object-fit: cover;
+}
+
+.contain {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
 .modal-title {
   color: $white;
   margin: 0;
@@ -54,7 +75,7 @@
 .modal-top {
   position: relative;
   overflow: hidden;
-  height: 55%;
+  height: 57%;
 }
 .modal-main-content {
   padding: 4rem;
