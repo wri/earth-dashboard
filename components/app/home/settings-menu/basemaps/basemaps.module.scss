@@ -1,0 +1,14 @@
+@import "css/_settings";
+@import "css/tools/fontSize";
+
+.c-basemaps {
+  background-color: $colour-galaxy;
+  padding-top: 24px;
+  padding-bottom: 24px;
+
+  &__selector > span {
+    text-transform: uppercase;
+    font-weight: 600;
+    @include font-size(20px);
+  }
+}
