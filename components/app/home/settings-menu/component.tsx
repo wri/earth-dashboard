@@ -14,7 +14,7 @@ type SettingsMenuProps = {
 
 /** Overlay settings menu for both desktop and mobile. */
 const SettingsMenu = ({ isOpen, onClose, isMobile }: SettingsMenuProps) => {
-  const { firstInput, shouldAnimate, handleClose } = useDialogPanel(isOpen, onClose);
+  const { shouldAnimate, handleClose } = useDialogPanel(isOpen, onClose);
 
   return isOpen ? (
     <DialogPanel onClose={handleClose} isMobile={isMobile} shouldAnimate={shouldAnimate}>
