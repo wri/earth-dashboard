@@ -39,7 +39,7 @@
       & .title {
         margin: 0 auto;
         color: $white;
-        @include font-size(20px, 30px);
+        @include font-size(20px);
         font-weight: 500;
         text-transform: uppercase;
       }
@@ -94,7 +94,7 @@
 
       > div:first-child {
         & .title {
-          @include font-size(24px, 36px);
+          @include font-size(20px);
         }
       }
     }

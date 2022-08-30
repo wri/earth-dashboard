@@ -36,6 +36,7 @@ const SettingsMenu = ({ isOpen, onClose, isMobile }: SettingsMenuProps) => {
             aria-label="Close Settings"
             className={styles["c-settings-menu-modal__close"]}
             onClick={() => handleClose(true)}
+            small
           />
         </div>
 
