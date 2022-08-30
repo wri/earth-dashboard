@@ -35,7 +35,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
         <div className={styles["modal-backdrop"]}>
           <div className={styles["modal"]}>
             <div className={styles["modal-top"]}>
-              <Image layout="fill" objectFit="cover" src={starBG.src} alt="hello" />
+              {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="hello" />}
               <div className={styles["contain"]}>
                 <div className={styles["modal-header"]}>
                   <div className={styles["modal-logo"]}>
@@ -54,6 +54,8 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
               <div className={styles["controls"]}>
                 <div className={styles["box"]}>
                   <button
+                    data-testid="back-btn"
+                    disabled={counter === 0}
                     className={classnames({
                       [styles["backButton"]]: true,
                       [styles["hide"]]: counter === 0
@@ -78,7 +80,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
                   </div>
                 </div>
                 <div className={styles["box"]}>
-                  <button className={styles["continue-button"]} onClick={nextStep}>
+                  <button data-testid="forward-btn" className={styles["continue-button"]} onClick={nextStep}>
                     <h4 className={styles["button-text"]}>{counter === 2 ? "EXPLORE" : "CONTINUE"}</h4>
                     <Icon
                       name={counter === 2 ? "check" : "arrow-right"}
