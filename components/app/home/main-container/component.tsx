@@ -23,6 +23,7 @@ import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapContr
 import useIframeBridge from "hooks/useIframeBridge";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
+import Icon from "components/ui/Icon";
 
 type MainContainerProps = {
   isMobile: boolean;
@@ -306,6 +307,9 @@ const MainContainer = ({
               id="menu-button"
               data-testid="toggle"
             >
+              <div className={menuButtonStyles["icon"]}>
+                <Icon name={hasMenuOpen ? "close" : "layers"} size={28} type="decorative" />
+              </div>
               <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
                 <span>Latest Extreme Events</span>
                 {layersLabelArr.length > 0 && (
