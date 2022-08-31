@@ -143,7 +143,6 @@ const Menu = forwardRef(
 
     const onTouchEnd = () => {
       if (!touchStart || !touchEnd) return;
-
       const distance = touchStart - touchEnd;
       const isRightSwipe = distance > MIN_SWIPE_DISTANCE;
       const isLeftSwipe = distance < -MIN_SWIPE_DISTANCE;
