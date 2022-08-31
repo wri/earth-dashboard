@@ -21,11 +21,13 @@ import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { Mode } from "slices/modes";
 
 type MainContainerProps = {
   isMobile: boolean;
-  setIsMobile: any;
-  setModes: any;
+  setIsMobile: ActionCreatorWithPayload<boolean, string>;
+  setModes: ActionCreatorWithPayload<Mode[], string>;
   layersLabelArr: string[];
   dateOfDataShown: Date;
   currentHeadline?: Headline;
@@ -113,7 +115,9 @@ const MainContainer = ({
   };
 
   // Store the isMobile flag in the redux store
-  useEffect(() => setIsMobile(isMobile), [isMobile, setIsMobile]);
+  useEffect(() => {
+    setIsMobile(isMobile);
+  }, [isMobile, setIsMobile]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -319,7 +323,7 @@ const MainContainer = ({
           </>
         )}
       </Actions>
-      {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
+      {!isFetchingTemplates && <SettingsMenu />}
       {!isFetchingTemplates && <DatePickerMenu isMobile={isMobile} />}
     </div>
   );

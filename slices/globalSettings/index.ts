@@ -4,6 +4,7 @@ import { ID as animationsId } from "schemas/global-settings/animations";
 import { ID as highDefinitionModeId } from "schemas/global-settings/high-definition-mode";
 import { ID as basemapsId } from "schemas/global-settings/basemaps";
 import { GlobalSetting, GlobalSettingsState } from "./types";
+import { RootState } from "store/types";
 
 export * from "./types";
 
@@ -26,18 +27,18 @@ const globalSettingsSlice = createSlice({
         payload
       }: PayloadAction<{
         id: GlobalSetting;
-        newState: boolean;
+        checked: boolean;
       }>
     ) => {
       if (!state.hasOwnProperty(payload.id)) return;
 
-      state[payload.id] = payload.newState;
+      state[payload.id] = payload.checked;
     }
   }
 });
 
 export const { setSettingById } = globalSettingsSlice.actions;
 
-export const getSettingValueById = (id: any) => (state: any) => state[NAME][id];
+export const getSettingValueById = (id: GlobalSetting) => (state: RootState) => state.globalSettings[id];
 
 export default globalSettingsSlice.reducer;

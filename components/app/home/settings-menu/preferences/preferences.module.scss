@@ -1,0 +1,40 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-preferences {
+  h3,
+  h4 {
+    margin: 0 auto;
+    color: $white;
+    font-weight: 500;
+  }
+
+  h3 {
+    @include font-size(20px, 30px);
+    text-transform: uppercase;
+    font-family: "Barlow Condensed";
+    margin-bottom: 12px;
+  }
+
+  h4 {
+    @include font-size(16px, 20px);
+    margin-bottom: 16px;
+    font-family: Barlow;
+  }
+
+  &__language {
+    margin-bottom: 16px;
+  }
+
+  &__unit {
+    margin-bottom: 20px;
+  }
+
+  &__toggle {
+    &--grid,
+    &--animations,
+    &--hd {
+      margin-bottom: 16px;
+    }
+  }
+}
