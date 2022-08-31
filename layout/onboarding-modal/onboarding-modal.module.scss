@@ -18,16 +18,19 @@
   background-color: $black;
   width: 38.75rem;
   margin: auto;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
-  border-radius: 10px 10px 0 0;
+  padding: 24px;
+  border-radius: 12px 12px 0 0;
   background-color: $bg-backdrop-lighter;
   z-index: $z-index-header;
 }
@@ -62,9 +65,11 @@
   width: 100%;
 }
 .modal-title {
+  font-family: "Barlow";
+  @include font-size(20px, 30px);
   color: $white;
   margin: 0;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .modal-logo {
@@ -91,13 +96,14 @@
   height: 25rem;
 }
 .modal-main-content {
-  padding: 3rem 4rem;
+  padding: 60px;
 }
 .text {
   color: $white;
-  @include font-size(24px, 33px);
+  font-family: "Barlow";
+  @include font-size(22px, 31px);
+  font-weight: 600;
   text-align: center;
-  line-height: 2rem;
 }
 .controls {
   display: flex;
