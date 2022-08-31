@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
-import menuButtonStyles from "./menuButton.module.scss";
+import menuButtonStyles from "./menu-button.module.scss";
 import actionStyles from "components/app/home/actions/actions.module.scss";
 import Menu from "components/app/home/menu";
 import SettingsMenu from "components/app/home/settings-menu";
