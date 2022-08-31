@@ -30,8 +30,8 @@ const Preferences = ({
   setGlobe3d,
   setGlobe2d
 }: PreferencesProps) => {
-  const [language, setLanguage] = useState<string>("en");
-  const [unit, setUnit] = useState<string>("metric");
+  const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
+  const [unit, setUnit] = useState<{ value: string; label: string }>(UNITS[0]);
 
   /** Toggles and sets the new state for map grid. */
   const handleGridChange = (newState: boolean, type: ToggleType) => {
@@ -68,24 +68,14 @@ const Preferences = ({
       {isMobile && (
         <div className={styles["c-preferences__language"]}>
           <h4>Language</h4>
-          <SelectInput
-            options={LANGUAGES}
-            value={LANGUAGES.find(option => option.value === language)}
-            onChange={setLanguage}
-            aria-label="Select a language"
-          />
+          <SelectInput options={LANGUAGES} value={language} onChange={setLanguage} aria-label="Select a language" />
         </div>
       )}
 
       {/* Units */}
       <div className={styles["c-preferences__unit"]}>
         <h4>Units</h4>
-        <SelectInput
-          options={UNITS}
-          value={UNITS.find(option => option.value === unit)}
-          onChange={setUnit}
-          aria-label="Select a unit"
-        />
+        <SelectInput options={UNITS} value={unit} onChange={setUnit} aria-label="Select a unit" />
       </div>
 
       {/* Map grid toggle */}
