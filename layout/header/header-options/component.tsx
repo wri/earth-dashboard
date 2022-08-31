@@ -15,7 +15,7 @@ type HeaderOptionsProps = {
 
 /** Header options for languages, share, and more. */
 const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsClose }: HeaderOptionsProps) => {
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
 
   // Navigation
   const router = useRouter();
@@ -32,7 +32,7 @@ const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsC
       {!isMobile && (
         <SelectInput
           options={LANGUAGES}
-          value={LANGUAGES.find(option => option.value === language)}
+          value={language}
           onChange={setLanguage}
           aria-label="Select a language"
           className={styles["c-header-options__language"]}
