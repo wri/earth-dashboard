@@ -192,7 +192,6 @@
     flex-grow: 1;
   }
 
-  &__close-button,
   &__back-button {
     display: block;
     background-repeat: no-repeat;
@@ -207,15 +206,6 @@
       box-shadow: 0 0 0 2px $white;
       border: 2px solid $colour-flame;
     }
-  }
-
-  &__close-button {
-    background-image: url("/static/icons/close.svg");
-    background-size: 24px 24px;
-    background-position: 50% 9px;
-    width: 40px;
-    height: 40px;
-    margin-right: -20px;
   }
 
   &__back-button {
@@ -360,19 +350,10 @@
       @include font-size(20px, 30px);
     }
 
-    &__close-button,
     &__back-button {
       &:focus {
         background-position: 50% 5px;
       }
-    }
-
-    &__close-button {
-      margin-right: -12px;
-      background-size: 19px 19px;
-      background-position: 50% 7px;
-      width: 31px;
-      height: 31px;
     }
 
     &__toggle-list {
