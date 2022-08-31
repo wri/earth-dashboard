@@ -124,9 +124,15 @@
   flex: 1;
   display: flex;
   justify-content: center;
+  
+  &.box:first-child{
+    justify-content: flex-start;
+  }
+
 
   &.box:first-child > span {
     margin-right: auto;
+    justify-content: flex-start;
   }
 
   &.box:last-child > span {
