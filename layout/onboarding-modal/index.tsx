@@ -17,15 +17,12 @@ interface IOnBoardingModal {
 const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }) => {
   const [counter, setCounter] = useState(0);
 
-  const close = () => {
+  const handleClose = () => {
     localStorage.setItem(ONBOARDING_COMPLETED, "true");
     setShowModal(false);
   };
   const nextStep = () => {
-    if (counter === 2) {
-      close();
-      return;
-    }
+    if (counter === 2) return handleClose();
     setCounter(state => (state += 1));
   };
 
@@ -42,7 +39,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
                     <Icon name="earth-hq" size={32} type="decorative" className={styles["earth-hq"]} />
                     <h3 className={styles["modal-title"]}>WELCOME TO EARTH HQ</h3>
                   </div>
-                  <IconButton name="close-new" size={13} className={styles["close-button"]} onClick={close} />
+                  <IconButton name="close-new" size={13} className={styles["close-button"]} onClick={handleClose} />
                 </div>
                 <div className={styles["modal-image-container"]}>
                   {/* Renders list images beforehand */}
@@ -68,7 +65,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
                     data-testid="back-btn"
                     disabled={counter === 0}
                     className={classnames({
-                      [styles["backButton"]]: true,
+                      [styles["back-button"]]: true,
                       [styles["hide"]]: counter === 0
                     })}
                     onClick={() => setCounter(state => state - 1)}
