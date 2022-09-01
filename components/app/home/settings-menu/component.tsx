@@ -5,12 +5,11 @@ import styles from "./settings-menu.module.scss";
 import useDialogPanel from "hooks/useDialogPanel";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Preferences from "./preferences";
-import Icon, { IconNames } from "components/ui/Icon";
+import Icon from "components/ui/Icon";
 import Basemaps from "./basemaps";
 import DatePicker from "components/date-picker";
 import { format } from "date-fns";
-import SocialIcon from "components/ui/social-icon";
-import { SocialLinks } from "constants/menu-items";
+import Footer from "./footer";
 
 type SettingsMenuProps = {
   isOpen: boolean;
@@ -94,13 +93,7 @@ const SettingsMenu = ({
               <>
                 <Preferences />
                 <Basemaps />
-
-                {/* Footer */}
-                <div className={styles["footer"]}>
-                  {SocialLinks.map(({ key, name, ...socialLinkProps }) => (
-                    <SocialIcon key={key} name={name as IconNames} {...socialLinkProps} />
-                  ))}
-                </div>
+                <Footer />
               </>
             )}
           </div>

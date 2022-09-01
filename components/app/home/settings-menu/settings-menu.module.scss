@@ -49,7 +49,6 @@
   &__body {
     position: relative;
     height: 100%;
-    margin: 24px 0px;
 
     .scroll {
       position: absolute;
@@ -59,6 +58,7 @@
       bottom: 0;
       height: 100%;
       overflow-y: auto;
+      padding: 24px 0px;
       @include defaultScrollBar();
 
       > div {
@@ -94,9 +94,9 @@
     }
 
     &__body {
-      margin: 40px 0px;
-
       .scroll {
+        padding: 40px 0px;
+
         > div {
           padding-left: 40px;
           padding-right: 40px;
