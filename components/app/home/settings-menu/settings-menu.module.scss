@@ -33,11 +33,11 @@
         background-color: $colour-galaxy;
         padding: 7px;
         border-radius: 50%;
-        margin-right: 12px;
       }
 
       & .title {
         margin: 0 auto;
+        margin-left: 12px;
         color: $white;
         @include font-size(20px);
         font-weight: 500;
@@ -72,8 +72,7 @@
     @include font-size(14px, 21px);
     color: white;
     font-weight: 500;
-    font-family: "Barlow";
-    margin-bottom: 8px !important;
+    margin-bottom: 8px;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
@@ -86,7 +85,7 @@
 
     &__body-title {
       @include font-size(18px, 27px);
-      margin-bottom: 16px !important;
+      margin-bottom: 16px;
     }
 
     &__header {
@@ -94,7 +93,7 @@
 
       > div:first-child {
         & .title {
-          @include font-size(20px);
+          @include font-size(20px, 30px);
         }
       }
     }

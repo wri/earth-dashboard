@@ -6,6 +6,7 @@ export type IconNames =
   | "3d"
   | "arrow-down-homepage"
   | "arrow-right"
+  | "arrow-left"
   | "arrow-up-homepage"
   | "arrow up-right-homepage"
   | "back-chevron"

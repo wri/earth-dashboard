@@ -5,6 +5,7 @@ import geographyImage from "public/static/images/basemaps/geography-basemap-thum
 import simpleImage from "public/static/images/basemaps/simple-basemap-thumbnail.png";
 import { BasemapType, GlobalSetting } from "slices/globalSettings";
 import styles from "./basemaps.module.scss";
+import { format } from "date-fns";
 
 type BasemapsProps = {
   activeOptionId: string;
@@ -47,7 +48,7 @@ const Basemaps = ({ activeOptionId, currentDate, setSettingById, setIsDatePicker
       <div className={styles["c-basemaps__data"]}>
         <p className={styles["c-basemaps__data__label"]}>Showing Data For:</p>
         <button onClick={handleDateClick}>
-          <span>{currentDate?.toLocaleDateString() ?? "Select a Date"}</span>
+          <span>{format(currentDate ?? new Date(), "yyyy-MM-dd")}</span>
           <div className={styles["icon"]}>
             <Icon name="chevron-down" size={12} type="decorative" />
           </div>
