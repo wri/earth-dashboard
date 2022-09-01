@@ -50,29 +50,29 @@
     position: relative;
     height: 100%;
     margin: 24px 0px;
-  }
 
-  &__scroll {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    overflow-y: auto;
-    @include defaultScrollBar();
+    .scroll {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      overflow-y: auto;
+      @include defaultScrollBar();
 
-    > div {
-      padding-left: 24px;
-      padding-right: 24px;
+      > div {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .main > p {
+        @include font-size(14px, 21px);
+        color: white;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
     }
-  }
-
-  &__body-title {
-    @include font-size(14px, 21px);
-    color: white;
-    font-weight: 500;
-    margin-bottom: 8px;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
@@ -82,11 +82,6 @@
     width: 640px;
     height: auto;
     transform: translateX(-50%);
-
-    &__body-title {
-      @include font-size(18px, 27px);
-      margin-bottom: 16px;
-    }
 
     &__header {
       padding: 24px;
@@ -100,12 +95,16 @@
 
     &__body {
       margin: 40px 0px;
-    }
 
-    &__scroll {
-      > div {
-        padding-left: 40px;
-        padding-right: 40px;
+      .scroll {
+        > div {
+          padding-left: 40px;
+          padding-right: 40px;
+        }
+
+        .main > p {
+          @include font-size(18px, 27px);
+        }
       }
     }
   }
