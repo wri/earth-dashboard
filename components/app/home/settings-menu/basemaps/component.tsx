@@ -8,17 +8,24 @@ import styles from "./basemaps.module.scss";
 
 type BasemapsProps = {
   activeOptionId: string;
+  currentDate?: Date;
   setSettingById: ActionCreatorWithPayload<{ id: GlobalSetting; newState: boolean | BasemapType }, string>;
+  setIsDatePickerOpen: ActionCreatorWithPayload<boolean, string>;
 };
 
 /** Options for basemap image selection. */
-const Basemaps = ({ activeOptionId, setSettingById }: BasemapsProps) => {
+const Basemaps = ({ activeOptionId, currentDate, setSettingById, setIsDatePickerOpen }: BasemapsProps) => {
   /** Updates the redux store with new value. */
   const handleChange = (id: string) => {
     setSettingById({
       id: "basemap",
       newState: id as BasemapType
     });
+  };
+
+  /** Opens the date data picker. */
+  const handleDateClick = () => {
+    setIsDatePickerOpen(true);
   };
 
   return (
@@ -39,8 +46,8 @@ const Basemaps = ({ activeOptionId, setSettingById }: BasemapsProps) => {
       {/* Data date selector */}
       <div className={styles["c-basemaps__data"]}>
         <p className={styles["c-basemaps__data__label"]}>Showing Data For:</p>
-        <button>
-          <span>Lorem ipsum</span>
+        <button onClick={handleDateClick}>
+          <span>{currentDate?.toLocaleDateString() ?? "Select a Date"}</span>
           <div className={styles["icon"]}>
             <Icon name="chevron-down" size={12} type="decorative" />
           </div>
