@@ -28,6 +28,7 @@ type MainContainerProps = {
   setModes: any;
   layersLabelArr: string[];
   dateOfDataShown: Date;
+  headlines: Headline[];
   currentHeadline?: Headline;
   currentHeadlineId?: number;
   shouldFadeControls: boolean;
@@ -39,6 +40,7 @@ const MainContainer = ({
   setModes,
   layersLabelArr,
   dateOfDataShown,
+  headlines,
   shouldFadeControls,
   currentHeadline
 }: MainContainerProps) => {
@@ -73,7 +75,8 @@ const MainContainer = ({
     scaleData: scaleToolTipData,
     hasIframeConnected
   } = useIframeBridge({
-    allowClickEvents: !currentHeadline
+    allowClickEvents: !currentHeadline,
+    headlines
   });
 
   const overlayLayer = useMemo(() => {

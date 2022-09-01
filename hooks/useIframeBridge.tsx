@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useEffect } from "react";
+import { useRef, useCallback, useState, useEffect, useMemo } from "react";
 import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
@@ -15,13 +15,15 @@ import {
 import { POINT_INDICATOR } from "constants/map";
 import { EarthLayer } from "components/app/home/main-container/types";
 import { GeoProjection } from "d3-geo";
+import { Headline } from "slices/headlines";
 
 type UseIframeBridgeConfig = {
   callback?: () => void;
   allowClickEvents: boolean;
+  headlines: Headline[];
 };
 
-const useIframeBridge = ({ callback, allowClickEvents }: UseIframeBridgeConfig) => {
+const useIframeBridge = ({ callback, allowClickEvents, headlines }: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [error, setError] = useState<Error>();
   const [layers, setLayers] = useState<EarthLayer[]>([]);
@@ -35,11 +37,30 @@ const useIframeBridge = ({ callback, allowClickEvents }: UseIframeBridgeConfig) 
 
   const { width } = useWindowDimensions();
 
+  const MAX_NUMBER_OF_HEADLINES = 25;
+
+  const mostRecentHeadlines = useMemo(() => {
+    const reversed = [...headlines].reverse();
+    return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
+  }, [headlines]);
+
   // References
   const iframeRef = useRef<any>();
   const earthServer = useRef<any>();
 
+  console.log("---------------");
+  console.log(earthClient);
+
   const currentProjectionFunc = useCallback(() => getNewProjection(currentProjection), [currentProjection]);
+
+  useEffect(() => {
+    if (earthServer.current) {
+      mostRecentHeadlines.forEach(headline => {
+        const marker = getIndicatorGeoJson([headline.attributes.location.lng, headline.attributes.location.lat]);
+        earthServer.current.annotate(`indicator-${headline.id}`, marker);
+      });
+    }
+  }, [mostRecentHeadlines]);
 
   useEffect(() => {
     if (currentProjection && currentMarker && toolTipVisible) {
