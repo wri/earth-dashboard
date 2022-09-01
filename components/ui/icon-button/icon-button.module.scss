@@ -11,8 +11,13 @@
   color: $colour-galaxy;
   transition: all 0.1s ease-in-out;
 
+  &.small {
+    height: 30px;
+    width: 30px;
+  }
+
   &:hover {
-    background-color: $colour-flame;
+    background-color: $colour-galaxy;
     color: $white;
   }
 

@@ -1,10 +1,12 @@
 @import "css/settings";
 @import "css/tools/fontSize";
+@import "css/settings/_breakpoints";
 
 .c-preferences {
+  margin-bottom: 24px;
+
   h3,
   h4 {
-    margin: 0 auto;
     color: $white;
     font-weight: 500;
   }
@@ -28,6 +30,16 @@
 
   &__unit {
     margin-bottom: 20px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      > *:last-child {
+        width: 50%;
+      }
+    }
   }
 
   &__toggle {

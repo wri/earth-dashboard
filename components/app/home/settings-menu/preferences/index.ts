@@ -6,9 +6,9 @@ import PreferencesComponent from "./component";
 
 export default connect(
   (state: RootState) => ({
-    mapGridActive: getSettingValueById("show-map-grid")(state),
-    animationsActive: getSettingValueById("animations")(state),
-    highDefinitionActive: getSettingValueById("high-definition-mode")(state),
+    mapGridActive: getSettingValueById("showMapGrid")(state) as boolean,
+    animationsActive: getSettingValueById("showAnimations")(state) as boolean,
+    highDefinitionActive: getSettingValueById("showHighDefinition")(state) as boolean,
     is2D: isGlobe2d(state),
     isMobile: state.common.isMobile
   }),

@@ -3,7 +3,7 @@ import FormSwitch from "components/form/switch";
 import SelectInput from "components/ui/select";
 import { LANGUAGES, UNITS } from "constants/settings";
 import { useState } from "react";
-import { GlobalSetting } from "slices/globalSettings";
+import { BasemapType, GlobalSetting } from "slices/globalSettings";
 import styles from "./preferences.module.scss";
 
 type ToggleType = "show-map-grid" | "animations" | "high-definition-mode" | "3d";
@@ -14,7 +14,7 @@ type PreferencesProps = {
   highDefinitionActive: boolean;
   is2D: boolean;
   isMobile: boolean;
-  setSettingById: ActionCreatorWithPayload<{ id: GlobalSetting; checked: boolean }, string>;
+  setSettingById: ActionCreatorWithPayload<{ id: GlobalSetting; newState: boolean | BasemapType }, string>;
   setGlobe3d: ActionCreatorWithoutPayload<string>;
   setGlobe2d: ActionCreatorWithoutPayload<string>;
 };
@@ -30,28 +30,28 @@ const Preferences = ({
   setGlobe3d,
   setGlobe2d
 }: PreferencesProps) => {
-  const [language, setLanguage] = useState<string>("en");
-  const [unit, setUnit] = useState<string>("metric");
+  const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
+  const [unit, setUnit] = useState<{ value: string; label: string }>(UNITS[0]);
 
-  /** Toggles and sets the checked state for map grid. */
-  const handleGridChange = (checked: boolean, type: ToggleType) => {
+  /** Toggles and sets the new state for map grid. */
+  const handleGridChange = (newState: boolean, type: ToggleType) => {
     switch (type) {
       case "show-map-grid":
         setSettingById({
-          id: "show-map-grid",
-          checked
+          id: "showMapGrid",
+          newState
         });
         break;
       case "animations":
         setSettingById({
-          id: "animations",
-          checked
+          id: "showAnimations",
+          newState
         });
         break;
       case "high-definition-mode":
         setSettingById({
-          id: "high-definition-mode",
-          checked
+          id: "showHighDefinition",
+          newState
         });
         break;
       case "3d":
@@ -68,30 +68,20 @@ const Preferences = ({
       {isMobile && (
         <div className={styles["c-preferences__language"]}>
           <h4>Language</h4>
-          <SelectInput
-            options={LANGUAGES}
-            value={LANGUAGES.find(option => option.value === language)}
-            onChange={setLanguage}
-            aria-label="Select a language"
-          />
+          <SelectInput options={LANGUAGES} value={language} onChange={setLanguage} aria-label="Select a language" />
         </div>
       )}
 
       {/* Units */}
       <div className={styles["c-preferences__unit"]}>
         <h4>Units</h4>
-        <SelectInput
-          options={UNITS}
-          value={UNITS.find(option => option.value === unit)}
-          onChange={setUnit}
-          aria-label="Select a unit"
-        />
+        <SelectInput options={UNITS} value={unit} onChange={setUnit} aria-label="Select a unit" />
       </div>
 
       {/* Map grid toggle */}
       <FormSwitch
         label="Show Map Grid"
-        onChange={checked => handleGridChange(checked, "show-map-grid")}
+        onChange={newState => handleGridChange(newState, "show-map-grid")}
         isActive={mapGridActive}
         className={styles["c-preferences__toggle--grid"]}
       />
@@ -99,7 +89,7 @@ const Preferences = ({
       {/* Animations toggle */}
       <FormSwitch
         label="Animations"
-        onChange={checked => handleGridChange(checked, "animations")}
+        onChange={newState => handleGridChange(newState, "animations")}
         isActive={animationsActive}
         className={styles["c-preferences__toggle--animations"]}
       />
@@ -107,7 +97,7 @@ const Preferences = ({
       {/* HD toggle */}
       <FormSwitch
         label="High Definition Mode"
-        onChange={checked => handleGridChange(checked, "high-definition-mode")}
+        onChange={newState => handleGridChange(newState, "high-definition-mode")}
         isActive={highDefinitionActive}
         className={styles["c-preferences__toggle--hd"]}
       />
@@ -115,7 +105,7 @@ const Preferences = ({
       {/* 3D toggle */}
       <FormSwitch
         label="3D"
-        onChange={checked => handleGridChange(checked, "3d")}
+        onChange={newState => handleGridChange(newState, "3d")}
         isActive={!is2D}
         className={styles["c-preferences__toggle--3d"]}
       />
