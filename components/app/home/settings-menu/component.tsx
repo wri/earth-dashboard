@@ -9,7 +9,6 @@ import Icon from "components/ui/Icon";
 import Basemaps from "./basemaps";
 import DatePicker from "components/date-picker";
 import { format } from "date-fns";
-import { setIsDatePickerOpen } from "slices/mapControls";
 
 type SettingsMenuProps = {
   isOpen: boolean;
@@ -28,9 +27,13 @@ const SettingsMenu = ({
   currentDate,
   isMobile,
   setDateOfDataShown,
-  setSettingsClose
+  setSettingsClose,
+  setIsDatePickerOpen
 }: SettingsMenuProps) => {
-  const { shouldAnimate, handleClose } = useDialogPanel(isOpen, setSettingsClose);
+  const { shouldAnimate, handleClose } = useDialogPanel(isOpen, () => {
+    setSettingsClose();
+    setIsDatePickerOpen(false);
+  });
 
   /** Sets the current date data. */
   const handleChangeDate = (date: Date) => {
