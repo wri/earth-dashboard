@@ -28,15 +28,6 @@
     }
   }
 
-  &:active,
-  &:focus {
-    background-color: $colour-flame;
-    border-color: $colour-flame;
-    svg {
-      color: $white;
-    }
-  }
-
   svg {
     color: $colour-night;
   }
