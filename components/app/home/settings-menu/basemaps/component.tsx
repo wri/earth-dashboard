@@ -1,5 +1,6 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import RadioImage from "components/form/radio-image";
+import Icon from "components/ui/Icon";
 import geographyImage from "public/static/images/basemaps/geography-basemap-thumbnail.png";
 import simpleImage from "public/static/images/basemaps/simple-basemap-thumbnail.png";
 import { BasemapType, GlobalSetting } from "slices/globalSettings";
@@ -22,6 +23,7 @@ const Basemaps = ({ activeOptionId, setSettingById }: BasemapsProps) => {
 
   return (
     <div className={styles["c-basemaps"]}>
+      {/* Basemap selector */}
       <RadioImage
         name="basemaps"
         label="Basemaps & Data"
@@ -33,6 +35,17 @@ const Basemaps = ({ activeOptionId, setSettingById }: BasemapsProps) => {
         onChange={handleChange}
         className={styles["c-basemaps__selector"]}
       />
+
+      {/* Data date selector */}
+      <div className={styles["c-basemaps__data"]}>
+        <p className={styles["c-basemaps__data__label"]}>Showing Data For:</p>
+        <button>
+          <span>Lorem ipsum</span>
+          <div className={styles["icon"]}>
+            <Icon name="chevron-down" size={12} type="decorative" />
+          </div>
+        </button>
+      </div>
     </div>
   );
 };

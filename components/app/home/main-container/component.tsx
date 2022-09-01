@@ -328,7 +328,7 @@ const MainContainer = ({
         )}
       </Actions>
       {!isFetchingTemplates && <SettingsMenu />}
-      {!isFetchingTemplates && <DatePickerMenu isMobile={isMobile} />}
+      {!isFetchingTemplates && <DatePickerMenu />}
     </div>
   );
 };

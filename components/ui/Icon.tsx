@@ -12,6 +12,7 @@ export type IconNames =
   | "chevron-left"
   | "chevron-right"
   | "chevron-up"
+  | "chevron-down"
   | "close"
   | "cog"
   | "error-circle"

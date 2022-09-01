@@ -11,4 +11,43 @@
     font-weight: 600;
     @include font-size(20px);
   }
+
+  &__data {
+    * {
+      color: $white;
+    }
+
+    &__label {
+      @include font-size(16px, 24px);
+      font-weight: 500;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    > button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      background-color: $colour-night;
+      padding: 8px 16px;
+      border-radius: 48px;
+
+      > span {
+        @include font-size(16px, 24px);
+        font-weight: 500;
+        font-family: "Barlow Condensed", sans-serif;
+      }
+
+      > .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 24px;
+        width: 24px;
+        background-color: $colour-flame;
+        border-radius: 50%;
+      }
+    }
+  }
 }
