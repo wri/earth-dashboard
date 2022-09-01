@@ -44,7 +44,11 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
                 <div className={styles["modal-image-container"]}>
                   {/* Renders list images beforehand */}
                   {data.map((image, index) => (
-                    <img
+                    <Image
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="bottom"
+                      priority={true}
                       key={image.id}
                       src={image.url}
                       alt={image.title}
