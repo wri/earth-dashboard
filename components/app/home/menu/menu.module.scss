@@ -94,7 +94,7 @@
 
   &__scroll-area {
     position: absolute;
-    top: 98px;
+    top: 0px;
     bottom: 0px;
     left: 0px;
     right: 12px;
@@ -116,12 +116,20 @@
     &--extra-top {
       top: 87px;
     }
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* make scrollbar transparent */
+      }
+    }
   }
 
   &__all-events {
     background-image: url("/static/images/globe.png");
     background-position: center right;
     background-repeat: no-repeat;
+    background-size: 232px 196px ;
   }
 
   &__template-description {
@@ -163,7 +171,7 @@
   }
 
   &__header {
-    background-color: rgba($colour-night, 0.4);
+    background-color: $colour-night;
     backdrop-filter: blur(10.8731px);
     padding: 28px 28px 28px 28px;
     border-radius: 16px 16px 0 0;
@@ -238,6 +246,7 @@
     display: flex;
     flex-direction: column;
     background: $colour-space;
+    position: relative;
   }
 
   &__info-title {
@@ -288,14 +297,6 @@
     &__header {
       border-radius: 16px 16px 0 0;
       padding: 11px 24px 11px 24px;
-    }
-
-    &__header-content {
-      &:before {
-        height: 28px;
-        width: 28px;
-        margin-right: 8px;
-      }
     }
 
     &__tab-container {
@@ -401,8 +402,6 @@
 
 .c-home-menu-container {
   @media screen and (max-width: $global-breakpoint-md) {
-    background: rgba($colour-space, 0.4);
-    backdrop-filter: blur(10.8731px);
     left: 0;
     right: 0;
     bottom: 0;

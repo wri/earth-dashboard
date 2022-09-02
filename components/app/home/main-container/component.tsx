@@ -221,6 +221,7 @@ const MainContainer = ({
           layers={layers}
           toolTipDetails={toolTipDetails}
           hasIframeConnected={hasIframeConnected}
+          isMobileMenuOpen={isMobile && hasMenuOpen}
         />
       )}
       {overlayLayer && !isMobile && (
