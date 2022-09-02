@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import PropTypes from "prop-types";
 import styles from "./option.module.scss";
-import Icon, { IconProps } from "components/ui/Icon";
+import Icon from "components/ui/Icon";
 import classNames from "classnames";
 
 export type MenuOptionProps = {
@@ -15,8 +14,8 @@ export type MenuOptionProps = {
 
 const MenuOption = ({ icon, title, description, buttonText, onClick, className }: MenuOptionProps) => {
   return (
-    <div className={classNames(styles["c-menu-option__underlay"], className)}>
-      <button className={classNames(styles["c-menu-option"])} onClick={onClick} data-testid="option">
+    <div className={classNames(styles["c-menu-option__underlay"], className)} data-testid="option">
+      <button className={classNames(styles["c-menu-option"])} onClick={onClick}>
         <div className={styles["c-menu-option__header-row"]}>
           {icon && <img className={styles["c-menu-option__image"]} src={icon} alt="" role="presentation" />}
           <h3 className={styles["c-menu-option__title"]}>{title}</h3>
