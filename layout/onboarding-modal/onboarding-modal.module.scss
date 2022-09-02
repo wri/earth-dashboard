@@ -123,16 +123,16 @@
           display: flex;
           justify-content: center;
 
-          &.box:first-child {
+          &:first-child{
             justify-content: flex-start;
           }
 
-          &.box:first-child > span {
+          &:first-child > span {
             margin-right: auto;
             justify-content: flex-start;
           }
 
-          &.box:last-child > span {
+          &:last-child > span {
             margin-left: auto;
           }
 
