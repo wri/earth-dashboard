@@ -30,7 +30,8 @@ export type IconNames =
   | "cookie"
   | "earth-hq"
   | "check"
-  | "close-new";
+  | "close-new"
+  | "layers";
 
 type AccessibilityProps =
   | { type: "meaningful"; accessibilityText: string }

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
-import menuButtonStyles from "./menuButton.module.scss";
+import menuButtonStyles from "./menu-button.module.scss";
 import actionStyles from "components/app/home/actions/actions.module.scss";
 import Menu from "components/app/home/menu";
 import SettingsMenu from "components/app/home/settings-menu";
@@ -21,11 +21,14 @@ import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { Mode } from "slices/modes";
+import Icon from "components/ui/Icon";
 
 type MainContainerProps = {
   isMobile: boolean;
-  setIsMobile: any;
-  setModes: any;
+  setIsMobile: ActionCreatorWithPayload<boolean, string>;
+  setModes: ActionCreatorWithPayload<Mode[], string>;
   layersLabelArr: string[];
   dateOfDataShown: Date;
   currentHeadline?: Headline;
@@ -113,7 +116,9 @@ const MainContainer = ({
   };
 
   // Store the isMobile flag in the redux store
-  useEffect(() => setIsMobile(isMobile), [isMobile, setIsMobile]);
+  useEffect(() => {
+    setIsMobile(isMobile);
+  }, [isMobile, setIsMobile]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -302,6 +307,9 @@ const MainContainer = ({
               id="menu-button"
               data-testid="toggle"
             >
+              <div className={menuButtonStyles["icon"]}>
+                <Icon name={hasMenuOpen ? "close" : "layers"} size={28} type="decorative" />
+              </div>
               <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
                 <span>Latest Extreme Events</span>
                 {layersLabelArr.length > 0 && (
@@ -319,7 +327,7 @@ const MainContainer = ({
           </>
         )}
       </Actions>
-      {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
+      {!isFetchingTemplates && <SettingsMenu />}
       {!isFetchingTemplates && <DatePickerMenu isMobile={isMobile} />}
     </div>
   );
