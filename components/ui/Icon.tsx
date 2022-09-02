@@ -29,6 +29,9 @@ export type IconNames =
   | "youtube-play"
   | "zoom-in"
   | "zoom-out"
+  | "cookie"
+  | "earth-hq"
+  | "check"
   | "layers";
 
 type AccessibilityProps =
