@@ -6,8 +6,6 @@
   display: flex;
   flex-direction: column;
   padding: 12px;
-  background-color: rgba($colour-night, 0.4);
-  backdrop-filter: blur(10.8731px);
   border-radius: 16px;
   align-items: flex-start;
   cursor: pointer;
@@ -15,6 +13,12 @@
   width: 100%;
   border: 4px solid transparent;
   row-gap: 12px;
+
+  &__underlay {
+    background-color: rgba($colour-night, 0.4);
+    backdrop-filter: blur(10.8731px);
+    border-radius: 16px;
+  }
 
   &__header-row {
     display: flex;
@@ -57,7 +61,6 @@
     padding: 8px 8px 8px 24px;
     border-radius: 23px;
     background-color: $colour-flame;
-    display: flex;
     align-items: center;
     display: none;
   }
@@ -92,7 +95,7 @@
     border: 4px solid $colour-flame;
     outline: none;
 
-    &__button {
+    .c-menu-option__button {
       display: flex;
     }
   }

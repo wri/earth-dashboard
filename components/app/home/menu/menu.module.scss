@@ -118,6 +118,12 @@
     }
   }
 
+  &__all-events {
+    background-image: url("/static/images/globe.png");
+    background-position: center right;
+    background-repeat: no-repeat;
+  }
+
   &__template-description {
     padding-bottom: 20px;
     border-bottom: 1px solid white;
@@ -170,11 +176,11 @@
     &:before {
       content: "";
       display: block;
-      background-image: url("/static/icons/home-menu/layers.svg");
+      background-image: url("/static/icons/home-menu/search-globe.svg");
       background-size: contain;
       background-repeat: no-repeat;
-      height: 40px;
-      width: 40px;
+      height: 52px;
+      width: 52px;
       margin-right: 12px;
     }
 
@@ -246,6 +252,7 @@
   &--is-info-page {
     .c-home-menu__header-content {
       justify-content: space-between;
+      align-items: center;
       &:before {
         content: initial;
       }

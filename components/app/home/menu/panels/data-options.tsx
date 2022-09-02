@@ -7,22 +7,12 @@ import { setCurrentMode, NAME as modesSliceName, Mode } from "slices/modes";
 import MenuOption from "components/app/home/menu-option";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
-const eventsConfig = [
-  {
-    id: "all",
-    title: "All Extreme Events",
-    description: "View all of the latest extreme events",
-    buttonText: "View All",
-    action: () => {}
-  }
-];
-
 const mapHighlightToOption = ({ id, attributes }: Mode) => {
   return {
     id,
     ...attributes,
     buttonText: "Learn More",
-    action: () => {}
+    onClick: () => {}
   };
 };
 
@@ -33,13 +23,19 @@ type DataIndexProps = {
 };
 
 const DataIndex = ({ highlights, setCurrentMode, currentMode }: DataIndexProps) => {
-  const highlightActions = highlights?.map(mapHighlightToOption) || [];
-  const options = [...eventsConfig, ...highlightActions];
+  const dataLayers = highlights?.map(mapHighlightToOption) || [];
 
   return (
     <div className={styles["c-home-menu__scroll-area"]}>
-      {options.map(config => (
-        <MenuOption key={config.id} {...config} />
+      <MenuOption
+        className={styles["c-home-menu__all-events"]}
+        title="All Extreme Events"
+        description="View all of the latest extreme events"
+        buttonText="View All"
+        onClick={() => {}}
+      />
+      {dataLayers.map(dataLayer => (
+        <MenuOption key={dataLayer.id} {...dataLayer} />
       ))}
     </div>
   );
