@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1B2127;
+    background-color: $colour-space;
     z-index: $z-index-cookies;
 
     &.-desktop {

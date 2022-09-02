@@ -33,11 +33,11 @@
         background-color: $colour-galaxy;
         padding: 7px;
         border-radius: 50%;
-        margin-right: 12px;
       }
 
       & .title {
         margin: 0 auto;
+        margin-left: 12px;
         color: $white;
         @include font-size(20px);
         font-weight: 500;
@@ -49,31 +49,30 @@
   &__body {
     position: relative;
     height: 100%;
-    margin: 24px 0px;
-  }
 
-  &__scroll {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    overflow-y: auto;
-    @include defaultScrollBar();
+    .scroll {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      overflow-y: auto;
+      padding: 24px 0px;
+      @include defaultScrollBar();
 
-    > div {
-      padding-left: 24px;
-      padding-right: 24px;
+      > div {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .main > p {
+        @include font-size(14px, 21px);
+        color: white;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
     }
-  }
-
-  &__body-title {
-    @include font-size(14px, 21px);
-    color: white;
-    font-weight: 500;
-    font-family: "Barlow";
-    margin-bottom: 8px !important;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
@@ -84,29 +83,28 @@
     height: auto;
     transform: translateX(-50%);
 
-    &__body-title {
-      @include font-size(18px, 27px);
-      margin-bottom: 16px !important;
-    }
-
     &__header {
       padding: 24px;
 
       > div:first-child {
         & .title {
-          @include font-size(20px);
+          @include font-size(20px, 30px);
         }
       }
     }
 
     &__body {
-      margin: 40px 0px;
-    }
+      .scroll {
+        padding: 40px 0px;
 
-    &__scroll {
-      > div {
-        padding-left: 40px;
-        padding-right: 40px;
+        > div {
+          padding-left: 40px;
+          padding-right: 40px;
+        }
+
+        .main > p {
+          @include font-size(18px, 27px);
+        }
       }
     }
   }
