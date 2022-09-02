@@ -1,14 +1,19 @@
 import { connect } from "react-redux";
 import SettingsMenuComponent from "./component";
-import { setSettingsClose } from "slices/mapControls";
+import { setIsDatePickerOpen, setSettingsClose } from "slices/mapControls";
 import { RootState } from "store/types";
+import { setDateOfDataShown } from "slices/modes";
 
 export default connect(
   (state: RootState) => ({
     isOpen: state.mapControls.isSettingsOpen,
-    isMobile: state.common.isMobile
+    isDatePickerOpen: state.mapControls.isDatePickerOpen,
+    isMobile: state.common.isMobile,
+    currentDate: new Date(state.modes.dateOfDataShown)
   }),
   {
-    onClose: setSettingsClose
+    setSettingsClose,
+    setDateOfDataShown,
+    setIsDatePickerOpen
   }
 )(SettingsMenuComponent);

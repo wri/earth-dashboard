@@ -13,7 +13,6 @@ import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
 import { formatDate } from "utils/dates";
-import DatePickerMenu from "../date-picker-menu";
 import { UNIT_LABEL_MAP } from "utils/map";
 import IconButton from "components/ui/icon-button";
 import { Headline } from "slices/headlines";
@@ -328,7 +327,6 @@ const MainContainer = ({
         )}
       </Actions>
       {!isFetchingTemplates && <SettingsMenu />}
-      {!isFetchingTemplates && <DatePickerMenu isMobile={isMobile} />}
     </div>
   );
 };
