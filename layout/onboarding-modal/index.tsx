@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import classnames from "classnames";
 import styles from "./onboarding-modal.module.scss";
 import IconButton from "components/ui/icon-button";
@@ -31,17 +30,22 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
       {showModal && (
         <div className={styles["modal-backdrop"]}>
           <div className={styles["modal"]}>
-            <div className={styles["modal-top"]}>
+            <div className={styles["modal__top"]}>
               {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="hello" />}
-              <div className={styles["contain"]}>
-                <div className={styles["modal-header"]}>
-                  <div className={styles["modal-logo"]}>
-                    <Icon name="earth-hq" size={32} type="decorative" className={styles["earth-hq"]} />
-                    <h3 className={styles["modal-title"]}>WELCOME TO EARTH HQ</h3>
+              <div className={styles["modal__top__contain"]}>
+                <div className={styles["modal__header"]}>
+                  <div className={styles["modal__logo"]}>
+                    <Icon name="earth-hq" size={32} type="decorative" className={styles["modal__logo__earth-hq"]} />
+                    <h3 className={styles["modal__header__title"]}>WELCOME TO EARTH HQ</h3>
                   </div>
-                  <IconButton name="close" size={32} className={styles["close-button"]} onClick={handleClose} />
+                  <IconButton
+                    name="close"
+                    size={32}
+                    className={styles["modal__header__close-button"]}
+                    onClick={handleClose}
+                  />
                 </div>
-                <div className={styles["modal-image-container"]}>
+                <div className={styles["modal__image"]}>
                   {/* Renders list images beforehand */}
                   {data.map((image, index) => (
                     <Image
@@ -53,23 +57,23 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
                       src={image.url}
                       alt={image.title}
                       className={classnames({
-                        [styles["modal-main-image"]]: true,
-                        [styles["show-image"]]: counter === index
+                        [styles["modal__image__hide"]]: true,
+                        [styles["modal__image__show"]]: counter === index
                       })}
                     />
                   ))}
                 </div>
               </div>
             </div>
-            <div className={styles["modal-main-content"]}>
-              <h4 className={styles["text"]}>{data[counter].title}</h4>
-              <div className={styles["controls"]}>
-                <div className={styles["box"]}>
+            <div className={styles["modal__content"]}>
+              <h4 className={styles["modal__content__text"]}>{data[counter].title}</h4>
+              <div className={styles["modal__content__controls"]}>
+                <div className={styles["modal__content__controls__box"]}>
                   <button
                     data-testid="back-btn"
                     disabled={counter === 0}
                     className={classnames({
-                      [styles["back-button"]]: true,
+                      [styles["modal__content__controls__box__back-button"]]: true,
                       [styles["hide"]]: counter === 0
                     })}
                     onClick={() => setCounter(state => state - 1)}
@@ -77,28 +81,34 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
                     BACK
                   </button>
                 </div>
-                <div className={styles["box"]}>
-                  <div className={styles["divider"]}>
+                <div className={styles["modal__content__controls__box"]}>
+                  <div className={styles["modal__content__controls__box__divider"]}>
                     {[0, 1, 2].map(point => (
                       <div
                         key={point}
                         className={classnames({
-                          [styles["unselected"]]: counter !== point,
-                          [styles["selected"]]: counter === point
+                          [styles["modal__content__controls__box__divider--unselected"]]: counter !== point,
+                          [styles["modal__content__controls__box__divider--selected"]]: counter === point
                         })}
                         onClick={() => setCounter(point)}
                       ></div>
                     ))}
                   </div>
                 </div>
-                <div className={styles["box"]}>
-                  <button data-testid="forward-btn" className={styles["continue-button"]} onClick={nextStep}>
-                    <h4 className={styles["button-text"]}>{counter === 2 ? "EXPLORE" : "CONTINUE"}</h4>
+                <div className={styles["modal__content__controls__box"]}>
+                  <button
+                    data-testid="forward-btn"
+                    className={styles["modal__content__controls__box__continueBtn"]}
+                    onClick={nextStep}
+                  >
+                    <h4 className={styles["modal__content__controls__box__continueBtn__text"]}>
+                      {counter === 2 ? "EXPLORE" : "CONTINUE"}
+                    </h4>
                     <Icon
                       name={counter === 2 ? "check" : "arrow-right"}
                       size={32}
                       type="decorative"
-                      className={styles["continue-icon"]}
+                      className={styles["modal__content__controls__box__continueBtn__icon"]}
                     />
                   </button>
                 </div>
