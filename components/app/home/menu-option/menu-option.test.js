@@ -11,7 +11,7 @@ test("<MenuOption /> renders correctly as desktop", async () => {
 
   const { container, queryAllByTestId } = render(
     <MenuOption
-      className={"test-menu-option-class"}
+      className={"test-menu-option"}
       title="All Extreme Events"
       description="View all of the latest extreme events"
       buttonText="View All"
@@ -22,46 +22,46 @@ test("<MenuOption /> renders correctly as desktop", async () => {
   await waitFor(() => queryAllByTestId("option"));
 
   expect(container).toMatchInlineSnapshot(`
-<div>
-  <div
-    class="c-menu-option__underlay test-menu-option-class"
-    data-testid="option"
-  >
-    <button
-      class="c-menu-option"
-    >
+    <div>
       <div
-        class="c-menu-option__header-row"
+        class="c-menu-option__underlay test-menu-option"
+        data-testid="option"
       >
-        <h3
-          class="c-menu-option__title"
+        <div
+          class="c-menu-option"
         >
-          All Extreme Events
-        </h3>
-      </div>
-      <p
-        class="c-menu-option__subtitle"
-      >
-        View all of the latest extreme events
-      </p>
-      <div
-        class="c-menu-option__row"
-      >
-        <button
-          class="c-menu-option__button"
-        >
-          <span
-            class="c-menu-option__button-text"
+          <div
+            class="c-menu-option__header-row"
           >
-            View All
-          </span>
-          <span
-            class="c-menu-option__button-icon"
-          />
-        </button>
+            <h3
+              class="c-menu-option__title"
+            >
+              All Extreme Events
+            </h3>
+          </div>
+          <p
+            class="c-menu-option__subtitle"
+          >
+            View all of the latest extreme events
+          </p>
+          <div
+            class="c-menu-option__row"
+          >
+            <button
+              class="c-menu-option__button"
+            >
+              <span
+                class="c-menu-option__button-text"
+              >
+                View All
+              </span>
+              <span
+                class="c-menu-option__button-icon"
+              />
+            </button>
+          </div>
+        </div>
       </div>
-    </button>
-  </div>
-</div>
-`);
+    </div>
+  `);
 });

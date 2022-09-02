@@ -47,7 +47,7 @@ test("<Menu /> renders correctly as desktop", async () => {
               class="c-menu-option__underlay c-home-menu__all-events"
               data-testid="option"
             >
-              <button
+              <div
                 class="c-menu-option"
               >
                 <div
@@ -80,7 +80,7 @@ test("<Menu /> renders correctly as desktop", async () => {
                     />
                   </button>
                 </div>
-              </button>
+              </div>
             </div>
           </div>
         </div>
@@ -135,7 +135,7 @@ test("<Menu /> renders correctly as mobile", async () => {
               class="c-menu-option__underlay c-home-menu__all-events"
               data-testid="option"
             >
-              <button
+              <div
                 class="c-menu-option"
               >
                 <div
@@ -168,7 +168,7 @@ test("<Menu /> renders correctly as mobile", async () => {
                     />
                   </button>
                 </div>
-              </button>
+              </div>
             </div>
           </div>
         </div>
