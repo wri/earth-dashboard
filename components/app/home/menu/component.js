@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import DataPanel from "./panels/data";
 import HeadlinePanel from "./panels/climate-alerts";
 import DataHighlightsPanel from "./panels/data-highlights";
+import DataIndexPanel from "./panels/data-options";
 import ResizablePanel from "components/app/home/dialog-panel/resizable-panel";
 import { fireEvent } from "utils/gtag";
 import { MENU_TAB_CHANGE_EVENT_NAME } from "constants/tag-manager";
@@ -104,81 +105,25 @@ const Menu = forwardRef(
             )}
             {...rest}
           >
-            <Tabs
-              selectedIndex={tabIndex}
-              onSelect={index => {
-                setTabIndex(index);
-
-                fireGAEvent(index);
-              }}
-              className={styles["c-home-menu__tabs"]}
-              domRef={el => {
-                if (ref) {
-                  ref.current = el;
-                }
-              }}
-            >
-              <div className={classnames(styles["c-home-menu__header"])}>
-                <div className={classnames(styles["c-home-menu__header-content"])}>
-                  {!isInfoPage && <h2 className={styles["c-home-menu__header-text"]}>Latest Extreme Events</h2>}
-                  {isInfoPage && (
-                    <>
-                      <button className={styles["c-home-menu__back-button"]} onClick={onBack} aria-label="Back" />
-                      {infoData && isMobile && (
-                        <h2 className={classnames(styles["c-home-menu__header-text"], "u-text-center")}>
-                          {infoData.title}
-                        </h2>
-                      )}
-                    </>
-                  )}
-                  {onClose && <IconButton name="close" size={24} small onClick={onClose} />}
-                </div>
-                <TabList className={classnames(styles["c-home-menu__tab-list"], "u-padding-top-xs")}>
-                  <Tab
-                    className={classnames(styles["c-home-menu__tab"], "u-margin-right-l")}
-                    data-testid="tab-1"
-                    ref={ref}
-                  >
-                    Latest Extreme Events
-                  </Tab>
-                  <Tab className={classnames(styles["c-home-menu__tab"], "u-margin-right-l")} data-testid="tab-2">
-                    Data Highlights
-                  </Tab>
-                  <Tab className={styles["c-home-menu__tab"]} data-testid="tab-3">
-                    Advanced Menu
-                  </Tab>
-                </TabList>
+            <div className={classnames(styles["c-home-menu__header"])}>
+              <div className={classnames(styles["c-home-menu__header-content"])}>
+                {!isInfoPage && <h2 className={styles["c-home-menu__header-text"]}>{"I'd like to explore"}</h2>}
+                {isInfoPage && (
+                  <>
+                    <button className={styles["c-home-menu__back-button"]} onClick={onBack} aria-label="Back" />
+                    {infoData && isMobile && (
+                      <h2 className={classnames(styles["c-home-menu__header-text"], "u-text-center")}>
+                        {infoData.title}
+                      </h2>
+                    )}
+                  </>
+                )}
+                {onClose && <IconButton name="close" size={24} small onClick={onClose} />}
               </div>
-              <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>
-                <div className={classnames(styles["c-home-menu__tab-container"])}>
-                  <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-1">
-                    <HeadlinePanel onForceInfoPage={() => setForceInfoPage(true)} forceInfoPage={forceInfoPage} />
-                  </TabPanel>
-                  <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-2">
-                    <DataHighlightsPanel />
-                  </TabPanel>
-                  <TabPanel className={styles["c-home-menu__tab-panel"]} data-testid="panel-3">
-                    <DataPanel
-                      currentMode={currentMode}
-                      setCurrentMode={setCurrentMode}
-                      modes={modes}
-                      datasetValue={datasetValue}
-                      setDatasetValue={setDatasetValue}
-                      monitorValue={monitorValue}
-                      heightValue={heightValue}
-                      setHeightValue={setHeightValue}
-                      setMonitorValue={setMonitorValue}
-                      animationValue={animationValue}
-                      animationEnabled={animationEnabled}
-                      setAnimationValue={setAnimationValue}
-                      isMobile={isMobile}
-                      layers={layers}
-                      // TODO Refactor Data panel to pull from redux instead of passing props from parent.
-                    />
-                  </TabPanel>
-                </div>
-              </div>
-            </Tabs>
+            </div>
+            <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>
+              <DataIndexPanel onForceInfoPage={() => setForceInfoPage(true)} forceInfoPage={forceInfoPage} />
+            </div>
           </div>
         </ResizablePanel>
       </div>
