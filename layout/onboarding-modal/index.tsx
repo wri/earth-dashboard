@@ -39,7 +39,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal }
                     <Icon name="earth-hq" size={32} type="decorative" className={styles["earth-hq"]} />
                     <h3 className={styles["modal-title"]}>WELCOME TO EARTH HQ</h3>
                   </div>
-                  <IconButton name="close-new" size={13} className={styles["close-button"]} onClick={handleClose} />
+                  <IconButton name="close" size={32} className={styles["close-button"]} onClick={handleClose} />
                 </div>
                 <div className={styles["modal-image-container"]}>
                   {/* Renders list images beforehand */}
