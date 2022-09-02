@@ -10,27 +10,26 @@
   width: 36px;
   height: 36px;
   padding: 7px;
+  background-color: $white;
   border: 2px solid $white;
   border-radius: 50%;
-  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+
+  &:not(:last-child) {
+    margin-right: 12px;
+  }
 
   &:hover {
     background-color: $colour-flame;
     border-color: $colour-flame;
-  }
 
-  &:active,
-  &:focus {
-    background-color: $colour-night;
-    border-color: $colour-night;
-  }
-
-  &__icon {
-    transition: filter 0.1s ease-in-out;
+    svg {
+      color: $white;
+    }
   }
 
   svg {
-    color: white;
+    color: $colour-night;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {

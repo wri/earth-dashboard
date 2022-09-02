@@ -9,6 +9,7 @@ import Icon from "components/ui/Icon";
 import Basemaps from "./basemaps";
 import DatePicker from "components/date-picker";
 import { format } from "date-fns";
+import Footer from "./footer";
 
 type SettingsMenuProps = {
   isOpen: boolean;
@@ -74,13 +75,12 @@ const SettingsMenu = ({
 
         {/* Content */}
         <div className={styles["c-settings-menu-modal__body"]}>
-          <div className={styles["c-settings-menu-modal__scroll"]}>
+          <div className={styles["scroll"]}>
+            {/* Dynamic views */}
             {isDatePickerOpen ? (
               // Change date
-              <div>
-                <p className={styles["c-settings-menu-modal__body-title"]}>
-                  Showing data for: {format(currentDate ?? new Date(), "yyyy-MM-dd")} Local
-                </p>
+              <div className={styles["main"]}>
+                <p>Showing data for: {format(currentDate ?? new Date(), "yyyy-MM-dd")} Local</p>
                 <DatePicker
                   // @ts-expect-error
                   initialDate={currentDate ?? new Date()}
@@ -93,6 +93,7 @@ const SettingsMenu = ({
               <>
                 <Preferences />
                 <Basemaps />
+                <Footer />
               </>
             )}
           </div>
