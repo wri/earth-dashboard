@@ -39,9 +39,9 @@
         margin: 0 auto;
         margin-left: 12px;
         color: $white;
-        @include font-size(20px);
         font-weight: 500;
         text-transform: uppercase;
+        @include font-size(20px, 30px);
       }
     }
   }
