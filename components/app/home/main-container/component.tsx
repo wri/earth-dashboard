@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
-import menuButtonStyles from "./menuButton.module.scss";
+import menuButtonStyles from "./menu-button.module.scss";
 import actionStyles from "components/app/home/actions/actions.module.scss";
 import Menu from "components/app/home/menu";
 import SettingsMenu from "components/app/home/settings-menu";
@@ -13,7 +13,6 @@ import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
 import { formatDate } from "utils/dates";
-import DatePickerMenu from "../date-picker-menu";
 import { UNIT_LABEL_MAP } from "utils/map";
 import IconButton from "components/ui/icon-button";
 import { Headline } from "slices/headlines";
@@ -22,11 +21,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { Mode } from "slices/modes";
+import Icon from "components/ui/Icon";
 
 type MainContainerProps = {
   isMobile: boolean;
-  setIsMobile: any;
-  setModes: any;
+  setIsMobile: ActionCreatorWithPayload<boolean, string>;
+  setModes: ActionCreatorWithPayload<Mode[], string>;
   layersLabelArr: string[];
   dateOfDataShown: Date;
   headlines: Headline[];
@@ -122,7 +123,9 @@ const MainContainer = ({
   };
 
   // Store the isMobile flag in the redux store
-  useEffect(() => setIsMobile(isMobile), [isMobile, setIsMobile]);
+  useEffect(() => {
+    setIsMobile(isMobile);
+  }, [isMobile, setIsMobile]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -320,6 +323,9 @@ const MainContainer = ({
               id="menu-button"
               data-testid="toggle"
             >
+              <div className={menuButtonStyles["icon"]}>
+                <Icon name={hasMenuOpen ? "close" : "layers"} size={28} type="decorative" />
+              </div>
               <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
                 <span>Latest Extreme Events</span>
                 {layersLabelArr.length > 0 && (
@@ -337,8 +343,7 @@ const MainContainer = ({
           </>
         )}
       </Actions>
-      {!isFetchingTemplates && <SettingsMenu isMobile={isMobile} />}
-      {!isFetchingTemplates && <DatePickerMenu isMobile={isMobile} />}
+      {!isFetchingTemplates && <SettingsMenu />}
     </div>
   );
 };

@@ -1,0 +1,44 @@
+@import "css/_settings";
+@import "css/tools/_fontSize";
+
+.c-footer {
+  padding-top: 24px;
+
+  &__title {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    color: $white;
+    margin-bottom: 12px;
+    @include font-size(20px, 30px);
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+
+    > a {
+      color: $white;
+      @include font-size(16px, 24px);
+
+      &:not(:last-child) {
+        margin-bottom: 12px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__socials {
+    display: flex;
+    margin-bottom: 24px;
+  }
+
+  &__copyright {
+    color: $white;
+    font-weight: 500;
+    @include font-size(14px, 18px);
+  }
+}

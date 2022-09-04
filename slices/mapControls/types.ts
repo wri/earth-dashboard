@@ -1,5 +1,5 @@
 export type MapControlsState = {
-  projectionType: string;
+  projectionType: "orthographic" | "equirectangular";
   isSettingsOpen: boolean;
   isFetchLocationDisabled: boolean;
   shouldFetchLocation: boolean;
@@ -7,7 +7,7 @@ export type MapControlsState = {
   shouldZoomOut: boolean;
   isDatePickerOpen: boolean;
   isDatePickerDisabled: boolean;
-  currentLocation?: any;
+  currentLocation?: [number, number];
   currentScale: string;
   currentScaleBy: number;
 };

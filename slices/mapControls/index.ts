@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "store/types";
 import { MapControlsState } from "./types";
 
 export * from "./types";
@@ -14,7 +15,7 @@ const initialState: MapControlsState = {
   shouldZoomOut: false,
   isDatePickerOpen: false,
   isDatePickerDisabled: false,
-  currentLocation: null,
+  currentLocation: undefined,
   currentScale: "default",
   currentScaleBy: 1
 };
@@ -23,10 +24,10 @@ const mapControlsSlice = createSlice({
   name: NAME,
   initialState,
   reducers: {
-    setSettingsOpen: (state: any) => {
+    setSettingsOpen: state => {
       state.isSettingsOpen = true;
     },
-    setSettingsClose: (state: any) => {
+    setSettingsClose: state => {
       state.isSettingsOpen = false;
     },
     setIsFetchLocationDisabled: (state, { payload }: PayloadAction<boolean>) => {
@@ -36,10 +37,10 @@ const mapControlsSlice = createSlice({
       state.isFetchLocationDisabled = payload;
       state.shouldFetchLocation = payload;
     },
-    setGlobe2d: (state: any) => {
+    setGlobe2d: state => {
       state.projectionType = "equirectangular";
     },
-    setGlobe3d: (state: any) => {
+    setGlobe3d: state => {
       state.projectionType = "orthographic";
     },
     setShouldZoomIn: (state, { payload }: PayloadAction<boolean>) => {
@@ -54,7 +55,7 @@ const mapControlsSlice = createSlice({
     setIsDatePickerDisabled: (state, { payload }: PayloadAction<boolean>) => {
       state.isDatePickerDisabled = payload;
     },
-    setCurrentLocation: (state, { payload }: PayloadAction<any>) => {
+    setCurrentLocation: (state, { payload }: PayloadAction<[number, number]>) => {
       state.currentLocation = payload;
 
       if ((Array.isArray(payload) && payload.length === 2) || payload === null) {
@@ -85,16 +86,16 @@ export const {
   setCurrentScale,
   setCurrentScaleBy
 } = mapControlsSlice.actions;
-export const isSettingsOpen = (state: any) => state[NAME].isSettingsOpen;
-export const isFetchLocationDisabled = (state: any) => state[NAME].isFetchLocationDisabled;
-export const shouldFetchLocation = (state: any) => state[NAME].shouldFetchLocation;
-export const isGlobe2d = (state: any) => state[NAME].projectionType === "equirectangular";
-export const shouldZoomOut = (state: any) => state[NAME].shouldZoomOut;
-export const shouldZoomIn = (state: any) => state[NAME].shouldZoomIn;
-export const isDatePickerOpen = (state: any) => state[NAME].isDatePickerOpen;
-export const isDatePickerDisabled = (state: any) => state[NAME].isDatePickerDisabled;
-export const currentLocation = (state: any) => state[NAME].currentLocation;
-export const currentScale = (state: any) => state[NAME].currentScale;
-export const currentScaleBy = (state: any) => state[NAME].currentScaleBy;
+export const isSettingsOpen = (state: RootState) => state[NAME].isSettingsOpen;
+export const isFetchLocationDisabled = (state: RootState) => state[NAME].isFetchLocationDisabled;
+export const shouldFetchLocation = (state: RootState) => state[NAME].shouldFetchLocation;
+export const isGlobe2d = (state: RootState) => state[NAME].projectionType === "equirectangular";
+export const shouldZoomOut = (state: RootState) => state[NAME].shouldZoomOut;
+export const shouldZoomIn = (state: RootState) => state[NAME].shouldZoomIn;
+export const isDatePickerOpen = (state: RootState) => state[NAME].isDatePickerOpen;
+export const isDatePickerDisabled = (state: RootState) => state[NAME].isDatePickerDisabled;
+export const currentLocation = (state: RootState) => state[NAME].currentLocation;
+export const currentScale = (state: RootState) => state[NAME].currentScale;
+export const currentScaleBy = (state: RootState) => state[NAME].currentScaleBy;
 
 export default mapControlsSlice.reducer;

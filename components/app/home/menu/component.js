@@ -9,6 +9,7 @@ import DataHighlightsPanel from "./panels/data-highlights";
 import ResizablePanel from "components/app/home/dialog-panel/resizable-panel";
 import { fireEvent } from "utils/gtag";
 import { MENU_TAB_CHANGE_EVENT_NAME } from "constants/tag-manager";
+import IconButton from "components/ui/icon-button";
 
 const INFO_TAB_INDEX = 3;
 const DATA_TAB_INDEX = 2;
@@ -130,9 +131,7 @@ const Menu = forwardRef(
                       )}
                     </>
                   )}
-                  {onClose && (
-                    <button className={styles["c-home-menu__close-button"]} onClick={onClose} aria-label="Close menu" />
-                  )}
+                  {onClose && <IconButton name="close" size={24} small onClick={onClose} />}
                 </div>
                 <TabList className={classnames(styles["c-home-menu__tab-list"], "u-padding-top-xs")}>
                   <Tab

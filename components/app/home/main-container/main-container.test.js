@@ -83,8 +83,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                   Latest Extreme Events
                 </h2>
                 <button
-                  aria-label="Close menu"
-                  class="c-home-menu__close-button"
+                  class="c-icon-button small"
                 />
               </div>
               <ul
@@ -288,7 +287,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
       </div>
     </div>
     <div
-      class="c-home-actions u-padding-horizontal-l"
+      class="c-home-actions u-padding-horizontal-l over-pointer-absolute"
     >
       <button
         aria-controls="menu"
@@ -298,6 +297,9 @@ test("<MainContainer /> renders correctly as desktop", async () => {
         data-testid="toggle"
         id="menu-button"
       >
+        <div
+          class="icon"
+        />
         <div
           class="c-home-menu-toggle__text-container"
         >
@@ -331,7 +333,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
     data-testid="iframe-container"
   >
     <div
-      class="c-home-actions mobile u-padding-horizontal-l"
+      class="c-home-actions mobile u-padding-horizontal-l over-pointer-absolute"
     >
       <button
         aria-controls="menu"
@@ -341,6 +343,9 @@ test("<MainContainer /> renders correctly as mobile", async () => {
         data-testid="toggle"
         id="menu-button"
       >
+        <div
+          class="icon"
+        />
         <div
           class="c-home-menu-toggle__text-container"
         >

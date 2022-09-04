@@ -203,7 +203,8 @@ const MapIframe = forwardRef(
             <p className="u-margin-none">{toolTipDetails.text}</p>
           </ToolTip>
         )}
-        {extremeEventLocations.length > 0 &&
+        {extremeEventLocations &&
+          extremeEventLocations.length > 0 &&
           extremeEventLocations.map(location => {
             if (!location.isVisible) return null;
             return (
