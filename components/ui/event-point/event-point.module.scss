@@ -1,0 +1,10 @@
+@import "css/settings/zIndex";
+
+.c-event-point {
+  position: absolute;
+  z-index: $z-index-tooltip;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+}

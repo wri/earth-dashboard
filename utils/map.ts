@@ -15,6 +15,8 @@ export type GeoMarker = {
   };
 };
 
+export type GeoMarkerOverlayLocation = { isVisible: boolean; x: number | undefined; y: number | undefined } | null;
+
 export const SAMPLE_OVERLAY_INDEX = 1;
 export const SAMPLE_ANNOTATION_INDEX = 2;
 export const UNIT_DESCRIPTOR_TYPES = {
@@ -63,7 +65,7 @@ export const getNewProjection = (payload: any) => {
     .precision(payload.precision);
 };
 
-export const getMarkerProperties = (marker: GeoMarker, projection?: GeoProjection) => {
+export const getMarkerProperties = (marker: GeoMarker, projection?: GeoProjection): GeoMarkerOverlayLocation => {
   if (marker && projection) {
     const { coordinates } = marker.geometry;
     const [x, y] = projection(coordinates) ?? [];

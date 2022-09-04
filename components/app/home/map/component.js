@@ -4,7 +4,8 @@ import useCurrentPosition from "hooks/useCurrentPosition";
 import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
-import ToolTip from "components/ui/tooltip/component";
+import ToolTip from "components/ui/tooltip";
+import EventPoint from "components/ui/event-point";
 import { validateDataLayer } from "utils/map";
 
 const MapIframe = forwardRef(
@@ -37,9 +38,11 @@ const MapIframe = forwardRef(
       toolTipDetails,
       currentScale,
       currentScaleBy,
+      extremeEventLocations,
       setCurrentScale,
       setCurrentScaleBy,
-      hasIframeConnected
+      hasIframeConnected,
+      setCurrentHeadline
     },
     ref
   ) => {
@@ -200,6 +203,18 @@ const MapIframe = forwardRef(
             <p className="u-margin-none">{toolTipDetails.text}</p>
           </ToolTip>
         )}
+        {extremeEventLocations.length > 0 &&
+          extremeEventLocations.map(location => {
+            if (!location.isVisible) return null;
+            return (
+              <EventPoint
+                x={`${location.x}px`}
+                y={`${location.y}px`}
+                onClick={() => setCurrentHeadline(location.headline)}
+                key={location.headline.id}
+              />
+            );
+          })}
         <iframe
           id="nullSchoolIframe"
           width="100%"

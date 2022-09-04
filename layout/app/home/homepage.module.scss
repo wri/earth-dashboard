@@ -1,5 +1,6 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
+@import "css/settings/_zIndex";
 
 .homepage {
   position: relative;
@@ -209,7 +210,6 @@
       position: absolute;
       right: 24px;
       top: 111px;
-      z-index: 10;
 
       .scale {
         height: calc(84vh - 111px - 100px - 24px);
@@ -238,6 +238,16 @@
           }
         }
       }
+    }
+
+    .over-pointer {
+      z-index: $z-index-menu;
+      position: relative;
+    }
+
+    .over-pointer-absolute {
+      z-index: $z-index-menu;
+      position: absolute;
     }
   }
 }

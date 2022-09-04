@@ -21,6 +21,7 @@ import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 type MainContainerProps = {
   isMobile: boolean;
@@ -32,6 +33,7 @@ type MainContainerProps = {
   currentHeadline?: Headline;
   currentHeadlineId?: number;
   shouldFadeControls: boolean;
+  setHeadlines: ActionCreatorWithPayload<Headline[], string>;
 };
 
 const MainContainer = ({
@@ -42,7 +44,8 @@ const MainContainer = ({
   dateOfDataShown,
   headlines,
   shouldFadeControls,
-  currentHeadline
+  currentHeadline,
+  setHeadlines
 }: MainContainerProps) => {
   const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
   const [hasIframe, setHasIframe] = useState<boolean>(false);
@@ -73,10 +76,13 @@ const MainContainer = ({
     enableToolTip,
     disableToolTip,
     scaleData: scaleToolTipData,
-    hasIframeConnected
+    hasIframeConnected,
+    extremeEventLocations
   } = useIframeBridge({
     allowClickEvents: !currentHeadline,
-    headlines
+    headlines,
+    isMobile,
+    setHeadlines
   });
 
   const overlayLayer = useMemo(() => {
@@ -218,6 +224,7 @@ const MainContainer = ({
           earthClient={earthClient}
           layers={layers}
           toolTipDetails={toolTipDetails}
+          extremeEventLocations={extremeEventLocations}
           hasIframeConnected={hasIframeConnected}
         />
       )}
@@ -227,14 +234,14 @@ const MainContainer = ({
             min={scaleData?.min}
             max={scaleData?.max}
             scaleUnit={scaleData?.unitSymbol}
-            className={classnames(styles["scale"], shouldFadeControls && "u-opacity-faded")}
+            className={classnames(styles["scale"], styles["over-pointer"], shouldFadeControls && "u-opacity-faded")}
             readOnly
             scaleGradient={overlayLayer.product.scale.getCss(0)}
             toolTipData={scaleToolTipData}
             hasSmallLabels={scaleData?.hasSmallLabels}
           />
           <div className={classnames(styles["controls"])}>
-            <div className={classnames(styles["zooms"])}>
+            <div className={classnames(styles["zooms"], styles["over-pointer"])}>
               <IconButton
                 name="zoom-in"
                 onClick={() => {
@@ -248,7 +255,12 @@ const MainContainer = ({
                 }}
               />
             </div>
-            <IconButton name="location" onClick={handleToggleLocation} disabled={isLocationDisabled} />
+            <IconButton
+              name="location"
+              onClick={handleToggleLocation}
+              disabled={isLocationDisabled}
+              className={classnames(styles["over-pointer"])}
+            />
           </div>
         </div>
       )}
@@ -265,7 +277,10 @@ const MainContainer = ({
         />
       )}
 
-      <Actions isMobile={isMobile} className={classnames(shouldFadeControls && "u-opacity-faded")}>
+      <Actions
+        isMobile={isMobile}
+        className={classnames(shouldFadeControls && "u-opacity-faded", styles["over-pointer-absolute"])}
+      >
         {error ? (
           <p role="alert" className="u-text-white">
             There was an error loading the map, please try again later

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setIsMobile } from "slices/common";
 import { NAME as modesSliceName, setModes } from "slices/modes";
 import { NAME as mapControlsSliceName } from "slices/mapControls";
-import { NAME as headlineSliceName } from "slices/headlines";
+import { NAME as headlineSliceName, setHeadlines } from "slices/headlines";
 import { RootState } from "store/types";
 
 export default connect(
@@ -18,6 +18,7 @@ export default connect(
   },
   {
     setModes,
-    setIsMobile
+    setIsMobile,
+    setHeadlines
   }
 )(MainContainerComponent);

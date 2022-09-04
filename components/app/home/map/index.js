@@ -23,6 +23,7 @@ import {
   setCurrentMode,
   NAME as modesSliceName
 } from "slices/modes";
+import { setCurrentHeadline } from "slices/headlines";
 
 export default connect(
   state => ({
@@ -57,7 +58,8 @@ export default connect(
     setCurrentLocation,
     setCurrentScale,
     setCurrentScaleBy,
-    setCurrentMode
+    setCurrentMode,
+    setCurrentHeadline
   },
   null,
   { forwardRef: true }
