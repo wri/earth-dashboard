@@ -228,6 +228,7 @@ const MainContainer = ({
           layers={layers}
           toolTipDetails={toolTipDetails}
           extremeEventLocations={extremeEventLocations}
+          setHasMenuOpen={setHasMenuOpen}
           hasIframeConnected={hasIframeConnected}
         />
       )}

@@ -39,6 +39,7 @@ const MapIframe = forwardRef(
       currentScale,
       currentScaleBy,
       extremeEventLocations,
+      setHasMenuOpen,
       setCurrentScale,
       setCurrentScaleBy,
       hasIframeConnected,
@@ -196,6 +197,11 @@ const MapIframe = forwardRef(
       }
     }, [dateOfDataShown, earthServer]);
 
+    const handleEventPointClicked = headline => {
+      setHasMenuOpen(true);
+      setCurrentHeadline(headline);
+    };
+
     return (
       <>
         {toolTipDetails && toolTipDetails.isVisible && (
@@ -211,7 +217,7 @@ const MapIframe = forwardRef(
               <EventPoint
                 x={`${location.x}px`}
                 y={`${location.y}px`}
-                onClick={() => setCurrentHeadline(location.headline)}
+                onClick={() => handleEventPointClicked(location.headline)}
                 key={location.headline.id}
               />
             );
