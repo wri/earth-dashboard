@@ -82,7 +82,7 @@ const useIframeBridge = ({ callback, allowClickEvents, headlines, isMobile, setH
         earthServer.current.annotate(`indicator-${headline.id}`, marker);
       });
     }
-  }, [mostRecentHeadlines]);
+  }, [mostRecentHeadlines, earthServer.current]);
 
   // Set locations for extreme event buttons (overlay)
   useEffect(() => {
@@ -96,7 +96,7 @@ const useIframeBridge = ({ callback, allowClickEvents, headlines, isMobile, setH
       });
       setExtremeEventLocations(extremeEventLocations);
     }
-  }, [mostRecentHeadlines, currentProjectionFunc, currentProjection]);
+  }, [mostRecentHeadlines, currentProjectionFunc, currentProjection, earthServer.current]);
 
   // Set details for the tool tip on extreme event
   useEffect(() => {
