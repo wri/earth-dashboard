@@ -131,7 +131,7 @@ const Menu = forwardRef(
                       )}
                     </>
                   )}
-                  {onClose && <IconButton name="close" size={24} small onClick={onClose} />}
+                  {onClose && <IconButton name="close" size={12} small onClick={onClose} />}
                 </div>
                 <TabList className={classnames(styles["c-home-menu__tab-list"], "u-padding-top-xs")}>
                   <Tab
