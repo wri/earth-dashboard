@@ -192,7 +192,6 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
               [styles["modal__content__controls__mobile"]]: isMobile
             })}
           >
-            {/* <div className={styles["modal__content__controls__box"]}> */}
             <button
               data-testid="back-btn"
               disabled={counter === 0}
@@ -211,7 +210,6 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
                 [styles["modal__content__controls__box__continueBtn"]]: true,
                 [styles["modal__content__controls__box__continueBtn-mobile"]]: isMobile
               })}
-              // className={styles["modal__content__controls__box__continueBtn"]}
               onClick={nextStep}
             >
               <h4 className={styles["modal__content__controls__box__continueBtn__text-mobile"]}>
