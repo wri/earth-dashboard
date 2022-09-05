@@ -101,7 +101,8 @@
     outline: none;
   }
 
-  &:focus {
+  &:focus,
+  &:hover {
     .c-menu-option__button {
       display: flex;
     }

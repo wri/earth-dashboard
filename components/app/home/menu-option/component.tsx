@@ -15,7 +15,7 @@ export type MenuOptionProps = {
 const MenuOption = ({ icon, title, description, buttonText, onClick, className }: MenuOptionProps) => {
   return (
     <div className={classNames(styles["c-menu-option__underlay"], className)} data-testid="option">
-      <div className={classNames(styles["c-menu-option"])}>
+      <div tabIndex={1} className={classNames(styles["c-menu-option"])}>
         <div className={styles["c-menu-option__header-row"]}>
           {icon && <img className={styles["c-menu-option__image"]} src={icon} alt="" role="presentation" />}
           <h3 className={styles["c-menu-option__title"]}>{title}</h3>
