@@ -34,7 +34,8 @@ export type EarthLayer = {
     scale: {
       type: "linear";
       range: Record<string, number[]>;
-      colours: Record<string, number>;
+      colors: Record<string, number>;
+      getCss: (deg: number) => string;
     };
   };
 };

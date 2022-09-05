@@ -9,7 +9,7 @@ import HeadApp from "layout/head/app";
 import Header from "layout/header";
 
 // constants
-import { GDPR_ACCEPTED_KEY } from "./constants";
+import { GDPR_ACCEPTED_KEY, ONBOARDING_COMPLETED } from "./constants";
 
 // utils
 import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
@@ -18,6 +18,7 @@ import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
 import styles from "./layout-app.module.scss";
 
 import Icon from "components/ui/Icon";
+import OnboardingModal from "layout/onboarding-modal";
 
 function LayoutApp(props) {
   const {
@@ -34,6 +35,7 @@ function LayoutApp(props) {
     themeColor
   } = props;
   const [showGDPRBanner, setShowGDPRBanner] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const isServer = typeof window === "undefined";
 
   useEffect(() => {
@@ -43,6 +45,11 @@ function LayoutApp(props) {
     // Check if GDPR has been accepted
     if (localStorage.getItem(GDPR_ACCEPTED_KEY) !== "true") {
       setShowGDPRBanner("true");
+    }
+
+    // Check if user as completed the onboarding phase
+    if (localStorage.getItem(ONBOARDING_COMPLETED) !== "true") {
+      setShowModal(true);
     }
   }, []);
 
@@ -134,6 +141,19 @@ function LayoutApp(props) {
         <MediaContextProvider>
           <Desktop>{getGDPRContainer(false)}</Desktop>
           <Mobile>{getGDPRContainer(true)}</Mobile>
+        </MediaContextProvider>
+      )}
+
+      {/* MODAL BANNER */}
+      {showModal && (
+        <MediaContextProvider>
+          <Desktop>
+            <OnboardingModal showModal={showModal} setShowModal={setShowModal} />
+          </Desktop>
+          <Mobile>
+            {/* TODO: Construct for Mobile View */}
+            <OnboardingModal showModal={showModal} setShowModal={setShowModal} />
+          </Mobile>
         </MediaContextProvider>
       )}
 

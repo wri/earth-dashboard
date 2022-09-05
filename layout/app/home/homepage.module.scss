@@ -236,6 +236,10 @@
           > button:first-child {
             margin-bottom: 12px;
           }
+
+          > button:hover {
+            background-color: $colour-galaxy;
+          }
         }
       }
     }

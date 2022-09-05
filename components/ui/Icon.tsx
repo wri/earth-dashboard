@@ -6,12 +6,14 @@ export type IconNames =
   | "3d"
   | "arrow-down-homepage"
   | "arrow-right"
+  | "arrow-left"
   | "arrow-up-homepage"
   | "arrow up-right-homepage"
   | "back-chevron"
   | "chevron-left"
   | "chevron-right"
   | "chevron-up"
+  | "chevron-down"
   | "close"
   | "cog"
   | "error-circle"
@@ -26,7 +28,11 @@ export type IconNames =
   | "twitter"
   | "youtube-play"
   | "zoom-in"
-  | "zoom-out";
+  | "zoom-out"
+  | "cookie"
+  | "earth-hq"
+  | "check"
+  | "layers";
 
 type AccessibilityProps =
   | { type: "meaningful"; accessibilityText: string }

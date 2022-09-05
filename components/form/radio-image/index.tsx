@@ -1,16 +1,27 @@
-import { useSelector, useDispatch } from "react-redux";
-import classnames from "classnames";
 import uuid from "react-uuid";
-import Image from "next/image";
+import classnames from "classnames";
+import Image, { StaticImageData } from "next/image";
 import styles from "./radio-image.module.scss";
-import PropTypes from "prop-types";
 
 const ID = "radio-image-" + uuid();
 
-const RadioImage = ({ className, label, name, options, getSelectedOption, handleChange }) => {
-  const dispatch = useDispatch();
-  const activeId = useSelector(getSelectedOption());
+type RadioImageData = {
+  id: string;
+  image: StaticImageData;
+  label: string;
+};
 
+type RadioImageProps = {
+  name: string;
+  label: string;
+  options: RadioImageData[];
+  activeOptionId: string;
+  onChange: (id: string) => void;
+  className?: string;
+};
+
+/** Selector with image and label text. */
+const RadioImage = ({ label, name, options, activeOptionId, onChange, className = "" }: RadioImageProps) => {
   return (
     <div className={classnames(styles["c-radio-image"], className)}>
       <span id={ID} className={styles["c-radio-image__label"]}>
@@ -20,7 +31,7 @@ const RadioImage = ({ className, label, name, options, getSelectedOption, handle
       <div className={styles["c-radio-image__options"]} role="group" aria-labelledby={ID}>
         {options.map(option => {
           const id = `radio-image-${name}-${option.id}`;
-          const checked = option.id === activeId;
+          const checked = option.id === activeOptionId;
 
           return (
             <div key={option.id}>
@@ -31,7 +42,7 @@ const RadioImage = ({ className, label, name, options, getSelectedOption, handle
                 name={name}
                 value={option.id}
                 checked={checked}
-                onChange={e => dispatch(handleChange(e.currentTarget.value))}
+                onChange={e => onChange(e.currentTarget.value)}
                 data-testid={option.id}
               />
               <label
@@ -52,25 +63,6 @@ const RadioImage = ({ className, label, name, options, getSelectedOption, handle
       </div>
     </div>
   );
-};
-
-RadioImage.propTypes = {
-  className: PropTypes.string,
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-      label: PropTypes.string.isRequired
-    })
-  ).isRequired,
-  getSelectedOption: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired
-};
-
-RadioImage.defaultProps = {
-  className: ""
 };
 
 export default RadioImage;

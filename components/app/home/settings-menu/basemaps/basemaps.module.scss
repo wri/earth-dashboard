@@ -1,0 +1,75 @@
+@import "css/_settings";
+@import "css/tools/fontSize";
+@import "css/settings/breakpoints";
+
+.c-basemaps {
+  background-color: $colour-galaxy;
+  padding-top: 24px;
+  padding-bottom: 24px;
+
+  &__selector > span {
+    text-transform: uppercase;
+    font-weight: 600;
+    @include font-size(20px);
+  }
+
+  &__data {
+    margin-top: 16px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    * {
+      color: $white;
+    }
+
+    &__label {
+      @include font-size(16px, 24px);
+      font-weight: 500;
+      margin-bottom: 8px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        width: calc(100% / 3);
+        margin-bottom: 0px;
+      }
+    }
+
+    > button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      background-color: $colour-night;
+      padding: 8px 16px;
+      border-radius: 48px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        width: calc(100% / 3);
+      }
+
+      > span {
+        @include font-size(16px, 24px);
+        font-weight: 500;
+        font-family: "Barlow Condensed", sans-serif;
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          @include font-size(20px, 30px);
+        }
+      }
+
+      > .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 24px;
+        width: 24px;
+        background-color: $colour-flame;
+        border-radius: 50%;
+      }
+    }
+  }
+}

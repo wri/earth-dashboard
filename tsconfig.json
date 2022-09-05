@@ -24,7 +24,8 @@
       "selectors": ["./selectors"],
       "static": ["./public/static"],
       "services": ["./services"],
-      "constants": ["./constants"]
+      "constants": ["./constants"],
+      "hooks": ["./hooks"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
