@@ -26,7 +26,7 @@
     -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 
-    //MOBILE
+
     &__mobile {
       background-color: $black;
       top: 0;
@@ -50,7 +50,6 @@
         align-items: center;
       }
 
-      // MObile Nav
       &__continue {
         font-family: "Barlow";
         font-style: normal;
@@ -71,17 +70,12 @@
       overflow: hidden;
       height: 25rem;
 
-      // MOBILE
       &__mobile {
         position: relative;
-        // overflow: hidden;
-        height: 50%;
-
-        // ADDED
+        height: 55%;
         display: flex;
         flex-direction: column;
       }
-      //ADDED
       &__contain-mobile {
         position: relative;
         display: flex;
@@ -147,10 +141,6 @@
       &__earth-hq {
         margin-right: 10px;
       }
-      &__earth-hq__mobile {
-        // Mobile
-        display: none;
-      }
     }
 
     &__image {
@@ -186,7 +176,6 @@
         text-align: center;
         height: 6rem;
 
-        //Mobile text
         &__mobile {
           font-family: "Barlow";
           font-style: normal;
@@ -201,13 +190,12 @@
         }
       }
 
-      // MOBILE
       &__mobile {
         display: flex;
         flex-direction: column;
 
         height: 50%;
-        padding: 40px;
+        padding: 24px;
       }
 
       &__controls {
