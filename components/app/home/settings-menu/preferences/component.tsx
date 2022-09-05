@@ -1,7 +1,7 @@
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import FormSwitch from "components/form/switch";
 import SelectInput from "components/ui/select";
-import { LANGUAGES, UNITS } from "constants/settings";
+import { LANGUAGES } from "constants/settings";
 import { useState } from "react";
 import { BasemapType, GlobalSetting } from "slices/globalSettings";
 import styles from "./preferences.module.scss";
@@ -31,7 +31,7 @@ const Preferences = ({
   setGlobe2d
 }: PreferencesProps) => {
   const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
-  const [unit, setUnit] = useState<{ value: string; label: string }>(UNITS[0]);
+  // const [unit, setUnit] = useState<{ value: string; label: string }>(UNITS[0]);
 
   /** Toggles and sets the new state for map grid. */
   const handleGridChange = (newState: boolean, type: ToggleType) => {
@@ -73,10 +73,12 @@ const Preferences = ({
       )}
 
       {/* Units */}
-      <div className={styles["c-preferences__unit"]}>
-        <h4>Units</h4>
-        <SelectInput options={UNITS} value={unit} onChange={setUnit} aria-label="Select a unit" />
-      </div>
+      {/* TODO: Blocked and waiting for client
+        <div className={styles["c-preferences__unit"]}>
+          <h4>Units</h4>
+          <SelectInput options={UNITS} value={unit} onChange={setUnit} aria-label="Select a unit" />
+        </div>
+      */}
 
       {/* Map grid toggle */}
       <FormSwitch
