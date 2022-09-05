@@ -3,8 +3,10 @@
 @import "css/tools/fontSize.scss";
 
 .c-home-menu-action {
-  width: auto;
-  left: 0;
+  @media screen and (min-width: $global-breakpoint-md) {
+    width: auto;
+    left: 0;
+  }
 }
 
 .c-home-menu-toggle {
