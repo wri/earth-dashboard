@@ -12,10 +12,7 @@ const Header = () => {
 
   return (
     <header
-      className={classnames(
-        styles["c-site-header"],
-        router.pathname === "/" ? (styles["fixed"], styles["home"]) : styles["sticky"]
-      )}
+      className={classnames(styles["c-site-header"], router.pathname === "/" ? styles["fixed"] : styles["sticky"])}
     >
       {/* Logo */}
       <div className={styles["c-site-header__logo"]}>

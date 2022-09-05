@@ -4,7 +4,7 @@
 
 .c-home-menu-action {
   @media screen and (min-width: $global-breakpoint-md) {
-    width: auto;
+    width: 448px !important;
     left: 0;
   }
 }

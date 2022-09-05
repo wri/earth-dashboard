@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
+import { useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "./headline.module.scss";
 import WidgetPreview from "components/widgets/preview";
 import { RESOURCE_WATCH_WIDGET_LINK } from "constants/widgets";
-import { useMemo, useEffect } from "react";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME } from "constants/tag-manager";
 

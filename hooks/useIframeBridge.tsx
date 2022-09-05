@@ -120,7 +120,7 @@ const useIframeBridge = ({ callback, allowClickEvents, headlines, isMobile, setH
       setToolTipVisible(true);
       const marker = getIndicatorGeoJson(coords);
       setCurrentMarker(marker);
-      earthServer.current.annotate(POINT_INDICATOR, marker);
+      // earthServer.current.annotate(POINT_INDICATOR, marker);
     }
   }, []);
 
@@ -128,7 +128,7 @@ const useIframeBridge = ({ callback, allowClickEvents, headlines, isMobile, setH
     if (earthServer.current) {
       setToolTipVisible(false);
       setToolTipText("");
-      earthServer.current.annotate(POINT_INDICATOR, null);
+      // earthServer.current.annotate(POINT_INDICATOR, null);
     }
   }, []);
 
@@ -161,7 +161,7 @@ const useIframeBridge = ({ callback, allowClickEvents, headlines, isMobile, setH
         if (this.allowClickEvents) {
           const marker = getIndicatorGeoJson(coords);
           setCurrentMarker(marker);
-          earthServer.current?.annotate(POINT_INDICATOR, marker);
+          // earthServer.current?.annotate(POINT_INDICATOR, marker);
 
           const coordinates = marker.geometry.coordinates;
           const samples = await earthServer.current?.sampleAt(point, coordinates);
