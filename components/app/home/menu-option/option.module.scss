@@ -95,16 +95,17 @@
     }  
   }
 
-  &:focus,
-  &:hover {
+  &__focussed {
     border: 4px solid $colour-flame;
-    outline: none;
-  }
 
-  &:focus {
     .c-menu-option__button {
       display: flex;
     }
+  }
+
+  &:hover {
+    border: 4px solid $colour-flame;
+    outline: none;
   }
 
   &[aria-checked="true"] {
