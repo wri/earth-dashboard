@@ -262,19 +262,21 @@ const Menu = forwardRef(
                     onTouchMove={onTouchMove}
                     onTouchEnd={onTouchEnd}
                   >
-                    <button
-                      className={classnames(styles["c-home-menu__footer-button"], styles["left"])}
+                    <IconButton
+                      name="arrow-left"
+                      size={24}
+                      small
                       disabled={disableBackButton}
-                      aria-label="Back"
                       onClick={() => navigateHeadline("back")}
                     />
                     <div className={classnames(styles["c-home-menu__footer-info"])}>
                       <h3>{footerHeading}</h3>
                     </div>
-                    <button
-                      className={classnames(styles["c-home-menu__footer-button"], styles["right"])}
+                    <IconButton
+                      name="arrow-right"
+                      size={24}
+                      small
                       disabled={disableNextButton}
-                      aria-label="Next"
                       onClick={() => navigateHeadline("next")}
                     />
                   </div>
