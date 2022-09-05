@@ -1,20 +1,18 @@
 import styles from "../menu.module.scss";
-import { Dispatch, SetStateAction, useState } from "react";
+import { RadioGroup } from "@headlessui/react";
+import classnames from "classnames";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
 import { setCurrentMode, NAME as modesSliceName, Mode } from "slices/modes";
 import MenuOption from "components/app/home/menu-option";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
-const ALL_EVENTS_ID = -1;
-
-const mapHighlightToOption = ({ id, attributes }: Mode, setFocusedPanel: Dispatch<SetStateAction<Number | null>>) => {
+const mapHighlightToOption = ({ id, attributes }: Mode) => {
   return {
     id,
     ...attributes,
     buttonText: "Learn More",
-    focusAction: () => setFocusedPanel(id),
-    ctaAction: () => {}
+    onClick: () => {}
   };
 };
 
@@ -25,8 +23,7 @@ type DataIndexProps = {
 };
 
 const DataIndex = ({ highlights, setCurrentMode, currentMode }: DataIndexProps) => {
-  const [focusedPanel, setFocusedPanel] = useState<Number | null>(null);
-  const dataLayers = highlights?.map(highlight => mapHighlightToOption(highlight, setFocusedPanel)) || [];
+  const dataLayers = highlights?.map(mapHighlightToOption) || [];
 
   return (
     <div className={styles["c-home-menu__scroll-area"]}>
@@ -35,12 +32,10 @@ const DataIndex = ({ highlights, setCurrentMode, currentMode }: DataIndexProps) 
         title="All Extreme Events"
         description="View all of the latest extreme events"
         buttonText="View All"
-        isFocussed={focusedPanel == ALL_EVENTS_ID}
-        focusAction={() => setFocusedPanel(ALL_EVENTS_ID)}
-        ctaAction={() => {}}
+        onClick={() => {}}
       />
       {dataLayers.map(dataLayer => (
-        <MenuOption key={dataLayer.id} {...dataLayer} isFocussed={focusedPanel == dataLayer.id} />
+        <MenuOption key={dataLayer.id} {...dataLayer} />
       ))}
     </div>
   );
