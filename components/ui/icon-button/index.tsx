@@ -8,10 +8,20 @@ type IconButtonProps = {
   className?: string;
   disabled?: boolean;
   small?: boolean;
+  iconClassName?: string;
 } & Pick<IconProps, "name" | "size">;
 
 /** Styled icon button. */
-const IconButton = ({ name, size, onClick, className = "", small, disabled, ...rest }: IconButtonProps) => {
+const IconButton = ({
+  name,
+  size,
+  onClick,
+  className = "",
+  small,
+  disabled,
+  iconClassName,
+  ...rest
+}: IconButtonProps) => {
   return (
     <button
       className={classnames(styles["c-icon-button"], { [styles["small"]]: small }, className)}
@@ -19,7 +29,7 @@ const IconButton = ({ name, size, onClick, className = "", small, disabled, ...r
       disabled={disabled}
       {...rest}
     >
-      <Icon name={name} size={size} type="decorative" />
+      <Icon name={name} size={size} className={iconClassName} type="decorative" />
     </button>
   );
 };
