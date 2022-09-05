@@ -152,7 +152,6 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
                 <Image
                   layout="fill"
                   objectFit="cover"
-                  // objectPosition="bottom"
                   priority={true}
                   key={image.id}
                   src={image.mobileURL}
@@ -199,6 +198,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
               disabled={counter === 0}
               className={classnames({
                 [styles["modal__content__controls__box__back-button"]]: true,
+                [styles["modal__content__controls__box__back-button-mobile"]]: isMobile,
                 [styles["hide"]]: counter === 0
               })}
               onClick={() => setCounter(state => state - 1)}
@@ -207,17 +207,21 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
             </button>
             <button
               data-testid="forward-btn"
-              className={styles["modal__content__controls__box__continueBtn"]}
+              className={classnames({
+                [styles["modal__content__controls__box__continueBtn"]]: true,
+                [styles["modal__content__controls__box__continueBtn-mobile"]]: isMobile
+              })}
+              // className={styles["modal__content__controls__box__continueBtn"]}
               onClick={nextStep}
             >
-              <h4 className={styles["modal__content__controls__box__continueBtn__text"]}>
+              <h4 className={styles["modal__content__controls__box__continueBtn__text-mobile"]}>
                 {counter === 2 ? "EXPLORE" : "CONTINUE"}
               </h4>
               <Icon
                 name={counter === 2 ? "check" : "arrow-right"}
                 size={32}
                 type="decorative"
-                className={styles["modal__content__controls__box__continueBtn__icon"]}
+                className={styles["modal__content__controls__box__continueBtn__icon-mobile"]}
               />
             </button>
             {/* </div> */}
