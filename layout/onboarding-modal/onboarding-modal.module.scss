@@ -213,7 +213,6 @@
         button {
           margin: 0.5rem;
           height: 2.875rem;
-          padding: 0.5rem 0.7rem;
           color: $white;
           border-radius: 30px;
           font-weight: bold;
@@ -270,6 +269,7 @@
             align-items: center;
             width: 10rem;
             justify-content: space-between;
+            padding: 8px;
             background-color: $colour-flame;
 
             &__text {
@@ -316,10 +316,10 @@
 
           &__back-button {
             font-family: "Barlow Condensed";
+            @include font-size(20px, 30px);
             font-weight: 500;
             border: solid 2px $white;
             width: 5rem;
-            padding: 0 13px;
 
             &:hover {
               color: $grey-darkest;
