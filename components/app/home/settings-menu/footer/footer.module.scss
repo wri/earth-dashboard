@@ -1,5 +1,6 @@
 @import "css/_settings";
 @import "css/tools/_fontSize";
+@import "css/settings/breakpoints";
 
 .c-footer {
   padding-top: 24px;
@@ -10,6 +11,10 @@
     color: $white;
     margin-bottom: 12px;
     @include font-size(20px, 30px);
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      font-family: Barlow;
+    }
   }
 
   &__links {

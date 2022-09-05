@@ -4,7 +4,8 @@ import useCurrentPosition from "hooks/useCurrentPosition";
 import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
 import { EarthClient } from "utils/iframeBridge/earthClient";
-import ToolTip from "components/ui/tooltip/component";
+import ToolTip from "components/ui/tooltip";
+import EventPoint from "components/ui/event-point";
 import { validateDataLayer } from "utils/map";
 import styles from "./map.module.scss";
 
@@ -38,10 +39,13 @@ const MapIframe = forwardRef(
       toolTipDetails,
       currentScale,
       currentScaleBy,
+      extremeEventLocations,
+      setHasMenuOpen,
       setCurrentScale,
       setCurrentScaleBy,
       hasIframeConnected,
-      isMobileMenuOpen
+      isMobileMenuOpen,
+      setCurrentHeadline
     },
     ref
   ) => {
@@ -195,6 +199,11 @@ const MapIframe = forwardRef(
       }
     }, [dateOfDataShown, earthServer]);
 
+    const handleEventPointClicked = headline => {
+      setHasMenuOpen(true);
+      setCurrentHeadline(headline);
+    };
+
     return (
       <>
         {toolTipDetails && toolTipDetails.isVisible && (
@@ -202,6 +211,19 @@ const MapIframe = forwardRef(
             <p className="u-margin-none">{toolTipDetails.text}</p>
           </ToolTip>
         )}
+        {extremeEventLocations &&
+          extremeEventLocations.length > 0 &&
+          extremeEventLocations.map(location => {
+            if (!location.isVisible) return null;
+            return (
+              <EventPoint
+                x={`${location.x}px`}
+                y={`${location.y}px`}
+                onClick={() => handleEventPointClicked(location.headline)}
+                key={location.headline.id}
+              />
+            );
+          })}
         <iframe
           className={isMobileMenuOpen ? styles["c-map-iframe__mobile-menu"] : styles["c-map-iframe"]}
           id="nullSchoolIframe"

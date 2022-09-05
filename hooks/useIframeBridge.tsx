@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useEffect } from "react";
+import { useRef, useCallback, useState, useEffect, useMemo } from "react";
 import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
@@ -10,18 +10,26 @@ import {
   getOverlayData,
   getAnnotationData,
   SAMPLE_OVERLAY_INDEX,
-  GeoMarker
+  GeoMarker,
+  GeoMarkerOverlayLocation
 } from "utils/map";
-import { POINT_INDICATOR } from "constants/map";
 import { EarthLayer } from "components/app/home/main-container/types";
 import { GeoProjection } from "d3-geo";
+import { Headline } from "slices/headlines";
+import { fetchClimateAlerts } from "services/gca";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+
+type GeoMarkerOverlayDetails = GeoMarkerOverlayLocation & { headline: Headline };
 
 type UseIframeBridgeConfig = {
   callback?: () => void;
   allowClickEvents: boolean;
+  headlines: Headline[];
+  isMobile: boolean;
+  setHeadlines: ActionCreatorWithPayload<Headline[], string>;
 };
 
-const useIframeBridge = ({ callback, allowClickEvents }: UseIframeBridgeConfig) => {
+const useIframeBridge = ({ callback, allowClickEvents, headlines, isMobile, setHeadlines }: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [error, setError] = useState<Error>();
   const [layers, setLayers] = useState<EarthLayer[]>([]);
@@ -32,8 +40,16 @@ const useIframeBridge = ({ callback, allowClickEvents }: UseIframeBridgeConfig) 
   const [scaleData, setScaleData] = useState({ annotation: null, overlay: null });
   const [toolTipText, setToolTipText] = useState<string>("");
   const [hasIframeConnected, setHasIframeConnected] = useState<boolean>(false);
+  const [extremeEventLocations, setExtremeEventLocations] = useState<GeoMarkerOverlayDetails[]>([]);
 
   const { width } = useWindowDimensions();
+
+  const MAX_NUMBER_OF_HEADLINES = 25;
+
+  const mostRecentHeadlines = useMemo(() => {
+    const reversed = [...headlines].reverse();
+    return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
+  }, [headlines]);
 
   // References
   const iframeRef = useRef<any>();
@@ -41,6 +57,47 @@ const useIframeBridge = ({ callback, allowClickEvents }: UseIframeBridgeConfig) 
 
   const currentProjectionFunc = useCallback(() => getNewProjection(currentProjection), [currentProjection]);
 
+  // Set headlines redux if mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    const getHeadlines = async () => {
+      try {
+        const resp = await fetchClimateAlerts();
+        // @ts-expect-error
+        setHeadlines(resp.data.data);
+      } catch (err) {
+        console.log("Error fetching modes");
+      }
+    };
+
+    getHeadlines();
+  }, [setHeadlines, isMobile]);
+
+  // Set the extreme event points
+  useEffect(() => {
+    if (earthServer.current) {
+      mostRecentHeadlines.forEach(headline => {
+        const marker = getIndicatorGeoJson([headline.attributes.location.lng, headline.attributes.location.lat]);
+        earthServer.current.annotate(`indicator-${headline.id}`, marker);
+      });
+    }
+  }, [mostRecentHeadlines, earthServer.current]);
+
+  // Set locations for extreme event buttons (overlay)
+  useEffect(() => {
+    if (earthServer.current) {
+      let extremeEventLocations: GeoMarkerOverlayDetails[] = [];
+      mostRecentHeadlines.forEach(headline => {
+        const projectionD3Func = currentProjectionFunc();
+        const marker = getIndicatorGeoJson([headline.attributes.location.lng, headline.attributes.location.lat]);
+        const location = getMarkerProperties(marker, projectionD3Func);
+        if (location) extremeEventLocations.push({ ...location, headline: headline });
+      });
+      setExtremeEventLocations(extremeEventLocations);
+    }
+  }, [mostRecentHeadlines, currentProjectionFunc, currentProjection, earthServer.current]);
+
+  // Set details for the tool tip on extreme event
   useEffect(() => {
     if (currentProjection && currentMarker && toolTipVisible) {
       const projectionD3Func = currentProjectionFunc();
@@ -62,7 +119,6 @@ const useIframeBridge = ({ callback, allowClickEvents }: UseIframeBridgeConfig) 
       setToolTipVisible(true);
       const marker = getIndicatorGeoJson(coords);
       setCurrentMarker(marker);
-      earthServer.current.annotate(POINT_INDICATOR, marker);
     }
   }, []);
 
@@ -70,7 +126,6 @@ const useIframeBridge = ({ callback, allowClickEvents }: UseIframeBridgeConfig) 
     if (earthServer.current) {
       setToolTipVisible(false);
       setToolTipText("");
-      earthServer.current.annotate(POINT_INDICATOR, null);
     }
   }, []);
 
@@ -103,7 +158,6 @@ const useIframeBridge = ({ callback, allowClickEvents }: UseIframeBridgeConfig) 
         if (this.allowClickEvents) {
           const marker = getIndicatorGeoJson(coords);
           setCurrentMarker(marker);
-          earthServer.current?.annotate(POINT_INDICATOR, marker);
 
           const coordinates = marker.geometry.coordinates;
           const samples = await earthServer.current?.sampleAt(point, coordinates);
@@ -162,6 +216,7 @@ const useIframeBridge = ({ callback, allowClickEvents }: UseIframeBridgeConfig) 
     earthServer,
     layers,
     toolTipDetails,
+    extremeEventLocations,
     scaleData,
     enableToolTip,
     disableToolTip,

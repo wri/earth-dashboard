@@ -1,4 +1,4 @@
-export const POINT_INDICATOR = "indicator-1";
+export const POINT_INDICATOR = "indicator-point";
 
 export const SCALE_TYPES = {
   log: "log",

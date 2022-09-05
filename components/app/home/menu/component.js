@@ -1,11 +1,7 @@
 import { forwardRef, useState, useMemo, useEffect } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
-import DataPanel from "./panels/data";
-import HeadlinePanel from "./panels/climate-alerts";
-import DataHighlightsPanel from "./panels/data-highlights";
 import DataIndexPanel from "./panels/data-options";
 import ResizablePanel from "components/app/home/dialog-panel/resizable-panel";
 import { fireEvent } from "utils/gtag";
