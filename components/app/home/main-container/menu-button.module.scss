@@ -2,6 +2,13 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize.scss";
 
+.c-home-menu-action {
+  @media screen and (min-width: $global-breakpoint-md) {
+    width: 448px !important;
+    left: 0;
+  }
+}
+
 .c-home-menu-toggle {
   background: #1b2127;
   border-radius: 28px;

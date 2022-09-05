@@ -4,7 +4,7 @@ import classnames from "classnames";
 import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
 import DataPanel from "./panels/data";
-import HeadlinePanel from "./panels/climate-alerts";
+import HeadlinePanel from "./panels/climate-alerts.tsx";
 import DataHighlightsPanel from "./panels/data-highlights";
 import ResizablePanel from "components/app/home/dialog-panel/resizable-panel";
 import { fireEvent } from "utils/gtag";
