@@ -41,8 +41,12 @@
         color: $white;
         font-weight: 500;
         text-transform: uppercase;
-        font-family: Barlow;
+        font-family: "Barlow Condensed";
         @include font-size(20px, 30px);
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          font-family: Barlow;
+        }
       }
     }
   }
