@@ -49,6 +49,7 @@ test("<Menu /> renders correctly as desktop", async () => {
             >
               <div
                 class="c-menu-option"
+                tabindex="1"
               >
                 <div
                   class="c-menu-option__header-row"
@@ -137,6 +138,7 @@ test("<Menu /> renders correctly as mobile", async () => {
             >
               <div
                 class="c-menu-option"
+                tabindex="1"
               >
                 <div
                   class="c-menu-option__header-row"

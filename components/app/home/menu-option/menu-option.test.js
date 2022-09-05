@@ -22,46 +22,47 @@ test("<MenuOption /> renders correctly as desktop", async () => {
   await waitFor(() => queryAllByTestId("option"));
 
   expect(container).toMatchInlineSnapshot(`
-    <div>
+<div>
+  <div
+    class="c-menu-option__underlay test-menu-option"
+    data-testid="option"
+  >
+    <div
+      class="c-menu-option"
+      tabindex="1"
+    >
       <div
-        class="c-menu-option__underlay test-menu-option"
-        data-testid="option"
+        class="c-menu-option__header-row"
       >
-        <div
-          class="c-menu-option"
+        <h3
+          class="c-menu-option__title"
         >
-          <div
-            class="c-menu-option__header-row"
+          All Extreme Events
+        </h3>
+      </div>
+      <p
+        class="c-menu-option__subtitle"
+      >
+        View all of the latest extreme events
+      </p>
+      <div
+        class="c-menu-option__row"
+      >
+        <button
+          class="c-menu-option__button"
+        >
+          <span
+            class="c-menu-option__button-text"
           >
-            <h3
-              class="c-menu-option__title"
-            >
-              All Extreme Events
-            </h3>
-          </div>
-          <p
-            class="c-menu-option__subtitle"
-          >
-            View all of the latest extreme events
-          </p>
-          <div
-            class="c-menu-option__row"
-          >
-            <button
-              class="c-menu-option__button"
-            >
-              <span
-                class="c-menu-option__button-text"
-              >
-                View All
-              </span>
-              <span
-                class="c-menu-option__button-icon"
-              />
-            </button>
-          </div>
-        </div>
+            View All
+          </span>
+          <span
+            class="c-menu-option__button-icon"
+          />
+        </button>
       </div>
     </div>
-  `);
+  </div>
+</div>
+`);
 });

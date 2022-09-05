@@ -1,11 +1,9 @@
+import { useMemo } from "react";
 import styles from "../menu.module.scss";
-import { RadioGroup } from "@headlessui/react";
-import classnames from "classnames";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
-import { setCurrentMode, NAME as modesSliceName, Mode } from "slices/modes";
+import { NAME as modesSliceName, Mode } from "slices/modes";
 import MenuOption from "components/app/home/menu-option";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 const mapHighlightToOption = ({ id, attributes }: Mode) => {
   return {
@@ -18,12 +16,10 @@ const mapHighlightToOption = ({ id, attributes }: Mode) => {
 
 type DataIndexProps = {
   highlights: Mode[] | undefined;
-  currentMode: Mode | undefined;
-  setCurrentMode: ActionCreatorWithPayload<Mode, string>;
 };
 
-const DataIndex = ({ highlights, setCurrentMode, currentMode }: DataIndexProps) => {
-  const dataLayers = highlights?.map(mapHighlightToOption) || [];
+const DataIndex = ({ highlights }: DataIndexProps) => {
+  const dataLayers = useMemo(() => highlights?.map(mapHighlightToOption) || [], [highlights]);
 
   return (
     <div className={styles["c-home-menu__scroll-area"]}>
@@ -43,8 +39,7 @@ const DataIndex = ({ highlights, setCurrentMode, currentMode }: DataIndexProps) 
 
 export default connect(
   (state: RootState) => ({
-    highlights: state[modesSliceName].allModes?.filter(mode => mode.attributes.visibility.data_highlights),
-    currentMode: state[modesSliceName].currentMode
+    highlights: state[modesSliceName].allModes?.filter(mode => mode.attributes.visibility.data_highlights)
   }),
-  { setCurrentMode }
+  {}
 )(DataIndex);

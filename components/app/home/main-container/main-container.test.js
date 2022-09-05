@@ -45,7 +45,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
 
   const { container, getByTestId } = utilRender(<MainContainer isMobile={false} />);
 
-  // await waitFor(() => getByTestId("labels-arr"));
+  await waitFor(() => getByTestId("labels-arr"), { timeout: 3000 });
 
   expect(container).toMatchInlineSnapshot(`
 <div>
@@ -53,6 +53,169 @@ test("<MainContainer /> renders correctly as desktop", async () => {
     class="main-container -desktop -has-menu-open"
     data-testid="iframe-container"
   >
+    <iframe
+      allowtransparency="true"
+      class="c-map-iframe"
+      frameborder="0"
+      id="nullSchoolIframe"
+    />
+    <div
+      class="c-home-menu-container"
+    >
+      <div>
+        <div
+          class="c-home-menu"
+          id="menu"
+        >
+          <div
+            class="c-home-menu__header"
+          >
+            <div
+              class="c-home-menu__header-content"
+            >
+              <h2
+                class="c-home-menu__header-text"
+              >
+                I'd like to explore
+              </h2>
+              <button
+                class="c-icon-button small"
+              />
+            </div>
+          </div>
+          <div
+            class="c-home-menu__content u-padding-none"
+          >
+            <div
+              class="c-home-menu__scroll-area"
+            >
+              <div
+                class="c-menu-option__underlay c-home-menu__all-events"
+                data-testid="option"
+              >
+                <div
+                  class="c-menu-option"
+                  tabindex="1"
+                >
+                  <div
+                    class="c-menu-option__header-row"
+                  >
+                    <h3
+                      class="c-menu-option__title"
+                    >
+                      All Extreme Events
+                    </h3>
+                  </div>
+                  <p
+                    class="c-menu-option__subtitle"
+                  >
+                    View all of the latest extreme events
+                  </p>
+                  <div
+                    class="c-menu-option__row"
+                  >
+                    <button
+                      class="c-menu-option__button"
+                    >
+                      <span
+                        class="c-menu-option__button-text"
+                      >
+                        View All
+                      </span>
+                      <span
+                        class="c-menu-option__button-icon"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="c-menu-option__underlay"
+                data-testid="option"
+              >
+                <div
+                  class="c-menu-option"
+                  tabindex="1"
+                >
+                  <div
+                    class="c-menu-option__header-row"
+                  >
+                    <h3
+                      class="c-menu-option__title"
+                    >
+                      Fires
+                    </h3>
+                  </div>
+                  <p
+                    class="c-menu-option__subtitle"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Source: CAMS / Copernicus / European Commission + ECMWF
+                  </p>
+                  <div
+                    class="c-menu-option__row"
+                  >
+                    <button
+                      class="c-menu-option__button"
+                    >
+                      <span
+                        class="c-menu-option__button-text"
+                      >
+                        Learn More
+                      </span>
+                      <span
+                        class="c-menu-option__button-icon"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="c-menu-option__underlay"
+                data-testid="option"
+              >
+                <div
+                  class="c-menu-option"
+                  tabindex="1"
+                >
+                  <div
+                    class="c-menu-option__header-row"
+                  >
+                    <h3
+                      class="c-menu-option__title"
+                    >
+                      Air Pollution
+                    </h3>
+                  </div>
+                  <p
+                    class="c-menu-option__subtitle"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Source: CAMS / Copernicus / European Commission + ECMWF
+                  </p>
+                  <div
+                    class="c-menu-option__row"
+                  >
+                    <button
+                      class="c-menu-option__button"
+                    >
+                      <span
+                        class="c-menu-option__button-text"
+                      >
+                        Learn More
+                      </span>
+                      <span
+                        class="c-menu-option__button-icon"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       class="c-home-actions u-padding-horizontal-l"
     >
@@ -73,6 +236,11 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           <span>
             Latest Extreme Events
           </span>
+          <span
+            data-testid="labels-arr"
+          >
+            Fires, Wind, PM2.5, Sfc
+          </span>
         </div>
       </button>
     </div>
@@ -86,7 +254,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
   const { container, getByTestId } = utilRender(<MainContainer isMobile={true} />);
-  // await waitFor(() => getByTestId("labels-arr"));
+  await waitFor(() => getByTestId("labels-arr"), { timeout: 3000 });
 
   expect(container).toMatchInlineSnapshot(`
 <div>
@@ -113,6 +281,14 @@ test("<MainContainer /> renders correctly as mobile", async () => {
         >
           <span>
             Latest Extreme Events
+          </span>
+          <span
+            data-testid="labels-arr"
+          >
+            Fires, Wind, PM2.5, Sfc
+            <br />
+             
+            xxxx-xx-xx
           </span>
         </div>
       </button>
