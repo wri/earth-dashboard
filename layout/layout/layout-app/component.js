@@ -111,6 +111,9 @@ function LayoutApp(props) {
     </div>
   );
 
+  console.log("------");
+  console.log(headerTabSelected);
+
   return (
     <div
       id="#main"

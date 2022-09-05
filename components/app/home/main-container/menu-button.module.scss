@@ -2,6 +2,11 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize.scss";
 
+.c-home-menu-action {
+  width: auto;
+  left: 0;
+}
+
 .c-home-menu-toggle {
   background: #1b2127;
   border-radius: 28px;

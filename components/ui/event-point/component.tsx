@@ -27,7 +27,11 @@ const EventPoint = ({ x, y, onClick, className }: EventPointProps) => {
       onClick={onClick}
       role="EventPoint"
       style={style}
-    />
+    >
+      <div className={classnames(styles["c-outer-circle"])}>
+        <div className={classnames(styles["c-inner-circle"])} />
+      </div>
+    </button>
   );
 };
 

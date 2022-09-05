@@ -23,6 +23,10 @@
     position: fixed;
   }
 
+  &.home {
+    padding-bottom: 0;
+  }
+
   button,
   a {
     pointer-events: initial;

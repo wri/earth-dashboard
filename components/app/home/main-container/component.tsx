@@ -283,7 +283,11 @@ const MainContainer = ({
 
       <Actions
         isMobile={isMobile}
-        className={classnames(shouldFadeControls && "u-opacity-faded", styles["over-pointer-absolute"])}
+        className={classnames(
+          shouldFadeControls && "u-opacity-faded",
+          styles["over-pointer-absolute"],
+          menuButtonStyles["c-home-menu-action"]
+        )}
       >
         {error ? (
           <p role="alert" className="u-text-white">
