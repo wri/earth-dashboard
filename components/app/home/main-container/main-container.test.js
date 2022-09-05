@@ -287,7 +287,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
       </div>
     </div>
     <div
-      class="c-home-actions u-padding-horizontal-l over-pointer-absolute"
+      class="c-home-actions u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
     >
       <button
         aria-controls="menu"
@@ -333,7 +333,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
     data-testid="iframe-container"
   >
     <div
-      class="c-home-actions mobile u-padding-horizontal-l over-pointer-absolute"
+      class="c-home-actions mobile u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
     >
       <button
         aria-controls="menu"
