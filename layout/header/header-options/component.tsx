@@ -1,10 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import SelectInput from "components/ui/select";
 import styles from "./header-options.module.scss";
 import IconButton from "components/ui/icon-button";
 import { useRouter } from "next/router";
 import { LANGUAGES } from "constants/settings";
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
+import ShareModal from "components/share-modal";
 
 type HeaderOptionsProps = {
   isSettingsOpen: boolean;
@@ -16,6 +17,7 @@ type HeaderOptionsProps = {
 /** Header options for languages, share, and more. */
 const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsClose }: HeaderOptionsProps) => {
   const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
+  const [showShareModal, setShowShareModal] = useState<boolean>(false);
 
   // Navigation
   const router = useRouter();
@@ -29,6 +31,7 @@ const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsC
   /** Open share modal on mobile, native share on desktop */
   const handleSharePress = () => {
     if (isMobile) {
+      setShowShareModal(true);
     } else {
       console.log("Share on desktop");
     }
@@ -59,6 +62,8 @@ const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsC
 
       {/* More */}
       <IconButton name="more" aria-label="More" onClick={handleOpenMore} />
+
+      {isMobile && showShareModal && <ShareModal onClose={setShowShareModal} />}
     </div>
   );
 };

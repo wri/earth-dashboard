@@ -10,14 +10,21 @@ export type IconNames =
   | "arrow-up-homepage"
   | "arrow up-right-homepage"
   | "back-chevron"
+  | "check"
+  | "chevron-down"
   | "chevron-left"
   | "chevron-right"
   | "chevron-up"
-  | "chevron-down"
   | "close"
   | "cog"
+  | "cookie"
+  | "copy-link"
+  | "earth-hq"
   | "error-circle"
   | "external-link"
+  | "facebook"
+  | "instagram"
+  | "layers"
   | "linkedin"
   | "live"
   | "location"
@@ -28,11 +35,7 @@ export type IconNames =
   | "twitter"
   | "youtube-play"
   | "zoom-in"
-  | "zoom-out"
-  | "cookie"
-  | "earth-hq"
-  | "check"
-  | "layers";
+  | "zoom-out";
 
 type AccessibilityProps =
   | { type: "meaningful"; accessibilityText: string }
