@@ -10,8 +10,9 @@ import { logger } from "utils/logs";
  * @returns {Array} Array of modes.
  * be included in the response or not.
  */
-export const fetchClimateAlerts = () => {
+export const fetchClimateAlerts = params => {
   return GCAAPI.get("/climate-alerts", {
+    params,
     headers: {
       ...GCAAPI.defaults.headers
     }

@@ -43,271 +43,80 @@ test("<MainContainer /> renders correctly as desktop", async () => {
   GCAAPI.get.mockResolvedValueOnce({ data: headlines });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
-  const { container, getByTestId } = utilRender(<MainContainer isMobile={false} />);
-
-  await waitFor(() => getByTestId("labels-arr"), { timeout: 3000 });
+  const { container } = utilRender(<MainContainer isMobile={false} />);
 
   expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="main-container -desktop -has-menu-open"
-        data-testid="iframe-container"
+<div>
+  <div
+    class="main-container -desktop -has-menu-open"
+    data-testid="iframe-container"
+  >
+    <div
+      class="c-home-actions u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
+    >
+      <button
+        aria-controls="menu"
+        aria-expanded="true"
+        aria-haspopup="true"
+        class="c-home-actions__item c-home-menu-toggle c-home-menu-toggle--open"
+        data-testid="toggle"
+        id="menu-button"
       >
-        <iframe
-          allowtransparency="true"
-          class="c-map-iframe"
-          frameborder="0"
-          id="nullSchoolIframe"
+        <div
+          class="icon"
         />
         <div
-          class="c-home-menu-container"
+          class="c-home-menu-toggle__text-container"
         >
-          <div>
-            <div
-              class="c-home-menu"
-              id="menu"
-            >
-              <div
-                class="c-home-menu__header"
-              >
-                <div
-                  class="c-home-menu__header-content"
-                >
-                  <h2
-                    class="c-home-menu__header-text"
-                  >
-                    I'd like to explore
-                  </h2>
-                  <button
-                    class="c-icon-button small"
-                  />
-                </div>
-              </div>
-              <div
-                class="c-home-menu__content u-padding-none"
-              >
-                <div
-                  class="c-home-menu__scroll-area"
-                >
-                  <div
-                    class="c-menu-option__underlay c-home-menu__all-events"
-                    data-testid="option"
-                  >
-                    <div
-                      class="c-menu-option"
-                      tabindex="1"
-                    >
-                      <div
-                        class="c-menu-option__header-row"
-                      >
-                        <h3
-                          class="c-menu-option__title"
-                        >
-                          All Extreme Events
-                        </h3>
-                      </div>
-                      <p
-                        class="c-menu-option__subtitle"
-                      >
-                        View all of the latest extreme events
-                      </p>
-                      <div
-                        class="c-menu-option__row"
-                      >
-                        <button
-                          class="c-menu-option__button"
-                        >
-                          <span
-                            class="c-menu-option__button-text"
-                          >
-                            View All
-                          </span>
-                          <span
-                            class="c-menu-option__button-icon"
-                          />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="c-menu-option__underlay"
-                    data-testid="option"
-                  >
-                    <div
-                      class="c-menu-option"
-                      tabindex="1"
-                    >
-                      <div
-                        class="c-menu-option__header-row"
-                      >
-                        <img
-                          alt=""
-                          class="c-menu-option__image"
-                          role="presentation"
-                          src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/7v0sYUds12E9Y1MBEbkyamiQKIsKHQU7BV0kdFYc.png"
-                        />
-                        <h3
-                          class="c-menu-option__title"
-                        >
-                          Fires
-                        </h3>
-                      </div>
-                      <p
-                        class="c-menu-option__subtitle"
-                      >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Source: CAMS / Copernicus / European Commission + ECMWF
-                      </p>
-                      <div
-                        class="c-menu-option__row"
-                      >
-                        <button
-                          class="c-menu-option__button"
-                        >
-                          <span
-                            class="c-menu-option__button-text"
-                          >
-                            Learn More
-                          </span>
-                          <span
-                            class="c-menu-option__button-icon"
-                          />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="c-menu-option__underlay"
-                    data-testid="option"
-                  >
-                    <div
-                      class="c-menu-option"
-                      tabindex="1"
-                    >
-                      <div
-                        class="c-menu-option__header-row"
-                      >
-                        <img
-                          alt=""
-                          class="c-menu-option__image"
-                          role="presentation"
-                          src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/T2wLMYnMeegJNFS8mm5QGEsZPJUSkOcF9fotdpAT.png"
-                        />
-                        <h3
-                          class="c-menu-option__title"
-                        >
-                          Air Pollution
-                        </h3>
-                      </div>
-                      <p
-                        class="c-menu-option__subtitle"
-                      >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Source: CAMS / Copernicus / European Commission + ECMWF
-                      </p>
-                      <div
-                        class="c-menu-option__row"
-                      >
-                        <button
-                          class="c-menu-option__button"
-                        >
-                          <span
-                            class="c-menu-option__button-text"
-                          >
-                            Learn More
-                          </span>
-                          <span
-                            class="c-menu-option__button-icon"
-                          />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <span>
+            Latest Extreme Events
+          </span>
         </div>
-        <div
-          class="c-home-actions u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
-        >
-          <button
-            aria-controls="menu"
-            aria-expanded="true"
-            aria-haspopup="true"
-            class="c-home-actions__item c-home-menu-toggle c-home-menu-toggle--open"
-            data-testid="toggle"
-            id="menu-button"
-          >
-            <div
-              class="icon"
-            />
-            <div
-              class="c-home-menu-toggle__text-container"
-            >
-              <span>
-                Latest Extreme Events
-              </span>
-              <span
-                data-testid="labels-arr"
-              >
-                Fires, Wind, PM2.5, Sfc
-              </span>
-            </div>
-          </button>
-        </div>
-      </div>
+      </button>
     </div>
-  `);
+  </div>
+</div>
+`);
 });
 
 test("<MainContainer /> renders correctly as mobile", async () => {
   GCAAPI.get.mockResolvedValue({ data: modes });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
-  const { container, getByTestId } = utilRender(<MainContainer isMobile={true} />);
-  await waitFor(() => getByTestId("labels-arr"), { timeout: 3000 });
+  const { container } = utilRender(<MainContainer isMobile={true} />);
 
   expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="main-container -mobile"
-        data-testid="iframe-container"
+<div>
+  <div
+    class="main-container -mobile"
+    data-testid="iframe-container"
+  >
+    <div
+      class="c-home-actions mobile u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
+    >
+      <button
+        aria-controls="menu"
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="c-home-actions__item c-home-menu-toggle"
+        data-testid="toggle"
+        id="menu-button"
       >
         <div
-          class="c-home-actions mobile u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
+          class="icon"
+        />
+        <div
+          class="c-home-menu-toggle__text-container"
         >
-          <button
-            aria-controls="menu"
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="c-home-actions__item c-home-menu-toggle"
-            data-testid="toggle"
-            id="menu-button"
-          >
-            <div
-              class="icon"
-            />
-            <div
-              class="c-home-menu-toggle__text-container"
-            >
-              <span>
-                Latest Extreme Events
-              </span>
-              <span
-                data-testid="labels-arr"
-              >
-                Fires, Wind, PM2.5, Sfc
-                <br />
-                 
-                xxxx-xx-xx
-              </span>
-            </div>
-          </button>
+          <span>
+            Latest Extreme Events
+          </span>
         </div>
-      </div>
+      </button>
     </div>
-  `);
+  </div>
+</div>
+`);
 });
 
 describe("<MainContainer />", () => {

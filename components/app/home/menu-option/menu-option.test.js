@@ -24,18 +24,18 @@ test("<MenuOption /> renders correctly as desktop", async () => {
   expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="c-menu-option__underlay test-menu-option"
-    data-testid="option"
+    class="c-content-panel__underlay test-menu-option"
+    data-testid="content-panel"
   >
     <div
-      class="c-menu-option"
-      tabindex="1"
+      class="c-content-panel c-content-panel__focusable"
+      tabindex="0"
     >
       <div
-        class="c-menu-option__header-row"
+        class="c-content-panel__header-row"
       >
         <h3
-          class="c-menu-option__title"
+          class="c-content-panel__title"
         >
           All Extreme Events
         </h3>
@@ -46,18 +46,18 @@ test("<MenuOption /> renders correctly as desktop", async () => {
         View all of the latest extreme events
       </p>
       <div
-        class="c-menu-option__row"
+        class="c-content-panel__row"
       >
         <button
-          class="c-menu-option__button"
+          class="c-content-panel__button"
         >
           <span
-            class="c-menu-option__button-text"
+            class="c-content-panel__button-text"
           >
             View All
           </span>
           <span
-            class="c-menu-option__button-icon"
+            class="c-content-panel__button-icon"
           />
         </button>
       </div>

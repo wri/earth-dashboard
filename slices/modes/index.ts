@@ -31,11 +31,7 @@ const modesSlice = createSlice({
     setModes: (state, { payload }: PayloadAction<Mode[]>) => {
       state.allModes = payload;
 
-      if (!state.currentMode && !state.currentModeId) {
-        state.loadDefaultModeValues = true;
-        state.currentMode = payload[0];
-        state.currentModeId = payload[0].id;
-      } else if (state.currentModeId) {
+      if (state.currentModeId) {
         state.loadDefaultModeValues = false;
         const newMode = payload.find(mode => mode.id === state.currentModeId);
 
@@ -57,7 +53,7 @@ const modesSlice = createSlice({
     setCurrentMode: (state, { payload }: PayloadAction<Mode>) => {
       state.loadDefaultModeValues = true;
       state.currentMode = payload;
-      state.currentModeId = payload.id;
+      state.currentModeId = payload?.id;
     },
     setAnimation: (state, { payload }: PayloadAction<string>) => {
       state.animationValue = payload;
