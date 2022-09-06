@@ -10,6 +10,7 @@ import EventCard from "components/app/home/event-card";
 import { setHeadlines, NAME as headlineSliceName, Headline as HeadlineType } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import Link from "next/link";
 
 type DataIndexProps = {
   currentMode: Mode | undefined;
@@ -87,7 +88,7 @@ const DataLayerOverview = ({ currentMode, headlines, setHeadlines }: DataIndexPr
         <p>{how_to_help_content.detail}</p>
         <SharePanel ctaAction={() => {}} />
       </ContentPanel>
-      <ContentPanel icon={NEWS_ICON} title="News" buttonText="Explore" ctaAction={() => {}}>
+      <ContentPanel icon={NEWS_ICON} title="News" buttonText="Explore" ctaControl={Link} ctaLink={"/news"}>
         <p>Our partners tell the epic story of what is happening to our planet</p>
       </ContentPanel>
     </div>
