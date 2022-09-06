@@ -15,6 +15,7 @@
   &.mobile {
     background: rgba($colour-galaxy, 0.4);
     backdrop-filter: blur(10.8731px);
+    margin-bottom: 45px;
   }
 
   @media screen and (max-width: $global-breakpoint-md) {

@@ -42,7 +42,6 @@ const LayoutHome = ({ headerTabSelected = "site-navigation", title, description 
       {/* TODO: convert to TS so no need for expect error */}
       {/* @ts-expect-error */}
       <MediaContextProvider>
-        {/* @ts-expect-error */}
         <Desktop>
           <MainContainer isMobile={false} />
         </Desktop>

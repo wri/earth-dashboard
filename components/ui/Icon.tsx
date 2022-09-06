@@ -32,7 +32,13 @@ export type IconNames =
   | "cookie"
   | "earth-hq"
   | "check"
-  | "layers";
+  | "layers"
+  | "eclipse"
+  | "info"
+  | "earth-hq-nav"
+  | "news"
+  | "news-active"
+  | "info-active";
 
 type AccessibilityProps =
   | { type: "meaningful"; accessibilityText: string }
