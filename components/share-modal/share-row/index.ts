@@ -1,3 +1,3 @@
-import ShareRow from "./component";
+import ShareRowComponent from "./component";
 
-export default ShareRow;
+export default ShareRowComponent;

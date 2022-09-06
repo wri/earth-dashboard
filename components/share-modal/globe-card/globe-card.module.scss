@@ -1,0 +1,26 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-globe-card {
+  width: 100%;
+  border-radius: 12px;
+  background-color: #001928;
+  margin-bottom: 32px;
+  padding: 20px;
+
+  & .title {
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: "Barlow Condensed";
+    @include font-size(20px, 30px);
+    margin-bottom: 8px;
+  }
+
+  & .description {
+    color: white;
+    font-weight: 500;
+    font-family: "Barlow";
+    @include font-size(14px, 21px);
+  }
+}

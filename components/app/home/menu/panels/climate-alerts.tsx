@@ -1,15 +1,9 @@
 import { useState, useEffect, useMemo, useRef } from "react";
-import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { fetchClimateAlerts } from "services/gca";
-import {
-  setHeadlines,
-  setCurrentHeadline,
-  NAME as headlineSliceName,
-  Headline as HeadlineType
-} from "slices/headlines";
+import { setHeadlines, setCurrentHeadline, Headline as HeadlineType } from "slices/headlines";
 import { Mode, setCurrentMode } from "slices/modes";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
