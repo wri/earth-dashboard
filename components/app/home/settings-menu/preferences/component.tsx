@@ -65,7 +65,8 @@ const Preferences = ({
       <h3>Preferences</h3>
 
       {/* Languages */}
-      {isMobile && (
+      {/* TODO: Currently hidden until next sprint */}
+      {isMobile && false && (
         <div className={styles["c-preferences__language"]}>
           <h4>Language</h4>
           <SelectInput options={LANGUAGES} value={language} onChange={setLanguage} aria-label="Select a language" />
