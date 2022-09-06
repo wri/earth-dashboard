@@ -31,7 +31,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
     <div className={styles["modal-backdrop"]}>
       <div className={styles["modal"]}>
         <div className={styles["modal__top"]}>
-          {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="hello" />}
+          {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="star background" />}
           <div className={styles["modal__top__contain"]}>
             <div className={styles["modal__header"]}>
               <div className={styles["modal__logo"]}>
@@ -222,7 +222,6 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
                 className={styles["modal__content__controls__box__continueBtn__icon-mobile"]}
               />
             </button>
-            {/* </div> */}
           </div>
         </div>
       </div>
