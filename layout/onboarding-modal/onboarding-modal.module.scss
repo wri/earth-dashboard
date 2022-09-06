@@ -42,11 +42,19 @@
 
       &__nav {
         position: relative;
-        z-index: 90000;
+        z-index: $z-index-modal;
         padding: 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+
+        &__logo { 
+          width: 115px; 
+          display: flex;
+          align-content: center; 
+          justify-content: center 
+        }
       }
 
       &__continue {

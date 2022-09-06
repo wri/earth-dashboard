@@ -123,7 +123,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
       <div className={styles["modal__mobile"]}>
         <div className={styles["modal__top__mobile"]}>
           <div className={styles["modal__mobile__nav"]}>
-            <div style={{ width: "115px", display: "flex", alignContent: "center", justifyContent: "center" }}>
+            <div className={styles["modal__mobile__nav__logo"]}>
               <Image src={nullSchoolLogo} alt={"earth-hq logo"} />
             </div>
             {counter !== 2 && (
