@@ -15,7 +15,7 @@
   justify-content: center;
 
   &__underlay {
-    background-color: #001928;
+    background-color: $colour-midnight;
     //background-color: rgba($colour-night, 0.4);
     backdrop-filter: blur(10.8731px);
     border-radius: 16px;

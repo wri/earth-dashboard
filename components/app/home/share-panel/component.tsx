@@ -1,11 +1,11 @@
 import styles from "./panel.module.scss";
 import Icon from "components/ui/Icon";
 
-export type MenuOptionProps = {
+export type SharePanelProps = {
   ctaAction?: () => void;
 };
 
-const SharePanel = ({ ctaAction }: MenuOptionProps) => (
+const SharePanel = ({ ctaAction }: SharePanelProps) => (
   <div className={styles["c-share-panel__underlay"]} data-testid="share-panel">
     <div className={styles["c-share-panel"]}>
       <h3 className={styles["c-share-panel__title"]}>Share</h3>

@@ -11,6 +11,7 @@ import { setHeadlines, NAME as headlineSliceName, Headline as HeadlineType } fro
 import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
+import NormalScale from "../../normal-scale/component";
 
 type DataIndexProps = {
   currentMode: Mode | undefined;
@@ -65,6 +66,7 @@ const DataLayerOverview = ({ currentMode, headlines, setHeadlines }: DataIndexPr
       </ContentPanel>
       <ContentPanel icon={WHAT_IS_HAPPENING_ICON} title="What is happening">
         <p>{what_is_happening_content.detail}</p>
+        <NormalScale value={80} />
       </ContentPanel>
       <ContentPanel icon={EXTREME_EVENTS_ICON} title="Extreme events" buttonText="View All" ctaAction={() => {}}>
         {!isFetching ? (

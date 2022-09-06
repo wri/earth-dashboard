@@ -1,3 +1,3 @@
-import ContentPanelComponent from "./component";
+import SharePanelComponent from "./component";
 
-export default ContentPanelComponent;
+export default SharePanelComponent;
