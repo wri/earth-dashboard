@@ -32,7 +32,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
     <div className={styles["modal-backdrop"]}>
       <div className={styles["modal"]}>
         <div className={styles["modal__top"]}>
-          {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="star background" />}
+          {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="" />}
           <div className={styles["modal__top__contain"]}>
             <div className={styles["modal__header"]}>
               <div className={styles["modal__logo"]}>
@@ -125,7 +125,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
         <div className={styles["modal__top__mobile"]}>
           <div className={styles["modal__mobile__nav"]}>
             <div className={styles["modal__mobile__nav__logo"]}>
-              <Image src={nullSchoolLogo} alt={"earth-hq logo"} />
+              <Image src={nullSchoolLogo} alt="" />
             </div>
             {counter !== 2 && (
               <h1 className={styles["modal__mobile__continue"]} onClick={handleClose}>
@@ -133,7 +133,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
               </h1>
             )}
           </div>
-          {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="star background" />}
+          {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="" />}
           <div className={styles["modal__top__contain-mobile"]}>
             <h3 className={styles["modal__header__title__mobile"]}>WELCOME TO EARTH HQ</h3>
             <div className={styles["modal__image"]}>
