@@ -151,7 +151,6 @@ function LayoutApp(props) {
             <OnboardingModal showModal={showModal} setShowModal={setShowModal} isMobile={false} />
           </Desktop>
           <Mobile>
-            {/* TODO: Construct for Mobile View */}
             <OnboardingModal showModal={showModal} setShowModal={setShowModal} isMobile={true} />
           </Mobile>
         </MediaContextProvider>
