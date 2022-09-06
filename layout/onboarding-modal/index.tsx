@@ -127,18 +127,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
               <Image src={nullSchoolLogo} alt={"earth-hq logo"} />
             </div>
             {counter !== 2 && (
-              <h1
-                className={styles["modal__mobile__continue"]}
-                onClick={handleClose}
-                style={{
-                  margin: 0,
-                  color: "white",
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  lineHeight: "24px",
-                  textDecoration: "underline"
-                }}
-              >
+              <h1 className={styles["modal__mobile__continue"]} onClick={handleClose}>
                 SKIP
               </h1>
             )}
