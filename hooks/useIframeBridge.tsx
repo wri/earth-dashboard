@@ -25,11 +25,10 @@ type UseIframeBridgeConfig = {
   callback?: () => void;
   allowClickEvents: boolean;
   headlines: Headline[];
-  isMobile: boolean;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
 };
 
-const useIframeBridge = ({ callback, allowClickEvents, headlines, isMobile, setHeadlines }: UseIframeBridgeConfig) => {
+const useIframeBridge = ({ callback, allowClickEvents, headlines, setHeadlines }: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [error, setError] = useState<Error>();
   const [layers, setLayers] = useState<EarthLayer[]>([]);
@@ -59,7 +58,6 @@ const useIframeBridge = ({ callback, allowClickEvents, headlines, isMobile, setH
 
   // Set headlines redux if mobile
   useEffect(() => {
-    if (!isMobile) return;
     const getHeadlines = async () => {
       try {
         const resp = await fetchClimateAlerts();
@@ -71,7 +69,7 @@ const useIframeBridge = ({ callback, allowClickEvents, headlines, isMobile, setH
     };
 
     getHeadlines();
-  }, [setHeadlines, isMobile]);
+  }, [setHeadlines]);
 
   // Set the extreme event points
   useEffect(() => {

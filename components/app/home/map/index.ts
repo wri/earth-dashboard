@@ -12,6 +12,7 @@ import {
   setCurrentMode
 } from "slices/modes";
 import { RootState } from "store/types";
+import { setCurrentHeadline } from "slices/headlines";
 
 export default connect(
   (state: RootState) => ({
@@ -46,7 +47,8 @@ export default connect(
     setCurrentLocation,
     setCurrentScale,
     setCurrentScaleBy,
-    setCurrentMode
+    setCurrentMode,
+    setCurrentHeadline
   },
   null,
   { forwardRef: true }

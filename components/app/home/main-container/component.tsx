@@ -82,7 +82,6 @@ const MainContainer = ({
   } = useIframeBridge({
     allowClickEvents: !currentHeadline,
     headlines,
-    isMobile,
     setHeadlines
   });
 
