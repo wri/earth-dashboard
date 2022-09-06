@@ -17,13 +17,14 @@ interface IOnBoardingModal {
 
 const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, isMobile }) => {
   const [counter, setCounter] = useState(0);
+  const isFinalSlide = counter === 2;
 
   const handleClose = () => {
     localStorage.setItem(ONBOARDING_COMPLETED, "true");
     setShowModal(false);
   };
   const nextStep = () => {
-    if (counter === 2) return handleClose();
+    if (isFinalSlide) return handleClose();
     setCounter(state => (state += 1));
   };
 
@@ -102,10 +103,10 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
                 onClick={nextStep}
               >
                 <h4 className={styles["modal__content__controls__box__continueBtn__text"]}>
-                  {counter === 2 ? "EXPLORE" : "CONTINUE"}
+                  {isFinalSlide ? "EXPLORE" : "CONTINUE"}
                 </h4>
                 <Icon
-                  name={counter === 2 ? "check" : "arrow-right"}
+                  name={isFinalSlide ? "check" : "arrow-right"}
                   size={32}
                   type="decorative"
                   className={styles["modal__content__controls__box__continueBtn__icon"]}
@@ -198,10 +199,10 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
               onClick={nextStep}
             >
               <h4 className={styles["modal__content__controls__box__continueBtn__text-mobile"]}>
-                {counter === 2 ? "EXPLORE" : "CONTINUE"}
+                {isFinalSlide ? "EXPLORE" : "CONTINUE"}
               </h4>
               <Icon
-                name={counter === 2 ? "check" : "arrow-right"}
+                name={isFinalSlide ? "check" : "arrow-right"}
                 size={32}
                 type="decorative"
                 className={styles["modal__content__controls__box__continueBtn__icon-mobile"]}
