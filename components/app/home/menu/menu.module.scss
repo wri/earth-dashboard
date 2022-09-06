@@ -92,14 +92,18 @@
     }
   }
 
-  &__tab-panel-scroll-area {
+  &__scroll-area {
     position: absolute;
-    top: 66px;
+    top: 0px;
     bottom: 0px;
     left: 0px;
     right: 12px;
     overflow-y: auto;
     padding: 20px 12px 20px 28px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    
     @include defaultScrollBar();
     &::-webkit-scrollbar-track {
       margin-top: 20px;
@@ -112,6 +116,20 @@
     &--extra-top {
       top: 87px;
     }
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* make scrollbar transparent */
+      }
+    }
+  }
+
+  &__all-events {
+    background-image: url("/static/images/globe.png");
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: 232px 196px ;
   }
 
   &__template-description {
@@ -153,9 +171,9 @@
   }
 
   &__header {
-    background-color: rgba($colour-night, 0.4);
+    background-color: $colour-night;
     backdrop-filter: blur(10.8731px);
-    padding: 14px 28px 0px 28px;
+    padding: 24px;
     border-radius: 16px 16px 0 0;
   }
 
@@ -166,11 +184,11 @@
     &:before {
       content: "";
       display: block;
-      background-image: url("/static/icons/home-menu/layers.svg");
+      background-image: url("/static/icons/home-menu/search-globe.svg");
       background-size: contain;
       background-repeat: no-repeat;
-      height: 40px;
-      width: 40px;
+      height: 52px;
+      width: 52px;
       margin-right: 12px;
     }
 
@@ -183,13 +201,14 @@
   }
 
   &__header-text {
-    @include font-size(24px, 36px);
+    @include font-size(20px, 30px);
     text-transform: uppercase;
-    font-weight: 500;
-    font-family: "Barlow Condensed";
+    font-weight: 600;
+    font-family: "Barlow";
     color: white;
     margin: 0px;
     flex-grow: 1;
+    letter-spacing: 0.2px;
   }
 
   &__back-button {
@@ -226,6 +245,8 @@
     border-radius: 0 0 16px 16px;
     display: flex;
     flex-direction: column;
+    background: $colour-space;
+    position: relative;
   }
 
   &__info-title {
@@ -240,6 +261,7 @@
   &--is-info-page {
     .c-home-menu__header-content {
       justify-content: space-between;
+      align-items: center;
       &:before {
         content: initial;
       }
@@ -274,15 +296,7 @@
 
     &__header {
       border-radius: 16px 16px 0 0;
-      padding: 11px 24px 0px 24px;
-    }
-
-    &__header-content {
-      &:before {
-        height: 28px;
-        width: 28px;
-        margin-right: 8px;
-      }
+      padding: 11px 24px 11px 24px;
     }
 
     &__tab-container {
@@ -388,8 +402,6 @@
 
 .c-home-menu-container {
   @media screen and (max-width: $global-breakpoint-md) {
-    background: rgba($colour-space, 0.4);
-    backdrop-filter: blur(10.8731px);
     left: 0;
     right: 0;
     bottom: 0;

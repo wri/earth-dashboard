@@ -82,7 +82,6 @@ const MainContainer = ({
   } = useIframeBridge({
     allowClickEvents: !currentHeadline,
     headlines,
-    isMobile,
     setHeadlines
   });
 
@@ -230,6 +229,7 @@ const MainContainer = ({
           extremeEventLocations={extremeEventLocations}
           setHasMenuOpen={setHasMenuOpen}
           hasIframeConnected={hasIframeConnected}
+          isMobileMenuOpen={isMobile && hasMenuOpen}
         />
       )}
       {overlayLayer && !isMobile && (

@@ -7,6 +7,7 @@ import { EarthClient } from "utils/iframeBridge/earthClient";
 import ToolTip from "components/ui/tooltip";
 import EventPoint from "components/ui/event-point";
 import { validateDataLayer } from "utils/map";
+import styles from "./map.module.scss";
 
 const MapIframe = forwardRef(
   (
@@ -43,6 +44,7 @@ const MapIframe = forwardRef(
       setCurrentScale,
       setCurrentScaleBy,
       hasIframeConnected,
+      isMobileMenuOpen,
       setCurrentHeadline
     },
     ref
@@ -223,9 +225,8 @@ const MapIframe = forwardRef(
             );
           })}
         <iframe
+          className={isMobileMenuOpen ? styles["c-map-iframe__mobile-menu"] : styles["c-map-iframe"]}
           id="nullSchoolIframe"
-          width="100%"
-          height="100%"
           src={process.env.NULL_SCHOOL_IFRAME_BASE}
           frameBorder="0"
           allowtransparency="true"
@@ -262,7 +263,8 @@ MapIframe.propTypes = {
   setCurrentScale: PropTypes.func.isRequired,
   setCurrentScaleBy: PropTypes.func.isRequired,
   hasIframeConnected: PropTypes.bool,
-  loadDefaultModeValues: PropTypes.bool.isRequired
+  loadDefaultModeValues: PropTypes.bool.isRequired,
+  isMobileMenuOpen: PropTypes.bool
 };
 
 MapIframe.defaultProps = {
