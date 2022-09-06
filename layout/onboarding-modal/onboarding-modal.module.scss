@@ -48,12 +48,11 @@
         justify-content: space-between;
         align-items: center;
 
-
-        &__logo { 
-          width: 115px; 
+        &__logo {
+          width: 115px;
           display: flex;
-          align-content: center; 
-          justify-content: center 
+          align-content: center;
+          justify-content: center;
         }
       }
 
@@ -109,6 +108,12 @@
       border-radius: 12px 12px 0 0;
       background-color: $bg-backdrop-lighter;
       z-index: $z-index-header;
+
+      &__mobile {
+        justify-content: center;
+        background-color: transparent;
+        padding: 0;
+      }
 
       &__title {
         font-family: "Barlow";
@@ -188,7 +193,8 @@
           font-style: normal;
           font-weight: 600;
           @include font-size(18px, 27px);
-          margin: auto;
+          height: 81px;
+          margin: auto auto 2rem auto;
 
           display: flex;
           align-items: center;
@@ -200,8 +206,7 @@
       &__mobile {
         display: flex;
         flex-direction: column;
-
-        height: 50%;
+        height: 45%;
         padding: 24px;
       }
 
@@ -225,11 +230,22 @@
           border-radius: 30px;
           font-weight: bold;
         }
+        &__mobile {
+          align-self: flex-start;
+        }
 
         &__box {
           flex: 1;
           display: flex;
           justify-content: center;
+
+          &__hide {
+            visibility: hidden;
+          }
+
+          &__remove {
+            display: none;
+          }
 
           &:first-child {
             justify-content: flex-start;
@@ -244,14 +260,20 @@
             margin-left: auto;
           }
 
-          &:last-child {
+          &__continue {
             justify-content: flex-end;
           }
-
+          &__mobile {
+            justify-content: center;
+          }
           // Slideshow dots
           &__divider {
             display: flex;
             align-self: center;
+
+            &__mobile {
+              align-self: flex-start;
+            }
 
             &--selected {
               background-color: $colour-flame;
@@ -348,7 +370,7 @@
 
             &:hover {
               color: $white;
-              background-color: unset
+              background-color: unset;
             }
           }
         }

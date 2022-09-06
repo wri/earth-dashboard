@@ -17,6 +17,7 @@ interface IOnBoardingModal {
 
 const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, isMobile }) => {
   const [counter, setCounter] = useState(0);
+  const isFirstSlide = counter == 0;
   const isFinalSlide = counter === 2;
 
   const handleClose = () => {
@@ -28,34 +29,98 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
     setCounter(state => (state += 1));
   };
 
-  const DesktopView = (
+  const SlideLocator = () => (
+    <div className={styles["modal__content__controls__box"]}>
+      <div
+        className={classnames({
+          [styles["modal__content__controls__box__divider"]]: true,
+          [styles["modal__content__controls__box__divider__mobile"]]: isMobile
+        })}
+      >
+        {[0, 1, 2].map(point => (
+          <div
+            key={point}
+            className={classnames({
+              [styles["modal__content__controls__box__divider--unselected"]]: counter !== point,
+              [styles["modal__content__controls__box__divider--selected"]]: counter === point
+            })}
+            onClick={() => setCounter(point)}
+          ></div>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
     <div className={styles["modal-backdrop"]}>
-      <div className={styles["modal"]}>
-        <div className={styles["modal__top"]}>
-          {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="" />}
-          <div className={styles["modal__top__contain"]}>
-            <div className={styles["modal__header"]}>
-              <div className={styles["modal__logo"]}>
-                <Icon name="earth-hq" size={32} type="decorative" className={styles["modal__logo__earth-hq"]} />
-                <h3 className={styles["modal__header__title"]}>WELCOME TO EARTH HQ</h3>
+      <div
+        className={classnames({
+          [styles["modal"]]: !isMobile,
+          [styles["modal__mobile"]]: isMobile
+        })}
+      >
+        <div
+          className={classnames({
+            [styles["modal__top"]]: !isMobile,
+            [styles["modal__top__mobile"]]: isMobile
+          })}
+        >
+          {isMobile && (
+            <div className={styles["modal__mobile__nav"]}>
+              <div className={styles["modal__mobile__nav__logo"]}>
+                <Image src={nullSchoolLogo} alt="" />
               </div>
-              <IconButton
-                name="close"
-                size={32}
-                className={styles["modal__header__close-button"]}
-                onClick={handleClose}
-              />
+              {counter !== 2 && (
+                <h1 className={styles["modal__mobile__continue"]} onClick={handleClose}>
+                  SKIP
+                </h1>
+              )}
+            </div>
+          )}
+          {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="" />}
+          <div
+            className={classnames({
+              [styles["modal__top__contain"]]: !isMobile,
+              [styles["modal__top__contain-mobile"]]: isMobile
+            })}
+          >
+            <div
+              className={classnames({
+                [styles["modal__header"]]: true,
+                [styles["modal__header__mobile"]]: isMobile
+              })}
+            >
+              <div className={styles["modal__logo"]}>
+                {!isMobile && (
+                  <Icon name="earth-hq" size={32} type="decorative" className={styles["modal__logo__earth-hq"]} />
+                )}
+                <h3
+                  className={classnames({
+                    [styles["modal__header__title"]]: !isMobile,
+                    [styles["modal__header__title__mobile"]]: isMobile
+                  })}
+                >
+                  WELCOME TO EARTH HQ
+                </h3>
+              </div>
+              {!isMobile && (
+                <IconButton
+                  name="close"
+                  size={32}
+                  className={styles["modal__header__close-button"]}
+                  onClick={handleClose}
+                />
+              )}
             </div>
             <div className={styles["modal__image"]}>
-              {/* Renders list images beforehand */}
               {data.map((image, index) => (
                 <Image
                   layout="fill"
                   objectFit="cover"
-                  objectPosition="bottom"
+                  objectPosition={isMobile ? undefined : "bottom"}
                   priority={true}
                   key={image.id}
-                  src={image.desktopURL}
+                  src={isMobile ? image.mobileURL : image.desktopURL}
                   alt={image.title}
                   className={classnames({
                     [styles["modal__image__hide"]]: true,
@@ -66,50 +131,78 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
             </div>
           </div>
         </div>
-        <div className={styles["modal__content"]}>
-          <h4 className={styles["modal__content__text"]}>{data[counter].title}</h4>
-          <div className={styles["modal__content__controls"]}>
-            <div className={styles["modal__content__controls__box"]}>
+        <div
+          className={classnames({
+            [styles["modal__content"]]: !isMobile,
+            [styles["modal__content__mobile"]]: isMobile
+          })}
+        >
+          <h4
+            className={classnames({
+              [styles["modal__content__text"]]: !isMobile,
+              [styles["modal__content__text__mobile"]]: isMobile
+            })}
+          >
+            {data[counter].title}
+          </h4>
+          {isMobile && <SlideLocator />}
+          <div
+            className={classnames({
+              [styles["modal__content__controls"]]: true
+            })}
+          >
+            <div
+              className={classnames({
+                [styles["modal__content__controls__box"]]: true,
+                [styles["modal__content__controls__box__hide"]]: isFirstSlide,
+                [styles["modal__content__controls__box__remove"]]: isFirstSlide && isMobile
+              })}
+            >
               <button
                 data-testid="back-btn"
-                disabled={counter === 0}
+                disabled={isFirstSlide}
                 className={classnames({
                   [styles["modal__content__controls__box__back-button"]]: true,
-                  [styles["hide"]]: counter === 0
+                  [styles["modal__content__controls__box__back-button-mobile"]]: isMobile,
+                  [styles["hide"]]: isFirstSlide
                 })}
                 onClick={() => setCounter(state => state - 1)}
               >
                 BACK
               </button>
             </div>
-            <div className={styles["modal__content__controls__box"]}>
-              <div className={styles["modal__content__controls__box__divider"]}>
-                {[0, 1, 2].map(point => (
-                  <div
-                    key={point}
-                    className={classnames({
-                      [styles["modal__content__controls__box__divider--unselected"]]: counter !== point,
-                      [styles["modal__content__controls__box__divider--selected"]]: counter === point
-                    })}
-                    onClick={() => setCounter(point)}
-                  ></div>
-                ))}
-              </div>
-            </div>
-            <div className={styles["modal__content__controls__box"]}>
+            {!isMobile && <SlideLocator />}
+            <div
+              className={classnames({
+                [styles["modal__content__controls__box"]]: true,
+                [styles["modal__content__controls__box__mobile"]]: isMobile && isFirstSlide,
+                [styles["modal__content__controls__box__continue"]]: counter !== 0 && isMobile
+              })}
+            >
               <button
                 data-testid="forward-btn"
-                className={styles["modal__content__controls__box__continueBtn"]}
+                className={classnames({
+                  [styles["modal__content__controls__box__continueBtn"]]: true,
+                  [styles["modal__content__controls__box__continueBtn-mobile"]]: isMobile
+                })}
                 onClick={nextStep}
               >
-                <h4 className={styles["modal__content__controls__box__continueBtn__text"]}>
+                <h4
+                  className={classnames({
+                    [styles["modal__content__controls__box__continueBtn__text"]]: true,
+                    [styles["modal__content__controls__box__continueBtn__text-mobile"]]: isMobile
+                  })}
+                >
                   {isFinalSlide ? "EXPLORE" : "CONTINUE"}
                 </h4>
                 <Icon
                   name={isFinalSlide ? "check" : "arrow-right"}
                   size={32}
                   type="decorative"
-                  className={styles["modal__content__controls__box__continueBtn__icon"]}
+                  className={classnames({
+                    [styles["modal__content__controls__box__continueBtn__icon"]]: true,
+                    [styles["modal__content__controls__box__continueBtn__icon-mobile"]]: isMobile
+                  })}
                 />
               </button>
             </div>
@@ -118,103 +211,6 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
       </div>
     </div>
   );
-
-  const MobileView = (
-    <div className={styles["modal-backdrop"]}>
-      <div className={styles["modal__mobile"]}>
-        <div className={styles["modal__top__mobile"]}>
-          <div className={styles["modal__mobile__nav"]}>
-            <div className={styles["modal__mobile__nav__logo"]}>
-              <Image src={nullSchoolLogo} alt="" />
-            </div>
-            {counter !== 2 && (
-              <h1 className={styles["modal__mobile__continue"]} onClick={handleClose}>
-                SKIP
-              </h1>
-            )}
-          </div>
-          {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="" />}
-          <div className={styles["modal__top__contain-mobile"]}>
-            <h3 className={styles["modal__header__title__mobile"]}>WELCOME TO EARTH HQ</h3>
-            <div className={styles["modal__image"]}>
-              {/* Renders list images beforehand */}
-              {data.map((image, index) => (
-                <Image
-                  layout="fill"
-                  objectFit="cover"
-                  priority={true}
-                  key={image.id}
-                  src={image.mobileURL}
-                  alt={image.title}
-                  className={classnames({
-                    [styles["modal__image__hide"]]: true,
-                    [styles["modal__image__show"]]: counter === index
-                  })}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className={styles["modal__content__mobile"]}>
-          <h4 className={styles["modal__content__text__mobile"]}>{data[counter].title}</h4>
-          <div className={styles["modal__content__controls__box"]}>
-            <div className={styles["modal__content__controls__box__divider"]}>
-              {[0, 1, 2].map(point => (
-                <div
-                  key={point}
-                  className={classnames({
-                    [styles["modal__content__controls__box__divider--unselected"]]: counter !== point,
-                    [styles["modal__content__controls__box__divider--selected"]]: counter === point
-                  })}
-                  onClick={() => setCounter(point)}
-                ></div>
-              ))}
-            </div>
-          </div>
-          <div
-            className={classnames({
-              [styles["modal__content__controls"]]: true,
-              [styles["modal__content__controls__center"]]: counter == 0,
-              [styles["modal__content__controls__mobile"]]: isMobile
-            })}
-          >
-            <button
-              data-testid="back-btn"
-              disabled={counter === 0}
-              className={classnames({
-                [styles["modal__content__controls__box__back-button"]]: true,
-                [styles["modal__content__controls__box__back-button-mobile"]]: isMobile,
-                [styles["hide"]]: counter === 0
-              })}
-              onClick={() => setCounter(state => state - 1)}
-            >
-              BACK
-            </button>
-            <button
-              data-testid="forward-btn"
-              className={classnames({
-                [styles["modal__content__controls__box__continueBtn"]]: true,
-                [styles["modal__content__controls__box__continueBtn-mobile"]]: isMobile
-              })}
-              onClick={nextStep}
-            >
-              <h4 className={styles["modal__content__controls__box__continueBtn__text-mobile"]}>
-                {isFinalSlide ? "EXPLORE" : "CONTINUE"}
-              </h4>
-              <Icon
-                name={isFinalSlide ? "check" : "arrow-right"}
-                size={32}
-                type="decorative"
-                className={styles["modal__content__controls__box__continueBtn__icon-mobile"]}
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  return <>{showModal && (isMobile ? MobileView : DesktopView)}</>;
 };
 
 export default OnboardingModal;
