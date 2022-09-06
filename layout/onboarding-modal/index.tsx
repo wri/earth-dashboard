@@ -156,8 +156,6 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
         </div>
         <div className={styles["modal__content__mobile"]}>
           <h4 className={styles["modal__content__text__mobile"]}>{data[counter].title}</h4>
-
-          {/*  */}
           <div className={styles["modal__content__controls__box"]}>
             <div className={styles["modal__content__controls__box__divider"]}>
               {[0, 1, 2].map(point => (
@@ -172,8 +170,6 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
               ))}
             </div>
           </div>
-          {/*  */}
-
           <div
             className={classnames({
               [styles["modal__content__controls"]]: true,
