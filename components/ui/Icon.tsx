@@ -35,7 +35,13 @@ export type IconNames =
   | "twitter"
   | "youtube-play"
   | "zoom-in"
-  | "zoom-out";
+  | "zoom-out"
+  | "eclipse"
+  | "info"
+  | "earth-hq-nav"
+  | "news"
+  | "news-active"
+  | "info-active";
 
 type AccessibilityProps =
   | { type: "meaningful"; accessibilityText: string }

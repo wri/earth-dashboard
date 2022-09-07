@@ -1,4 +1,4 @@
-import { render, fireEvent, waitFor, waitForElementToBeRemoved } from "test-utils";
+import { render, waitFor } from "test-utils";
 import headlines from "../../../../test/headlines.json";
 import { GCAAPI } from "../../../../utils/axios";
 import Menu from "./index";
@@ -44,18 +44,18 @@ test("<Menu /> renders correctly as desktop", async () => {
             class="c-home-menu__scroll-area"
           >
             <div
-              class="c-menu-option__underlay c-home-menu__all-events"
-              data-testid="option"
+              class="c-content-panel__underlay c-home-menu__all-events"
+              data-testid="content-panel"
             >
               <div
-                class="c-menu-option"
-                tabindex="1"
+                class="c-content-panel c-content-panel__focusable"
+                tabindex="0"
               >
                 <div
-                  class="c-menu-option__header-row"
+                  class="c-content-panel__header-row"
                 >
                   <h3
-                    class="c-menu-option__title"
+                    class="c-content-panel__title"
                   >
                     All Extreme Events
                   </h3>
@@ -66,19 +66,23 @@ test("<Menu /> renders correctly as desktop", async () => {
                   View all of the latest extreme events
                 </p>
                 <div
-                  class="c-menu-option__row"
+                  class="c-content-panel__row"
                 >
                   <button
-                    class="c-menu-option__button"
+                    class="c-content-panel__button"
                   >
-                    <span
-                      class="c-menu-option__button-text"
+                    <div
+                      class="c-content-panel__button-content"
                     >
-                      View All
-                    </span>
-                    <span
-                      class="c-menu-option__button-icon"
-                    />
+                      <span
+                        class="c-content-panel__button-text"
+                      >
+                        View All
+                      </span>
+                      <span
+                        class="c-content-panel__button-icon"
+                      />
+                    </div>
                   </button>
                 </div>
               </div>
@@ -106,12 +110,9 @@ test("<Menu /> renders correctly as mobile", async () => {
   <div
     class="c-home-menu-container c-home-menu-container--closing"
   >
-    <div
-      class="c-dialog-panel__draggable"
-      style="position: absolute; user-select: auto; width: auto; height: 70vh; max-width: 100vw; max-height: 90vh; min-width: 100vw; min-height: 50vh; box-sizing: border-box; flex-shrink: 0;"
-    >
+    <div>
       <div
-        class="c-home-menu c-home-menu--closing"
+        class="c-home-menu"
       >
         <div
           class="c-home-menu__header"
@@ -133,18 +134,18 @@ test("<Menu /> renders correctly as mobile", async () => {
             class="c-home-menu__scroll-area"
           >
             <div
-              class="c-menu-option__underlay c-home-menu__all-events"
-              data-testid="option"
+              class="c-content-panel__underlay c-home-menu__all-events"
+              data-testid="content-panel"
             >
               <div
-                class="c-menu-option"
-                tabindex="1"
+                class="c-content-panel c-content-panel__focusable"
+                tabindex="0"
               >
                 <div
-                  class="c-menu-option__header-row"
+                  class="c-content-panel__header-row"
                 >
                   <h3
-                    class="c-menu-option__title"
+                    class="c-content-panel__title"
                   >
                     All Extreme Events
                   </h3>
@@ -155,31 +156,29 @@ test("<Menu /> renders correctly as mobile", async () => {
                   View all of the latest extreme events
                 </p>
                 <div
-                  class="c-menu-option__row"
+                  class="c-content-panel__row"
                 >
                   <button
-                    class="c-menu-option__button"
+                    class="c-content-panel__button"
                   >
-                    <span
-                      class="c-menu-option__button-text"
+                    <div
+                      class="c-content-panel__button-content"
                     >
-                      View All
-                    </span>
-                    <span
-                      class="c-menu-option__button-icon"
-                    />
+                      <span
+                        class="c-content-panel__button-text"
+                      >
+                        View All
+                      </span>
+                      <span
+                        class="c-content-panel__button-icon"
+                      />
+                    </div>
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <div
-          class="c-dialog-panel__draggable__handle"
-          style="position: absolute; user-select: none; width: 100%; height: 50px; top: -42px; left: 0px; cursor: row-resize;"
-        />
       </div>
     </div>
   </div>

@@ -18,7 +18,6 @@ const MAX_NUMBER_OF_HEADLINES = 10;
 type HeadlinesPanerProps = {
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
-  onForceInfoPage: () => void;
   forceInfoPage: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType, string>;
@@ -28,7 +27,6 @@ type HeadlinesPanerProps = {
 const HeadlinesPanel = ({
   headlines,
   setHeadlines,
-  onForceInfoPage,
   setCurrentMode,
   setCurrentHeadline,
   currentHeadline
@@ -44,8 +42,6 @@ const HeadlinesPanel = ({
     if (currentHeadline) {
       // Set default template
       setCurrentMode(currentHeadline.attributes.mode);
-      // Open the info panel
-      onForceInfoPage();
     }
   }, [currentHeadline, setCurrentMode]);
 

@@ -7,7 +7,6 @@ import modes from "../../../../test/modes.json";
 import headlines from "../../../../test/headlines.json";
 import { GCAAPI } from "../../../../utils/axios";
 import { earthServer } from "../../../../test/iframeBridge";
-import { findByTestId } from "@testing-library/react";
 
 jest.mock("../../../../hooks/useIframeBridge");
 jest.mock("../../../../utils/axios");
@@ -43,9 +42,9 @@ test("<MainContainer /> renders correctly as desktop", async () => {
   GCAAPI.get.mockResolvedValueOnce({ data: headlines });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
-  const { container, getByTestId } = utilRender(<MainContainer isMobile={false} />);
+  const { container, getAllByTestId } = utilRender(<MainContainer isMobile={false} />);
 
-  await waitFor(() => getByTestId("labels-arr"), { timeout: 3000 });
+  await waitFor(() => getAllByTestId("content-panel"), { timeout: 3000 });
 
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -53,19 +52,12 @@ test("<MainContainer /> renders correctly as desktop", async () => {
         class="main-container -desktop -has-menu-open"
         data-testid="iframe-container"
       >
-        <iframe
-          allowtransparency="true"
-          class="c-map-iframe"
-          frameborder="0"
-          id="nullSchoolIframe"
-        />
         <div
           class="c-home-menu-container"
         >
           <div>
             <div
               class="c-home-menu"
-              id="menu"
             >
               <div
                 class="c-home-menu__header"
@@ -79,7 +71,8 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                     I'd like to explore
                   </h2>
                   <button
-                    class="c-icon-button small"
+                    aria-label="Close"
+                    class="c-icon-button medium"
                   />
                 </div>
               </div>
@@ -90,18 +83,18 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                   class="c-home-menu__scroll-area"
                 >
                   <div
-                    class="c-menu-option__underlay c-home-menu__all-events"
-                    data-testid="option"
+                    class="c-content-panel__underlay c-home-menu__all-events"
+                    data-testid="content-panel"
                   >
                     <div
-                      class="c-menu-option"
-                      tabindex="1"
+                      class="c-content-panel c-content-panel__focusable"
+                      tabindex="0"
                     >
                       <div
-                        class="c-menu-option__header-row"
+                        class="c-content-panel__header-row"
                       >
                         <h3
-                          class="c-menu-option__title"
+                          class="c-content-panel__title"
                         >
                           All Extreme Events
                         </h3>
@@ -112,42 +105,46 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                         View all of the latest extreme events
                       </p>
                       <div
-                        class="c-menu-option__row"
+                        class="c-content-panel__row"
                       >
                         <button
-                          class="c-menu-option__button"
+                          class="c-content-panel__button"
                         >
-                          <span
-                            class="c-menu-option__button-text"
+                          <div
+                            class="c-content-panel__button-content"
                           >
-                            View All
-                          </span>
-                          <span
-                            class="c-menu-option__button-icon"
-                          />
+                            <span
+                              class="c-content-panel__button-text"
+                            >
+                              View All
+                            </span>
+                            <span
+                              class="c-content-panel__button-icon"
+                            />
+                          </div>
                         </button>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="c-menu-option__underlay"
-                    data-testid="option"
+                    class="c-content-panel__underlay"
+                    data-testid="content-panel"
                   >
                     <div
-                      class="c-menu-option"
-                      tabindex="1"
+                      class="c-content-panel c-content-panel__focusable"
+                      tabindex="0"
                     >
                       <div
-                        class="c-menu-option__header-row"
+                        class="c-content-panel__header-row"
                       >
                         <img
                           alt=""
-                          class="c-menu-option__image"
+                          class="c-content-panel__image"
                           role="presentation"
                           src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/7v0sYUds12E9Y1MBEbkyamiQKIsKHQU7BV0kdFYc.png"
                         />
                         <h3
-                          class="c-menu-option__title"
+                          class="c-content-panel__title"
                         >
                           Fires
                         </h3>
@@ -159,42 +156,46 @@ test("<MainContainer /> renders correctly as desktop", async () => {
     Source: CAMS / Copernicus / European Commission + ECMWF
                       </p>
                       <div
-                        class="c-menu-option__row"
+                        class="c-content-panel__row"
                       >
                         <button
-                          class="c-menu-option__button"
+                          class="c-content-panel__button"
                         >
-                          <span
-                            class="c-menu-option__button-text"
+                          <div
+                            class="c-content-panel__button-content"
                           >
-                            Learn More
-                          </span>
-                          <span
-                            class="c-menu-option__button-icon"
-                          />
+                            <span
+                              class="c-content-panel__button-text"
+                            >
+                              Learn More
+                            </span>
+                            <span
+                              class="c-content-panel__button-icon"
+                            />
+                          </div>
                         </button>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="c-menu-option__underlay"
-                    data-testid="option"
+                    class="c-content-panel__underlay"
+                    data-testid="content-panel"
                   >
                     <div
-                      class="c-menu-option"
-                      tabindex="1"
+                      class="c-content-panel c-content-panel__focusable"
+                      tabindex="0"
                     >
                       <div
-                        class="c-menu-option__header-row"
+                        class="c-content-panel__header-row"
                       >
                         <img
                           alt=""
-                          class="c-menu-option__image"
+                          class="c-content-panel__image"
                           role="presentation"
                           src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/T2wLMYnMeegJNFS8mm5QGEsZPJUSkOcF9fotdpAT.png"
                         />
                         <h3
-                          class="c-menu-option__title"
+                          class="c-content-panel__title"
                         >
                           Air Pollution
                         </h3>
@@ -206,19 +207,23 @@ test("<MainContainer /> renders correctly as desktop", async () => {
     Source: CAMS / Copernicus / European Commission + ECMWF
                       </p>
                       <div
-                        class="c-menu-option__row"
+                        class="c-content-panel__row"
                       >
                         <button
-                          class="c-menu-option__button"
+                          class="c-content-panel__button"
                         >
-                          <span
-                            class="c-menu-option__button-text"
+                          <div
+                            class="c-content-panel__button-content"
                           >
-                            Learn More
-                          </span>
-                          <span
-                            class="c-menu-option__button-icon"
-                          />
+                            <span
+                              class="c-content-panel__button-text"
+                            >
+                              Learn More
+                            </span>
+                            <span
+                              class="c-content-panel__button-icon"
+                            />
+                          </div>
                         </button>
                       </div>
                     </div>
@@ -248,11 +253,6 @@ test("<MainContainer /> renders correctly as desktop", async () => {
               <span>
                 Latest Extreme Events
               </span>
-              <span
-                data-testid="labels-arr"
-              >
-                Fires, Wind, PM2.5, Sfc
-              </span>
             </div>
           </button>
         </div>
@@ -265,8 +265,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
   GCAAPI.get.mockResolvedValue({ data: modes });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
-  const { container, getByTestId } = utilRender(<MainContainer isMobile={true} />);
-  await waitFor(() => getByTestId("labels-arr"), { timeout: 3000 });
+  const { container, getAllByTestId } = utilRender(<MainContainer isMobile={true} />);
 
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -293,14 +292,6 @@ test("<MainContainer /> renders correctly as mobile", async () => {
             >
               <span>
                 Latest Extreme Events
-              </span>
-              <span
-                data-testid="labels-arr"
-              >
-                Fires, Wind, PM2.5, Sfc
-                <br />
-                 
-                xxxx-xx-xx
               </span>
             </div>
           </button>
