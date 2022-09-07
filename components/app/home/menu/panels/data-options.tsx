@@ -4,22 +4,29 @@ import { connect } from "react-redux";
 import { RootState } from "store/types";
 import { NAME as modesSliceName, Mode } from "slices/modes";
 import MenuOption from "components/app/home/menu-option";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
-const mapHighlightToOption = ({ id, attributes }: Mode) => {
+const mapHighlightToOption = (mode: Mode, onClickDataLayer: ActionCreatorWithPayload<Mode, string>) => {
+  const { id, attributes } = mode;
   return {
     id,
     ...attributes,
     buttonText: "Learn More",
-    onClick: () => {}
+    onClick: () => onClickDataLayer(mode)
   };
 };
 
 type DataIndexProps = {
   highlights: Mode[] | undefined;
+  currentMode: Mode | undefined;
+  onClickDataLayer: ActionCreatorWithPayload<Mode, string>;
 };
 
-const DataIndex = ({ highlights }: DataIndexProps) => {
-  const dataLayers = useMemo(() => highlights?.map(mapHighlightToOption) || [], [highlights]);
+const DataIndex = ({ highlights, currentMode, onClickDataLayer }: DataIndexProps) => {
+  const dataLayers = useMemo(
+    () => highlights?.map(highlight => mapHighlightToOption(highlight, onClickDataLayer)) || [],
+    [highlights, onClickDataLayer]
+  );
 
   return (
     <div className={styles["c-home-menu__scroll-area"]}>

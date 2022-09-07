@@ -3,7 +3,7 @@ import Menu from "./component";
 import { ID as animationsId } from "schemas/global-settings/animations";
 import { NAME as globalSettingsSliceName } from "slices/globalSettings";
 import { NAME as dialogSliceName, setDialogHeight } from "slices/dialog";
-import { setCurrentHeadline, setCurrentHeadlineId } from "slices/headlines";
+import { setHeadlines, setCurrentHeadline, setCurrentHeadlineId } from "slices/headlines";
 
 import {
   setCurrentMode,
@@ -36,6 +36,7 @@ export default connect(
     resetValues: resetValues,
     setDateOfDataShown,
     setDialogHeight,
+    setHeadlines,
     setCurrentHeadline,
     setCurrentHeadlineId
   },
