@@ -46,13 +46,13 @@
       &__nav {
         position: relative;
         z-index: $z-index-modal;
-        padding: 16px;
+        padding: 16px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         &__logo {
-          width: 115px;
+          width: 114px;
           display: flex;
           align-content: center;
           justify-content: center;
@@ -70,6 +70,7 @@
         text-align: center;
         letter-spacing: 0.2px;
         text-decoration-line: underline;
+        margin: 0;
         color: $white;
       }
     }
