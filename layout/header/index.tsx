@@ -16,25 +16,27 @@ const Header = () => {
     <header
       className={classnames(styles["c-site-header"], router.pathname === "/" ? styles["fixed"] : styles["sticky"])}
     >
-      {/* Logo */}
-      <div className={styles["c-site-header__logo"]}>
-        <LogoLink />
-      </div>
-
-      {/* Navigation links */}
-      <Desktop>
-        <div className={styles["c-site-header__links"]}>
-          <HeaderLink href="/" text="Earth HQ" />
-          <HeaderLink href="/news" text="News" />
-          <HeaderLink href="/about" text="About" />
+      <div className={styles["section"]}>
+        {/* Logo */}
+        <div className={styles["section__logo"]}>
+          <LogoLink />
         </div>
-      </Desktop>
-      <Mobile>
-        <Navbar />
-      </Mobile>
 
-      {/* Options */}
-      <HeaderOptions />
+        {/* Navigation links */}
+        <Desktop>
+          <div className={styles["section__links"]}>
+            <HeaderLink href="/" text="Earth HQ" />
+            <HeaderLink href="/news" text="News" />
+            <HeaderLink href="/about" text="About" />
+          </div>
+        </Desktop>
+        <Mobile>
+          <Navbar />
+        </Mobile>
+
+        {/* Options */}
+        <HeaderOptions />
+      </div>
     </header>
   );
 };
