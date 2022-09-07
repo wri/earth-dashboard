@@ -8,6 +8,7 @@ import MenuLayout from "./layout";
 import { fireEvent } from "utils/gtag";
 import { MENU_TAB_CHANGE_EVENT_NAME } from "constants/tag-manager";
 import ClimateAlerts from "./panels/climate-alerts";
+import Headline from "../headline";
 
 const INFO_PAGE_ID = "InfoPage";
 const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
@@ -61,6 +62,11 @@ const Menu = forwardRef(
       setPageTypeId(INFO_PAGE_ID);
     };
 
+    const clearHeadline = () => {
+      setCurrentHeadline(undefined);
+      setCurrentHeadlineId(undefined);
+    };
+
     const setActiveDataLayer = selectedMode => {
       setCurrentMode(selectedMode);
       setPageTypeId(DATA_LAYER_PAGE_ID);
@@ -74,12 +80,22 @@ const Menu = forwardRef(
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
-        {pageTypeId == INFO_PAGE_ID && (
+        {currentHeadline && (
+          <MenuLayout
+            title={currentHeadline.title}
+            onBack={clearHeadline}
+            onClose={onClose}
+            setDialogHeight={setDialogHeight}
+          >
+            <Headline headline={currentHeadline} />
+          </MenuLayout>
+        )}
+        {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
           <MenuLayout title={INFO_PAGE_HEADLINE} onClose={onClose} setDialogHeight={setDialogHeight}>
             <DataIndexPanel onClickDataLayer={setActiveDataLayer} onClickExtremeEvents={showExtremeEvents} />
           </MenuLayout>
         )}
-        {pageTypeId == EXTREME_EVENTS_PAGE_ID && (
+        {!currentHeadline && pageTypeId == EXTREME_EVENTS_PAGE_ID && (
           <MenuLayout
             title={EXTREME_EVENTS_PAGE_HEADLINE}
             onBack={onBack}
@@ -89,7 +105,7 @@ const Menu = forwardRef(
             <ClimateAlerts />
           </MenuLayout>
         )}
-        {pageTypeId == DATA_LAYER_PAGE_ID && (
+        {!currentHeadline && pageTypeId == DATA_LAYER_PAGE_ID && (
           <MenuLayout
             title={currentMode.attributes.title}
             onBack={onBack}

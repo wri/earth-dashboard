@@ -58,7 +58,11 @@ const Headline = ({
   }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy, setDateOfDataShown]);
 
   return (
-    <article className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
+    <article
+      className={classnames(styles["c-headline"], styles["c-headline__scroll-area"], className)}
+      {...rest}
+      data-testid="headline"
+    >
       <h3 className={classnames(styles["c-headline__title"], "u-margin-none")}>{headline.attributes.title}</h3>
       <p className={classnames(styles["c-headline__body"], "u-margin-top-xs u-margin-bottom-l u-text-pre-line")}>
         {headline.attributes.content.body}
