@@ -106,7 +106,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
               {!isMobile && (
                 <IconButton
                   name="close"
-                  size={12}
+                  size={11.25}
                   className={styles["modal__header__close-button"]}
                   onClick={handleClose}
                 />

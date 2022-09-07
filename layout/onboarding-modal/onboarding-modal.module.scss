@@ -228,7 +228,7 @@
 
         button {
           margin: 0.5rem;
-          height: 2.875rem;
+          // height: 2.875rem;
           color: $white;
           border-radius: 30px;
           font-weight: 500;
@@ -301,7 +301,7 @@
             display: flex;
             align-items: center;
             width: 10rem;
-            height: 146px;
+            height: 46px;
             justify-content: space-between;
             padding: 8px;
             background-color: $colour-flame;
@@ -346,6 +346,7 @@
 
           &__continueBtn-mobile {
             width: 126px;
+            height: 40px;
 
             &:hover {
               background-color: $colour-flame;
@@ -357,6 +358,7 @@
             @include font-size(20px, 30px);
             font-weight: 500;
             border: solid 2px $white;
+            height: 46px;
             width: 5rem;
 
             &:hover {
@@ -369,6 +371,7 @@
             }
           }
           &__back-button-mobile {
+            height: 40px;
             @include font-size(16px, 24px);
 
             &:hover {
