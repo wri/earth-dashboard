@@ -20,7 +20,7 @@
     position: fixed;
   }
 
-  .section {
+  .top-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -35,10 +35,33 @@
     }
   }
 
+  .bottom-section {
+    padding: 14px 24px 16px 24px;
+
+    .title,
+    .description {
+      color: $white;
+      text-align: center;
+    }
+
+    .title {
+      @include font-size(20px, 30px);
+      font-family: "Barlow Condensed";
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+
+    .description {
+      @include font-size(16px, 24px);
+      font-weight: 500;
+    }
+  }
+
   @media screen and (min-width: $global-breakpoint-md) {
     padding: 28px;
 
-    .section {
+    .top-section {
       &__logo {
         width: 180px;
       }
