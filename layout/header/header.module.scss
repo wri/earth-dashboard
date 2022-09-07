@@ -21,7 +21,6 @@
 
   &.fixed {
     position: fixed;
-    padding-bottom: 0;
   }
 
   button,
@@ -34,7 +33,7 @@
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
-    padding: 24px;
+    padding: 28px;
 
     &__logo {
       width: 180px;
@@ -47,4 +46,3 @@
     }
   }
 }
-
