@@ -22,7 +22,7 @@
   &__table-with-nav {
     background-color: rgba($colour-night, 0.4);
     border-radius: 16px;
-    padding: 16px 24px 24px 24px;
+    padding: 16px 24px 22px 24px;
   }
 
   &__table-head {
@@ -34,7 +34,7 @@
     width: calc(100% + #{$table-gap * 2});
     border-collapse: separate;
     table-layout: fixed;
-    border-spacing: $table-gap;
+    border-spacing: $table-gap 15px;
     margin: 0 -$table-gap;
   }
 
@@ -97,6 +97,7 @@
     font-style: normal;
     font-weight: 500;
     @include font-size(20px, 30px);
+    color: $white;
   }
 
   &__live {
@@ -120,8 +121,15 @@
     }
   }
 
-  &__submit-container {
-    margin-top: -16px;
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+  }
+
+  td {
+    padding: 0px;
   }
 
   @media screen and (max-width: $global-breakpoint-md) {
@@ -136,6 +144,7 @@
     }
     &__table-with-nav {
       padding: 10px 16px 16px 16px;
+      margin-top: 16px;
     }
     &__table {
       $table-gap: 9.5px;
@@ -164,6 +173,9 @@
       span {
         @include font-size(16px, 24px);
       }
+    }
+    &__actions {
+      align-items: flex-start;
     }
   }
 }
