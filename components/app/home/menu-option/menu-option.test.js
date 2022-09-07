@@ -51,14 +51,18 @@ test("<MenuOption /> renders correctly as desktop", async () => {
         <button
           class="c-content-panel__button"
         >
-          <span
-            class="c-content-panel__button-text"
+          <div
+            class="c-content-panel__button-content"
           >
-            View All
-          </span>
-          <span
-            class="c-content-panel__button-icon"
-          />
+            <span
+              class="c-content-panel__button-text"
+            >
+              View All
+            </span>
+            <span
+              class="c-content-panel__button-icon"
+            />
+          </div>
         </button>
       </div>
     </div>
