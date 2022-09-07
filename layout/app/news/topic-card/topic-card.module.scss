@@ -38,7 +38,7 @@ $c-topic-card-transition: 0.16s ease-in-out;
     p {
       @include font-size(12px, 18px);
 
-      @media screen and (min-width: map-get($breakpoints, medium)) {
+      @media screen and (min-width: $global-breakpoint-md) {
         @include font-size(16px, 24px);
       }
     }
