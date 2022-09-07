@@ -30,6 +30,18 @@ export type Mode = {
       default: DataLayer[];
       available: DataLayer[];
     };
+    what_is_happening_content: {
+      title: string;
+      detail: string;
+    };
+    what_will_happen_content: {
+      title: string;
+      detail: string;
+    };
+    how_to_help_content: {
+      title: string;
+      detail: string;
+    };
     visibility: {
       advanced_menu: boolean;
       data_highlights: boolean;

@@ -1,0 +1,32 @@
+@import "css/settings/zIndex";
+@import "css/_settings";
+
+.c-event-point {
+  position: absolute;
+  z-index: $z-index-tooltip;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  opacity: 0;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .c-outer-circle {
+    background-color: white;
+    width: 24px;
+    height: 24px;
+    margin: -1px 0 0 -6px;
+    padding: 4px;
+    border-radius: 12px;
+
+    .c-inner-circle {
+      background-color: $colour-flame;
+      width: 16px;
+      height: 16px;
+      border-radius: 8px;
+    }
+  }
+}

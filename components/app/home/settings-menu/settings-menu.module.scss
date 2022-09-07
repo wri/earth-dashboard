@@ -14,15 +14,19 @@
   mix-blend-mode: normal;
   backdrop-filter: blur(10.8731px);
   box-shadow: 0px 0px 113.425px #000000;
-  border-radius: 28px;
+  border-radius: 28px 28px 0 0;
   overflow: hidden;
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    border-radius: 28px;
+  }
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 24px;
-    background-color: #{$colour-night}20;
+    background-color: $colour-night;
 
     > div:first-child {
       display: flex;
@@ -39,9 +43,14 @@
         margin: 0 auto;
         margin-left: 12px;
         color: $white;
-        @include font-size(20px);
         font-weight: 500;
         text-transform: uppercase;
+        font-family: "Barlow Condensed";
+        @include font-size(20px, 30px);
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          font-family: Barlow;
+        }
       }
     }
   }
@@ -49,30 +58,30 @@
   &__body {
     position: relative;
     height: 100%;
-    margin: 24px 0px;
-  }
 
-  &__scroll {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    overflow-y: auto;
-    @include defaultScrollBar();
+    .scroll {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      overflow-y: auto;
+      padding: 24px 0px;
+      @include defaultScrollBar();
 
-    > div {
-      padding-left: 24px;
-      padding-right: 24px;
+      > div {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .main > p {
+        @include font-size(14px, 21px);
+        color: white;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
     }
-  }
-
-  &__body-title {
-    @include font-size(14px, 21px);
-    color: white;
-    font-weight: 500;
-    margin-bottom: 8px;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
@@ -82,11 +91,6 @@
     width: 640px;
     height: auto;
     transform: translateX(-50%);
-
-    &__body-title {
-      @include font-size(18px, 27px);
-      margin-bottom: 16px;
-    }
 
     &__header {
       padding: 24px;
@@ -99,13 +103,17 @@
     }
 
     &__body {
-      margin: 40px 0px;
-    }
+      .scroll {
+        padding: 40px 0px;
 
-    &__scroll {
-      > div {
-        padding-left: 40px;
-        padding-right: 40px;
+        > div {
+          padding-left: 40px;
+          padding-right: 40px;
+        }
+
+        .main > p {
+          @include font-size(18px, 27px);
+        }
       }
     }
   }

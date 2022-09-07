@@ -3,16 +3,19 @@ import { connect } from "react-redux";
 import { setIsMobile } from "slices/common";
 import { RootState } from "store/types";
 import { setModes } from "slices/modes";
+import { setHeadlines } from "slices/headlines";
 
 export default connect(
   (state: RootState) => ({
     dateOfDataShown: new Date(state.modes.dateOfDataShown),
     layersLabelArr: state.modes.layersLabelArr,
     shouldFadeControls: state.mapControls.isDatePickerOpen || state.mapControls.isSettingsOpen,
-    currentHeadline: state.headlines.currentHeadline
+    currentHeadline: state.headlines.currentHeadline,
+    headlines: state.headlines.headlines
   }),
   {
     setModes,
-    setIsMobile
+    setIsMobile,
+    setHeadlines
   }
 )(MainContainerComponent);

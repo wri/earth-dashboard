@@ -27,7 +27,7 @@ describe("Tooltip", () => {
 
   test("renders right arrow correctly", () => {
     const { container } = render(
-      <ToolTip x={20} y={20} arrowPosition={POSITIONS.right}>
+      <ToolTip x={20} y={20} arrowPosition="right">
         Hello world
       </ToolTip>
     );
@@ -47,7 +47,7 @@ describe("Tooltip", () => {
 
   test("renders left arrow correctly", () => {
     const { container } = render(
-      <ToolTip x={20} y={20} arrowPosition={POSITIONS.left}>
+      <ToolTip x={20} y={20} arrowPosition="left">
         Hello world
       </ToolTip>
     );

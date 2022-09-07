@@ -96,7 +96,7 @@ const Scale = ({
                       : `${100 - percent}%`
                   }
                   x={isHorizontal ? `50%` : "19px"}
-                  arrowPosition={isHorizontal ? POSITIONS.none : POSITIONS.right}
+                  arrowPosition={isHorizontal ? "none" : "right"}
                   className={styles["c-scale__tooltip-item"]}
                 >
                   <button

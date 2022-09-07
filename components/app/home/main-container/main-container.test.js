@@ -42,330 +42,263 @@ test("<MainContainer /> renders correctly as desktop", async () => {
   GCAAPI.get.mockResolvedValueOnce({ data: headlines });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
-  const { container, getByTestId } = utilRender(<MainContainer isMobile={false} />);
+  const { container, getAllByTestId } = utilRender(<MainContainer isMobile={false} />);
 
-  await waitFor(() => getByTestId("labels-arr"));
+  await waitFor(() => getAllByTestId("content-panel"), { timeout: 3000 });
 
   expect(container).toMatchInlineSnapshot(`
-<div>
-  <div
-    class="main-container -desktop -has-menu-open"
-    data-testid="iframe-container"
-  >
-    <iframe
-      allowtransparency="true"
-      frameborder="0"
-      height="100%"
-      id="nullSchoolIframe"
-      width="100%"
-    />
-    <div
-      class="c-home-menu-container"
-    >
-      <div>
+    <div>
+      <div
+        class="main-container -desktop -has-menu-open"
+        data-testid="iframe-container"
+      >
         <div
-          class="c-home-menu"
-          id="menu"
+          class="c-home-menu-container"
         >
-          <div
-            class="c-home-menu__tabs"
-            data-tabs="true"
-          >
+          <div>
             <div
-              class="c-home-menu__header"
+              class="c-home-menu"
             >
               <div
-                class="c-home-menu__header-content"
-              >
-                <h2
-                  class="c-home-menu__header-text"
-                >
-                  Latest Extreme Events
-                </h2>
-                <button
-                  class="c-icon-button small"
-                />
-              </div>
-              <ul
-                class="c-home-menu__tab-list u-padding-top-xs"
-                role="tablist"
-              >
-                <li
-                  aria-controls="react-tabs-1"
-                  aria-disabled="false"
-                  aria-selected="true"
-                  class="c-home-menu__tab u-margin-right-l react-tabs__tab--selected"
-                  data-testid="tab-1"
-                  id="react-tabs-0"
-                  role="tab"
-                  tabindex="0"
-                >
-                  Latest Extreme Events
-                </li>
-                <li
-                  aria-controls="react-tabs-3"
-                  aria-disabled="false"
-                  aria-selected="false"
-                  class="c-home-menu__tab u-margin-right-l"
-                  data-testid="tab-2"
-                  id="react-tabs-2"
-                  role="tab"
-                >
-                  Data Highlights
-                </li>
-                <li
-                  aria-controls="react-tabs-5"
-                  aria-disabled="false"
-                  aria-selected="false"
-                  class="c-home-menu__tab"
-                  data-testid="tab-3"
-                  id="react-tabs-4"
-                  role="tab"
-                >
-                  Advanced Menu
-                </li>
-              </ul>
-            </div>
-            <div
-              class="c-home-menu__content u-padding-none"
-            >
-              <div
-                class="c-home-menu__tab-container"
+                class="c-home-menu__header"
               >
                 <div
-                  aria-labelledby="react-tabs-0"
-                  class="c-home-menu__tab-panel react-tabs__tab-panel--selected"
-                  data-testid="panel-1"
-                  id="react-tabs-1"
-                  role="tabpanel"
+                  class="c-home-menu__header-content"
                 >
-                  <p
-                    class="c-home-menu__tab-description u-margin-none"
+                  <h2
+                    class="c-home-menu__header-text"
                   >
-                    The effects of human-induced climate change can be seen and felt across the planet.
-                    <br />
-                    Explore the latest alerts from Mongabay below.
-                  </p>
+                    I'd like to explore
+                  </h2>
+                  <button
+                    aria-label="Close"
+                    class="c-icon-button medium"
+                  />
+                </div>
+              </div>
+              <div
+                class="c-home-menu__content u-padding-none"
+              >
+                <div
+                  class="c-home-menu__scroll-area"
+                >
                   <div
-                    class="c-home-menu__tab-panel-scroll-area c-home-menu__tab-panel-scroll-area--extra-top"
+                    class="c-content-panel__underlay c-home-menu__all-events"
+                    data-testid="content-panel"
                   >
-                    <button
-                      class="c-headline-card c-home-menu__headline"
-                      data-testid="headline"
+                    <div
+                      class="c-content-panel c-content-panel__focusable"
+                      tabindex="0"
                     >
-                      <img
-                        alt=""
-                        class="c-headline-card__image"
-                        role="presentation"
-                        src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/p2qlispRhUW2G6pMaV4xPeRO9tLODNREChXAo901.jpg"
-                      />
-                      <div>
+                      <div
+                        class="c-content-panel__header-row"
+                      >
                         <h3
-                          class="c-headline-card__title"
+                          class="c-content-panel__title"
                         >
-                          After surge, Amazon deforestation slows for second straight month
+                          All Extreme Events
                         </h3>
-                        <p
-                          class="c-headline-card__subtitle"
-                        >
-                          10th September 2021
-                        </p>
                       </div>
-                    </button>
-                    <button
-                      class="c-headline-card c-home-menu__headline"
-                      data-testid="headline"
+                      <p
+                        class="c-menu-option__subtitle"
+                      >
+                        View all of the latest extreme events
+                      </p>
+                      <div
+                        class="c-content-panel__row"
+                      >
+                        <button
+                          class="c-content-panel__button"
+                        >
+                          <div
+                            class="c-content-panel__button-content"
+                          >
+                            <span
+                              class="c-content-panel__button-text"
+                            >
+                              View All
+                            </span>
+                            <span
+                              class="c-content-panel__button-icon"
+                            />
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="c-content-panel__underlay"
+                    data-testid="content-panel"
+                  >
+                    <div
+                      class="c-content-panel c-content-panel__focusable"
+                      tabindex="0"
                     >
-                      <img
-                        alt=""
-                        class="c-headline-card__image"
-                        role="presentation"
-                        src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/gNIuBNcbSCvyqleVuLNA5OwpOU8YeWvSZ2dxr9dp.png"
-                      />
-                      <div>
+                      <div
+                        class="c-content-panel__header-row"
+                      >
+                        <img
+                          alt=""
+                          class="c-content-panel__image"
+                          role="presentation"
+                          src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/7v0sYUds12E9Y1MBEbkyamiQKIsKHQU7BV0kdFYc.png"
+                        />
                         <h3
-                          class="c-headline-card__title"
+                          class="c-content-panel__title"
                         >
-                          Air Quality Widget Example
+                          Fires
                         </h3>
-                        <p
-                          class="c-headline-card__subtitle"
-                        >
-                          14th September 2021
-                        </p>
                       </div>
-                    </button>
-                    <button
-                      class="c-headline-card c-home-menu__headline"
-                      data-testid="headline"
+                      <p
+                        class="c-menu-option__subtitle"
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Source: CAMS / Copernicus / European Commission + ECMWF
+                      </p>
+                      <div
+                        class="c-content-panel__row"
+                      >
+                        <button
+                          class="c-content-panel__button"
+                        >
+                          <div
+                            class="c-content-panel__button-content"
+                          >
+                            <span
+                              class="c-content-panel__button-text"
+                            >
+                              Learn More
+                            </span>
+                            <span
+                              class="c-content-panel__button-icon"
+                            />
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="c-content-panel__underlay"
+                    data-testid="content-panel"
+                  >
+                    <div
+                      class="c-content-panel c-content-panel__focusable"
+                      tabindex="0"
                     >
-                      <img
-                        alt=""
-                        class="c-headline-card__image"
-                        role="presentation"
-                        src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/Gnx6T2S0oyiq5YCKmrfNJpe0K5fwrWcdKV2H0kqo.png"
-                      />
-                      <div>
+                      <div
+                        class="c-content-panel__header-row"
+                      >
+                        <img
+                          alt=""
+                          class="c-content-panel__image"
+                          role="presentation"
+                          src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/T2wLMYnMeegJNFS8mm5QGEsZPJUSkOcF9fotdpAT.png"
+                        />
                         <h3
-                          class="c-headline-card__title"
+                          class="c-content-panel__title"
                         >
-                          Another Widget Example
+                          Air Pollution
                         </h3>
-                        <p
-                          class="c-headline-card__subtitle"
-                        >
-                          14th September 2021
-                        </p>
                       </div>
-                    </button>
-                    <button
-                      class="c-headline-card c-home-menu__headline"
-                      data-testid="headline"
-                    >
-                      <img
-                        alt=""
-                        class="c-headline-card__image"
-                        role="presentation"
-                        src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/qtPyJsfODBzLyWbi2ekjlMY8dqNJChePahN8JJNj.png"
-                      />
-                      <div>
-                        <h3
-                          class="c-headline-card__title"
+                      <p
+                        class="c-menu-option__subtitle"
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Source: CAMS / Copernicus / European Commission + ECMWF
+                      </p>
+                      <div
+                        class="c-content-panel__row"
+                      >
+                        <button
+                          class="c-content-panel__button"
                         >
-                          Repellat quasi quia quasi dolorem provident sed.
-                        </h3>
-                        <p
-                          class="c-headline-card__subtitle"
-                        >
-                          14th September 2021
-                        </p>
+                          <div
+                            class="c-content-panel__button-content"
+                          >
+                            <span
+                              class="c-content-panel__button-text"
+                            >
+                              Learn More
+                            </span>
+                            <span
+                              class="c-content-panel__button-icon"
+                            />
+                          </div>
+                        </button>
                       </div>
-                    </button>
-                    <button
-                      class="c-headline-card c-home-menu__headline"
-                      data-testid="headline"
-                    >
-                      <img
-                        alt=""
-                        class="c-headline-card__image"
-                        role="presentation"
-                        src="https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/eXMDncblKbGWuE4Rrt3Ywa6682IzfGfIPIabGKoq.jpg"
-                      />
-                      <div>
-                        <h3
-                          class="c-headline-card__title"
-                        >
-                          Rerum illo excepturi nobis quam earum corrupti at.
-                        </h3>
-                        <p
-                          class="c-headline-card__subtitle"
-                        >
-                          14th September 2021
-                        </p>
-                      </div>
-                    </button>
+                    </div>
                   </div>
                 </div>
-                <div
-                  aria-labelledby="react-tabs-2"
-                  class="c-home-menu__tab-panel"
-                  data-testid="panel-2"
-                  id="react-tabs-3"
-                  role="tabpanel"
-                />
-                <div
-                  aria-labelledby="react-tabs-4"
-                  class="c-home-menu__tab-panel"
-                  data-testid="panel-3"
-                  id="react-tabs-5"
-                  role="tabpanel"
-                />
               </div>
             </div>
           </div>
         </div>
+        <div
+          class="c-home-actions u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
+        >
+          <button
+            aria-controls="menu"
+            aria-expanded="true"
+            aria-haspopup="true"
+            class="c-home-actions__item c-home-menu-toggle c-home-menu-toggle--open"
+            data-testid="toggle"
+            id="menu-button"
+          >
+            <div
+              class="icon"
+            />
+            <div
+              class="c-home-menu-toggle__text-container"
+            >
+              <span>
+                Latest Extreme Events
+              </span>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
-    <div
-      class="c-home-actions u-padding-horizontal-l"
-    >
-      <button
-        aria-controls="menu"
-        aria-expanded="true"
-        aria-haspopup="true"
-        class="c-home-actions__item c-home-menu-toggle c-home-menu-toggle--open"
-        data-testid="toggle"
-        id="menu-button"
-      >
-        <div
-          class="icon"
-        />
-        <div
-          class="c-home-menu-toggle__text-container"
-        >
-          <span>
-            Latest Extreme Events
-          </span>
-          <span
-            data-testid="labels-arr"
-          >
-            Fires, Wind, PM2.5, Sfc
-          </span>
-        </div>
-      </button>
-    </div>
-  </div>
-</div>
-`);
+  `);
 });
 
 test("<MainContainer /> renders correctly as mobile", async () => {
   GCAAPI.get.mockResolvedValue({ data: modes });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
-  const { container, getByTestId } = utilRender(<MainContainer isMobile={true} />);
-  await waitFor(() => getByTestId("labels-arr"));
+  const { container, getAllByTestId } = utilRender(<MainContainer isMobile={true} />);
 
   expect(container).toMatchInlineSnapshot(`
-<div>
-  <div
-    class="main-container -mobile"
-    data-testid="iframe-container"
-  >
-    <div
-      class="c-home-actions mobile u-padding-horizontal-l"
-    >
-      <button
-        aria-controls="menu"
-        aria-expanded="false"
-        aria-haspopup="true"
-        class="c-home-actions__item c-home-menu-toggle"
-        data-testid="toggle"
-        id="menu-button"
+    <div>
+      <div
+        class="main-container -mobile"
+        data-testid="iframe-container"
       >
         <div
-          class="icon"
-        />
-        <div
-          class="c-home-menu-toggle__text-container"
+          class="c-home-actions mobile u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
         >
-          <span>
-            Latest Extreme Events
-          </span>
-          <span
-            data-testid="labels-arr"
+          <button
+            aria-controls="menu"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="c-home-actions__item c-home-menu-toggle"
+            data-testid="toggle"
+            id="menu-button"
           >
-            Fires, Wind, PM2.5, Sfc
-            <br />
-             
-            xxxx-xx-xx
-          </span>
+            <div
+              class="icon"
+            />
+            <div
+              class="c-home-menu-toggle__text-container"
+            >
+              <span>
+                Latest Extreme Events
+              </span>
+            </div>
+          </button>
         </div>
-      </button>
+      </div>
     </div>
-  </div>
-</div>
-`);
+  `);
 });
 
 describe("<MainContainer />", () => {
