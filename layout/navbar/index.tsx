@@ -7,17 +7,20 @@ import IconButton from "components/ui/icon-button";
 const Navbar = () => {
   const router = useRouter();
 
+  const isNewsPage = router.route === "/news";
+  const isAboutPage = router.route === "/about";
+
   return (
     <div className={styles["c-site-header__mobile"]}>
       <div className={styles["c-site-header__mobile-link"]}>
         <Link href="/news">
           <div
             className={classnames({
-              [styles["c-site-header__mobile-link-active"]]: router.route === "/news",
+              [styles["c-site-header__mobile-link-active"]]: isNewsPage,
               [styles["c-site-header__mobile-link-container"]]: true
             })}
           >
-            <IconButton name="news" size={18} onClick={() => {}} />
+            <IconButton name={isNewsPage ? "news-active" : "news"} size={isNewsPage ? 26 : 18} onClick={() => {}} />
             <a className={styles["text"]}>News</a>
           </div>
         </Link>
@@ -36,11 +39,11 @@ const Navbar = () => {
         <Link href="/about">
           <div
             className={classnames({
-              [styles["c-site-header__mobile-link-active"]]: router.route === "/about",
+              [styles["c-site-header__mobile-link-active"]]: isAboutPage,
               [styles["c-site-header__mobile-link-container"]]: true
             })}
           >
-            <IconButton name="info" size={20} onClick={() => {}} />
+            <IconButton name={isAboutPage ? "info-active" : "info"} size={isAboutPage ? 28 : 20} onClick={() => {}} />
             <a className={styles["text"]}>About</a>
           </div>
         </Link>

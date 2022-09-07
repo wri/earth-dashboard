@@ -15,7 +15,7 @@ const AboutUsLayout = () => (
       paddingBottom={false}
       gridClassName={heroBannerStyles["c-page-section-grid-hero-banner"]}
     >
-      <HeroBanner title="About Earth HQ" />
+      <HeroBanner />
     </Section>
 
     <Section title="Our story">
