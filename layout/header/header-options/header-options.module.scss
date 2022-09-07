@@ -1,5 +1,7 @@
 .c-header-options {
   display: flex;
+  justify-content: flex-end;
+  width: 108px;
 
   &__language {
     width: 137px;
