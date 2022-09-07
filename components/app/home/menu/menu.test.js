@@ -1,4 +1,4 @@
-import { render, fireEvent, waitFor, waitForElementToBeRemoved } from "test-utils";
+import { render, waitFor } from "test-utils";
 import headlines from "../../../../test/headlines.json";
 import { GCAAPI } from "../../../../utils/axios";
 import Menu from "./index";
@@ -71,14 +71,18 @@ test("<Menu /> renders correctly as desktop", async () => {
                       <button
                         class="c-content-panel__button"
                       >
-                        <span
-                          class="c-content-panel__button-text"
+                        <div
+                          class="c-content-panel__button-content"
                         >
-                          View All
-                        </span>
-                        <span
-                          class="c-content-panel__button-icon"
-                        />
+                          <span
+                            class="c-content-panel__button-text"
+                          >
+                            View All
+                          </span>
+                          <span
+                            class="c-content-panel__button-icon"
+                          />
+                        </div>
                       </button>
                     </div>
                   </div>
@@ -160,14 +164,18 @@ test("<Menu /> renders correctly as mobile", async () => {
                       <button
                         class="c-content-panel__button"
                       >
-                        <span
-                          class="c-content-panel__button-text"
+                        <div
+                          class="c-content-panel__button-content"
                         >
-                          View All
-                        </span>
-                        <span
-                          class="c-content-panel__button-icon"
-                        />
+                          <span
+                            class="c-content-panel__button-text"
+                          >
+                            View All
+                          </span>
+                          <span
+                            class="c-content-panel__button-icon"
+                          />
+                        </div>
                       </button>
                     </div>
                   </div>
