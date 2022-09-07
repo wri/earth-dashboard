@@ -1,5 +1,7 @@
 @import "css/settings";
 @import "css/settings/zIndex";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize.scss";
 
 .c-layout-app {
   .gdpr-banner {
@@ -18,17 +20,25 @@
     }
 
     &.-mobile {
-      padding: 16px 16px;
+      padding: 24px 24px;
     }
 
     .text {
+      font-family: "Barlow";
+      font-style: normal;
+      font-weight: 500;
+      @include font-size(16px, 24px);
       margin: 10px auto;
       color: $grey-lighter;
+
+      &.-desktop {
+        margin-right: 1rem;
+      }
     }
     .main-banner {
       display: flex;
       margin: auto;
-      width: 90%;
+      max-width: 1192px;
 
       &.-mobile {
         flex-direction: column;
@@ -51,19 +61,35 @@
       font-weight: 500;
       margin: auto 10px;
     }
-
     .button-group {
       display: flex;
       flex: 1;
       align-items: center;
       justify-content: center;
       white-space: nowrap;
+
+      &.-mobile {
+        margin-top: 1rem;
+      }
+
+      @media screen and (max-width: $global-breakpoint-sm) {
+        & {
+          justify-content: space-between;
+        }
+      }
     }
+
     .acceptButton {
       background-color: $colour-flame;
       padding: 0 20px;
       &:hover {
         background-color: $grey-darker;
+      }
+
+      @media screen and (max-width: $global-breakpoint-xs) {
+        & {
+          flex: 1;
+        }
       }
     }
 
@@ -72,9 +98,8 @@
     }
 
     .rejectButton {
-      border: solid 1px $white;
+      border: solid 2px $white;
       padding: 0 13px;
-
       &:hover {
         color: $grey-darkest;
         background-color: $grey-lighter;
@@ -82,11 +107,20 @@
     }
 
     button {
-      margin: 0.5rem;
       height: 34px;
       color: $white;
       border-radius: 20px;
-      font-weight: bold;
+      font-family: "Barlow Condensed";
+      font-style: normal;
+      font-weight: 500;
+      @include font-size(16px, 24px);
+
+      &:first-child {
+        margin-right: 0.5rem;
+      }
+      &:last-child {
+        margin-left: 0.5rem;
+      }
     }
   }
 }
