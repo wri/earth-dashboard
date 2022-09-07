@@ -16,9 +16,12 @@
   align-items: center;
 
   .modal {
+    display: flex;
+    flex-direction: column;
     background-color: $black;
     width: 620px;
-    height: 691px;
+    max-height: 691px;
+    height: 90%;
     margin: auto;
     border-radius: 12px;
     overflow: hidden;
@@ -72,9 +75,9 @@
     }
 
     &__top {
+      flex: 1;
       position: relative;
       overflow: hidden;
-      height: 25rem;
 
       &__mobile {
         position: relative;
@@ -178,7 +181,7 @@
     }
 
     &__content {
-      padding: 60px;
+      padding: 50px 60px;
 
       &__text {
         color: $white;
@@ -228,7 +231,7 @@
           height: 2.875rem;
           color: $white;
           border-radius: 30px;
-          font-weight: bold;
+          font-weight: 500;
         }
         &__mobile {
           align-self: flex-start;
