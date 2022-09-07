@@ -233,8 +233,12 @@
           width: fit-content;
           padding: 12px;
           border-radius: 40px;
-          margin-top: 40px;
+          margin-top: 20px;
           margin-bottom: 12px;
+
+          @media screen and (min-height: 772px) {
+            margin-top: 40px;
+          }
 
           > button:first-child {
             margin-bottom: 12px;
