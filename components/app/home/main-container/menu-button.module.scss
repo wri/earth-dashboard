@@ -2,6 +2,13 @@
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize.scss";
 
+.c-home-menu-action {
+  @media screen and (min-width: $global-breakpoint-md) {
+    width: 448px !important;
+    left: 0;
+  }
+}
+
 .c-home-menu-toggle {
   background: #1b2127;
   border-radius: 28px;
@@ -31,18 +38,10 @@
     background-color: $colour-flame;
     transition: background-color 0.3s ease-in-out;
     margin-right: 12px;
-
-    &--open {
-      background-color: $colour-galaxy;
-    }
   }
 
   &:hover .icon {
     background-color: $colour-galaxy;
-
-    &--open {
-      background-color: $colour-flame;
-    }
   }
 
   &__text-container {
@@ -80,6 +79,10 @@
   &--open {
     &:after {
       transform: rotate(-180deg);
+    }
+
+    .icon svg {
+      padding: 4px;
     }
   }
 

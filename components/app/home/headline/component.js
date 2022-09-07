@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
+import { useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "./headline.module.scss";
 import WidgetPreview from "components/widgets/preview";
 import { RESOURCE_WATCH_WIDGET_LINK } from "constants/widgets";
-import { useMemo, useEffect } from "react";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME } from "constants/tag-manager";
 
@@ -58,7 +58,11 @@ const Headline = ({
   }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy, setDateOfDataShown]);
 
   return (
-    <article className={classnames(styles["c-headline"], className)} {...rest} data-testid="headline">
+    <article
+      className={classnames(styles["c-headline"], styles["c-headline__scroll-area"], className)}
+      {...rest}
+      data-testid="headline"
+    >
       <h3 className={classnames(styles["c-headline__title"], "u-margin-none")}>{headline.attributes.title}</h3>
       <p className={classnames(styles["c-headline__body"], "u-margin-top-xs u-margin-bottom-l u-text-pre-line")}>
         {headline.attributes.content.body}

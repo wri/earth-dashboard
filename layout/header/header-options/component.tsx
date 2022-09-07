@@ -29,7 +29,8 @@ const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsC
   return (
     <div className={styles["c-header-options"]}>
       {/* Languages */}
-      {!isMobile && (
+      {/* TODO: Currently hidden until next sprint */}
+      {!isMobile && false && (
         <SelectInput
           options={LANGUAGES}
           value={language}

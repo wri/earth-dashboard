@@ -42,7 +42,7 @@ const querySyncEnhancer = ReduxQuerySync.enhancer({
     mode: {
       selector: state => state[modesSliceName].currentModeId,
       action: setCurrentModeId,
-      stringToValue: string => Number.parseInt(string, 10) || 1,
+      stringToValue: string => Number.parseInt(string, 10),
       valueToString: value => `${value}`
     },
     date: {

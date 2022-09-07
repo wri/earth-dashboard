@@ -3,7 +3,7 @@ import Menu from "./component";
 import { ID as animationsId } from "schemas/global-settings/animations";
 import { NAME as globalSettingsSliceName } from "slices/globalSettings";
 import { NAME as dialogSliceName, setDialogHeight } from "slices/dialog";
-import { setCurrentHeadline, setCurrentHeadlineId, NAME as headlineName } from "slices/headlines";
+import { setHeadlines, setCurrentHeadline, setCurrentHeadlineId, NAME as headlinesSliceName } from "slices/headlines";
 
 import {
   setCurrentMode,
@@ -20,14 +20,15 @@ export default connect(
   state => ({
     modes: state[modesSliceName].allModes,
     currentMode: state[modesSliceName].currentMode,
+    currentHeadline: state[headlinesSliceName].currentHeadline,
     animationValue: state[modesSliceName].animationValue,
     monitorValue: state[modesSliceName].monitorValue,
     datasetValue: state[modesSliceName].datasetValue,
     heightValue: state[modesSliceName].heightValue,
     animationEnabled: state[globalSettingsSliceName][animationsId],
     dialogHeight: state[dialogSliceName].dialogHeight,
-    currentHeadline: state[headlineName].currentHeadline,
-    headlines: state[headlineName].headlines
+    currentHeadline: state[headlinesSliceName].currentHeadline,
+    headlines: state[headlinesSliceName].headlines
   }),
   {
     setCurrentMode,
@@ -38,6 +39,7 @@ export default connect(
     resetValues: resetValues,
     setDateOfDataShown,
     setDialogHeight,
+    setHeadlines,
     setCurrentHeadline,
     setCurrentHeadlineId
   },

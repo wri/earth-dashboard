@@ -13,7 +13,7 @@ const EDMedia = createMedia({ breakpoints });
 const { MediaContextProvider, Media } = EDMedia;
 const mediaStyle = EDMedia.createMediaStyle();
 
-function Desktop({ children, className, includeBiggerScreens = true }) {
+function Desktop({ children, className = "", includeBiggerScreens = true }) {
   return (
     <Media
       {...(includeBiggerScreens && { greaterThanOrEqual: "md" })}

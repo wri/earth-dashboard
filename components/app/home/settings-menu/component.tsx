@@ -66,6 +66,7 @@ const SettingsMenu = ({
           {/* Close button */}
           <IconButton
             name="close"
+            size={12}
             aria-label="Close Settings"
             className={styles["c-settings-menu-modal__close"]}
             onClick={handleClose}
