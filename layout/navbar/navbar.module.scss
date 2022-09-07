@@ -28,6 +28,9 @@
         & > button {
           margin-bottom: 10px !important;
         }
+        & > a {
+          margin-bottom: 3px;
+        }
       }
 
       &-active {
@@ -43,15 +46,17 @@
       }
 
       &-container {
+        height: 100%;
         padding-top: 0px;
-        margin-top: -10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-bottom: 4px;
 
         & .main {
-          scale: 1.5;
+          transform: scale(1.4);
+          -webkit-transform: scale(1.4);
           margin-bottom: 20px;
         }
       }
@@ -66,7 +71,7 @@
       }
 
       &-container > button {
-        background-color: transparent;
+        background-color: transparent !important;
         width: 45px;
         height: 20px;
         padding-top: 8px;
@@ -79,7 +84,7 @@
 
       &-active {
         & > * {
-          color: white
+          color: white;
         }
       }
     }
