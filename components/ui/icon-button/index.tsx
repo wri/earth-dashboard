@@ -8,6 +8,7 @@ type IconButtonProps = {
   className?: string;
   disabled?: boolean;
   small?: boolean;
+  medium?: boolean;
   iconClassName?: string;
 } & Pick<IconProps, "name" | "size">;
 
@@ -18,13 +19,18 @@ const IconButton = ({
   onClick,
   className = "",
   small,
+  medium,
   disabled,
   iconClassName,
   ...rest
 }: IconButtonProps) => {
   return (
     <button
-      className={classnames(styles["c-icon-button"], { [styles["small"]]: small }, className)}
+      className={classnames(
+        styles["c-icon-button"],
+        { [styles["small"]]: small, [styles["medium"]]: medium },
+        className
+      )}
       onClick={onClick}
       disabled={disabled}
       {...rest}

@@ -52,10 +52,10 @@ const MapIframe = forwardRef(
     const { currentPosition } = useCurrentPosition(shouldFetchLocation);
     // if the current mode changes, and there is an earth client, set the data layer values
     useEffect(() => {
-      if (currentMode && earthClient && loadDefaultModeValues) {
+      if (earthClient && loadDefaultModeValues) {
         const newLayers = [];
         resetValues();
-        const defaults = currentMode.attributes.data_layers.default;
+        const defaults = currentMode?.attributes.data_layers.default || [];
         defaults.forEach(layer => {
           let setter = () => {};
           switch (layer.attributes.category.attributes.title) {

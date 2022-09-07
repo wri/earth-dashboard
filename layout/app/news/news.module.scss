@@ -1,9 +1,6 @@
 @import "css/settings/breakpoints";
 
 .c-news {
-  // Desired padding + navbar height
-  padding-bottom: calc(60px + 58px);
-
   .c-topics {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -15,6 +12,8 @@
 
     @media screen and (max-width: $global-breakpoint-sm) {
       grid-template-columns: 1fr;
+      // Desired padding + navbar height
+      margin-bottom: calc(60px + 58px);
     }
   }
 }
