@@ -23,7 +23,7 @@ const MAX_NUMBER_OF_HEADLINES = 3;
 
 const WHAT_WILL_HAPPEN_ICON = "/static/icons/clock.svg";
 const EXTREME_EVENTS_ICON = "/static/icons/extreme-events.svg";
-const NEWS_ICON = "/static/icons/news.svg";
+const NEWS_ICON = "/static/icons/mode-news.svg";
 const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
 const SHARE_ICON = "/static/icons/together.svg";
 

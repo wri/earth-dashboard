@@ -49,12 +49,16 @@
   }
 
   &__title {
-    font-family: "Barlow Condensed";
+    font-family: "Barlow";
     font-weight: 600;
     @include font-size(20px, 30px);
     margin-bottom: 4px;
     text-transform: uppercase;
     color: white;
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      font-family: "Barlow Condensed";
+    }    
   }
 
   &__subtitle {
