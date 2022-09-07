@@ -6,7 +6,7 @@ export type MenuOptionProps = {
   title: string;
   description: string;
   buttonText: string;
-  onClick: () => void;
+  onClick: () => any;
   icon?: string;
   className?: string;
 };

@@ -57,8 +57,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
         >
           <div>
             <div
-              class="c-home-menu c-home-menu--is-info-page"
-              id="menu"
+              class="c-home-menu"
             >
               <div
                 class="c-home-menu__header"
