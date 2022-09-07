@@ -7,6 +7,7 @@ import DataLayerPanel from "./panels/data-layer";
 import ResizablePanel from "components/app/home/dialog-panel/resizable-panel";
 import { fireEvent } from "utils/gtag";
 import { MENU_TAB_CHANGE_EVENT_NAME } from "constants/tag-manager";
+import IconButton from "components/ui/icon-button";
 
 const INFO_PAGE_HEADLINE = "I'd like to explore";
 
@@ -78,12 +79,16 @@ const Menu = forwardRef(
             <div className={classnames(styles["c-home-menu__header"])}>
               <div className={classnames(styles["c-home-menu__header-content"])}>
                 {!isInfoPage && (
-                  <button className={styles["c-home-menu__back-button"]} onClick={onBack} aria-label="Back" />
+                  <IconButton
+                    className={styles["c-home-menu__back-button"]}
+                    name="back"
+                    medium
+                    onClick={onBack}
+                    aria-label="Back"
+                  />
                 )}
                 <h2 className={styles["c-home-menu__header-text"]}>{title}</h2>
-                {onClose && (
-                  <button className={styles["c-home-menu__close-button"]} onClick={onClose} aria-label="Close" />
-                )}
+                {onClose && <IconButton name="close" size={12} medium onClick={onClose} aria-label="Close" />}
               </div>
             </div>
             <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>

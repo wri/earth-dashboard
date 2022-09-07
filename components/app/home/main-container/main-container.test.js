@@ -73,7 +73,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                   </h2>
                   <button
                     aria-label="Close"
-                    class="c-home-menu__close-button"
+                    class="c-icon-button medium"
                   />
                 </div>
               </div>
@@ -269,37 +269,37 @@ test("<MainContainer /> renders correctly as mobile", async () => {
   const { container, getAllByTestId } = utilRender(<MainContainer isMobile={true} />);
 
   expect(container).toMatchInlineSnapshot(`
-<div>
-  <div
-    class="main-container -mobile"
-    data-testid="iframe-container"
-  >
-    <div
-      class="c-home-actions mobile u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
-    >
-      <button
-        aria-controls="menu"
-        aria-expanded="false"
-        aria-haspopup="true"
-        class="c-home-actions__item c-home-menu-toggle"
-        data-testid="toggle"
-        id="menu-button"
+    <div>
+      <div
+        class="main-container -mobile"
+        data-testid="iframe-container"
       >
         <div
-          class="icon"
-        />
-        <div
-          class="c-home-menu-toggle__text-container"
+          class="c-home-actions mobile u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
         >
-          <span>
-            Latest Extreme Events
-          </span>
+          <button
+            aria-controls="menu"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="c-home-actions__item c-home-menu-toggle"
+            data-testid="toggle"
+            id="menu-button"
+          >
+            <div
+              class="icon"
+            />
+            <div
+              class="c-home-menu-toggle__text-container"
+            >
+              <span>
+                Latest Extreme Events
+              </span>
+            </div>
+          </button>
         </div>
-      </button>
+      </div>
     </div>
-  </div>
-</div>
-`);
+  `);
 });
 
 describe("<MainContainer />", () => {
