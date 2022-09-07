@@ -1,4 +1,4 @@
-import { render, fireEvent, waitFor, waitForElementToBeRemoved } from "test-utils";
+import { render, waitFor } from "test-utils";
 import headlines from "../../../../test/headlines.json";
 import { GCAAPI } from "../../../../utils/axios";
 import Menu from "./index";

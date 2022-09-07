@@ -1,8 +1,7 @@
-import { render, fireEvent, waitFor, waitForElementToBeRemoved } from "test-utils";
+import { render, waitFor } from "test-utils";
 import headlines from "../../../../test/headlines.json";
 import { GCAAPI } from "../../../../utils/axios";
 import MenuOption from "./index";
-import { earthServer } from "../../../../test/iframeBridge";
 
 jest.mock("../../../../utils/axios");
 

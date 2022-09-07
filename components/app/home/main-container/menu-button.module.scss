@@ -38,18 +38,10 @@
     background-color: $colour-flame;
     transition: background-color 0.3s ease-in-out;
     margin-right: 12px;
-
-    &--open {
-      background-color: $colour-galaxy;
-    }
   }
 
   &:hover .icon {
     background-color: $colour-galaxy;
-
-    &--open {
-      background-color: $colour-flame;
-    }
   }
 
   &__text-container {
@@ -87,6 +79,10 @@
   &--open {
     &:after {
       transform: rotate(-180deg);
+    }
+
+    .icon svg {
+      padding: 4px;
     }
   }
 

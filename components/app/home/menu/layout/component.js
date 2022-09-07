@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import styles from "./layout.module.scss";
 import ResizablePanel from "components/app/home/dialog-panel/resizable-panel";
+import IconButton from "components/ui/icon-button";
 
 const MenuLayout = ({
   title,
@@ -23,9 +24,17 @@ const MenuLayout = ({
       >
         <div className={classnames(styles["c-home-menu__header"])}>
           <div className={classnames(styles["c-home-menu__header-content"])}>
-            {onBack && <button className={styles["c-home-menu__back-button"]} onClick={onBack} aria-label="Back" />}
+            {onBack && (
+              <IconButton
+                className={styles["c-home-menu__back-button"]}
+                name="back"
+                medium
+                onClick={onBack}
+                aria-label="Back"
+              />
+            )}
             <h2 className={styles["c-home-menu__header-text"]}>{title}</h2>
-            {onClose && <button className={styles["c-home-menu__close-button"]} onClick={onClose} aria-label="Close" />}
+            {onClose && <IconButton name="close" size={12} medium onClick={onClose} aria-label="Close" />}
           </div>
         </div>
         <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>{children}</div>

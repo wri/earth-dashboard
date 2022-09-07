@@ -7,7 +7,6 @@ $c-topic-card-transition: 0.16s ease-in-out;
 .c-topic-card {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   background-color: rgba($colour-night, 0.4);
   border-radius: 12px;
   overflow: hidden;
@@ -20,7 +19,9 @@ $c-topic-card-transition: 0.16s ease-in-out;
   }
 
   > div {
+    width: 100%;
     max-width: 20rem;
+    margin-right: 28px;
 
     h2,
     p {
@@ -36,6 +37,7 @@ $c-topic-card-transition: 0.16s ease-in-out;
   }
 
   > svg {
+    margin-top: auto;
     color: white;
   }
 }
