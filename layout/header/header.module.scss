@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 14px 16px;
+  padding: 12px 16px;
   transition: background-color 0.3s ease-in-out;
   z-index: $z-index-header;
 
@@ -32,6 +32,22 @@
 
     &__logo {
       width: 112px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        width: 180px;
+      }
+    }
+
+    &__links {
+      display: flex;
+
+      & > div:not(:last-child) {
+        margin-right: 30px;
+
+        @media screen and (min-width: $global-breakpoint-lg) {
+          margin-right: 60px;
+        }
+      }
     }
   }
 
@@ -59,18 +75,6 @@
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
-    padding: 28px;
-
-    .top-section {
-      &__logo {
-        width: 180px;
-      }
-      &__links {
-        display: flex;
-        & > div:not(:last-child) {
-          margin-right: 60px;
-        }
-      }
-    }
+    padding: 28px 60px;
   }
 }
