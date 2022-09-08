@@ -12,29 +12,57 @@ const Header = () => {
   // Navigation
   const router = useRouter();
 
+  const title = (() => {
+    switch (router.route) {
+      case "/news":
+        return "News";
+      default:
+        return undefined;
+    }
+  })();
+
+  const description = (() => {
+    switch (router.route) {
+      case "/news":
+        return "Our partners tell the epic story of what is happening to our planet.";
+      default:
+        return undefined;
+    }
+  })();
+
   return (
     <header
       className={classnames(styles["c-site-header"], router.pathname === "/" ? styles["fixed"] : styles["sticky"])}
     >
-      {/* Logo */}
-      <div className={styles["c-site-header__logo"]}>
-        <LogoLink />
+      <div className={styles["top-section"]}>
+        {/* Logo */}
+        <div className={styles["top-section__logo"]}>
+          <LogoLink />
+        </div>
+
+        {/* Navigation links */}
+        <Desktop>
+          <div className={styles["top-section__links"]}>
+            <HeaderLink href="/" text="Earth HQ" />
+            <HeaderLink href="/news" text="News" />
+            <HeaderLink href="/about" text="About" />
+          </div>
+        </Desktop>
+        <Mobile>
+          <Navbar />
+        </Mobile>
+
+        {/* Options */}
+        <HeaderOptions />
       </div>
 
-      {/* Navigation links */}
-      <Desktop>
-        <div className={styles["c-site-header__links"]}>
-          <HeaderLink href="/" text="Earth HQ" />
-          <HeaderLink href="/news" text="News" />
-          <HeaderLink href="/about" text="About" />
+      {/* Text section */}
+      {(title || description) && (
+        <div className={styles["bottom-section"]}>
+          <Mobile>{title && <h2 className={styles["title"]}>{title}</h2>}</Mobile>
+          {description && <p className={styles["description"]}>{description}</p>}
         </div>
-      </Desktop>
-      <Mobile>
-        <Navbar />
-      </Mobile>
-
-      {/* Options */}
-      <HeaderOptions />
+      )}
     </header>
   );
 };
