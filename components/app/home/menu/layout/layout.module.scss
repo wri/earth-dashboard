@@ -205,10 +205,8 @@
   }
 
   &__back-button {
-    background-image: url("/static/icons/back.svg");    
-    background-size: 20px 20px;
-    background-position: 50% 50%;
     margin-right: 12px;
+    padding-top: 5px;
   }
 
   &__close-button {

@@ -31,6 +31,7 @@ const MenuLayout = ({
                 medium
                 onClick={onBack}
                 aria-label="Back"
+                size={16}
               />
             )}
             <h2 className={styles["c-home-menu__header-text"]}>{title}</h2>

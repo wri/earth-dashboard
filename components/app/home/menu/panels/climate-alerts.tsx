@@ -1,25 +1,22 @@
-import { useState, useEffect, useMemo, useRef } from "react";
-import PropTypes from "prop-types";
+import { useState, useEffect, useMemo, useRef, UIEvent } from "react";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { fetchClimateAlerts } from "services/gca";
-import {
-  setHeadlines,
-  setCurrentHeadline,
-  NAME as headlineSliceName,
-  Headline as HeadlineType
-} from "slices/headlines";
+import { setHeadlines, setCurrentHeadline, Headline as HeadlineType } from "slices/headlines";
+import EventCard from "components/app/home/event-card";
 import { Mode, setCurrentMode } from "slices/modes";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
+import Icon from "components/ui/Icon";
 
-import HeadlineCard from "components/app/home/headline-card";
 import Headline from "components/app/home/headline";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
+import CtaButton from "components/ui/cta-button";
 
 const MAX_NUMBER_OF_HEADLINES = 10;
+const SCOLL_THRESHOLD = 180;
 
 type HeadlinesPanerProps = {
   headlines: HeadlineType[];
@@ -38,6 +35,8 @@ const HeadlinesPanel = ({
   currentHeadline
 }: HeadlinesPanerProps) => {
   const [isFetching, setIsFetching] = useState(true);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
   const mostRecentHeadlines = useMemo(() => {
     const reversed = [...headlines].reverse();
     return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
@@ -82,42 +81,53 @@ const HeadlinesPanel = ({
     }
   }, [currentHeadline]);
 
-  return currentHeadline ? (
-    <div
-      className={classnames(
-        styles["c-home-menu__tab-panel-scroll-area"],
-        styles["c-home-menu__tab-panel-scroll-area--slim"]
-      )}
-      ref={articleRef}
-    >
-      <Headline headline={currentHeadline} />
-    </div>
-  ) : (
-    <>
-      <p className={classnames(styles["c-home-menu__tab-description"], "u-margin-none")}>
-        The effects of human-induced climate change can be seen and felt across the planet.
-        <br />
-        Explore the latest alerts from Mongabay below.
-      </p>
+  const onScroll = (event: UIEvent<HTMLElement>) => {
+    if (event.currentTarget.scrollTop > SCOLL_THRESHOLD && scrollPosition > SCOLL_THRESHOLD) {
+      return;
+    }
+    setScrollPosition(event.currentTarget.scrollTop);
+  };
+
+  if (currentHeadline) {
+    return (
       <div
-        className={classnames(
-          styles["c-home-menu__tab-panel-scroll-area"],
-          styles["c-home-menu__tab-panel-scroll-area--extra-top"]
-        )}
+        className={classnames(styles["c-home-menu__scroll-area"], styles["c-home-menu__scroll-area--unpadded"])}
+        ref={articleRef}
       >
-        {!isFetching ? (
-          mostRecentHeadlines.map(headline => (
-            <HeadlineCard
-              key={headline.id}
-              as="button"
-              headline={headline}
-              className={styles["c-home-menu__headline"]}
-              onClick={() => onSelectHeadline(headline)}
-            />
-          ))
-        ) : (
-          <p>Loading</p>
-        )}
+        <Headline headline={currentHeadline} />
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className={styles["c-home-menu__extreme-events--header"]} style={{ top: `${-scrollPosition}px` }}>
+        <h3>All Extreme Events</h3>
+        <p>View all of the latest Extreme Events</p>
+      </div>
+      <div
+        className={classnames(styles["c-home-menu__scroll-area"], styles["c-home-menu__extreme-events--scroll"])}
+        ref={articleRef}
+        onScroll={onScroll}
+      >
+        <div className={styles["c-home-menu__extreme-events"]}>
+          {!isFetching ? (
+            mostRecentHeadlines.map(headline => (
+              <EventCard
+                key={headline.id}
+                as="button"
+                headline={headline}
+                className={styles["c-home-menu__headline"]}
+                onClick={() => onSelectHeadline(headline)}
+              />
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
+        </div>
+        <div className={styles["c-home-menu__extreme-events--controls"]}>
+          <CtaButton text="View More" iconName="arrow-right" iconSize={15} onClick={() => {}} />
+        </div>
       </div>
     </>
   );
