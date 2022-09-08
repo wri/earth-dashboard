@@ -79,9 +79,7 @@ const Menu = forwardRef(
       const currentHeadlineIndex = getCurrentHeadlineIndex();
 
       if (currentHeadline) {
-        const type = currentHeadline.type.replace(/([A-Z])/g, " $1");
-        const typeHeading = type.charAt(0).toUpperCase() + type.slice(1);
-        const text = `${currentHeadlineIndex + 1}/${mostRecentHeadlines.length} ${typeHeading}`;
+        const text = `${currentHeadlineIndex + 1}/${mostRecentHeadlines.length} Extreme Events`;
         setFooterHeading(text);
       }
 
