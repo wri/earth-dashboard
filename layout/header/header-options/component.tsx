@@ -4,20 +4,25 @@ import styles from "./header-options.module.scss";
 import IconButton from "components/ui/icon-button";
 import { useRouter } from "next/router";
 import { LANGUAGES } from "constants/settings";
-import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
-import ShareModal from "components/share-modal";
+import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 type HeaderOptionsProps = {
   isSettingsOpen: boolean;
   isMobile: boolean;
   setSettingsOpen: ActionCreatorWithoutPayload<string>;
   setSettingsClose: ActionCreatorWithoutPayload<string>;
+  setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
 };
 
 /** Header options for languages, share, and more. */
-const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsClose }: HeaderOptionsProps) => {
+const HeaderOptions = ({
+  isSettingsOpen,
+  isMobile,
+  setSettingsOpen,
+  setSettingsClose,
+  setIsShareOpen
+}: HeaderOptionsProps) => {
   const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
-  const [showShareModal, setShowShareModal] = useState<boolean>(false);
 
   // Navigation
   const router = useRouter();
@@ -48,14 +53,12 @@ const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsC
           name={router.pathname === "/" ? "share" : "search"}
           aria-label="Share"
           className={styles["c-header-options__share"]}
-          onClick={router.pathname === "/" ? () => setShowShareModal(true) : () => console.log("search")}
+          onClick={router.pathname === "/" ? () => setIsShareOpen(true) : () => console.log("search")}
         />
       )}
 
       {/* More */}
       <IconButton name="more" aria-label="More" onClick={handleOpenMore} />
-
-      {showShareModal && <ShareModal onClose={() => setShowShareModal(false)} isMobile={isMobile} />}
     </div>
   );
 };

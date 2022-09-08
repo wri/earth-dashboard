@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import DialogPanel from "components/app/home/dialog-panel";
 import classnames from "classnames";
 import styles from "./share-modal.module.scss";
@@ -7,14 +7,15 @@ import ShareRow from "./share-row";
 import { Headline } from "slices/headlines";
 import GlobeCard from "./globe-card";
 import HeadlineCard from "./headline-card/component";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 type ShareModalProps = {
   isMobile: boolean;
-  onClose: React.Dispatch<SetStateAction<boolean>>;
   currentHeadline?: Headline;
+  setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
 };
 
-const ShareModal = ({ isMobile, onClose, currentHeadline }: ShareModalProps) => {
+const ShareModal = ({ isMobile, currentHeadline, setIsShareOpen }: ShareModalProps) => {
   const [copiedLinkTimeout, setCopiedLinkTimeout] = useState<boolean>(false);
 
   // Opens facebook share page
@@ -47,7 +48,7 @@ const ShareModal = ({ isMobile, onClose, currentHeadline }: ShareModalProps) => 
   };
 
   return (
-    <DialogPanel onClose={onClose} isMobile={isMobile} shouldAnimate={false}>
+    <DialogPanel onClose={() => setIsShareOpen(false)} isMobile={isMobile} shouldAnimate={false}>
       <div className={classnames(styles["c-share-modal"])} aria-labelledby="shareModalTitle">
         {/* Header */}
         <div className={classnames(styles["c-share-modal__header"], "u-text-center")}>
@@ -56,7 +57,7 @@ const ShareModal = ({ isMobile, onClose, currentHeadline }: ShareModalProps) => 
           </h2>
 
           {/* Close button */}
-          <IconButton name="close" size={12} aria-label="Close Settings" onClick={() => onClose(false)} small />
+          <IconButton name="close" size={12} aria-label="Close Settings" onClick={() => setIsShareOpen(false)} small />
         </div>
         {/* Body */}
         <div className={classnames(styles["c-share-modal__body"])}>

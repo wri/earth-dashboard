@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menu-button.module.scss";
@@ -23,6 +23,7 @@ import useIframeBridge from "hooks/useIframeBridge";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import Icon from "components/ui/Icon";
+import ShareModal from "components/share-modal";
 
 type MainContainerProps = {
   isMobile: boolean;
@@ -35,6 +36,7 @@ type MainContainerProps = {
   currentHeadlineId?: number;
   shouldFadeControls: boolean;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  isShareOpen: boolean;
 };
 
 const MainContainer = ({
@@ -46,7 +48,8 @@ const MainContainer = ({
   headlines,
   shouldFadeControls,
   currentHeadline,
-  setHeadlines
+  setHeadlines,
+  isShareOpen
 }: MainContainerProps) => {
   const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
   const [hasIframe, setHasIframe] = useState<boolean>(false);
@@ -280,6 +283,7 @@ const MainContainer = ({
           layers={layers}
         />
       )}
+      {isShareOpen && <ShareModal />}
 
       <Actions
         isMobile={isMobile}
