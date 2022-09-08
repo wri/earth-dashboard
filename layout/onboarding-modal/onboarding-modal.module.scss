@@ -73,6 +73,10 @@
         margin: 0;
         color: $white;
       }
+
+      &:hover{
+        cursor: pointer;
+      }
     }
 
     &__top {
