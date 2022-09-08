@@ -18,7 +18,6 @@ type DataIndexProps = {
   currentMode: Mode | undefined;
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
-  isMobile: boolean;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
 };
 
@@ -63,42 +62,40 @@ const DataLayerOverview = ({ currentMode, headlines, setHeadlines, setIsShareOpe
   } = currentMode;
 
   return (
-    <>
-      <div className={styles["c-home-menu__scroll-area"]}>
-        <ContentPanel icon={icon} title={title}>
-          <p>{description}</p>
-        </ContentPanel>
-        <ContentPanel icon={WHAT_IS_HAPPENING_ICON} title="What is happening">
-          <p>{what_is_happening_content.detail}</p>
-          <NormalScale value={80} />
-        </ContentPanel>
-        <ContentPanel icon={EXTREME_EVENTS_ICON} title="Extreme events" buttonText="View All" ctaAction={() => {}}>
-          {!isFetching ? (
-            mostRecentHeadlines.map(headline => (
-              <EventCard
-                key={headline.id}
-                as="button"
-                headline={headline}
-                className={styles["c-home-menu__headline"]}
-                onClick={() => {}}
-              />
-            ))
-          ) : (
-            <p>Loading</p>
-          )}
-        </ContentPanel>
-        <ContentPanel icon={WHAT_WILL_HAPPEN_ICON} title="What will happen if we don't take action?">
-          <p>{what_will_happen_content.detail}</p>
-        </ContentPanel>
-        <ContentPanel icon={SHARE_ICON} title="How to help">
-          <p>{how_to_help_content.detail}</p>
-          <SharePanel ctaAction={() => setIsShareOpen(true)} />
-        </ContentPanel>
-        <ContentPanel icon={NEWS_ICON} title="News" buttonText="Explore" ctaControl={Link} ctaLink={"/news"}>
-          <p>Our partners tell the epic story of what is happening to our planet</p>
-        </ContentPanel>
-      </div>
-    </>
+    <div className={styles["c-home-menu__scroll-area"]}>
+      <ContentPanel icon={icon} title={title}>
+        <p>{description}</p>
+      </ContentPanel>
+      <ContentPanel icon={WHAT_IS_HAPPENING_ICON} title="What is happening">
+        <p>{what_is_happening_content.detail}</p>
+        <NormalScale value={80} />
+      </ContentPanel>
+      <ContentPanel icon={EXTREME_EVENTS_ICON} title="Extreme events" buttonText="View All" ctaAction={() => {}}>
+        {!isFetching ? (
+          mostRecentHeadlines.map(headline => (
+            <EventCard
+              key={headline.id}
+              as="button"
+              headline={headline}
+              className={styles["c-home-menu__headline"]}
+              onClick={() => {}}
+            />
+          ))
+        ) : (
+          <p>Loading</p>
+        )}
+      </ContentPanel>
+      <ContentPanel icon={WHAT_WILL_HAPPEN_ICON} title="What will happen if we don't take action?">
+        <p>{what_will_happen_content.detail}</p>
+      </ContentPanel>
+      <ContentPanel icon={SHARE_ICON} title="How to help">
+        <p>{how_to_help_content.detail}</p>
+        <SharePanel ctaAction={() => setIsShareOpen(true)} />
+      </ContentPanel>
+      <ContentPanel icon={NEWS_ICON} title="News" buttonText="Explore" ctaControl={Link} ctaLink={"/news"}>
+        <p>Our partners tell the epic story of what is happening to our planet</p>
+      </ContentPanel>
+    </div>
   );
 };
 

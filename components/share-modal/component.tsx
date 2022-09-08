@@ -32,6 +32,7 @@ const ShareModal = ({ isMobile, currentHeadline, setIsShareOpen }: ShareModalPro
     setTimeout(() => setCopiedLinkTimeout(false), 1000);
   };
 
+  // Opens twitter share page
   const handleTwitterPress = () => {
     const link = window.location.href;
     window.open(`https://twitter.com/share?url=${encodeURIComponent(link)}`, "_blank");

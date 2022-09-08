@@ -112,7 +112,7 @@ const Menu = forwardRef(
             onClose={onClose}
             setDialogHeight={setDialogHeight}
           >
-            <DataLayerPanel isMobile={isMobile} />
+            <DataLayerPanel />
           </MenuLayout>
         )}
       </div>
