@@ -28,15 +28,6 @@ const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsC
     setSettingsOpen();
   };
 
-  /** Open share modal on mobile, native share on desktop */
-  const handleSharePress = () => {
-    if (isMobile) {
-      setShowShareModal(true);
-    } else {
-      console.log("Share on desktop");
-    }
-  };
-
   return (
     <div className={styles["c-header-options"]}>
       {/* Languages */}
@@ -57,14 +48,14 @@ const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsC
           name={router.pathname === "/" ? "share" : "search"}
           aria-label="Share"
           className={styles["c-header-options__share"]}
-          onClick={router.pathname === "/" ? handleSharePress : () => console.log("search")}
+          onClick={router.pathname === "/" ? () => setShowShareModal(true) : () => console.log("search")}
         />
       )}
 
       {/* More */}
       <IconButton name="more" aria-label="More" onClick={handleOpenMore} />
 
-      {isMobile && showShareModal && <ShareModal onClose={setShowShareModal} />}
+      {showShareModal && <ShareModal onClose={() => setShowShareModal(false)} isMobile={isMobile} />}
     </div>
   );
 };

@@ -9,17 +9,18 @@ import GlobeCard from "./globe-card";
 import HeadlineCard from "./headline-card/component";
 
 type ShareModalProps = {
+  isMobile: boolean;
   onClose: React.Dispatch<SetStateAction<boolean>>;
   currentHeadline?: Headline;
 };
 
-const ShareModal = ({ onClose, currentHeadline }: ShareModalProps) => {
+const ShareModal = ({ isMobile, onClose, currentHeadline }: ShareModalProps) => {
   const [copiedLinkTimeout, setCopiedLinkTimeout] = useState<boolean>(false);
 
   // Opens facebook share page
   const handleFaceBookPress = () => {
     const link = window.location.href;
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${link}`, "_blank");
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, "_blank");
   };
 
   // Copies the link to the clipboard
@@ -30,8 +31,9 @@ const ShareModal = ({ onClose, currentHeadline }: ShareModalProps) => {
     setTimeout(() => setCopiedLinkTimeout(false), 1000);
   };
 
-  const handleInstagramPress = () => {
-    console.log("instagram");
+  const handleTwitterPress = () => {
+    const link = window.location.href;
+    window.open(`https://twitter.com/share?url=${encodeURIComponent(link)}`, "_blank");
   };
 
   // Opens native share method
@@ -45,7 +47,7 @@ const ShareModal = ({ onClose, currentHeadline }: ShareModalProps) => {
   };
 
   return (
-    <DialogPanel onClose={onClose} isMobile shouldAnimate={false}>
+    <DialogPanel onClose={onClose} isMobile={isMobile} shouldAnimate={false}>
       <div className={classnames(styles["c-share-modal"])} aria-labelledby="shareModalTitle">
         {/* Header */}
         <div className={classnames(styles["c-share-modal__header"], "u-text-center")}>
@@ -60,17 +62,19 @@ const ShareModal = ({ onClose, currentHeadline }: ShareModalProps) => {
         <div className={classnames(styles["c-share-modal__body"])}>
           <div className={classnames(styles["scroll"])}>
             {currentHeadline ? <HeadlineCard currentHeadline={currentHeadline} /> : <GlobeCard />}
-            <ShareRow text="Share Via FaceBook" icon="facebook" onClick={handleFaceBookPress} />
-            <ShareRow text="Share Via Instagram" icon="instagram" onClick={handleInstagramPress} />
-            <ShareRow
-              text={copiedLinkTimeout ? "Copied Link ..." : "Copy Link"}
-              icon="copy-link"
-              onClick={handleCopyPress}
-            />
-            {
-              // @ts-expect-error
-              navigator.share && <ShareRow text={"More Options"} icon="more" onClick={handleMorePress} />
-            }
+            <div className={classnames(styles["link-container"])}>
+              <ShareRow text="Share Via FaceBook" icon="facebook" onClick={handleFaceBookPress} />
+              <ShareRow text="Share Via Twitter" icon="twitter" onClick={handleTwitterPress} />
+              <ShareRow
+                text={copiedLinkTimeout ? "Copied Link ..." : "Copy Link"}
+                icon="copy-link"
+                onClick={handleCopyPress}
+              />
+              {
+                // @ts-expect-error
+                navigator.share && <ShareRow text={"More Options"} icon="more" onClick={handleMorePress} />
+              }
+            </div>
           </div>
         </div>
       </div>
