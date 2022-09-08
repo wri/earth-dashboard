@@ -78,7 +78,6 @@ function LayoutApp(props) {
               [styles["text"]]: true,
               [styles["-desktop"]]: !mobile
             })}
-            // className={styles["text"]}
           >
             This website uses cookies to provide you with an improved user experience. By continuing to browse this
             site, you consent to the use of cookies and similar technologies. Please visit our{" "}
@@ -98,10 +97,12 @@ function LayoutApp(props) {
             [styles["button-group"]]: true,
             [styles["-mobile"]]: mobile
           })}
-          // className={styles["button-group"]}
         >
           <button
-            className={styles["rejectButton"]}
+            className={classnames({
+              [styles["rejectButton"]]: true,
+              [styles["-mobile"]]: mobile
+            })}
             onClick={() => {
               setShowGDPRBanner(false);
               localStorage.setItem(GDPR_ACCEPTED_KEY, "false");
@@ -110,7 +111,10 @@ function LayoutApp(props) {
             REJECT
           </button>
           <button
-            className={styles["acceptButton"]}
+            className={classnames({
+              [styles["acceptButton"]]: true,
+              [styles["-mobile"]]: mobile
+            })}
             onClick={() => {
               setShowGDPRBanner(false);
               localStorage.setItem(GDPR_ACCEPTED_KEY, "true");

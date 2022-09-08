@@ -9,6 +9,7 @@
     bottom: 0px;
     left: 0px;
     width: 100%;
+    min-height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,18 +59,20 @@
     }
     .cookie-text {
       color: $white;
-      font-weight: 500;
+      font-weight: 600;
+      font-family: "Barlow";
+      @include font-size(20px, 30px);
       margin: auto 10px;
     }
     .button-group {
       display: flex;
       flex: 1;
       align-items: center;
-      justify-content: center;
       white-space: nowrap;
 
       &.-mobile {
         margin-top: 1rem;
+        justify-content: center;
       }
 
       @media screen and (max-width: $global-breakpoint-sm) {
@@ -81,15 +84,22 @@
 
     .acceptButton {
       background-color: $colour-flame;
+      height: 46px;
+      width: 224px;
       padding: 0 20px;
+      @include font-size(20px, 30px);
       &:hover {
         background-color: $grey-darker;
       }
 
-      @media screen and (max-width: $global-breakpoint-xs) {
+      @media screen and (max-width: $global-breakpoint-sm) {
         & {
-          flex: 1;
+          flex: 2;
         }
+      }
+      &.-mobile {
+        height: 40px;
+        @include font-size(16px, 24px);
       }
     }
 
@@ -100,20 +110,31 @@
     .rejectButton {
       border: solid 2px $white;
       padding: 0 13px;
+      width: 101px;
+      height: 46px;
+      @include font-size(20px, 30px);
+
+      @media screen and (max-width: $global-breakpoint-sm) {
+        & {
+          flex: 1;
+        }
+      }
       &:hover {
         color: $grey-darkest;
         background-color: $grey-lighter;
       }
+      &.-mobile {
+        height: 40px;
+        @include font-size(16px, 24px);
+      }
     }
 
     button {
-      height: 34px;
       color: $white;
-      border-radius: 20px;
+      border-radius: 48px;
       font-family: "Barlow Condensed";
       font-style: normal;
       font-weight: 500;
-      @include font-size(16px, 24px);
 
       &:first-child {
         margin-right: 0.5rem;
