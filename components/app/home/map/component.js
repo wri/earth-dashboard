@@ -206,11 +206,6 @@ const MapIframe = forwardRef(
 
     return (
       <>
-        {toolTipDetails && toolTipDetails.isVisible && (
-          <ToolTip x={`${toolTipDetails.x}px`} y={`${toolTipDetails.y}px`} globeToolTip={true}>
-            <p className="u-margin-none">{toolTipDetails.text}</p>
-          </ToolTip>
-        )}
         {extremeEventLocations &&
           extremeEventLocations.length > 0 &&
           extremeEventLocations.map(location => {
@@ -224,6 +219,11 @@ const MapIframe = forwardRef(
               />
             );
           })}
+        {toolTipDetails && toolTipDetails.isVisible && (
+          <ToolTip x={`${toolTipDetails.x}px`} y={`${toolTipDetails.y}px`} globeToolTip={true}>
+            <p className="u-margin-none">{toolTipDetails.text}</p>
+          </ToolTip>
+        )}
         <iframe
           className={isMobileMenuOpen ? styles["c-map-iframe__mobile-menu"] : styles["c-map-iframe"]}
           id="nullSchoolIframe"

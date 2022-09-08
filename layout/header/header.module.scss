@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px;
+  padding: 12px 16px;
   transition: background-color 0.3s ease-in-out;
   z-index: $z-index-header;
 
@@ -34,7 +34,7 @@
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
-    padding: 24px;
+    padding: 28px 60px;
 
     &__logo {
       width: 180px;
@@ -47,4 +47,3 @@
     }
   }
 }
-

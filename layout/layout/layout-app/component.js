@@ -73,7 +73,12 @@ function LayoutApp(props) {
             <Icon name="cookie" size={32} type="decorative" className={styles["cookie-icon"]} />
             <h3 className={styles["cookie-text"]}>COOKIES</h3>
           </div>
-          <div className={styles["text"]}>
+          <div
+            className={classnames({
+              [styles["text"]]: true,
+              [styles["-desktop"]]: !mobile
+            })}
+          >
             This website uses cookies to provide you with an improved user experience. By continuing to browse this
             site, you consent to the use of cookies and similar technologies. Please visit our{" "}
             <a
@@ -87,9 +92,17 @@ function LayoutApp(props) {
             for further details.
           </div>
         </div>
-        <div className={styles["button-group"]}>
+        <div
+          className={classnames({
+            [styles["button-group"]]: true,
+            [styles["-mobile"]]: mobile
+          })}
+        >
           <button
-            className={styles["rejectButton"]}
+            className={classnames({
+              [styles["rejectButton"]]: true,
+              [styles["-mobile"]]: mobile
+            })}
             onClick={() => {
               setShowGDPRBanner(false);
               localStorage.setItem(GDPR_ACCEPTED_KEY, "false");
@@ -98,7 +111,10 @@ function LayoutApp(props) {
             REJECT
           </button>
           <button
-            className={styles["acceptButton"]}
+            className={classnames({
+              [styles["acceptButton"]]: true,
+              [styles["-mobile"]]: mobile
+            })}
             onClick={() => {
               setShowGDPRBanner(false);
               localStorage.setItem(GDPR_ACCEPTED_KEY, "true");
