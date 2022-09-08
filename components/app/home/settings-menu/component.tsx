@@ -81,12 +81,15 @@ const SettingsMenu = ({
             {isDatePickerOpen ? (
               // Change date
               <div className={styles["main"]}>
-                <p>Showing data for: {format(currentDate ?? new Date(), "yyyy-MM-dd")} Local</p>
+                <p className={styles["c-settings-menu-modal__date-text"]}>
+                  Showing data for: {format(currentDate ?? new Date(), "yyyy-MM-dd")} Local
+                </p>
                 <DatePicker
                   // @ts-expect-error
                   initialDate={currentDate ?? new Date()}
                   onSubmit={handleChangeDate}
                   hasLiveDataButton
+                  className={styles["c-settings-menu-modal__date-picker"]}
                 />
               </div>
             ) : (
