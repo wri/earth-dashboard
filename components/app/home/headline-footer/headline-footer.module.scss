@@ -9,7 +9,7 @@
   &__footer {
     position: absolute;
     bottom: 0;
-    height: 70px;
+    height: 72px;
     width: 100%;
     overflow: hidden;
     border-radius: 0 0 16px 16px;
@@ -26,10 +26,15 @@
         padding: 0px;
         margin: 0px;
         text-transform: capitalize;
+        font-size: 20px;
+        line-height: 30px;
+        font-weight: 600;
       }
     }
 
-    &-button {
+    &-btn {
+      width: 30px;
+      height: 30px;
       &:disabled {
         cursor: not-allowed;
         opacity: 0.5;

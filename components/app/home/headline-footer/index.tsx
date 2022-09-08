@@ -29,11 +29,21 @@ export default function HeadlineFooter({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      <IconButton name="arrow-left" medium disabled={disableBackButton} onClick={() => navigateHeadline("back")} />
+      <IconButton
+        name="arrow-left"
+        className={classnames(styles["c-home-menu__footer-btn"])}
+        disabled={disableBackButton}
+        onClick={() => navigateHeadline("back")}
+      />
       <div className={classnames(styles["c-home-menu__footer-info"])}>
         <h3>{footerHeading}</h3>
       </div>
-      <IconButton name="arrow-right" medium disabled={disableNextButton} onClick={() => navigateHeadline("next")} />
+      <IconButton
+        name="arrow-right"
+        className={classnames(styles["c-home-menu__footer-btn"])}
+        disabled={disableNextButton}
+        onClick={() => navigateHeadline("next")}
+      />
     </div>
   );
 }
