@@ -245,12 +245,12 @@
     }
 
     .over-pointer {
-      z-index: $z-index-menu;
+      z-index: $z-index-over-pointer;
       position: relative;
     }
 
     .over-pointer-absolute {
-      z-index: $z-index-menu;
+      z-index: $z-index-over-pointer;
       position: absolute;
     }
   }

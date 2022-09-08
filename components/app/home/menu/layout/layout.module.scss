@@ -103,7 +103,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 16px;
-    
+
     @include defaultScrollBar();
     &::-webkit-scrollbar-track {
       margin-top: 20px;
@@ -129,7 +129,7 @@
     background-image: url("/static/images/globe.png");
     background-position: center right;
     background-repeat: no-repeat;
-    background-size: 232px 196px ;
+    background-size: 232px 196px;
   }
 
   &__template-description {
@@ -205,7 +205,7 @@
   }
 
   &__back-button {
-    background-image: url("/static/icons/back.svg");    
+    background-image: url("/static/icons/back.svg");
     background-size: 20px 20px;
     background-position: 50% 50%;
     margin-right: 12px;
@@ -215,10 +215,10 @@
     background-image: url("/static/icons/close.svg");
     background-size: 12px 12px;
     background-position: 50% 50%;
-
   }
 
-  &__back-button, &__close-button {
+  &__back-button,
+  &__close-button {
     display: inline-block;
     background-color: white;
     background-repeat: no-repeat;
@@ -251,7 +251,6 @@
 
   &--is-info-page {
     .c-home-menu__header-content {
-    
       &:before {
         content: "";
         display: block;
