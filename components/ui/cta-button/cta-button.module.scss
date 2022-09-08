@@ -17,6 +17,19 @@
     background-color: $colour-flame;
     align-items: center;
     cursor: pointer;
+
+    &:hover {
+      background-color: $colour-galaxy;
+
+      .c-cta-button__text {
+        color: $white;  
+      }
+
+      .c-cta-button__icon {
+        background-color: $colour-galaxy;
+        color: $white;  
+      }
+    }    
   }
 
   &__text {
@@ -37,10 +50,5 @@
     background-color: $white;
     color: $colour-galaxy;
     transition: all 0.1s ease-in-out;
-
-    &:hover {
-      background-color: $colour-galaxy;
-      color: $white;
-    }  
   }
 }

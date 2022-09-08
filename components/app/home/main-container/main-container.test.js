@@ -108,18 +108,18 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                         class="c-content-panel__row"
                       >
                         <button
-                          class="c-content-panel__button"
+                          class="c-cta-button"
                         >
                           <div
-                            class="c-content-panel__button-content"
+                            class="c-cta-button__content"
                           >
                             <span
-                              class="c-content-panel__button-text"
+                              class="c-cta-button__text"
                             >
                               View All
                             </span>
                             <span
-                              class="c-content-panel__button-icon"
+                              class="c-cta-button__icon"
                             />
                           </div>
                         </button>
@@ -159,18 +159,18 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                         class="c-content-panel__row"
                       >
                         <button
-                          class="c-content-panel__button"
+                          class="c-cta-button"
                         >
                           <div
-                            class="c-content-panel__button-content"
+                            class="c-cta-button__content"
                           >
                             <span
-                              class="c-content-panel__button-text"
+                              class="c-cta-button__text"
                             >
                               Learn More
                             </span>
                             <span
-                              class="c-content-panel__button-icon"
+                              class="c-cta-button__icon"
                             />
                           </div>
                         </button>
@@ -210,18 +210,18 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                         class="c-content-panel__row"
                       >
                         <button
-                          class="c-content-panel__button"
+                          class="c-cta-button"
                         >
                           <div
-                            class="c-content-panel__button-content"
+                            class="c-cta-button__content"
                           >
                             <span
-                              class="c-content-panel__button-text"
+                              class="c-cta-button__text"
                             >
                               Learn More
                             </span>
                             <span
-                              class="c-content-panel__button-icon"
+                              class="c-cta-button__icon"
                             />
                           </div>
                         </button>

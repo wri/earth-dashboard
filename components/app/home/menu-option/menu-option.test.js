@@ -21,51 +21,51 @@ test("<MenuOption /> renders correctly as desktop", async () => {
   await waitFor(() => queryAllByTestId("option"));
 
   expect(container).toMatchInlineSnapshot(`
-<div>
-  <div
-    class="c-content-panel__underlay test-menu-option"
-    data-testid="content-panel"
-  >
-    <div
-      class="c-content-panel c-content-panel__focusable"
-      tabindex="0"
-    >
+    <div>
       <div
-        class="c-content-panel__header-row"
+        class="c-content-panel__underlay test-menu-option"
+        data-testid="content-panel"
       >
-        <h3
-          class="c-content-panel__title"
-        >
-          All Extreme Events
-        </h3>
-      </div>
-      <p
-        class="c-menu-option__subtitle"
-      >
-        View all of the latest extreme events
-      </p>
-      <div
-        class="c-content-panel__row"
-      >
-        <button
-          class="c-content-panel__button"
+        <div
+          class="c-content-panel c-content-panel__focusable"
+          tabindex="0"
         >
           <div
-            class="c-content-panel__button-content"
+            class="c-content-panel__header-row"
           >
-            <span
-              class="c-content-panel__button-text"
+            <h3
+              class="c-content-panel__title"
             >
-              View All
-            </span>
-            <span
-              class="c-content-panel__button-icon"
-            />
+              All Extreme Events
+            </h3>
           </div>
-        </button>
+          <p
+            class="c-menu-option__subtitle"
+          >
+            View all of the latest extreme events
+          </p>
+          <div
+            class="c-content-panel__row"
+          >
+            <button
+              class="c-cta-button"
+            >
+              <div
+                class="c-cta-button__content"
+              >
+                <span
+                  class="c-cta-button__text"
+                >
+                  View All
+                </span>
+                <span
+                  class="c-cta-button__icon"
+                />
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-`);
+  `);
 });
