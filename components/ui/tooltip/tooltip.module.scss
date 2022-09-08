@@ -41,6 +41,10 @@
     transform: translateY(calc(-50% - 9px));
     &:after {
       right: -8px;
+
+      @media screen and (max-width: $global-breakpoint-md) {
+        right: -6px;
+      }
     }
   }
 

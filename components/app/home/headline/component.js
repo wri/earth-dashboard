@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "./headline.module.scss";
@@ -31,6 +31,8 @@ const Headline = ({
     return "";
   }, [currentMode]);
 
+  const articleRef = useRef(null);
+
   useEffect(() => {
     setIsDatePickerDisabled(true);
     setIsFetchLocationDisabled(true);
@@ -57,11 +59,19 @@ const Headline = ({
     }
   }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy, setDateOfDataShown]);
 
+  // Scroll to top of article when headline changes
+  useEffect(() => {
+    if (articleRef.current) {
+      articleRef.current.scrollTo({ top: 0 });
+    }
+  }, [headline]);
+
   return (
     <article
       className={classnames(styles["c-headline"], styles["c-headline__scroll-area"], className)}
       {...rest}
       data-testid="headline"
+      ref={articleRef}
     >
       <h3 className={classnames(styles["c-headline__title"], "u-margin-none")}>{headline.attributes.title}</h3>
       <p className={classnames(styles["c-headline__body"], "u-margin-top-xs u-margin-bottom-l u-text-pre-line")}>
