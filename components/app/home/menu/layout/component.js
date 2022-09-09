@@ -7,7 +7,7 @@ const MenuLayout = ({
   title,
   isMobile,
   isClosing,
-  hasIcon,
+  iconName,
   className,
   dialogHeight,
   setDialogHeight,
@@ -24,7 +24,7 @@ const MenuLayout = ({
           <div
             className={classnames(
               styles["c-layout__header-content"],
-              hasIcon == "globe" ? styles["c-layout__header-content--has-globe-icon"] : undefined
+              iconName == "globe" ? styles["c-layout__header-content--has-globe-icon"] : undefined
             )}
           >
             {onBack && (
