@@ -10,6 +10,7 @@ import Basemaps from "./basemaps";
 import DatePicker from "components/date-picker";
 import { format } from "date-fns";
 import Footer from "./footer";
+import CookiePreferences from "./cookie-preferences";
 
 type SettingsMenuProps = {
   isOpen: boolean;
@@ -87,14 +88,14 @@ const SettingsMenu = ({
             {isCookieOpen ? (
               <div className={styles["main"]}>
                 <div className={styles["c-settings-menu-modal__cookie"]}>
-                  <h3 className={styles["c-settings-menu-modal__cookie__text"]}>COOKIES</h3>
+                  <h3 className={styles["c-settings-menu-modal__cookie__text"]}>About</h3>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales finibus tristique. Lorem
-                    ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales finibus tristique. Curabitur
-                    malesuada enim neque, at aliquet ligula dictum in. Duis non malesuada nunc.
+                    This website uses cookies to provide you with an improved user experience. By continuing to browse
+                    this site, you consent to the use of cookies and similar technologies. Please visit our privacy
+                    policy for further details.
                   </p>
                 </div>
-                {/* <Preferences /> */}
+                <CookiePreferences />
               </div>
             ) : isDatePickerOpen ? (
               // Change date
