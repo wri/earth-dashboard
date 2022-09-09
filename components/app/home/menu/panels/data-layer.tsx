@@ -75,7 +75,7 @@ const DataLayerOverview = ({ currentMode, headlines, setHeadlines, onClickExtrem
         buttonText="View All"
         ctaAction={onClickExtremeEvents}
       >
-        <div className={"c-home-menu__events-list"}>
+        <div className={styles["c-home-menu__events-list"]}>
           {!isFetching ? (
             mostRecentHeadlines.map(headline => (
               <EventCard
