@@ -61,32 +61,54 @@ const Menu = forwardRef(
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
 
-    const mostRecentHeadlines = useMemo(() => {
-      const reversed = [...headlines].reverse();
-      return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
-    }, [headlines]);
-
     const showExtremeEvents = () => {
       setPageTypeId(EXTREME_EVENTS_PAGE_ID);
     };
 
+    const splitHeadlines = () => {
+      const reversed = [...headlines].reverse();
+      return reversed.reduce((acc, val, i) => {
+        let idx = Math.floor(i / MAX_NUMBER_OF_HEADLINES);
+        let page = acc[idx] || (acc[idx] = []);
+        page.push(val);
+
+        return acc;
+      }, []);
+    };
+
     const getCurrentHeadlineIndex = () => {
-      return currentHeadline ? mostRecentHeadlines.findIndex(headline => headline.id === currentHeadline.id) : null;
+      let index = -1;
+      let total = 0;
+      let headlines = [];
+
+      if (currentHeadline) {
+        const paginatedHeadlines = splitHeadlines();
+        for (const headlineRow of paginatedHeadlines) {
+          index = headlineRow.findIndex(headline => headline.id === currentHeadline.id);
+          if (index > -1) {
+            headlines = headlineRow;
+            total = headlineRow.length;
+            break;
+          }
+        }
+        return { index, total, headlines };
+      }
+      return { index, total, headlines };
     };
 
     // Checks current headline position to disable back/next buttons
     const checkCurrentHeadline = () => {
-      const currentHeadlineIndex = getCurrentHeadlineIndex();
+      const { index: currentHeadlineIndex, total } = getCurrentHeadlineIndex();
 
       if (currentHeadline) {
-        const text = `${currentHeadlineIndex + 1}/${mostRecentHeadlines.length} Extreme Events`;
+        const text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
         setFooterHeading(text);
       }
 
       // For disabling back button
       if (currentHeadline && currentHeadlineIndex === 0) {
         setDisableBackButton(true);
-      } else if (currentHeadline && currentHeadlineIndex === mostRecentHeadlines.length - 1) {
+      } else if (currentHeadline && currentHeadlineIndex === total - 1) {
         setDisableNextButton(true);
       } else {
         setDisableBackButton(false);
@@ -114,15 +136,15 @@ const Menu = forwardRef(
     };
 
     const navigateHeadline = action => {
-      const headlineIndex = getCurrentHeadlineIndex();
+      const { index: headlineIndex, headlines } = getCurrentHeadlineIndex();
       let headline = null;
 
       if (action === "back") {
-        headline = mostRecentHeadlines[headlineIndex - 1];
+        headline = headlines[headlineIndex - 1];
         setCurrentHeadline(headline);
         fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
       } else {
-        headline = mostRecentHeadlines[headlineIndex + 1];
+        headline = headlines[headlineIndex + 1];
         setCurrentHeadline(headline);
         fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
       }
