@@ -42,13 +42,13 @@ export const QuickLinks = [
     label: "Terms Of Use",
     link: "https://resourcewatch.org/terms-of-service",
     external: true
-  },
-  {
-    key: "cookies",
-    label: "Cookies",
-    link: "https://resourcewatch.org/privacy-policy",
-    external: true
   }
+  // {
+  //   key: "cookies",
+  //   label: "Cookies",
+  //   link: "https://resourcewatch.org/privacy-policy",
+  //   external: true
+  // }
 ];
 
 export const SocialLinks = [
