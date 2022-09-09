@@ -6,6 +6,7 @@ import { setIsShareOpen } from "slices/common";
 export default connect(
   (state: RootState) => ({
     isMobile: state.common.isMobile,
+    isShareOpen: state.common.isShareOpen,
     currentHeadline: state.headlines.currentHeadline
   }),
   {

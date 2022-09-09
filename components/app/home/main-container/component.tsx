@@ -36,7 +36,6 @@ type MainContainerProps = {
   currentHeadlineId?: number;
   shouldFadeControls: boolean;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
-  isShareOpen: boolean;
 };
 
 const MainContainer = ({
@@ -48,8 +47,7 @@ const MainContainer = ({
   headlines,
   shouldFadeControls,
   currentHeadline,
-  setHeadlines,
-  isShareOpen
+  setHeadlines
 }: MainContainerProps) => {
   const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
   const [hasIframe, setHasIframe] = useState<boolean>(false);
@@ -283,7 +281,7 @@ const MainContainer = ({
           layers={layers}
         />
       )}
-      {isShareOpen && <ShareModal />}
+      <ShareModal />
 
       <Actions
         isMobile={isMobile}

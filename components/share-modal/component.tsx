@@ -8,15 +8,21 @@ import { Headline } from "slices/headlines";
 import GlobeCard from "./globe-card";
 import HeadlineCard from "./headline-card/component";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import useDialogPanel from "hooks/useDialogPanel";
 
 type ShareModalProps = {
   isMobile: boolean;
-  currentHeadline?: Headline;
+  isShareOpen: boolean;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
+  currentHeadline?: Headline;
 };
 
-const ShareModal = ({ isMobile, currentHeadline, setIsShareOpen }: ShareModalProps) => {
+const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline }: ShareModalProps) => {
   const [copiedLinkTimeout, setCopiedLinkTimeout] = useState<boolean>(false);
+
+  const { shouldAnimate, handleClose } = useDialogPanel(isShareOpen, () => {
+    setIsShareOpen(false);
+  });
 
   // Opens facebook share page
   const handleFaceBookPress = () => {
@@ -48,8 +54,9 @@ const ShareModal = ({ isMobile, currentHeadline, setIsShareOpen }: ShareModalPro
     }
   };
 
+  if (!isShareOpen) return null;
   return (
-    <DialogPanel onClose={() => setIsShareOpen(false)} isMobile={isMobile} shouldAnimate={false}>
+    <DialogPanel onClose={handleClose} isMobile={isMobile} shouldAnimate={shouldAnimate}>
       <div className={classnames(styles["c-share-modal"])} aria-labelledby="shareModalTitle">
         {/* Header */}
         <div className={classnames(styles["c-share-modal__header"], "u-text-center")}>
@@ -58,7 +65,14 @@ const ShareModal = ({ isMobile, currentHeadline, setIsShareOpen }: ShareModalPro
           </h2>
 
           {/* Close button */}
-          <IconButton name="close" size={12} aria-label="Close Settings" onClick={() => setIsShareOpen(false)} small />
+          <IconButton
+            name="close"
+            size={12}
+            aria-label="Close Share"
+            className={styles["c-share-modal__close"]}
+            onClick={handleClose}
+            small
+          />
         </div>
         {/* Body */}
         <div className={classnames(styles["c-share-modal__body"])}>
