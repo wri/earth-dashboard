@@ -92,6 +92,49 @@
     }
   }
 
+  &__extreme-events {
+    padding: 135px 0 0 0;
+
+    &--controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &--header {
+      z-index: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 135px;
+      position: absolute;
+      background-color: $colour-galaxy;
+      width: 100%;
+      background-image: url("/static/images/globe.png");
+      background-position: center right;
+      background-repeat: no-repeat;
+      background-size: 232px 196px ;
+      padding: 24px;
+
+      h3 {
+        color: white;
+        font-family: "Barlow";
+        font-weight: 600;
+        text-transform: uppercase;
+        @include font-size(20px, 30px);
+        margin-bottom: 8px;
+      }
+
+      p {
+        color: white;
+        font-family: "Barlow";
+        font-weight: 500;
+        @include font-size(16px, 24px);
+      }
+    }  
+  }
+
+
   &__scroll-area {
     position: absolute;
     top: 0px;
@@ -99,20 +142,30 @@
     left: 0px;
     right: 12px;
     overflow-y: auto;
-    padding: 20px 12px 20px 28px;
+    padding: 24px 12px 24px 24px;
     display: flex;
     flex-direction: column;
     row-gap: 16px;
 
     @include defaultScrollBar();
+    
     &::-webkit-scrollbar-track {
       margin-top: 20px;
       margin-bottom: 20px;
+      margin-right: 0px;
     }
+
+    &--unpadded {
+      padding: 0;
+      border-right: 12px solid transparent;
+      right: 0;
+    }
+
     &--slim {
       top: 0px;
       padding-bottom: 40px;
     }
+
     &--extra-top {
       top: 87px;
     }
@@ -205,9 +258,6 @@
   }
 
   &__back-button {
-    //background-image: url("/static/icons/back.svg");
-    //background-size: 20px 20px;
-    //background-position: 50% 50%;
     margin-right: 12px;
   }
 
@@ -231,6 +281,13 @@
     }
   }
 
+  &__events-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    width: 100%;
+  }
+
   &__content {
     flex-grow: 1;
     border-radius: 0 0 16px 16px;
@@ -238,6 +295,7 @@
     flex-direction: column;
     background: $colour-space;
     position: relative;
+    z-index: -1;
   }
 
   &__info-title {
@@ -392,7 +450,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    top: 0px;
+    top: 30%;
     position: absolute;
     z-index: $z-index-dialog;
   }

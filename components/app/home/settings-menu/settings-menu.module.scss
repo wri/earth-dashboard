@@ -63,9 +63,15 @@
 
   &__close {
     box-shadow: 0px 2px 10px rgba(26, 26, 25, 0.24);
-    flex-basis: 32px;
+    flex-basis: 30px;
     svg {
       min-width: 12px;
+    }
+  }
+
+  &__back {
+    svg {
+      min-width: 15px;
     }
   }
 

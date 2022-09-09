@@ -1,5 +1,6 @@
 import styles from "./panel.module.scss";
 import Icon from "components/ui/Icon";
+import CtaButton from "components/ui/cta-button";
 
 export type SharePanelProps = {
   ctaAction?: () => void;
@@ -12,12 +13,7 @@ const SharePanel = ({ ctaAction }: SharePanelProps) => (
       <p className={styles["c-share-panel__description"]}>
         Make a wider impact and spread awareness of the climate emergency
       </p>
-      <button className={styles["c-share-panel__button"]} onClick={ctaAction}>
-        <span className={styles["c-share-panel__button-text"]}>Share</span>
-        <span className={styles["c-share-panel__button-icon"]}>
-          <Icon name={"arrow-right"} type="decorative" size={15} />
-        </span>
-      </button>
+      <CtaButton text="Share" iconName="arrow-right" iconSize={15} onClick={ctaAction} />
     </div>
   </div>
 );

@@ -61,7 +61,12 @@ const SettingsMenu = ({
           {/* Header */}
           <div>
             {isDatePickerOpen || isCookieOpen ? (
-              <IconButton name="arrow-left" onClick={handleBack} small />
+              <IconButton
+                name="arrow-left"
+                onClick={handleBack}
+                small
+                className={styles["c-settings-menu-modal__back"]}
+              />
             ) : (
               <Icon name={"more"} size={30} type="decorative" className={styles["icon"]} />
             )}

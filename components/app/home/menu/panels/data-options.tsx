@@ -18,12 +18,11 @@ const mapHighlightToOption = (mode: Mode, onClickDataLayer: ActionCreatorWithPay
 
 type DataIndexProps = {
   highlights: Mode[] | undefined;
-  currentMode: Mode | undefined;
   onClickExtremeEvents: () => void;
   onClickDataLayer: ActionCreatorWithPayload<Mode, string>;
 };
 
-const DataIndex = ({ highlights, currentMode, onClickExtremeEvents, onClickDataLayer }: DataIndexProps) => {
+const DataIndex = ({ highlights, onClickExtremeEvents, onClickDataLayer }: DataIndexProps) => {
   const dataLayers = useMemo(
     () => highlights?.map(highlight => mapHighlightToOption(highlight, onClickDataLayer)) || [],
     [highlights, onClickDataLayer]
