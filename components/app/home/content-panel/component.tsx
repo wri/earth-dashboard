@@ -28,7 +28,6 @@ const ContentPanel = ({
   ctaLink,
   children
 }: MenuOptionProps) => {
-  const CtaElement = ctaControl || "button";
   return (
     <div className={classNames(styles["c-content-panel__underlay"], className)} data-testid="content-panel">
       <div
