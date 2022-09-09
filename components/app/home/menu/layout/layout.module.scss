@@ -10,7 +10,7 @@
   width: 100%;
   max-width: 740px;
   top: 100px;
-  left: 24px;
+  left: 60px;
   bottom: 120px;
   overflow: hidden;
   display: flex;
@@ -72,6 +72,9 @@
   }
 
   &__back-button {
+    background-image: url("/static/icons/back.svg");
+    background-size: 20px 20px;
+    background-position: 50% 50%;
     margin-right: 12px;
     padding-top: 5px;
   }
@@ -80,10 +83,10 @@
     background-image: url("/static/icons/close.svg");
     background-size: 12px 12px;
     background-position: 50% 50%;
-
   }
 
-  &__back-button, &__close-button {
+  &__back-button,
+  &__close-button {
     display: inline-block;
     background-color: white;
     background-repeat: no-repeat;

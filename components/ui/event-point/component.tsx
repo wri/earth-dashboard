@@ -22,16 +22,11 @@ const EventPoint = ({ x, y, onClick, className }: EventPointProps) => {
   style.right = `calc(${right + "px"} - 12px)`;
 
   return (
-    <button
-      className={classnames(className, styles["c-event-point"])}
-      onClick={onClick}
-      role="EventPoint"
-      style={style}
-    >
+    <div className={classnames(className, styles["c-event-point"])} onClick={onClick} style={style}>
       <div className={classnames(styles["c-outer-circle"])}>
         <div className={classnames(styles["c-inner-circle"])} />
       </div>
-    </button>
+    </div>
   );
 };
 

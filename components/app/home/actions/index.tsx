@@ -11,16 +11,7 @@ type ActionsProps = {
 /** Wrapper for home page actions. */
 const Actions = ({ children, isMobile, className = "" }: ActionsProps) => {
   return (
-    <div
-      className={classnames(
-        styles["c-home-actions"],
-        { [styles["mobile"]]: isMobile },
-        "u-padding-horizontal-l",
-        className
-      )}
-    >
-      {children}
-    </div>
+    <div className={classnames(styles["c-home-actions"], { [styles["mobile"]]: isMobile }, className)}>{children}</div>
   );
 };
 

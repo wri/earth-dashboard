@@ -14,11 +14,11 @@
   mix-blend-mode: normal;
   backdrop-filter: blur(10.8731px);
   box-shadow: 0px 0px 113.425px #000000;
-  border-radius: 28px 28px 0 0;
+  border-radius: 12px 12px 0 0;
   overflow: hidden;
 
   @media screen and (min-width: $global-breakpoint-md) {
-    border-radius: 28px;
+    border-radius: 12px;
   }
 
   &__header {
@@ -37,13 +37,14 @@
         background-color: $colour-galaxy;
         padding: 7px;
         border-radius: 50%;
+        box-shadow: 0px 2px 10px rgba(26, 26, 25, 0.24);
       }
 
       & .title {
         margin: 0 auto;
         margin-left: 12px;
         color: $white;
-        font-weight: 500;
+        font-weight: 600;
         text-transform: uppercase;
         font-family: "Barlow Condensed";
         @include font-size(20px, 30px);
@@ -52,6 +53,14 @@
           font-family: Barlow;
         }
       }
+    }
+  }
+
+  &__close {
+    box-shadow: 0px 2px 10px rgba(26, 26, 25, 0.24);
+    flex-basis: 32px;
+    svg {
+      min-width: 12px;
     }
   }
 
@@ -74,19 +83,19 @@
         padding-left: 24px;
         padding-right: 24px;
       }
-
-      .main > p {
-        @include font-size(14px, 21px);
-        color: white;
-        font-weight: 500;
-        margin-bottom: 8px;
-      }
     }
   }
 
+  &__date-text {
+    font-weight: 500;
+    @include font-size(16px, 24px);
+    color: white;
+    margin-bottom: 8px;
+  }
+
   @media screen and (min-width: $global-breakpoint-md) {
-    top: 40px;
-    bottom: 40px;
+    top: 145px;
+    bottom: 145px;
     left: 50%;
     width: 640px;
     height: auto;
@@ -110,11 +119,12 @@
           padding-left: 40px;
           padding-right: 40px;
         }
-
-        .main > p {
-          @include font-size(18px, 27px);
-        }
       }
+    }
+
+    &__date-text {
+      @include font-size(18px, 27px);
+      margin-bottom: 16px;
     }
   }
 }

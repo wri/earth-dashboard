@@ -1,16 +1,18 @@
 @import "css/settings";
+@import "css/tools/fontSize";
 
 .c-header-link {
   > .text {
+    @include font-size(20px, 30px);
+
     font-family: "Barlow";
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
     text-align: center;
     letter-spacing: 0.2px;
     text-transform: uppercase;
-    color: #ffffff;
+    color: $white;
+    opacity: 0.8;
   }
 
   > .underline {
@@ -19,8 +21,13 @@
     transform: translateY(5px);
   }
 
-  &__active > .underline {
-    background-color: $colour-flame;
+  &__active {
+    > .text {
+      opacity: 1;
+    }
+    > .underline {
+      background-color: $colour-flame;
+    }
   }
 
   &:hover > .underline {

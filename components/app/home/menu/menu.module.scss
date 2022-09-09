@@ -182,7 +182,7 @@
     background-image: url("/static/images/globe.png");
     background-position: center right;
     background-repeat: no-repeat;
-    background-size: 232px 196px ;
+    background-size: 232px 196px;
   }
 
   &__template-description {
@@ -265,10 +265,10 @@
     background-image: url("/static/icons/close.svg");
     background-size: 12px 12px;
     background-position: 50% 50%;
-
   }
 
-  &__back-button, &__close-button {
+  &__back-button,
+  &__close-button {
     display: inline-block;
     background-color: white;
     background-repeat: no-repeat;
@@ -308,7 +308,6 @@
 
   &--is-info-page {
     .c-home-menu__header-content {
-    
       &:before {
         content: "";
         display: block;
