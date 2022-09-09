@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import styles from "./panel.module.scss";
 import Icon from "components/ui/Icon";
 import classNames from "classnames";
+import CtaButton from "components/ui/cta-button";
 
 export type MenuOptionProps = {
   title: string;
@@ -27,7 +28,6 @@ const ContentPanel = ({
   ctaLink,
   children
 }: MenuOptionProps) => {
-  const CtaElement = ctaControl || "button";
   return (
     <div className={classNames(styles["c-content-panel__underlay"], className)} data-testid="content-panel">
       <div
@@ -40,15 +40,15 @@ const ContentPanel = ({
         </div>
         {children}
         {(ctaAction || ctaLink) && (
-          <div className={styles["c-content-panel__row"]}>
-            <CtaElement className={styles["c-content-panel__button"]} onClick={ctaAction} href={ctaLink}>
-              <div className={styles["c-content-panel__button-content"]}>
-                <span className={styles["c-content-panel__button-text"]}>{buttonText}</span>
-                <span className={styles["c-content-panel__button-icon"]}>
-                  <Icon name={"arrow-right"} type="decorative" size={15} />
-                </span>
-              </div>
-            </CtaElement>
+          <div className={styles["c-content-panel__cta"]}>
+            <CtaButton
+              as={ctaControl || "button"}
+              onClick={ctaAction}
+              href={ctaLink}
+              iconName="arrow-right"
+              iconSize={15}
+              text={buttonText}
+            />
           </div>
         )}
       </div>
