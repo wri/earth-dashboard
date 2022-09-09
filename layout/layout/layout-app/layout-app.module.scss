@@ -100,6 +100,10 @@
       &.-mobile {
         height: 40px;
         @include font-size(16px, 24px);
+
+        &:hover {
+          background-color: $colour-flame;
+        }
       }
     }
 
@@ -126,6 +130,11 @@
       &.-mobile {
         height: 40px;
         @include font-size(16px, 24px);
+
+        &:hover {
+          background-color: unset;
+          color: white;
+        }
       }
     }
 
