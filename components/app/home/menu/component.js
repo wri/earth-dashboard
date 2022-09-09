@@ -91,7 +91,7 @@ const Menu = forwardRef(
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
-          <MenuLayout title={INFO_PAGE_HEADLINE} onClose={onClose} setDialogHeight={setDialogHeight}>
+          <MenuLayout hasIcon="globe" title={INFO_PAGE_HEADLINE} onClose={onClose} setDialogHeight={setDialogHeight}>
             <DataIndexPanel onClickDataLayer={setActiveDataLayer} onClickExtremeEvents={showExtremeEvents} />
           </MenuLayout>
         )}

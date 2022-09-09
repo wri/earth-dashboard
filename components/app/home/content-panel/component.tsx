@@ -41,7 +41,7 @@ const ContentPanel = ({
         </div>
         {children}
         {(ctaAction || ctaLink) && (
-          <div className={styles["c-content-panel__row"]}>
+          <div className={styles["c-content-panel__cta"]}>
             <CtaButton
               as={ctaControl || "button"}
               onClick={ctaAction}

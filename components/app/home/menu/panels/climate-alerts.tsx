@@ -36,11 +36,12 @@ const HeadlinesPanel = ({
 }: HeadlinesPanerProps) => {
   const [isFetching, setIsFetching] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(MAX_NUMBER_OF_HEADLINES);
 
   const mostRecentHeadlines = useMemo(() => {
     const reversed = [...headlines].reverse();
-    return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
-  }, [headlines]);
+    return reversed.slice(0, numHeadlinesToShow);
+  }, [headlines, numHeadlinesToShow]);
   const articleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -126,7 +127,14 @@ const HeadlinesPanel = ({
           )}
         </div>
         <div className={styles["c-home-menu__extreme-events--controls"]}>
-          <CtaButton text="View More" iconName="arrow-right" iconSize={15} onClick={() => {}} />
+          {headlines.length > numHeadlinesToShow && (
+            <CtaButton
+              text="View More"
+              iconName="arrow-right"
+              iconSize={15}
+              onClick={() => setNumHeadlinesToShow(numHeadlinesToShow + 10)}
+            />
+          )}
         </div>
       </div>
     </>
