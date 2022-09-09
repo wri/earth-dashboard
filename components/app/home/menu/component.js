@@ -8,7 +8,7 @@ import MenuLayout from "./layout";
 import { fireEvent } from "utils/gtag";
 import { MENU_TAB_CHANGE_EVENT_NAME } from "constants/tag-manager";
 import ClimateAlerts from "./panels/climate-alerts";
-import Headline from "../headline";
+import Event from "components/app/home/event";
 
 const INFO_PAGE_ID = "InfoPage";
 const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
@@ -76,6 +76,12 @@ const Menu = forwardRef(
       fireEvent(MENU_TAB_CHANGE_EVENT_NAME, INFO_PAGE_HEADLINE);
     }, [setCurrentHeadline]);
 
+    useEffect(() => {
+      if (currentHeadline) {
+        setCurrentMode(currentHeadline.attributes.mode);
+      }
+    }, [currentHeadline, setCurrentMode]);
+
     return (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
@@ -87,7 +93,7 @@ const Menu = forwardRef(
             onClose={onClose}
             setDialogHeight={setDialogHeight}
           >
-            <Headline headline={currentHeadline} />
+            <Event headline={currentHeadline} />
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
