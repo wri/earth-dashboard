@@ -80,11 +80,7 @@ function LayoutApp(props) {
             })}
           >
             This website uses cookies to provide you with an improved user experience. By continuing to browse this
-            site, you consent to the use of{" "}
-            <span className="external-link -white" onClick={() => console.log("link to cookies modal")}>
-              cookies
-            </span>{" "}
-            and similar technologies. Please visit our{" "}
+            site, you consent to the use of cookies and similar technologies. Please visit our{" "}
             <a
               className="external-link -white"
               href="https://resourcewatch.org/privacy-policy"
