@@ -204,7 +204,7 @@ LayoutApp.defaultProps = {
     "https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg",
   showHeaderLogo: true,
   showHeader: true,
-  themeColor: "#1a2128",
+  themeColor: "#D63C00",
   headerButtonPosition: "center"
 };
 
