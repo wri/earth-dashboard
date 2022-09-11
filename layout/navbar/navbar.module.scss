@@ -9,15 +9,15 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 60px;
+    height: $navbar-height;
     background-color: $colour-galaxy;
     color: white;
     text-align: center;
-    border-top: 2px solid #063C61;
+    border-top: 2px solid #063c61;
 
     &-link {
       display: flex;
-      justify-content: space-between;  
+      justify-content: space-between;
       align-items: center;
       height: 100%;
       padding: 0px 64.5px;
@@ -62,7 +62,7 @@
       }
 
       &-container > * {
-        color: #80929F;
+        color: #80929f;
       }
 
       &-container a {
@@ -79,7 +79,7 @@
       }
 
       & > * {
-        color: #798C99;
+        color: #798c99;
       }
 
       &-active {
@@ -90,4 +90,3 @@
     }
   }
 }
-

@@ -205,26 +205,31 @@
   }
 
   &__back-button {
-    background-image: url("/static/icons/back.svg");
-    background-size: 20px 20px;
-    background-position: 50% 50%;
     margin-right: 12px;
+
+    svg {
+      min-width: 18px;
+      min-height: 18px;
+    }
   }
 
   &__close-button {
-    background-image: url("/static/icons/close.svg");
-    background-size: 12px 12px;
-    background-position: 50% 50%;
+    svg {
+      min-width: 14px;
+      min-height: 14px;
+    }
   }
 
   &__back-button,
   &__close-button {
     display: inline-block;
     background-color: white;
-    background-repeat: no-repeat;
     border-radius: 50%;
     width: 36px;
     height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       background-color: $colour-flame;
@@ -349,12 +354,6 @@
 
     &__header-text {
       @include font-size(20px, 30px);
-    }
-
-    &__back-button {
-      &:focus {
-        background-position: 50% 5px;
-      }
     }
 
     &__toggle-list {

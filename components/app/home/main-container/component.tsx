@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menu-button.module.scss";
@@ -23,6 +23,15 @@ import useIframeBridge from "hooks/useIframeBridge";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import Icon from "components/ui/Icon";
+import CondensedMenu from "../condensed-menu";
+
+export const LARGE_MOBILE_MENU_HEIGHT = 235;
+export const SMALL_MOBILE_MENU_HEIGHT = 148;
+export const INFO_PAGE_ID = "InfoPage";
+export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
+export const DATA_LAYER_PAGE_ID = "DataLayerPage";
+export const INFO_PAGE_HEADLINE = "I'd like to explore";
+export const EXTREME_EVENTS_PAGE_HEADLINE = "Extreme events";
 
 type MainContainerProps = {
   isMobile: boolean;
@@ -48,10 +57,16 @@ const MainContainer = ({
   currentHeadline,
   setHeadlines
 }: MainContainerProps) => {
+  const [pageTypeId, setPageTypeId] = useState<string>(INFO_PAGE_ID);
+
+  const defaultMobileMenuHeight =
+    pageTypeId === DATA_LAYER_PAGE_ID ? LARGE_MOBILE_MENU_HEIGHT : SMALL_MOBILE_MENU_HEIGHT;
+
   const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
   const [hasIframe, setHasIframe] = useState<boolean>(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState<boolean>(false);
+  const [mobileMenuHeight, setMobileMenuHeight] = useState<number>(defaultMobileMenuHeight);
 
   const { width: browserWidth } = useWindowDimensions();
 
@@ -112,14 +127,22 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
+      setMobileMenuHeight(window.innerHeight / 2);
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {
         setIsClosingMenu(false);
         setHasMenuOpen(false);
       }, 400);
+      setMobileMenuHeight(defaultMobileMenuHeight);
     }
   };
+
+  // Set menu open when mobile menu height changes
+  useEffect(() => {
+    if (mobileMenuHeight > defaultMobileMenuHeight) return setHasMenuOpen(true);
+    setHasMenuOpen(false);
+  }, [mobileMenuHeight]);
 
   // Store the isMobile flag in the redux store
   useEffect(() => {
@@ -229,7 +252,7 @@ const MainContainer = ({
           extremeEventLocations={extremeEventLocations}
           setHasMenuOpen={setHasMenuOpen}
           hasIframeConnected={hasIframeConnected}
-          isMobileMenuOpen={isMobile && hasMenuOpen}
+          mobileMenuHeight={isMobile && mobileMenuHeight}
         />
       )}
       {overlayLayer && !isMobile && (
@@ -268,7 +291,7 @@ const MainContainer = ({
           </div>
         </div>
       )}
-      {hasMenuOpen && !isFetchingTemplates && (
+      {((hasMenuOpen && !isFetchingTemplates) || isMobile) && (
         <Menu
           // @ts-expect-error
           isMobile={isMobile}
@@ -278,6 +301,20 @@ const MainContainer = ({
           isClosing={isClosingMenu}
           earthServer={earthServer.current}
           layers={layers}
+          mobileMenuHeight={mobileMenuHeight}
+          setMobileMenuHeight={setMobileMenuHeight}
+          pageTypeId={pageTypeId}
+          setPageTypeId={setPageTypeId}
+          defaultMobileMenuHeight={defaultMobileMenuHeight}
+        />
+      )}
+
+      {isMobile && (
+        <CondensedMenu
+          toggleMenu={toggleMenu}
+          pageTypeId={pageTypeId}
+          handleToggleLocation={handleToggleLocation}
+          isLocationDisabled={isLocationDisabled}
         />
       )}
 

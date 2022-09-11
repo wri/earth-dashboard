@@ -1,0 +1,57 @@
+@import "css/_settings.scss";
+@import "css/tools/_fontSize.scss";
+
+.c-condensed-menu {
+  position: fixed;
+  bottom: $navbar-height;
+  width: 100%;
+  background-color: $colour-night;
+  color: white;
+  padding: 24px;
+  box-shadow: 0px 1px 10px rgba(26, 26, 25, 0.08);
+  border-radius: 12px 12px 0px 0px;
+
+  &__title-container {
+    display: flex;
+    margin-bottom: 24px;
+
+    .icon-container {
+      min-width: 32px;
+      width: 32px;
+      height: 32px;
+      background: $colour-flame;
+      border-radius: 12px;
+      margin-right: 12px;
+    }
+
+    .title {
+      margin-right: auto;
+      margin-bottom: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      font-weight: 600;
+      @include font-size(20px, 30px);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      padding-right: 16px;
+    }
+
+    .location-icon {
+      margin-right: 12px;
+      svg {
+        min-width: 20px;
+      }
+    }
+
+    .expand-icon {
+      svg {
+        min-width: 16px;
+      }
+    }
+  }
+
+  .c-normal-scale {
+    padding: 7px 20px;
+  }
+}

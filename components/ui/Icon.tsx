@@ -17,6 +17,7 @@ export type IconNames =
   | "close"
   | "cog"
   | "error-circle"
+  | "expand"
   | "external-link"
   | "linkedin"
   | "live"
