@@ -28,7 +28,6 @@ const Menu = forwardRef(
       currentMode,
       setCurrentMode,
       animationValue,
-      animationEnabled,
       setAnimationValue,
       datasetValue,
       setDatasetValue,
@@ -90,7 +89,7 @@ const Menu = forwardRef(
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
-          <MenuLayout title={INFO_PAGE_HEADLINE} onClose={onClose}>
+          <MenuLayout iconName="globe" title={INFO_PAGE_HEADLINE} onClose={onClose}>
             <DataIndexPanel onClickDataLayer={setActiveDataLayer} onClickExtremeEvents={showExtremeEvents} />
           </MenuLayout>
         )}
@@ -101,7 +100,7 @@ const Menu = forwardRef(
         )}
         {!currentHeadline && pageTypeId == DATA_LAYER_PAGE_ID && (
           <MenuLayout title={currentMode.attributes.title} onBack={onBack} onClose={onClose}>
-            <DataLayerPanel />
+            <DataLayerPanel onClickExtremeEvents={showExtremeEvents} />
           </MenuLayout>
         )}
       </div>
@@ -128,7 +127,6 @@ Menu.propTypes = {
   isClosing: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
   layers: PropTypes.array.isRequired,
-  animationEnabled: PropTypes.bool.isRequired,
   setCurrentHeadline: PropTypes.func.isRequired,
   setCurrentHeadlineId: PropTypes.func.isRequired,
   setDateOfDataShown: PropTypes.func.isRequired

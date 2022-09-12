@@ -42,7 +42,8 @@ const CondensedMenu = ({
       <div className={styles["c-condensed-menu"]}>
         <div
           className={styles["c-condensed-menu__title-container"]}
-          style={pageTypeId !== DATA_LAYER_PAGE_ID ? { marginBottom: 0 } : {}}
+          // TODO: when we get scale date, change margin else to auto
+          style={pageTypeId !== DATA_LAYER_PAGE_ID ? { marginBottom: 0 } : { marginBottom: 0 }}
         >
           {pageTypeId == DATA_LAYER_PAGE_ID && currentMode && (
             <div className={styles["icon-container"]}>

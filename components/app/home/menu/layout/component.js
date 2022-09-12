@@ -2,25 +2,30 @@ import classnames from "classnames";
 import styles from "./layout.module.scss";
 import IconButton from "components/ui/icon-button";
 
-const MenuLayout = ({ title, className, onBack, onClose, children, ...rest }) => {
+const MenuLayout = ({ title, iconName, className, onBack, onClose, children, ...rest }) => {
   return (
-    <div className={classnames(styles["c-home-menu"], className)} {...rest}>
-      <div className={classnames(styles["c-home-menu__header"])}>
-        <div className={classnames(styles["c-home-menu__header-content"])}>
+    <div className={classnames(styles["c-layout"], className)} {...rest}>
+      <div className={classnames(styles["c-layout__header"])}>
+        <div
+          className={classnames(
+            styles["c-layout__header-content"],
+            iconName == "globe" ? styles["c-layout__header-content--has-globe-icon"] : undefined
+          )}
+        >
           {onBack && (
             <IconButton
-              className={styles["c-home-menu__back-button"]}
+              className={styles["c-layout__back-button"]}
               name="back"
-              size={18}
               medium
               onClick={onBack}
               aria-label="Back"
+              size={18}
             />
           )}
-          <h2 className={styles["c-home-menu__header-text"]}>{title}</h2>
+          <h2 className={styles["c-layout__header-text"]}>{title}</h2>
           {onClose && (
             <IconButton
-              className={styles["c-home-menu__close-button"]}
+              className={styles["c-layout__close-button"]}
               name="close"
               size={14}
               medium
@@ -30,7 +35,7 @@ const MenuLayout = ({ title, className, onBack, onClose, children, ...rest }) =>
           )}
         </div>
       </div>
-      <div className={classnames(styles["c-home-menu__content"], "u-padding-none")}>{children}</div>
+      <div className={classnames(styles["c-layout__content"], "u-padding-none")}>{children}</div>
     </div>
   );
 };

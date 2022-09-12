@@ -100,6 +100,10 @@
       &.-mobile {
         height: 40px;
         @include font-size(16px, 24px);
+
+        &:hover {
+          background-color: $colour-flame;
+        }
       }
     }
 
@@ -109,16 +113,11 @@
 
     .rejectButton {
       border: solid 2px $white;
-      padding: 0 13px;
       width: 101px;
+      padding: 0 24px;
       height: 46px;
       @include font-size(20px, 30px);
 
-      @media screen and (max-width: $global-breakpoint-sm) {
-        & {
-          flex: 1;
-        }
-      }
       &:hover {
         color: $grey-darkest;
         background-color: $grey-lighter;
@@ -126,6 +125,11 @@
       &.-mobile {
         height: 40px;
         @include font-size(16px, 24px);
+
+        &:hover {
+          background-color: unset;
+          color: white;
+        }
       }
     }
 

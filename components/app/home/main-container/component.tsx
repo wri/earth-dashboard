@@ -25,7 +25,9 @@ import { Mode } from "slices/modes";
 import Icon from "components/ui/Icon";
 import CondensedMenu from "../condensed-menu";
 
-export const LARGE_MOBILE_MENU_HEIGHT = 235;
+// TODO: when we get scale date change height to larger
+// export const LARGE_MOBILE_MENU_HEIGHT = 235;
+export const LARGE_MOBILE_MENU_HEIGHT = 148;
 export const SMALL_MOBILE_MENU_HEIGHT = 148;
 export const INFO_PAGE_ID = "InfoPage";
 export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";

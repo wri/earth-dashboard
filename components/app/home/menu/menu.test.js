@@ -19,79 +19,7 @@ test("<Menu /> renders correctly as desktop", async () => {
 <div>
   <div
     class="c-home-menu-container"
-  >
-    <div>
-      <div
-        class="c-home-menu"
-      >
-        <div
-          class="c-home-menu__header"
-        >
-          <div
-            class="c-home-menu__header-content"
-          >
-            <h2
-              class="c-home-menu__header-text"
-            >
-              I'd like to explore
-            </h2>
-          </div>
-        </div>
-        <div
-          class="c-home-menu__content u-padding-none"
-        >
-          <div
-            class="c-home-menu__scroll-area"
-          >
-            <div
-              class="c-content-panel__underlay c-home-menu__all-events"
-              data-testid="content-panel"
-            >
-              <div
-                class="c-content-panel c-content-panel__focusable"
-                tabindex="0"
-              >
-                <div
-                  class="c-content-panel__header-row"
-                >
-                  <h3
-                    class="c-content-panel__title"
-                  >
-                    All Extreme Events
-                  </h3>
-                </div>
-                <p
-                  class="c-menu-option__subtitle"
-                >
-                  View all of the latest extreme events
-                </p>
-                <div
-                  class="c-content-panel__row"
-                >
-                  <button
-                    class="c-content-panel__button"
-                  >
-                    <div
-                      class="c-content-panel__button-content"
-                    >
-                      <span
-                        class="c-content-panel__button-text"
-                      >
-                        View All
-                      </span>
-                      <span
-                        class="c-content-panel__button-icon"
-                      />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  />
 </div>
 `);
 });
@@ -108,77 +36,25 @@ test("<Menu /> renders correctly as mobile", async () => {
   expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="c-home-menu-container c-home-menu-container--closing"
+    class="c-mobile-menu-container"
+    style="z-index: 0;"
   >
-    <div>
+    <div
+      class="c-mobile-menu-container__draggable"
+      style="position: relative; user-select: auto; width: 100vw; max-width: 100vw; max-height: 90vh; min-width: 100vw; min-height: undefinedpx; box-sizing: border-box; flex-shrink: 0;"
+    >
       <div
-        class="c-home-menu"
+        style="opacity: 0; transition: all 400ms;"
       >
         <div
-          class="c-home-menu__header"
-        >
-          <div
-            class="c-home-menu__header-content"
-          >
-            <h2
-              class="c-home-menu__header-text"
-            >
-              I'd like to explore
-            </h2>
-          </div>
-        </div>
+          class="c-home-menu-container c-home-menu-container--closing"
+        />
+      </div>
+      <div>
         <div
-          class="c-home-menu__content u-padding-none"
-        >
-          <div
-            class="c-home-menu__scroll-area"
-          >
-            <div
-              class="c-content-panel__underlay c-home-menu__all-events"
-              data-testid="content-panel"
-            >
-              <div
-                class="c-content-panel c-content-panel__focusable"
-                tabindex="0"
-              >
-                <div
-                  class="c-content-panel__header-row"
-                >
-                  <h3
-                    class="c-content-panel__title"
-                  >
-                    All Extreme Events
-                  </h3>
-                </div>
-                <p
-                  class="c-menu-option__subtitle"
-                >
-                  View all of the latest extreme events
-                </p>
-                <div
-                  class="c-content-panel__row"
-                >
-                  <button
-                    class="c-content-panel__button"
-                  >
-                    <div
-                      class="c-content-panel__button-content"
-                    >
-                      <span
-                        class="c-content-panel__button-text"
-                      >
-                        View All
-                      </span>
-                      <span
-                        class="c-content-panel__button-icon"
-                      />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          class="c-mobile-menu-container__draggable__handle"
+          style="position: absolute; user-select: none; width: 100%; height: 50px; top: -42px; left: 0px; cursor: row-resize;"
+        />
       </div>
     </div>
   </div>
