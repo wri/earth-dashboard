@@ -10,30 +10,36 @@ import Basemaps from "./basemaps";
 import DatePicker from "components/date-picker";
 import { format } from "date-fns";
 import Footer from "./footer";
+import CookiePreferences from "./cookie-preferences";
 
 type SettingsMenuProps = {
   isOpen: boolean;
   isDatePickerOpen: boolean;
+  isCookieOpen: boolean;
   isMobile: boolean;
   currentDate?: Date;
   setSettingsClose: ActionCreatorWithoutPayload<string>;
   setDateOfDataShown: ActionCreatorWithPayload<string, string>;
   setIsDatePickerOpen: ActionCreatorWithPayload<boolean, string>;
+  setIsCookieOpen: ActionCreatorWithPayload<boolean, string>;
 };
 
 /** Overlay settings menu for both desktop and mobile. */
 const SettingsMenu = ({
   isOpen,
   isDatePickerOpen,
+  isCookieOpen,
   currentDate,
   isMobile,
   setDateOfDataShown,
   setSettingsClose,
-  setIsDatePickerOpen
+  setIsDatePickerOpen,
+  setIsCookieOpen
 }: SettingsMenuProps) => {
   const { shouldAnimate, handleClose } = useDialogPanel(isOpen, () => {
     setSettingsClose();
     setIsDatePickerOpen(false);
+    setIsCookieOpen(false);
   });
 
   /** Sets the current date data. */
@@ -44,6 +50,7 @@ const SettingsMenu = ({
 
   const handleBack = () => {
     setIsDatePickerOpen(false);
+    setIsCookieOpen(false);
   };
 
   return isOpen ? (
@@ -53,13 +60,18 @@ const SettingsMenu = ({
         <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
           {/* Header */}
           <div>
-            {isDatePickerOpen ? (
-              <IconButton name="arrow-left" onClick={handleBack} small />
+            {isDatePickerOpen || isCookieOpen ? (
+              <IconButton
+                name="arrow-left"
+                onClick={handleBack}
+                small
+                className={styles["c-settings-menu-modal__back"]}
+              />
             ) : (
               <Icon name={"more"} size={30} type="decorative" className={styles["icon"]} />
             )}
             <h2 id="settingsModalTitle" className={classnames(styles["title"], "u-margin-bottom-none")}>
-              {isDatePickerOpen ? "Change Date" : "More"}
+              {isCookieOpen ? "Cookies" : isDatePickerOpen ? "Change Date" : "More"}
             </h2>
           </div>
 
@@ -78,15 +90,30 @@ const SettingsMenu = ({
         <div className={styles["c-settings-menu-modal__body"]}>
           <div className={styles["scroll"]}>
             {/* Dynamic views */}
-            {isDatePickerOpen ? (
+            {isCookieOpen ? (
+              <div className={styles["main"]}>
+                <div className={styles["c-settings-menu-modal__cookie"]}>
+                  <h3 className={styles["c-settings-menu-modal__cookie__text"]}>About</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales finibus tristique. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales finibus tristique. Curabitur
+                    malesuada enim neque, at aliquet ligula dictum in. Duis non malesuada nunc.
+                  </p>
+                </div>
+                <CookiePreferences />
+              </div>
+            ) : isDatePickerOpen ? (
               // Change date
               <div className={styles["main"]}>
-                <p>Showing data for: {format(currentDate ?? new Date(), "yyyy-MM-dd")} Local</p>
+                <p className={styles["c-settings-menu-modal__date-text"]}>
+                  Showing data for: {format(currentDate ?? new Date(), "yyyy-MM-dd")} Local
+                </p>
                 <DatePicker
                   // @ts-expect-error
                   initialDate={currentDate ?? new Date()}
                   onSubmit={handleChangeDate}
                   hasLiveDataButton
+                  className={styles["c-settings-menu-modal__date-picker"]}
                 />
               </div>
             ) : (

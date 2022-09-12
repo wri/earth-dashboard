@@ -14,6 +14,7 @@ const initialState: MapControlsState = {
   shouldZoomIn: false,
   shouldZoomOut: false,
   isDatePickerOpen: false,
+  isCookieOpen: false,
   isDatePickerDisabled: false,
   currentLocation: undefined,
   currentScale: "default",
@@ -52,6 +53,9 @@ const mapControlsSlice = createSlice({
     setIsDatePickerOpen: (state, { payload }: PayloadAction<boolean>) => {
       state.isDatePickerOpen = payload;
     },
+    setIsCookieOpen: (state, { payload }: PayloadAction<boolean>) => {
+      state.isCookieOpen = payload;
+    },
     setIsDatePickerDisabled: (state, { payload }: PayloadAction<boolean>) => {
       state.isDatePickerDisabled = payload;
     },
@@ -81,6 +85,7 @@ export const {
   setShouldZoomIn,
   setShouldZoomOut,
   setIsDatePickerOpen,
+  setIsCookieOpen,
   setIsDatePickerDisabled,
   setCurrentLocation,
   setCurrentScale,
@@ -93,6 +98,7 @@ export const isGlobe2d = (state: RootState) => state[NAME].projectionType === "e
 export const shouldZoomOut = (state: RootState) => state[NAME].shouldZoomOut;
 export const shouldZoomIn = (state: RootState) => state[NAME].shouldZoomIn;
 export const isDatePickerOpen = (state: RootState) => state[NAME].isDatePickerOpen;
+export const isCookieOpen = (state: RootState) => state[NAME].isCookieOpen;
 export const isDatePickerDisabled = (state: RootState) => state[NAME].isDatePickerDisabled;
 export const currentLocation = (state: RootState) => state[NAME].currentLocation;
 export const currentScale = (state: RootState) => state[NAME].currentScale;

@@ -1,12 +1,5 @@
 export const MenuItems = [
   {
-    key: "earth-hq",
-    hasarrow: false,
-    label: "Back to Earth HQ",
-    body: "See the latest extreme events and discover near-real time data on Earth HQ – the “Situation Room” for the planet.",
-    link: "/"
-  },
-  {
     key: "climate",
     label: "Climate News",
     body: "Rising global temperatures pose a threat to every corner of the globe and most aspects of human life.",
@@ -53,6 +46,12 @@ export const QuickLinks = [
   {
     key: "cookies",
     label: "Cookies",
+    link: null,
+    external: true
+  },
+  {
+    key: "privacy-policy",
+    label: "Privacy Policy",
     link: "https://resourcewatch.org/privacy-policy",
     external: true
   }

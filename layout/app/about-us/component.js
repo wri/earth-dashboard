@@ -1,23 +1,13 @@
 import Layout from "layout/layout/layout-app";
-import HeroBanner from "layout/app/news/hero-banner";
 import Section from "layout/app/news/section";
 import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import Footer from "layout/footer";
 import { Desktop, MediaContextProvider } from "utils/responsive";
-import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scss";
 import { BG_GALAXY } from "constants/section-colours";
 import styles from "layout/app/about-us/about-us.module.scss";
 
 const AboutUsLayout = () => (
   <Layout title="About" description="About EarthHQ">
-    <Section
-      bgColour={BG_GALAXY}
-      paddingBottom={false}
-      gridClassName={heroBannerStyles["c-page-section-grid-hero-banner"]}
-    >
-      <HeroBanner />
-    </Section>
-
     <Section title="Our story">
       <div className={styles["c-about-us"]}>
         <p>

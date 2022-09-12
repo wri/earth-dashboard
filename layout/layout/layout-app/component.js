@@ -9,7 +9,7 @@ import HeadApp from "layout/head/app";
 import Header from "layout/header";
 
 // constants
-import { GDPR_ACCEPTED_KEY, ONBOARDING_COMPLETED } from "./constants";
+import { GDPR_ACCEPTED_KEY, ONBOARDING_COMPLETED, ANALYTICS_ACCEPTED, COOKIES_ACCEPTED } from "./constants";
 
 // utils
 import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
@@ -53,6 +53,15 @@ function LayoutApp(props) {
     }
   }, []);
 
+  const handleCookie = choice => {
+    setShowGDPRBanner(false);
+    localStorage.setItem(GDPR_ACCEPTED_KEY, `${choice}`);
+    localStorage.setItem(ANALYTICS_ACCEPTED, `${choice}`);
+    localStorage.setItem(COOKIES_ACCEPTED, `${choice}`);
+  };
+
+  const handleAccept = () => {};
+
   const getGDPRContainer = mobile => (
     <div
       className={classnames({
@@ -73,7 +82,12 @@ function LayoutApp(props) {
             <Icon name="cookie" size={32} type="decorative" className={styles["cookie-icon"]} />
             <h3 className={styles["cookie-text"]}>COOKIES</h3>
           </div>
-          <div className={styles["text"]}>
+          <div
+            className={classnames({
+              [styles["text"]]: true,
+              [styles["-desktop"]]: !mobile
+            })}
+          >
             This website uses cookies to provide you with an improved user experience. By continuing to browse this
             site, you consent to the use of cookies and similar technologies. Please visit our{" "}
             <a
@@ -87,22 +101,27 @@ function LayoutApp(props) {
             for further details.
           </div>
         </div>
-        <div className={styles["button-group"]}>
+        <div
+          className={classnames({
+            [styles["button-group"]]: true,
+            [styles["-mobile"]]: mobile
+          })}
+        >
           <button
-            className={styles["rejectButton"]}
-            onClick={() => {
-              setShowGDPRBanner(false);
-              localStorage.setItem(GDPR_ACCEPTED_KEY, "false");
-            }}
+            className={classnames({
+              [styles["rejectButton"]]: true,
+              [styles["-mobile"]]: mobile
+            })}
+            onClick={() => handleCookie(false)}
           >
             REJECT
           </button>
           <button
-            className={styles["acceptButton"]}
-            onClick={() => {
-              setShowGDPRBanner(false);
-              localStorage.setItem(GDPR_ACCEPTED_KEY, "true");
-            }}
+            className={classnames({
+              [styles["acceptButton"]]: true,
+              [styles["-mobile"]]: mobile
+            })}
+            onClick={() => handleCookie(true)}
           >
             ACCEPT ALL COOKIES
           </button>
@@ -148,11 +167,10 @@ function LayoutApp(props) {
       {showModal && (
         <MediaContextProvider>
           <Desktop>
-            <OnboardingModal showModal={showModal} setShowModal={setShowModal} />
+            <OnboardingModal showModal={showModal} setShowModal={setShowModal} isMobile={false} />
           </Desktop>
           <Mobile>
-            {/* TODO: Construct for Mobile View */}
-            <OnboardingModal showModal={showModal} setShowModal={setShowModal} />
+            <OnboardingModal showModal={showModal} setShowModal={setShowModal} isMobile={true} />
           </Mobile>
         </MediaContextProvider>
       )}
@@ -189,7 +207,7 @@ LayoutApp.defaultProps = {
     "https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg",
   showHeaderLogo: true,
   showHeader: true,
-  themeColor: "#1a2128",
+  themeColor: "#D63C00",
   headerButtonPosition: "center"
 };
 
