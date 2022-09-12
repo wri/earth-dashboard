@@ -13,7 +13,7 @@ type FooterProps = {
 const Footer = ({ isCookieOpen, setIsCookieOpen }: FooterProps) => {
   return (
     <div className={styles["c-footer"]}>
-      <p className={styles["c-footer__title"]}>Other</p>
+      <h2 className={styles["c-footer__title"]}>Other</h2>
 
       <div className={styles["c-footer__links"]}>
         {QuickLinks.filter(link => link.external).map(({ key, link, label }) => (
