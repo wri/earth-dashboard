@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import nullSchoolLogo from "public/static/images/logo-earth-hq.svg";
+import nullSchoolLogoDesktop from "public/static/images/logo-earth-hq.svg";
+import nullSchoolLogoMobile from "public/static/images/logo-earth-hq-mobile.svg";
+import { Desktop, Mobile } from "utils/responsive";
 
 type LogoLinkProps = {
   href?: string;
@@ -12,7 +14,12 @@ const LogoLink = ({ href = "/", alt = "Home page", ...rest }: LogoLinkProps) => 
   return (
     <Link href={href} {...rest}>
       <a>
-        <Image src={nullSchoolLogo} alt={alt} />
+        <Desktop>
+          <Image src={nullSchoolLogoDesktop} alt={alt} />
+        </Desktop>
+        <Mobile>
+          <Image src={nullSchoolLogoMobile} alt={alt} />
+        </Mobile>
       </a>
     </Link>
   );
