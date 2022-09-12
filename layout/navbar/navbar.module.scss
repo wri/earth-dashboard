@@ -31,10 +31,19 @@
         & > a {
           margin-bottom: 3px;
         }
+
+        & .main-svg {
+          svg {
+            min-width: 48px;
+            min-height: 48px;
+          }
+        }
       }
 
       &-active {
-        border-top: 2px solid white;
+        &-side {
+          border-top: 2px solid white !important;
+        }
 
         & .main {
           & circle {
@@ -53,11 +62,17 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 4px;
+        border-top: 2px solid transparent;
 
         & .main {
-          transform: scale(1.4);
-          -webkit-transform: scale(1.4);
           margin-bottom: 20px;
+          // stop circle being cut off
+          overflow: visible;
+        }
+
+        svg {
+          min-width: 28px;
+          min-height: 28px;
         }
       }
 

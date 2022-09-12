@@ -92,9 +92,9 @@
         background-color: $grey-darker;
       }
 
-      @media screen and (max-width: $global-breakpoint-sm) {
+      @media screen and (max-width: 430px) {
         & {
-          flex: 2;
+          flex: 1;
         }
       }
       &.-mobile {

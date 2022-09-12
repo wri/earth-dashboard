@@ -20,7 +20,7 @@ const Footer = ({ className }) => (
     </ul>
 
     <ul className={styles["c-footer-section__links"]}>
-      {QuickLinks.map(({ key, ...quickLinkProps }) => (
+      {QuickLinks.filter(qLink => qLink.link !== null).map(({ key, ...quickLinkProps }) => (
         <ListLink key={key} className={styles["c-footer-section__link"]} {...quickLinkProps} />
       ))}
     </ul>

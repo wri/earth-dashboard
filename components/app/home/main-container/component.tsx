@@ -257,6 +257,7 @@ const MainContainer = ({
           setHasMenuOpen={setHasMenuOpen}
           hasIframeConnected={hasIframeConnected}
           mobileMenuHeight={isMobile && mobileMenuHeight}
+          isMobile={isMobile}
         />
       )}
       {overlayLayer && !isMobile && (

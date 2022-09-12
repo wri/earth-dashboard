@@ -23,8 +23,9 @@
     flex-direction: column;
     margin-bottom: 24px;
 
-    > a {
+    > a, p {
       color: $white;
+      cursor: pointer;
       @include font-size(16px, 24px);
       line-height: 24px;
       font-weight: 500;
