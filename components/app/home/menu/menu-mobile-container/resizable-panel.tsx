@@ -1,11 +1,12 @@
 import { Resizable } from "re-resizable";
+import { ReactNode } from "react";
 import styles from "./menu-mobile-container.module.scss";
 
 type ResizablePanelProps = {
   defaultHeight: number;
   height: number;
   onResize: (e: any, direction: any, div: any) => void;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const ResizablePanel = ({ defaultHeight, height, onResize, children }: ResizablePanelProps) => {
@@ -35,7 +36,5 @@ const ResizablePanel = ({ defaultHeight, height, onResize, children }: Resizable
 
   return <Resizable {...resizableProps}>{children}</Resizable>;
 };
-
-ResizablePanel.displayName = "ResizablePanel";
 
 export default ResizablePanel;

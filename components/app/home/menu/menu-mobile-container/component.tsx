@@ -1,12 +1,12 @@
-import React, { SetStateAction, useEffect, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import ResizablePanel from "./resizable-panel";
 import styles from "./menu-mobile-container.module.scss";
 
 type MenuMobileContainerProps = {
   defaultPanelHeight: number;
   panelHeight: number;
-  setPanelHeight: React.Dispatch<SetStateAction<boolean>>;
-  children: React.ReactNode;
+  setPanelHeight: Dispatch<SetStateAction<boolean>>;
+  children: ReactNode;
 };
 
 const MenuMobileContainer = ({

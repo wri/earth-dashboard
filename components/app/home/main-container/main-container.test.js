@@ -249,7 +249,7 @@ Source: CAMS / Copernicus / European Commission + ECMWF
           class="c-home-menu-toggle__text-container"
         >
           <span>
-            Latest Extreme Events
+            I'd like to explore
           </span>
         </div>
       </button>

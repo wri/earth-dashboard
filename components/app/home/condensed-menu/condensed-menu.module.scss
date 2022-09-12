@@ -22,6 +22,7 @@
       background: $colour-flame;
       border-radius: 12px;
       margin-right: 12px;
+      overflow: hidden;
     }
 
     .title {
@@ -30,6 +31,7 @@
       text-transform: uppercase;
       letter-spacing: 0.2px;
       font-weight: 600;
+      font-family: "barlow condensed";
       @include font-size(20px, 30px);
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -39,12 +41,16 @@
 
     .location-icon {
       margin-right: 12px;
+      width: 32px;
+      height: 32px;
       svg {
         min-width: 20px;
       }
     }
 
     .expand-icon {
+      width: 32px;
+      height: 32px;
       svg {
         min-width: 16px;
       }
