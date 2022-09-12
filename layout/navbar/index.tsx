@@ -17,10 +17,11 @@ const Navbar = () => {
           <div
             className={classnames({
               [styles["c-site-header__mobile-link-active"]]: isNewsPage,
+              [styles["c-site-header__mobile-link-active-side"]]: isNewsPage,
               [styles["c-site-header__mobile-link-container"]]: true
             })}
           >
-            <IconButton name={isNewsPage ? "news-active" : "news"} size={isNewsPage ? 26 : 18} onClick={() => {}} />
+            <IconButton name={isNewsPage ? "news-active" : "news"} size={28} onClick={() => {}} />
             <a className={styles["text"]}>News</a>
           </div>
         </Link>
@@ -32,7 +33,13 @@ const Navbar = () => {
               [styles["c-site-header__mobile-link-main"]]: true
             })}
           >
-            <IconButton name="earth-hq-nav" size={48} iconClassName={styles["main"]} onClick={() => {}} />
+            <IconButton
+              name="earth-hq-nav"
+              size={48}
+              className={styles["main-svg"]}
+              iconClassName={styles["main"]}
+              onClick={() => {}}
+            />
             <a className={styles["text"]}>Earth HQ</a>
           </div>
         </Link>
@@ -40,10 +47,11 @@ const Navbar = () => {
           <div
             className={classnames({
               [styles["c-site-header__mobile-link-active"]]: isAboutPage,
+              [styles["c-site-header__mobile-link-active-side"]]: isAboutPage,
               [styles["c-site-header__mobile-link-container"]]: true
             })}
           >
-            <IconButton name={isAboutPage ? "info-active" : "info"} size={isAboutPage ? 28 : 20} onClick={() => {}} />
+            <IconButton name={isAboutPage ? "info-active" : "info"} size={28} onClick={() => {}} />
             <a className={styles["text"]}>About</a>
           </div>
         </Link>
