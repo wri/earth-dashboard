@@ -5,6 +5,92 @@
 
 .c-event {
 
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__hero {
+    backdrop-filter: blur(10.8731px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+  
+    &--background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0.3;
+      z-index: -1;
+      background-position: center;
+      background-size: cover;
+    }
+  
+    &--detail {
+      padding: 20px 32px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    &--title {
+      color: white;
+      font-family: "Barlow";
+      font-weight: 500;
+      @include font-size(18px, 27px);
+      margin-bottom: 4px;
+      color: white;
+      margin-bottom: 8px;
+  
+    }
+  
+    &--subtitle {
+      color: white;
+      font-family: "Barlow";
+      font-weight: 500;
+      @include font-size(14px, 18px);
+      margin-bottom: 4px;
+      color: white;
+      margin-bottom: 8px;
+    }
+  
+    &--thumbnail {
+      border-radius: 16px;
+      position: relative;
+      display: block;
+      height: 192px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    &--description {
+      color: white;
+      font-family: "Barlow";
+      font-weight: 500;
+      @include font-size(14px, 18px);
+      margin-bottom: 4px;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+  
+    @media screen and (max-width: $global-breakpoint-md) {
+      &--title {
+        @include font-size(12px, 18px);
+      }
+      &--date {
+        @include font-size(11px, 16px);
+      }
+    }
+    
+  }
+
   &__scroll-area {
     position: absolute;
     top: 0px;
@@ -12,7 +98,7 @@
     left: 0px;
     right: 12px;
     overflow-y: auto;
-    padding: 20px 12px 20px 28px;
+    padding: 313px 12px 20px 28px;
     row-gap: 16px;
     
     @include defaultScrollBar();

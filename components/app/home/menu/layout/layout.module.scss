@@ -236,6 +236,7 @@
     flex-direction: column;
     background: $colour-space;
     position: relative;
+    z-index: -1;
   }
 
   &__info-title {
