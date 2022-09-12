@@ -10,18 +10,21 @@ type FooterProps = {
   isCookieOpen: boolean;
   setIsCookieOpen: ActionCreatorWithPayload<boolean, string>;
 };
-const Footer = ({ isCookieOpen, setIsCookieOpen }: FooterProps) => {
+const Footer = ({ setIsCookieOpen }: FooterProps) => {
   return (
     <div className={styles["c-footer"]}>
       <h2 className={styles["c-footer__title"]}>Other</h2>
 
       <div className={styles["c-footer__links"]}>
-        {QuickLinks.filter(link => link.external).map(({ key, link, label }) => (
-          <a key={key} href={link} target="_blank" rel="nofollow noreferrer">
-            {label}
-          </a>
-        ))}
-        <p onClick={() => setIsCookieOpen(true)}>Cookies</p>
+        {QuickLinks.filter(link => link.external).map(({ key, link, label }) =>
+          !link ? (
+            <p onClick={() => setIsCookieOpen(true)}>Cookies</p>
+          ) : (
+            <a key={key} href={link} target="_blank" rel="nofollow noreferrer">
+              {label}
+            </a>
+          )
+        )}
       </div>
 
       <div className={styles["c-footer__socials"]}>
