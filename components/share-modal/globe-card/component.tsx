@@ -1,9 +1,7 @@
 import classnames from "classnames";
 import styles from "./globe-card.module.scss";
 
-type GlobeCardProps = {};
-
-const GlobeCard = ({}: GlobeCardProps) => {
+const GlobeCard = () => {
   return (
     <div className={classnames(styles["c-globe-card"])}>
       <h1 className={classnames(styles["title"])}>Earth HQ</h1>

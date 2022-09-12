@@ -6,7 +6,6 @@ import moment from "moment";
 type HeadlineCardProps = { currentHeadline: Headline };
 
 const HeadlineCard = ({ currentHeadline }: HeadlineCardProps) => {
-  console.log(currentHeadline);
   return (
     <div className={classnames(styles["c-headline-card"])}>
       <div

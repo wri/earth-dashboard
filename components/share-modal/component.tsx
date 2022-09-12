@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DialogPanel from "components/app/home/dialog-panel";
 import classnames from "classnames";
 import styles from "./share-modal.module.scss";
@@ -87,7 +87,7 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline }: 
                 onClick={handleCopyPress}
               />
               {
-                // @ts-expect-error
+                // @ts-expect-error : it thinks navigator.share is always undefined
                 navigator.share && <ShareRow text={"More Options"} icon="more" onClick={handleMorePress} />
               }
             </div>

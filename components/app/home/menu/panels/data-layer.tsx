@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
-
+import { useState, useEffect, useMemo } from "react";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
@@ -9,7 +8,7 @@ import SharePanel from "components/app/home/share-panel/component";
 import EventCard from "components/app/home/event-card";
 import { setHeadlines, NAME as headlineSliceName, Headline as HeadlineType } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
-import { ActionCreator, ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
 import NormalScale from "../../normal-scale/component";
 import { setIsShareOpen } from "slices/common";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SelectInput from "components/ui/select";
 import styles from "./header-options.module.scss";
 import IconButton from "components/ui/icon-button";

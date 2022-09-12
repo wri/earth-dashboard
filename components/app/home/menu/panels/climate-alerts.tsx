@@ -8,7 +8,6 @@ import EventCard from "components/app/home/event-card";
 import { Mode, setCurrentMode } from "slices/modes";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
-
 import Headline from "components/app/home/headline";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
