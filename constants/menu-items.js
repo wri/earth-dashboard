@@ -42,6 +42,12 @@ export const QuickLinks = [
     label: "Terms Of Use",
     link: "https://resourcewatch.org/terms-of-service",
     external: true
+  },
+  {
+    key: "privacy-policy",
+    label: "Privacy Policy",
+    link: "https://resourcewatch.org/privacy-policy",
+    external: true
   }
 ];
 
