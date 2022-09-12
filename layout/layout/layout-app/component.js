@@ -9,7 +9,7 @@ import HeadApp from "layout/head/app";
 import Header from "layout/header";
 
 // constants
-import { GDPR_ACCEPTED_KEY, ONBOARDING_COMPLETED } from "./constants";
+import { GDPR_ACCEPTED_KEY, ONBOARDING_COMPLETED, ANALYTICS_ACCEPTED, COOKIES_ACCEPTED } from "./constants";
 
 // utils
 import { MediaContextProvider, Mobile, Desktop } from "utils/responsive";
@@ -52,6 +52,15 @@ function LayoutApp(props) {
       setShowModal(true);
     }
   }, []);
+
+  const handleCookie = choice => {
+    setShowGDPRBanner(false);
+    localStorage.setItem(GDPR_ACCEPTED_KEY, `${choice}`);
+    localStorage.setItem(ANALYTICS_ACCEPTED, `${choice}`);
+    localStorage.setItem(COOKIES_ACCEPTED, `${choice}`);
+  };
+
+  const handleAccept = () => {};
 
   const getGDPRContainer = mobile => (
     <div
@@ -103,10 +112,7 @@ function LayoutApp(props) {
               [styles["rejectButton"]]: true,
               [styles["-mobile"]]: mobile
             })}
-            onClick={() => {
-              setShowGDPRBanner(false);
-              localStorage.setItem(GDPR_ACCEPTED_KEY, "false");
-            }}
+            onClick={() => handleCookie(false)}
           >
             REJECT
           </button>
@@ -115,10 +121,7 @@ function LayoutApp(props) {
               [styles["acceptButton"]]: true,
               [styles["-mobile"]]: mobile
             })}
-            onClick={() => {
-              setShowGDPRBanner(false);
-              localStorage.setItem(GDPR_ACCEPTED_KEY, "true");
-            }}
+            onClick={() => handleCookie(true)}
           >
             ACCEPT ALL COOKIES
           </button>
@@ -204,7 +207,7 @@ LayoutApp.defaultProps = {
     "https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg",
   showHeaderLogo: true,
   showHeader: true,
-  themeColor: "#1a2128",
+  themeColor: "#D63C00",
   headerButtonPosition: "center"
 };
 

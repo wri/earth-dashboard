@@ -9,7 +9,7 @@ import SharePanel from "components/app/home/share-panel/component";
 import EventCard from "components/app/home/event-card";
 import { setHeadlines, NAME as headlineSliceName, Headline as HeadlineType } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreator, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
 import NormalScale from "../../normal-scale/component";
 import { setIsShareOpen } from "slices/common";
@@ -19,6 +19,7 @@ type DataIndexProps = {
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
+  onClickExtremeEvents: () => {};
 };
 
 const MAX_NUMBER_OF_HEADLINES = 3;
@@ -29,7 +30,13 @@ const NEWS_ICON = "/static/icons/mode-news.svg";
 const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
 const SHARE_ICON = "/static/icons/together.svg";
 
-const DataLayerOverview = ({ currentMode, headlines, setHeadlines, setIsShareOpen }: DataIndexProps) => {
+const DataLayerOverview = ({
+  currentMode,
+  headlines,
+  setHeadlines,
+  setIsShareOpen,
+  onClickExtremeEvents
+}: DataIndexProps) => {
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
@@ -70,20 +77,27 @@ const DataLayerOverview = ({ currentMode, headlines, setHeadlines, setIsShareOpe
         <p>{what_is_happening_content.detail}</p>
         <NormalScale value={80} />
       </ContentPanel>
-      <ContentPanel icon={EXTREME_EVENTS_ICON} title="Extreme events" buttonText="View All" ctaAction={() => {}}>
-        {!isFetching ? (
-          mostRecentHeadlines.map(headline => (
-            <EventCard
-              key={headline.id}
-              as="button"
-              headline={headline}
-              className={styles["c-home-menu__headline"]}
-              onClick={() => {}}
-            />
-          ))
-        ) : (
-          <p>Loading</p>
-        )}
+      <ContentPanel
+        icon={EXTREME_EVENTS_ICON}
+        title="Extreme events"
+        buttonText="View All"
+        ctaAction={onClickExtremeEvents}
+      >
+        <div className={styles["c-home-menu__events-list"]}>
+          {!isFetching ? (
+            mostRecentHeadlines.map(headline => (
+              <EventCard
+                key={headline.id}
+                as="button"
+                headline={headline}
+                className={styles["c-home-menu__headline"]}
+                onClick={() => {}}
+              />
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
+        </div>
       </ContentPanel>
       <ContentPanel icon={WHAT_WILL_HAPPEN_ICON} title="What will happen if we don't take action?">
         <p>{what_will_happen_content.detail}</p>

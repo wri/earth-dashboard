@@ -6,6 +6,7 @@ export type MapControlsState = {
   shouldZoomIn: boolean;
   shouldZoomOut: boolean;
   isDatePickerOpen: boolean;
+  isCookieOpen: boolean;
   isDatePickerDisabled: boolean;
   currentLocation?: [number, number];
   currentScale: string;

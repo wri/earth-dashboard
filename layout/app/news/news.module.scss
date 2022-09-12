@@ -1,16 +1,19 @@
 @import "css/settings/breakpoints";
 
-.c-topics {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
+.c-news {
+  .c-topics {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
 
-  @media screen and (max-width: $global-breakpoint-lg) {
-    grid-template-columns: 1fr 1fr;
-  }
+    @media screen and (max-width: $global-breakpoint-lg) {
+      grid-template-columns: 1fr 1fr;
+    }
 
-  @media screen and (max-width: $global-breakpoint-sm) {
-    grid-template-columns: 1fr;
-    margin-bottom: 50px;
+    @media screen and (max-width: $global-breakpoint-sm) {
+      grid-template-columns: 1fr;
+      // Desired padding + navbar height
+      margin-bottom: calc(60px + 58px);
+    }
   }
 }
