@@ -57,16 +57,16 @@ test("<MainContainer /> renders correctly as desktop", async () => {
         >
           <div>
             <div
-              class="c-home-menu"
+              class="c-layout"
             >
               <div
-                class="c-home-menu__header"
+                class="c-layout__header"
               >
                 <div
-                  class="c-home-menu__header-content"
+                  class="c-layout__header-content c-layout__header-content--has-globe-icon"
                 >
                   <h2
-                    class="c-home-menu__header-text"
+                    class="c-layout__header-text"
                   >
                     I'd like to explore
                   </h2>
@@ -77,7 +77,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                 </div>
               </div>
               <div
-                class="c-home-menu__content u-padding-none"
+                class="c-layout__content u-padding-none"
               >
                 <div
                   class="c-home-menu__scroll-area"
@@ -105,7 +105,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                         View all of the latest extreme events
                       </p>
                       <div
-                        class="c-content-panel__row"
+                        class="c-content-panel__cta"
                       >
                         <button
                           class="c-cta-button"
@@ -156,7 +156,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
     Source: CAMS / Copernicus / European Commission + ECMWF
                       </p>
                       <div
-                        class="c-content-panel__row"
+                        class="c-content-panel__cta"
                       >
                         <button
                           class="c-cta-button"
@@ -207,7 +207,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
     Source: CAMS / Copernicus / European Commission + ECMWF
                       </p>
                       <div
-                        class="c-content-panel__row"
+                        class="c-content-panel__cta"
                       >
                         <button
                           class="c-cta-button"
@@ -234,7 +234,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
           </div>
         </div>
         <div
-          class="c-home-actions u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
+          class="c-home-actions over-pointer-absolute c-home-menu-action"
         >
           <button
             aria-controls="menu"
@@ -274,7 +274,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
         data-testid="iframe-container"
       >
         <div
-          class="c-home-actions mobile u-padding-horizontal-l over-pointer-absolute c-home-menu-action"
+          class="c-home-actions mobile over-pointer-absolute c-home-menu-action"
         >
           <button
             aria-controls="menu"

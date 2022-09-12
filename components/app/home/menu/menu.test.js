@@ -22,23 +22,23 @@ test("<Menu /> renders correctly as desktop", async () => {
       >
         <div>
           <div
-            class="c-home-menu"
+            class="c-layout"
           >
             <div
-              class="c-home-menu__header"
+              class="c-layout__header"
             >
               <div
-                class="c-home-menu__header-content"
+                class="c-layout__header-content c-layout__header-content--has-globe-icon"
               >
                 <h2
-                  class="c-home-menu__header-text"
+                  class="c-layout__header-text"
                 >
                   I'd like to explore
                 </h2>
               </div>
             </div>
             <div
-              class="c-home-menu__content u-padding-none"
+              class="c-layout__content u-padding-none"
             >
               <div
                 class="c-home-menu__scroll-area"
@@ -66,7 +66,7 @@ test("<Menu /> renders correctly as desktop", async () => {
                       View all of the latest extreme events
                     </p>
                     <div
-                      class="c-content-panel__row"
+                      class="c-content-panel__cta"
                     >
                       <button
                         class="c-cta-button"
@@ -112,23 +112,23 @@ test("<Menu /> renders correctly as mobile", async () => {
       >
         <div>
           <div
-            class="c-home-menu"
+            class="c-layout"
           >
             <div
-              class="c-home-menu__header"
+              class="c-layout__header"
             >
               <div
-                class="c-home-menu__header-content"
+                class="c-layout__header-content c-layout__header-content--has-globe-icon"
               >
                 <h2
-                  class="c-home-menu__header-text"
+                  class="c-layout__header-text"
                 >
                   I'd like to explore
                 </h2>
               </div>
             </div>
             <div
-              class="c-home-menu__content u-padding-none"
+              class="c-layout__content u-padding-none"
             >
               <div
                 class="c-home-menu__scroll-area"
@@ -156,7 +156,7 @@ test("<Menu /> renders correctly as mobile", async () => {
                       View all of the latest extreme events
                     </p>
                     <div
-                      class="c-content-panel__row"
+                      class="c-content-panel__cta"
                     >
                       <button
                         class="c-cta-button"

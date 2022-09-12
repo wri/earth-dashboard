@@ -17,9 +17,10 @@
     background-color: $colour-flame;
     align-items: center;
     cursor: pointer;
+    font-weight: 500;
 
     &:hover {
-      background-color: $colour-galaxy;
+      background-color: $grey-darker;
 
       .c-cta-button__text {
         color: $white;  
@@ -35,9 +36,14 @@
   &__text {
     font-family: "Barlow Condensed";
     margin-right: 8px;
+    font-weight: 500;
     @include font-size(20px, 30px);
     color: white;
     text-transform: uppercase;
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      @include font-size(16px, 24px);
+    }
   }
 
   &__icon {

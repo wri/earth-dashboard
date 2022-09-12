@@ -85,7 +85,7 @@
 
   &__focusable {
     cursor: pointer;
-    .c-content-panel__button {
+    .c-content-panel__cta {
       display: none;
       &:hover {
         display: flex;
@@ -98,7 +98,7 @@
     }
   
     &:focus {
-      .c-content-panel__button {
+      .c-content-panel__cta {
         display: flex;
       }
     }
@@ -139,6 +139,6 @@
   }
 
   @media screen and (max-width: $global-breakpoint-md) {
-    padding: 22px 84px 22px 24px;
+    padding: 20px;
   }
 }

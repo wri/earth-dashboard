@@ -23,7 +23,6 @@ const mapHighlightToOption = (
 
 type DataIndexProps = {
   highlights: Mode[] | undefined;
-  currentMode: Mode | undefined;
   onClickExtremeEvents: () => void;
   onClickDataLayer: ActionCreatorWithPayload<Mode, string>;
   onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>;

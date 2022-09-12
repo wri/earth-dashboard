@@ -14,7 +14,7 @@ import {
   setCurrentHeadline
 } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreator, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
 import NormalScale from "../../normal-scale/component";
 
@@ -87,19 +87,21 @@ const DataLayerOverview = ({
         buttonText="View All"
         ctaAction={onClickExtremeEvents}
       >
-        {!isFetching ? (
-          mostRecentHeadlines.map(headline => (
-            <EventCard
-              key={headline.id}
-              as="button"
-              headline={headline}
-              className={styles["c-home-menu__headline"]}
-              onClick={() => setCurrentHeadline(headline)}
-            />
-          ))
-        ) : (
-          <p>Loading</p>
-        )}
+        <div className={styles["c-home-menu__events-list"]}>
+          {!isFetching ? (
+            mostRecentHeadlines.map(headline => (
+              <EventCard
+                key={headline.id}
+                as="button"
+                headline={headline}
+                className={styles["c-home-menu__headline"]}
+                onClick={() => setCurrentHeadline(headline)}
+                />
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
+        </div>
       </ContentPanel>
       <ContentPanel icon={WHAT_WILL_HAPPEN_ICON} title="What will happen if we don't take action?">
         <p>{what_will_happen_content.detail}</p>

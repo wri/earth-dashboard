@@ -148,21 +148,23 @@ const DatePicker = forwardRef(({ initialDate, onChange, onSubmit, hasLiveDataBut
             })}
           </tbody>
         </table>
-        {hasLiveDataButton && (
-          <div className={classnames(styles["c-date-picker__live"], "u-margin-top-s")}>
-            <button onClick={handleLiveDate}>
-              <Icon name="live" size={20} type="decorative" />
-              <span className="u-margin-left-xs">Live Data</span>
-            </button>
-          </div>
-        )}
-        {onSubmit && (
-          <div className={classnames(styles["c-date-picker__submit-container"], "u-text-right")}>
-            <button className="c-button c-button--new-style c-button--flame" onClick={handleSubmit}>
-              Confirm
-            </button>
-          </div>
-        )}
+        <div className={classnames(styles["c-date-picker__actions"], "u-margin-top-s")}>
+          {hasLiveDataButton && (
+            <div className={classnames(styles["c-date-picker__live"])}>
+              <button onClick={handleLiveDate}>
+                <Icon name="live" size={20} type="decorative" />
+                <span className="u-margin-left-xs">Live Data</span>
+              </button>
+            </div>
+          )}
+          {onSubmit && (
+            <div className={classnames(styles["c-date-picker__submit-container"], "u-text-right")}>
+              <button className="c-button c-button--new-style c-button--flame" onClick={handleSubmit}>
+                Confirm
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
