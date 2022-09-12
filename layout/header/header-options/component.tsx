@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SelectInput from "components/ui/select";
+import classnames from "classnames";
 import styles from "./header-options.module.scss";
 import IconButton from "components/ui/icon-button";
 import { useRouter } from "next/router";
@@ -51,14 +52,21 @@ const HeaderOptions = ({
       {router.pathname !== "/about" && (
         <IconButton
           name={router.pathname === "/" ? "share" : "search"}
+          size={16}
           aria-label="Share"
-          className={styles["c-header-options__share"]}
+          className={classnames(styles["c-header-options__share"], styles["c-header-options__icon-button"])}
           onClick={router.pathname === "/" ? () => setIsShareOpen(true) : () => console.log("search")}
         />
       )}
 
       {/* More */}
-      <IconButton name="more" aria-label="More" onClick={handleOpenMore} />
+      <IconButton
+        name="more"
+        size={16}
+        aria-label="More"
+        className={styles["c-header-options__icon-button"]}
+        onClick={handleOpenMore}
+      />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+@import "css/settings/breakpoints";
+
 .c-header-options {
   display: flex;
   justify-content: flex-end;
@@ -10,5 +12,31 @@
   &__language,
   &__share {
     margin-right: 12px;
+
+    svg {
+      margin-right: 2px;
+    }
+  }
+
+  &__icon-button {
+    width: 48px;
+    height: 48px;
+
+    svg {
+      min-width: 24px;
+      min-height: 24px;
+    }
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    &__icon-button {
+      width: 32px;
+      height: 32px;
+
+      svg {
+        min-width: 16px;
+        min-height: 16px;
+      }
+    }
   }
 }

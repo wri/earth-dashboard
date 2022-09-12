@@ -31,6 +31,7 @@
     }
 
     &__logo {
+      margin-bottom: -6px;
       width: 114px;
 
       @media screen and (min-width: $global-breakpoint-md) {
