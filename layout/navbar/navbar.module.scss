@@ -34,8 +34,8 @@
 
         & .main-svg {
           svg {
-            min-width: 50px;
-            min-height: 50px;
+            min-width: 48px;
+            min-height: 48px;
           }
         }
       }
@@ -67,7 +67,7 @@
         & .main {
           margin-bottom: 20px;
           // stop circle being cut off
-          padding: 1px;
+          overflow: visible;
         }
 
         svg {
