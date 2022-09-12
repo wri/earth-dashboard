@@ -16,84 +16,12 @@ test("<Menu /> renders correctly as desktop", async () => {
   await waitFor(() => queryAllByTestId("headline"));
 
   expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="c-home-menu-container"
-      >
-        <div>
-          <div
-            class="c-layout"
-          >
-            <div
-              class="c-layout__header"
-            >
-              <div
-                class="c-layout__header-content c-layout__header-content--has-globe-icon"
-              >
-                <h2
-                  class="c-layout__header-text"
-                >
-                  I'd like to explore
-                </h2>
-              </div>
-            </div>
-            <div
-              class="c-layout__content u-padding-none"
-            >
-              <div
-                class="c-home-menu__scroll-area"
-              >
-                <div
-                  class="c-content-panel__underlay c-home-menu__all-events"
-                  data-testid="content-panel"
-                >
-                  <div
-                    class="c-content-panel c-content-panel__focusable"
-                    tabindex="0"
-                  >
-                    <div
-                      class="c-content-panel__header-row"
-                    >
-                      <h3
-                        class="c-content-panel__title"
-                      >
-                        All Extreme Events
-                      </h3>
-                    </div>
-                    <p
-                      class="c-menu-option__subtitle"
-                    >
-                      View all of the latest extreme events
-                    </p>
-                    <div
-                      class="c-content-panel__cta"
-                    >
-                      <button
-                        class="c-cta-button"
-                      >
-                        <div
-                          class="c-cta-button__content"
-                        >
-                          <span
-                            class="c-cta-button__text"
-                          >
-                            View All
-                          </span>
-                          <span
-                            class="c-cta-button__icon"
-                          />
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `);
+<div>
+  <div
+    class="c-home-menu-container"
+  />
+</div>
+`);
 });
 
 test("<Menu /> renders correctly as mobile", async () => {
@@ -106,82 +34,30 @@ test("<Menu /> renders correctly as mobile", async () => {
   await waitFor(() => queryAllByTestId("headline"));
 
   expect(container).toMatchInlineSnapshot(`
-    <div>
+<div>
+  <div
+    class="c-mobile-menu-container"
+    style="z-index: 0;"
+  >
+    <div
+      class="c-mobile-menu-container__draggable"
+      style="position: relative; user-select: auto; width: 100vw; max-width: 100vw; max-height: 90vh; min-width: 100vw; min-height: undefinedpx; box-sizing: border-box; flex-shrink: 0;"
+    >
       <div
-        class="c-home-menu-container c-home-menu-container--closing"
+        style="opacity: 0; transition: all 400ms;"
       >
-        <div>
-          <div
-            class="c-layout"
-          >
-            <div
-              class="c-layout__header"
-            >
-              <div
-                class="c-layout__header-content c-layout__header-content--has-globe-icon"
-              >
-                <h2
-                  class="c-layout__header-text"
-                >
-                  I'd like to explore
-                </h2>
-              </div>
-            </div>
-            <div
-              class="c-layout__content u-padding-none"
-            >
-              <div
-                class="c-home-menu__scroll-area"
-              >
-                <div
-                  class="c-content-panel__underlay c-home-menu__all-events"
-                  data-testid="content-panel"
-                >
-                  <div
-                    class="c-content-panel c-content-panel__focusable"
-                    tabindex="0"
-                  >
-                    <div
-                      class="c-content-panel__header-row"
-                    >
-                      <h3
-                        class="c-content-panel__title"
-                      >
-                        All Extreme Events
-                      </h3>
-                    </div>
-                    <p
-                      class="c-menu-option__subtitle"
-                    >
-                      View all of the latest extreme events
-                    </p>
-                    <div
-                      class="c-content-panel__cta"
-                    >
-                      <button
-                        class="c-cta-button"
-                      >
-                        <div
-                          class="c-cta-button__content"
-                        >
-                          <span
-                            class="c-cta-button__text"
-                          >
-                            View All
-                          </span>
-                          <span
-                            class="c-cta-button__icon"
-                          />
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div
+          class="c-home-menu-container c-home-menu-container--closing"
+        />
+      </div>
+      <div>
+        <div
+          class="c-mobile-menu-container__draggable__handle"
+          style="position: absolute; user-select: none; width: 100%; height: 50px; top: -42px; left: 0px; cursor: row-resize;"
+        />
       </div>
     </div>
-  `);
+  </div>
+</div>
+`);
 });

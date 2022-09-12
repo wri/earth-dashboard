@@ -44,8 +44,9 @@ const MapIframe = forwardRef(
       setCurrentScale,
       setCurrentScaleBy,
       hasIframeConnected,
-      isMobileMenuOpen,
-      setCurrentHeadline
+      mobileMenuHeight,
+      setCurrentHeadline,
+      isMobile
     },
     ref
   ) => {
@@ -200,7 +201,9 @@ const MapIframe = forwardRef(
     }, [dateOfDataShown, earthServer]);
 
     const handleEventPointClicked = headline => {
-      setHasMenuOpen(true);
+      if (!isMobile) {
+        setHasMenuOpen(true);
+      }
       setCurrentHeadline(headline);
     };
 
@@ -225,7 +228,8 @@ const MapIframe = forwardRef(
           </ToolTip>
         )}
         <iframe
-          className={isMobileMenuOpen ? styles["c-map-iframe__mobile-menu"] : styles["c-map-iframe"]}
+          className={styles["c-map-iframe"]}
+          style={mobileMenuHeight ? { height: window.innerHeight - mobileMenuHeight + 20 } : {}}
           id="nullSchoolIframe"
           src={process.env.NULL_SCHOOL_IFRAME_BASE}
           frameBorder="0"

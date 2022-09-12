@@ -4,17 +4,24 @@ import styles from "./header-options.module.scss";
 import IconButton from "components/ui/icon-button";
 import { useRouter } from "next/router";
 import { LANGUAGES } from "constants/settings";
-import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 type HeaderOptionsProps = {
   isSettingsOpen: boolean;
   isMobile: boolean;
   setSettingsOpen: ActionCreatorWithoutPayload<string>;
   setSettingsClose: ActionCreatorWithoutPayload<string>;
+  setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
 };
 
 /** Header options for languages, share, and more. */
-const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsClose }: HeaderOptionsProps) => {
+const HeaderOptions = ({
+  isSettingsOpen,
+  isMobile,
+  setSettingsOpen,
+  setSettingsClose,
+  setIsShareOpen
+}: HeaderOptionsProps) => {
   const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
 
   // Navigation
@@ -46,7 +53,7 @@ const HeaderOptions = ({ isSettingsOpen, isMobile, setSettingsOpen, setSettingsC
           name={router.pathname === "/" ? "share" : "search"}
           aria-label="Share"
           className={styles["c-header-options__share"]}
-          onClick={() => console.log("share")}
+          onClick={router.pathname === "/" ? () => setIsShareOpen(true) : () => console.log("search")}
         />
       )}
 

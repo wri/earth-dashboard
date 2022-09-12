@@ -1,17 +1,18 @@
-import styles from "./panel.module.scss";
-import Icon from "components/ui/Icon";
+import classnames from "classnames";
+import styles from "./normal-scale.module.scss";
 
 export type NormalScaleProps = {
   value: number;
+  className?: string;
 };
 
-const NormalScale = ({ value }: NormalScaleProps) => {
+const NormalScale = ({ value, className }: NormalScaleProps) => {
   // TODO: GCAG-210
   // Awaiting input from client, so hide this control for now
   return null;
 
   return (
-    <div className={styles["c-normal-scale"]} data-testid="normal-scale">
+    <div className={classnames(styles["c-normal-scale"], className)} data-testid="normal-scale">
       <span className={styles["c-normal-scale__label"]}>Normal Scale</span>
       <div className={styles["c-normal-scale__content"]}>
         <div className={styles["c-normal-scale__thermometer"]}>

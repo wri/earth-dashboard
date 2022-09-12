@@ -151,11 +151,14 @@ $header-main-height-mobile: 50px;
 $header-secondary-height: 0;
 $header-bg-color: $freshwater;
 
+// Navbar
+$navbar-height: 60px;
+
 // Shadows
 $thick-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.1);
 
 $bg-backdrop: rgba(0, 40, 65, 0.6);
-$bg-backdrop-lighter : rgba(56, 68, 79, 0.2);
+$bg-backdrop-lighter: rgba(56, 68, 79, 0.2);
 
 // Map specific settings
 $map-labels-index: 11;

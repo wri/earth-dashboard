@@ -1,0 +1,57 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-headline-card {
+  width: 100%;
+  margin-bottom: 32px;
+  border-radius: 16px;
+  padding: 20px;
+  background-color: $colour-galaxy;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  &__background-image {
+    filter: brightness(70%) blur(4px);
+    background-color: $colour-galaxy;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    z-index: 5;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 10;
+
+    & .title {
+      color: white;
+      font-weight: 600;
+      font-family: "Barlow";
+      @include font-size(18px, 27px);
+      margin-bottom: 8px;
+    }
+
+    & .date {
+      color: white;
+      font-weight: 600;
+      font-family: "Barlow";
+      @include font-size(14px, 18px);
+      margin-bottom: 12px;
+    }
+
+    & .foreground-image {
+      height: 160px;
+      border-radius: 12px;
+      background-color: $colour-midnight;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+}

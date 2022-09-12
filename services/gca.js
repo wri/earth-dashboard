@@ -2,6 +2,14 @@
 import { GCAAPI } from "utils/axios";
 import { logger } from "utils/logs";
 
+import {
+  DATA_LAYER_PAGE_ID,
+  EXTREME_EVENTS_PAGE_HEADLINE,
+  EXTREME_EVENTS_PAGE_ID,
+  INFO_PAGE_HEADLINE,
+  INFO_PAGE_ID
+} from "components/app/home/main-container/component";
+
 // API docs: https://resource-watch.github.io/doc-api/index-rw.html#dataset
 
 /**
@@ -97,4 +105,19 @@ export const fetchVideos = params => {
     logger.error(`Error fetching Videos: ${status}: ${statusText}`);
     throw new Error(`Error fetching Videos: ${status}: ${statusText}`);
   });
+};
+
+/**
+ * Function that given parameters returns the title for the menu
+ * @param {Headline | undefined} currentHeadline
+ * @param {Mode | undefined} currentMode
+ * @param {String} pageTypeId
+ * @returns title for the menu
+ */
+export const getMenuTitle = (currentHeadline, currentMode, pageTypeId) => {
+  if (currentHeadline) return currentHeadline.attributes.title;
+  if (pageTypeId == INFO_PAGE_ID) return INFO_PAGE_HEADLINE;
+  if (pageTypeId == EXTREME_EVENTS_PAGE_ID) return EXTREME_EVENTS_PAGE_HEADLINE;
+  if (pageTypeId == DATA_LAYER_PAGE_ID && currentMode) return currentMode.attributes.title;
+  return "Extreme Events";
 };
