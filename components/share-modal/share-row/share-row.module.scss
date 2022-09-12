@@ -1,0 +1,32 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-share-row {
+  width: 100%;
+  text-align: left;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: $colour-galaxy;
+  color: white;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+
+  & .icon {
+    margin-right: 12px;
+    width: 40px;
+    height: 40px;
+    background-color: $colour-flame;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__text {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: "Barlow Condensed";
+    @include font-size(20px, 30px);
+  }
+}

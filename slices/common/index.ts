@@ -5,7 +5,8 @@ export * from "./types";
 
 const initialState: CommonState = {
   hostname: "https://earthhq.org/",
-  isMobile: true
+  isMobile: true,
+  isShareOpen: false
 };
 
 const commonSlice = createSlice({
@@ -19,10 +20,15 @@ const commonSlice = createSlice({
       if (typeof payload !== "boolean") return;
 
       state.isMobile = payload;
+    },
+    setIsShareOpen: (state, { payload }: PayloadAction<boolean>) => {
+      if (typeof payload !== "boolean") return;
+
+      state.isShareOpen = payload;
     }
   }
 });
 
-export const { setHostname, setIsMobile } = commonSlice.actions;
+export const { setHostname, setIsMobile, setIsShareOpen } = commonSlice.actions;
 
 export default commonSlice.reducer;

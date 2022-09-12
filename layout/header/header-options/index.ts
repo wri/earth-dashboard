@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { RootState } from "store/types";
 import { setSettingsOpen, setSettingsClose } from "slices/mapControls";
 import HeaderOptionsComponent from "./component";
+import { setIsShareOpen } from "slices/common";
 
 export default connect(
   (state: RootState) => ({
@@ -10,6 +11,7 @@ export default connect(
   }),
   {
     setSettingsOpen,
-    setSettingsClose
+    setSettingsClose,
+    setIsShareOpen
   }
 )(HeaderOptionsComponent);

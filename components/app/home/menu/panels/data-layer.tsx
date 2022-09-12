@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from "react";
-
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
@@ -14,16 +13,18 @@ import {
   setCurrentHeadline
 } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
-import { ActionCreator, ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
 import NormalScale from "../../normal-scale/component";
+import { setIsShareOpen } from "slices/common";
 
 type DataIndexProps = {
   currentMode: Mode | undefined;
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType, string>;
-  onClickExtremeEvents: () => any;
+  setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
+  onClickExtremeEvents: () => {};
 };
 
 const MAX_NUMBER_OF_HEADLINES = 3;
@@ -39,6 +40,7 @@ const DataLayerOverview = ({
   headlines,
   setHeadlines,
   setCurrentHeadline,
+  setIsShareOpen,
   onClickExtremeEvents
 }: DataIndexProps) => {
   const [isFetching, setIsFetching] = useState(true);
@@ -96,7 +98,7 @@ const DataLayerOverview = ({
                 headline={headline}
                 className={styles["c-home-menu__headline"]}
                 onClick={() => setCurrentHeadline(headline)}
-                />
+              />
             ))
           ) : (
             <p>Loading</p>
@@ -108,7 +110,7 @@ const DataLayerOverview = ({
       </ContentPanel>
       <ContentPanel icon={SHARE_ICON} title="How to help">
         <p>{how_to_help_content.detail}</p>
-        <SharePanel ctaAction={() => {}} />
+        <SharePanel ctaAction={() => setIsShareOpen(true)} />
       </ContentPanel>
       <ContentPanel icon={NEWS_ICON} title="News" buttonText="Explore" ctaControl={Link} ctaLink={"/news"}>
         <p>Our partners tell the epic story of what is happening to our planet</p>
@@ -122,5 +124,5 @@ export default connect(
     headlines: state[headlineSliceName].headlines,
     currentMode: state[modesSliceName].currentMode
   }),
-  { setHeadlines, setCurrentHeadline }
+  { setHeadlines, setCurrentHeadline, setIsShareOpen }
 )(DataLayerOverview);
