@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from "react";
-
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
@@ -9,14 +8,16 @@ import SharePanel from "components/app/home/share-panel/component";
 import EventCard from "components/app/home/event-card";
 import { setHeadlines, NAME as headlineSliceName, Headline as HeadlineType } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
-import { ActionCreator, ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
 import NormalScale from "../../normal-scale/component";
+import { setIsShareOpen } from "slices/common";
 
 type DataIndexProps = {
   currentMode: Mode | undefined;
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
+  setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
   onClickExtremeEvents: () => {};
 };
 
@@ -28,7 +29,13 @@ const NEWS_ICON = "/static/icons/mode-news.svg";
 const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
 const SHARE_ICON = "/static/icons/together.svg";
 
-const DataLayerOverview = ({ currentMode, headlines, setHeadlines, onClickExtremeEvents }: DataIndexProps) => {
+const DataLayerOverview = ({
+  currentMode,
+  headlines,
+  setHeadlines,
+  setIsShareOpen,
+  onClickExtremeEvents
+}: DataIndexProps) => {
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
@@ -96,7 +103,7 @@ const DataLayerOverview = ({ currentMode, headlines, setHeadlines, onClickExtrem
       </ContentPanel>
       <ContentPanel icon={SHARE_ICON} title="How to help">
         <p>{how_to_help_content.detail}</p>
-        <SharePanel ctaAction={() => {}} />
+        <SharePanel ctaAction={() => setIsShareOpen(true)} />
       </ContentPanel>
       <ContentPanel icon={NEWS_ICON} title="News" buttonText="Explore" ctaControl={Link} ctaLink={"/news"}>
         <p>Our partners tell the epic story of what is happening to our planet</p>
@@ -110,5 +117,5 @@ export default connect(
     headlines: state[headlineSliceName].headlines,
     currentMode: state[modesSliceName].currentMode
   }),
-  { setHeadlines }
+  { setHeadlines, setIsShareOpen }
 )(DataLayerOverview);

@@ -22,6 +22,7 @@ import useIframeBridge from "hooks/useIframeBridge";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import Icon from "components/ui/Icon";
+import ShareModal from "components/share-modal";
 import CondensedMenu from "../condensed-menu";
 
 // TODO: when we get scale date change height to larger
@@ -321,6 +322,7 @@ const MainContainer = ({
           isLocationDisabled={isLocationDisabled}
         />
       )}
+      <ShareModal />
 
       <Actions
         isMobile={isMobile}
