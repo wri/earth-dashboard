@@ -4,11 +4,10 @@ import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menu-button.module.scss";
 import actionStyles from "components/app/home/actions/actions.module.scss";
 import Menu from "components/app/home/menu";
-import SettingsMenu from "components/app/home/settings-menu";
 import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
 import useWindowDimensions from "hooks/useWindowDimensions";
-import { fetchModes } from "services/gca";
+import { fetchModes, getMenuTitle } from "services/gca";
 import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
@@ -24,6 +23,17 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import Icon from "components/ui/Icon";
 import ShareModal from "components/share-modal";
+import CondensedMenu from "../condensed-menu";
+
+// TODO: when we get scale date change height to larger
+// export const LARGE_MOBILE_MENU_HEIGHT = 235;
+export const LARGE_MOBILE_MENU_HEIGHT = 148;
+export const SMALL_MOBILE_MENU_HEIGHT = 148;
+export const INFO_PAGE_ID = "InfoPage";
+export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
+export const DATA_LAYER_PAGE_ID = "DataLayerPage";
+export const INFO_PAGE_HEADLINE = "I'd like to explore";
+export const EXTREME_EVENTS_PAGE_HEADLINE = "Extreme events";
 
 type MainContainerProps = {
   isMobile: boolean;
@@ -36,6 +46,7 @@ type MainContainerProps = {
   currentHeadlineId?: number;
   shouldFadeControls: boolean;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  currentMode?: Mode;
 };
 
 const MainContainer = ({
@@ -47,12 +58,19 @@ const MainContainer = ({
   headlines,
   shouldFadeControls,
   currentHeadline,
-  setHeadlines
+  setHeadlines,
+  currentMode
 }: MainContainerProps) => {
+  const [pageTypeId, setPageTypeId] = useState<string>(INFO_PAGE_ID);
+
+  const defaultMobileMenuHeight =
+    pageTypeId === DATA_LAYER_PAGE_ID ? LARGE_MOBILE_MENU_HEIGHT : SMALL_MOBILE_MENU_HEIGHT;
+
   const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
   const [hasIframe, setHasIframe] = useState<boolean>(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState<boolean>(false);
+  const [mobileMenuHeight, setMobileMenuHeight] = useState<number>(defaultMobileMenuHeight);
 
   const { width: browserWidth } = useWindowDimensions();
 
@@ -113,14 +131,22 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
+      setMobileMenuHeight(window.innerHeight / 2);
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {
         setIsClosingMenu(false);
         setHasMenuOpen(false);
       }, 400);
+      setMobileMenuHeight(defaultMobileMenuHeight);
     }
   };
+
+  // Set menu open when mobile menu height changes
+  useEffect(() => {
+    if (mobileMenuHeight > defaultMobileMenuHeight) return setHasMenuOpen(true);
+    setHasMenuOpen(false);
+  }, [mobileMenuHeight]);
 
   // Store the isMobile flag in the redux store
   useEffect(() => {
@@ -230,7 +256,8 @@ const MainContainer = ({
           extremeEventLocations={extremeEventLocations}
           setHasMenuOpen={setHasMenuOpen}
           hasIframeConnected={hasIframeConnected}
-          isMobileMenuOpen={isMobile && hasMenuOpen}
+          mobileMenuHeight={isMobile && mobileMenuHeight}
+          isMobile={isMobile}
         />
       )}
       {overlayLayer && !isMobile && (
@@ -269,7 +296,7 @@ const MainContainer = ({
           </div>
         </div>
       )}
-      {hasMenuOpen && !isFetchingTemplates && (
+      {((hasMenuOpen && !isFetchingTemplates) || isMobile) && (
         <Menu
           // @ts-expect-error
           isMobile={isMobile}
@@ -279,6 +306,20 @@ const MainContainer = ({
           isClosing={isClosingMenu}
           earthServer={earthServer.current}
           layers={layers}
+          mobileMenuHeight={mobileMenuHeight}
+          setMobileMenuHeight={setMobileMenuHeight}
+          pageTypeId={pageTypeId}
+          setPageTypeId={setPageTypeId}
+          defaultMobileMenuHeight={defaultMobileMenuHeight}
+        />
+      )}
+
+      {isMobile && (
+        <CondensedMenu
+          toggleMenu={toggleMenu}
+          pageTypeId={pageTypeId}
+          handleToggleLocation={handleToggleLocation}
+          isLocationDisabled={isLocationDisabled}
         />
       )}
       <ShareModal />
@@ -334,7 +375,7 @@ const MainContainer = ({
                 <Icon name={hasMenuOpen ? "close" : "layers"} size={28} type="decorative" />
               </div>
               <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
-                <span>Latest Extreme Events</span>
+                <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</span>
                 {layersLabelArr.length > 0 && (
                   <span data-testid="labels-arr">
                     {layersLabelArr.join(", ")}
@@ -350,7 +391,6 @@ const MainContainer = ({
           </>
         )}
       </Actions>
-      {!isFetchingTemplates && <SettingsMenu />}
     </div>
   );
 };

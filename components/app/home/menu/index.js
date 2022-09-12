@@ -26,7 +26,9 @@ export default connect(
     datasetValue: state[modesSliceName].datasetValue,
     heightValue: state[modesSliceName].heightValue,
     animationEnabled: state[globalSettingsSliceName][animationsId],
-    dialogHeight: state[dialogSliceName].dialogHeight
+    dialogHeight: state[dialogSliceName].dialogHeight,
+    currentHeadline: state[headlinesSliceName].currentHeadline,
+    headlines: state[headlinesSliceName].headlines
   }),
   {
     setCurrentMode,

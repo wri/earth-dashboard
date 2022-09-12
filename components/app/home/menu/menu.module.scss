@@ -113,7 +113,7 @@
       background-image: url("/static/images/globe.png");
       background-position: center right;
       background-repeat: no-repeat;
-      background-size: 232px 196px ;
+      background-size: 232px 196px;
       padding: 24px;
 
       h3 {
@@ -131,9 +131,8 @@
         font-weight: 500;
         @include font-size(16px, 24px);
       }
-    }  
+    }
   }
-
 
   &__scroll-area {
     position: absolute;
@@ -148,7 +147,7 @@
     row-gap: 16px;
 
     @include defaultScrollBar();
-    
+
     &::-webkit-scrollbar-track {
       margin-top: 20px;
       margin-bottom: 20px;
@@ -163,7 +162,7 @@
 
     &--slim {
       top: 0px;
-      padding-bottom: 40px;
+      padding-bottom: 90px;
     }
 
     &--extra-top {
@@ -379,6 +378,7 @@
 
       &--slim {
         top: 0;
+        padding-bottom: 90px;
       }
 
       &--extra-top {
@@ -450,7 +450,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    top: 30%;
+    top: 0;
     position: absolute;
     z-index: $z-index-dialog;
   }
