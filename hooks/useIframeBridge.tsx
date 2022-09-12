@@ -24,11 +24,16 @@ type GeoMarkerOverlayDetails = GeoMarkerOverlayLocation & { headline: Headline }
 type UseIframeBridgeConfig = {
   callback?: () => void;
   allowClickEvents: boolean;
-  headlines: Headline[];
-  setHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  pointerHeadlines: Headline[];
+  setPointerHeadlines: ActionCreatorWithPayload<Headline[], string>;
 };
 
-const useIframeBridge = ({ callback, allowClickEvents, headlines, setHeadlines }: UseIframeBridgeConfig) => {
+const useIframeBridge = ({
+  callback,
+  allowClickEvents,
+  pointerHeadlines,
+  setPointerHeadlines
+}: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [error, setError] = useState<Error>();
   const [layers, setLayers] = useState<EarthLayer[]>([]);
@@ -46,9 +51,9 @@ const useIframeBridge = ({ callback, allowClickEvents, headlines, setHeadlines }
   const MAX_NUMBER_OF_HEADLINES = 25;
 
   const mostRecentHeadlines = useMemo(() => {
-    const reversed = [...headlines].reverse();
+    const reversed = [...pointerHeadlines].reverse();
     return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
-  }, [headlines]);
+  }, [pointerHeadlines]);
 
   // References
   const iframeRef = useRef<any>();
@@ -62,14 +67,14 @@ const useIframeBridge = ({ callback, allowClickEvents, headlines, setHeadlines }
       try {
         const resp = await fetchClimateAlerts();
         // @ts-expect-error
-        setHeadlines(resp.data.data);
+        setPointerHeadlines(resp.data.data);
       } catch (err) {
         console.log("Error fetching modes");
       }
     };
 
     getHeadlines();
-  }, [setHeadlines]);
+  }, [setPointerHeadlines]);
 
   // Set the extreme event points
   useEffect(() => {

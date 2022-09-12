@@ -6,6 +6,7 @@ export * from "./types";
 export const NAME = "headlines";
 
 const initialState: HeadlinesState = {
+  pointerHeadlines: [],
   headlines: [],
   currentHeadline: undefined,
   currentHeadlineId: undefined
@@ -15,6 +16,10 @@ const headlinesSlice = createSlice({
   name: NAME,
   initialState,
   reducers: {
+    setPointerHeadlines: (state, { payload }: PayloadAction<Headline[]>) => {
+      state.pointerHeadlines = payload;
+    },
+
     setHeadlines: (state, { payload }: PayloadAction<Headline[]>) => {
       state.headlines = payload;
 
@@ -41,6 +46,6 @@ const headlinesSlice = createSlice({
   }
 });
 
-export const { setHeadlines, setCurrentHeadline, setCurrentHeadlineId } = headlinesSlice.actions;
+export const { setPointerHeadlines, setHeadlines, setCurrentHeadline, setCurrentHeadlineId } = headlinesSlice.actions;
 
 export default headlinesSlice.reducer;

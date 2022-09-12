@@ -30,11 +30,12 @@ type MainContainerProps = {
   setModes: ActionCreatorWithPayload<Mode[], string>;
   layersLabelArr: string[];
   dateOfDataShown: Date;
-  headlines: Headline[];
+  pointerHeadlines: Headline[];
   currentHeadline?: Headline;
   currentHeadlineId?: number;
   shouldFadeControls: boolean;
-  setHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  setPointerHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  currentMode?: Mode;
 };
 
 const MainContainer = ({
@@ -43,10 +44,11 @@ const MainContainer = ({
   setModes,
   layersLabelArr,
   dateOfDataShown,
-  headlines,
+  pointerHeadlines,
   shouldFadeControls,
   currentHeadline,
-  setHeadlines
+  setPointerHeadlines,
+  currentMode
 }: MainContainerProps) => {
   const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
   const [hasIframe, setHasIframe] = useState<boolean>(false);
@@ -81,8 +83,8 @@ const MainContainer = ({
     extremeEventLocations
   } = useIframeBridge({
     allowClickEvents: !currentHeadline,
-    headlines,
-    setHeadlines
+    pointerHeadlines,
+    setPointerHeadlines
   });
 
   const overlayLayer = useMemo(() => {
