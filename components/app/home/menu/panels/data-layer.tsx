@@ -7,7 +7,12 @@ import { NAME as modesSliceName, Mode } from "slices/modes";
 import ContentPanel from "components/app/home/content-panel/component";
 import SharePanel from "components/app/home/share-panel/component";
 import EventCard from "components/app/home/event-card";
-import { setHeadlines, NAME as headlineSliceName, Headline as HeadlineType } from "slices/headlines";
+import {
+  setHeadlines,
+  NAME as headlineSliceName,
+  Headline as HeadlineType,
+  setCurrentHeadline
+} from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
@@ -17,6 +22,8 @@ type DataIndexProps = {
   currentMode: Mode | undefined;
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
+  setCurrentHeadline: ActionCreatorWithPayload<HeadlineType, string>;
+  onClickExtremeEvents: () => any;
 };
 
 const MAX_NUMBER_OF_HEADLINES = 3;
@@ -27,7 +34,13 @@ const NEWS_ICON = "/static/icons/mode-news.svg";
 const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
 const SHARE_ICON = "/static/icons/together.svg";
 
-const DataLayerOverview = ({ currentMode, headlines, setHeadlines }: DataIndexProps) => {
+const DataLayerOverview = ({
+  currentMode,
+  headlines,
+  setHeadlines,
+  setCurrentHeadline,
+  onClickExtremeEvents
+}: DataIndexProps) => {
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
@@ -68,7 +81,12 @@ const DataLayerOverview = ({ currentMode, headlines, setHeadlines }: DataIndexPr
         <p>{what_is_happening_content.detail}</p>
         <NormalScale value={80} />
       </ContentPanel>
-      <ContentPanel icon={EXTREME_EVENTS_ICON} title="Extreme events" buttonText="View All" ctaAction={() => {}}>
+      <ContentPanel
+        icon={EXTREME_EVENTS_ICON}
+        title="Extreme events"
+        buttonText="View All"
+        ctaAction={onClickExtremeEvents}
+      >
         {!isFetching ? (
           mostRecentHeadlines.map(headline => (
             <EventCard
@@ -76,7 +94,7 @@ const DataLayerOverview = ({ currentMode, headlines, setHeadlines }: DataIndexPr
               as="button"
               headline={headline}
               className={styles["c-home-menu__headline"]}
-              onClick={() => {}}
+              onClick={() => setCurrentHeadline(headline)}
             />
           ))
         ) : (
@@ -102,5 +120,5 @@ export default connect(
     headlines: state[headlineSliceName].headlines,
     currentMode: state[modesSliceName].currentMode
   }),
-  { setHeadlines }
+  { setHeadlines, setCurrentHeadline }
 )(DataLayerOverview);

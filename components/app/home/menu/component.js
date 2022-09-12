@@ -50,26 +50,19 @@ const Menu = forwardRef(
     ref
   ) => {
     const [pageTypeId, setPageTypeId] = useState(INFO_PAGE_ID);
+    const pageTitle = useMemo(() => {
+      if (pageTypeId == INFO_PAGE_ID) return INFO_PAGE_HEADLINE;
+      if (pageTypeId == EXTREME_EVENTS_PAGE_ID) return EXTREME_EVENTS_PAGE_HEADLINE;
+      if (pageTypeId == DATA_LAYER_PAGE_ID) return currentMode.attributes.title;
+    }, [currentMode, pageTypeId]);
 
-    const showExtremeEvents = () => {
-      setPageTypeId(EXTREME_EVENTS_PAGE_ID);
-    };
-
-    // Handle the headline info panel back button click
-    const onBack = () => {
-      setCurrentMode(undefined);
-      setHeadlines([]);
-      setPageTypeId(INFO_PAGE_ID);
+    const navigateTo = pageId => () => {
+      setPageTypeId(pageId);
     };
 
     const clearHeadline = () => {
       setCurrentHeadline(undefined);
       setCurrentHeadlineId(undefined);
-    };
-
-    const setActiveDataLayer = selectedMode => {
-      setCurrentMode(selectedMode);
-      setPageTypeId(DATA_LAYER_PAGE_ID);
     };
 
     useEffect(() => {
@@ -88,7 +81,7 @@ const Menu = forwardRef(
       >
         {currentHeadline && (
           <MenuLayout
-            title={currentHeadline.title}
+            title={`Back to ${pageTitle}`}
             onBack={clearHeadline}
             onClose={onClose}
             setDialogHeight={setDialogHeight}
@@ -97,14 +90,18 @@ const Menu = forwardRef(
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
-          <MenuLayout title={INFO_PAGE_HEADLINE} onClose={onClose} setDialogHeight={setDialogHeight}>
-            <DataIndexPanel onClickDataLayer={setActiveDataLayer} onClickExtremeEvents={showExtremeEvents} />
+          <MenuLayout title={pageTitle} onClose={onClose} setDialogHeight={setDialogHeight}>
+            <DataIndexPanel
+              onClickDataLayer={setCurrentMode}
+              onViewDataLayerSummary={navigateTo(DATA_LAYER_PAGE_ID)}
+              onClickExtremeEvents={navigateTo(EXTREME_EVENTS_PAGE_ID)}
+            />
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == EXTREME_EVENTS_PAGE_ID && (
           <MenuLayout
-            title={EXTREME_EVENTS_PAGE_HEADLINE}
-            onBack={onBack}
+            title={pageTitle}
+            onBack={navigateTo(INFO_PAGE_ID)}
             onClose={onClose}
             setDialogHeight={setDialogHeight}
           >
@@ -113,12 +110,12 @@ const Menu = forwardRef(
         )}
         {!currentHeadline && pageTypeId == DATA_LAYER_PAGE_ID && (
           <MenuLayout
-            title={currentMode.attributes.title}
-            onBack={onBack}
+            title={pageTitle}
+            onBack={navigateTo(INFO_PAGE_ID)}
             onClose={onClose}
             setDialogHeight={setDialogHeight}
           >
-            <DataLayerPanel />
+            <DataLayerPanel onClickExtremeEvents={navigateTo(EXTREME_EVENTS_PAGE_ID)} />
           </MenuLayout>
         )}
       </div>

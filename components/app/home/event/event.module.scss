@@ -93,6 +93,8 @@
 
   &__scroll-area {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     top: 0px;
     bottom: 0px;
     left: 0px;
@@ -181,6 +183,12 @@
   &__cta {
     margin-right: 6px;
     z-index: 0;
+  }
+
+  &__view-all-button--container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 48px;
   }
 
   @media screen and (max-width: $global-breakpoint-md) {

@@ -6,11 +6,11 @@ import { RootState } from "store/types";
 import { NAME as modesSliceName, Mode } from "slices/modes";
 import ContentPanel from "components/app/home/content-panel/component";
 import SharePanel from "components/app/home/share-panel/component";
-import EventCard from "components/app/home/event-card";
 import { setHeadlines, NAME as headlineSliceName, Headline as HeadlineType } from "slices/headlines";
 import NormalScale from "components/app/home/normal-scale/component";
 import moment from "moment";
 import Image from "next/image";
+import CtaButton from "components/ui/cta-button";
 
 type DataLayerOverviewProps = {
   currentMode: Mode;
@@ -21,7 +21,6 @@ const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
 const SHARE_ICON = "/static/icons/together.svg";
 
 const ExtremeEvent = ({ headline, currentMode }: DataLayerOverviewProps) => {
-  const [isFetching, setIsFetching] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -79,6 +78,9 @@ const ExtremeEvent = ({ headline, currentMode }: DataLayerOverviewProps) => {
           <p>{how_to_help_content.detail}</p>
           <SharePanel ctaAction={() => {}} />
         </ContentPanel>
+        <div className={styles["c-event__view-all-button--container"]}>
+          <CtaButton text={"View All Extreme Events"} onClick={() => {}} iconName="arrow-right" iconSize={15} />
+        </div>
       </div>
     </div>
   );
