@@ -11,7 +11,8 @@ export default connect(
     layersLabelArr: state.modes.layersLabelArr,
     shouldFadeControls: state.mapControls.isDatePickerOpen || state.mapControls.isSettingsOpen,
     currentHeadline: state.headlines.currentHeadline,
-    headlines: state.headlines.headlines
+    headlines: state.headlines.headlines,
+    currentMode: state.modes.currentMode
   }),
   {
     setModes,

@@ -9,14 +9,15 @@ import { fireEvent } from "utils/gtag";
 import { MENU_TAB_CHANGE_EVENT_NAME, CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
 import ClimateAlerts from "./panels/climate-alerts";
 import Headline from "../headline";
+import MobileMenuContainer from "./menu-mobile-container";
+import {
+  INFO_PAGE_ID,
+  EXTREME_EVENTS_PAGE_ID,
+  DATA_LAYER_PAGE_ID,
+  INFO_PAGE_HEADLINE,
+  EXTREME_EVENTS_PAGE_HEADLINE
+} from "../main-container/component";
 import HeadlineFooter from "../headline-footer";
-
-const INFO_PAGE_ID = "InfoPage";
-const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
-const DATA_LAYER_PAGE_ID = "DataLayerPage";
-
-const INFO_PAGE_HEADLINE = "I'd like to explore";
-const EXTREME_EVENTS_PAGE_HEADLINE = "Extreme events";
 
 const MAX_NUMBER_OF_HEADLINES = 10;
 const MIN_SWIPE_DISTANCE = 50;
@@ -31,7 +32,6 @@ const Menu = forwardRef(
       currentMode,
       setCurrentMode,
       animationValue,
-      animationEnabled,
       setAnimationValue,
       datasetValue,
       setDatasetValue,
@@ -49,12 +49,16 @@ const Menu = forwardRef(
       setCurrentHeadline,
       setCurrentHeadlineId,
       setDateOfDataShown,
+      mobileMenuHeight,
+      setMobileMenuHeight,
+      pageTypeId,
+      setPageTypeId,
+      defaultMobileMenuHeight,
       headlines,
       ...rest
     },
     ref
   ) => {
-    const [pageTypeId, setPageTypeId] = useState(INFO_PAGE_ID);
     const [disableBackButton, setDisableBackButton] = useState(false);
     const [disableNextButton, setDisableNextButton] = useState(false);
     const [footerHeading, setFooterHeading] = useState("");
@@ -175,17 +179,12 @@ const Menu = forwardRef(
       checkCurrentHeadline();
     }, [currentHeadline]);
 
-    return (
+    const getMenuContent = () => (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
         {currentHeadline && (
-          <MenuLayout
-            title={currentHeadline.title}
-            onBack={clearHeadline}
-            onClose={onClose}
-            setDialogHeight={setDialogHeight}
-          >
+          <MenuLayout title={currentHeadline.title} onBack={clearHeadline} onClose={onClose}>
             <Headline headline={currentHeadline} />
             <HeadlineFooter
               footerHeading={footerHeading}
@@ -199,32 +198,34 @@ const Menu = forwardRef(
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
-          <MenuLayout iconName="globe" title={INFO_PAGE_HEADLINE} onClose={onClose} setDialogHeight={setDialogHeight}>
+          <MenuLayout iconName="globe" title={INFO_PAGE_HEADLINE} onClose={onClose}>
             <DataIndexPanel onClickDataLayer={setActiveDataLayer} onClickExtremeEvents={showExtremeEvents} />
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == EXTREME_EVENTS_PAGE_ID && (
-          <MenuLayout
-            title={EXTREME_EVENTS_PAGE_HEADLINE}
-            onBack={onBack}
-            onClose={onClose}
-            setDialogHeight={setDialogHeight}
-          >
+          <MenuLayout title={EXTREME_EVENTS_PAGE_HEADLINE} onBack={onBack} onClose={onClose}>
             <ClimateAlerts />
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == DATA_LAYER_PAGE_ID && (
-          <MenuLayout
-            title={currentMode.attributes.title}
-            onBack={onBack}
-            onClose={onClose}
-            setDialogHeight={setDialogHeight}
-          >
+          <MenuLayout title={currentMode.attributes.title} onBack={onBack} onClose={onClose}>
             <DataLayerPanel onClickExtremeEvents={showExtremeEvents} />
           </MenuLayout>
         )}
       </div>
     );
+
+    if (isMobile)
+      return (
+        <MobileMenuContainer
+          defaultPanelHeight={defaultMobileMenuHeight}
+          panelHeight={mobileMenuHeight}
+          setPanelHeight={setMobileMenuHeight}
+        >
+          {getMenuContent()}
+        </MobileMenuContainer>
+      );
+    return getMenuContent();
   }
 );
 
@@ -235,7 +236,6 @@ Menu.propTypes = {
   isClosing: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
   layers: PropTypes.array.isRequired,
-  animationEnabled: PropTypes.bool.isRequired,
   setCurrentHeadline: PropTypes.func.isRequired,
   setCurrentHeadlineId: PropTypes.func.isRequired,
   setDateOfDataShown: PropTypes.func.isRequired
