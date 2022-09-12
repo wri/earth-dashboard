@@ -1,14 +1,9 @@
 import IconButton from "components/ui/icon-button";
 import React from "react";
+import { getMenuTitle } from "services/gca";
 import { Headline } from "slices/headlines";
 import { Mode } from "slices/modes";
-import {
-  DATA_LAYER_PAGE_ID,
-  EXTREME_EVENTS_PAGE_HEADLINE,
-  EXTREME_EVENTS_PAGE_ID,
-  INFO_PAGE_HEADLINE,
-  INFO_PAGE_ID
-} from "../main-container/component";
+import { DATA_LAYER_PAGE_ID } from "../main-container/component";
 import NormalScale from "../normal-scale";
 import styles from "./condensed-menu.module.scss";
 
@@ -29,14 +24,6 @@ const CondensedMenu = ({
   currentHeadline,
   currentMode
 }: CondensedMenuProps) => {
-  const getMenuTitle = () => {
-    if (currentHeadline) return currentHeadline.attributes.title;
-    if (pageTypeId == INFO_PAGE_ID) return INFO_PAGE_HEADLINE;
-    if (pageTypeId == EXTREME_EVENTS_PAGE_ID) return EXTREME_EVENTS_PAGE_HEADLINE;
-    if (pageTypeId == DATA_LAYER_PAGE_ID && currentMode) return currentMode.attributes.title;
-    return "Extreme Events";
-  };
-
   return (
     <>
       <div className={styles["c-condensed-menu"]}>
@@ -50,7 +37,7 @@ const CondensedMenu = ({
               <img src={currentMode.attributes.icon} alt={currentMode.attributes.title} />
             </div>
           )}
-          <p className={styles["title"]}>{getMenuTitle()}</p>
+          <p className={styles["title"]}>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</p>
           <IconButton
             onClick={handleToggleLocation}
             name="location"

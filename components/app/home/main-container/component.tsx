@@ -8,7 +8,7 @@ import SettingsMenu from "components/app/home/settings-menu";
 import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
 import useWindowDimensions from "hooks/useWindowDimensions";
-import { fetchModes } from "services/gca";
+import { fetchModes, getMenuTitle } from "services/gca";
 import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
@@ -46,6 +46,7 @@ type MainContainerProps = {
   currentHeadlineId?: number;
   shouldFadeControls: boolean;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  currentMode?: Mode;
 };
 
 const MainContainer = ({
@@ -57,7 +58,8 @@ const MainContainer = ({
   headlines,
   shouldFadeControls,
   currentHeadline,
-  setHeadlines
+  setHeadlines,
+  currentMode
 }: MainContainerProps) => {
   const [pageTypeId, setPageTypeId] = useState<string>(INFO_PAGE_ID);
 
@@ -371,7 +373,7 @@ const MainContainer = ({
                 <Icon name={hasMenuOpen ? "close" : "layers"} size={28} type="decorative" />
               </div>
               <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
-                <span>Latest Extreme Events</span>
+                <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</span>
                 {layersLabelArr.length > 0 && (
                   <span data-testid="labels-arr">
                     {layersLabelArr.join(", ")}
