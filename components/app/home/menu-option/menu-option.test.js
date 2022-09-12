@@ -44,26 +44,6 @@ test("<MenuOption /> renders correctly as desktop", async () => {
           >
             View all of the latest extreme events
           </p>
-          <div
-            class="c-content-panel__cta"
-          >
-            <button
-              class="c-cta-button"
-            >
-              <div
-                class="c-cta-button__content"
-              >
-                <span
-                  class="c-cta-button__text"
-                >
-                  View All
-                </span>
-                <span
-                  class="c-cta-button__icon"
-                />
-              </div>
-            </button>
-          </div>
         </div>
       </div>
     </div>

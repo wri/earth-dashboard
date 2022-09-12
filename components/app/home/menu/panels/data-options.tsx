@@ -41,7 +41,7 @@ const DataIndex = ({ highlights, onClickExtremeEvents, onClickDataLayer, onViewD
         title="All Extreme Events"
         description="View all of the latest extreme events"
         buttonText="View All"
-        onClick={onClickExtremeEvents}
+        onClickCta={onClickExtremeEvents}
       />
       {dataLayers.map(dataLayer => (
         <MenuOption key={dataLayer.id} {...dataLayer} />
