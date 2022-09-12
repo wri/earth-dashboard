@@ -4,7 +4,6 @@ import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menu-button.module.scss";
 import actionStyles from "components/app/home/actions/actions.module.scss";
 import Menu from "components/app/home/menu";
-import SettingsMenu from "components/app/home/settings-menu";
 import Actions from "components/app/home/actions";
 import MapControls from "components/app/home/map-controls";
 import useWindowDimensions from "hooks/useWindowDimensions";
@@ -390,7 +389,6 @@ const MainContainer = ({
           </>
         )}
       </Actions>
-      {!isFetchingTemplates && <SettingsMenu />}
     </div>
   );
 };
