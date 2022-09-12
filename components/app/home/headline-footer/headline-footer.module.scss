@@ -20,7 +20,7 @@
     padding: 14px 28px 14px 28px;
     z-index: 999;
 
-    &-info {
+    &--info {
       & h3 {
         color: white;
         padding: 0px;
@@ -29,10 +29,15 @@
         font-size: 20px;
         line-height: 30px;
         font-weight: 600;
+        font-family: "Barlow";
+
+        @media screen and (max-width: $global-breakpoint-md) {
+          font-family: "Barlow Condensed";
+        }
       }
     }
 
-    &-btn {
+    &--btn {
       width: 30px;
       height: 30px;
       &:disabled {
