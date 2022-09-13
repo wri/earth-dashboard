@@ -124,7 +124,6 @@
 
   &--is-info-page {
     .c-home-menu__header-content {
-    
       &:before {
         content: "";
         display: block;
@@ -154,6 +153,7 @@
     right: 0;
     bottom: 0;
     max-width: unset;
+    border-radius: 16px 16px 0 0;
 
     &__header {
       border-radius: 16px 16px 0 0;
@@ -162,6 +162,10 @@
 
     &__header-text {
       @include font-size(20px, 30px);
+    }
+
+    &__content {
+      border-radius: 0;
     }
   }
 

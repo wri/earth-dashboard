@@ -50,5 +50,9 @@
         min-height: 15px;
       }
     }
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      border-radius: 0;
+    }
   }
 }
