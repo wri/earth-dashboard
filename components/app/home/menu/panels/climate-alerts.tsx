@@ -52,7 +52,11 @@ const HeadlinesPanel = ({
       []
     );
     // @ts-expect-error
-    flattened.sort((a, b) => a.attributes.date > b.attributes.date);
+    flattened.sort((a, b) => {
+      if (a.attributes.climate_alert_date > b.attributes.climate_alert_date) return -1;
+      if (a.attributes.climate_alert_date < b.attributes.climate_alert_date) return 1;
+      return 0;
+    });
     return flattened;
   }, [headlines]);
 

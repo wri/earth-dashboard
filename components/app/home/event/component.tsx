@@ -69,7 +69,7 @@ const ExtremeEvent = ({ headline, currentMode }: DataLayerOverviewProps) => {
           <NormalScale value={80} />
         </ContentPanel>
         <ContentPanel icon={SHARE_ICON} title="How to help">
-          <p>{how_to_help_content.detail}</p>
+          <p>{how_to_help_content?.detail}</p>
           <SharePanel ctaAction={() => {}} />
         </ContentPanel>
         <div className={styles["c-event__view-all-button--container"]}>
