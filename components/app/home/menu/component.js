@@ -6,10 +6,9 @@ import DataIndexPanel from "./panels/data-options";
 import DataLayerPanel from "./panels/data-layer";
 import MenuLayout from "./layout";
 import { fireEvent } from "utils/gtag";
-import { MENU_TAB_CHANGE_EVENT_NAME, CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
+import { CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
 import ClimateAlerts from "./panels/climate-alerts";
 import Event from "components/app/home/event";
-import Headline from "../headline";
 import MobileMenuContainer from "./menu-mobile-container";
 import {
   INFO_PAGE_ID,
@@ -24,41 +23,22 @@ const MAX_NUMBER_OF_HEADLINES = 10;
 const MIN_SWIPE_DISTANCE = 50;
 
 const Menu = forwardRef(
-  (
-    {
-      isMobile,
-      onClose,
-      isClosing,
-      modes,
-      currentMode,
-      setCurrentMode,
-      animationValue,
-      setAnimationValue,
-      datasetValue,
-      setDatasetValue,
-      monitorValue,
-      setMonitorValue,
-      heightValue,
-      setHeightValue,
-      earthServer,
-      resetValues,
-      layers,
-      dialogHeight,
-      currentHeadline,
-      setHeadlines,
-      setCurrentHeadline,
-      setCurrentHeadlineId,
-      setDateOfDataShown,
-      mobileMenuHeight,
-      setMobileMenuHeight,
-      pageTypeId,
-      setPageTypeId,
-      defaultMobileMenuHeight,
-      headlines,
-      ...rest
-    },
-    ref
-  ) => {
+  ({
+    isMobile,
+    onClose,
+    isClosing,
+    currentMode,
+    setCurrentMode,
+    currentHeadline,
+    setCurrentHeadline,
+    setCurrentHeadlineId,
+    mobileMenuHeight,
+    setMobileMenuHeight,
+    pageTypeId,
+    setPageTypeId,
+    defaultMobileMenuHeight,
+    headlines
+  }) => {
     const pageTitle = useMemo(() => {
       if (pageTypeId == INFO_PAGE_ID) return INFO_PAGE_HEADLINE;
       if (pageTypeId == EXTREME_EVENTS_PAGE_ID) return EXTREME_EVENTS_PAGE_HEADLINE;
@@ -72,10 +52,6 @@ const Menu = forwardRef(
     const [footerHeading, setFooterHeading] = useState("");
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
-
-    const showExtremeEvents = () => {
-      setPageTypeId(EXTREME_EVENTS_PAGE_ID);
-    };
 
     const splitHeadlines = () => {
       const reversed = [...headlines].reverse();
@@ -128,23 +104,9 @@ const Menu = forwardRef(
       }
     };
 
-    // Handle the headline info panel back button click
-    /* const onBack = () => {
-      setCurrentMode(undefined);
-      setHeadlines([]);
-      setPageTypeId(INFO_PAGE_ID);
-      setDisableBackButton(false);
-      setDisableNextButton(false);
-    };*/
-
     const clearHeadline = () => {
       setCurrentHeadline(undefined);
       setCurrentHeadlineId(undefined);
-    };
-
-    const setActiveDataLayer = selectedMode => {
-      setCurrentMode(selectedMode);
-      setPageTypeId(DATA_LAYER_PAGE_ID);
     };
 
     const navigateHeadline = action => {
@@ -172,7 +134,6 @@ const Menu = forwardRef(
     const onTouchEnd = () => {
       if (!touchStart || !touchEnd) return;
       const distance = touchStart - touchEnd;
-      const isRightSwipe = distance > MIN_SWIPE_DISTANCE;
       const isLeftSwipe = distance < -MIN_SWIPE_DISTANCE;
 
       if (isLeftSwipe) navigateHeadline("back");

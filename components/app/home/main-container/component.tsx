@@ -101,7 +101,8 @@ const MainContainer = ({
   } = useIframeBridge({
     allowClickEvents: !currentHeadline,
     pointerHeadlines,
-    setPointerHeadlines
+    setPointerHeadlines,
+    currentMode
   });
 
   const overlayLayer = useMemo(() => {

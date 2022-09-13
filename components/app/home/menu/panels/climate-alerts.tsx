@@ -16,6 +16,7 @@ const MAX_NUMBER_OF_HEADLINES = 10;
 const SCOLL_THRESHOLD = 180;
 
 type HeadlinesPanerProps = {
+  currentMode?: Mode;
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
   forceInfoPage: boolean;
@@ -25,9 +26,9 @@ type HeadlinesPanerProps = {
 };
 
 const HeadlinesPanel = ({
+  currentMode,
   headlines,
   setHeadlines,
-  setCurrentMode,
   setCurrentHeadline,
   currentHeadline
 }: HeadlinesPanerProps) => {
@@ -46,7 +47,7 @@ const HeadlinesPanel = ({
     setIsFetching(true);
     const getHeadlines = async () => {
       try {
-        const resp = await fetchClimateAlerts();
+        const resp = await fetchClimateAlerts({ mode_id: currentMode?.id });
         // @ts-expect-error
         setHeadlines(resp.data.data);
       } catch (err) {
@@ -122,6 +123,7 @@ const HeadlinesPanel = ({
 
 export default connect(
   (state: RootState) => ({
+    currentMode: state.modes.currentMode,
     headlines: state.headlines.headlines,
     currentHeadline: state.headlines.currentHeadline
   }),
