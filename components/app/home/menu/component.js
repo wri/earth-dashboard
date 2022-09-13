@@ -23,23 +23,26 @@ const MAX_NUMBER_OF_HEADLINES = 10;
 const MIN_SWIPE_DISTANCE = 50;
 
 const Menu = forwardRef(
-  ({
-    isMobile,
-    onClose,
-    isClosing,
-    defaultMode,
-    currentMode,
-    setCurrentMode,
-    currentHeadline,
-    setCurrentHeadline,
-    setCurrentHeadlineId,
-    mobileMenuHeight,
-    setMobileMenuHeight,
-    pageTypeId,
-    setPageTypeId,
-    defaultMobileMenuHeight,
-    pointerHeadlines
-  }) => {
+  (
+    {
+      isMobile,
+      onClose,
+      isClosing,
+      defaultMode,
+      currentMode,
+      setCurrentMode,
+      currentHeadline,
+      setCurrentHeadline,
+      setCurrentHeadlineId,
+      mobileMenuHeight,
+      setMobileMenuHeight,
+      pageTypeId,
+      setPageTypeId,
+      defaultMobileMenuHeight,
+      pointerHeadlines
+    },
+    ref
+  ) => {
     const pageTitle = useMemo(() => {
       if (pageTypeId == INFO_PAGE_ID) return INFO_PAGE_HEADLINE;
       if (pageTypeId == EXTREME_EVENTS_PAGE_ID) return EXTREME_EVENTS_PAGE_HEADLINE;
@@ -150,6 +153,7 @@ const Menu = forwardRef(
 
     const getMenuContent = () => (
       <div
+        ref={ref}
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
         {currentHeadline && (
