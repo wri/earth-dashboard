@@ -6,7 +6,12 @@ import { NAME as modesSliceName, Mode } from "slices/modes";
 import ContentPanel from "components/app/home/content-panel/component";
 import SharePanel from "components/app/home/share-panel/component";
 import EventCard from "components/app/home/event-card";
-import { setHeadlines, NAME as headlineSliceName, Headline as HeadlineType } from "slices/headlines";
+import {
+  setHeadlines,
+  NAME as headlineSliceName,
+  Headline as HeadlineType,
+  setCurrentHeadline
+} from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
@@ -17,6 +22,7 @@ type DataIndexProps = {
   currentMode: Mode | undefined;
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
+  setCurrentHeadline: ActionCreatorWithPayload<HeadlineType, string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
   onClickExtremeEvents: () => {};
 };
@@ -33,6 +39,7 @@ const DataLayerOverview = ({
   currentMode,
   headlines,
   setHeadlines,
+  setCurrentHeadline,
   setIsShareOpen,
   onClickExtremeEvents
 }: DataIndexProps) => {
@@ -90,7 +97,7 @@ const DataLayerOverview = ({
                 as="button"
                 headline={headline}
                 className={styles["c-home-menu__headline"]}
-                onClick={() => {}}
+                onClick={() => setCurrentHeadline(headline)}
               />
             ))
           ) : (
@@ -117,5 +124,5 @@ export default connect(
     headlines: state[headlineSliceName].headlines,
     currentMode: state[modesSliceName].currentMode
   }),
-  { setHeadlines, setIsShareOpen }
+  { setHeadlines, setCurrentHeadline, setIsShareOpen }
 )(DataLayerOverview);

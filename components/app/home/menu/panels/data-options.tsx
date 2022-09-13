@@ -6,13 +6,18 @@ import { NAME as modesSliceName, Mode } from "slices/modes";
 import MenuOption from "components/app/home/menu-option";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
-const mapHighlightToOption = (mode: Mode, onClickDataLayer: ActionCreatorWithPayload<Mode, string>) => {
+const mapHighlightToOption = (
+  mode: Mode,
+  onClickDataLayer: ActionCreatorWithPayload<Mode, string>,
+  onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>
+) => {
   const { id, attributes } = mode;
   return {
     id,
     ...attributes,
     buttonText: "Learn More",
-    onClick: () => onClickDataLayer(mode)
+    onClick: () => onClickDataLayer(mode),
+    onClickCta: () => onViewDataLayerSummary(mode)
   };
 };
 
@@ -20,11 +25,12 @@ type DataIndexProps = {
   highlights: Mode[] | undefined;
   onClickExtremeEvents: () => void;
   onClickDataLayer: ActionCreatorWithPayload<Mode, string>;
+  onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>;
 };
 
-const DataIndex = ({ highlights, onClickExtremeEvents, onClickDataLayer }: DataIndexProps) => {
+const DataIndex = ({ highlights, onClickExtremeEvents, onClickDataLayer, onViewDataLayerSummary }: DataIndexProps) => {
   const dataLayers = useMemo(
-    () => highlights?.map(highlight => mapHighlightToOption(highlight, onClickDataLayer)) || [],
+    () => highlights?.map(highlight => mapHighlightToOption(highlight, onClickDataLayer, onViewDataLayerSummary)) || [],
     [highlights, onClickDataLayer]
   );
 
@@ -35,7 +41,7 @@ const DataIndex = ({ highlights, onClickExtremeEvents, onClickDataLayer }: DataI
         title="All Extreme Events"
         description="View all of the latest extreme events"
         buttonText="View All"
-        onClick={() => onClickExtremeEvents()}
+        onClickCta={onClickExtremeEvents}
       />
       {dataLayers.map(dataLayer => (
         <MenuOption key={dataLayer.id} {...dataLayer} />

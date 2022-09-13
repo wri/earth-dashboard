@@ -12,7 +12,8 @@ export type MenuOptionProps = {
   canFocus?: boolean;
   ctaControl?: React.ElementType;
   buttonText?: string;
-  ctaAction?: () => void;
+  selectAction?: () => any;
+  ctaAction?: () => any;
   ctaLink?: string;
   children: ReactNode;
 };
@@ -24,12 +25,17 @@ const ContentPanel = ({
   canFocus,
   ctaControl,
   buttonText,
+  selectAction,
   ctaAction,
   ctaLink,
   children
 }: MenuOptionProps) => {
   return (
-    <div className={classNames(styles["c-content-panel__underlay"], className)} data-testid="content-panel">
+    <div
+      className={classNames(styles["c-content-panel__underlay"], className)}
+      data-testid="content-panel"
+      onClick={selectAction}
+    >
       <div
         tabIndex={canFocus ? 0 : undefined}
         className={classNames(styles["c-content-panel"], canFocus ? styles["c-content-panel__focusable"] : undefined)}

@@ -6,19 +6,21 @@ export type MenuOptionProps = {
   title: string;
   description: string;
   buttonText: string;
-  onClick: () => any;
+  onClick?: () => any;
+  onClickCta?: () => any;
   icon?: string;
   className?: string;
 };
 
-const MenuOption = ({ icon, title, description, buttonText, onClick, className }: MenuOptionProps) => {
+const MenuOption = ({ icon, title, description, buttonText, onClick, onClickCta, className }: MenuOptionProps) => {
   return (
     <ContentPanel
       canFocus={true}
       icon={icon}
       title={title}
       buttonText={buttonText}
-      ctaAction={onClick}
+      selectAction={onClick}
+      ctaAction={onClickCta}
       className={className}
     >
       <p className={styles["c-menu-option__subtitle"]}>{description}</p>

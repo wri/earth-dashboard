@@ -8,7 +8,6 @@ import EventCard from "components/app/home/event-card";
 import { Mode, setCurrentMode } from "slices/modes";
 import { fireEvent } from "utils/gtag";
 import { CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
-import Headline from "components/app/home/headline";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
@@ -41,13 +40,6 @@ const HeadlinesPanel = ({
     return reversed.slice(0, numHeadlinesToShow);
   }, [headlines, numHeadlinesToShow]);
   const articleRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (currentHeadline) {
-      // Set default template
-      setCurrentMode(currentHeadline.attributes.mode);
-    }
-  }, [currentHeadline, setCurrentMode]);
 
   // Fetch Headlines from the GCA CMS
   useEffect(() => {
@@ -86,17 +78,6 @@ const HeadlinesPanel = ({
     }
     setScrollPosition(event.currentTarget.scrollTop);
   };
-
-  if (currentHeadline) {
-    return (
-      <div
-        className={classnames(styles["c-home-menu__scroll-area"], styles["c-home-menu__scroll-area--unpadded"])}
-        ref={articleRef}
-      >
-        <Headline headline={currentHeadline} />
-      </div>
-    );
-  }
 
   return (
     <>

@@ -8,6 +8,7 @@ import MenuLayout from "./layout";
 import { fireEvent } from "utils/gtag";
 import { MENU_TAB_CHANGE_EVENT_NAME, CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
 import ClimateAlerts from "./panels/climate-alerts";
+import Event from "components/app/home/event";
 import Headline from "../headline";
 import MobileMenuContainer from "./menu-mobile-container";
 import {
@@ -42,7 +43,6 @@ const Menu = forwardRef(
       earthServer,
       resetValues,
       layers,
-      setDialogHeight,
       dialogHeight,
       currentHeadline,
       setHeadlines,
@@ -59,6 +59,14 @@ const Menu = forwardRef(
     },
     ref
   ) => {
+    const pageTitle = useMemo(() => {
+      if (pageTypeId == INFO_PAGE_ID) return INFO_PAGE_HEADLINE;
+      if (pageTypeId == EXTREME_EVENTS_PAGE_ID) return EXTREME_EVENTS_PAGE_HEADLINE;
+      if (pageTypeId == DATA_LAYER_PAGE_ID) return currentMode.attributes.title;
+    }, [currentMode, pageTypeId]);
+
+    const navigateTo = pageId => () => setPageTypeId(pageId);
+
     const [disableBackButton, setDisableBackButton] = useState(false);
     const [disableNextButton, setDisableNextButton] = useState(false);
     const [footerHeading, setFooterHeading] = useState("");
@@ -121,13 +129,13 @@ const Menu = forwardRef(
     };
 
     // Handle the headline info panel back button click
-    const onBack = () => {
+    /* const onBack = () => {
       setCurrentMode(undefined);
       setHeadlines([]);
       setPageTypeId(INFO_PAGE_ID);
       setDisableBackButton(false);
       setDisableNextButton(false);
-    };
+    };*/
 
     const clearHeadline = () => {
       setCurrentHeadline(undefined);
@@ -172,20 +180,19 @@ const Menu = forwardRef(
     };
 
     useEffect(() => {
-      fireEvent(MENU_TAB_CHANGE_EVENT_NAME, INFO_PAGE_HEADLINE);
-    }, [setCurrentHeadline]);
-
-    useEffect(() => {
+      if (currentHeadline) {
+        setCurrentMode(currentHeadline.attributes.mode);
+      }
       checkCurrentHeadline();
-    }, [currentHeadline]);
+    }, [currentHeadline, setCurrentMode]);
 
     const getMenuContent = () => (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
         {currentHeadline && (
-          <MenuLayout title={currentHeadline.title} onBack={clearHeadline} onClose={onClose}>
-            <Headline headline={currentHeadline} />
+          <MenuLayout title={`Back to ${pageTitle}`} onBack={clearHeadline} onClose={onClose}>
+            <Event headline={currentHeadline} />
             <HeadlineFooter
               footerHeading={footerHeading}
               disableBackButton={disableBackButton}
@@ -198,18 +205,22 @@ const Menu = forwardRef(
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
-          <MenuLayout iconName="globe" title={INFO_PAGE_HEADLINE} onClose={onClose}>
-            <DataIndexPanel onClickDataLayer={setActiveDataLayer} onClickExtremeEvents={showExtremeEvents} />
+          <MenuLayout iconName="globe" title={pageTitle} onClose={onClose}>
+            <DataIndexPanel
+              onClickDataLayer={setCurrentMode}
+              onViewDataLayerSummary={navigateTo(DATA_LAYER_PAGE_ID)}
+              onClickExtremeEvents={navigateTo(EXTREME_EVENTS_PAGE_ID)}
+            />
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == EXTREME_EVENTS_PAGE_ID && (
-          <MenuLayout title={EXTREME_EVENTS_PAGE_HEADLINE} onBack={onBack} onClose={onClose}>
+          <MenuLayout title={pageTitle} onBack={navigateTo(INFO_PAGE_ID)} onClose={onClose}>
             <ClimateAlerts />
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == DATA_LAYER_PAGE_ID && (
-          <MenuLayout title={currentMode.attributes.title} onBack={onBack} onClose={onClose}>
-            <DataLayerPanel onClickExtremeEvents={showExtremeEvents} />
+          <MenuLayout title={pageTitle} onBack={navigateTo(INFO_PAGE_ID)} onClose={onClose}>
+            <DataLayerPanel onClickExtremeEvents={navigateTo(EXTREME_EVENTS_PAGE_ID)} />
           </MenuLayout>
         )}
       </div>

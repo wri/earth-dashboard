@@ -15,7 +15,7 @@ const MenuLayout = ({ title, iconName, className, onBack, onClose, children, ...
           {onBack && (
             <IconButton
               className={styles["c-layout__back-button"]}
-              name="back"
+              name="arrow-left"
               medium
               onClick={onBack}
               aria-label="Back"
