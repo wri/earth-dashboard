@@ -1,5 +1,5 @@
 import { Resizable } from "re-resizable";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import styles from "./menu-mobile-container.module.scss";
 
 type ResizablePanelProps = {
@@ -10,6 +10,12 @@ type ResizablePanelProps = {
 };
 
 const ResizablePanel = ({ defaultHeight, height, onResize, children }: ResizablePanelProps) => {
+  const [windowHeight, setWindowHeight] = useState<number>(0);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") setWindowHeight(window.innerHeight);
+  }, []);
+
   const navbarHeight = parseInt(styles["navbar-height"], 10);
 
   const resizableProps = {
@@ -33,8 +39,9 @@ const ResizablePanel = ({ defaultHeight, height, onResize, children }: Resizable
     minWidth: "100vw",
     maxWidth: "100vw",
     minHeight: `${defaultHeight}px`,
-    maxHeight: `calc(90vh - 60px)`
-    // maxHeight: "90vh"
+    maxHeight: `${windowHeight * 0.9 - navbarHeight}px`,
+    snap: { y: [windowHeight * 0.5, windowHeight * 0.9] },
+    snapGap: 20
   };
 
   console.log(styles["navbar-height"]);
