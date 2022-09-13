@@ -16,7 +16,6 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 type DataLayerOverviewProps = {
   currentMode?: Mode;
   headline: HeadlineType;
-  setIsDatePickerDisabled: ActionCreatorWithPayload<boolean, string>;
   setCurrentLocation: ActionCreatorWithPayload<number[], string>;
   setCurrentScale: ActionCreatorWithPayload<number, string>;
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
@@ -29,7 +28,6 @@ const SHARE_ICON = "/static/icons/together.svg";
 const ExtremeEvent = ({
   headline,
   currentMode,
-  setIsDatePickerDisabled,
   setCurrentLocation,
   setCurrentScale,
   setCurrentScaleBy,
