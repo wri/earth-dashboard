@@ -5,6 +5,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
+    margin-top: -12px;
 
     @media screen and (max-width: $global-breakpoint-lg) {
       grid-template-columns: 1fr 1fr;
