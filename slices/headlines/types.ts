@@ -27,6 +27,7 @@ export type Headline = {
 };
 
 export type HeadlinesState = {
+  pointerHeadlines: Headline[];
   headlines: Headline[];
   currentHeadline?: Headline;
   currentHeadlineId?: number;

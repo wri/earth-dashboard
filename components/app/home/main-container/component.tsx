@@ -41,11 +41,11 @@ type MainContainerProps = {
   setModes: ActionCreatorWithPayload<Mode[], string>;
   layersLabelArr: string[];
   dateOfDataShown: Date;
-  headlines: Headline[];
+  pointerHeadlines: Headline[];
   currentHeadline?: Headline;
   currentHeadlineId?: number;
   shouldFadeControls: boolean;
-  setHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  setPointerHeadlines: ActionCreatorWithPayload<Headline[], string>;
   currentMode?: Mode;
 };
 
@@ -55,10 +55,10 @@ const MainContainer = ({
   setModes,
   layersLabelArr,
   dateOfDataShown,
-  headlines,
+  pointerHeadlines,
   shouldFadeControls,
   currentHeadline,
-  setHeadlines,
+  setPointerHeadlines,
   currentMode
 }: MainContainerProps) => {
   const [pageTypeId, setPageTypeId] = useState<string>(INFO_PAGE_ID);
@@ -100,8 +100,8 @@ const MainContainer = ({
     extremeEventLocations
   } = useIframeBridge({
     allowClickEvents: !currentHeadline,
-    headlines,
-    setHeadlines
+    pointerHeadlines,
+    setPointerHeadlines
   });
 
   const overlayLayer = useMemo(() => {
