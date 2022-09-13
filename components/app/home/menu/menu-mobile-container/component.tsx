@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import ResizablePanel from "./resizable-panel";
 import styles from "./menu-mobile-container.module.scss";
 
