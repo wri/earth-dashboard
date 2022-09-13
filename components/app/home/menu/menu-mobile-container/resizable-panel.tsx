@@ -37,14 +37,12 @@ const ResizablePanel = ({ defaultHeight, height, onResize, children }: Resizable
     minWidth: "100vw",
     maxWidth: "100vw",
     minHeight: `${defaultHeight}px`,
-    maxHeight: "90vh"
+    maxHeight: "90vh",
+    snap: { y: [windowHeight * 0.5, windowHeight * 0.9] },
+    snapGap: 20
   };
 
-  return (
-    <Resizable {...resizableProps} snap={{ y: [windowHeight * 0.5, windowHeight * 0.9] }} snapGap={20}>
-      {children}
-    </Resizable>
-  );
+  return <Resizable {...resizableProps}>{children}</Resizable>;
 };
 
 export default ResizablePanel;
