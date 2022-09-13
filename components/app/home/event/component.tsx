@@ -88,8 +88,7 @@ const ExtremeEvent = ({ headline, currentMode }: DataLayerOverviewProps) => {
 
 export default connect(
   (state: RootState) => ({
-    headlines: state[headlineSliceName].headlines,
     currentMode: state[modesSliceName].currentMode
   }),
-  { setHeadlines }
+  {}
 )(ExtremeEvent);
