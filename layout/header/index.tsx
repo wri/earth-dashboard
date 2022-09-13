@@ -31,39 +31,41 @@ const Header = () => {
   })();
 
   return (
-    <header
-      className={classnames(styles["c-site-header"], router.pathname === "/" ? styles["fixed"] : styles["sticky"])}
-    >
-      <div className={styles["top-section"]}>
-        {/* Logo */}
-        <div className={styles["top-section__logo"]}>
-          <LogoLink />
-        </div>
-
-        {/* Navigation links */}
-        <Desktop>
-          <div className={styles["top-section__links"]}>
-            <HeaderLink href="/" text="Earth HQ" />
-            <HeaderLink href="/news" text="News" />
-            <HeaderLink href="/about" text="About" />
+    <>
+      <header
+        className={classnames(styles["c-site-header"], router.pathname === "/" ? styles["fixed"] : styles["sticky"])}
+      >
+        <div className={styles["top-section"]}>
+          {/* Logo */}
+          <div className={styles["top-section__logo"]}>
+            <LogoLink />
           </div>
-        </Desktop>
-        <Mobile>
-          <Navbar />
-        </Mobile>
 
-        {/* Options */}
-        <HeaderOptions />
-      </div>
+          {/* Navigation links */}
+          <Desktop>
+            <div className={styles["top-section__links"]}>
+              <HeaderLink href="/" text="Earth HQ" />
+              <HeaderLink href="/news" text="News" />
+              <HeaderLink href="/about" text="About" />
+            </div>
+          </Desktop>
 
-      {/* Text section */}
-      {(title || description) && (
-        <div className={styles["bottom-section"]}>
-          <Mobile>{title && <h2 className={styles["title"]}>{title}</h2>}</Mobile>
-          {description && <p className={styles["description"]}>{description}</p>}
+          {/* Options */}
+          <HeaderOptions />
         </div>
-      )}
-    </header>
+
+        {/* Text section */}
+        {(title || description) && (
+          <div className={styles["bottom-section"]}>
+            <Mobile>{title && <h2 className={styles["title"]}>{title}</h2>}</Mobile>
+            {description && <p className={styles["description"]}>{description}</p>}
+          </div>
+        )}
+      </header>
+      <Mobile>
+        <Navbar />
+      </Mobile>
+    </>
   );
 };
 

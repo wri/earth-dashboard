@@ -1,13 +1,7 @@
-@import "css/_settings.scss";
-
-:export {
-  navbar-height: $navbar-height;
-}
-
 .c-mobile-menu-container {
   position: fixed;
   right: 0;
-  bottom: $navbar-height;
+  bottom: 56px;
   left: 0;
   z-index: 0;
 

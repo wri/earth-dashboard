@@ -20,7 +20,7 @@ const MenuMobileContainer = ({
   const [zIndex, setZIndex] = useState<number>(0);
 
   useEffect(() => {
-    if (panelHeight > defaultPanelHeight) setZIndex(10);
+    if (panelHeight > defaultPanelHeight) setZIndex(1000);
     else setTimeout(() => setZIndex(0), TRANSITION_DURATION);
   }, [panelHeight]);
 

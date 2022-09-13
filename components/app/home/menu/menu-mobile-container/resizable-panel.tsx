@@ -16,7 +16,7 @@ const ResizablePanel = ({ defaultHeight, height, onResize, children }: Resizable
     if (typeof window !== "undefined") setWindowHeight(window.innerHeight);
   }, []);
 
-  const navbarHeight = parseInt(styles["navbar-height"], 10);
+  const navbarHeight = 56;
 
   const resizableProps = {
     className: styles["c-mobile-menu-container__draggable"],
@@ -40,7 +40,7 @@ const ResizablePanel = ({ defaultHeight, height, onResize, children }: Resizable
     maxWidth: "100vw",
     minHeight: `${defaultHeight}px`,
     maxHeight: `${windowHeight * 0.9 - navbarHeight}px`,
-    snap: { y: [windowHeight * 0.5, windowHeight * 0.9] },
+    snap: { y: [windowHeight * 0.5 - navbarHeight, windowHeight * 0.9 - navbarHeight] },
     snapGap: 20
   };
 
