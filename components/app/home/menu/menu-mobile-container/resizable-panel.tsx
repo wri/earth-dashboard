@@ -44,8 +44,6 @@ const ResizablePanel = ({ defaultHeight, height, onResize, children }: Resizable
     snapGap: 20
   };
 
-  console.log(styles["navbar-height"]);
-
   return <Resizable {...resizableProps}>{children}</Resizable>;
 };
 
