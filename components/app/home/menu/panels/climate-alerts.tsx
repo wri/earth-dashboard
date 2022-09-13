@@ -93,15 +93,18 @@ const HeadlinesPanel = ({
         onScroll={onScroll}
       >
         <div className={styles["c-home-menu__extreme-events"]}>
-          {mostRecentHeadlines.map(headline => (
-            <EventCard
-              key={headline.id}
-              as="button"
-              headline={headline}
-              className={styles["c-home-menu__headline"]}
-              onClick={() => onSelectHeadline(headline)}
-            />
-          ))}
+          {
+            // @ts-expect-error
+            mostRecentHeadlines.map(headline => (
+              <EventCard
+                key={headline.id}
+                as="button"
+                headline={headline}
+                className={styles["c-home-menu__headline"]}
+                onClick={() => onSelectHeadline(headline)}
+              />
+            ))
+          }
         </div>
         <div className={styles["c-home-menu__extreme-events--controls"]}>
           {pointerHeadlines.length > numHeadlinesToShow && (
