@@ -1,5 +1,5 @@
 import { Resizable } from "re-resizable";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import styles from "./menu-mobile-container.module.scss";
 
 type ResizablePanelProps = {
@@ -10,6 +10,12 @@ type ResizablePanelProps = {
 };
 
 const ResizablePanel = ({ defaultHeight, height, onResize, children }: ResizablePanelProps) => {
+  const [windowHeight, setWindowHeight] = useState<number>(0);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") setWindowHeight(window.innerHeight);
+  }, []);
+
   const resizableProps = {
     className: styles["c-mobile-menu-container__draggable"],
     handleClasses: { top: styles["c-mobile-menu-container__draggable__handle"] },
@@ -34,7 +40,11 @@ const ResizablePanel = ({ defaultHeight, height, onResize, children }: Resizable
     maxHeight: "90vh"
   };
 
-  return <Resizable {...resizableProps}>{children}</Resizable>;
+  return (
+    <Resizable {...resizableProps} snap={{ y: [windowHeight * 0.5, windowHeight * 0.9] }} snapGap={20}>
+      {children}
+    </Resizable>
+  );
 };
 
 export default ResizablePanel;
