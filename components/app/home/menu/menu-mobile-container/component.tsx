@@ -15,28 +15,14 @@ const MenuMobileContainer = ({
   setPanelHeight,
   children
 }: MenuMobileContainerProps) => {
-  const TRANSITION_DURATION = 400;
-
-  const [zIndex, setZIndex] = useState<number>(0);
-
-  useEffect(() => {
-    if (panelHeight > defaultPanelHeight) setZIndex(1001);
-    else setTimeout(() => setZIndex(0), TRANSITION_DURATION);
-  }, [panelHeight]);
+  const zIndex = panelHeight > defaultPanelHeight ? 1001 : 0;
 
   const handleResize = (e: any, direction: any, div: any) => setPanelHeight(div.offsetHeight);
 
   return (
     <div className={styles["c-mobile-menu-container"]} style={{ zIndex, height: panelHeight }}>
       <ResizablePanel defaultHeight={defaultPanelHeight} height={panelHeight} onResize={handleResize}>
-        <div
-          style={{
-            opacity: panelHeight > defaultPanelHeight ? 1 : 0,
-            transition: `all ${TRANSITION_DURATION}ms`
-          }}
-        >
-          {children}
-        </div>
+        {children}
       </ResizablePanel>
     </div>
   );
