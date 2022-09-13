@@ -41,7 +41,6 @@ const DataIndex = ({
     [highlights, onClickDataLayer]
   );
 
-  console.log("DEFAUT MODE", defaultMode);
   return (
     <div className={styles["c-home-menu__scroll-area"]}>
       <MenuOption
@@ -49,7 +48,7 @@ const DataIndex = ({
         title="All Extreme Events"
         description="View all of the latest extreme events"
         buttonText="View All"
-        onClick={() => onClickDataLayer(defaultMode)}
+        onClick={defaultMode ? () => onClickDataLayer(defaultMode) : undefined}
         onClickCta={onClickExtremeEvents}
       />
       {dataLayers.map(dataLayer => (
