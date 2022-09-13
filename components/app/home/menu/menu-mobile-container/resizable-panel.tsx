@@ -10,6 +10,8 @@ type ResizablePanelProps = {
 };
 
 const ResizablePanel = ({ defaultHeight, height, onResize, children }: ResizablePanelProps) => {
+  const navbarHeight = parseInt(styles["navbar-height"], 10);
+
   const resizableProps = {
     className: styles["c-mobile-menu-container__draggable"],
     handleClasses: { top: styles["c-mobile-menu-container__draggable__handle"] },
@@ -31,8 +33,11 @@ const ResizablePanel = ({ defaultHeight, height, onResize, children }: Resizable
     minWidth: "100vw",
     maxWidth: "100vw",
     minHeight: `${defaultHeight}px`,
-    maxHeight: "90vh"
+    maxHeight: `calc(90vh - 60px)`
+    // maxHeight: "90vh"
   };
+
+  console.log(styles["navbar-height"]);
 
   return <Resizable {...resizableProps}>{children}</Resizable>;
 };
