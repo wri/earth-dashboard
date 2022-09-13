@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, UIEvent } from "react";
+import { useState, useRef, useMemo, UIEvent, useEffect } from "react";
 
 import styles from "./event.module.scss";
 import { connect } from "react-redux";
@@ -23,19 +23,13 @@ const SHARE_ICON = "/static/icons/together.svg";
 const ExtremeEvent = ({ headline, currentMode }: DataLayerOverviewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
-
-  const containerHeight = containerRef?.current?.offsetHeight ?? 0;
+  const [containerHeight, setContainerHeight] = useState(0);
 
   useEffect(() => {
-    // Just including this triggers re-render when the hero container height changes, which is enough
-    // to trigger correct positioning of the lead element
-  }, [containerRef]);
+    setContainerHeight(containerRef?.current?.offsetHeight ?? 0);
+  }, [containerRef?.current?.clientHeight, headline?.id]);
 
-  if (!currentMode) return null;
-
-  const {
-    attributes: { how_to_help_content }
-  } = currentMode;
+  const how_to_help_content = currentMode?.attributes?.how_to_help_content;
 
   const onScroll = (event: UIEvent<HTMLElement>) => {
     setScrollPosition(event.currentTarget.scrollTop);
@@ -75,7 +69,7 @@ const ExtremeEvent = ({ headline, currentMode }: DataLayerOverviewProps) => {
           <NormalScale value={80} />
         </ContentPanel>
         <ContentPanel icon={SHARE_ICON} title="How to help">
-          <p>{how_to_help_content.detail}</p>
+          <p>{how_to_help_content?.detail}</p>
           <SharePanel ctaAction={() => {}} />
         </ContentPanel>
         <div className={styles["c-event__view-all-button--container"]}>

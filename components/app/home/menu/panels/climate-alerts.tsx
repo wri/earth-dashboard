@@ -12,10 +12,12 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
 
-const MAX_NUMBER_OF_HEADLINES = 10;
+const HEADLINE_BATCH_SIZE = 6;
+const MAX_NUMBER_OF_HEADLINES_PER_LAYER = 10;
 const SCOLL_THRESHOLD = 180;
 
 type HeadlinesPanerProps = {
+  currentMode?: Mode;
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
   forceInfoPage: boolean;
@@ -25,39 +27,43 @@ type HeadlinesPanerProps = {
 };
 
 const HeadlinesPanel = ({
+  currentMode,
   headlines,
   setHeadlines,
-  setCurrentMode,
   setCurrentHeadline,
   currentHeadline
 }: HeadlinesPanerProps) => {
   const [isFetching, setIsFetching] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(MAX_NUMBER_OF_HEADLINES);
+  const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(HEADLINE_BATCH_SIZE);
+
+  // Filter the headlines so there are no more than 10 of each type
+  const filteredHeadlines = useMemo(() => {
+    const reversed = [...headlines].reverse();
+    const grouped = reversed.reduce((groups, headline) => {
+      const modeId = `${headline.attributes.mode.id}`;
+      // @ts-expect-error
+      groups[modeId] = groups[modeId] ? [headline, ...groups[modeId]] : [headline];
+      return groups;
+    }, {});
+    const flattened = Object.keys(grouped).reduce(
+      // @ts-expect-error
+      (flatArray, key) => [...flatArray, ...grouped[key].slice(0, MAX_NUMBER_OF_HEADLINES_PER_LAYER)],
+      []
+    );
+    // @ts-expect-error
+    flattened.sort((a, b) => {
+      if (a.attributes.climate_alert_date > b.attributes.climate_alert_date) return -1;
+      if (a.attributes.climate_alert_date < b.attributes.climate_alert_date) return 1;
+      return 0;
+    });
+    return flattened;
+  }, [headlines]);
 
   const mostRecentHeadlines = useMemo(() => {
-    const reversed = [...headlines].reverse();
-    return reversed.slice(0, numHeadlinesToShow);
-  }, [headlines, numHeadlinesToShow]);
+    return filteredHeadlines.slice(0, numHeadlinesToShow);
+  }, [filteredHeadlines, numHeadlinesToShow]);
   const articleRef = useRef<HTMLDivElement>(null);
-
-  // Fetch Headlines from the GCA CMS
-  useEffect(() => {
-    setIsFetching(true);
-    const getHeadlines = async () => {
-      try {
-        const resp = await fetchClimateAlerts();
-        // @ts-expect-error
-        setHeadlines(resp.data.data);
-      } catch (err) {
-        console.log("Error fetching modes");
-      } finally {
-        setIsFetching(false);
-      }
-    };
-
-    getHeadlines();
-  }, [setHeadlines]);
 
   const onSelectHeadline = (headline: HeadlineType) => {
     setCurrentHeadline(headline);
@@ -91,7 +97,8 @@ const HeadlinesPanel = ({
         onScroll={onScroll}
       >
         <div className={styles["c-home-menu__extreme-events"]}>
-          {!isFetching ? (
+          {
+            // @ts-expect-error
             mostRecentHeadlines.map(headline => (
               <EventCard
                 key={headline.id}
@@ -101,9 +108,7 @@ const HeadlinesPanel = ({
                 onClick={() => onSelectHeadline(headline)}
               />
             ))
-          ) : (
-            <p>Loading</p>
-          )}
+          }
         </div>
         <div className={styles["c-home-menu__extreme-events--controls"]}>
           {headlines.length > numHeadlinesToShow && (
@@ -111,7 +116,7 @@ const HeadlinesPanel = ({
               text="View More"
               iconName="arrow-right"
               iconSize={15}
-              onClick={() => setNumHeadlinesToShow(numHeadlinesToShow + 10)}
+              onClick={() => setNumHeadlinesToShow(numHeadlinesToShow + HEADLINE_BATCH_SIZE)}
             />
           )}
         </div>
@@ -122,6 +127,7 @@ const HeadlinesPanel = ({
 
 export default connect(
   (state: RootState) => ({
+    currentMode: state.modes.currentMode,
     headlines: state.headlines.headlines,
     currentHeadline: state.headlines.currentHeadline
   }),
