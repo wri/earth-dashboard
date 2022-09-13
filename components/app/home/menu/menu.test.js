@@ -44,12 +44,8 @@ test("<Menu /> renders correctly as mobile", async () => {
       style="position: relative; user-select: auto; width: 100vw; max-width: 100vw; max-height: 635.2px; min-width: 100vw; min-height: undefinedpx; box-sizing: border-box; flex-shrink: 0;"
     >
       <div
-        style="opacity: 0; transition: all 400ms;"
-      >
-        <div
-          class="c-home-menu-container c-home-menu-container--closing"
-        />
-      </div>
+        class="c-home-menu-container c-home-menu-container--closing"
+      />
       <div>
         <div
           class="c-mobile-menu-container__draggable__handle"
