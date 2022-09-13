@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setIsMobile } from "slices/common";
 import { RootState } from "store/types";
 import { setModes } from "slices/modes";
-import { setPointerHeadlines } from "slices/headlines";
+import { setHeadlines } from "slices/headlines";
 
 export default connect(
   (state: RootState) => ({
@@ -11,13 +11,13 @@ export default connect(
     layersLabelArr: state.modes.layersLabelArr,
     shouldFadeControls: state.mapControls.isDatePickerOpen || state.mapControls.isSettingsOpen,
     currentHeadline: state.headlines.currentHeadline,
-    pointerHeadlines: state.headlines.pointerHeadlines,
+    headlines: state.headlines.headlines,
     currentMode: state.modes.currentMode,
     defaultMode: state.modes.defaultMode
   }),
   {
     setModes,
     setIsMobile,
-    setPointerHeadlines
+    setHeadlines
   }
 )(MainContainerComponent);

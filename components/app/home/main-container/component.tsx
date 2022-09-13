@@ -41,11 +41,11 @@ type MainContainerProps = {
   setModes: ActionCreatorWithPayload<Mode[], string>;
   layersLabelArr: string[];
   dateOfDataShown: Date;
-  pointerHeadlines: Headline[];
+  headlines: Headline[];
   currentHeadline?: Headline;
   currentHeadlineId?: number;
   shouldFadeControls: boolean;
-  setPointerHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  setHeadlines: ActionCreatorWithPayload<Headline[], string>;
   currentMode?: Mode;
   defaultMode?: Mode;
 };
@@ -56,10 +56,10 @@ const MainContainer = ({
   setModes,
   layersLabelArr,
   dateOfDataShown,
-  pointerHeadlines,
+  headlines,
   shouldFadeControls,
   currentHeadline,
-  setPointerHeadlines,
+  setHeadlines,
   defaultMode,
   currentMode
 }: MainContainerProps) => {
@@ -102,8 +102,8 @@ const MainContainer = ({
     extremeEventLocations
   } = useIframeBridge({
     allowClickEvents: !currentHeadline,
-    pointerHeadlines,
-    setPointerHeadlines,
+    headlines,
+    setHeadlines,
     currentMode,
     defaultMode
   });

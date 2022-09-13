@@ -18,7 +18,7 @@ const SCOLL_THRESHOLD = 180;
 
 type HeadlinesPanerProps = {
   currentMode?: Mode;
-  pointerHeadlines: HeadlineType[];
+  headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
   forceInfoPage: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
@@ -28,7 +28,7 @@ type HeadlinesPanerProps = {
 
 const HeadlinesPanel = ({
   currentMode,
-  pointerHeadlines,
+  headlines,
   setHeadlines,
   setCurrentHeadline,
   currentHeadline
@@ -39,7 +39,7 @@ const HeadlinesPanel = ({
 
   // Filter the headlines so there are no more than 10 of each type
   const filteredHeadlines = useMemo(() => {
-    const reversed = [...pointerHeadlines].reverse();
+    const reversed = [...headlines].reverse();
     const grouped = reversed.reduce((groups, headline) => {
       const modeId = `${headline.attributes.mode.id}`;
       // @ts-expect-error
@@ -54,7 +54,7 @@ const HeadlinesPanel = ({
     // @ts-expect-error
     flattened.sort((a, b) => a.attributes.date > b.attributes.date);
     return flattened;
-  }, [pointerHeadlines]);
+  }, [headlines]);
 
   const mostRecentHeadlines = useMemo(() => {
     return filteredHeadlines.slice(0, numHeadlinesToShow);
@@ -107,7 +107,7 @@ const HeadlinesPanel = ({
           }
         </div>
         <div className={styles["c-home-menu__extreme-events--controls"]}>
-          {pointerHeadlines.length > numHeadlinesToShow && (
+          {headlines.length > numHeadlinesToShow && (
             <CtaButton
               text="View More"
               iconName="arrow-right"
@@ -124,7 +124,7 @@ const HeadlinesPanel = ({
 export default connect(
   (state: RootState) => ({
     currentMode: state.modes.currentMode,
-    pointerHeadlines: state.headlines.pointerHeadlines,
+    headlines: state.headlines.headlines,
     currentHeadline: state.headlines.currentHeadline
   }),
   { setHeadlines, setCurrentMode, setCurrentHeadline }

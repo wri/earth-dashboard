@@ -39,7 +39,7 @@ const Menu = forwardRef(
       pageTypeId,
       setPageTypeId,
       defaultMobileMenuHeight,
-      pointerHeadlines
+      headlines
     },
     ref
   ) => {
@@ -58,7 +58,7 @@ const Menu = forwardRef(
     const [touchEnd, setTouchEnd] = useState(null);
 
     const splitHeadlines = () => {
-      const reversed = [...pointerHeadlines].reverse();
+      const reversed = [...headlines].reverse();
       return reversed.reduce((acc, val, i) => {
         let idx = Math.floor(i / MAX_NUMBER_OF_HEADLINES);
         let page = acc[idx] || (acc[idx] = []);
@@ -145,9 +145,6 @@ const Menu = forwardRef(
     };
 
     useEffect(() => {
-      if (currentHeadline) {
-        setCurrentMode(currentHeadline.attributes.mode);
-      }
       checkCurrentHeadline();
     }, [currentHeadline, setCurrentMode]);
 
