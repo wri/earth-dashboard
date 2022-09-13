@@ -13,7 +13,7 @@ import Image from "next/image";
 import CtaButton from "components/ui/cta-button";
 
 type DataLayerOverviewProps = {
-  currentMode: Mode;
+  currentMode?: Mode;
   headline: HeadlineType;
 };
 
