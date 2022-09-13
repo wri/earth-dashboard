@@ -11,6 +11,7 @@ import NormalScale from "components/app/home/normal-scale/component";
 import moment from "moment";
 import Image from "next/image";
 import CtaButton from "components/ui/cta-button";
+import { setIsShareOpen } from "slices/common";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 type DataLayerOverviewProps = {
@@ -20,6 +21,7 @@ type DataLayerOverviewProps = {
   setCurrentScale: ActionCreatorWithPayload<number, string>;
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
   setDateOfDataShown: ActionCreatorWithPayload<string, string>;
+  setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
 };
 
 const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
@@ -31,7 +33,8 @@ const ExtremeEvent = ({
   setCurrentLocation,
   setCurrentScale,
   setCurrentScaleBy,
-  setDateOfDataShown
+  setDateOfDataShown,
+  setIsShareOpen
 }: DataLayerOverviewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -94,7 +97,7 @@ const ExtremeEvent = ({
         </ContentPanel>
         <ContentPanel icon={SHARE_ICON} title="How to help">
           <p>{how_to_help_content?.detail}</p>
-          <SharePanel ctaAction={() => {}} />
+          <SharePanel ctaAction={() => setIsShareOpen(true)} />
         </ContentPanel>
         <div className={styles["c-event__view-all-button--container"]}>
           <CtaButton text={"View All Extreme Events"} onClick={() => {}} iconName="arrow-right" iconSize={15} />
@@ -108,5 +111,5 @@ export default connect(
   (state: RootState) => ({
     currentMode: state[modesSliceName].currentMode
   }),
-  {}
+  { setIsShareOpen }
 )(ExtremeEvent);
