@@ -56,6 +56,7 @@ const HeaderOptions = ({
           aria-label="Share"
           className={classnames(styles["c-header-options__share"], styles["c-header-options__icon-button"])}
           onClick={router.pathname === "/" ? () => setIsShareOpen(true) : () => console.log("search")}
+          iconStyle={{ marginRight: router.pathname === "/" ? "2px" : "0" }}
         />
       )}
 

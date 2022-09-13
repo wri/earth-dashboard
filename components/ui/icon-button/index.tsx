@@ -9,6 +9,7 @@ type IconButtonProps = {
   disabled?: boolean;
   small?: boolean;
   medium?: boolean;
+  iconStyle?: Object;
   iconClassName?: string;
 } & Pick<IconProps, "name" | "size">;
 
@@ -21,6 +22,7 @@ const IconButton = ({
   small,
   medium,
   disabled,
+  iconStyle,
   iconClassName,
   ...rest
 }: IconButtonProps) => {
@@ -35,7 +37,7 @@ const IconButton = ({
       disabled={disabled}
       {...rest}
     >
-      <Icon name={name} size={size} className={iconClassName} type="decorative" />
+      <Icon name={name} size={size} className={iconClassName} style={iconStyle} type="decorative" />
     </button>
   );
 };
