@@ -6,6 +6,8 @@ export * from "./types";
 export const NAME = "modes";
 
 const initialState: ModesState = {
+  defaultModeId: undefined,
+  defaultMode: undefined,
   currentModeId: undefined,
   currentMode: undefined,
   loadDefaultModeValues: true,
@@ -31,7 +33,14 @@ const modesSlice = createSlice({
     setModes: (state, { payload }: PayloadAction<Mode[]>) => {
       state.allModes = payload;
 
-      if (state.currentModeId) {
+      state.defaultMode = payload.find(p => p.attributes.title === "Default") ?? payload[0];
+      state.defaultModeId = state.defaultMode.id;
+
+      if (!state.currentMode && !state.currentModeId) {
+        state.loadDefaultModeValues = true;
+        state.currentMode = state.defaultMode;
+        state.currentModeId = state.defaultModeId;
+      } else if (state.currentModeId) {
         state.loadDefaultModeValues = false;
         const newMode = payload.find(mode => mode.id === state.currentModeId);
 

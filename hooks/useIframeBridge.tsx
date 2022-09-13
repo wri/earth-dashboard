@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useEffect, useMemo } from "react";
+import { useRef, useCallback, useState, useEffect, useMemo, SetStateAction } from "react";
 import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
@@ -18,23 +18,31 @@ import { GeoProjection } from "d3-geo";
 import { Headline } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { Mode } from "slices/modes";
 
 type GeoMarkerOverlayDetails = GeoMarkerOverlayLocation & { headline: Headline };
 
 type UseIframeBridgeConfig = {
   callback?: () => void;
   allowClickEvents: boolean;
-  pointerHeadlines: Headline[];
-  setPointerHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  headlines: Headline[];
+  currentMode?: Mode;
+  defaultMode?: Mode;
+  setHeadlines: ActionCreatorWithPayload<Headline[], string>;
 };
+
+type Marker = { id: number; label: string };
 
 const useIframeBridge = ({
   callback,
   allowClickEvents,
-  pointerHeadlines,
-  setPointerHeadlines
+  headlines,
+  currentMode,
+  defaultMode,
+  setHeadlines
 }: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
+  const [markers, setMarkers] = useState<Marker[]>([]);
   const [error, setError] = useState<Error>();
   const [layers, setLayers] = useState<EarthLayer[]>([]);
   const [currentProjection, setCurrentProjection] = useState<GeoProjection>();
@@ -51,9 +59,9 @@ const useIframeBridge = ({
   const MAX_NUMBER_OF_HEADLINES = 25;
 
   const mostRecentHeadlines = useMemo(() => {
-    const reversed = [...pointerHeadlines].reverse();
+    const reversed = [...headlines].reverse();
     return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
-  }, [pointerHeadlines]);
+  }, [headlines]);
 
   // References
   const iframeRef = useRef<any>();
@@ -65,24 +73,36 @@ const useIframeBridge = ({
   useEffect(() => {
     const getHeadlines = async () => {
       try {
-        const resp = await fetchClimateAlerts();
+        const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
+        const resp = await fetchClimateAlerts({ mode_id });
         // @ts-expect-error
-        setPointerHeadlines(resp.data.data);
+        setHeadlines(resp.data.data);
       } catch (err) {
         console.log("Error fetching modes");
       }
     };
 
     getHeadlines();
-  }, [setPointerHeadlines]);
+  }, [setHeadlines, currentMode]);
 
   // Set the extreme event points
   useEffect(() => {
     if (earthServer.current) {
+      const markersToRemove = markers.filter(
+        marker => !mostRecentHeadlines.find(headline => headline.id === marker.id)
+      );
+      markersToRemove.forEach(marker => earthServer.current.annotate(marker.label, null));
+
+      const newMarkers: Marker[] = [];
       mostRecentHeadlines.forEach(headline => {
-        const marker = getIndicatorGeoJson([headline.attributes.location.lng, headline.attributes.location.lat]);
-        earthServer.current.annotate(`indicator-${headline.id}`, marker);
+        const annotationId = `indicator-${headline.id}`;
+        newMarkers.push({ id: headline.id, label: annotationId });
+        if (!markers.find(marker => marker.id === headline.id)) {
+          const marker = getIndicatorGeoJson([headline.attributes.location.lng, headline.attributes.location.lat]);
+          earthServer.current.annotate(annotationId, marker);
+        }
       });
+      setMarkers(newMarkers);
     }
   }, [mostRecentHeadlines, earthServer.current]);
 
