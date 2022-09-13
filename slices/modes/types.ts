@@ -50,6 +50,8 @@ export type Mode = {
 };
 
 export type ModesState = {
+  defaultModeId?: number;
+  defaultMode?: Mode;
   currentModeId?: number;
   currentMode?: Mode;
   loadDefaultModeValues: boolean;

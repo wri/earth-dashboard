@@ -12,7 +12,8 @@ export default connect(
     shouldFadeControls: state.mapControls.isDatePickerOpen || state.mapControls.isSettingsOpen,
     currentHeadline: state.headlines.currentHeadline,
     pointerHeadlines: state.headlines.pointerHeadlines,
-    currentMode: state.modes.currentMode
+    currentMode: state.modes.currentMode,
+    defaultMode: state.modes.defaultMode
   }),
   {
     setModes,

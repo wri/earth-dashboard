@@ -47,6 +47,7 @@ type MainContainerProps = {
   shouldFadeControls: boolean;
   setPointerHeadlines: ActionCreatorWithPayload<Headline[], string>;
   currentMode?: Mode;
+  defaultMode?: Mode;
 };
 
 const MainContainer = ({
@@ -59,6 +60,7 @@ const MainContainer = ({
   shouldFadeControls,
   currentHeadline,
   setPointerHeadlines,
+  defaultMode,
   currentMode
 }: MainContainerProps) => {
   const [pageTypeId, setPageTypeId] = useState<string>(INFO_PAGE_ID);
@@ -102,7 +104,8 @@ const MainContainer = ({
     allowClickEvents: !currentHeadline,
     pointerHeadlines,
     setPointerHeadlines,
-    currentMode
+    currentMode,
+    defaultMode
   });
 
   const overlayLayer = useMemo(() => {

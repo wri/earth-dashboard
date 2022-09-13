@@ -23,17 +23,25 @@ const mapHighlightToOption = (
 
 type DataIndexProps = {
   highlights: Mode[] | undefined;
+  defaultMode: Mode | undefined;
   onClickExtremeEvents: () => void;
   onClickDataLayer: ActionCreatorWithPayload<Mode, string>;
   onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>;
 };
 
-const DataIndex = ({ highlights, onClickExtremeEvents, onClickDataLayer, onViewDataLayerSummary }: DataIndexProps) => {
+const DataIndex = ({
+  highlights,
+  defaultMode,
+  onClickExtremeEvents,
+  onClickDataLayer,
+  onViewDataLayerSummary
+}: DataIndexProps) => {
   const dataLayers = useMemo(
     () => highlights?.map(highlight => mapHighlightToOption(highlight, onClickDataLayer, onViewDataLayerSummary)) || [],
     [highlights, onClickDataLayer]
   );
 
+  console.log("DEFAUT MODE", defaultMode);
   return (
     <div className={styles["c-home-menu__scroll-area"]}>
       <MenuOption
@@ -41,6 +49,7 @@ const DataIndex = ({ highlights, onClickExtremeEvents, onClickDataLayer, onViewD
         title="All Extreme Events"
         description="View all of the latest extreme events"
         buttonText="View All"
+        onClick={() => onClickDataLayer(defaultMode)}
         onClickCta={onClickExtremeEvents}
       />
       {dataLayers.map(dataLayer => (
@@ -52,6 +61,7 @@ const DataIndex = ({ highlights, onClickExtremeEvents, onClickDataLayer, onViewD
 
 export default connect(
   (state: RootState) => ({
+    defaultMode: state[modesSliceName].defaultMode,
     highlights: state[modesSliceName].allModes?.filter(mode => mode.attributes.visibility.data_highlights)
   }),
   {}

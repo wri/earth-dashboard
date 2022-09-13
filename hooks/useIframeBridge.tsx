@@ -27,6 +27,7 @@ type UseIframeBridgeConfig = {
   allowClickEvents: boolean;
   pointerHeadlines: Headline[];
   currentMode?: Mode;
+  defaultMode?: Mode;
   setPointerHeadlines: ActionCreatorWithPayload<Headline[], string>;
 };
 
@@ -37,6 +38,7 @@ const useIframeBridge = ({
   allowClickEvents,
   pointerHeadlines,
   currentMode,
+  defaultMode,
   setPointerHeadlines
 }: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
@@ -71,7 +73,8 @@ const useIframeBridge = ({
   useEffect(() => {
     const getHeadlines = async () => {
       try {
-        const resp = await fetchClimateAlerts({ mode_id: currentMode?.id });
+        const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
+        const resp = await fetchClimateAlerts({ mode_id });
         // @ts-expect-error
         setPointerHeadlines(resp.data.data);
       } catch (err) {

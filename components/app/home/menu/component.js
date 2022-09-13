@@ -27,6 +27,7 @@ const Menu = forwardRef(
     isMobile,
     onClose,
     isClosing,
+    defaultMode,
     currentMode,
     setCurrentMode,
     currentHeadline,
@@ -37,7 +38,7 @@ const Menu = forwardRef(
     pageTypeId,
     setPageTypeId,
     defaultMobileMenuHeight,
-    headlines
+    pointerHeadlines
   }) => {
     const pageTitle = useMemo(() => {
       if (pageTypeId == INFO_PAGE_ID) return INFO_PAGE_HEADLINE;
@@ -54,7 +55,7 @@ const Menu = forwardRef(
     const [touchEnd, setTouchEnd] = useState(null);
 
     const splitHeadlines = () => {
-      const reversed = [...headlines].reverse();
+      const reversed = [...pointerHeadlines].reverse();
       return reversed.reduce((acc, val, i) => {
         let idx = Math.floor(i / MAX_NUMBER_OF_HEADLINES);
         let page = acc[idx] || (acc[idx] = []);
@@ -177,7 +178,11 @@ const Menu = forwardRef(
         {!currentHeadline && pageTypeId == EXTREME_EVENTS_PAGE_ID && (
           <MenuLayout
             title={pageTitle}
-            onBack={currentMode ? navigateTo(DATA_LAYER_PAGE_ID) : navigateTo(INFO_PAGE_ID)}
+            onBack={
+              currentMode && currentMode.id !== defaultMode.id
+                ? navigateTo(DATA_LAYER_PAGE_ID)
+                : navigateTo(INFO_PAGE_ID)
+            }
             onClose={onClose}
           >
             <ClimateAlerts />

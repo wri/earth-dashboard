@@ -18,7 +18,7 @@ const SCOLL_THRESHOLD = 180;
 
 type HeadlinesPanerProps = {
   currentMode?: Mode;
-  headlines: HeadlineType[];
+  pointerHeadlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
   forceInfoPage: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
@@ -28,7 +28,7 @@ type HeadlinesPanerProps = {
 
 const HeadlinesPanel = ({
   currentMode,
-  headlines,
+  pointerHeadlines,
   setHeadlines,
   setCurrentHeadline,
   currentHeadline
@@ -39,42 +39,27 @@ const HeadlinesPanel = ({
 
   // Filter the headlines so there are no more than 10 of each type
   const filteredHeadlines = useMemo(() => {
-    const reversed = [...headlines].reverse();
+    const reversed = [...pointerHeadlines].reverse();
     const grouped = reversed.reduce((groups, headline) => {
       const modeId = `${headline.attributes.mode.id}`;
       // @ts-expect-error
       groups[modeId] = groups[modeId] ? [headline, ...groups[modeId]] : [headline];
       return groups;
     }, {});
-    // @ts-expect-error
-    const flattened = Object.keys(grouped).reduce((flatArray, key) => [...flatArray, ...grouped[key].slice(0, 10)], []);
+    const flattened = Object.keys(grouped).reduce(
+      // @ts-expect-error
+      (flatArray, key) => [...flatArray, ...grouped[key].slice(0, MAX_NUMBER_OF_HEADLINES_PER_LAYER)],
+      []
+    );
     // @ts-expect-error
     flattened.sort((a, b) => a.attributes.date > b.attributes.date);
     return flattened;
-  }, [headlines]);
+  }, [pointerHeadlines]);
 
   const mostRecentHeadlines = useMemo(() => {
     return filteredHeadlines.slice(0, numHeadlinesToShow);
   }, [filteredHeadlines, numHeadlinesToShow]);
   const articleRef = useRef<HTMLDivElement>(null);
-
-  // Fetch Headlines from the GCA CMS
-  useEffect(() => {
-    setIsFetching(true);
-    const getHeadlines = async () => {
-      try {
-        const resp = await fetchClimateAlerts({ mode_id: currentMode?.id });
-        // @ts-expect-error
-        setHeadlines(resp.data.data);
-      } catch (err) {
-        console.log("Error fetching modes");
-      } finally {
-        setIsFetching(false);
-      }
-    };
-
-    getHeadlines();
-  }, [setHeadlines]);
 
   const onSelectHeadline = (headline: HeadlineType) => {
     setCurrentHeadline(headline);
@@ -108,22 +93,18 @@ const HeadlinesPanel = ({
         onScroll={onScroll}
       >
         <div className={styles["c-home-menu__extreme-events"]}>
-          {!isFetching ? (
-            mostRecentHeadlines.map(headline => (
-              <EventCard
-                key={headline.id}
-                as="button"
-                headline={headline}
-                className={styles["c-home-menu__headline"]}
-                onClick={() => onSelectHeadline(headline)}
-              />
-            ))
-          ) : (
-            <p>Loading</p>
-          )}
+          {mostRecentHeadlines.map(headline => (
+            <EventCard
+              key={headline.id}
+              as="button"
+              headline={headline}
+              className={styles["c-home-menu__headline"]}
+              onClick={() => onSelectHeadline(headline)}
+            />
+          ))}
         </div>
         <div className={styles["c-home-menu__extreme-events--controls"]}>
-          {headlines.length > numHeadlinesToShow && (
+          {pointerHeadlines.length > numHeadlinesToShow && (
             <CtaButton
               text="View More"
               iconName="arrow-right"
@@ -140,7 +121,7 @@ const HeadlinesPanel = ({
 export default connect(
   (state: RootState) => ({
     currentMode: state.modes.currentMode,
-    headlines: state.headlines.headlines,
+    pointerHeadlines: state.headlines.pointerHeadlines,
     currentHeadline: state.headlines.currentHeadline
   }),
   { setHeadlines, setCurrentMode, setCurrentHeadline }
