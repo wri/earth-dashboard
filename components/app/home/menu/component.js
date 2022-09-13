@@ -175,7 +175,11 @@ const Menu = forwardRef(
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == EXTREME_EVENTS_PAGE_ID && (
-          <MenuLayout title={pageTitle} onBack={navigateTo(INFO_PAGE_ID)} onClose={onClose}>
+          <MenuLayout
+            title={pageTitle}
+            onBack={currentMode ? navigateTo(DATA_LAYER_PAGE_ID) : navigateTo(INFO_PAGE_ID)}
+            onClose={onClose}
+          >
             <ClimateAlerts />
           </MenuLayout>
         )}
