@@ -12,7 +12,8 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
 
-const MAX_NUMBER_OF_HEADLINES = 10;
+const HEADLINE_BATCH_SIZE = 6;
+const MAX_NUMBER_OF_HEADLINES_PER_LAYER = 10;
 const SCOLL_THRESHOLD = 180;
 
 type HeadlinesPanerProps = {
@@ -34,12 +35,27 @@ const HeadlinesPanel = ({
 }: HeadlinesPanerProps) => {
   const [isFetching, setIsFetching] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(MAX_NUMBER_OF_HEADLINES);
+  const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(HEADLINE_BATCH_SIZE);
+
+  // Filter the headlines so there are no more than 10 of each type
+  const filteredHeadlines = useMemo(() => {
+    const reversed = [...headlines].reverse();
+    const grouped = reversed.reduce((groups, headline) => {
+      const modeId = `${headline.attributes.mode.id}`;
+      // @ts-expect-error
+      groups[modeId] = groups[modeId] ? [headline, ...groups[modeId]] : [headline];
+      return groups;
+    }, {});
+    // @ts-expect-error
+    const flattened = Object.keys(grouped).reduce((flatArray, key) => [...flatArray, ...grouped[key].slice(0, 10)], []);
+    // @ts-expect-error
+    flattened.sort((a, b) => a.attributes.date > b.attributes.date);
+    return flattened;
+  }, [headlines]);
 
   const mostRecentHeadlines = useMemo(() => {
-    const reversed = [...headlines].reverse();
-    return reversed.slice(0, numHeadlinesToShow);
-  }, [headlines, numHeadlinesToShow]);
+    return filteredHeadlines.slice(0, numHeadlinesToShow);
+  }, [filteredHeadlines, numHeadlinesToShow]);
   const articleRef = useRef<HTMLDivElement>(null);
 
   // Fetch Headlines from the GCA CMS
@@ -112,7 +128,7 @@ const HeadlinesPanel = ({
               text="View More"
               iconName="arrow-right"
               iconSize={15}
-              onClick={() => setNumHeadlinesToShow(numHeadlinesToShow + 10)}
+              onClick={() => setNumHeadlinesToShow(numHeadlinesToShow + HEADLINE_BATCH_SIZE)}
             />
           )}
         </div>
