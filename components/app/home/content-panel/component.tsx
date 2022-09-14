@@ -56,7 +56,6 @@ const ContentPanel = ({
               onClick={ctaAction}
               href={ctaLink}
               iconName="arrow-right"
-              iconSize={15}
               text={buttonText}
             />
           </div>
