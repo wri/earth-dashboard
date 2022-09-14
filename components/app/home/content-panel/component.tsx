@@ -32,7 +32,11 @@ const ContentPanel = ({
 }: MenuOptionProps) => {
   return (
     <div
-      className={classNames(styles["c-content-panel__underlay"], className)}
+      className={classNames(
+        styles["c-content-panel__underlay"],
+        canFocus && styles["c-content-panel__underlay--can-focus"],
+        className
+      )}
       data-testid="content-panel"
       onClick={selectAction}
     >
