@@ -95,6 +95,11 @@ const Menu = forwardRef(
       setCurrentHeadlineId(undefined);
     };
 
+    const viewAllExtremeEvents = () => {
+      clearHeadline();
+      setPageTypeId(EXTREME_EVENTS_PAGE_ID);
+    };
+
     const navigateHeadline = action => {
       const { index: headlineIndex, headlines } = getCurrentHeadlineIndex();
       let headline = null;
@@ -137,7 +142,7 @@ const Menu = forwardRef(
       >
         {currentHeadline && (
           <MenuLayout title={`Back to ${pageTitle}`} onBack={clearHeadline} onClose={onClose}>
-            <Event headline={currentHeadline} />
+            <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
             <HeadlineFooter
               footerHeading={footerHeading}
               disableBackButton={disableBackButton}
