@@ -456,6 +456,7 @@
       color: $white;
       text-transform: uppercase;
       margin-bottom: 8px;
+      letter-spacing: 0.2px;
     }
 
     #{$this}__desc {
@@ -476,7 +477,8 @@
       background: $white;
       color: $colour-galaxy;
       font-weight: 600;
-      @include font-size(14px, 18px)
+      @include font-size(14px, 18px);
+      letter-spacing: 0.4px;
     }
   }
 }
