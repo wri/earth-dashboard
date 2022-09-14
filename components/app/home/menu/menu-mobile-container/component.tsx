@@ -15,7 +15,7 @@ const MenuMobileContainer = ({
   setPanelHeight,
   children
 }: MenuMobileContainerProps) => {
-  const zIndex = panelHeight > defaultPanelHeight ? 1001 : 0;
+  const zIndex = panelHeight > defaultPanelHeight ? 1000 : 0;
 
   const handleResize = (e: any, direction: any, div: any) => setPanelHeight(div.offsetHeight);
 
