@@ -40,6 +40,7 @@ const ContentPanel = ({
     >
       <div
         tabIndex={canFocus ? 0 : undefined}
+        data-role="content"
         className={classNames(
           styles["c-content-panel"],
           isSelected ? styles["c-content-panel--selected"] : undefined,
@@ -47,8 +48,14 @@ const ContentPanel = ({
         )}
       >
         <div className={styles["c-content-panel__header-row"]}>
-          {icon && <img className={styles["c-content-panel__image"]} src={icon} alt="" role="presentation" />}
-          <h3 className={styles["c-content-panel__title"]}>{title}</h3>
+          {icon && (
+            <div className={styles["c-content-panel__icon-container"]}>
+              <img className={styles["c-content-panel__image"]} src={icon} alt="" role="presentation" />
+            </div>
+          )}
+          <div className={styles["c-content-panel__title-container"]}>
+            <h3 className={styles["c-content-panel__title"]}>{title}</h3>
+          </div>
         </div>
         {children}
         {(ctaAction || ctaLink) && (

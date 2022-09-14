@@ -32,7 +32,7 @@ export const SMALL_MOBILE_MENU_HEIGHT = 92;
 export const INFO_PAGE_ID = "InfoPage";
 export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
 export const DATA_LAYER_PAGE_ID = "DataLayerPage";
-export const INFO_PAGE_HEADLINE = "I'd like to explore";
+export const INFO_PAGE_HEADLINE = "I'd like to explore...";
 export const EXTREME_EVENTS_PAGE_HEADLINE = "Extreme events";
 
 type MainContainerProps = {
