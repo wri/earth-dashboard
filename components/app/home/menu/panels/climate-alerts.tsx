@@ -13,7 +13,6 @@ import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
 
 const HEADLINE_BATCH_SIZE = 6;
-const MAX_NUMBER_OF_HEADLINES_PER_LAYER = 10;
 const SCOLL_THRESHOLD = 180;
 
 type HeadlinesPanerProps = {
@@ -33,36 +32,13 @@ const HeadlinesPanel = ({
   setCurrentHeadline,
   currentHeadline
 }: HeadlinesPanerProps) => {
-  const [isFetching, setIsFetching] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(HEADLINE_BATCH_SIZE);
 
-  // Filter the headlines so there are no more than 10 of each type
-  const filteredHeadlines = useMemo(() => {
-    const reversed = [...headlines].reverse();
-    const grouped = reversed.reduce((groups, headline) => {
-      const modeId = `${headline.attributes.mode.id}`;
-      // @ts-expect-error
-      groups[modeId] = groups[modeId] ? [headline, ...groups[modeId]] : [headline];
-      return groups;
-    }, {});
-    const flattened = Object.keys(grouped).reduce(
-      // @ts-expect-error
-      (flatArray, key) => [...flatArray, ...grouped[key].slice(0, MAX_NUMBER_OF_HEADLINES_PER_LAYER)],
-      []
-    );
-    // @ts-expect-error
-    flattened.sort((a, b) => {
-      if (a.attributes.climate_alert_date > b.attributes.climate_alert_date) return -1;
-      if (a.attributes.climate_alert_date < b.attributes.climate_alert_date) return 1;
-      return 0;
-    });
-    return flattened;
-  }, [headlines]);
-
   const mostRecentHeadlines = useMemo(() => {
-    return filteredHeadlines.slice(0, numHeadlinesToShow);
-  }, [filteredHeadlines, numHeadlinesToShow]);
+    return headlines.slice(0, numHeadlinesToShow);
+  }, [headlines, numHeadlinesToShow]);
+
   const articleRef = useRef<HTMLDivElement>(null);
 
   const onSelectHeadline = (headline: HeadlineType) => {
@@ -97,18 +73,15 @@ const HeadlinesPanel = ({
         onScroll={onScroll}
       >
         <div className={styles["c-home-menu__extreme-events"]}>
-          {
-            // @ts-expect-error
-            mostRecentHeadlines.map(headline => (
-              <EventCard
-                key={headline.id}
-                as="button"
-                headline={headline}
-                className={styles["c-home-menu__headline"]}
-                onClick={() => onSelectHeadline(headline)}
-              />
-            ))
-          }
+          {mostRecentHeadlines.map(headline => (
+            <EventCard
+              key={headline.id}
+              as="button"
+              headline={headline}
+              className={styles["c-home-menu__headline"]}
+              onClick={() => onSelectHeadline(headline)}
+            />
+          ))}
         </div>
         <div className={styles["c-home-menu__extreme-events--controls"]}>
           {headlines.length > numHeadlinesToShow && (
