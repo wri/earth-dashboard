@@ -267,6 +267,7 @@ const MainContainer = ({
       {overlayLayer && !isMobile && (
         <div className={classnames(styles["right"])}>
           <Scale
+            hidden={currentMode?.id === defaultMode?.id}
             min={scaleData?.min}
             max={scaleData?.max}
             scaleUnit={scaleData?.unitSymbol}
@@ -281,13 +282,13 @@ const MainContainer = ({
               <IconButton
                 name="zoom-in"
                 onClick={() => {
-                  earthServer?.current?.reorient({ scaleBy: 1.05 });
+                  earthServer?.current?.reorient({ scaleBy: 1.15 });
                 }}
               />
               <IconButton
                 name="zoom-out"
                 onClick={() => {
-                  earthServer?.current?.reorient({ scaleBy: 0.95 });
+                  earthServer?.current?.reorient({ scaleBy: 0.85 });
                 }}
               />
             </div>
@@ -380,16 +381,6 @@ const MainContainer = ({
               </div>
               <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
                 <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</span>
-                {layersLabelArr.length > 0 && (
-                  <span data-testid="labels-arr">
-                    {layersLabelArr.join(", ")}
-                    {isMobile && (
-                      <>
-                        <br /> {formatDate(dateOfDataShown)}
-                      </>
-                    )}
-                  </span>
-                )}
               </div>
             </button>
           </>

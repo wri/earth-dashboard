@@ -10,6 +10,7 @@
   padding: 12px 16px;
   transition: background-color 0.3s ease-in-out;
   z-index: $z-index-header;
+  background-color: rgba(0, 40, 65, 0.4);  
 
   &.sticky {
     position: sticky;
@@ -76,6 +77,6 @@
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
-    padding: 28px 60px;
+    padding: 22px 60px;
   }
 }
