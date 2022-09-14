@@ -9,6 +9,7 @@ export type MenuOptionProps = {
   title: string;
   icon?: string;
   className?: string;
+  isSelected?: boolean;
   canFocus?: boolean;
   ctaControl?: React.ElementType;
   buttonText?: string;
@@ -22,6 +23,7 @@ const ContentPanel = ({
   title,
   icon,
   className,
+  isSelected,
   canFocus,
   ctaControl,
   buttonText,
@@ -38,7 +40,11 @@ const ContentPanel = ({
     >
       <div
         tabIndex={canFocus ? 0 : undefined}
-        className={classNames(styles["c-content-panel"], canFocus ? styles["c-content-panel__focusable"] : undefined)}
+        className={classNames(
+          styles["c-content-panel"],
+          isSelected ? styles["c-content-panel--selected"] : undefined,
+          canFocus ? styles["c-content-panel__focusable"] : undefined
+        )}
       >
         <div className={styles["c-content-panel__header-row"]}>
           {icon && <img className={styles["c-content-panel__image"]} src={icon} alt="" role="presentation" />}

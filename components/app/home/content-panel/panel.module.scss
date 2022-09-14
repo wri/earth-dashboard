@@ -83,6 +83,7 @@
     cursor: pointer;
   }
 
+  
   &__focusable {
     cursor: pointer;
     .c-content-panel__cta {
@@ -92,12 +93,12 @@
       }
     }
 
-    &:focus, &:hover {
+    &:focus, &:hover, &.c-content-panel--selected {
       border: 4px solid $colour-flame;
       outline: none;
     }
   
-    &:focus {
+    &:focus, &.c-content-panel--selected {
       .c-content-panel__cta {
         display: flex;
       }
