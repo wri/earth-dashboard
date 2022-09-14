@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import styles from "../menu.module.scss";
+import dataLayerStyles from "./data-layer.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
 import { NAME as modesSliceName, Mode } from "slices/modes";
@@ -77,10 +78,10 @@ const DataLayerOverview = ({
   return (
     <div className={styles["c-home-menu__scroll-area"]}>
       <ContentPanel icon={icon} title={title}>
-        <p>{description}</p>
+        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{description}</p>
       </ContentPanel>
       <ContentPanel icon={WHAT_IS_HAPPENING_ICON} title="What is happening">
-        <p>{what_is_happening_content.detail}</p>
+        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{what_is_happening_content.detail}</p>
         <NormalScale value={80} />
       </ContentPanel>
       <ContentPanel
@@ -89,6 +90,7 @@ const DataLayerOverview = ({
         buttonText="View All"
         ctaAction={onClickExtremeEvents}
       >
+        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>View the latest fire extreme events.</p>
         <div className={styles["c-home-menu__events-list"]}>
           {!isFetching ? (
             mostRecentHeadlines.map(headline => (
@@ -106,14 +108,16 @@ const DataLayerOverview = ({
         </div>
       </ContentPanel>
       <ContentPanel icon={WHAT_WILL_HAPPEN_ICON} title="What will happen if we don't take action?">
-        <p>{what_will_happen_content.detail}</p>
+        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{what_will_happen_content.detail}</p>
       </ContentPanel>
       <ContentPanel icon={SHARE_ICON} title="How to help">
-        <p>{how_to_help_content.detail}</p>
+        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{how_to_help_content.detail}</p>
         <SharePanel ctaAction={() => setIsShareOpen(true)} />
       </ContentPanel>
       <ContentPanel icon={NEWS_ICON} title="News" buttonText="Explore" ctaControl={Link} ctaLink={"/news"}>
-        <p>Our partners tell the epic story of what is happening to our planet</p>
+        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>
+          Our partners tell the epic story of what is happening to our planet
+        </p>
       </ContentPanel>
     </div>
   );

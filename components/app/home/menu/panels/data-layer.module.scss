@@ -1,0 +1,16 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-data-layer-menu-panel {
+  &__card-desc {
+    font-weight: 500;
+    @include font-size(14px, 21px);
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    &__card-desc {
+      @include font-size(16px, 24px);
+    }
+  }
+}

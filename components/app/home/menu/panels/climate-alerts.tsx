@@ -88,7 +88,6 @@ const HeadlinesPanel = ({
             <CtaButton
               text="View More"
               iconName="arrow-right"
-              iconSize={15}
               onClick={() => setNumHeadlinesToShow(numHeadlinesToShow + HEADLINE_BATCH_SIZE)}
             />
           )}

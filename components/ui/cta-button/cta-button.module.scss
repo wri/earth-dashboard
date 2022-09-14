@@ -23,32 +23,28 @@
       background-color: $grey-darker;
 
       .c-cta-button__text {
-        color: $white;  
+        color: $white;
       }
 
       .c-cta-button__icon {
         background-color: $colour-galaxy;
-        color: $white;  
+        color: $white;
       }
-    }    
+    }
   }
 
   &__text {
     font-family: "Barlow Condensed";
-    margin-right: 8px;
+    margin-right: 16px;
     font-weight: 500;
-    @include font-size(20px, 30px);
+    @include font-size(16px, 24px);
     color: white;
     text-transform: uppercase;
-
-    @media screen and (max-width: $global-breakpoint-md) {
-      @include font-size(16px, 24px);
-    }
   }
 
   &__icon {
-    height: 30px;
-    width: 30px;
+    height: 24px;
+    width: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,5 +52,20 @@
     background-color: $white;
     color: $colour-galaxy;
     transition: all 0.1s ease-in-out;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    &__icon {
+      height: 30px;
+      width: 30px;
+
+      > svg {
+        width: 15px;
+      }
+    }
+
+    &__text {
+      @include font-size(20px, 30px);
+    }
   }
 }
