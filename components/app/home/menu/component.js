@@ -57,33 +57,15 @@ const Menu = forwardRef(
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
 
-    const splitHeadlines = () => {
-      const reversed = [...headlines].reverse();
-      return reversed.reduce((acc, val, i) => {
-        let idx = Math.floor(i / MAX_NUMBER_OF_HEADLINES);
-        let page = acc[idx] || (acc[idx] = []);
-        page.push(val);
-
-        return acc;
-      }, []);
-    };
-
     const getCurrentHeadlineIndex = () => {
       let index = -1;
       let total = 0;
-      let headlines = [];
 
       if (currentHeadline) {
-        const paginatedHeadlines = splitHeadlines();
-        for (const headlineRow of paginatedHeadlines) {
-          index = headlineRow.findIndex(headline => headline.id === currentHeadline.id);
-          if (index > -1) {
-            headlines = headlineRow;
-            total = headlineRow.length;
-            break;
-          }
+        index = headlines.findIndex(headline => headline.id === currentHeadline.id);
+        if (index > -1) {
+          total = headlines.length;
         }
-        return { index, total, headlines };
       }
       return { index, total, headlines };
     };
@@ -111,6 +93,11 @@ const Menu = forwardRef(
     const clearHeadline = () => {
       setCurrentHeadline(undefined);
       setCurrentHeadlineId(undefined);
+    };
+
+    const viewAllExtremeEvents = () => {
+      clearHeadline();
+      setPageTypeId(EXTREME_EVENTS_PAGE_ID);
     };
 
     const navigateHeadline = action => {
@@ -155,7 +142,7 @@ const Menu = forwardRef(
       >
         {currentHeadline && (
           <MenuLayout title={`Back to ${pageTitle}`} onBack={clearHeadline} onClose={onClose}>
-            <Event headline={currentHeadline} />
+            <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
             <HeadlineFooter
               footerHeading={footerHeading}
               disableBackButton={disableBackButton}
