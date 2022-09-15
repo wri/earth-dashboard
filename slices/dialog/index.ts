@@ -6,7 +6,7 @@ export * from "./types";
 export const NAME = "dialog";
 
 const initialState: DialogState = {
-  dialogHeight: "70vh"
+  dialogHeight: "90vh"
 };
 
 const dialogSlice = createSlice({

@@ -1,4 +1,5 @@
 @import "css/settings";
+@import "css/settings/breakpoints";
 
 .c-icon-button {
   height: 48px;
@@ -22,17 +23,21 @@
     width: 36px;
   }
 
-  &:hover {
-    background-color: $colour-flame;
-    color: $white;
+  @media screen and (min-width: $global-breakpoint-md) {
+    &:hover {
+      background-color: $colour-flame;
+      color: $white;
+    }
   }
 
   &:disabled {
     cursor: not-allowed;
     background-color: gray;
 
-    &:hover {
-      color: $colour-galaxy;
+    @media screen and (min-width: $global-breakpoint-md) {
+      &:hover {
+        color: $colour-galaxy;
+      }
     }
   }
 }

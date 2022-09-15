@@ -10,7 +10,7 @@ const HeadlineCard = ({ currentHeadline }: HeadlineCardProps) => {
     <div className={classnames(styles["c-headline-card"])}>
       <div
         className={classnames(styles["c-headline-card__background-image"])}
-        style={{ backgroundImage: `url(${currentHeadline.attributes.content.media.body_image})` }}
+        style={{ backgroundImage: `url(${currentHeadline.attributes.thumbnail_image})` }}
       />
       <div className={classnames(styles["c-headline-card__content"])}>
         <h1 className={classnames(styles["title"])}>{currentHeadline.attributes.title}</h1>
