@@ -12,6 +12,7 @@
   cursor: pointer;
   text-align: left;
   width: 100%;
+  padding: 0;
 
   &__background {
     position: absolute;
@@ -33,40 +34,32 @@
   }
 
   &__title {
-    color: white;
+    color: $white;
     font-family: "Barlow";
-    font-weight: 500;
+    font-weight: 600;
     @include font-size(18px, 27px);
-    margin-bottom: 4px;
-    color: white;
     margin-bottom: 8px;
-
   }
 
   &__subtitle {
-    color: white;
+    color: $white;
     font-family: "Barlow";
-    font-weight: 500;
+    font-weight: 600;
     @include font-size(14px, 18px);
-    margin-bottom: 4px;
-    color: white;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
 
   &__thumbnail {
     border-radius: 16px;
     position: relative;
     display: block;
-    height: 192px;
+    height: 145px;
     overflow: hidden;
   }
 
-  @media screen and (max-width: $global-breakpoint-md) {
-    &__title {
-      @include font-size(12px, 18px);
-    }
-    &__date {
-      @include font-size(11px, 16px);
+  @media screen and (min-width: $global-breakpoint-md) {
+    &__thumbnail {
+      height: 192px;
     }
   }
 }

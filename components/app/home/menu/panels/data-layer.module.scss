@@ -4,13 +4,9 @@
 
 .c-data-layer-menu-panel {
   &__card-desc {
+    font-family: "Barlow";
+    margin: 0;
     font-weight: 500;
-    @include font-size(14px, 21px);
-  }
-
-  @media screen and (min-width: $global-breakpoint-md) {
-    &__card-desc {
-      @include font-size(16px, 24px);
-    }
+    @include font-size(16px, 24px);
   }
 }
