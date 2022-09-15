@@ -49,11 +49,12 @@ const HeaderOptions = ({
       )}
 
       {/* Share or search */}
-      {router.pathname !== "/about" && (
+      {/*{router.pathname !== "/about" && ( ToDo: Search Hidden until new Sprint*/}
+      {router.pathname === "/" && (
         <IconButton
           name={router.pathname === "/" ? "share" : "search"}
           size={16}
-          aria-label="Share"
+          aria-label={router.pathname === "/" ? "Share" : "Search"}
           className={classnames(styles["c-header-options__share"], styles["c-header-options__icon-button"])}
           onClick={router.pathname === "/" ? () => setIsShareOpen(true) : () => console.log("search")}
           iconStyle={{ marginRight: router.pathname === "/" ? "2px" : "0" }}
