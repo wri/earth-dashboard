@@ -17,10 +17,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 28px 14px 28px;
+    padding: 20px 24px;
     z-index: 999;
 
     &--info {
+      overflow: hidden;
+      padding: 0 12px;
+
       & h3 {
         color: white;
         padding: 0px;
@@ -30,6 +33,9 @@
         line-height: 30px;
         font-weight: 600;
         font-family: "Barlow";
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
 
         @media screen and (max-width: $global-breakpoint-md) {
           font-family: "Barlow Condensed";
@@ -38,21 +44,23 @@
     }
 
     &--btn {
-      width: 30px;
-      height: 30px;
+      min-width: 32px;
+      width: 32px;
+      height: 32px;
       &:disabled {
         cursor: not-allowed;
         opacity: 0.5;
       }
 
       svg {
-        min-width: 15px;
-        min-height: 15px;
+        min-width: 16px;
+        min-height: 12px;
       }
     }
 
     @media screen and (max-width: $global-breakpoint-md) {
       border-radius: 0;
+      bottom: 3px;
     }
   }
 }

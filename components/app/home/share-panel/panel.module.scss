@@ -5,8 +5,8 @@
 .c-share-panel {
   display: flex;
   flex-direction: column;
-  padding: 12px;
-  border-radius: 16px;
+  padding: 20px;
+  border-radius: 12px;
   align-items: flex-start;
   text-align: left;
   width: 100%;
@@ -16,15 +16,14 @@
 
   &__underlay {
     background-color: $colour-midnight;
-    //background-color: rgba($colour-night, 0.4);
     backdrop-filter: blur(10.8731px);
-    border-radius: 16px;
+    border-radius: 12px;
     width: 100%;
     background-image: url("/static/images/globe.png");
     background-position: center right;
     background-repeat: no-repeat;
-    background-size: 232px 196px ;
-    }
+    background-size: 250px 220px;
+  }
 
   &__header-row {
     display: flex;
@@ -52,21 +51,27 @@
     font-family: "Barlow";
     font-weight: 600;
     @include font-size(20px, 30px);
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     text-transform: uppercase;
     color: white;
 
     @media screen and (max-width: $global-breakpoint-md) {
       font-family: "Barlow Condensed";
-    }    
+    }
   }
 
   &__subtitle {
     font-family: "Barlow";
     font-weight: 500;
-    margin: 0;
+    margin-bottom: 12px;
     @include font-size(16px, 24px);
     color: white;
+    margin-right: 100px;
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      margin-right: 0;
+      @include font-size(14px, 21px);
+    }
   }
 
   &__button {
@@ -76,7 +81,7 @@
     background-color: $colour-flame;
     align-items: center;
     display: flex;
-    
+
     &:hover {
       display: flex;
     }
@@ -104,7 +109,7 @@
     &:hover {
       background-color: $colour-galaxy;
       color: $white;
-    }  
+    }
   }
 
   &[aria-checked="true"] {
@@ -113,9 +118,5 @@
     .c-headline-card__subtitle {
       color: $colour-space;
     }
-  }
-
-  @media screen and (max-width: $global-breakpoint-md) {
-    padding: 22px 84px 22px 24px;
   }
 }

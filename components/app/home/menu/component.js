@@ -75,7 +75,11 @@ const Menu = forwardRef(
       const { index: currentHeadlineIndex, total } = getCurrentHeadlineIndex();
 
       if (currentHeadline) {
-        const text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
+        console.log(currentMode);
+        let text = "";
+        if (currentMode.attributes?.title !== "Default")
+          text = `${currentHeadlineIndex + 1}/${total} ${currentMode.attributes?.title}`;
+        else text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
         setFooterHeading(text);
       }
     };

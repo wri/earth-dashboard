@@ -228,7 +228,7 @@ const MainContainer = ({
     if (currentHeadline && earthServer.current) {
       enableToolTip(
         [currentHeadline.attributes.location.lng, currentHeadline.attributes.location.lat],
-        `${layersLabelArr.join(", ")} in ${currentHeadline.attributes.location.name}`
+        currentHeadline.attributes.title
       );
     } else {
       disableToolTip();

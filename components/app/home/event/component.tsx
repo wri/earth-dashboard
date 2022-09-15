@@ -39,6 +39,7 @@ const ExtremeEvent = ({
   onViewAllEventsClicked
 }: DataLayerOverviewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const articleRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0);
 
@@ -57,6 +58,13 @@ const ExtremeEvent = ({
       setDateOfDataShown(new Date(headline?.attributes.climate_alert_date).toString());
     }
   }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy, setDateOfDataShown]);
+
+  // Scroll to top of article when headline changes
+  useEffect(() => {
+    if (articleRef.current) {
+      articleRef.current.scrollTo({ top: 0 });
+    }
+  }, [headline]);
 
   const how_to_help_content = currentMode?.attributes?.how_to_help_content;
 
@@ -90,8 +98,9 @@ const ExtremeEvent = ({
       </div>
       <div
         className={styles["c-event__scroll-area"]}
-        style={{ paddingTop: `${containerHeight + 20}px` }}
+        style={{ paddingTop: `${containerHeight + 24}px` }}
         onScroll={onScroll}
+        ref={articleRef}
       >
         <ContentPanel icon={WHAT_IS_HAPPENING_ICON} title="How Extreme Is This Event?">
           <p>{headline.attributes.content.body}</p>
