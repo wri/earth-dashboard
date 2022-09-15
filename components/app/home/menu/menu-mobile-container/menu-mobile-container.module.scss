@@ -1,9 +1,11 @@
+@import "css/settings/zIndex";
+
 .c-mobile-menu-container {
   position: fixed;
   right: 0;
   bottom: 56px;
   left: 0;
-  z-index: 0;
+  z-index: $z-index-header;
 
   &__draggable {
     position: absolute !important;
@@ -18,13 +20,35 @@
         content: "";
         position: absolute;
         left: 50%;
-        bottom: 88px;
+        bottom: 8px;
         width: 115px;
         height: 6px;
         background-color: white;
         opacity: 0.8;
         border-radius: 3px;
         transform: translateX(-50%);
+      }
+
+      &__closed {
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: -80px;
+          height: 80px;
+          left: 0;
+          right: 110px;
+        }
+      }
+
+      &__open {
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: -80px;
+          height: 80px;
+          left: 65px;
+          right: 65px;
+        }
       }
     }
   }

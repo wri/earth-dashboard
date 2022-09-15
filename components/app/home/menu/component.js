@@ -39,7 +39,9 @@ const Menu = forwardRef(
       pageTypeId,
       setPageTypeId,
       defaultMobileMenuHeight,
-      headlines
+      headlines,
+      handleToggleLocation,
+      isLocationDisabled
     },
     ref
   ) => {
@@ -192,6 +194,10 @@ const Menu = forwardRef(
           defaultPanelHeight={defaultMobileMenuHeight}
           panelHeight={mobileMenuHeight}
           setPanelHeight={setMobileMenuHeight}
+          toggleMenu={onClose}
+          pageTypeId={pageTypeId}
+          handleToggleLocation={handleToggleLocation}
+          isLocationDisabled={isLocationDisabled}
         >
           {getMenuContent()}
         </MobileMenuContainer>
@@ -209,7 +215,9 @@ Menu.propTypes = {
   layers: PropTypes.array.isRequired,
   setCurrentHeadline: PropTypes.func.isRequired,
   setCurrentHeadlineId: PropTypes.func.isRequired,
-  setDateOfDataShown: PropTypes.func.isRequired
+  setDateOfDataShown: PropTypes.func.isRequired,
+  handleToggleLocation: PropTypes.func.isRequired,
+  isLocationDisabled: PropTypes.bool.isRequired
 };
 
 export default Menu;

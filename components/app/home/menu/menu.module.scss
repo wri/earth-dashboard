@@ -345,6 +345,7 @@
     right: 0;
     bottom: 0;
     max-width: unset;
+    animation: none;
 
     &__header {
       border-radius: 16px 16px 0 0;
@@ -492,6 +493,13 @@
 }
 
 .c-home-menu-container {
+  animation: FadeIn 0.3s ease-in;
+
+  &--closing {
+    opacity: 0;
+    animation: FadeOut 0.3s ease-in;
+  }
+
   @media screen and (max-width: $global-breakpoint-md) {
     left: 0;
     right: 0;
@@ -499,13 +507,7 @@
     top: 0;
     position: absolute;
     z-index: $z-index-dialog;
-  }
-
-  animation: FadeIn 0.3s ease-in;
-
-  &--closing {
-    opacity: 0;
-    animation: FadeOut 0.3s ease-in;
+    animation: none;
   }
 }
 
