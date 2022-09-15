@@ -137,10 +137,6 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
           <EarthHQCTA />
         </Desktop>
       </MediaContextProvider>
-
-      <Section bgColour={BG_GALAXY} paddingBottom={false}>
-        <Footer />
-      </Section>
     </Layout>
   );
 };
