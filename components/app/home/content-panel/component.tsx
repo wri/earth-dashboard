@@ -47,7 +47,12 @@ const ContentPanel = ({
           canFocus ? styles["c-content-panel__focusable"] : undefined
         )}
       >
-        <div className={styles["c-content-panel__header-row"]}>
+        <div
+          className={classNames(
+            styles["c-content-panel__header-row"],
+            (!!icon && styles["c-content-panel__header-row--with-icon"]) ?? undefined
+          )}
+        >
           {icon && (
             <div className={styles["c-content-panel__icon-container"]}>
               <img className={styles["c-content-panel__image"]} src={icon} alt="" role="presentation" />

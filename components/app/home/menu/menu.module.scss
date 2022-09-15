@@ -61,6 +61,10 @@
     }
   }
 
+  &__event-container {
+    height: 0;
+  }
+
   &__tab-container {
     background: rgba($colour-space, 0.8);
     backdrop-filter: blur(10.8731px);
