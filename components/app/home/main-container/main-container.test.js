@@ -67,7 +67,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                 <h2
                   class="c-layout__header-text"
                 >
-                  I'd like to explore
+                  I'd like to explore...
                 </h2>
                 <button
                   aria-label="Close"
@@ -86,17 +86,22 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                   data-testid="content-panel"
                 >
                   <div
-                    class="c-content-panel c-content-panel__focusable"
+                    class="c-content-panel c-content-panel--selected c-content-panel__focusable"
+                    data-role="content"
                     tabindex="0"
                   >
                     <div
                       class="c-content-panel__header-row"
                     >
-                      <h3
-                        class="c-content-panel__title"
+                      <div
+                        class="c-content-panel__title-container"
                       >
-                        All Extreme Events
-                      </h3>
+                        <h3
+                          class="c-content-panel__title"
+                        >
+                          All Extreme Events
+                        </h3>
+                      </div>
                     </div>
                     <p
                       class="c-menu-option__subtitle"
@@ -130,23 +135,32 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                   data-testid="content-panel"
                 >
                   <div
-                    class="c-content-panel c-content-panel__focusable"
+                    class="c-content-panel c-content-panel--selected c-content-panel__focusable"
+                    data-role="content"
                     tabindex="0"
                   >
                     <div
-                      class="c-content-panel__header-row"
+                      class="c-content-panel__header-row c-content-panel__header-row--with-icon"
                     >
-                      <img
-                        alt=""
-                        class="c-content-panel__image"
-                        role="presentation"
-                        src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/7v0sYUds12E9Y1MBEbkyamiQKIsKHQU7BV0kdFYc.png"
-                      />
-                      <h3
-                        class="c-content-panel__title"
+                      <div
+                        class="c-content-panel__icon-container"
                       >
-                        Fires
-                      </h3>
+                        <img
+                          alt=""
+                          class="c-content-panel__image"
+                          role="presentation"
+                          src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/7v0sYUds12E9Y1MBEbkyamiQKIsKHQU7BV0kdFYc.png"
+                        />
+                      </div>
+                      <div
+                        class="c-content-panel__title-container"
+                      >
+                        <h3
+                          class="c-content-panel__title"
+                        >
+                          Fires
+                        </h3>
+                      </div>
                     </div>
                     <p
                       class="c-menu-option__subtitle"
@@ -182,22 +196,31 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                 >
                   <div
                     class="c-content-panel c-content-panel__focusable"
+                    data-role="content"
                     tabindex="0"
                   >
                     <div
-                      class="c-content-panel__header-row"
+                      class="c-content-panel__header-row c-content-panel__header-row--with-icon"
                     >
-                      <img
-                        alt=""
-                        class="c-content-panel__image"
-                        role="presentation"
-                        src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/T2wLMYnMeegJNFS8mm5QGEsZPJUSkOcF9fotdpAT.png"
-                      />
-                      <h3
-                        class="c-content-panel__title"
+                      <div
+                        class="c-content-panel__icon-container"
                       >
-                        Air Pollution
-                      </h3>
+                        <img
+                          alt=""
+                          class="c-content-panel__image"
+                          role="presentation"
+                          src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/T2wLMYnMeegJNFS8mm5QGEsZPJUSkOcF9fotdpAT.png"
+                        />
+                      </div>
+                      <div
+                        class="c-content-panel__title-container"
+                      >
+                        <h3
+                          class="c-content-panel__title"
+                        >
+                          Air Pollution
+                        </h3>
+                      </div>
                     </div>
                     <p
                       class="c-menu-option__subtitle"
@@ -227,6 +250,51 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                     </div>
                   </div>
                 </div>
+                <a
+                  href="https://earth.nullschool.net/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <div
+                    class="c-content-panel__underlay c-home-menu-item--advanced-data-item"
+                    data-testid="content-panel"
+                  >
+                    <div
+                      class="c-content-panel c-content-panel__focusable"
+                      data-role="content"
+                      tabindex="0"
+                    >
+                      <div
+                        class="c-content-panel__header-row"
+                      >
+                        <div
+                          class="c-content-panel__title-container"
+                        >
+                          <h3
+                            class="c-content-panel__title"
+                          />
+                        </div>
+                      </div>
+                      <h3
+                        class="c-home-menu-item__title"
+                      >
+                        Advanced Data
+                      </h3>
+                      <p
+                        class="c-home-menu-item__desc"
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </p>
+                      <div
+                        class="c-home-menu-item__external-link"
+                      >
+                        <span>
+                          Earth Nullschool
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -249,7 +317,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
               class="c-home-menu-toggle__text-container"
             >
               <span>
-                I'd like to explore
+                I'd like to explore...
               </span>
             </div>
           </button>
@@ -266,229 +334,297 @@ test("<MainContainer /> renders correctly as mobile", async () => {
   const { container, getAllByTestId } = utilRender(<MainContainer isMobile={true} />);
 
   expect(container).toMatchInlineSnapshot(`
-<div>
-  <div
-    class="main-container -mobile"
-    data-testid="iframe-container"
-  >
-    <div
-      class="c-mobile-menu-container"
-      style="z-index: 0; height: 92px;"
-    >
+    <div>
       <div
-        class="c-mobile-menu-container__draggable"
-        style="position: relative; user-select: auto; width: 100vw; height: 92px; max-width: 100vw; max-height: 635.2px; min-width: 100vw; min-height: 92px; box-sizing: border-box; flex-shrink: 0;"
+        class="main-container -mobile"
+        data-testid="iframe-container"
       >
         <div
-          class="c-home-menu-container"
+          class="c-mobile-menu-container"
+          style="z-index: 0; height: 92px;"
         >
           <div
-            class="c-layout"
+            class="c-mobile-menu-container__draggable"
+            style="position: relative; user-select: auto; width: 100vw; height: 92px; max-width: 100vw; max-height: 635.2px; min-width: 100vw; min-height: 92px; box-sizing: border-box; flex-shrink: 0;"
           >
             <div
-              class="c-layout__header"
+              class="c-home-menu-container"
             >
               <div
-                class="c-layout__header-content c-layout__header-content--has-globe-icon"
+                class="c-layout"
               >
-                <h2
-                  class="c-layout__header-text"
+                <div
+                  class="c-layout__header"
                 >
-                  I'd like to explore
-                </h2>
-                <button
-                  aria-label="Close"
-                  class="c-icon-button medium c-layout__close-button"
-                />
+                  <div
+                    class="c-layout__header-content c-layout__header-content--has-globe-icon"
+                  >
+                    <h2
+                      class="c-layout__header-text"
+                    >
+                      I'd like to explore...
+                    </h2>
+                    <button
+                      aria-label="Close"
+                      class="c-icon-button medium c-layout__close-button"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="c-layout__content u-padding-none"
+                >
+                  <div
+                    class="c-home-menu__scroll-area"
+                  >
+                    <div
+                      class="c-content-panel__underlay c-home-menu__all-events"
+                      data-testid="content-panel"
+                    >
+                      <div
+                        class="c-content-panel c-content-panel--selected c-content-panel__focusable"
+                        data-role="content"
+                        tabindex="0"
+                      >
+                        <div
+                          class="c-content-panel__header-row"
+                        >
+                          <div
+                            class="c-content-panel__title-container"
+                          >
+                            <h3
+                              class="c-content-panel__title"
+                            >
+                              All Extreme Events
+                            </h3>
+                          </div>
+                        </div>
+                        <p
+                          class="c-menu-option__subtitle"
+                        >
+                          View all of the latest extreme events
+                        </p>
+                        <div
+                          class="c-content-panel__cta"
+                        >
+                          <button
+                            class="c-cta-button"
+                          >
+                            <div
+                              class="c-cta-button__content"
+                            >
+                              <span
+                                class="c-cta-button__text"
+                              >
+                                View All
+                              </span>
+                              <span
+                                class="c-cta-button__icon"
+                              />
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="c-content-panel__underlay"
+                      data-testid="content-panel"
+                    >
+                      <div
+                        class="c-content-panel c-content-panel--selected c-content-panel__focusable"
+                        data-role="content"
+                        tabindex="0"
+                      >
+                        <div
+                          class="c-content-panel__header-row c-content-panel__header-row--with-icon"
+                        >
+                          <div
+                            class="c-content-panel__icon-container"
+                          >
+                            <img
+                              alt=""
+                              class="c-content-panel__image"
+                              role="presentation"
+                              src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/7v0sYUds12E9Y1MBEbkyamiQKIsKHQU7BV0kdFYc.png"
+                            />
+                          </div>
+                          <div
+                            class="c-content-panel__title-container"
+                          >
+                            <h3
+                              class="c-content-panel__title"
+                            >
+                              Fires
+                            </h3>
+                          </div>
+                        </div>
+                        <p
+                          class="c-menu-option__subtitle"
+                        >
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Source: CAMS / Copernicus / European Commission + ECMWF
+                        </p>
+                        <div
+                          class="c-content-panel__cta"
+                        >
+                          <button
+                            class="c-cta-button"
+                          >
+                            <div
+                              class="c-cta-button__content"
+                            >
+                              <span
+                                class="c-cta-button__text"
+                              >
+                                Learn More
+                              </span>
+                              <span
+                                class="c-cta-button__icon"
+                              />
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="c-content-panel__underlay"
+                      data-testid="content-panel"
+                    >
+                      <div
+                        class="c-content-panel c-content-panel__focusable"
+                        data-role="content"
+                        tabindex="0"
+                      >
+                        <div
+                          class="c-content-panel__header-row c-content-panel__header-row--with-icon"
+                        >
+                          <div
+                            class="c-content-panel__icon-container"
+                          >
+                            <img
+                              alt=""
+                              class="c-content-panel__image"
+                              role="presentation"
+                              src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/T2wLMYnMeegJNFS8mm5QGEsZPJUSkOcF9fotdpAT.png"
+                            />
+                          </div>
+                          <div
+                            class="c-content-panel__title-container"
+                          >
+                            <h3
+                              class="c-content-panel__title"
+                            >
+                              Air Pollution
+                            </h3>
+                          </div>
+                        </div>
+                        <p
+                          class="c-menu-option__subtitle"
+                        >
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Source: CAMS / Copernicus / European Commission + ECMWF
+                        </p>
+                        <div
+                          class="c-content-panel__cta"
+                        >
+                          <button
+                            class="c-cta-button"
+                          >
+                            <div
+                              class="c-cta-button__content"
+                            >
+                              <span
+                                class="c-cta-button__text"
+                              >
+                                Learn More
+                              </span>
+                              <span
+                                class="c-cta-button__icon"
+                              />
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <a
+                      href="https://earth.nullschool.net/"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <div
+                        class="c-content-panel__underlay c-home-menu-item--advanced-data-item"
+                        data-testid="content-panel"
+                      >
+                        <div
+                          class="c-content-panel c-content-panel__focusable"
+                          data-role="content"
+                          tabindex="0"
+                        >
+                          <div
+                            class="c-content-panel__header-row"
+                          >
+                            <div
+                              class="c-content-panel__title-container"
+                            >
+                              <h3
+                                class="c-content-panel__title"
+                              />
+                            </div>
+                          </div>
+                          <h3
+                            class="c-home-menu-item__title"
+                          >
+                            Advanced Data
+                          </h3>
+                          <p
+                            class="c-home-menu-item__desc"
+                          >
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                          </p>
+                          <div
+                            class="c-home-menu-item__external-link"
+                          >
+                            <span>
+                              Earth Nullschool
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-            <div
-              class="c-layout__content u-padding-none"
-            >
+            <div>
               <div
-                class="c-home-menu__scroll-area"
-              >
-                <div
-                  class="c-content-panel__underlay c-home-menu__all-events"
-                  data-testid="content-panel"
-                >
-                  <div
-                    class="c-content-panel c-content-panel__focusable"
-                    tabindex="0"
-                  >
-                    <div
-                      class="c-content-panel__header-row"
-                    >
-                      <h3
-                        class="c-content-panel__title"
-                      >
-                        All Extreme Events
-                      </h3>
-                    </div>
-                    <p
-                      class="c-menu-option__subtitle"
-                    >
-                      View all of the latest extreme events
-                    </p>
-                    <div
-                      class="c-content-panel__cta"
-                    >
-                      <button
-                        class="c-cta-button"
-                      >
-                        <div
-                          class="c-cta-button__content"
-                        >
-                          <span
-                            class="c-cta-button__text"
-                          >
-                            View All
-                          </span>
-                          <span
-                            class="c-cta-button__icon"
-                          />
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="c-content-panel__underlay"
-                  data-testid="content-panel"
-                >
-                  <div
-                    class="c-content-panel c-content-panel__focusable"
-                    tabindex="0"
-                  >
-                    <div
-                      class="c-content-panel__header-row"
-                    >
-                      <img
-                        alt=""
-                        class="c-content-panel__image"
-                        role="presentation"
-                        src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/7v0sYUds12E9Y1MBEbkyamiQKIsKHQU7BV0kdFYc.png"
-                      />
-                      <h3
-                        class="c-content-panel__title"
-                      >
-                        Fires
-                      </h3>
-                    </div>
-                    <p
-                      class="c-menu-option__subtitle"
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Source: CAMS / Copernicus / European Commission + ECMWF
-                    </p>
-                    <div
-                      class="c-content-panel__cta"
-                    >
-                      <button
-                        class="c-cta-button"
-                      >
-                        <div
-                          class="c-cta-button__content"
-                        >
-                          <span
-                            class="c-cta-button__text"
-                          >
-                            Learn More
-                          </span>
-                          <span
-                            class="c-cta-button__icon"
-                          />
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="c-content-panel__underlay"
-                  data-testid="content-panel"
-                >
-                  <div
-                    class="c-content-panel c-content-panel__focusable"
-                    tabindex="0"
-                  >
-                    <div
-                      class="c-content-panel__header-row"
-                    >
-                      <img
-                        alt=""
-                        class="c-content-panel__image"
-                        role="presentation"
-                        src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/T2wLMYnMeegJNFS8mm5QGEsZPJUSkOcF9fotdpAT.png"
-                      />
-                      <h3
-                        class="c-content-panel__title"
-                      >
-                        Air Pollution
-                      </h3>
-                    </div>
-                    <p
-                      class="c-menu-option__subtitle"
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Source: CAMS / Copernicus / European Commission + ECMWF
-                    </p>
-                    <div
-                      class="c-content-panel__cta"
-                    >
-                      <button
-                        class="c-cta-button"
-                      >
-                        <div
-                          class="c-cta-button__content"
-                        >
-                          <span
-                            class="c-cta-button__text"
-                          >
-                            Learn More
-                          </span>
-                          <span
-                            class="c-cta-button__icon"
-                          />
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                class="c-mobile-menu-container__draggable__handle"
+                style="position: absolute; user-select: none; width: 100%; height: 50px; top: -42px; left: 0px; cursor: row-resize;"
+              />
             </div>
           </div>
         </div>
-        <div>
+        <div
+          class="c-condensed-menu"
+        >
           <div
-            class="c-mobile-menu-container__draggable__handle"
-            style="position: absolute; user-select: none; width: 100%; height: 50px; top: -42px; left: 0px; cursor: row-resize;"
-          />
+            class="c-condensed-menu__title-container"
+            style="margin-bottom: 0px;"
+          >
+            <p
+              class="title"
+            >
+              I'd like to explore...
+            </p>
+            <button
+              class="c-icon-button small location-icon"
+            />
+            <button
+              class="c-icon-button small expand-icon"
+            />
+          </div>
         </div>
       </div>
     </div>
-    <div
-      class="c-condensed-menu"
-    >
-      <div
-        class="c-condensed-menu__title-container"
-        style="margin-bottom: 0px;"
-      >
-        <p
-          class="title"
-        >
-          I'd like to explore
-        </p>
-        <button
-          class="c-icon-button small location-icon"
-        />
-        <button
-          class="c-icon-button small expand-icon"
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`);
+  `);
 });
 
 describe("<MainContainer />", () => {

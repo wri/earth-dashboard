@@ -22,6 +22,7 @@ type DataLayerOverviewProps = {
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
   setDateOfDataShown: ActionCreatorWithPayload<string, string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
+  onViewAllEventsClicked: () => any;
 };
 
 const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
@@ -34,7 +35,8 @@ const ExtremeEvent = ({
   setCurrentScale,
   setCurrentScaleBy,
   setDateOfDataShown,
-  setIsShareOpen
+  setIsShareOpen,
+  onViewAllEventsClicked
 }: DataLayerOverviewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -100,7 +102,12 @@ const ExtremeEvent = ({
           <SharePanel ctaAction={() => setIsShareOpen(true)} />
         </ContentPanel>
         <div className={styles["c-event__view-all-button--container"]}>
-          <CtaButton text={"View All Extreme Events"} onClick={() => {}} iconName="arrow-right" iconSize={15} />
+          <CtaButton
+            text={"View All Extreme Events"}
+            onClick={onViewAllEventsClicked}
+            iconName="arrow-right"
+            iconSize={15}
+          />
         </div>
       </div>
     </div>

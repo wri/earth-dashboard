@@ -9,9 +9,9 @@
   position: absolute;
   width: 100%;
   max-width: 740px;
-  top: 100px;
+  top: 164px;
   left: 60px;
-  bottom: 120px;
+  bottom: 60px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -69,6 +69,10 @@
     margin: 0px;
     flex-grow: 1;
     letter-spacing: 0.2px;
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      font-family: "Barlow Condensed";
+    }
   }
 
   &__back-button {

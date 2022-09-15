@@ -1,9 +1,5 @@
 .c-map-iframe {
-  height: 100%;
+  top: 50px;
+  height: calc(100% - 50px);
   width: 100%;
-
-  &__mobile-menu {
-    height: 70vh !important;
-    width: 100%;
-  }
 }

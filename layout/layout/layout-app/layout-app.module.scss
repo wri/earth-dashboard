@@ -133,7 +133,15 @@
       }
     }
 
-    button {
+    .cookie-link {
+      color: $white;
+      border-radius: 0;
+      @include font-size(16px);
+      padding: 0;
+      font-weight: 500;
+    }
+
+    .button-group button {
       color: $white;
       border-radius: 48px;
       font-family: "Barlow Condensed";

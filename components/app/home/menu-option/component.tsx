@@ -6,15 +6,26 @@ export type MenuOptionProps = {
   title: string;
   description: string;
   buttonText: string;
+  isSelected: boolean;
   onClick?: () => any;
   onClickCta?: () => any;
   icon?: string;
   className?: string;
 };
 
-const MenuOption = ({ icon, title, description, buttonText, onClick, onClickCta, className }: MenuOptionProps) => {
+const MenuOption = ({
+  icon,
+  title,
+  description,
+  buttonText,
+  isSelected,
+  onClick,
+  onClickCta,
+  className
+}: MenuOptionProps) => {
   return (
     <ContentPanel
+      isSelected={isSelected}
       canFocus={true}
       icon={icon}
       title={title}
