@@ -5,7 +5,7 @@
 .c-share-panel {
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 20px 70px 20px 20px;
   border-radius: 16px;
   align-items: flex-start;
   text-align: left;
@@ -20,11 +20,11 @@
     backdrop-filter: blur(10.8731px);
     border-radius: 16px;
     width: 100%;
-    background-image: url("/static/images/globe.png");
+    background-image: url("/static/images/share/share-globe.png");
     background-position: center right;
     background-repeat: no-repeat;
-    background-size: 232px 196px ;
-    }
+    background-size: contain;
+  }
 
   &__header-row {
     display: flex;
@@ -52,13 +52,13 @@
     font-family: "Barlow";
     font-weight: 600;
     @include font-size(20px, 30px);
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     text-transform: uppercase;
     color: white;
 
     @media screen and (max-width: $global-breakpoint-md) {
       font-family: "Barlow Condensed";
-    }    
+    }
   }
 
   &__subtitle {
@@ -69,6 +69,13 @@
     color: white;
   }
 
+  &__description {
+    font-family: "Barlow";
+    font-weight: 500;
+    @include font-size(14px, 21px);
+    margin-bottom: 12px;
+  }
+
   &__button {
     padding: 8px 8px 8px 24px;
     margin-top: 12px;
@@ -76,7 +83,7 @@
     background-color: $colour-flame;
     align-items: center;
     display: flex;
-    
+
     &:hover {
       display: flex;
     }
@@ -104,7 +111,7 @@
     &:hover {
       background-color: $colour-galaxy;
       color: $white;
-    }  
+    }
   }
 
   &[aria-checked="true"] {
@@ -115,7 +122,15 @@
     }
   }
 
-  @media screen and (max-width: $global-breakpoint-md) {
-    padding: 22px 84px 22px 24px;
+  @media screen and (min-width: $global-breakpoint-md) {
+    padding: 20px 90px 20px 20px;
+
+    &__underlay {
+      background-size: 300px;
+    }
+
+    &__description {
+      @include font-size(16px, 24px);
+    }
   }
 }

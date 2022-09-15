@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import styles from "../menu.module.scss";
 import dataLayerStyles from "./data-layer.module.scss";
+import panelStyles from "components/app/home/content-panel/panel.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
 import { NAME as modesSliceName, Mode } from "slices/modes";
@@ -113,7 +114,14 @@ const DataLayerOverview = ({
         <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{how_to_help_content.detail}</p>
         <SharePanel ctaAction={() => setIsShareOpen(true)} />
       </ContentPanel>
-      <ContentPanel icon={NEWS_ICON} title="News" buttonText="Explore" ctaControl={Link} ctaLink={"/news"}>
+      <ContentPanel
+        className={panelStyles["c-content-panel__underlay--can-focus"]}
+        icon={NEWS_ICON}
+        title="News"
+        buttonText="Explore"
+        ctaControl={Link}
+        ctaLink={"/news"}
+      >
         <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>
           Our partners tell the epic story of what is happening to our planet
         </p>
