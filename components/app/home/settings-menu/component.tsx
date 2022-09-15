@@ -62,7 +62,7 @@ const SettingsMenu = ({
           <div>
             {isDatePickerOpen || isCookieOpen ? (
               <IconButton
-                name="arrow-left"
+                name="arrow-left-v2"
                 onClick={handleBack}
                 small
                 className={styles["c-settings-menu-modal__back"]}
