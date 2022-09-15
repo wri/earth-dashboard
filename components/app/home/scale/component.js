@@ -21,6 +21,7 @@ const Scale = ({
   hasSmallLabels,
   currentMode,
   datasetValue,
+  hidden,
   ...rest
 }) => {
   const datasetLayers = useDataLayers(currentMode, DATA_LAYER_TYPES.dataset);
@@ -78,6 +79,14 @@ const Scale = ({
     },
     clickOutsideDeactivates: true
   };
+
+  if (hidden) {
+    return (
+      <div
+        className={classnames(className, styles["c-scale--hidden"], isHorizontal && styles["c-scale--horizontal"])}
+      ></div>
+    );
+  }
 
   return (
     <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>

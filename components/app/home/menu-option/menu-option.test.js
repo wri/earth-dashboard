@@ -28,16 +28,21 @@ test("<MenuOption /> renders correctly as desktop", async () => {
       >
         <div
           class="c-content-panel c-content-panel__focusable"
+          data-role="content"
           tabindex="0"
         >
           <div
             class="c-content-panel__header-row"
           >
-            <h3
-              class="c-content-panel__title"
+            <div
+              class="c-content-panel__title-container"
             >
-              All Extreme Events
-            </h3>
+              <h3
+                class="c-content-panel__title"
+              >
+                All Extreme Events
+              </h3>
+            </div>
           </div>
           <p
             class="c-menu-option__subtitle"

@@ -1,14 +1,14 @@
 import ContentPanel from "components/app/home/content-panel";
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
 import { NAME as modesSliceName, Mode } from "slices/modes";
 import MenuOption from "components/app/home/menu-option";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
 import Image from "next/image";
 import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
+import { ActionCreatorWithPayload, current } from "@reduxjs/toolkit";
 
 const mapHighlightToOption = (
   mode: Mode,
@@ -28,6 +28,7 @@ const mapHighlightToOption = (
 type DataIndexProps = {
   highlights: Mode[] | undefined;
   defaultMode: Mode | undefined;
+  currentMode: Mode | undefined;
   onClickExtremeEvents: () => void;
   onClickDataLayer: ActionCreatorWithPayload<Mode, string>;
   onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>;
@@ -36,6 +37,7 @@ type DataIndexProps = {
 const DataIndex = ({
   highlights,
   defaultMode,
+  currentMode,
   onClickExtremeEvents,
   onClickDataLayer,
   onViewDataLayerSummary
@@ -48,6 +50,7 @@ const DataIndex = ({
   return (
     <div className={styles["c-home-menu__scroll-area"]}>
       <MenuOption
+        isSelected={currentMode?.id === defaultMode?.id}
         className={styles["c-home-menu__all-events"]}
         title="All Extreme Events"
         description="View all of the latest extreme events"
@@ -56,7 +59,7 @@ const DataIndex = ({
         onClickCta={onClickExtremeEvents}
       />
       {dataLayers.map(dataLayer => (
-        <MenuOption key={dataLayer.id} {...dataLayer} />
+        <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
       ))}
 
       <Link href="https://earth.nullschool.net/">
@@ -79,6 +82,7 @@ const DataIndex = ({
 export default connect(
   (state: RootState) => ({
     defaultMode: state[modesSliceName].defaultMode,
+    currentMode: state[modesSliceName].currentMode,
     highlights: state[modesSliceName].allModes?.filter(mode => mode.attributes.visibility.data_highlights)
   }),
   {}
