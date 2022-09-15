@@ -135,7 +135,7 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(window.innerHeight / 2);
+      setMobileMenuHeight(window.innerHeight * 0.6 - 56);
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {

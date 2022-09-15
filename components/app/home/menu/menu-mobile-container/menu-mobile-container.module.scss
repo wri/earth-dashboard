@@ -12,12 +12,13 @@
 
     &__handle {
       position: relative;
+      z-index: 1001;
 
       &:after {
         content: "";
         position: absolute;
         left: 50%;
-        bottom: 8px;
+        bottom: 88px;
         width: 115px;
         height: 6px;
         background-color: white;
