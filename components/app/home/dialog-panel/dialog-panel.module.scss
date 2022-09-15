@@ -1,5 +1,6 @@
 @import "css/settings";
 @import "css/settings/zIndex";
+@import "css/settings/breakpoints";
 
 $transitionDurationMS: 400;
 
@@ -35,6 +36,15 @@ $transitionDurationMS: 400;
         border-radius: 3px;
         transform: translateX(-50%);
       }
+
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: -78px;
+        height: 78px;
+        left: 65px;
+        right: 65px;
+      }
     }
   }
 
@@ -44,5 +54,9 @@ $transitionDurationMS: 400;
 
   &--open {
     opacity: 1;
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    background: rgba(0, 40, 65, 0.95);
   }
 }

@@ -14,7 +14,15 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
     if (shouldAnimate) setIsIn(false);
   }, [shouldAnimate]);
 
-  const handleResize = (e, direction, div) => setDialogHeight({ height: div.offsetHeight });
+  const handleResize = (e, direction, div) => {
+    if (div.offsetHeight >= window.innerHeight * 0.9) return;
+    setDialogHeight({ height: div.offsetHeight });
+    setIsIn(false);
+    setTimeout(() => {
+      onClose();
+      setDialogHeight({ height: window.innerHeight * 0.9 });
+    }, transitionDuration);
+  };
 
   const focusTrapOptions = {
     onDeactivate: () => {

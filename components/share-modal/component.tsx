@@ -78,19 +78,17 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline }: 
         <div className={classnames(styles["c-share-modal__body"])}>
           <div className={classnames(styles["scroll"])}>
             {currentHeadline ? <HeadlineCard currentHeadline={currentHeadline} /> : <GlobeCard />}
-            <div className={classnames(styles["link-container"])}>
-              <ShareRow text="Share Via FaceBook" icon="facebook" onClick={handleFaceBookPress} />
-              <ShareRow text="Share Via Twitter" icon="twitter" onClick={handleTwitterPress} />
-              <ShareRow
-                text={copiedLinkTimeout ? "Copied Link ..." : "Copy Link"}
-                icon="copy-link"
-                onClick={handleCopyPress}
-              />
-              {
-                // @ts-expect-error : it thinks navigator.share is always undefined
-                navigator.share && <ShareRow text={"More Options"} icon="more" onClick={handleMorePress} />
-              }
-            </div>
+            <ShareRow text="Share Via FaceBook" icon="facebook" onClick={handleFaceBookPress} />
+            <ShareRow text="Share Via Twitter" icon="twitter" onClick={handleTwitterPress} />
+            <ShareRow
+              text={copiedLinkTimeout ? "Copied Link ..." : "Copy Link"}
+              icon="copy-link"
+              onClick={handleCopyPress}
+            />
+            {
+              // @ts-expect-error : it thinks navigator.share is always undefined
+              navigator.share && <ShareRow text={"More Options"} icon="more" onClick={handleMorePress} />
+            }
           </div>
         </div>
       </div>
