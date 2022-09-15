@@ -445,6 +445,44 @@
   }
 }
 
+.c-home-menu-item {
+  $this: &;
+
+  &--advanced-data-item {
+    #{$this}__title {
+      font-family: "Barlow";
+      @include font-size(20px, 30px);
+      font-weight: 600;
+      color: $white;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 0.2px;
+    }
+
+    #{$this}__desc {
+      font-family: "Barlow";
+      @include font-size(16px, 24px);
+      font-weight: 500;
+      color: $white;
+      margin-bottom: 12px;
+    }
+
+    #{$this}__external-link {
+      font-family: "Barlow";
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 32px;
+      background: $white;
+      color: $colour-galaxy;
+      font-weight: 600;
+      @include font-size(14px, 18px);
+      letter-spacing: 0.4px;
+    }
+  }
+}
+
 .c-home-menu-container {
   @media screen and (max-width: $global-breakpoint-md) {
     left: 0;

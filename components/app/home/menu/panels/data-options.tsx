@@ -1,3 +1,4 @@
+import ContentPanel from "components/app/home/content-panel";
 import { useMemo } from "react";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
@@ -5,6 +6,9 @@ import { RootState } from "store/types";
 import { NAME as modesSliceName, Mode } from "slices/modes";
 import MenuOption from "components/app/home/menu-option";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import Link from "next/link";
+import Image from "next/image";
+import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
 
 const mapHighlightToOption = (
   mode: Mode,
@@ -54,6 +58,20 @@ const DataIndex = ({
       {dataLayers.map(dataLayer => (
         <MenuOption key={dataLayer.id} {...dataLayer} />
       ))}
+
+      <Link href="https://earth.nullschool.net/">
+        <a rel="noopener noreferrer" target="_blank">
+          <ContentPanel className={styles["c-home-menu-item--advanced-data-item"]} canFocus={true}>
+            <h3 className={styles["c-home-menu-item__title"]}>Advanced Data</h3>
+            <p className={styles["c-home-menu-item__desc"]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+            <div className={styles["c-home-menu-item__external-link"]}>
+              <Image width={16} height={16} alt="" role="presentation" src={ExternalLinkIcon} />
+              <span>Earth Nullschool</span>
+            </div>
+          </ContentPanel>
+        </a>
+      </Link>
     </div>
   );
 };
