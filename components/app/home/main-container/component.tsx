@@ -11,7 +11,6 @@ import { fetchModes, getMenuTitle } from "services/gca";
 import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
-import { formatDate } from "utils/dates";
 import { UNIT_LABEL_MAP } from "utils/map";
 import IconButton from "components/ui/icon-button";
 import { Headline } from "slices/headlines";
@@ -23,7 +22,6 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import Icon from "components/ui/Icon";
 import ShareModal from "components/share-modal";
-import CondensedMenu from "../condensed-menu";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
 
@@ -42,7 +40,6 @@ type MainContainerProps = {
   setIsMobile: ActionCreatorWithPayload<boolean, string>;
   setModes: ActionCreatorWithPayload<Mode[], string>;
   layersLabelArr: string[];
-  dateOfDataShown: Date;
   headlines: Headline[];
   currentHeadline?: Headline;
   currentHeadlineId?: number;
@@ -57,7 +54,6 @@ const MainContainer = ({
   setIsMobile,
   setModes,
   layersLabelArr,
-  dateOfDataShown,
   headlines,
   shouldFadeControls,
   currentHeadline,
@@ -139,7 +135,7 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(window.innerHeight / 2);
+      setMobileMenuHeight(window.innerHeight * 0.6 - 56);
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {
@@ -315,17 +311,11 @@ const MainContainer = ({
           pageTypeId={pageTypeId}
           setPageTypeId={setPageTypeId}
           defaultMobileMenuHeight={defaultMobileMenuHeight}
-        />
-      )}
-
-      {isMobile && (
-        <CondensedMenu
-          toggleMenu={toggleMenu}
-          pageTypeId={pageTypeId}
           handleToggleLocation={handleToggleLocation}
           isLocationDisabled={isLocationDisabled}
         />
       )}
+
       <ShareModal />
 
       <Actions
