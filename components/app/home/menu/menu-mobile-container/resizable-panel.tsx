@@ -1,15 +1,16 @@
-import { Resizable } from "re-resizable";
+import { Resizable, ResizeCallback } from "re-resizable";
 import { ReactNode, useEffect, useState } from "react";
 import styles from "./menu-mobile-container.module.scss";
 
 type ResizablePanelProps = {
   defaultHeight: number;
   height: number;
-  onResize: (e: any, direction: any, div: any) => void;
+  onResize: ResizeCallback;
+  onResizeStop: ResizeCallback;
   children: ReactNode;
 };
 
-const ResizablePanel = ({ defaultHeight, height, onResize, children }: ResizablePanelProps) => {
+const ResizablePanel = ({ defaultHeight, height, onResize, onResizeStop, children }: ResizablePanelProps) => {
   const [windowHeight, setWindowHeight] = useState<number>(0);
 
   useEffect(() => {
@@ -35,13 +36,14 @@ const ResizablePanel = ({ defaultHeight, height, onResize, children }: Resizable
     },
     defaultSize: { width: "100vw", height: `${defaultHeight}px` },
     size: { height: `${height}px`, width: "100vw" },
-    onResize,
     minWidth: "100vw",
     maxWidth: "100vw",
     minHeight: `${defaultHeight}px`,
     maxHeight: `${windowHeight * 0.9 - navbarHeight}px`,
     snap: { y: [defaultHeight, windowHeight * 0.5 - navbarHeight, windowHeight * 0.9 - navbarHeight] },
-    snapGap: 20
+    snapGap: 20,
+    onResize,
+    onResizeStop
   };
 
   return <Resizable {...resizableProps}>{children}</Resizable>;

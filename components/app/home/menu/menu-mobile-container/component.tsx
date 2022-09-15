@@ -18,10 +18,16 @@ const MenuMobileContainer = ({
   const zIndex = panelHeight > defaultPanelHeight ? 1000 : 0;
 
   const handleResize = (e: any, direction: any, div: any) => setPanelHeight(div.offsetHeight);
+  const handleResizeStop = (e: any, direction: any, div: any) => setPanelHeight(div.offsetHeight);
 
   return (
     <div className={styles["c-mobile-menu-container"]} style={{ zIndex, height: panelHeight }}>
-      <ResizablePanel defaultHeight={defaultPanelHeight} height={panelHeight} onResize={handleResize}>
+      <ResizablePanel
+        defaultHeight={defaultPanelHeight}
+        height={panelHeight}
+        onResize={handleResize}
+        onResizeStop={handleResizeStop}
+      >
         {children}
       </ResizablePanel>
     </div>
