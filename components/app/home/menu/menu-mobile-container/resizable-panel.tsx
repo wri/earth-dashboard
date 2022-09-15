@@ -1,26 +1,37 @@
-import { Resizable } from "re-resizable";
-import { ReactNode, useEffect, useState } from "react";
+import { Resizable, ResizeCallback } from "re-resizable";
+import { ReactNode } from "react";
 import styles from "./menu-mobile-container.module.scss";
+import classnames from "classnames";
 
 type ResizablePanelProps = {
   defaultHeight: number;
   height: number;
-  onResize: (e: any, direction: any, div: any) => void;
+  onResize: ResizeCallback;
+  onResizeStop: ResizeCallback;
+  snap: number[];
+  maxHeight: string;
   children: ReactNode;
 };
 
-const ResizablePanel = ({ defaultHeight, height, onResize, children }: ResizablePanelProps) => {
-  const [windowHeight, setWindowHeight] = useState<number>(0);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") setWindowHeight(window.innerHeight);
-  }, []);
-
-  const navbarHeight = 56;
-
+const ResizablePanel = ({
+  defaultHeight,
+  height,
+  onResize,
+  onResizeStop,
+  maxHeight,
+  snap,
+  children
+}: ResizablePanelProps) => {
   const resizableProps = {
     className: styles["c-mobile-menu-container__draggable"],
-    handleClasses: { top: styles["c-mobile-menu-container__draggable__handle"] },
+    handleClasses: {
+      top: classnames(
+        styles["c-mobile-menu-container__draggable__handle"],
+        height === defaultHeight
+          ? styles["c-mobile-menu-container__draggable__handle__closed"]
+          : styles["c-mobile-menu-container__draggable__handle__open"]
+      )
+    },
     // Inline override, otherwise !important is needed in the stylesheet
     handleStyles: { top: { width: "100%", height: "50px", left: "0", top: "-42px" } },
     enable: {
@@ -35,13 +46,14 @@ const ResizablePanel = ({ defaultHeight, height, onResize, children }: Resizable
     },
     defaultSize: { width: "100vw", height: `${defaultHeight}px` },
     size: { height: `${height}px`, width: "100vw" },
-    onResize,
     minWidth: "100vw",
     maxWidth: "100vw",
     minHeight: `${defaultHeight}px`,
-    maxHeight: `${windowHeight * 0.9 - navbarHeight}px`,
-    snap: { y: [defaultHeight, windowHeight * 0.5 - navbarHeight, windowHeight * 0.9 - navbarHeight] },
-    snapGap: 20
+    snapGap: 20,
+    onResize,
+    onResizeStop,
+    maxHeight,
+    snap: { y: snap }
   };
 
   return <Resizable {...resizableProps}>{children}</Resizable>;

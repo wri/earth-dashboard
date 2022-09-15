@@ -7,7 +7,6 @@ import { setHeadlines } from "slices/headlines";
 
 export default connect(
   (state: RootState) => ({
-    dateOfDataShown: new Date(state.modes.dateOfDataShown),
     layersLabelArr: state.modes.layersLabelArr,
     shouldFadeControls: state.mapControls.isDatePickerOpen || state.mapControls.isSettingsOpen,
     currentHeadline: state.headlines.currentHeadline,

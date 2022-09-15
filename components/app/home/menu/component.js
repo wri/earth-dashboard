@@ -39,7 +39,9 @@ const Menu = forwardRef(
       pageTypeId,
       setPageTypeId,
       defaultMobileMenuHeight,
-      headlines
+      headlines,
+      handleToggleLocation,
+      isLocationDisabled
     },
     ref
   ) => {
@@ -51,8 +53,6 @@ const Menu = forwardRef(
 
     const navigateTo = pageId => () => setPageTypeId(pageId);
 
-    const [disableBackButton, setDisableBackButton] = useState(false);
-    const [disableNextButton, setDisableNextButton] = useState(false);
     const [footerHeading, setFooterHeading] = useState("");
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
@@ -78,16 +78,6 @@ const Menu = forwardRef(
         const text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
         setFooterHeading(text);
       }
-
-      // For disabling back button
-      if (currentHeadline && currentHeadlineIndex === 0) {
-        setDisableBackButton(true);
-      } else if (currentHeadline && currentHeadlineIndex === total - 1) {
-        setDisableNextButton(true);
-      } else {
-        setDisableBackButton(false);
-        setDisableNextButton(false);
-      }
     };
 
     const clearHeadline = () => {
@@ -105,11 +95,13 @@ const Menu = forwardRef(
       let headline = null;
 
       if (action === "back") {
-        headline = headlines[headlineIndex - 1];
+        const indexModulus = (headlineIndex - 1) % headlines.length;
+        headline = headlines[indexModulus];
         setCurrentHeadline(headline);
         fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
       } else {
-        headline = headlines[headlineIndex + 1];
+        const indexModulus = (headlineIndex + 1) % headlines.length;
+        headline = headlines[indexModulus];
         setCurrentHeadline(headline);
         fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
       }
@@ -142,11 +134,13 @@ const Menu = forwardRef(
       >
         {currentHeadline && (
           <MenuLayout title={`Back to ${pageTitle}`} onBack={clearHeadline} onClose={onClose}>
-            <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
+            <div className={styles["c-home-menu__event-container"]}>
+              <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
+            </div>
             <HeadlineFooter
               footerHeading={footerHeading}
-              disableBackButton={disableBackButton}
-              disableNextButton={disableNextButton}
+              disableBackButton={headlines?.length == 1}
+              disableNextButton={headlines?.length == 1}
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
@@ -190,6 +184,10 @@ const Menu = forwardRef(
           defaultPanelHeight={defaultMobileMenuHeight}
           panelHeight={mobileMenuHeight}
           setPanelHeight={setMobileMenuHeight}
+          toggleMenu={onClose}
+          pageTypeId={pageTypeId}
+          handleToggleLocation={handleToggleLocation}
+          isLocationDisabled={isLocationDisabled}
         >
           {getMenuContent()}
         </MobileMenuContainer>
@@ -207,7 +205,9 @@ Menu.propTypes = {
   layers: PropTypes.array.isRequired,
   setCurrentHeadline: PropTypes.func.isRequired,
   setCurrentHeadlineId: PropTypes.func.isRequired,
-  setDateOfDataShown: PropTypes.func.isRequired
+  setDateOfDataShown: PropTypes.func.isRequired,
+  handleToggleLocation: PropTypes.func.isRequired,
+  isLocationDisabled: PropTypes.bool.isRequired
 };
 
 export default Menu;

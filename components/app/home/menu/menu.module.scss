@@ -61,6 +61,10 @@
     }
   }
 
+  &__event-container {
+    height: 0;
+  }
+
   &__tab-container {
     background: rgba($colour-space, 0.8);
     backdrop-filter: blur(10.8731px);
@@ -141,7 +145,7 @@
     left: 0px;
     right: 12px;
     overflow-y: auto;
-    padding: 24px 12px 24px 24px;
+    padding: 24px 12px 40px 24px;
     display: flex;
     flex-direction: column;
     row-gap: 16px;
@@ -182,6 +186,10 @@
     background-position: center right;
     background-repeat: no-repeat;
     background-size: 232px 196px;
+
+    &[data-role="content"] {
+      padding-right: 107px;
+    }
   }
 
   &__template-description {
@@ -337,6 +345,7 @@
     right: 0;
     bottom: 0;
     max-width: unset;
+    animation: none;
 
     &__header {
       border-radius: 16px 16px 0 0;
@@ -445,7 +454,52 @@
   }
 }
 
+.c-home-menu-item {
+  $this: &;
+
+  &--advanced-data-item {
+    #{$this}__title {
+      font-family: "Barlow";
+      @include font-size(20px, 30px);
+      font-weight: 600;
+      color: $white;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 0.2px;
+    }
+
+    #{$this}__desc {
+      font-family: "Barlow";
+      @include font-size(16px, 24px);
+      font-weight: 500;
+      color: $white;
+      margin-bottom: 12px;
+    }
+
+    #{$this}__external-link {
+      font-family: "Barlow";
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 32px;
+      background: $white;
+      color: $colour-galaxy;
+      font-weight: 600;
+      @include font-size(14px, 18px);
+      letter-spacing: 0.4px;
+    }
+  }
+}
+
 .c-home-menu-container {
+  animation: FadeIn 0.3s ease-in;
+
+  &--closing {
+    opacity: 0;
+    animation: FadeOut 0.3s ease-in;
+  }
+
   @media screen and (max-width: $global-breakpoint-md) {
     left: 0;
     right: 0;
@@ -453,13 +507,7 @@
     top: 0;
     position: absolute;
     z-index: $z-index-dialog;
-  }
-
-  animation: FadeIn 0.3s ease-in;
-
-  &--closing {
-    opacity: 0;
-    animation: FadeOut 0.3s ease-in;
+    animation: none;
   }
 }
 

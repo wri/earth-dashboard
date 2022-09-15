@@ -11,7 +11,6 @@ import { fetchModes, getMenuTitle } from "services/gca";
 import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
-import { formatDate } from "utils/dates";
 import { UNIT_LABEL_MAP } from "utils/map";
 import IconButton from "components/ui/icon-button";
 import { Headline } from "slices/headlines";
@@ -23,7 +22,6 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import Icon from "components/ui/Icon";
 import ShareModal from "components/share-modal";
-import CondensedMenu from "../condensed-menu";
 
 // TODO: when we get scale date change height to larger
 // export const LARGE_MOBILE_MENU_HEIGHT = 179;
@@ -32,7 +30,7 @@ export const SMALL_MOBILE_MENU_HEIGHT = 92;
 export const INFO_PAGE_ID = "InfoPage";
 export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
 export const DATA_LAYER_PAGE_ID = "DataLayerPage";
-export const INFO_PAGE_HEADLINE = "I'd like to explore";
+export const INFO_PAGE_HEADLINE = "I'd like to explore...";
 export const EXTREME_EVENTS_PAGE_HEADLINE = "Extreme events";
 
 type MainContainerProps = {
@@ -40,7 +38,6 @@ type MainContainerProps = {
   setIsMobile: ActionCreatorWithPayload<boolean, string>;
   setModes: ActionCreatorWithPayload<Mode[], string>;
   layersLabelArr: string[];
-  dateOfDataShown: Date;
   headlines: Headline[];
   currentHeadline?: Headline;
   currentHeadlineId?: number;
@@ -55,7 +52,6 @@ const MainContainer = ({
   setIsMobile,
   setModes,
   layersLabelArr,
-  dateOfDataShown,
   headlines,
   shouldFadeControls,
   currentHeadline,
@@ -135,7 +131,7 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(window.innerHeight / 2);
+      setMobileMenuHeight(window.innerHeight * 0.6 - 56);
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {
@@ -267,6 +263,7 @@ const MainContainer = ({
       {overlayLayer && !isMobile && (
         <div className={classnames(styles["right"])}>
           <Scale
+            hidden={currentMode?.id === defaultMode?.id}
             min={scaleData?.min}
             max={scaleData?.max}
             scaleUnit={scaleData?.unitSymbol}
@@ -281,13 +278,13 @@ const MainContainer = ({
               <IconButton
                 name="zoom-in"
                 onClick={() => {
-                  earthServer?.current?.reorient({ scaleBy: 1.05 });
+                  earthServer?.current?.reorient({ scaleBy: 1.15 });
                 }}
               />
               <IconButton
                 name="zoom-out"
                 onClick={() => {
-                  earthServer?.current?.reorient({ scaleBy: 0.95 });
+                  earthServer?.current?.reorient({ scaleBy: 0.85 });
                 }}
               />
             </div>
@@ -315,17 +312,11 @@ const MainContainer = ({
           pageTypeId={pageTypeId}
           setPageTypeId={setPageTypeId}
           defaultMobileMenuHeight={defaultMobileMenuHeight}
-        />
-      )}
-
-      {isMobile && (
-        <CondensedMenu
-          toggleMenu={toggleMenu}
-          pageTypeId={pageTypeId}
           handleToggleLocation={handleToggleLocation}
           isLocationDisabled={isLocationDisabled}
         />
       )}
+
       <ShareModal />
 
       <Actions
@@ -380,16 +371,6 @@ const MainContainer = ({
               </div>
               <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
                 <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</span>
-                {layersLabelArr.length > 0 && (
-                  <span data-testid="labels-arr">
-                    {layersLabelArr.join(", ")}
-                    {isMobile && (
-                      <>
-                        <br /> {formatDate(dateOfDataShown)}
-                      </>
-                    )}
-                  </span>
-                )}
               </div>
             </button>
           </>

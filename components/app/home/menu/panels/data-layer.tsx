@@ -65,8 +65,7 @@ const DataLayerOverview = ({
   }, [setHeadlines, currentMode]);
 
   const mostRecentHeadlines = useMemo(() => {
-    const reversed = [...headlines].reverse();
-    return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
+    return headlines.slice(0, MAX_NUMBER_OF_HEADLINES);
   }, [headlines]);
 
   if (currentMode == null) return null;
