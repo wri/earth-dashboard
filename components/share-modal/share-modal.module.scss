@@ -32,8 +32,7 @@
     }
 
     & .title {
-      margin: 0 auto;
-      margin-left: 12px;
+      margin-right: auto;
       color: $white;
       font-weight: 600;
       text-transform: uppercase;
@@ -44,7 +43,8 @@
 
   &__close {
     box-shadow: 0px 2px 10px rgba(26, 26, 25, 0.24);
-    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
     svg {
       min-width: 12px;
     }
@@ -68,10 +68,10 @@
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
-    top: 40px;
-    bottom: 40px;
+    top: 145px;
+    bottom: 145px;
     left: 50%;
-    width: 450px;
+    width: 640px;
     height: auto;
     transform: translateX(-50%);
     border-radius: 12px;
@@ -88,16 +88,7 @@
     &__body {
       .scroll {
         padding: 24px;
-        display: flex;
-        flex-flow: column;
         height: 100%;
-
-        & .link-container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          flex: 1 1 auto;
-        }
       }
     }
   }

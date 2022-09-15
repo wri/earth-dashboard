@@ -1,10 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import classnames from "classnames";
 import Icon, { IconProps } from "../Icon";
 import styles from "./icon-button.module.scss";
 
 type IconButtonProps = {
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   disabled?: boolean;
   small?: boolean;
@@ -14,32 +14,41 @@ type IconButtonProps = {
 } & Pick<IconProps, "name" | "size">;
 
 /** Styled icon button. */
-const IconButton = ({
-  name,
-  size,
-  onClick,
-  className = "",
-  small,
-  medium,
-  disabled,
-  iconStyle,
-  iconClassName,
-  ...rest
-}: IconButtonProps) => {
-  return (
-    <button
-      className={classnames(
-        styles["c-icon-button"],
-        { [styles["small"]]: small, [styles["medium"]]: medium },
-        className
-      )}
-      onClick={onClick}
-      disabled={disabled}
-      {...rest}
-    >
-      <Icon name={name} size={size} className={iconClassName} style={iconStyle} type="decorative" />
-    </button>
-  );
-};
+const IconButton = forwardRef(
+  (
+    {
+      name,
+      size,
+      onClick,
+      className = "",
+      small,
+      medium,
+      disabled,
+      iconStyle,
+      iconClassName,
+      ...rest
+    }: IconButtonProps,
+    ref
+  ) => {
+    return (
+      <button
+        //@ts-expect-error
+        ref={ref}
+        className={classnames(
+          styles["c-icon-button"],
+          { [styles["small"]]: small, [styles["medium"]]: medium },
+          className
+        )}
+        onClick={onClick}
+        disabled={disabled}
+        {...rest}
+      >
+        <Icon name={name} size={size} className={iconClassName} style={iconStyle} type="decorative" />
+      </button>
+    );
+  }
+);
+
+IconButton.displayName = "IconButton";
 
 export default IconButton;

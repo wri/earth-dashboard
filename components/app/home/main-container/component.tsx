@@ -22,6 +22,8 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import Icon from "components/ui/Icon";
 import ShareModal from "components/share-modal";
+import * as d3 from "utils/d3";
+import { reorientController } from "utils/iframeBridge/iframeBridge";
 
 // TODO: when we get scale date change height to larger
 // export const LARGE_MOBILE_MENU_HEIGHT = 179;
@@ -74,6 +76,8 @@ const MainContainer = ({
 
   // References
   const menuRef = useRef<HTMLDivElement>();
+  const zoomInRef = useRef<HTMLButtonElement>();
+  const zoomOutRef = useRef<HTMLButtonElement>();
 
   // Redux
   const dispatch = useDispatch();
@@ -198,6 +202,11 @@ const MainContainer = ({
     }
   }, [hasMenuOpen]);
 
+  useEffect(() => {
+    reorientController(d3.select(zoomInRef.current), () => earthServer?.current?.reorient({ scaleBy: 1.05 }));
+    reorientController(d3.select(zoomOutRef.current), () => earthServer?.current?.reorient({ scaleBy: 0.95 }));
+  }, [earthServer, zoomInRef?.current, zoomOutRef?.current]);
+
   // Fetch Templates from the GCA CMS
   useEffect(() => {
     setIsFetchingTemplates(true);
@@ -275,18 +284,8 @@ const MainContainer = ({
           />
           <div className={classnames(styles["controls"])}>
             <div className={classnames(styles["zooms"], styles["over-pointer"])}>
-              <IconButton
-                name="zoom-in"
-                onClick={() => {
-                  earthServer?.current?.reorient({ scaleBy: 1.15 });
-                }}
-              />
-              <IconButton
-                name="zoom-out"
-                onClick={() => {
-                  earthServer?.current?.reorient({ scaleBy: 0.85 });
-                }}
-              />
+              <IconButton name="zoom-in" ref={zoomInRef} />
+              <IconButton name="zoom-out" ref={zoomOutRef} />
             </div>
             <IconButton
               name="location"
@@ -366,9 +365,6 @@ const MainContainer = ({
               id="menu-button"
               data-testid="toggle"
             >
-              <div className={menuButtonStyles["icon"]}>
-                <Icon name={hasMenuOpen ? "close" : "layers"} size={28} type="decorative" />
-              </div>
               <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
                 <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</span>
               </div>

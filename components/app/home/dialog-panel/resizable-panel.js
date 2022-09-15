@@ -1,8 +1,15 @@
+import { useState, useEffect } from "react";
 import { Resizable } from "re-resizable";
 import { forwardRef } from "react";
 import styles from "./dialog-panel.module.scss";
 
 const ResizablePanel = forwardRef(({ isMobile, children, height, onResize }, ref) => {
+  const [windowHeight, setWindowHeight] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") setWindowHeight(window.innerHeight);
+  }, []);
+
   const resizableProps = {
     className: styles["c-dialog-panel__draggable"],
     // Inline override, otherwise !important is needed in the stylesheet
@@ -20,13 +27,13 @@ const ResizablePanel = forwardRef(({ isMobile, children, height, onResize }, ref
       bottomLeft: false,
       topLeft: false
     },
-    defaultSize: { width: "100vw", height: height },
+    defaultSize: { width: "100vw", height: `${windowHeight * 0.9}px` },
     size: { height: height },
     onResize,
     minWidth: "100vw",
     maxWidth: "100vw",
     minHeight: "50vh",
-    maxHeight: "90vh"
+    maxHeight: `${windowHeight * 0.9}px`
   };
 
   return isMobile ? (

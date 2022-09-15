@@ -9,7 +9,6 @@
   background-color: $colour-galaxy;
   position: relative;
   overflow: hidden;
-  flex-shrink: 0;
 
   &__background-image {
     filter: brightness(70%) blur(4px);
