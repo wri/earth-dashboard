@@ -59,8 +59,6 @@ const Menu = forwardRef(
       let index = -1;
       let total = 0;
 
-      console.log("GET CURRENT", headlines);
-
       if (currentHeadline) {
         index = headlines.findIndex(headline => headline.id === currentHeadline.id);
         if (index > -1) {
