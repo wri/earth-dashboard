@@ -34,26 +34,42 @@ test("<Menu /> renders correctly as mobile", async () => {
   await waitFor(() => queryAllByTestId("headline"));
 
   expect(container).toMatchInlineSnapshot(`
-    <div>
+<div>
+  <div
+    class="c-mobile-menu-container"
+  >
+    <div
+      class="c-mobile-menu-container__draggable"
+      style="position: relative; user-select: auto; width: 100vw; max-width: 100vw; max-height: 635.2px; min-width: 100vw; min-height: undefinedpx; box-sizing: border-box; flex-shrink: 0;"
+    >
       <div
-        class="c-mobile-menu-container"
-        style="z-index: 0;"
+        class="c-condensed-menu"
       >
         <div
-          class="c-mobile-menu-container__draggable"
-          style="position: relative; user-select: auto; width: 100vw; max-width: 100vw; max-height: 635.2px; min-width: 100vw; min-height: undefinedpx; box-sizing: border-box; flex-shrink: 0;"
+          class="c-condensed-menu__title-container"
+          style="margin-bottom: 0px;"
         >
-          <div
-            class="c-home-menu-container c-home-menu-container--closing"
+          <p
+            class="title"
+          >
+            Extreme Events
+          </p>
+          <button
+            class="c-icon-button small location-icon"
           />
-          <div>
-            <div
-              class="c-mobile-menu-container__draggable__handle"
-              style="position: absolute; user-select: none; width: 100%; height: 50px; top: -42px; left: 0px; cursor: row-resize;"
-            />
-          </div>
+          <button
+            class="c-icon-button small expand-icon"
+          />
         </div>
       </div>
+      <div>
+        <div
+          class="c-mobile-menu-container__draggable__handle c-mobile-menu-container__draggable__handle__closed"
+          style="position: absolute; user-select: none; width: 100%; height: 50px; top: -42px; left: 0px; cursor: row-resize;"
+        />
+      </div>
     </div>
-  `);
+  </div>
+</div>
+`);
 });
