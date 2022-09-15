@@ -47,7 +47,7 @@ const headlinesSlice = createSlice({
 const filterHeadlines = (headlines: Headline[]) => {
   const countsByMode = {};
   let totalHeadlines = 0;
-  const filtered = headlines.filter(headline => {
+  const filtered = headlines.reverse().filter(headline => {
     if (totalHeadlines >= MAX_NUMBER_OF_HEADLINES_IN_TOTAL) return false;
     const modeId = `${headline.attributes.mode.id}`;
     // @ts-expect-error
@@ -57,7 +57,7 @@ const filterHeadlines = (headlines: Headline[]) => {
     if (include) totalHeadlines++;
     return include;
   });
-  return filtered.reverse();
+  return filtered;
 };
 
 export const { setHeadlines, setCurrentHeadline, setCurrentHeadlineId } = headlinesSlice.actions;
