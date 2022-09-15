@@ -60,6 +60,7 @@ const HeadlinesPanel = ({
     }
     setScrollPosition(event.currentTarget.scrollTop);
   };
+  console.log("MOST RECENT", mostRecentHeadlines);
 
   return (
     <>

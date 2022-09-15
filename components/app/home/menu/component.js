@@ -51,8 +51,6 @@ const Menu = forwardRef(
 
     const navigateTo = pageId => () => setPageTypeId(pageId);
 
-    const [disableBackButton, setDisableBackButton] = useState(false);
-    const [disableNextButton, setDisableNextButton] = useState(false);
     const [footerHeading, setFooterHeading] = useState("");
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
@@ -60,6 +58,8 @@ const Menu = forwardRef(
     const getCurrentHeadlineIndex = () => {
       let index = -1;
       let total = 0;
+
+      console.log("GET CURRENT", headlines);
 
       if (currentHeadline) {
         index = headlines.findIndex(headline => headline.id === currentHeadline.id);
@@ -78,16 +78,6 @@ const Menu = forwardRef(
         const text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
         setFooterHeading(text);
       }
-
-      // For disabling back button
-      if (currentHeadline && currentHeadlineIndex === 0) {
-        setDisableBackButton(true);
-      } else if (currentHeadline && currentHeadlineIndex === total - 1) {
-        setDisableNextButton(true);
-      } else {
-        setDisableBackButton(false);
-        setDisableNextButton(false);
-      }
     };
 
     const clearHeadline = () => {
@@ -105,11 +95,13 @@ const Menu = forwardRef(
       let headline = null;
 
       if (action === "back") {
-        headline = headlines[headlineIndex - 1];
+        const indexModulus = (headlineIndex - 1) % headlines.length;
+        headline = headlines[indexModulus];
         setCurrentHeadline(headline);
         fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
       } else {
-        headline = headlines[headlineIndex + 1];
+        const indexModulus = (headlineIndex + 1) % headlines.length;
+        headline = headlines[indexModulus];
         setCurrentHeadline(headline);
         fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
       }
@@ -147,8 +139,8 @@ const Menu = forwardRef(
             </div>
             <HeadlineFooter
               footerHeading={footerHeading}
-              disableBackButton={disableBackButton}
-              disableNextButton={disableNextButton}
+              disableBackButton={headlines?.length == 1}
+              disableNextButton={headlines?.length == 1}
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
