@@ -56,13 +56,6 @@ const useIframeBridge = ({
 
   const { width } = useWindowDimensions();
 
-  const MAX_NUMBER_OF_HEADLINES = 25;
-
-  const mostRecentHeadlines = useMemo(() => {
-    const reversed = [...headlines].reverse();
-    return reversed.slice(0, MAX_NUMBER_OF_HEADLINES);
-  }, [headlines]);
-
   // References
   const iframeRef = useRef<any>();
   const earthServer = useRef<any>();
@@ -88,13 +81,11 @@ const useIframeBridge = ({
   // Set the extreme event points
   useEffect(() => {
     if (earthServer.current) {
-      const markersToRemove = markers.filter(
-        marker => !mostRecentHeadlines.find(headline => headline.id === marker.id)
-      );
+      const markersToRemove = markers.filter(marker => !headlines.find(headline => headline.id === marker.id));
       markersToRemove.forEach(marker => earthServer.current.annotate(marker.label, null));
 
       const newMarkers: Marker[] = [];
-      mostRecentHeadlines.forEach(headline => {
+      headlines.forEach(headline => {
         const annotationId = `indicator-${headline.id}`;
         newMarkers.push({ id: headline.id, label: annotationId });
         if (!markers.find(marker => marker.id === headline.id)) {
@@ -104,13 +95,13 @@ const useIframeBridge = ({
       });
       setMarkers(newMarkers);
     }
-  }, [mostRecentHeadlines, earthServer.current]);
+  }, [headlines, earthServer.current]);
 
   // Set locations for extreme event buttons (overlay)
   useEffect(() => {
     if (earthServer.current) {
       let extremeEventLocations: GeoMarkerOverlayDetails[] = [];
-      mostRecentHeadlines.forEach(headline => {
+      headlines.forEach(headline => {
         const projectionD3Func = currentProjectionFunc();
         const marker = getIndicatorGeoJson([headline.attributes.location.lng, headline.attributes.location.lat]);
         const location = getMarkerProperties(marker, projectionD3Func);
@@ -118,7 +109,7 @@ const useIframeBridge = ({
       });
       setExtremeEventLocations(extremeEventLocations);
     }
-  }, [mostRecentHeadlines, currentProjectionFunc, currentProjection, earthServer.current]);
+  }, [headlines, currentProjectionFunc, currentProjection, earthServer.current]);
 
   // Set details for the tool tip on extreme event
   useEffect(() => {
