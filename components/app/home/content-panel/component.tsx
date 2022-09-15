@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode } from "react";
 import styles from "./panel.module.scss";
-import Icon from "components/ui/Icon";
 import classNames from "classnames";
 import CtaButton from "components/ui/cta-button";
 
@@ -9,6 +8,7 @@ export type MenuOptionProps = {
   title?: string;
   icon?: string;
   className?: string;
+  isSelected?: boolean;
   canFocus?: boolean;
   ctaControl?: React.ElementType;
   buttonText?: string;
@@ -22,6 +22,7 @@ const ContentPanel = ({
   title,
   icon,
   className,
+  isSelected,
   canFocus,
   ctaControl,
   buttonText,
@@ -38,14 +39,28 @@ const ContentPanel = ({
     >
       <div
         tabIndex={canFocus ? 0 : undefined}
-        className={classNames(styles["c-content-panel"], canFocus ? styles["c-content-panel__focusable"] : undefined)}
+        data-role="content"
+        className={classNames(
+          styles["c-content-panel"],
+          isSelected ? styles["c-content-panel--selected"] : undefined,
+          canFocus ? styles["c-content-panel__focusable"] : undefined
+        )}
       >
-        {title && (
-          <div className={styles["c-content-panel__header-row"]}>
-            {icon && <img className={styles["c-content-panel__image"]} src={icon} alt="" role="presentation" />}
+        <div
+          className={classNames(
+            styles["c-content-panel__header-row"],
+            (!!icon && styles["c-content-panel__header-row--with-icon"]) ?? undefined
+          )}
+        >
+          {icon && (
+            <div className={styles["c-content-panel__icon-container"]}>
+              <img className={styles["c-content-panel__image"]} src={icon} alt="" role="presentation" />
+            </div>
+          )}
+          <div className={styles["c-content-panel__title-container"]}>
             <h3 className={styles["c-content-panel__title"]}>{title}</h3>
           </div>
-        )}
+        </div>
         {children}
         {(ctaAction || ctaLink) && (
           <div className={styles["c-content-panel__cta"]}>

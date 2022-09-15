@@ -142,7 +142,9 @@ const Menu = forwardRef(
       >
         {currentHeadline && (
           <MenuLayout title={`Back to ${pageTitle}`} onBack={clearHeadline} onClose={onClose}>
-            <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
+            <div className={styles["c-home-menu__event-container"]}>
+              <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
+            </div>
             <HeadlineFooter
               footerHeading={footerHeading}
               disableBackButton={disableBackButton}
