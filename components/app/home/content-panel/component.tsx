@@ -15,6 +15,7 @@ export type MenuOptionProps = {
   selectAction?: () => any;
   ctaAction?: () => any;
   ctaLink?: string;
+  style?: Object;
   children: ReactNode;
 };
 
@@ -29,11 +30,13 @@ const ContentPanel = ({
   selectAction,
   ctaAction,
   ctaLink,
+  style,
   children
 }: MenuOptionProps) => {
   return (
     <div
       className={classNames(styles["c-content-panel__underlay"], className)}
+      style={style}
       data-testid="content-panel"
       onClick={selectAction}
     >

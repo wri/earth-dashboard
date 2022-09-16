@@ -338,11 +338,11 @@ test("<MainContainer /> renders correctly as mobile", async () => {
   >
     <div
       class="c-mobile-menu-container"
-      style="height: 92px;"
+      style="height: 148px; z-index: 1000;"
     >
       <div
         class="c-mobile-menu-container__draggable"
-        style="position: relative; user-select: auto; width: 100vw; height: 92px; max-width: 100vw; max-height: 635.2px; min-width: 100vw; min-height: 92px; box-sizing: border-box; flex-shrink: 0;"
+        style="position: relative; user-select: auto; width: 100vw; height: 148px; max-width: 100vw; max-height: 691.2px; min-width: 100vw; min-height: 148px; box-sizing: border-box; flex-shrink: 0;"
       >
         <div
           class="c-condensed-menu"

@@ -37,10 +37,11 @@ test("<Menu /> renders correctly as mobile", async () => {
 <div>
   <div
     class="c-mobile-menu-container"
+    style="z-index: 1000;"
   >
     <div
       class="c-mobile-menu-container__draggable"
-      style="position: relative; user-select: auto; width: 100vw; max-width: 100vw; max-height: 635.2px; min-width: 100vw; min-height: undefinedpx; box-sizing: border-box; flex-shrink: 0;"
+      style="position: relative; user-select: auto; width: 100vw; max-width: 100vw; max-height: 691.2px; min-width: 100vw; min-height: undefinedpx; box-sizing: border-box; flex-shrink: 0;"
     >
       <div
         class="c-condensed-menu"
