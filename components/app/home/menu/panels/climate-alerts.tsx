@@ -53,11 +53,19 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
     setScrollPosition(event.currentTarget.scrollTop);
   };
 
+  const title =
+    currentMode && currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "All Extreme Events";
+
+  const description =
+    currentMode && currentMode.attributes.title !== "Default"
+      ? "View the latest Extreme Events"
+      : "View all of the latest Extreme Events";
+
   return (
     <>
       <div className={styles["c-home-menu__extreme-events--header"]} style={{ top: `${-scrollPosition}px` }}>
-        <h3>All Extreme Events</h3>
-        <p>View all of the latest Extreme Events</p>
+        <h3>{title}</h3>
+        <p>{description}</p>
       </div>
       <div
         className={classnames(styles["c-home-menu__scroll-area"], styles["c-home-menu__extreme-events--scroll"])}
@@ -78,9 +86,8 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
         <div className={styles["c-home-menu__extreme-events--controls"]}>
           {headlines.length > numHeadlinesToShow && (
             <CtaButton
-              text="View More"
-              iconName="arrow-right"
-              iconSize={15}
+              text="Load More"
+              className={styles["c-home-menu__cta"]}
               onClick={() => setNumHeadlinesToShow(numHeadlinesToShow + HEADLINE_BATCH_SIZE)}
             />
           )}

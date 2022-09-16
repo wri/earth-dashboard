@@ -112,7 +112,7 @@
       justify-content: center;
       height: 126px;
       position: absolute;
-      background-color: $colour-galaxy;
+      background-color: rgba($colour-galaxy, 0.45);
       width: 100%;
       background-image: url("/static/images/globe.png");
       background-position: center right;
@@ -127,6 +127,10 @@
         text-transform: uppercase;
         @include font-size(20px, 30px);
         margin-bottom: 8px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-right: 100px;
 
         @media screen and (max-width: $global-breakpoint-md) {
           font-family: "Barlow Condensed";
@@ -215,6 +219,10 @@
 
   &__headline {
     margin-bottom: 16px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      margin-bottom: 24px;
+    }
   }
 
   &__data-selection {
@@ -335,6 +343,10 @@
         margin-right: 12px;
       }
     }
+  }
+
+  &__cta {
+    margin-top: -16px;
   }
 
   @media screen and (max-width: 1700px) {

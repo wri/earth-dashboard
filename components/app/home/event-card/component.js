@@ -9,7 +9,7 @@ const HeadlineCard = ({ headline, className, as, ...rest }) => {
   const Element = as;
   return (
     <Element className={classnames(styles["c-event-card"], className)} {...rest} data-testid="headline">
-      <span
+      <div
         className={styles["c-event-card__background"]}
         style={{ backgroundImage: `url(${headline.attributes.thumbnail_image})` }}
       />
