@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo, useRef, UIEvent } from "react";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
-import { fetchClimateAlerts } from "services/gca";
 import { setHeadlines, setCurrentHeadline, Headline as HeadlineType } from "slices/headlines";
 import EventCard from "components/app/home/event-card";
 import { Mode, setCurrentMode } from "slices/modes";
@@ -18,20 +17,13 @@ const SCOLL_THRESHOLD = 180;
 type HeadlinesPanerProps = {
   currentMode?: Mode;
   headlines: HeadlineType[];
-  setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
   forceInfoPage: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType, string>;
   currentHeadline?: HeadlineType;
 };
 
-const HeadlinesPanel = ({
-  currentMode,
-  headlines,
-  setHeadlines,
-  setCurrentHeadline,
-  currentHeadline
-}: HeadlinesPanerProps) => {
+const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHeadline }: HeadlinesPanerProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(HEADLINE_BATCH_SIZE);
 

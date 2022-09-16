@@ -20,7 +20,6 @@ import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapContr
 import useIframeBridge from "hooks/useIframeBridge";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
-import Icon from "components/ui/Icon";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";

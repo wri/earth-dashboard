@@ -15,14 +15,15 @@
 
   &__background {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.3;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    filter: brightness(50%) blur(2px);
     z-index: -1;
     background-position: center;
     background-size: cover;
+    overflow: hidden;
   }
 
   &__detail {
@@ -35,12 +36,10 @@
   &__title {
     color: white;
     font-family: "Barlow";
-    font-weight: 500;
+    font-weight: 600;
     @include font-size(18px, 27px);
-    margin-bottom: 4px;
     color: white;
     margin-bottom: 8px;
-
   }
 
   &__subtitle {
@@ -48,9 +47,8 @@
     font-family: "Barlow";
     font-weight: 500;
     @include font-size(14px, 18px);
-    margin-bottom: 4px;
     color: white;
-    margin-bottom: 8px;
+    margin-bottom: 14px;
   }
 
   &__thumbnail {
@@ -59,14 +57,9 @@
     display: block;
     height: 192px;
     overflow: hidden;
-  }
 
-  @media screen and (max-width: $global-breakpoint-md) {
-    &__title {
-      @include font-size(12px, 18px);
-    }
-    &__date {
-      @include font-size(11px, 16px);
+    @media screen and (max-width: $global-breakpoint-md) {
+      height: 160px;
     }
   }
 }
