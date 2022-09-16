@@ -7,7 +7,7 @@ import ResizablePanel from "./resizable-panel";
 
 const transitionDuration = parseInt(styles["transitionDuration"], 10);
 
-const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobile, shouldAnimate }) => {
+const DialogPanel = ({ children, dialogHeight, isCookieOpen, setDialogHeight, onClose, isMobile, shouldAnimate }) => {
   const [isIn, setIsIn] = useState(true);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
         appearDone: styles["c-dialog-panel--open"]
       }}
     >
-      <div className={styles["c-dialog-panel"]} role="dialog">
+      <div className={styles["c-dialog-panel"]} style={isCookieOpen ? { zIndex: 1004 } : {}} role="dialog">
         <FocusTrap focusTrapOptions={focusTrapOptions}>
           <ResizablePanel isMobile={isMobile} height={dialogHeight} onResize={handleResize}>
             {children}
@@ -56,6 +56,7 @@ const DialogPanel = ({ children, dialogHeight, setDialogHeight, onClose, isMobil
 
 DialogPanel.propTypes = {
   dialogHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  isCookieOpen: PropTypes.bool.isRequired,
   setDialogHeight: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,

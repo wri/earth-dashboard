@@ -133,12 +133,18 @@
       }
     }
 
-    .cookie-link {
+    .cookie-banner-link {
       color: $white;
+      @include font-size(16px);
       border-radius: 0;
       @include font-size(16px);
       padding: 0;
       font-weight: 500;
+      text-decoration: underline;
+
+      &:hover {
+        color: $colour-flame;
+      }
     }
 
     .button-group button {
