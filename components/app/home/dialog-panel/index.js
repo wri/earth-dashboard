@@ -5,7 +5,8 @@ import DialogPanelComponent from "./component";
 
 export default connect(
   state => ({
-    dialogHeight: state[dialogSliceName].dialogHeight
+    dialogHeight: state[dialogSliceName].dialogHeight,
+    isCookieOpen: state.mapControls.isCookieOpen
   }),
   {
     setDialogHeight
