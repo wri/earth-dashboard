@@ -23,15 +23,15 @@ const FormSwitch = ({ label, isActive, onChange, className = "" }: FormSwitchPro
   };
 
   const desktopSwitchProps = {
-    handleDiameter: 32,
-    height: 44,
-    width: 80
+    handleDiameter: 30,
+    height: 40,
+    width: 65
   };
 
   const mobileSwitchProps = {
     handleDiameter: 24,
     height: 32,
-    width: 58
+    width: 52
   };
 
   return (
