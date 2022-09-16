@@ -235,13 +235,14 @@ const MainContainer = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [earthServer.current, currentHeadline, disableToolTip, enableToolTip, layersLabelArr]);
 
-  // When the Globe loads, open the menu on Desktop
+  // When the Globe loads, open the menu
   useEffect(() => {
-    if (earthServer.current && !isMobile) {
+    if (earthServer.current) {
       setHasMenuOpen(true);
+      setMobileMenuHeight(window.innerHeight * 0.6);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [earthServer.current, setHasMenuOpen, isMobile]);
+  }, [earthServer.current, setHasMenuOpen]);
 
   return (
     <div
