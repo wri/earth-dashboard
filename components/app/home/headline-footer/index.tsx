@@ -31,6 +31,7 @@ export default function HeadlineFooter({
     >
       <IconButton
         name="arrow-left"
+        size={16}
         className={classnames(styles["c-home-menu__footer--btn"])}
         disabled={disableBackButton}
         onClick={() => navigateHeadline("back")}
@@ -40,6 +41,7 @@ export default function HeadlineFooter({
       </div>
       <IconButton
         name="arrow-right"
+        size={16}
         className={classnames(styles["c-home-menu__footer--btn"])}
         disabled={disableNextButton}
         onClick={() => navigateHeadline("next")}
