@@ -26,9 +26,9 @@ import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
 
 // TODO: when we get scale date change height to larger
-// export const LARGE_MOBILE_MENU_HEIGHT = 179;
-export const LARGE_MOBILE_MENU_HEIGHT = 92;
-export const SMALL_MOBILE_MENU_HEIGHT = 92;
+// export const LARGE_MOBILE_MENU_HEIGHT = 235;
+export const LARGE_MOBILE_MENU_HEIGHT = 148;
+export const SMALL_MOBILE_MENU_HEIGHT = 148;
 export const INFO_PAGE_ID = "InfoPage";
 export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
 export const DATA_LAYER_PAGE_ID = "DataLayerPage";
@@ -135,7 +135,7 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(window.innerHeight * 0.6 - 56);
+      setMobileMenuHeight(window.innerHeight * 0.6);
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {
@@ -313,6 +313,7 @@ const MainContainer = ({
           defaultMobileMenuHeight={defaultMobileMenuHeight}
           handleToggleLocation={handleToggleLocation}
           isLocationDisabled={isLocationDisabled}
+          hasMenuOpen={hasMenuOpen}
         />
       )}
 

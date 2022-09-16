@@ -2,6 +2,7 @@ import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react"
 import ResizablePanel from "./resizable-panel";
 import styles from "./menu-mobile-container.module.scss";
 import CondensedMenu from "../../condensed-menu";
+import { INFO_PAGE_ID } from "../../main-container/component";
 
 type MenuMobileContainerProps = {
   defaultPanelHeight: number;
@@ -11,6 +12,7 @@ type MenuMobileContainerProps = {
   pageTypeId: string;
   handleToggleLocation: () => void;
   isLocationDisabled: boolean;
+  hasMenuOpen: ConstrainBooleanParameters;
   children: ReactNode;
 };
 
@@ -19,19 +21,19 @@ const MenuMobileContainer = ({
   panelHeight,
   setPanelHeight,
   toggleMenu,
-  pageTypeId,
   handleToggleLocation,
   isLocationDisabled,
+  pageTypeId,
+  hasMenuOpen,
   children
 }: MenuMobileContainerProps) => {
   const [windowHeight, setWindowHeight] = useState<number>(0);
-  const navbarHeight = 56;
 
   useEffect(() => {
     if (typeof window !== "undefined") setWindowHeight(window.innerHeight);
   }, []);
 
-  const snapHeights = [defaultPanelHeight, windowHeight * 0.6 - navbarHeight, windowHeight * 0.9 - navbarHeight];
+  const snapHeights = [defaultPanelHeight, windowHeight * 0.6, windowHeight * 0.9];
 
   const handleResize = (e: any, direction: any, div: any) => setPanelHeight(div.offsetHeight);
 
@@ -45,13 +47,16 @@ const MenuMobileContainer = ({
   };
 
   return (
-    <div className={styles["c-mobile-menu-container"]} style={{ height: panelHeight }}>
+    <div
+      className={styles["c-mobile-menu-container"]}
+      style={{ height: panelHeight, zIndex: pageTypeId === INFO_PAGE_ID || !hasMenuOpen ? 1000 : 1001 }}
+    >
       <ResizablePanel
         defaultHeight={defaultPanelHeight}
         height={panelHeight}
         onResize={handleResize}
         onResizeStop={handleResizeStop}
-        maxHeight={`${windowHeight * 0.9 - navbarHeight}px`}
+        maxHeight={`${windowHeight * 0.9}px`}
         snap={snapHeights}
       >
         {panelHeight === defaultPanelHeight ? (
