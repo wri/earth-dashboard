@@ -3,63 +3,62 @@
 @import "css/settings/breakpoints";
 
 .c-event-card {
-  backdrop-filter: blur(10.8731px);
+  width: 100%;
   border-radius: 16px;
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
   cursor: pointer;
   text-align: left;
-  width: 100%;
-  padding: 0;
+  padding: 20px;
 
   &__background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.3;
-    z-index: -1;
+    filter: brightness(50%) blur(4px);
+    background-color: $colour-galaxy;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    z-index: 5;
   }
 
   &__detail {
-    padding: 20px;
+    position: relative;
+    z-index: 10;
     display: flex;
     flex-direction: column;
-    width: 100%;
   }
 
   &__title {
-    color: $white;
+    color: white;
     font-family: "Barlow";
     font-weight: 600;
     @include font-size(18px, 27px);
+    color: white;
     margin-bottom: 8px;
   }
 
   &__subtitle {
-    color: $white;
+    color: white;
     font-family: "Barlow";
-    font-weight: 600;
+    font-weight: 500;
     @include font-size(14px, 18px);
-    margin-bottom: 12px;
+    color: white;
+    margin-bottom: 14px;
   }
 
   &__thumbnail {
     border-radius: 16px;
     position: relative;
     display: block;
-    height: 145px;
+    height: 192px;
     overflow: hidden;
-  }
 
-  @media screen and (min-width: $global-breakpoint-md) {
-    &__thumbnail {
-      height: 192px;
+    @media screen and (max-width: $global-breakpoint-md) {
+      height: 160px;
     }
   }
 }

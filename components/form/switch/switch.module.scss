@@ -13,13 +13,7 @@
 
   &__label {
     color: $white;
-    @include font-size(14px, 21px);
+    @include font-size(16px, 24px);
     font-weight: 500;
-  }
-
-  @media screen and (min-width: $global-breakpoint-md) {
-    &__label {
-      @include font-size(18px, 27px);
-    }
   }
 }

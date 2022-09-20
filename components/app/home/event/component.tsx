@@ -1,12 +1,11 @@
-import { useState, useRef, useMemo, UIEvent, useEffect } from "react";
-
+import { useState, useRef, UIEvent, useEffect } from "react";
 import styles from "./event.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
 import { NAME as modesSliceName, Mode } from "slices/modes";
 import ContentPanel from "components/app/home/content-panel/component";
 import SharePanel from "components/app/home/share-panel/component";
-import { setHeadlines, NAME as headlineSliceName, Headline as HeadlineType } from "slices/headlines";
+import { Headline as HeadlineType } from "slices/headlines";
 import NormalScale from "components/app/home/normal-scale/component";
 import moment from "moment";
 import Image from "next/image";
@@ -39,6 +38,7 @@ const ExtremeEvent = ({
   onViewAllEventsClicked
 }: DataLayerOverviewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const articleRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0);
 
@@ -57,6 +57,13 @@ const ExtremeEvent = ({
       setDateOfDataShown(new Date(headline?.attributes.climate_alert_date).toString());
     }
   }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy, setDateOfDataShown]);
+
+  // Scroll to top of article when headline changes
+  useEffect(() => {
+    if (articleRef.current) {
+      articleRef.current.scrollTo({ top: 0 });
+    }
+  }, [headline]);
 
   const how_to_help_content = currentMode?.attributes?.how_to_help_content;
 
@@ -88,12 +95,12 @@ const ExtremeEvent = ({
           <p className={styles["c-event__hero--description"]}>{headline.attributes.content.body}</p>
         </div>
       </div>
-      <div
-        className={styles["c-event__scroll-area"]}
-        style={{ paddingTop: `${containerHeight + 20}px` }}
-        onScroll={onScroll}
-      >
-        <ContentPanel icon={WHAT_IS_HAPPENING_ICON} title="How Extreme Is This Event?">
+      <div className={styles["c-event__scroll-area"]} onScroll={onScroll} ref={articleRef}>
+        <ContentPanel
+          icon={WHAT_IS_HAPPENING_ICON}
+          title="How Extreme Is This Event?"
+          style={{ marginTop: `${containerHeight + 24}px` }}
+        >
           <p>{headline.attributes.content.body}</p>
           <NormalScale value={80} />
         </ContentPanel>

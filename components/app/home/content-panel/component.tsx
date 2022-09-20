@@ -15,6 +15,7 @@ export type MenuOptionProps = {
   selectAction?: () => any;
   ctaAction?: () => any;
   ctaLink?: string;
+  style?: Object;
   children: ReactNode;
 };
 
@@ -29,6 +30,7 @@ const ContentPanel = ({
   selectAction,
   ctaAction,
   ctaLink,
+  style,
   children
 }: MenuOptionProps) => {
   return (
@@ -38,6 +40,7 @@ const ContentPanel = ({
         canFocus && styles["c-content-panel__underlay--can-focus"],
         className
       )}
+      style={style}
       data-testid="content-panel"
       onClick={selectAction}
     >

@@ -97,7 +97,7 @@
   }
 
   &__extreme-events {
-    padding: 135px 0 0 0;
+    padding: 128px 0 0 0;
 
     &--controls {
       display: flex;
@@ -110,15 +110,15 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 135px;
+      height: 126px;
       position: absolute;
-      background-color: $colour-galaxy;
+      background-color: rgba($colour-galaxy, 0.45);
       width: 100%;
       background-image: url("/static/images/globe.png");
       background-position: center right;
       background-repeat: no-repeat;
       background-size: 232px 196px;
-      padding: 24px;
+      padding: 20px 24px;
 
       h3 {
         color: white;
@@ -127,6 +127,14 @@
         text-transform: uppercase;
         @include font-size(20px, 30px);
         margin-bottom: 8px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-right: 100px;
+
+        @media screen and (max-width: $global-breakpoint-md) {
+          font-family: "Barlow Condensed";
+        }
       }
 
       p {
@@ -134,6 +142,10 @@
         font-family: "Barlow";
         font-weight: 500;
         @include font-size(16px, 24px);
+
+        @media screen and (max-width: $global-breakpoint-md) {
+          max-width: 160px;
+        }
       }
     }
   }
@@ -203,6 +215,14 @@
     @include font-size(14px, 21px);
     color: white;
     margin-top: 12px;
+  }
+
+  &__headline {
+    margin-bottom: 16px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      margin-bottom: 24px;
+    }
   }
 
   &__data-selection {
@@ -323,6 +343,10 @@
         margin-right: 12px;
       }
     }
+  }
+
+  &__cta {
+    margin-top: -16px;
   }
 
   @media screen and (max-width: 1700px) {

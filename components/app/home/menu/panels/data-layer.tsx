@@ -98,7 +98,6 @@ const DataLayerOverview = ({
                 key={headline.id}
                 as="button"
                 headline={headline}
-                className={styles["c-home-menu__headline"]}
                 onClick={() => setCurrentHeadline(headline)}
               />
             ))

@@ -20,15 +20,14 @@ import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapContr
 import useIframeBridge from "hooks/useIframeBridge";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
-import Icon from "components/ui/Icon";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
 
 // TODO: when we get scale date change height to larger
-// export const LARGE_MOBILE_MENU_HEIGHT = 179;
-export const LARGE_MOBILE_MENU_HEIGHT = 92;
-export const SMALL_MOBILE_MENU_HEIGHT = 92;
+// export const LARGE_MOBILE_MENU_HEIGHT = 235;
+export const LARGE_MOBILE_MENU_HEIGHT = 148;
+export const SMALL_MOBILE_MENU_HEIGHT = 148;
 export const INFO_PAGE_ID = "InfoPage";
 export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
 export const DATA_LAYER_PAGE_ID = "DataLayerPage";
@@ -135,7 +134,7 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(window.innerHeight * 0.6 - 56);
+      setMobileMenuHeight(window.innerHeight * 0.6);
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {
@@ -228,7 +227,7 @@ const MainContainer = ({
     if (currentHeadline && earthServer.current) {
       enableToolTip(
         [currentHeadline.attributes.location.lng, currentHeadline.attributes.location.lat],
-        `${layersLabelArr.join(", ")} in ${currentHeadline.attributes.location.name}`
+        currentHeadline.attributes.title
       );
     } else {
       disableToolTip();
@@ -236,13 +235,14 @@ const MainContainer = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [earthServer.current, currentHeadline, disableToolTip, enableToolTip, layersLabelArr]);
 
-  // When the Globe loads, open the menu on Desktop
+  // When the Globe loads, open the menu
   useEffect(() => {
-    if (earthServer.current && !isMobile) {
+    if (earthServer.current) {
       setHasMenuOpen(true);
+      setMobileMenuHeight(window.innerHeight * 0.6);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [earthServer.current, setHasMenuOpen, isMobile]);
+  }, [earthServer.current, setHasMenuOpen]);
 
   return (
     <div
@@ -313,6 +313,7 @@ const MainContainer = ({
           defaultMobileMenuHeight={defaultMobileMenuHeight}
           handleToggleLocation={handleToggleLocation}
           isLocationDisabled={isLocationDisabled}
+          hasMenuOpen={hasMenuOpen}
         />
       )}
 

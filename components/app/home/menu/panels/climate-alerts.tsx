@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo, useRef, UIEvent } from "react";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
-import { fetchClimateAlerts } from "services/gca";
 import { setHeadlines, setCurrentHeadline, Headline as HeadlineType } from "slices/headlines";
 import EventCard from "components/app/home/event-card";
 import { Mode, setCurrentMode } from "slices/modes";
@@ -18,20 +17,13 @@ const SCOLL_THRESHOLD = 180;
 type HeadlinesPanerProps = {
   currentMode?: Mode;
   headlines: HeadlineType[];
-  setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
   forceInfoPage: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType, string>;
   currentHeadline?: HeadlineType;
 };
 
-const HeadlinesPanel = ({
-  currentMode,
-  headlines,
-  setHeadlines,
-  setCurrentHeadline,
-  currentHeadline
-}: HeadlinesPanerProps) => {
+const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHeadline }: HeadlinesPanerProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(HEADLINE_BATCH_SIZE);
 
@@ -61,11 +53,19 @@ const HeadlinesPanel = ({
     setScrollPosition(event.currentTarget.scrollTop);
   };
 
+  const title =
+    currentMode && currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "All Extreme Events";
+
+  const description =
+    currentMode && currentMode.attributes.title !== "Default"
+      ? "View the latest Extreme Events"
+      : "View all of the latest Extreme Events";
+
   return (
     <>
       <div className={styles["c-home-menu__extreme-events--header"]} style={{ top: `${-scrollPosition}px` }}>
-        <h3>All Extreme Events</h3>
-        <p>View all of the latest Extreme Events</p>
+        <h3>{title}</h3>
+        <p>{description}</p>
       </div>
       <div
         className={classnames(styles["c-home-menu__scroll-area"], styles["c-home-menu__extreme-events--scroll"])}
@@ -86,8 +86,8 @@ const HeadlinesPanel = ({
         <div className={styles["c-home-menu__extreme-events--controls"]}>
           {headlines.length > numHeadlinesToShow && (
             <CtaButton
-              text="View More"
-              iconName="arrow-right"
+              text="Load More"
+              className={styles["c-home-menu__cta"]}
               onClick={() => setNumHeadlinesToShow(numHeadlinesToShow + HEADLINE_BATCH_SIZE)}
             />
           )}

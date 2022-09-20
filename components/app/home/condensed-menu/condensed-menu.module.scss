@@ -41,7 +41,7 @@
 
     .location-icon {
       margin-right: 12px;
-      width: 32px;
+      min-width: 32px;
       height: 32px;
       svg {
         min-width: 20px;
@@ -49,7 +49,7 @@
     }
 
     .expand-icon {
-      width: 32px;
+      min-width: 32px;
       height: 32px;
       svg {
         min-width: 16px;

@@ -41,7 +41,8 @@ const Menu = forwardRef(
       defaultMobileMenuHeight,
       headlines,
       handleToggleLocation,
-      isLocationDisabled
+      isLocationDisabled,
+      hasMenuOpen
     },
     ref
   ) => {
@@ -75,7 +76,10 @@ const Menu = forwardRef(
       const { index: currentHeadlineIndex, total } = getCurrentHeadlineIndex();
 
       if (currentHeadline) {
-        const text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
+        let text = "";
+        if (currentMode.attributes?.title !== "Default")
+          text = `${currentHeadlineIndex + 1}/${total} ${currentMode.attributes?.title}`;
+        else text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
         setFooterHeading(text);
       }
     };
@@ -149,7 +153,12 @@ const Menu = forwardRef(
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
-          <MenuLayout iconName="globe" title={pageTitle} onClose={onClose}>
+          <MenuLayout
+            iconName="globe"
+            title={pageTitle}
+            onClose={onClose}
+            style={isMobile ? { paddingBottom: "56px" } : {}}
+          >
             <DataIndexPanel
               onClickDataLayer={setCurrentMode}
               onViewDataLayerSummary={navigateTo(DATA_LAYER_PAGE_ID)}
@@ -185,9 +194,10 @@ const Menu = forwardRef(
           panelHeight={mobileMenuHeight}
           setPanelHeight={setMobileMenuHeight}
           toggleMenu={onClose}
-          pageTypeId={pageTypeId}
+          pageTypeId={currentHeadline ? "headline" : pageTypeId}
           handleToggleLocation={handleToggleLocation}
           isLocationDisabled={isLocationDisabled}
+          hasMenuOpen={hasMenuOpen}
         >
           {getMenuContent()}
         </MobileMenuContainer>
@@ -207,7 +217,8 @@ Menu.propTypes = {
   setCurrentHeadlineId: PropTypes.func.isRequired,
   setDateOfDataShown: PropTypes.func.isRequired,
   handleToggleLocation: PropTypes.func.isRequired,
-  isLocationDisabled: PropTypes.bool.isRequired
+  isLocationDisabled: PropTypes.bool.isRequired,
+  hasMenuOpen: PropTypes.bool.isRequired
 };
 
 export default Menu;
