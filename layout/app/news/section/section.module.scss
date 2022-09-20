@@ -11,6 +11,7 @@
   // Selector used here to avoid !important
   &--pb-none:not(:empty) {
     padding-bottom: 0;
+    padding-top: 0;
   }
 
   &--space {
@@ -55,6 +56,7 @@
     // Repeated here to avoid !important
     &--pb-none:not(:empty) {
       padding-bottom: 0;
+      padding-top: 0;
     }
 
     &__title {
