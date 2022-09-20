@@ -13,7 +13,7 @@ const SharePanel = ({ ctaAction }: SharePanelProps) => (
       <p className={styles["c-share-panel__subtitle"]}>
         Make a wider impact and spread awareness of the climate emergency
       </p>
-      <CtaButton text="Share" iconName="arrow-right" iconSize={15} onClick={ctaAction} />
+      <CtaButton text="Share" iconName="share" onClick={ctaAction} />
     </div>
   </div>
 );

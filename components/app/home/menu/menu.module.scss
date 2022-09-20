@@ -307,7 +307,7 @@
   &__events-list {
     display: flex;
     flex-direction: column;
-    row-gap: 16px;
+    gap: 12px;
     width: 100%;
   }
 
@@ -356,6 +356,10 @@
   @media screen and (min-width: $global-breakpoint-md) {
     &__tab-description {
       display: block;
+    }
+
+    &__events-list {
+      gap: 16px;
     }
   }
 

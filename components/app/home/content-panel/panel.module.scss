@@ -16,6 +16,9 @@
   row-gap: 16px;
 
   &__underlay {
+    &--can-focus {
+      background-color: $colour-galaxy;
+    }
     background-color: rgba($colour-galaxy, 0.45);
     backdrop-filter: blur(10.8731px);
     border-radius: 12px;

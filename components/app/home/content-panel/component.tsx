@@ -35,7 +35,11 @@ const ContentPanel = ({
 }: MenuOptionProps) => {
   return (
     <div
-      className={classNames(styles["c-content-panel__underlay"], className)}
+      className={classNames(
+        styles["c-content-panel__underlay"],
+        canFocus && styles["c-content-panel__underlay--can-focus"],
+        className
+      )}
       style={style}
       data-testid="content-panel"
       onClick={selectAction}
@@ -72,7 +76,6 @@ const ContentPanel = ({
               onClick={ctaAction}
               href={ctaLink}
               iconName="arrow-right"
-              iconSize={15}
               text={buttonText}
             />
           </div>

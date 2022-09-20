@@ -24,7 +24,7 @@ const CtaButton = ({ as = "button", href, text, iconName, iconSize, className, o
         </span>
         {iconName && (
           <span className={styles["c-cta-button__icon"]}>
-            <Icon name={iconName} type="decorative" size={iconSize} />
+            <Icon name={iconName} type="decorative" size={iconSize ?? 12} />
           </span>
         )}
       </div>

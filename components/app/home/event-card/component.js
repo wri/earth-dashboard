@@ -5,7 +5,7 @@ import styles from "./event.module.scss";
 import moment from "moment";
 import Image from "next/image";
 
-const HeadlineCard = ({ headline, className, as, ...rest }) => {
+const HeadlineCard = ({ headline, className = "", as, ...rest }) => {
   const Element = as;
   return (
     <Element className={classnames(styles["c-event-card"], className)} {...rest} data-testid="headline">

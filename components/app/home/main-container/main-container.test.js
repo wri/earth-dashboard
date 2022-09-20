@@ -82,7 +82,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
             class="c-home-menu__scroll-area"
           >
             <div
-              class="c-content-panel__underlay c-home-menu__all-events"
+              class="c-content-panel__underlay c-content-panel__underlay--can-focus c-home-menu__all-events"
               data-testid="content-panel"
             >
               <div
@@ -131,7 +131,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
               </div>
             </div>
             <div
-              class="c-content-panel__underlay"
+              class="c-content-panel__underlay c-content-panel__underlay--can-focus"
               data-testid="content-panel"
             >
               <div
@@ -191,7 +191,7 @@ Source: CAMS / Copernicus / European Commission + ECMWF
               </div>
             </div>
             <div
-              class="c-content-panel__underlay"
+              class="c-content-panel__underlay c-content-panel__underlay--can-focus"
               data-testid="content-panel"
             >
               <div
@@ -256,7 +256,7 @@ Source: CAMS / Copernicus / European Commission + ECMWF
               target="_blank"
             >
               <div
-                class="c-content-panel__underlay c-home-menu-item--advanced-data-item"
+                class="c-content-panel__underlay c-content-panel__underlay--can-focus c-home-menu-item--advanced-data-item"
                 data-testid="content-panel"
               >
                 <div
@@ -375,7 +375,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
                 class="c-home-menu__scroll-area"
               >
                 <div
-                  class="c-content-panel__underlay c-home-menu__all-events"
+                  class="c-content-panel__underlay c-content-panel__underlay--can-focus c-home-menu__all-events"
                   data-testid="content-panel"
                 >
                   <div
@@ -424,7 +424,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
                   </div>
                 </div>
                 <div
-                  class="c-content-panel__underlay"
+                  class="c-content-panel__underlay c-content-panel__underlay--can-focus"
                   data-testid="content-panel"
                 >
                   <div
@@ -484,7 +484,7 @@ Source: CAMS / Copernicus / European Commission + ECMWF
                   </div>
                 </div>
                 <div
-                  class="c-content-panel__underlay"
+                  class="c-content-panel__underlay c-content-panel__underlay--can-focus"
                   data-testid="content-panel"
                 >
                   <div
@@ -549,7 +549,7 @@ Source: CAMS / Copernicus / European Commission + ECMWF
                   target="_blank"
                 >
                   <div
-                    class="c-content-panel__underlay c-home-menu-item--advanced-data-item"
+                    class="c-content-panel__underlay c-content-panel__underlay--can-focus c-home-menu-item--advanced-data-item"
                     data-testid="content-panel"
                   >
                     <div

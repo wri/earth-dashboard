@@ -1,0 +1,12 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+.c-data-layer-menu-panel {
+  &__card-desc {
+    font-family: "Barlow";
+    margin: 0;
+    font-weight: 500;
+    @include font-size(16px, 24px);
+  }
+}

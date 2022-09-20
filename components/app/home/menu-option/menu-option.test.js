@@ -23,7 +23,7 @@ test("<MenuOption /> renders correctly as desktop", async () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="c-content-panel__underlay test-menu-option"
+        class="c-content-panel__underlay c-content-panel__underlay--can-focus test-menu-option"
         data-testid="content-panel"
       >
         <div

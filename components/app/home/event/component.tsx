@@ -109,12 +109,7 @@ const ExtremeEvent = ({
           <SharePanel ctaAction={() => setIsShareOpen(true)} />
         </ContentPanel>
         <div className={styles["c-event__view-all-button--container"]}>
-          <CtaButton
-            text={"View All Extreme Events"}
-            onClick={onViewAllEventsClicked}
-            iconName="arrow-right"
-            iconSize={15}
-          />
+          <CtaButton text={"View All Extreme Events"} onClick={onViewAllEventsClicked} iconName="arrow-right" />
         </div>
       </div>
     </div>
