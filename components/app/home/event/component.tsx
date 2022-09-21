@@ -25,7 +25,6 @@ type DataLayerOverviewProps = {
 };
 
 const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
-const SHARE_ICON = "/static/icons/together.svg";
 
 const ExtremeEvent = ({
   headline,
@@ -102,12 +101,9 @@ const ExtremeEvent = ({
           style={{ marginTop: `${containerHeight + 24}px` }}
         >
           <p>{headline.attributes.content.body}</p>
-          <NormalScale value={80} />
+          <NormalScale value={50} />
         </ContentPanel>
-        <ContentPanel icon={SHARE_ICON} title="How to help">
-          <p>{how_to_help_content?.detail}</p>
-          <SharePanel ctaAction={() => setIsShareOpen(true)} />
-        </ContentPanel>
+        <SharePanel ctaAction={() => setIsShareOpen(true)} />
         <div className={styles["c-event__view-all-button--container"]}>
           <CtaButton text={"View All Extreme Events"} onClick={onViewAllEventsClicked} iconName="arrow-right" />
         </div>

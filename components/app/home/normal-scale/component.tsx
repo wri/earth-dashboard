@@ -7,23 +7,19 @@ export type NormalScaleProps = {
 };
 
 const NormalScale = ({ value, className }: NormalScaleProps) => {
-  // TODO: GCAG-210
-  // Awaiting input from client, so hide this control for now
-  return null;
-
   return (
     <div className={classnames(styles["c-normal-scale"], className)} data-testid="normal-scale">
-      <span className={styles["c-normal-scale__label"]}>Normal Scale</span>
+      <span className={styles["c-normal-scale__label"]}>Scale</span>
       <div className={styles["c-normal-scale__content"]}>
         <div className={styles["c-normal-scale__thermometer"]}>
-          <span className={styles["c-normal-scale__normal-range"]} />
-          <span className={styles["c-normal-scale__thermometer-value"]} style={{ right: `${value}%` }}>
-            {value}%
-          </span>
+          {/* <span className={styles["c-normal-scale__normal-range"]} /> */}
+          <span
+            className={styles["c-normal-scale__thermometer-value"]}
+            style={{ left: `calc(${value}% - (20px * ${value / 100}))` }}
+          />
         </div>
         <div className={styles["c-normal-scale__thermometer-labels"]}>
           <span>0%</span>
-          <span>Normal</span>
           <span>100%</span>
         </div>
       </div>
