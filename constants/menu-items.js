@@ -4,31 +4,31 @@ import { PAGE_VIEW } from "constants/tag-manager";
 export const MenuItems = [
   {
     key: "climate",
-    label: "Climate News",
+    label: "Climate",
     body: "Rising global temperatures pose a threat to every corner of the globe and most aspects of human life.",
     link: "/climate"
   },
   {
     key: "freshwater",
-    label: "Freshwater News",
+    label: "Freshwater",
     body: "Rising consumption, climate change and pollution are increasing pressure on water supply.",
     link: "/freshwater"
   },
   {
     key: "forest",
-    label: "Forest News",
+    label: "Forest",
     body: "Extreme events, human impact and climate change make forest ecosystems even more prone to damage.",
     link: "/forests"
   },
   {
     key: "ocean",
-    label: "Ocean News",
+    label: "Ocean",
     body: "Current pressures on the ocean’s health pose risks to our economies, societies and the environment.",
     link: "/ocean"
   },
   {
     key: "biodiversity",
-    label: "Biodiveristy News",
+    label: "Biodiveristy",
     body: "Key natural ecosystems are heading towards tipping points with dangerous consequences for the stability of our planet.",
     link: "/biodiversity"
   }
