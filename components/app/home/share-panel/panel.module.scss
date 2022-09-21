@@ -66,21 +66,7 @@
     margin-bottom: 12px;
     @include font-size(16px, 24px);
     color: white;
-    margin-right: 100px;
-
-    @media screen and (max-width: $global-breakpoint-md) {
-      margin-right: 0;
-      @include font-size(14px, 21px);
-    }
   }
-
-  &__description {
-    font-family: "Barlow";
-    font-weight: 500;
-    @include font-size(16px, 24px);
-    margin-bottom: 12px;
-  }
-
   &__button {
     padding: 8px 8px 8px 24px;
     margin-top: 12px;
