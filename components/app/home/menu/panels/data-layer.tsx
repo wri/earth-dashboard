@@ -19,6 +19,8 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
 import NormalScale from "../../normal-scale/component";
 import { setIsShareOpen } from "slices/common";
+import { fireEvent } from "utils/gtag";
+import { EARTH_HQ_EXPLORED_NEWS, EARTH_HQ_SHARED_CATEGORY } from "constants/tag-manager";
 
 type DataIndexProps = {
   currentMode: Mode | undefined;
@@ -111,7 +113,12 @@ const DataLayerOverview = ({
       </ContentPanel>
       <ContentPanel icon={SHARE_ICON} title="How to help">
         <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{how_to_help_content.detail}</p>
-        <SharePanel ctaAction={() => setIsShareOpen(true)} />
+        <SharePanel
+          ctaAction={() => {
+            fireEvent(EARTH_HQ_SHARED_CATEGORY, title);
+            setIsShareOpen(true);
+          }}
+        />
       </ContentPanel>
       <ContentPanel
         className={panelStyles["c-content-panel__underlay--can-focus"]}
@@ -120,6 +127,7 @@ const DataLayerOverview = ({
         buttonText="Explore"
         ctaControl={Link}
         ctaLink={"/news"}
+        ctaAction={() => fireEvent(EARTH_HQ_EXPLORED_NEWS, title)}
       >
         <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>
           Our partners tell the epic story of what is happening to our planet

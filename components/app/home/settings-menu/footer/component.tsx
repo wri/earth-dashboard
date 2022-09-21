@@ -16,11 +16,11 @@ const Footer = ({ setIsCookieOpen }: FooterProps) => {
       <h2 className={styles["c-footer__title"]}>Other</h2>
 
       <div className={styles["c-footer__links"]}>
-        {QuickLinks.filter(link => link.external).map(({ key, link, label }) =>
+        {QuickLinks.filter(link => link.external).map(({ key, link, label, onClick }) =>
           !link ? (
             <p onClick={() => setIsCookieOpen(true)}>Cookies</p>
           ) : (
-            <a key={key} href={link} target="_blank" rel="nofollow noreferrer">
+            <a key={key} href={link} onClick={onClick && onClick} target="_blank" rel="nofollow noreferrer">
               {label}
             </a>
           )

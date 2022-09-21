@@ -4,10 +4,12 @@ import IconButton from "components/ui/icon-button";
 import Icon from "components/ui/Icon";
 import starBG from "public/static/images/star-background.jpg";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { data } from "./onboarding";
 import { ONBOARDING_COMPLETED } from "layout/layout/layout-app/constants";
 import nullSchoolLogo from "public/static/images/logo-earth-hq.svg";
+import { fireEvent } from "utils/gtag";
+import { ONBOARDING_SKIPPED, ONBOARDING_COMPLETED as ONBOARDING_COMPLETED_TAG, PAGE_VIEW } from "constants/tag-manager";
 
 interface IOnBoardingModal {
   showModal: boolean;
@@ -20,12 +22,20 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
   const isFirstSlide = counter == 0;
   const isFinalSlide = counter === 2;
 
+  useEffect(() => {
+    fireEvent(PAGE_VIEW, `onboarding_${counter + 1}`);
+  }, [counter]);
+
   const handleClose = () => {
     localStorage.setItem(ONBOARDING_COMPLETED, "true");
+    fireEvent(ONBOARDING_SKIPPED, "");
     setShowModal(false);
   };
   const nextStep = () => {
-    if (isFinalSlide) return handleClose();
+    if (isFinalSlide) {
+      fireEvent(ONBOARDING_COMPLETED_TAG, "");
+      return handleClose();
+    }
     setCounter(state => (state += 1));
   };
 

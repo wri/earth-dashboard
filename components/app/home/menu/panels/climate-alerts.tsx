@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import { setHeadlines, setCurrentHeadline, Headline as HeadlineType } from "slices/headlines";
 import EventCard from "components/app/home/event-card";
 import { Mode, setCurrentMode } from "slices/modes";
-import { fireEvent } from "utils/gtag";
-import { CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
@@ -35,8 +33,6 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
 
   const onSelectHeadline = (headline: HeadlineType) => {
     setCurrentHeadline(headline);
-
-    fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
   };
 
   // Scroll to top of article when headline changes

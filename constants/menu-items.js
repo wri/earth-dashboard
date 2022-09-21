@@ -1,3 +1,6 @@
+import { fireEvent } from "utils/gtag";
+import { PAGE_VIEW } from "constants/tag-manager";
+
 export const MenuItems = [
   {
     key: "climate",
@@ -52,6 +55,7 @@ export const QuickLinks = [
   {
     key: "privacy-policy",
     label: "Privacy Policy",
+    onClick: () => fireEvent(PAGE_VIEW, "privacy policy"),
     link: "https://resourcewatch.org/privacy-policy",
     external: true
   }

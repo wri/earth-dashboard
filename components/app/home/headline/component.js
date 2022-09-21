@@ -5,8 +5,6 @@ import classnames from "classnames";
 import styles from "./headline.module.scss";
 import WidgetPreview from "components/widgets/preview";
 import { RESOURCE_WATCH_WIDGET_LINK } from "constants/widgets";
-import { fireEvent } from "utils/gtag";
-import { CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME } from "constants/tag-manager";
 
 const Headline = ({
   isMobile,
@@ -122,7 +120,6 @@ const Headline = ({
           target="_blank"
           rel="noreferrer"
           className={classnames("c-button c-button--new-style c-button--flame", styles["c-headline__cta"])}
-          onClick={() => fireEvent(CLIMATE_ALERT_VIEW_FULL_ARTICLE_EVENT_NAME, headline.attributes.title)}
         >
           View full article
         </a>
