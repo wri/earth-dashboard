@@ -1,5 +1,4 @@
 import styles from "./panel.module.scss";
-import Icon from "components/ui/Icon";
 import CtaButton from "components/ui/cta-button";
 
 export type SharePanelProps = {
