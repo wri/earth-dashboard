@@ -13,8 +13,8 @@ import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 type HeaderProps = {
-  setCurrentHeadline: ActionCreatorWithPayload<HeadlineType, string>;
-  setCurrentHeadlineId: ActionCreatorWithPayload<number, string>;
+  setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
+  setCurrentHeadlineId: ActionCreatorWithPayload<number | undefined, string>;
   setCurrentScale: ActionCreatorWithPayload<string, string>;
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
 };
