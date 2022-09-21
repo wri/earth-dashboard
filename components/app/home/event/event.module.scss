@@ -87,17 +87,15 @@
     padding: 0 12px 24px 24px;
     row-gap: 16px;
 
+    p {
+      font-weight: 500;
+      @include font-size(16px, 24px);
+    }
+
     @include defaultScrollBar();
     &::-webkit-scrollbar-track {
       margin-top: 20px;
       margin-bottom: 20px;
-    }
-    &--slim {
-      top: 0px;
-      padding-bottom: 40px;
-    }
-    &--extra-top {
-      top: 87px;
     }
 
     @media screen and (max-width: $global-breakpoint-md) {
@@ -108,81 +106,9 @@
     }
   }
 
-  &__title {
-    font-family: "Barlow";
-    font-weight: 500;
-    @include font-size(18px, 27px);
-    color: white;
-  }
-
-  &__body {
-    font-family: "Barlow";
-    font-weight: 500;
-    @include font-size(14px, 21px);
-  }
-
-  &__widget {
-    background-color: white;
-    color: black;
-    height: 500px;
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-    .leaflet-container {
-      border-radius: 12px;
-    }
-  }
-
-  &__media-container {
-    margin-bottom: 20px;
-  }
-
-  &__widget-source {
-    border-bottom: 1px solid white;
-    text-align: center;
-    p {
-      font-weight: 500;
-      @include font-size(14px, 21px);
-    }
-  }
-
-  &__image {
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 12px;
-  }
-
-  &__meta {
-    display: grid;
-    grid-template-columns: 110px auto;
-    grid-gap: 0px;
-    row-gap: 12px;
-    p {
-      font-weight: 500;
-      @include font-size(14px, 21px);
-    }
-  }
-
-  &__cta {
-    margin-right: 6px;
-    z-index: 0;
-  }
-
   &__view-all-button--container {
     display: flex;
     justify-content: center;
     margin-bottom: 88px;
-  }
-
-  @media screen and (max-width: $global-breakpoint-md) {
-    &__media-container {
-      padding-bottom: 10px;
-      margin-bottom: 12px;
-    }
-
-    &__cta {
-      margin-right: 0px;
-    }
   }
 }
