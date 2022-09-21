@@ -6,9 +6,14 @@ import styles from "./header.module.scss";
 import { useRouter } from "next/router";
 import { Desktop, Mobile } from "utils/responsive";
 import Navbar from "layout/navbar";
+import { setCurrentHeadlineId, setCurrentHeadline } from "slices/headlines";
+import { forwardRef } from "react";
+import { RootState } from "store/types";
+import { connect } from "react-redux";
+import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
 
 /** Header component for the site with the logo, links, and controls. */
-const Header = () => {
+const Header = ({ setCurrentHeadline, setCurrentHeadlineId, setCurrentScale, setCurrentScaleBy }) => {
   // Navigation
   const router = useRouter();
 
@@ -30,6 +35,13 @@ const Header = () => {
     }
   })();
 
+  const logoClick = () => {
+    setCurrentHeadline(undefined);
+    setCurrentHeadlineId(undefined);
+    setCurrentScale("default");
+    setCurrentScaleBy(1);
+  };
+
   return (
     <>
       <header
@@ -37,7 +49,7 @@ const Header = () => {
       >
         <div className={styles["top-section"]}>
           {/* Logo */}
-          <div className={styles["top-section__logo"]}>
+          <div className={styles["top-section__logo"]} onClick={logoClick}>
             <LogoLink />
           </div>
 
@@ -69,4 +81,11 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default connect((state: RootState) => {}, {
+  setCurrentHeadline,
+  setCurrentHeadlineId,
+  setCurrentScale,
+  setCurrentScaleBy
+})(Header);
+
+// export default Header;
