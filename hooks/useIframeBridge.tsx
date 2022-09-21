@@ -17,7 +17,7 @@ import { EarthLayer } from "components/app/home/main-container/types";
 import { GeoProjection } from "d3-geo";
 import { Headline } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 
 type GeoMarkerOverlayDetails = GeoMarkerOverlayLocation & { headline: Headline };
@@ -29,6 +29,7 @@ type UseIframeBridgeConfig = {
   currentMode?: Mode;
   defaultMode?: Mode;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  setReoriented: ActionCreatorWithoutPayload<string>;
 };
 
 type Marker = { id: number; label: string };
@@ -39,7 +40,8 @@ const useIframeBridge = ({
   headlines,
   currentMode,
   defaultMode,
-  setHeadlines
+  setHeadlines,
+  setReoriented
 }: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [markers, setMarkers] = useState<Marker[]>([]);
@@ -182,6 +184,10 @@ const useIframeBridge = ({
           };
           setScaleData(data);
         }
+      }
+
+      reorientStart() {
+        setReoriented();
       }
 
       reorientStep(projection: any) {
