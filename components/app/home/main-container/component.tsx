@@ -18,7 +18,7 @@ import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
@@ -46,6 +46,7 @@ type MainContainerProps = {
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
   currentMode?: Mode;
   defaultMode?: Mode;
+  setReoriented: ActionCreatorWithoutPayload<string>;
 };
 
 const MainContainer = ({
@@ -58,7 +59,8 @@ const MainContainer = ({
   currentHeadline,
   setHeadlines,
   defaultMode,
-  currentMode
+  currentMode,
+  setReoriented
 }: MainContainerProps) => {
   const [pageTypeId, setPageTypeId] = useState<string>(INFO_PAGE_ID);
 
@@ -104,7 +106,8 @@ const MainContainer = ({
     headlines,
     setHeadlines,
     currentMode,
-    defaultMode
+    defaultMode,
+    setReoriented
   });
 
   const overlayLayer = useMemo(() => {
