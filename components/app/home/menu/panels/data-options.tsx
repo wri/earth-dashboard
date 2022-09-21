@@ -1,5 +1,5 @@
 import ContentPanel from "components/app/home/content-panel";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
@@ -9,11 +9,14 @@ import Link from "next/link";
 import Image from "next/image";
 import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
 import { ActionCreatorWithPayload, current } from "@reduxjs/toolkit";
+import dataLayer from "./data-layer";
+import { fetchClimateAlerts } from "services/gca";
 
 const mapHighlightToOption = (
   mode: Mode,
   onClickDataLayer: ActionCreatorWithPayload<Mode, string>,
-  onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>
+  onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>,
+  headlineTotal: number
 ) => {
   const { id, attributes } = mode;
   return {
@@ -21,7 +24,8 @@ const mapHighlightToOption = (
     ...attributes,
     buttonText: "Learn More",
     onClick: () => onClickDataLayer(mode),
-    onClickCta: () => onViewDataLayerSummary(mode)
+    onClickCta: () => onViewDataLayerSummary(mode),
+    headlineTotal
   };
 };
 
@@ -42,9 +46,41 @@ const DataIndex = ({
   onClickDataLayer,
   onViewDataLayerSummary
 }: DataIndexProps) => {
+  const [modeHeadlinesTotal, setModeHeadlinesTotal] = useState<{ [id: string]: number }>({});
+  const [isFetching, setIsFetching] = useState<boolean>(false);
+
+  const getModeHeadlinesTotal = async (id: number) => {
+    try {
+      const resp = await fetchClimateAlerts({ mode_id: id });
+      // @ts-expect-error
+      return resp.data?.data.length;
+    } catch (err) {
+      console.log("Error fetching headlines", err);
+    }
+  };
+
+  const getModesHeadlinesTotal = async () => {
+    let modeHeadlinesTotal: { [id: number]: number } = {};
+    if (!highlights) return;
+    for (const { id } of highlights) {
+      const total = await getModeHeadlinesTotal(id);
+      if (typeof total === "number") modeHeadlinesTotal[id] = total;
+    }
+    setModeHeadlinesTotal(modeHeadlinesTotal);
+    setIsFetching(false);
+  };
+
+  useEffect(() => {
+    setIsFetching(true);
+    getModesHeadlinesTotal();
+  }, [highlights]);
+
   const dataLayers = useMemo(
-    () => highlights?.map(highlight => mapHighlightToOption(highlight, onClickDataLayer, onViewDataLayerSummary)) || [],
-    [highlights, onClickDataLayer]
+    () =>
+      highlights?.map(highlight =>
+        mapHighlightToOption(highlight, onClickDataLayer, onViewDataLayerSummary, modeHeadlinesTotal[highlight.id] ?? 0)
+      ) || [],
+    [highlights, onClickDataLayer, modeHeadlinesTotal]
   );
 
   return (
@@ -58,9 +94,13 @@ const DataIndex = ({
         onClick={defaultMode ? () => onClickDataLayer(defaultMode) : undefined}
         onClickCta={onClickExtremeEvents}
       />
-      {dataLayers.map(dataLayer => (
-        <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
-      ))}
+      {!isFetching &&
+        dataLayers
+          .sort((a, b) => (a.headlineTotal > b.headlineTotal ? -1 : 1))
+          .filter(({ headlineTotal }) => headlineTotal > 0)
+          .map(dataLayer => (
+            <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
+          ))}
 
       <Link href="https://earth.nullschool.net/">
         <a rel="noopener noreferrer" target="_blank">
