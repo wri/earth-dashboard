@@ -6,14 +6,21 @@ import styles from "./header.module.scss";
 import { useRouter } from "next/router";
 import { Desktop, Mobile } from "utils/responsive";
 import Navbar from "layout/navbar";
-import { setCurrentHeadlineId, setCurrentHeadline } from "slices/headlines";
-import { forwardRef } from "react";
+import { setCurrentHeadlineId, setCurrentHeadline, Headline as HeadlineType } from "slices/headlines";
 import { RootState } from "store/types";
 import { connect } from "react-redux";
 import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+
+type HeaderProps = {
+  setCurrentHeadline: ActionCreatorWithPayload<HeadlineType, string>;
+  setCurrentHeadlineId: ActionCreatorWithPayload<number, string>;
+  setCurrentScale: ActionCreatorWithPayload<string, string>;
+  setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
+};
 
 /** Header component for the site with the logo, links, and controls. */
-const Header = ({ setCurrentHeadline, setCurrentHeadlineId, setCurrentScale, setCurrentScaleBy }) => {
+const Header = ({ setCurrentHeadline, setCurrentHeadlineId, setCurrentScale, setCurrentScaleBy }: HeaderProps) => {
   // Navigation
   const router = useRouter();
 
