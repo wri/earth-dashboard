@@ -87,5 +87,3 @@ export default connect((state: RootState) => {}, {
   setCurrentScale,
   setCurrentScaleBy
 })(Header);
-
-// export default Header;
