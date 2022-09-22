@@ -1,4 +1,5 @@
 import LayoutHome from "layout/app/home";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchClimateAlertById } from "services/gca";
 import { Headline } from "slices/headlines";
@@ -10,14 +11,23 @@ type HomePageProps = {
 };
 
 const HomePage = ({ initCurrentHeadline, currentHeadline }: HomePageProps) => {
+  const [hasSetCorrectMeta, setHasSetCorrectMeta] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!hasSetCorrectMeta) {
+      if (!initCurrentHeadline) return setHasSetCorrectMeta(true);
+      if (initCurrentHeadline && currentHeadline) return setHasSetCorrectMeta(true);
+    }
+  }, [currentHeadline]);
+
   const title = currentHeadline
     ? currentHeadline.attributes.title
-    : initCurrentHeadline
+    : initCurrentHeadline && !hasSetCorrectMeta
     ? initCurrentHeadline.attributes.title
     : "The Science is in. This is not a drill. It's a Planetary Emergency";
   const thumbnail = currentHeadline
     ? currentHeadline.attributes.thumbnail_image
-    : initCurrentHeadline
+    : initCurrentHeadline && !hasSetCorrectMeta
     ? initCurrentHeadline.attributes.thumbnail_image
     : "https://raw.githubusercontent.com/wri/earth-dashboard/main/public/static/images/share/thumbnails/homepage.jpg";
 
