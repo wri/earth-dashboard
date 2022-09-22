@@ -13,6 +13,24 @@ import {
 // API docs: https://resource-watch.github.io/doc-api/index-rw.html#dataset
 
 /**
+ * Fetches climate alert with id given
+ * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
+ * @returns {Object} climate alert.
+ */
+export const fetchClimateAlertById = id => {
+  return GCAAPI.get(`/climate-alerts/${id}`, {
+    headers: {
+      ...GCAAPI.defaults.headers
+    }
+  }).catch(response => {
+    const { status, statusText } = response;
+
+    logger.error(`Error fetching Latest Extreme Events: ${status}: ${statusText}`);
+    throw new Error(`Error fetching Latest Extreme Events: ${status}: ${statusText}`);
+  });
+};
+
+/**
  * Fetch all Latest Extreme Events (Climate Alerts)
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
  * @returns {Array} Array of modes.
