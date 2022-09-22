@@ -287,6 +287,7 @@ const MainContainer = ({
           toolTipDetails={toolTipDetails}
           extremeEventLocations={extremeEventLocations}
           setHasMenuOpen={setHasMenuOpen}
+          setMobileMenuHeight={setMobileMenuHeight}
           hasIframeConnected={hasIframeConnected}
           mobileMenuHeight={isMobile && mobileMenuHeight}
           isMobile={isMobile}

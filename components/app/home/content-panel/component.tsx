@@ -71,13 +71,19 @@ const ContentPanel = ({
         {children}
         {(ctaAction || ctaLink) && (
           <div className={styles["c-content-panel__cta"]}>
-            <CtaButton
-              as={ctaControl || "button"}
-              onClick={ctaAction}
-              href={ctaLink}
-              iconName="arrow-right"
-              text={buttonText}
-            />
+            <span
+              onClick={() => {
+                ctaAction && ctaControl && ctaAction();
+              }}
+            >
+              <CtaButton
+                as={ctaControl || "button"}
+                onClick={ctaAction}
+                href={ctaLink}
+                iconName="arrow-right"
+                text={buttonText}
+              />
+            </span>
           </div>
         )}
       </div>

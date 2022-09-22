@@ -6,8 +6,6 @@ import { connect } from "react-redux";
 import { setCurrentMode, NAME as modesSliceName } from "slices/modes";
 import headlineStyles from "components/app/home/headline-card/headline.module.scss";
 import { RadioGroup } from "@headlessui/react";
-import { fireEvent } from "utils/gtag";
-import { DATA_HIGHLIGHTS_EVENT_NAME } from "constants/tag-manager";
 
 const DataHighlightsPanel = ({ setCurrentMode, currentMode, highlights }) => {
   return (
@@ -27,7 +25,6 @@ const DataHighlightsPanel = ({ setCurrentMode, currentMode, highlights }) => {
           onChange={id => {
             const highlight = highlights.find(highlight => highlight.id === id);
             setCurrentMode(highlight);
-            fireEvent(DATA_HIGHLIGHTS_EVENT_NAME, highlight.attributes.title);
           }}
         >
           <RadioGroup.Label className="u-visually-hidden">Data Highlights</RadioGroup.Label>

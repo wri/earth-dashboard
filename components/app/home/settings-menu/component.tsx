@@ -11,6 +11,9 @@ import DatePicker from "components/date-picker";
 import { format } from "date-fns";
 import Footer from "./footer";
 import CookiePreferences from "./cookie-preferences";
+import { useEffect } from "react";
+import { fireEvent } from "utils/gtag";
+import { PAGE_VIEW } from "constants/tag-manager";
 
 type SettingsMenuProps = {
   isOpen: boolean;
@@ -41,6 +44,10 @@ const SettingsMenu = ({
     setIsDatePickerOpen(false);
     setIsCookieOpen(false);
   });
+
+  useEffect(() => {
+    if (isCookieOpen) fireEvent(PAGE_VIEW, "cookies");
+  }, [isCookieOpen]);
 
   /** Sets the current date data. */
   const handleChangeDate = (date: Date) => {

@@ -18,6 +18,8 @@ import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
 import { setIsShareOpen } from "slices/common";
+import { fireEvent } from "utils/gtag";
+import { EARTH_HQ_EXPLORED_NEWS, EARTH_HQ_SHARED_CATEGORY } from "constants/tag-manager";
 
 type DataIndexProps = {
   currentMode: Mode | undefined;
@@ -100,10 +102,16 @@ const DataLayerOverview = ({
         </div>
       </ContentPanel>
       <ContentPanel icon={WHAT_WILL_HAPPEN_ICON} title="What will happen if we don't take action?">
+        {/* TODO: replace with real data */}
         {/* <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{what_will_happen_content.detail}</p> */}
-        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>Test</p>
+        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>Lorem Ipsum</p>
       </ContentPanel>
-      <SharePanel ctaAction={() => setIsShareOpen(true)} />
+      <SharePanel
+        ctaAction={() => {
+          fireEvent(EARTH_HQ_SHARED_CATEGORY, title);
+          setIsShareOpen(true);
+        }}
+      />
       <ContentPanel
         className={panelStyles["c-content-panel__underlay--can-focus"]}
         icon={NEWS_ICON}
@@ -111,6 +119,7 @@ const DataLayerOverview = ({
         buttonText="Explore"
         ctaControl={Link}
         ctaLink={"/news"}
+        ctaAction={() => fireEvent(EARTH_HQ_EXPLORED_NEWS, title)}
       >
         <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>
           Our partners tell the epic story of what is happening to our planet

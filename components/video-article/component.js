@@ -9,7 +9,7 @@ import { CSSTransition } from "react-transition-group";
 import styles from "./video-article.module.scss";
 import PropTypes from "prop-types";
 import { fireEvent } from "utils/gtag";
-import { VIDEO_START } from "constants/tag-manager";
+import { NEWS_PLAYED_VIDEO } from "constants/tag-manager";
 
 const VideoArticle = ({ className, topic, title, image, videoURL }) => {
   const { current: id } = useRef(uuid());
@@ -63,7 +63,7 @@ const VideoArticle = ({ className, topic, title, image, videoURL }) => {
           controls={true}
           url={videoURL}
           onError={() => setHasError(true)}
-          onStart={() => fireEvent(VIDEO_START, topic)}
+          onStart={() => fireEvent(NEWS_PLAYED_VIDEO, null, { video_title: title, category_name: topic })}
           onDuration={duration => setDuration(duration)}
         />
       </div>
