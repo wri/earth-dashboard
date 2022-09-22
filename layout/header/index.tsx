@@ -11,16 +11,25 @@ import { RootState } from "store/types";
 import { connect } from "react-redux";
 import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { setPageTypeId } from "slices/modes";
+import { INFO_PAGE_ID } from "components/app/home/main-container/component";
 
 type HeaderProps = {
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
   setCurrentHeadlineId: ActionCreatorWithPayload<number | undefined, string>;
   setCurrentScale: ActionCreatorWithPayload<string, string>;
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
+  setPageTypeId: ActionCreatorWithPayload<string, string>;
 };
 
 /** Header component for the site with the logo, links, and controls. */
-const Header = ({ setCurrentHeadline, setCurrentHeadlineId, setCurrentScale, setCurrentScaleBy }: HeaderProps) => {
+const Header = ({
+  setCurrentHeadline,
+  setCurrentHeadlineId,
+  setCurrentScale,
+  setCurrentScaleBy,
+  setPageTypeId
+}: HeaderProps) => {
   // Navigation
   const router = useRouter();
 
@@ -47,6 +56,7 @@ const Header = ({ setCurrentHeadline, setCurrentHeadlineId, setCurrentScale, set
     setCurrentHeadlineId(undefined);
     setCurrentScale("default");
     setCurrentScaleBy(1);
+    setPageTypeId(INFO_PAGE_ID);
   };
 
   return (
@@ -92,5 +102,6 @@ export default connect((state: RootState) => {}, {
   setCurrentHeadline,
   setCurrentHeadlineId,
   setCurrentScale,
-  setCurrentScaleBy
+  setCurrentScaleBy,
+  setPageTypeId
 })(Header);

@@ -2,7 +2,7 @@ import MainContainerComponent from "./component";
 import { connect } from "react-redux";
 import { setIsMobile } from "slices/common";
 import { RootState } from "store/types";
-import { setModes } from "slices/modes";
+import { setModes, setPageTypeId } from "slices/modes";
 import { setHeadlines } from "slices/headlines";
 
 export default connect(
@@ -12,11 +12,13 @@ export default connect(
     currentHeadline: state.headlines.currentHeadline,
     headlines: state.headlines.headlines,
     currentMode: state.modes.currentMode,
-    defaultMode: state.modes.defaultMode
+    defaultMode: state.modes.defaultMode,
+    pageTypeId: state.modes.pageTypeId
   }),
   {
     setModes,
     setIsMobile,
-    setHeadlines
+    setHeadlines,
+    setPageTypeId
   }
 )(MainContainerComponent);

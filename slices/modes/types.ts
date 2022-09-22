@@ -62,4 +62,5 @@ export type ModesState = {
   heightValue: string;
   layersLabelArr: string[];
   dateOfDataShown: string;
+  pageTypeId: string;
 };
