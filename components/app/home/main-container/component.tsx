@@ -114,6 +114,19 @@ const MainContainer = ({
     return (layers as EarthLayer[]).find(layer => layer?.type === "overlay");
   }, [layers]);
 
+  // const click = async (point: [number, number], coords: [number, number]) => {
+  //     const marker = getIndicatorGeoJson(coords);
+
+  //     const coordinates = marker.geometry.coordinates;
+  //     const samples = await earthServer.current?.sampleAt([0, 0], coordinates);
+  //     const data = {
+  //       overlay: getOverlayData(samples, this.currentLayers),
+  //       annotation: getAnnotationData(samples, this.currentLayers),
+  //       layer: this.currentLayers[SAMPLE_OVERLAY_INDEX]
+  //     };
+  //     console.log(data.overlay.value)
+  // }
+
   const scaleData = useMemo(() => {
     if (overlayLayer?.product) {
       const { units } = overlayLayer.product;
@@ -133,6 +146,13 @@ const MainContainer = ({
       };
     }
   }, [overlayLayer?.product]);
+
+  const eventScaleDate: { min?: string; max?: string; gradient?: string; value?: number } = {
+    min: scaleData?.min,
+    max: scaleData?.max,
+    gradient: overlayLayer?.product.scale.getCss(0),
+    value: 50
+  };
 
   const toggleMenu = () => {
     if (!hasMenuOpen) {

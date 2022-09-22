@@ -69,7 +69,7 @@ const DataLayerOverview = ({
   if (currentMode == null) return null;
 
   const {
-    attributes: { icon, title, description, what_is_happening_content, what_will_happen_content, how_to_help_content }
+    attributes: { icon, title, description, what_will_happen_content }
   } = currentMode;
 
   return (
@@ -100,7 +100,8 @@ const DataLayerOverview = ({
         </div>
       </ContentPanel>
       <ContentPanel icon={WHAT_WILL_HAPPEN_ICON} title="What will happen if we don't take action?">
-        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{what_will_happen_content.detail}</p>
+        {/* <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{what_will_happen_content.detail}</p> */}
+        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>Test</p>
       </ContentPanel>
       <SharePanel ctaAction={() => setIsShareOpen(true)} />
       <ContentPanel

@@ -63,7 +63,7 @@
   &__subtitle {
     font-family: "Barlow";
     font-weight: 500;
-    margin-bottom: 12px;
+    margin-bottom: 12px !important;
     @include font-size(16px, 24px);
     color: white;
   }
