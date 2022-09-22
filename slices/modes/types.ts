@@ -46,6 +46,7 @@ export type Mode = {
       advanced_menu: boolean;
       data_highlights: boolean;
     };
+    extreme_event_count: number;
   };
 };
 

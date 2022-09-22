@@ -6,6 +6,8 @@ import IconButton from "components/ui/icon-button";
 import { useRouter } from "next/router";
 import { LANGUAGES } from "constants/settings";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { fireEvent } from "utils/gtag";
+import { MAP_SHARE, NEWS_SEARCH, PAGE_VIEW } from "constants/tag-manager";
 
 type HeaderOptionsProps = {
   isSettingsOpen: boolean;
@@ -30,8 +32,15 @@ const HeaderOptions = ({
 
   /** Opens the more menu. */
   const handleOpenMore = () => {
+    fireEvent(PAGE_VIEW, "more settings");
     if (isSettingsOpen) return setSettingsClose();
     setSettingsOpen();
+  };
+
+  /** Opens share modal and fires event trigger */
+  const onShareClick = () => {
+    fireEvent(MAP_SHARE, null);
+    setIsShareOpen(true);
   };
 
   return (
@@ -56,7 +65,7 @@ const HeaderOptions = ({
           size={16}
           aria-label={router.pathname === "/" ? "Share" : "Search"}
           className={classnames(styles["c-header-options__share"], styles["c-header-options__icon-button"])}
-          onClick={router.pathname === "/" ? () => setIsShareOpen(true) : () => console.log("search")}
+          onClick={router.pathname === "/" ? onShareClick : () => fireEvent(NEWS_SEARCH, null)}
           iconStyle={{ marginRight: router.pathname === "/" ? "2px" : "0" }}
         />
       )}

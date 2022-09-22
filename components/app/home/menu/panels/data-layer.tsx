@@ -17,8 +17,9 @@ import {
 import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
-import NormalScale from "../../normal-scale/component";
 import { setIsShareOpen } from "slices/common";
+import { fireEvent } from "utils/gtag";
+import { EARTH_HQ_EXPLORED_NEWS, EARTH_HQ_SHARED_CATEGORY } from "constants/tag-manager";
 
 type DataIndexProps = {
   currentMode: Mode | undefined;
@@ -34,8 +35,6 @@ const MAX_NUMBER_OF_HEADLINES = 3;
 const WHAT_WILL_HAPPEN_ICON = "/static/icons/clock.svg";
 const EXTREME_EVENTS_ICON = "/static/icons/extreme-events.svg";
 const NEWS_ICON = "/static/icons/mode-news.svg";
-const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
-const SHARE_ICON = "/static/icons/together.svg";
 
 const DataLayerOverview = ({
   currentMode,
@@ -80,10 +79,6 @@ const DataLayerOverview = ({
       <ContentPanel icon={icon} title={title}>
         <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{description}</p>
       </ContentPanel>
-      <ContentPanel icon={WHAT_IS_HAPPENING_ICON} title="What is happening">
-        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{what_is_happening_content.detail}</p>
-        <NormalScale value={80} />
-      </ContentPanel>
       <ContentPanel
         icon={EXTREME_EVENTS_ICON}
         title="Extreme events"
@@ -107,12 +102,16 @@ const DataLayerOverview = ({
         </div>
       </ContentPanel>
       <ContentPanel icon={WHAT_WILL_HAPPEN_ICON} title="What will happen if we don't take action?">
-        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{what_will_happen_content.detail}</p>
+        {/* TODO: replace with real data */}
+        {/* <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{what_will_happen_content.detail}</p> */}
+        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>Lorem Ipsum</p>
       </ContentPanel>
-      <ContentPanel icon={SHARE_ICON} title="How to help">
-        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{how_to_help_content.detail}</p>
-        <SharePanel ctaAction={() => setIsShareOpen(true)} />
-      </ContentPanel>
+      <SharePanel
+        ctaAction={() => {
+          fireEvent(EARTH_HQ_SHARED_CATEGORY, title);
+          setIsShareOpen(true);
+        }}
+      />
       <ContentPanel
         className={panelStyles["c-content-panel__underlay--can-focus"]}
         icon={NEWS_ICON}
@@ -120,6 +119,7 @@ const DataLayerOverview = ({
         buttonText="Explore"
         ctaControl={Link}
         ctaLink={"/news"}
+        ctaAction={() => fireEvent(EARTH_HQ_EXPLORED_NEWS, title)}
       >
         <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>
           Our partners tell the epic story of what is happening to our planet

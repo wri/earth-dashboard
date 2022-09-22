@@ -1,5 +1,5 @@
 import ContentPanel from "components/app/home/content-panel";
-import { useState, useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
@@ -8,15 +8,14 @@ import MenuOption from "components/app/home/menu-option";
 import Link from "next/link";
 import Image from "next/image";
 import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
-import { ActionCreatorWithPayload, current } from "@reduxjs/toolkit";
-import dataLayer from "./data-layer";
-import { fetchClimateAlerts } from "services/gca";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { fireEvent } from "utils/gtag";
+import { ADVANCED_MENU, EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
 
 const mapHighlightToOption = (
   mode: Mode,
   onClickDataLayer: ActionCreatorWithPayload<Mode, string>,
-  onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>,
-  headlineTotal: number
+  onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>
 ) => {
   const { id, attributes } = mode;
   return {
@@ -24,8 +23,10 @@ const mapHighlightToOption = (
     ...attributes,
     buttonText: "Learn More",
     onClick: () => onClickDataLayer(mode),
-    onClickCta: () => onViewDataLayerSummary(mode),
-    headlineTotal
+    onClickCta: () => {
+      fireEvent(EARTH_HQ_VIEWED_CATEGORY, attributes.title);
+      onViewDataLayerSummary(mode);
+    }
   };
 };
 
@@ -46,41 +47,9 @@ const DataIndex = ({
   onClickDataLayer,
   onViewDataLayerSummary
 }: DataIndexProps) => {
-  const [modeHeadlinesTotal, setModeHeadlinesTotal] = useState<{ [id: string]: number }>({});
-  const [isFetching, setIsFetching] = useState<boolean>(false);
-
-  const getModeHeadlinesTotal = async (id: number) => {
-    try {
-      const resp = await fetchClimateAlerts({ mode_id: id });
-      // @ts-expect-error
-      return resp.data?.data.length;
-    } catch (err) {
-      console.log("Error fetching headlines", err);
-    }
-  };
-
-  const getModesHeadlinesTotal = async () => {
-    let modeHeadlinesTotal: { [id: number]: number } = {};
-    if (!highlights) return;
-    for (const { id } of highlights) {
-      const total = await getModeHeadlinesTotal(id);
-      if (typeof total === "number") modeHeadlinesTotal[id] = total;
-    }
-    setModeHeadlinesTotal(modeHeadlinesTotal);
-    setIsFetching(false);
-  };
-
-  useEffect(() => {
-    setIsFetching(true);
-    getModesHeadlinesTotal();
-  }, [highlights]);
-
   const dataLayers = useMemo(
-    () =>
-      highlights?.map(highlight =>
-        mapHighlightToOption(highlight, onClickDataLayer, onViewDataLayerSummary, modeHeadlinesTotal[highlight.id] ?? 0)
-      ) || [],
-    [highlights, onClickDataLayer, modeHeadlinesTotal]
+    () => highlights?.map(highlight => mapHighlightToOption(highlight, onClickDataLayer, onViewDataLayerSummary)) || [],
+    [highlights, onClickDataLayer]
   );
 
   return (
@@ -94,16 +63,15 @@ const DataIndex = ({
         onClick={defaultMode ? () => onClickDataLayer(defaultMode) : undefined}
         onClickCta={onClickExtremeEvents}
       />
-      {!isFetching &&
-        dataLayers
-          .sort((a, b) => (a.headlineTotal > b.headlineTotal ? -1 : 1))
-          .filter(({ headlineTotal }) => headlineTotal > 0)
-          .map(dataLayer => (
-            <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
-          ))}
+      {dataLayers
+        .sort((a, b) => (a.extreme_event_count > b.extreme_event_count ? -1 : 1))
+        .filter(({ extreme_event_count }) => extreme_event_count > 0)
+        .map(dataLayer => (
+          <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
+        ))}
 
       <Link href="https://earth.nullschool.net/">
-        <a rel="noopener noreferrer" target="_blank">
+        <a rel="noopener noreferrer" target="_blank" onClick={() => fireEvent(ADVANCED_MENU, null)}>
           <ContentPanel className={styles["c-home-menu-item--advanced-data-item"]} canFocus={true}>
             <h3 className={styles["c-home-menu-item__title"]}>Advanced Data</h3>
             <p className={styles["c-home-menu-item__desc"]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

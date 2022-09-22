@@ -41,6 +41,7 @@ const MapIframe = forwardRef(
       currentScaleBy,
       extremeEventLocations,
       setHasMenuOpen,
+      setMobileMenuHeight,
       setCurrentScale,
       setCurrentScaleBy,
       hasIframeConnected,
@@ -208,9 +209,8 @@ const MapIframe = forwardRef(
     }, [dateOfDataShown, earthServer]);
 
     const handleEventPointClicked = headline => {
-      if (!isMobile) {
-        setHasMenuOpen(true);
-      }
+      setHasMenuOpen(true);
+      setMobileMenuHeight(window.innerHeight * 0.6);
       setCurrentHeadline(headline);
     };
 

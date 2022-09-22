@@ -12,6 +12,8 @@ import Image from "next/image";
 import CtaButton from "components/ui/cta-button";
 import { setIsShareOpen } from "slices/common";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { fireEvent } from "utils/gtag";
+import { EARTH_HQ_VIEWED_EXTREME_EVENT } from "constants/tag-manager";
 
 type DataLayerOverviewProps = {
   currentMode?: Mode;
@@ -41,6 +43,13 @@ const ExtremeEvent = ({
   const articleRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0);
+
+  useEffect(() => {
+    fireEvent(EARTH_HQ_VIEWED_EXTREME_EVENT, null, {
+      extreme_event_title: headline.attributes.title,
+      category_name: currentMode?.attributes.title ?? ""
+    });
+  }, [headline]);
 
   useEffect(() => {
     setContainerHeight(containerRef?.current?.offsetHeight ?? 0);

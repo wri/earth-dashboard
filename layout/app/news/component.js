@@ -13,7 +13,6 @@ import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
 import VideoArticle from "components/video-article";
 import Widget from "layout/app/news/widget";
-import Footer from "layout/footer";
 import { Desktop, MediaContextProvider } from "utils/responsive";
 import { CLIMATE } from "utils/topics";
 import TOPICS from "constants/news";
