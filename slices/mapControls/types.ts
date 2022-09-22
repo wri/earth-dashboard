@@ -11,4 +11,5 @@ export type MapControlsState = {
   currentLocation?: [number, number];
   currentScale: string;
   currentScaleBy: number;
+  hasReoriented: boolean;
 };

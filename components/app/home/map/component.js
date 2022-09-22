@@ -41,12 +41,14 @@ const MapIframe = forwardRef(
       currentScaleBy,
       extremeEventLocations,
       setHasMenuOpen,
+      setMobileMenuHeight,
       setCurrentScale,
       setCurrentScaleBy,
       hasIframeConnected,
       mobileMenuHeight,
       setCurrentHeadline,
-      isMobile
+      isMobile,
+      hasReoriented
     },
     ref
   ) => {
@@ -181,15 +183,21 @@ const MapIframe = forwardRef(
       if (earthServer.current && currentLocation) {
         const long = currentLocation[1];
         const lat = currentLocation[0];
-
         const scale = currentScale || "default";
         const scaleBy = currentScaleBy || 1;
-
-        earthServer.current.reorient({
-          rotate: [-long, -lat],
-          scale,
-          scaleBy
-        });
+        // When the app is first loaded, reorient may not work as the iframe isn't fully loaded
+        // keep looping the reorient step until reorientStart sets hasReoriented to true
+        const loop = () => {
+          earthServer.current.reorient({
+            rotate: [-long, -lat],
+            scale,
+            scaleBy
+          });
+        };
+        loop();
+        setTimeout(() => {
+          if (!hasReoriented) loop();
+        }, 100);
       }
     }, [currentLocation, currentScale, currentScaleBy, earthServer]);
 
@@ -201,9 +209,8 @@ const MapIframe = forwardRef(
     }, [dateOfDataShown, earthServer]);
 
     const handleEventPointClicked = headline => {
-      if (!isMobile) {
-        setHasMenuOpen(true);
-      }
+      setHasMenuOpen(true);
+      setMobileMenuHeight(window.innerHeight * 0.6);
       setCurrentHeadline(headline);
     };
 

@@ -21,6 +21,13 @@ import styles from "./layout-app.module.scss";
 import Icon from "components/ui/Icon";
 import OnboardingModal from "layout/onboarding-modal";
 
+import { fireEvent } from "utils/gtag";
+import {
+  COOKIES_ACCEPTED as COOKIES_ACCEPTED_TAG,
+  COOKIES_REJECTED as COOKIES_REJECTED_TAG,
+  PAGE_VIEW
+} from "constants/tag-manager";
+
 function LayoutApp(props) {
   const {
     title,
@@ -61,6 +68,8 @@ function LayoutApp(props) {
     localStorage.setItem(GDPR_ACCEPTED_KEY, `${choice}`);
     localStorage.setItem(ANALYTICS_ACCEPTED, `${choice}`);
     localStorage.setItem(COOKIES_ACCEPTED, `${choice}`);
+    if (choice) fireEvent(COOKIES_ACCEPTED_TAG, null);
+    else fireEvent(COOKIES_REJECTED_TAG, null);
   };
 
   const handleAccept = () => {};
@@ -107,6 +116,7 @@ function LayoutApp(props) {
               href="https://resourcewatch.org/privacy-policy"
               target="_blank"
               rel="noreferrer"
+              onClick={() => fireEvent(PAGE_VIEW, "privacy policy")}
             >
               privacy policy
             </a>{" "}

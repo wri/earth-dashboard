@@ -5,8 +5,6 @@ import PropTypes from "prop-types";
 import DataIndexPanel from "./panels/data-options";
 import DataLayerPanel from "./panels/data-layer";
 import MenuLayout from "./layout";
-import { fireEvent } from "utils/gtag";
-import { CLIMATE_ALERT_EVENT_NAME } from "constants/tag-manager";
 import ClimateAlerts from "./panels/climate-alerts";
 import Event from "components/app/home/event";
 import MobileMenuContainer from "./menu-mobile-container";
@@ -19,7 +17,6 @@ import {
 } from "../main-container/component";
 import HeadlineFooter from "../headline-footer";
 
-const MAX_NUMBER_OF_HEADLINES = 10;
 const MIN_SWIPE_DISTANCE = 50;
 
 const Menu = forwardRef(
@@ -102,12 +99,10 @@ const Menu = forwardRef(
         const indexModulus = (headlineIndex - 1) % headlines.length;
         headline = headlines[indexModulus];
         setCurrentHeadline(headline);
-        fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
       } else {
         const indexModulus = (headlineIndex + 1) % headlines.length;
         headline = headlines[indexModulus];
         setCurrentHeadline(headline);
-        fireEvent(CLIMATE_ALERT_EVENT_NAME, headline.attributes?.title);
       }
     };
 

@@ -5,6 +5,8 @@ import ExternalLink from "components/ui/external-link";
 import { RESOURCE_WATCH_WIDGET_LINK } from "constants/widgets";
 import styles from "./widget.module.scss";
 import PropTypes from "prop-types";
+import { fireEvent } from "utils/gtag";
+import { NEWS_OPENED_SOURCE } from "constants/tag-manager";
 
 // Matches {{...}}
 const nameHighlightWrapperRegex = /\{\{([^\}]+)\}\}/g;
@@ -60,6 +62,12 @@ const Widget = ({ className, widget, bordered, ...rest }) => {
         <div>
           <ExternalLink
             className={styles["c-page-section-widget__source"]}
+            onClick={() =>
+              fireEvent(NEWS_OPENED_SOURCE, null, {
+                source_link: RESOURCE_WATCH_WIDGET_LINK + widgetId,
+                category_name: widget.attributes.category
+              })
+            }
             link={RESOURCE_WATCH_WIDGET_LINK + widgetId}
             label="Source"
           />

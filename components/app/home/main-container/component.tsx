@@ -18,7 +18,7 @@ import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
@@ -49,6 +49,7 @@ type MainContainerProps = {
   defaultMode?: Mode;
   pageTypeId: string;
   setPageTypeId: ActionCreatorWithPayload<string, string>;
+  setReoriented: ActionCreatorWithoutPayload<string>;
 };
 
 const MainContainer = ({
@@ -63,7 +64,8 @@ const MainContainer = ({
   defaultMode,
   currentMode,
   pageTypeId,
-  setPageTypeId
+  setPageTypeId,
+  setReoriented
 }: MainContainerProps) => {
   const defaultMobileMenuHeight =
     pageTypeId === DATA_LAYER_PAGE_ID ? LARGE_MOBILE_MENU_HEIGHT : SMALL_MOBILE_MENU_HEIGHT;
@@ -107,7 +109,8 @@ const MainContainer = ({
     headlines,
     setHeadlines,
     currentMode,
-    defaultMode
+    defaultMode,
+    setReoriented
   });
 
   const overlayLayer = useMemo(() => {
@@ -267,6 +270,7 @@ const MainContainer = ({
           toolTipDetails={toolTipDetails}
           extremeEventLocations={extremeEventLocations}
           setHasMenuOpen={setHasMenuOpen}
+          setMobileMenuHeight={setMobileMenuHeight}
           hasIframeConnected={hasIframeConnected}
           mobileMenuHeight={isMobile && mobileMenuHeight}
           isMobile={isMobile}

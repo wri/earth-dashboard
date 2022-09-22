@@ -18,7 +18,8 @@ const initialState: MapControlsState = {
   isDatePickerDisabled: false,
   currentLocation: undefined,
   currentScale: "default",
-  currentScaleBy: 1
+  currentScaleBy: 1,
+  hasReoriented: false
 };
 
 const mapControlsSlice = createSlice({
@@ -71,6 +72,9 @@ const mapControlsSlice = createSlice({
     },
     setCurrentScaleBy: (state, { payload }: PayloadAction<number>) => {
       state.currentScaleBy = payload;
+    },
+    setReoriented: state => {
+      state.hasReoriented = true;
     }
   }
 });
@@ -89,7 +93,8 @@ export const {
   setIsDatePickerDisabled,
   setCurrentLocation,
   setCurrentScale,
-  setCurrentScaleBy
+  setCurrentScaleBy,
+  setReoriented
 } = mapControlsSlice.actions;
 export const isSettingsOpen = (state: RootState) => state[NAME].isSettingsOpen;
 export const isFetchLocationDisabled = (state: RootState) => state[NAME].isFetchLocationDisabled;
@@ -103,5 +108,6 @@ export const isDatePickerDisabled = (state: RootState) => state[NAME].isDatePick
 export const currentLocation = (state: RootState) => state[NAME].currentLocation;
 export const currentScale = (state: RootState) => state[NAME].currentScale;
 export const currentScaleBy = (state: RootState) => state[NAME].currentScaleBy;
+export const hasReoriented = (state: RootState) => state[NAME].hasReoriented;
 
 export default mapControlsSlice.reducer;

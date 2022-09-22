@@ -5,7 +5,7 @@ import { formatDate } from "utils/dates";
 import ExternalLink from "components/ui/external-link";
 import PropTypes from "prop-types";
 import { fireEvent } from "utils/gtag";
-import { NEWS_VIEW_FULL_ARTICLE } from "constants/tag-manager";
+import { NEWS_OPENED_ARTICLE } from "constants/tag-manager";
 
 const NewsArticle = ({ className, topic, featured, title, author, date, image, link }) => (
   <article className={classnames(className, styles["c-news-article"], featured && styles["c-news-article--featured"])}>
@@ -25,7 +25,7 @@ const NewsArticle = ({ className, topic, featured, title, author, date, image, l
 
       <ExternalLink
         className={styles["c-news-article__link"]}
-        onClick={() => fireEvent(NEWS_VIEW_FULL_ARTICLE, topic)}
+        onClick={() => fireEvent(NEWS_OPENED_ARTICLE, null, { news_title: title, category_name: topic })}
         link={link}
         label="Read full article"
       />
