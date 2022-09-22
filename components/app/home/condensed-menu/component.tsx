@@ -6,6 +6,7 @@ import { Mode } from "slices/modes";
 import { DATA_LAYER_PAGE_ID } from "../main-container/component";
 import NormalScale from "../normal-scale";
 import styles from "./condensed-menu.module.scss";
+import Scale from "components/app/home/scale";
 
 type CondensedMenuProps = {
   toggleMenu: () => void;
@@ -47,6 +48,7 @@ const CondensedMenu = ({
           />
           <IconButton onClick={toggleMenu} name="expand" size={16} className={styles["expand-icon"]} small />
         </div>
+        <Scale isHorizontal />
         {pageTypeId == DATA_LAYER_PAGE_ID && currentMode && (
           <NormalScale value={50} className={styles["c-normal-scale"]} />
         )}

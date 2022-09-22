@@ -5,25 +5,21 @@ import styles from "./scale.module.scss";
 import FocusTrap from "focus-trap-react";
 import ToolTip from "components/ui/tooltip";
 import useDataLayers from "hooks/useDataLayers";
-import { POSITIONS } from "components/ui/tooltip/component";
 import { SCALE_TYPES } from "constants/map";
 import { DATA_LAYER_TYPES } from "constants/datalayers";
+import { useIframeBridgeContext } from "hooks/useIframeBridge";
 
-const Scale = ({
-  className,
-  min,
-  max,
-  scaleUnit,
-  scaleGradient,
-  isHorizontal,
-  toolTipData,
-  value,
-  hasSmallLabels,
-  currentMode,
-  datasetValue,
-  hidden,
-  ...rest
-}) => {
+const Scale = props => {
+  const { className, isHorizontal, value, currentMode, datasetValue, hidden, ...rest } = props;
+
+  const {
+    scaleData = { min: 0, max: 100, unitSymbol: "%", hasSmallLabels: false },
+    scaleToolTipData: toolTipData = { annotation: null, overlay: null, layer: null },
+    overlayLayer
+  } = useIframeBridgeContext();
+  const { min, max, unitSymbol: scaleUnit, hasSmallLabels } = scaleData;
+  const scaleGradient = overlayLayer?.product.scale.getCss(isHorizontal ? 90 : 0);
+
   const datasetLayers = useDataLayers(currentMode, DATA_LAYER_TYPES.dataset);
   const [shouldShowToolTip, setShouldShowToolTip] = useState(false);
   const minLabel = `${min}${scaleUnit}`.length > 9 ? `${min} ${scaleUnit}` : `${min}${scaleUnit}`;
@@ -150,32 +146,20 @@ const Scale = ({
 
 Scale.propTypes = {
   className: PropTypes.string,
-  alt: PropTypes.string,
-  min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  hasSmallLabels: PropTypes.bool,
-  scaleUnit: PropTypes.string,
+  value: PropTypes.string,
   readOnly: PropTypes.bool,
-  isHorizontal: PropTypes.bool,
-  toolTipData: PropTypes.object,
   currentMode: PropTypes.object,
-  datasetValue: PropTypes.string
+  datasetValue: PropTypes.string,
+  hidden: PropTypes.bool,
+  isHorizontal: PropTypes.bool
 };
 
 Scale.defaultProps = {
   className: "",
-  min: 0,
-  max: 100,
-  value: 0,
-  scaleUnit: "%",
+  value: "0%",
   readOnly: true,
-  isHorizontal: false,
-  hasSmallLabels: false,
-  toolTipData: {
-    annotation: null,
-    overlay: null,
-    layer: null
-  }
+  hidden: false,
+  isHorizontal: false
 };
 
 export default Scale;

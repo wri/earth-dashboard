@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useEffect, useMemo, SetStateAction } from "react";
+import { useRef, useCallback, useState, useEffect, useContext } from "react";
 import useWindowDimensions from "./useWindowDimensions";
 import { getEarthServer } from "utils/iframeBridge/iframeBridge";
 import { EarthClient } from "utils/iframeBridge/earthClient";
@@ -19,6 +19,7 @@ import { Headline } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
+import { IframeBridgeContext } from "context/IframeBridgeProvider";
 
 type GeoMarkerOverlayDetails = GeoMarkerOverlayLocation & { headline: Headline };
 
@@ -33,6 +34,10 @@ type UseIframeBridgeConfig = {
 };
 
 type Marker = { id: number; label: string };
+
+export const useIframeBridgeContext = () => {
+  return useContext(IframeBridgeContext);
+};
 
 const useIframeBridge = ({
   callback,
@@ -51,7 +56,7 @@ const useIframeBridge = ({
   const [currentMarker, setCurrentMarker] = useState<GeoMarker>();
   const [toolTipDetails, setToolTipDetails] = useState<{ isVisible?: boolean; x?: number; y?: number; text: string }>();
   const [toolTipVisible, setToolTipVisible] = useState<boolean>(false);
-  const [scaleData, setScaleData] = useState({ annotation: null, overlay: null });
+  const [scaleToolTipData, setScaleToolTipData] = useState({ annotation: null, overlay: null });
   const [toolTipText, setToolTipText] = useState<string>("");
   const [hasIframeConnected, setHasIframeConnected] = useState<boolean>(false);
   const [extremeEventLocations, setExtremeEventLocations] = useState<GeoMarkerOverlayDetails[]>([]);
@@ -182,7 +187,7 @@ const useIframeBridge = ({
             annotation: getAnnotationData(samples, this.currentLayers),
             layer: this.currentLayers[SAMPLE_OVERLAY_INDEX]
           };
-          setScaleData(data);
+          setScaleToolTipData(data);
         }
       }
 
@@ -237,7 +242,7 @@ const useIframeBridge = ({
     layers,
     toolTipDetails,
     extremeEventLocations,
-    scaleData,
+    scaleToolTipData,
     enableToolTip,
     disableToolTip,
     error,
