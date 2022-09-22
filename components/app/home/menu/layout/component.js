@@ -1,10 +1,11 @@
+import { forwardRef } from "react";
 import classnames from "classnames";
 import styles from "./layout.module.scss";
 import IconButton from "components/ui/icon-button";
 
-const MenuLayout = ({ title, iconName, className, onBack, onClose, children, ...rest }) => {
+const MenuLayout = forwardRef(({ title, iconName, className, onBack, onClose, children, ...rest }, ref) => {
   return (
-    <div className={classnames(styles["c-layout"], className)} {...rest}>
+    <div ref={ref} className={classnames(styles["c-layout"], className)} {...rest}>
       <div className={classnames(styles["c-layout__header"])}>
         <div
           className={classnames(
@@ -38,6 +39,8 @@ const MenuLayout = ({ title, iconName, className, onBack, onClose, children, ...
       <div className={classnames(styles["c-layout__content"], "u-padding-none")}>{children}</div>
     </div>
   );
-};
+});
+
+MenuLayout.displayName = "MenuLayout";
 
 export default MenuLayout;
