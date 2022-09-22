@@ -236,7 +236,11 @@ const MapIframe = forwardRef(
         )}
         <iframe
           className={styles["c-map-iframe"]}
-          style={mobileMenuHeight ? { height: window.innerHeight - mobileMenuHeight + 20 } : {}}
+          style={
+            mobileMenuHeight
+              ? { height: window.innerHeight - mobileMenuHeight + 20, opacity: earthClient ? 1 : 0 }
+              : { opacity: earthClient ? 1 : 0 }
+          }
           id="nullSchoolIframe"
           src={process.env.NULL_SCHOOL_IFRAME_BASE}
           frameBorder="0"
