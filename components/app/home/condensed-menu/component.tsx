@@ -48,7 +48,7 @@ const CondensedMenu = ({
           />
           <IconButton onClick={toggleMenu} name="expand" size={16} className={styles["expand-icon"]} small />
         </div>
-        <Scale isHorizontal />
+        <Scale hideTooltipLabel isHorizontal />
         {pageTypeId == DATA_LAYER_PAGE_ID && currentMode && (
           <NormalScale value={50} className={styles["c-normal-scale"]} />
         )}

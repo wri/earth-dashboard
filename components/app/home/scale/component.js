@@ -10,7 +10,7 @@ import { DATA_LAYER_TYPES } from "constants/datalayers";
 import { useIframeBridgeContext } from "hooks/useIframeBridge";
 
 const Scale = props => {
-  const { className, isHorizontal, value, currentMode, datasetValue, hidden, ...rest } = props;
+  const { className, isHorizontal, value, currentMode, datasetValue, hidden, hideTooltipLabel, ...rest } = props;
 
   const {
     scaleData = { min: 0, max: 100, unitSymbol: "%", hasSmallLabels: false },
@@ -26,11 +26,11 @@ const Scale = props => {
   const maxLabel = `${max}${scaleUnit}`.length > 9 ? `${max} ${scaleUnit}` : `${max}${scaleUnit}`;
   const style = { "--min": `"${minLabel}"`, "--max": `"${maxLabel}"`, "--gradient": scaleGradient };
 
-  const scaleLabel = useMemo(() => {
-    const layer = datasetLayers.find(layer => layer.attributes.data_key === datasetValue);
-
-    return layer?.attributes?.title || "Scale";
-  }, [datasetValue]);
+  // const scaleLabel = useMemo(() => {
+  //   const layer = datasetLayers.find(layer => layer.attributes.data_key === datasetValue);
+  //
+  //   return layer?.attributes?.title || "Scale";
+  // }, [datasetValue]);
 
   const valueParsed = useMemo(
     () => parseFloat(toolTipData.overlay ? toolTipData.overlay.value : value),
@@ -86,38 +86,42 @@ const Scale = props => {
 
   return (
     <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>
-      <label htmlFor="scale">{scaleLabel}</label>
+      <label htmlFor="scale">Scale</label>
       <div className={styles["c-scale__input-container"]}>
         {shouldShowToolTip && !Number.isNaN(percent) && (
           <>
-            <FocusTrap focusTrapOptions={focusTrapOptions}>
-              <div className={styles["c-scale__tooltip"]}>
-                <ToolTip
-                  y={
-                    isHorizontal
-                      ? toolTipData.overlay && toolTipData.annotation
-                        ? "-110px"
-                        : "-90px"
-                      : `${100 - percent}%`
-                  }
-                  x={isHorizontal ? `50%` : "19px"}
-                  arrowPosition={isHorizontal ? "none" : "right"}
-                  className={styles["c-scale__tooltip-item"]}
-                >
-                  <button
-                    className="u-button-no-style"
-                    aria-label="Close tooltip"
-                    onClick={() => setShouldShowToolTip(false)}
+            {!hideTooltipLabel && (
+              <FocusTrap focusTrapOptions={focusTrapOptions}>
+                <div className={styles["c-scale__tooltip"]}>
+                  <ToolTip
+                    y={
+                      isHorizontal
+                        ? toolTipData.overlay && toolTipData.annotation
+                          ? "-110px"
+                          : "-90px"
+                        : `${100 - percent}%`
+                    }
+                    x={isHorizontal ? `50%` : "19px"}
+                    arrowPosition={isHorizontal ? "none" : "right"}
+                    className={styles["c-scale__tooltip-item"]}
                   >
-                    {toolTipData.overlay && <p className="u-no-wrap u-margin-none">{toolTipData.overlay.str}</p>}
-                    {toolTipData.annotation && <p className="u-no-wrap u-margin-none">{toolTipData.annotation.str}</p>}
-                  </button>
-                </ToolTip>
-              </div>
-            </FocusTrap>
+                    <button
+                      className="u-button-no-style"
+                      aria-label="Close tooltip"
+                      onClick={() => setShouldShowToolTip(false)}
+                    >
+                      {toolTipData.overlay && <p className="u-no-wrap u-margin-none">{toolTipData.overlay.str}</p>}
+                      {toolTipData.annotation && (
+                        <p className="u-no-wrap u-margin-none">{toolTipData.annotation.str}</p>
+                      )}
+                    </button>
+                  </ToolTip>
+                </div>
+              </FocusTrap>
+            )}
             <span
               className={styles["c-scale__input-thumb"]}
-              style={{ top: isHorizontal ? 9 : `${100 - percent}%`, left: isHorizontal ? `${percent}%` : `50%` }}
+              style={{ top: isHorizontal ? 0 : `${100 - percent}%`, left: isHorizontal ? `${percent}%` : `50%` }}
             ></span>
           </>
         )}
@@ -151,7 +155,8 @@ Scale.propTypes = {
   currentMode: PropTypes.object,
   datasetValue: PropTypes.string,
   hidden: PropTypes.bool,
-  isHorizontal: PropTypes.bool
+  isHorizontal: PropTypes.bool,
+  hideTooltipLabel: PropTypes.bool
 };
 
 Scale.defaultProps = {
@@ -159,7 +164,8 @@ Scale.defaultProps = {
   value: "0%",
   readOnly: true,
   hidden: false,
-  isHorizontal: false
+  isHorizontal: false,
+  hideTooltipLabel: false
 };
 
 export default Scale;
