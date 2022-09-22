@@ -19,7 +19,7 @@ import { Headline } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
-import { IframeBridgeContext } from "context/IframeBridgeProvider";
+import { IframeBridgeContext } from "../context/IframeBridgeProvider";
 
 type GeoMarkerOverlayDetails = GeoMarkerOverlayLocation & { headline: Headline };
 
