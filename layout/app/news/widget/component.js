@@ -63,7 +63,10 @@ const Widget = ({ className, widget, bordered, ...rest }) => {
           <ExternalLink
             className={styles["c-page-section-widget__source"]}
             onClick={() =>
-              fireEvent(NEWS_OPENED_SOURCE, [RESOURCE_WATCH_WIDGET_LINK + widgetId, widget.attributes.category])
+              fireEvent(NEWS_OPENED_SOURCE, null, {
+                source_link: RESOURCE_WATCH_WIDGET_LINK + widgetId,
+                category_name: widget.attributes.category
+              })
             }
             link={RESOURCE_WATCH_WIDGET_LINK + widgetId}
             label="Source"

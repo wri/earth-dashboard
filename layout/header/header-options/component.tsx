@@ -39,7 +39,7 @@ const HeaderOptions = ({
 
   /** Opens share modal and fires event trigger */
   const onShareClick = () => {
-    fireEvent(MAP_SHARE, "");
+    fireEvent(MAP_SHARE, null);
     setIsShareOpen(true);
   };
 
@@ -65,7 +65,7 @@ const HeaderOptions = ({
           size={16}
           aria-label={router.pathname === "/" ? "Share" : "Search"}
           className={classnames(styles["c-header-options__share"], styles["c-header-options__icon-button"])}
-          onClick={router.pathname === "/" ? onShareClick : () => fireEvent(NEWS_SEARCH, "")}
+          onClick={router.pathname === "/" ? onShareClick : () => fireEvent(NEWS_SEARCH, null)}
           iconStyle={{ marginRight: router.pathname === "/" ? "2px" : "0" }}
         />
       )}

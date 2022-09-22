@@ -68,7 +68,7 @@ const DataIndex = ({
       ))}
 
       <Link href="https://earth.nullschool.net/">
-        <a rel="noopener noreferrer" target="_blank" onClick={() => fireEvent(ADVANCED_MENU, "")}>
+        <a rel="noopener noreferrer" target="_blank" onClick={() => fireEvent(ADVANCED_MENU, null)}>
           <ContentPanel className={styles["c-home-menu-item--advanced-data-item"]} canFocus={true}>
             <h3 className={styles["c-home-menu-item__title"]}>Advanced Data</h3>
             <p className={styles["c-home-menu-item__desc"]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

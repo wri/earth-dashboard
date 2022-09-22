@@ -63,7 +63,7 @@ const VideoArticle = ({ className, topic, title, image, videoURL }) => {
           controls={true}
           url={videoURL}
           onError={() => setHasError(true)}
-          onStart={() => fireEvent(NEWS_PLAYED_VIDEO, [title, topic])}
+          onStart={() => fireEvent(NEWS_PLAYED_VIDEO, null, { video_title: title, category_name: topic })}
           onDuration={duration => setDuration(duration)}
         />
       </div>

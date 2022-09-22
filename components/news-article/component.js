@@ -25,7 +25,7 @@ const NewsArticle = ({ className, topic, featured, title, author, date, image, l
 
       <ExternalLink
         className={styles["c-news-article__link"]}
-        onClick={() => fireEvent(NEWS_OPENED_ARTICLE, [title, topic])}
+        onClick={() => fireEvent(NEWS_OPENED_ARTICLE, null, { news_title: title, category_name: topic })}
         link={link}
         label="Read full article"
       />

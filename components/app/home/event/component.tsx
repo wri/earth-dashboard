@@ -44,10 +44,11 @@ const ExtremeEvent = ({
   const [scrollPosition, setScrollPosition] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0);
 
-  // TODO: allow multiple parameters
   useEffect(() => {
-    // @ts-expect-error
-    fireEvent(EARTH_HQ_VIEWED_EXTREME_EVENT, [headline.attributes.title, currentMode?.attributes.title ?? ""]);
+    fireEvent(EARTH_HQ_VIEWED_EXTREME_EVENT, null, {
+      extreme_event_title: headline.attributes.title,
+      category_name: currentMode?.attributes.title ?? ""
+    });
   }, [headline]);
 
   useEffect(() => {
