@@ -29,6 +29,7 @@ export default connect(
     currentLocation: state.mapControls.currentLocation,
     currentScale: state.mapControls.currentScale,
     currentScaleBy: state.mapControls.currentScaleBy,
+    hasReoriented: state.mapControls.hasReoriented,
     // Global Settings
     showMapGrid: state.globalSettings.showMapGrid,
     animationEnabled: state.globalSettings.showAnimations,
