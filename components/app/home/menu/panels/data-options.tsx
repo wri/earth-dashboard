@@ -8,7 +8,9 @@ import MenuOption from "components/app/home/menu-option";
 import Link from "next/link";
 import Image from "next/image";
 import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
-import { ActionCreatorWithPayload, current } from "@reduxjs/toolkit";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { fireEvent } from "utils/gtag";
+import { ADVANCED_MENU, EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
 
 const mapHighlightToOption = (
   mode: Mode,
@@ -21,7 +23,10 @@ const mapHighlightToOption = (
     ...attributes,
     buttonText: "Learn More",
     onClick: () => onClickDataLayer(mode),
-    onClickCta: () => onViewDataLayerSummary(mode)
+    onClickCta: () => {
+      fireEvent(EARTH_HQ_VIEWED_CATEGORY, attributes.title);
+      onViewDataLayerSummary(mode);
+    }
   };
 };
 
@@ -63,7 +68,7 @@ const DataIndex = ({
       ))}
 
       <Link href="https://earth.nullschool.net/">
-        <a rel="noopener noreferrer" target="_blank">
+        <a rel="noopener noreferrer" target="_blank" onClick={() => fireEvent(ADVANCED_MENU, null)}>
           <ContentPanel className={styles["c-home-menu-item--advanced-data-item"]} canFocus={true}>
             <h3 className={styles["c-home-menu-item__title"]}>Advanced Data</h3>
             <p className={styles["c-home-menu-item__desc"]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

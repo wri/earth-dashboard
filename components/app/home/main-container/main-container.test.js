@@ -111,22 +111,24 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                 <div
                   class="c-content-panel__cta"
                 >
-                  <button
-                    class="c-cta-button"
-                  >
-                    <div
-                      class="c-cta-button__content"
+                  <span>
+                    <button
+                      class="c-cta-button"
                     >
-                      <span
-                        class="c-cta-button__text"
+                      <div
+                        class="c-cta-button__content"
                       >
-                        View All
-                      </span>
-                      <span
-                        class="c-cta-button__icon"
-                      />
-                    </div>
-                  </button>
+                        <span
+                          class="c-cta-button__text"
+                        >
+                          View All
+                        </span>
+                        <span
+                          class="c-cta-button__icon"
+                        />
+                      </div>
+                    </button>
+                  </span>
                 </div>
               </div>
             </div>
@@ -171,22 +173,24 @@ Source: CAMS / Copernicus / European Commission + ECMWF
                 <div
                   class="c-content-panel__cta"
                 >
-                  <button
-                    class="c-cta-button"
-                  >
-                    <div
-                      class="c-cta-button__content"
+                  <span>
+                    <button
+                      class="c-cta-button"
                     >
-                      <span
-                        class="c-cta-button__text"
+                      <div
+                        class="c-cta-button__content"
                       >
-                        Learn More
-                      </span>
-                      <span
-                        class="c-cta-button__icon"
-                      />
-                    </div>
-                  </button>
+                        <span
+                          class="c-cta-button__text"
+                        >
+                          Learn More
+                        </span>
+                        <span
+                          class="c-cta-button__icon"
+                        />
+                      </div>
+                    </button>
+                  </span>
                 </div>
               </div>
             </div>
@@ -231,22 +235,24 @@ Source: CAMS / Copernicus / European Commission + ECMWF
                 <div
                   class="c-content-panel__cta"
                 >
-                  <button
-                    class="c-cta-button"
-                  >
-                    <div
-                      class="c-cta-button__content"
+                  <span>
+                    <button
+                      class="c-cta-button"
                     >
-                      <span
-                        class="c-cta-button__text"
+                      <div
+                        class="c-cta-button__content"
                       >
-                        Learn More
-                      </span>
-                      <span
-                        class="c-cta-button__icon"
-                      />
-                    </div>
-                  </button>
+                        <span
+                          class="c-cta-button__text"
+                        >
+                          Learn More
+                        </span>
+                        <span
+                          class="c-cta-button__icon"
+                        />
+                      </div>
+                    </button>
+                  </span>
                 </div>
               </div>
             </div>
@@ -404,22 +410,24 @@ test("<MainContainer /> renders correctly as mobile", async () => {
                     <div
                       class="c-content-panel__cta"
                     >
-                      <button
-                        class="c-cta-button"
-                      >
-                        <div
-                          class="c-cta-button__content"
+                      <span>
+                        <button
+                          class="c-cta-button"
                         >
-                          <span
-                            class="c-cta-button__text"
+                          <div
+                            class="c-cta-button__content"
                           >
-                            View All
-                          </span>
-                          <span
-                            class="c-cta-button__icon"
-                          />
-                        </div>
-                      </button>
+                            <span
+                              class="c-cta-button__text"
+                            >
+                              View All
+                            </span>
+                            <span
+                              class="c-cta-button__icon"
+                            />
+                          </div>
+                        </button>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -464,22 +472,24 @@ Source: CAMS / Copernicus / European Commission + ECMWF
                     <div
                       class="c-content-panel__cta"
                     >
-                      <button
-                        class="c-cta-button"
-                      >
-                        <div
-                          class="c-cta-button__content"
+                      <span>
+                        <button
+                          class="c-cta-button"
                         >
-                          <span
-                            class="c-cta-button__text"
+                          <div
+                            class="c-cta-button__content"
                           >
-                            Learn More
-                          </span>
-                          <span
-                            class="c-cta-button__icon"
-                          />
-                        </div>
-                      </button>
+                            <span
+                              class="c-cta-button__text"
+                            >
+                              Learn More
+                            </span>
+                            <span
+                              class="c-cta-button__icon"
+                            />
+                          </div>
+                        </button>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -524,22 +534,24 @@ Source: CAMS / Copernicus / European Commission + ECMWF
                     <div
                       class="c-content-panel__cta"
                     >
-                      <button
-                        class="c-cta-button"
-                      >
-                        <div
-                          class="c-cta-button__content"
+                      <span>
+                        <button
+                          class="c-cta-button"
                         >
-                          <span
-                            class="c-cta-button__text"
+                          <div
+                            class="c-cta-button__content"
                           >
-                            Learn More
-                          </span>
-                          <span
-                            class="c-cta-button__icon"
-                          />
-                        </div>
-                      </button>
+                            <span
+                              class="c-cta-button__text"
+                            >
+                              Learn More
+                            </span>
+                            <span
+                              class="c-cta-button__icon"
+                            />
+                          </div>
+                        </button>
+                      </span>
                     </div>
                   </div>
                 </div>

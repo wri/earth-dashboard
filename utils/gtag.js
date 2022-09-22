@@ -38,7 +38,7 @@ export const logEvent = ({ action, category, label, value }) => {
  * @param {String} eventName
  *        The event name that is recognised by Tag Manager,
  *         either a default event or a custom one
- * @param {String} param
+ * @param {String | null} param
  *        The extra dataLayer param that can be passed along with each Tag
  * @param {...Object} rest
  *        Any extra params that need to be passed along with the event
