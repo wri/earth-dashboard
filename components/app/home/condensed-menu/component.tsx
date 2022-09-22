@@ -4,7 +4,6 @@ import { getMenuTitle } from "services/gca";
 import { Headline } from "slices/headlines";
 import { Mode } from "slices/modes";
 import { DATA_LAYER_PAGE_ID } from "../main-container/component";
-import NormalScale from "../normal-scale";
 import styles from "./condensed-menu.module.scss";
 import Scale from "components/app/home/scale";
 
@@ -15,6 +14,7 @@ type CondensedMenuProps = {
   isLocationDisabled: boolean;
   currentHeadline: Headline | undefined;
   currentMode: Mode | undefined;
+  defaultMode?: Mode;
 };
 
 const CondensedMenu = ({
@@ -23,16 +23,13 @@ const CondensedMenu = ({
   handleToggleLocation,
   isLocationDisabled,
   currentHeadline,
-  currentMode
+  currentMode,
+  defaultMode
 }: CondensedMenuProps) => {
   return (
     <>
       <div className={styles["c-condensed-menu"]}>
-        <div
-          className={styles["c-condensed-menu__title-container"]}
-          // TODO: when we get scale date, change margin else to auto
-          style={pageTypeId !== DATA_LAYER_PAGE_ID ? { marginBottom: 0 } : { marginBottom: 0 }}
-        >
+        <div className={styles["c-condensed-menu__title-container"]}>
           {pageTypeId == DATA_LAYER_PAGE_ID && currentMode && (
             <div className={styles["icon-container"]}>
               <img src={currentMode.attributes.icon} alt={currentMode.attributes.title} />
@@ -48,9 +45,8 @@ const CondensedMenu = ({
           />
           <IconButton onClick={toggleMenu} name="expand" size={16} className={styles["expand-icon"]} small />
         </div>
-        <Scale hideTooltipLabel isHorizontal />
-        {pageTypeId == DATA_LAYER_PAGE_ID && currentMode && (
-          <NormalScale value={50} className={styles["c-normal-scale"]} />
+        {currentMode?.id !== defaultMode?.id && (
+          <Scale hidden={currentMode?.id === defaultMode?.id} hideTooltipLabel isHorizontal />
         )}
       </div>
     </>

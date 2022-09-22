@@ -4,5 +4,6 @@ import CondensedMenuComponent from "./component";
 
 export default connect((state: RootState) => ({
   currentHeadline: state.headlines.currentHeadline,
-  currentMode: state.modes.currentMode
+  currentMode: state.modes.currentMode,
+  defaultMode: state.modes.defaultMode
 }))(CondensedMenuComponent);

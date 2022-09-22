@@ -25,10 +25,8 @@ import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
 
-// TODO: when we get scale date change height to larger
-// export const LARGE_MOBILE_MENU_HEIGHT = 235;
-export const LARGE_MOBILE_MENU_HEIGHT = 148;
-export const SMALL_MOBILE_MENU_HEIGHT = 235;
+export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
+export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
 export const INFO_PAGE_ID = "InfoPage";
 export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
 export const DATA_LAYER_PAGE_ID = "DataLayerPage";
@@ -66,7 +64,7 @@ const MainContainer = ({
   const [pageTypeId, setPageTypeId] = useState<string>(INFO_PAGE_ID);
 
   const defaultMobileMenuHeight =
-    pageTypeId === DATA_LAYER_PAGE_ID ? LARGE_MOBILE_MENU_HEIGHT : SMALL_MOBILE_MENU_HEIGHT;
+    currentMode?.id === defaultMode?.id ? MODILE_MENU_HEIGHT_WITHOUT_SCALE : MODILE_MENU_HEIGHT_WITH_SCALE;
 
   const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
   const [hasIframe, setHasIframe] = useState<boolean>(false);
