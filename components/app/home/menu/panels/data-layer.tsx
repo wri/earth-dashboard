@@ -83,7 +83,7 @@ const DataLayerOverview = ({
         icon={EXTREME_EVENTS_ICON}
         title="Extreme events"
         buttonText="View All"
-        ctaAction={onClickExtremeEvents}
+        ctaAction={mostRecentHeadlines.length <= 3 ? undefined : () => onClickExtremeEvents()}
       >
         <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>View the latest fire extreme events.</p>
         <div className={styles["c-home-menu__events-list"]}>
