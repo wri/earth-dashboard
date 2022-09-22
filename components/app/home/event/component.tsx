@@ -14,6 +14,7 @@ import { setIsShareOpen } from "slices/common";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { fireEvent } from "utils/gtag";
 import { EARTH_HQ_VIEWED_EXTREME_EVENT } from "constants/tag-manager";
+import { EventScaleData } from "slices/mapControls";
 
 type DataLayerOverviewProps = {
   currentMode?: Mode;
@@ -23,6 +24,7 @@ type DataLayerOverviewProps = {
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
   setDateOfDataShown: ActionCreatorWithPayload<string, string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
+  eventScaleData: EventScaleData | undefined;
   onViewAllEventsClicked: () => any;
 };
 
@@ -36,6 +38,7 @@ const ExtremeEvent = ({
   setCurrentScaleBy,
   setDateOfDataShown,
   setIsShareOpen,
+  eventScaleData,
   onViewAllEventsClicked
 }: DataLayerOverviewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -73,8 +76,6 @@ const ExtremeEvent = ({
     }
   }, [headline]);
 
-  const how_to_help_content = currentMode?.attributes?.how_to_help_content;
-
   const onScroll = (event: UIEvent<HTMLElement>) => {
     setScrollPosition(event.currentTarget.scrollTop);
   };
@@ -110,7 +111,10 @@ const ExtremeEvent = ({
           style={{ marginTop: `${containerHeight + 24}px` }}
         >
           <p>{headline.attributes.content.body}</p>
-          <NormalScale value={50} />
+          <NormalScale
+            value={eventScaleData?.value}
+            thermometerStyle={{ background: eventScaleData?.gradient ?? "" }}
+          />
         </ContentPanel>
         <SharePanel ctaAction={() => setIsShareOpen(true)} />
         <div className={styles["c-event__view-all-button--container"]}>

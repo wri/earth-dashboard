@@ -4,7 +4,7 @@ import { setIsMobile } from "slices/common";
 import { RootState } from "store/types";
 import { setModes } from "slices/modes";
 import { setHeadlines } from "slices/headlines";
-import { setReoriented } from "slices/mapControls";
+import { setEventScaleData, setReoriented } from "slices/mapControls";
 
 export default connect(
   (state: RootState) => ({
@@ -19,6 +19,7 @@ export default connect(
     setModes,
     setIsMobile,
     setHeadlines,
-    setReoriented
+    setReoriented,
+    setEventScaleData
   }
 )(MainContainerComponent);

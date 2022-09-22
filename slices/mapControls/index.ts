@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
-import { MapControlsState } from "./types";
+import { EventScaleData, MapControlsState } from "./types";
 
 export * from "./types";
 
@@ -19,7 +19,8 @@ const initialState: MapControlsState = {
   currentLocation: undefined,
   currentScale: "default",
   currentScaleBy: 1,
-  hasReoriented: false
+  hasReoriented: false,
+  eventScaleData: undefined
 };
 
 const mapControlsSlice = createSlice({
@@ -75,6 +76,9 @@ const mapControlsSlice = createSlice({
     },
     setReoriented: state => {
       state.hasReoriented = true;
+    },
+    setEventScaleData: (state, { payload }: PayloadAction<EventScaleData | undefined>) => {
+      state.eventScaleData = payload;
     }
   }
 });
@@ -94,7 +98,8 @@ export const {
   setCurrentLocation,
   setCurrentScale,
   setCurrentScaleBy,
-  setReoriented
+  setReoriented,
+  setEventScaleData
 } = mapControlsSlice.actions;
 export const isSettingsOpen = (state: RootState) => state[NAME].isSettingsOpen;
 export const isFetchLocationDisabled = (state: RootState) => state[NAME].isFetchLocationDisabled;
@@ -109,5 +114,6 @@ export const currentLocation = (state: RootState) => state[NAME].currentLocation
 export const currentScale = (state: RootState) => state[NAME].currentScale;
 export const currentScaleBy = (state: RootState) => state[NAME].currentScaleBy;
 export const hasReoriented = (state: RootState) => state[NAME].hasReoriented;
+export const eventScaleData = (state: RootState) => state[NAME].eventScaleData;
 
 export default mapControlsSlice.reducer;

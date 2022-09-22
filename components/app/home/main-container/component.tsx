@@ -11,18 +11,19 @@ import { fetchModes, getMenuTitle } from "services/gca";
 import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
-import { UNIT_LABEL_MAP } from "utils/map";
+import { getIndicatorGeoJson, getOverlayData, UNIT_LABEL_MAP } from "utils/map";
 import IconButton from "components/ui/icon-button";
 import { Headline } from "slices/headlines";
 import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
-import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
+import { EventScaleData, isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
+import { SCALE_TYPES } from "constants/map";
 
 // TODO: when we get scale date change height to larger
 // export const LARGE_MOBILE_MENU_HEIGHT = 235;
@@ -47,6 +48,7 @@ type MainContainerProps = {
   currentMode?: Mode;
   defaultMode?: Mode;
   setReoriented: ActionCreatorWithoutPayload<string>;
+  setEventScaleData: ActionCreatorWithPayload<EventScaleData | undefined, string>;
 };
 
 const MainContainer = ({
@@ -60,7 +62,8 @@ const MainContainer = ({
   setHeadlines,
   defaultMode,
   currentMode,
-  setReoriented
+  setReoriented,
+  setEventScaleData
 }: MainContainerProps) => {
   const [pageTypeId, setPageTypeId] = useState<string>(INFO_PAGE_ID);
 
@@ -114,19 +117,6 @@ const MainContainer = ({
     return (layers as EarthLayer[]).find(layer => layer?.type === "overlay");
   }, [layers]);
 
-  // const click = async (point: [number, number], coords: [number, number]) => {
-  //     const marker = getIndicatorGeoJson(coords);
-
-  //     const coordinates = marker.geometry.coordinates;
-  //     const samples = await earthServer.current?.sampleAt([0, 0], coordinates);
-  //     const data = {
-  //       overlay: getOverlayData(samples, this.currentLayers),
-  //       annotation: getAnnotationData(samples, this.currentLayers),
-  //       layer: this.currentLayers[SAMPLE_OVERLAY_INDEX]
-  //     };
-  //     console.log(data.overlay.value)
-  // }
-
   const scaleData = useMemo(() => {
     if (overlayLayer?.product) {
       const { units } = overlayLayer.product;
@@ -147,12 +137,61 @@ const MainContainer = ({
     }
   }, [overlayLayer?.product]);
 
-  const eventScaleDate: { min?: string; max?: string; gradient?: string; value?: number } = {
-    min: scaleData?.min,
-    max: scaleData?.max,
-    gradient: overlayLayer?.product.scale.getCss(0),
-    value: 50
+  const getEventScaleValue = async () => {
+    if (!currentHeadline || !overlayLayer) return null;
+    const marker = getIndicatorGeoJson([
+      currentHeadline.attributes.location.lng,
+      currentHeadline.attributes.location.lat
+    ]);
+    const coordinates = marker.geometry.coordinates;
+    const samples = await earthServer.current?.sampleAt(null, coordinates);
+    const data = getOverlayData(samples, [overlayLayer]);
+    if (data) return data.value;
+    else return undefined;
   };
+
+  useEffect(() => {
+    const getEventScaleData = async () => {
+      if (!currentHeadline || !overlayLayer?.product) {
+        return setEventScaleData(undefined);
+      }
+
+      const { units } = overlayLayer.product;
+      const [unitSymbol, [lo, hi]] = Object.entries(overlayLayer.product.scale.range)[0];
+      const precision = units[unitSymbol]?.precision ?? 0;
+
+      const min = parseFloat(lo.toFixed(precision));
+      const max = parseFloat(hi.toFixed(precision));
+      let value = await getEventScaleValue();
+      const gradient = overlayLayer.product.scale.getCss(90);
+
+      let percent: number | undefined = 0;
+
+      if (value) {
+        const scaleType = overlayLayer.product.scale.type;
+        const linearPercent = ((value - min) * 100) / (max - min);
+        const logPercent = ((Math.log(value) - Math.log(min)) * 100) / (Math.log(max) - Math.log(min));
+        percent = scaleType === SCALE_TYPES.log ? logPercent : linearPercent;
+        if (percent > 100) {
+          percent = 100;
+        }
+        if (percent < 0) {
+          percent = 0;
+        }
+      } else percent = undefined;
+
+      if (percent && isNaN(percent)) percent = undefined;
+
+      const eventScaleData: EventScaleData = {
+        gradient,
+        value: percent
+      };
+
+      setEventScaleData(eventScaleData);
+    };
+
+    getEventScaleData();
+  }, [currentHeadline, overlayLayer]);
 
   const toggleMenu = () => {
     if (!hasMenuOpen) {
