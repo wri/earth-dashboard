@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { INFO_PAGE_ID } from "components/app/home/main-container/component";
 import { Mode, ModesState } from "./types";
 
 export * from "./types";
@@ -17,7 +18,8 @@ const initialState: ModesState = {
   monitorValue: "",
   heightValue: "",
   layersLabelArr: [],
-  dateOfDataShown: new Date().toString()
+  dateOfDataShown: new Date().toString(),
+  pageTypeId: "InfoPage"
 };
 
 const modesSlice = createSlice({
@@ -86,6 +88,9 @@ const modesSlice = createSlice({
       if (isNaN(new Date(payload).getTime())) return;
 
       state.dateOfDataShown = payload;
+    },
+    setPageTypeId: (state, { payload }: PayloadAction<string>) => {
+      state.pageTypeId = payload;
     }
   }
 });
@@ -100,7 +105,8 @@ export const {
   resetValues,
   setLayersLabelArr,
   setDateOfDataShown,
-  setCurrentModeId
+  setCurrentModeId,
+  setPageTypeId
 } = modesSlice.actions;
 
 export default modesSlice.reducer;

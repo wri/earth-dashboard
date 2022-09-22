@@ -23,6 +23,7 @@ import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
+import { GlobalSetting } from "slices/globalSettings";
 
 // TODO: when we get scale date change height to larger
 // export const LARGE_MOBILE_MENU_HEIGHT = 235;
@@ -46,6 +47,8 @@ type MainContainerProps = {
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
   currentMode?: Mode;
   defaultMode?: Mode;
+  pageTypeId: string;
+  setPageTypeId: ActionCreatorWithPayload<string, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
 };
 
@@ -60,10 +63,10 @@ const MainContainer = ({
   setHeadlines,
   defaultMode,
   currentMode,
+  pageTypeId,
+  setPageTypeId,
   setReoriented
 }: MainContainerProps) => {
-  const [pageTypeId, setPageTypeId] = useState<string>(INFO_PAGE_ID);
-
   const defaultMobileMenuHeight =
     pageTypeId === DATA_LAYER_PAGE_ID ? LARGE_MOBILE_MENU_HEIGHT : SMALL_MOBILE_MENU_HEIGHT;
 
