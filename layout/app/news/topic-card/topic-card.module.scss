@@ -25,7 +25,6 @@ $c-topic-card-transition: 0.16s ease-in-out;
 
     h2,
     p {
-      font-weight: 500;
       color: $white;
     }
 
@@ -33,26 +32,19 @@ $c-topic-card-transition: 0.16s ease-in-out;
       @include font-size(20px, 30px);
       margin-bottom: 4px;
       text-transform: uppercase;
+      font-weight: 500;
 
       @media screen and (max-width: $global-breakpoint-sm) {
-        font-weight: 600;
         font-size: 20px;
         line-height: 30px;
+        font-weight: 600;
       }
     }
 
     p {
       font-family: "Barlow";
-      @include font-size(12px, 18px);
-
-      @media screen and (min-width: $global-breakpoint-md) {
-        @include font-size(16px, 24px);
-      }
-
-      @media screen and (max-width: $global-breakpoint-sm) {
-        font-size: 16px;
-        line-height: 24px;
-      }
+      @include font-size(16px, 24px);
+      font-weight: 500;
     }
   }
 
