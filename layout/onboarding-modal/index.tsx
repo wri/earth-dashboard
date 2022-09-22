@@ -28,7 +28,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
 
   const handleClose = () => {
     localStorage.setItem(ONBOARDING_COMPLETED, "true");
-    fireEvent(ONBOARDING_SKIPPED, "");
+    fireEvent(ONBOARDING_SKIPPED, (counter + 1).toString());
     setShowModal(false);
   };
   const nextStep = () => {
