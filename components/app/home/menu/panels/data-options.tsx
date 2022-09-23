@@ -1,5 +1,5 @@
 import ContentPanel from "components/app/home/content-panel";
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
@@ -63,9 +63,12 @@ const DataIndex = ({
         onClick={defaultMode ? () => onClickDataLayer(defaultMode) : undefined}
         onClickCta={onClickExtremeEvents}
       />
-      {dataLayers.map(dataLayer => (
-        <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
-      ))}
+      {dataLayers
+        .sort((a, b) => (a.extreme_event_count > b.extreme_event_count ? -1 : 1))
+        .filter(({ extreme_event_count }) => extreme_event_count > 0)
+        .map(dataLayer => (
+          <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
+        ))}
 
       <Link href="https://earth.nullschool.net/">
         <a rel="noopener noreferrer" target="_blank" onClick={() => fireEvent(ADVANCED_MENU, null)}>
