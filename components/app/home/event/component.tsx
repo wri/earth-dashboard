@@ -110,7 +110,7 @@ const ExtremeEvent = ({
           title="How Extreme Is This Event?"
           style={{ marginTop: `${containerHeight + 24}px` }}
         >
-          <p>{headline.attributes.content.body}</p>
+          <p>{headline.attributes.mode.attributes.description}</p>
           <NormalScale value={80} />
         </ContentPanel>
         <ContentPanel icon={SHARE_ICON} title="How to help">
