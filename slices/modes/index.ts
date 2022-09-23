@@ -32,6 +32,12 @@ const modesSlice = createSlice({
       state.monitorValue = "";
       state.heightValue = "";
     },
+    selectDefaultMode: state => {
+      state.loadDefaultModeValues = true;
+      state.currentMode = state.defaultMode;
+      state.currentModeId = state.defaultModeId;
+      state.pageTypeId = initialState.pageTypeId;
+    },
     setModes: (state, { payload }: PayloadAction<Mode[]>) => {
       state.allModes = payload;
 
@@ -43,14 +49,15 @@ const modesSlice = createSlice({
         state.currentMode = state.defaultMode;
         state.currentModeId = state.defaultModeId;
       } else if (state.currentModeId) {
-        state.loadDefaultModeValues = false;
         const newMode = payload.find(mode => mode.id === state.currentModeId);
 
-        if (newMode) {
+        if (newMode && newMode.attributes.title !== "Default") {
+          state.loadDefaultModeValues = false;
           state.currentMode = newMode;
         } else {
-          state.currentMode = payload[0];
-          state.currentModeId = payload[0].id;
+          state.loadDefaultModeValues = true;
+          state.currentMode = state.defaultMode;
+          state.currentModeId = state.defaultModeId;
         }
       }
 
@@ -106,7 +113,8 @@ export const {
   setLayersLabelArr,
   setDateOfDataShown,
   setCurrentModeId,
-  setPageTypeId
+  setPageTypeId,
+  selectDefaultMode
 } = modesSlice.actions;
 
 export default modesSlice.reducer;

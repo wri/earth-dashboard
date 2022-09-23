@@ -18,6 +18,10 @@ const headlinesSlice = createSlice({
   name: NAME,
   initialState,
   reducers: {
+    removeSelectedHeadline: state => {
+      state.currentHeadline = undefined;
+      state.currentHeadlineId = undefined;
+    },
     setHeadlines: (state, { payload }: PayloadAction<Headline[]>) => {
       state.headlines = filterHeadlines(payload);
 
@@ -60,6 +64,7 @@ const filterHeadlines = (headlines: Headline[]) => {
   return filtered;
 };
 
-export const { setHeadlines, setCurrentHeadline, setCurrentHeadlineId } = headlinesSlice.actions;
+export const { removeSelectedHeadline, setHeadlines, setCurrentHeadline, setCurrentHeadlineId } =
+  headlinesSlice.actions;
 
 export default headlinesSlice.reducer;
