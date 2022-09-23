@@ -31,14 +31,14 @@ const headlinesSlice = createSlice({
         }
       }
     },
-    setCurrentHeadline: (state, { payload }: PayloadAction<Headline>) => {
+    setCurrentHeadline: (state, { payload }: PayloadAction<Headline | undefined>) => {
       state.currentHeadline = payload;
 
       if (payload) {
         state.currentHeadlineId = payload.id;
       }
     },
-    setCurrentHeadlineId: (state, { payload }: PayloadAction<number>) => {
+    setCurrentHeadlineId: (state, { payload }: PayloadAction<number | undefined>) => {
       state.currentHeadlineId = payload;
     }
   }
