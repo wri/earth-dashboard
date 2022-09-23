@@ -83,9 +83,7 @@ const DataLayerOverview = ({
         title="Extreme events"
         buttonText="View All"
         ctaAction={
-          currentMode.attributes.extreme_event_count <= MAX_NUMBER_OF_HEADLINES
-            ? undefined
-            : () => onClickExtremeEvents()
+          currentMode.attributes.extreme_event_count <= MAX_NUMBER_OF_HEADLINES ? undefined : onClickExtremeEvents
         }
       >
         <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>
