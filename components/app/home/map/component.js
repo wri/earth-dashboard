@@ -48,7 +48,8 @@ const MapIframe = forwardRef(
       mobileMenuHeight,
       setCurrentHeadline,
       isMobile,
-      hasReoriented
+      hasReoriented,
+      menuRef
     },
     ref
   ) => {
@@ -230,7 +231,12 @@ const MapIframe = forwardRef(
             );
           })}
         {toolTipDetails && toolTipDetails.isVisible && (
-          <ToolTip x={`${toolTipDetails.x}px`} y={`${toolTipDetails.y}px`} globeToolTip={true}>
+          <ToolTip
+            x={`${toolTipDetails.x}px`}
+            y={`${toolTipDetails.y}px`}
+            globeToolTip={true}
+            boundingX={menuRef?.current?.getBoundingClientRect().right}
+          >
             <p className="u-margin-none">{toolTipDetails.text}</p>
           </ToolTip>
         )}
@@ -279,7 +285,8 @@ MapIframe.propTypes = {
   setCurrentScaleBy: PropTypes.func.isRequired,
   hasIframeConnected: PropTypes.bool,
   loadDefaultModeValues: PropTypes.bool.isRequired,
-  isMobileMenuOpen: PropTypes.bool
+  isMobileMenuOpen: PropTypes.bool,
+  menuRef: PropTypes.any
 };
 
 MapIframe.defaultProps = {

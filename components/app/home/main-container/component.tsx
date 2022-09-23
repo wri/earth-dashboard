@@ -24,7 +24,6 @@ import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
-import { GlobalSetting } from "slices/globalSettings";
 
 export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
 export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
@@ -175,7 +174,7 @@ const MainContainer = ({
 
   // Move globe to the right when menu is open
   useEffect(() => {
-    if (!earthServer.current || isMobile) return;
+    if (!earthServer.current || isMobile || !hasIframeConnected) return;
 
     const animationDuration = 300;
     const translateDuration = 25;
@@ -198,7 +197,7 @@ const MainContainer = ({
     };
 
     loop();
-  }, [earthServer, hasMenuOpen, isMobile]);
+  }, [earthServer, hasMenuOpen, isMobile, hasIframeConnected]);
 
   useEffect(() => {
     if (hasMenuOpen) {
@@ -274,6 +273,7 @@ const MainContainer = ({
             hasIframeConnected={hasIframeConnected}
             mobileMenuHeight={isMobile && mobileMenuHeight}
             isMobile={isMobile}
+            menuRef={menuRef}
           />
         )}
         {overlayLayer && !isMobile && (
