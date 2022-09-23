@@ -1,3 +1,8 @@
+export type EventScaleData = {
+  gradient: string;
+  value?: number;
+};
+
 export type MapControlsState = {
   projectionType: "orthographic" | "equirectangular";
   isSettingsOpen: boolean;
@@ -12,4 +17,5 @@ export type MapControlsState = {
   currentScale: string;
   currentScaleBy: number;
   hasReoriented: boolean;
+  eventScaleData: EventScaleData | undefined;
 };

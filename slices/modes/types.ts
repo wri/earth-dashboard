@@ -65,6 +65,7 @@ export type ModesState = {
   defaultMode?: Mode;
   currentModeId?: number;
   currentMode?: Mode;
+  currentVisibleMode?: Mode;
   loadDefaultModeValues: boolean;
   allModes?: Mode[];
   animationValue: string;
