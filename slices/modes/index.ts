@@ -36,6 +36,7 @@ const modesSlice = createSlice({
     selectDefaultMode: state => {
       state.loadDefaultModeValues = true;
       state.currentMode = state.defaultMode;
+      state.currentVisibleMode = state.defaultMode;
       state.currentModeId = state.defaultModeId;
       state.pageTypeId = initialState.pageTypeId;
     },
