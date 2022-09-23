@@ -17,7 +17,7 @@ type HeadlinesPanerProps = {
   headlines: HeadlineType[];
   forceInfoPage: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
-  setCurrentHeadline: ActionCreatorWithPayload<HeadlineType, string>;
+  setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
   currentHeadline?: HeadlineType;
 };
 

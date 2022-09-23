@@ -48,7 +48,6 @@ test("<Menu /> renders correctly as mobile", async () => {
       >
         <div
           class="c-condensed-menu__title-container"
-          style="margin-bottom: 0px;"
         >
           <p
             class="title"

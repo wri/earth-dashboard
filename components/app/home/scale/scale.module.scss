@@ -6,27 +6,27 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: rgba($colour-galaxy, 0.4);
-  backdrop-filter: blur(1.5px);
-  padding: 12px 24px;
-  border-radius: 16px;
+  background: $colour-midnight;
+  backdrop-filter: blur(5.43656px);
+  padding: 24px 12px 12px;
+  border-radius: 8px;
   transition: opacity 0.3s ease-in;
+  min-width: 91px;
 
   &--hidden {
     background: none;
   }
 
   label {
-    @include font-size(20px, 30px);
-    font-family: "Barlow Condensed";
+    @include font-size(16px, 24px);
+    font-family: "Barlow";
     font-weight: 500;
-    text-transform: uppercase;
     color: white;
     text-align: center;
   }
 
   &__gradient {
-    max-width: 18px;
+    max-width: 12px;
     flex: 1;
     background: var(--gradient);
     border-radius: 20px;
@@ -35,9 +35,9 @@
       position: absolute;
       color: white;
       left: 50%;
-      @include font-size(20px, 20px);
-      min-height: 45px;
-      font-family: "Barlow Condensed";
+      @include font-size(16px, 24px);
+      min-height: 29px;
+      font-family: "Barlow";
       font-weight: 500;
       transform: translateX(-50%);
       text-align: center;
@@ -64,7 +64,7 @@
 
   &__input-container {
     position: relative;
-    margin: 55px 0px 60px 0px;
+    margin: 53px 0px 53px 0px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -103,28 +103,27 @@
   &--horizontal {
     display: flex;
     flex-direction: row;
-    height: 53px;
-    padding: 8px 16px 8px 8px;
+    padding: 16px 20px 6px;
+    margin-top: 24px;
     border-radius: 8px;
     label {
-      @include font-size(16px, 19px);
-      margin-right: 8px;
+      @include font-size(16px, 10px);
+      margin-right: 12px;
     }
 
     .c-scale__input-container {
-      margin: 0px;
-      margin-bottom: 19px;
-      margin-top: 4px;
+      margin: 0;
+      margin-bottom: 30px;
       width: 100%;
       height: unset;
       display: flex;
     }
 
     .c-scale__input-thumb {
-      width: 14px;
-      height: 14px;
-      border: 2px solid white;
-      transform: translateY(-10px) translateX(-50%);
+      width: 24px;
+      height: 24px;
+      border: 4px solid white;
+      transform: translateY(-5px) translateX(-50%);
     }
 
     .c-scale__tooltip-item {
@@ -135,14 +134,14 @@
       width: 100%;
       transform: rotate(0deg);
       max-width: unset;
-      height: 12px;
+      height: 10px;
 
       &::before,
       &::after {
         transform: rotate(0deg);
         top: unset;
-        bottom: -21px;
-        @include font-size(16px, 19px);
+        bottom: -30px;
+        @include font-size(16px, 24px);
         min-height: unset;
       }
 

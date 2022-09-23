@@ -1,7 +1,11 @@
 import { render } from "test-utils";
 import Scale from "./index";
+import * as useIframeBridge from "hooks/useIframeBridge";
 
 test("<Scale /> renders correctly with default values", async () => {
+  const useIframeBridgeContextSpy = jest.spyOn(useIframeBridge, "useIframeBridgeContext");
+  useIframeBridgeContextSpy.mockReturnValue({});
+
   const { container } = render(<Scale />);
 
   expect(container).toMatchInlineSnapshot(`
@@ -39,16 +43,19 @@ test("<Scale /> renders correctly with default values", async () => {
 });
 
 test("<Scale /> renders correctly with values", async () => {
-  const { container } = render(
-    <Scale
-      min={-20}
-      max={1000}
-      scaleUnit="hpa"
-      className="c-some-class"
-      value="50%"
-      scaleGradient={`linear-gradient(180deg, rgba(23,181,254,1) 0%, rgba(17,107,242,1) 100%)`}
-    />
-  );
+  const useIframeBridgeContextSpy = jest.spyOn(useIframeBridge, "useIframeBridgeContext");
+  useIframeBridgeContextSpy.mockReturnValue({
+    scaleData: {
+      min: -20,
+      max: 1000,
+      unitSymbol: "hpa"
+    },
+    overlayLayer: {
+      product: { scale: { getCss: () => "linear-gradient(180deg, rgba(23,181,254,1) 0%, rgba(17,107,242,1) 100%)" } }
+    }
+  });
+
+  const { container } = render(<Scale className="c-some-class" value="50%" />);
 
   expect(container).toMatchInlineSnapshot(`
 <div>
@@ -85,17 +92,19 @@ test("<Scale /> renders correctly with values", async () => {
 });
 
 test("<Scale /> renders correctly horizontal", async () => {
-  const { container } = render(
-    <Scale
-      min={-20}
-      max={1000}
-      scaleUnit="hpa"
-      className="c-some-class"
-      value="50%"
-      scaleGradient={`linear-gradient(0deg, rgba(23,181,254,1) 0%, rgba(17,107,242,1) 100%)`}
-      isHorizontal
-    />
-  );
+  const useIframeBridgeContextSpy = jest.spyOn(useIframeBridge, "useIframeBridgeContext");
+  useIframeBridgeContextSpy.mockReturnValue({
+    scaleData: {
+      min: -20,
+      max: 1000,
+      unitSymbol: "hpa"
+    },
+    overlayLayer: {
+      product: { scale: { getCss: () => "linear-gradient(0deg, rgba(23,181,254,1) 0%, rgba(17,107,242,1) 100%)" } }
+    }
+  });
+
+  const { container } = render(<Scale className="c-some-class" value="50%" isHorizontal />);
 
   expect(container).toMatchInlineSnapshot(`
 <div>

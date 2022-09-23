@@ -25,7 +25,7 @@ type DataIndexProps = {
   currentMode: Mode | undefined;
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
-  setCurrentHeadline: ActionCreatorWithPayload<HeadlineType, string>;
+  setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
   onClickExtremeEvents: () => {};
 };

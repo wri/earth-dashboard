@@ -1,3 +1,4 @@
+import IframeBridgeProvider from "../../../../context/IframeBridgeProvider";
 import { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
@@ -23,11 +24,10 @@ import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
+import { GlobalSetting } from "slices/globalSettings";
 
-// TODO: when we get scale date change height to larger
-// export const LARGE_MOBILE_MENU_HEIGHT = 235;
-export const LARGE_MOBILE_MENU_HEIGHT = 148;
-export const SMALL_MOBILE_MENU_HEIGHT = 148;
+export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
+export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
 export const INFO_PAGE_ID = "InfoPage";
 export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
 export const DATA_LAYER_PAGE_ID = "DataLayerPage";
@@ -46,6 +46,8 @@ type MainContainerProps = {
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
   currentMode?: Mode;
   defaultMode?: Mode;
+  pageTypeId: string;
+  setPageTypeId: ActionCreatorWithPayload<string, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
 };
 
@@ -60,12 +62,12 @@ const MainContainer = ({
   setHeadlines,
   defaultMode,
   currentMode,
+  pageTypeId,
+  setPageTypeId,
   setReoriented
 }: MainContainerProps) => {
-  const [pageTypeId, setPageTypeId] = useState<string>(INFO_PAGE_ID);
-
   const defaultMobileMenuHeight =
-    pageTypeId === DATA_LAYER_PAGE_ID ? LARGE_MOBILE_MENU_HEIGHT : SMALL_MOBILE_MENU_HEIGHT;
+    currentMode?.id === defaultMode?.id ? MODILE_MENU_HEIGHT_WITHOUT_SCALE : MODILE_MENU_HEIGHT_WITH_SCALE;
 
   const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
   const [hasIframe, setHasIframe] = useState<boolean>(false);
@@ -98,7 +100,7 @@ const MainContainer = ({
     toolTipDetails,
     enableToolTip,
     disableToolTip,
-    scaleData: scaleToolTipData,
+    scaleToolTipData,
     hasIframeConnected,
     extremeEventLocations
   } = useIframeBridge({
@@ -248,137 +250,126 @@ const MainContainer = ({
   }, [earthServer.current, setHasMenuOpen]);
 
   return (
-    <div
-      className={classnames({
-        [styles["main-container"]]: true,
-        [styles["-desktop"]]: !isMobile,
-        [styles["-mobile"]]: isMobile,
-        [styles["-has-menu-open"]]: hasMenuOpen
-      })}
-      data-testid="iframe-container"
-    >
-      {hasIframe && (
-        <MapIframe
-          ref={setRef}
-          // @ts-expect-error
-          earthServer={earthServer}
-          earthClient={earthClient}
-          layers={layers}
-          toolTipDetails={toolTipDetails}
-          extremeEventLocations={extremeEventLocations}
-          setHasMenuOpen={setHasMenuOpen}
-          setMobileMenuHeight={setMobileMenuHeight}
-          hasIframeConnected={hasIframeConnected}
-          mobileMenuHeight={isMobile && mobileMenuHeight}
-          isMobile={isMobile}
-          menuRef={menuRef}
-        />
-      )}
-      {overlayLayer && !isMobile && (
-        <div className={classnames(styles["right"])}>
-          <Scale
-            hidden={currentMode?.id === defaultMode?.id}
-            min={scaleData?.min}
-            max={scaleData?.max}
-            scaleUnit={scaleData?.unitSymbol}
-            className={classnames(styles["scale"], styles["over-pointer"], shouldFadeControls && "u-opacity-faded")}
-            readOnly
-            scaleGradient={overlayLayer.product.scale.getCss(0)}
-            toolTipData={scaleToolTipData}
-            hasSmallLabels={scaleData?.hasSmallLabels}
-          />
-          <div className={classnames(styles["controls"])}>
-            <div className={classnames(styles["zooms"], styles["over-pointer"])}>
-              <IconButton name="zoom-in" ref={zoomInRef} />
-              <IconButton name="zoom-out" ref={zoomOutRef} />
-            </div>
-            <IconButton
-              name="location"
-              onClick={handleToggleLocation}
-              disabled={isLocationDisabled}
-              className={classnames(styles["over-pointer"])}
-            />
-          </div>
-        </div>
-      )}
-      {((hasMenuOpen && !isFetchingTemplates) || isMobile) && (
-        <Menu
-          // @ts-expect-error
-          isMobile={isMobile}
-          onClose={toggleMenu}
-          id="menu"
-          ref={menuRef}
-          isClosing={isClosingMenu}
-          earthServer={earthServer.current}
-          layers={layers}
-          mobileMenuHeight={mobileMenuHeight}
-          setMobileMenuHeight={setMobileMenuHeight}
-          pageTypeId={pageTypeId}
-          setPageTypeId={setPageTypeId}
-          defaultMobileMenuHeight={defaultMobileMenuHeight}
-          handleToggleLocation={handleToggleLocation}
-          isLocationDisabled={isLocationDisabled}
-          hasMenuOpen={hasMenuOpen}
-        />
-      )}
-
-      <ShareModal />
-
-      <Actions
-        isMobile={isMobile}
-        className={classnames(
-          shouldFadeControls && "u-opacity-faded",
-          styles["over-pointer-absolute"],
-          menuButtonStyles["c-home-menu-action"]
-        )}
+    <IframeBridgeProvider scaleData={scaleData} scaleToolTipData={scaleToolTipData} overlayLayer={overlayLayer}>
+      <div
+        className={classnames({
+          [styles["main-container"]]: true,
+          [styles["-desktop"]]: !isMobile,
+          [styles["-mobile"]]: isMobile,
+          [styles["-has-menu-open"]]: hasMenuOpen
+        })}
+        data-testid="iframe-container"
       >
-        {error ? (
-          <p role="alert" className="u-text-white">
-            There was an error loading the map, please try again later
-          </p>
-        ) : (
-          <>
-            {overlayLayer && isMobile && (
-              <div className="u-flex u-flex--align-center u-margin-bottom-xs">
-                <Scale
-                  min={scaleData?.min}
-                  max={scaleData?.max}
-                  scaleUnit={scaleData?.unitSymbol}
-                  className={classnames(styles["scale"], styles["scale--mobile"], "u-flex-1 u-margin-right-l")}
-                  value="50%"
-                  readOnly
-                  scaleGradient={overlayLayer.product.scale.getCss(90)}
-                  isHorizontal
-                  toolTipData={scaleToolTipData}
-                />
-                <MapControls
-                  // @ts-expect-error
-                  controls={[{ ...settingsButtonConfig, forceDark: true, className: "u-margin-right-none" }]}
-                  className="u-margin-top-none"
-                />
-              </div>
-            )}
-            <button
-              className={classnames(
-                actionStyles["c-home-actions__item"],
-                menuButtonStyles["c-home-menu-toggle"],
-                hasMenuOpen && menuButtonStyles["c-home-menu-toggle--open"]
-              )}
-              onClick={toggleMenu}
-              aria-haspopup="true"
-              aria-expanded={hasMenuOpen}
-              aria-controls="menu"
-              id="menu-button"
-              data-testid="toggle"
-            >
-              <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
-                <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</span>
-              </div>
-            </button>
-          </>
+        {hasIframe && (
+          <MapIframe
+            ref={setRef}
+            // @ts-expect-error
+            earthServer={earthServer}
+            earthClient={earthClient}
+            layers={layers}
+            toolTipDetails={toolTipDetails}
+            extremeEventLocations={extremeEventLocations}
+            setHasMenuOpen={setHasMenuOpen}
+            setMobileMenuHeight={setMobileMenuHeight}
+            hasIframeConnected={hasIframeConnected}
+            mobileMenuHeight={isMobile && mobileMenuHeight}
+            isMobile={isMobile}
+            menuRef={menuRef}
+          />
         )}
-      </Actions>
-    </div>
+        {overlayLayer && !isMobile && (
+          <div className={classnames(styles["right"])}>
+            <Scale
+              hidden={currentMode?.id === defaultMode?.id}
+              className={classnames(styles["scale"], styles["over-pointer"], shouldFadeControls && "u-opacity-faded")}
+            />
+            <div className={classnames(styles["controls"])}>
+              <div className={classnames(styles["zooms"], styles["over-pointer"])}>
+                <IconButton name="zoom-in" ref={zoomInRef} />
+                <IconButton name="zoom-out" ref={zoomOutRef} />
+              </div>
+              <IconButton
+                name="location"
+                onClick={handleToggleLocation}
+                disabled={isLocationDisabled}
+                className={classnames(styles["over-pointer"])}
+              />
+            </div>
+          </div>
+        )}
+        {((hasMenuOpen && !isFetchingTemplates) || isMobile) && (
+          <Menu
+            // @ts-expect-error
+            isMobile={isMobile}
+            onClose={toggleMenu}
+            id="menu"
+            ref={menuRef}
+            isClosing={isClosingMenu}
+            earthServer={earthServer.current}
+            layers={layers}
+            mobileMenuHeight={mobileMenuHeight}
+            setMobileMenuHeight={setMobileMenuHeight}
+            pageTypeId={pageTypeId}
+            setPageTypeId={setPageTypeId}
+            defaultMobileMenuHeight={defaultMobileMenuHeight}
+            handleToggleLocation={handleToggleLocation}
+            isLocationDisabled={isLocationDisabled}
+            hasMenuOpen={hasMenuOpen}
+          />
+        )}
+
+        <ShareModal />
+
+        <Actions
+          isMobile={isMobile}
+          className={classnames(
+            shouldFadeControls && "u-opacity-faded",
+            styles["over-pointer-absolute"],
+            menuButtonStyles["c-home-menu-action"]
+          )}
+        >
+          {error ? (
+            <p role="alert" className="u-text-white">
+              There was an error loading the map, please try again later
+            </p>
+          ) : (
+            <>
+              {overlayLayer && isMobile && (
+                <div className="u-flex u-flex--align-center u-margin-bottom-xs">
+                  <Scale
+                    className={classnames(styles["scale"], styles["scale--mobile"], "u-flex-1 u-margin-right-l")}
+                    value="50%"
+                    isHorizontal
+                  />
+                  <MapControls
+                    // @ts-expect-error
+                    controls={[{ ...settingsButtonConfig, forceDark: true, className: "u-margin-right-none" }]}
+                    className="u-margin-top-none"
+                  />
+                </div>
+              )}
+              <button
+                className={classnames(
+                  actionStyles["c-home-actions__item"],
+                  menuButtonStyles["c-home-menu-toggle"],
+                  hasMenuOpen && menuButtonStyles["c-home-menu-toggle--open"]
+                )}
+                onClick={toggleMenu}
+                aria-haspopup="true"
+                aria-expanded={hasMenuOpen}
+                aria-controls="menu"
+                id="menu-button"
+                data-testid="toggle"
+              >
+                <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
+                  <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</span>
+                </div>
+              </button>
+            </>
+          )}
+        </Actions>
+      </div>
+    </IframeBridgeProvider>
   );
 };
 

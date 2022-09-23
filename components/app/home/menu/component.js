@@ -68,7 +68,7 @@ const Menu = forwardRef(
       return { index, total, headlines };
     };
 
-    // Checks current headline position to disable back/next buttons
+    // Checks current headline to set the footer text
     const checkCurrentHeadline = () => {
       const { index: currentHeadlineIndex, total } = getCurrentHeadlineIndex();
 
@@ -92,15 +92,15 @@ const Menu = forwardRef(
     };
 
     const navigateHeadline = action => {
-      const { index: headlineIndex, headlines } = getCurrentHeadlineIndex();
+      const { index: headlineIndex, total, headlines } = getCurrentHeadlineIndex();
       let headline = null;
 
       if (action === "back") {
-        const indexModulus = (headlineIndex - 1) % headlines.length;
+        const indexModulus = (headlineIndex - 1 + total) % total;
         headline = headlines[indexModulus];
         setCurrentHeadline(headline);
       } else {
-        const indexModulus = (headlineIndex + 1) % headlines.length;
+        const indexModulus = (headlineIndex + 1) % total;
         headline = headlines[indexModulus];
         setCurrentHeadline(headline);
       }
