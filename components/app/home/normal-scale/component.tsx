@@ -13,12 +13,12 @@ const NormalScale = ({ value, className, thermometerStyle }: NormalScaleProps) =
       <span className={styles["c-normal-scale__label"]}>Scale</span>
       <div className={styles["c-normal-scale__content"]}>
         <div className={styles["c-normal-scale__thermometer"]} style={thermometerStyle}>
-          {value && (
+          {value ? (
             <span
               className={styles["c-normal-scale__thermometer-value"]}
               style={{ left: `calc(${value}% - (20px * ${value / 100}))` }}
             />
-          )}
+          ) : null}
         </div>
         <div className={styles["c-normal-scale__thermometer-labels"]}>
           <span>0%</span>

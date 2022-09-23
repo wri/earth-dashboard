@@ -50,6 +50,7 @@ type MainContainerProps = {
   setPageTypeId: ActionCreatorWithPayload<string, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
   setEventScaleData: ActionCreatorWithPayload<EventScaleData | undefined, string>;
+  setCurrentMode: ActionCreatorWithPayload<Mode, string>;
 };
 
 const MainContainer = ({
@@ -66,7 +67,8 @@ const MainContainer = ({
   pageTypeId,
   setPageTypeId,
   setReoriented,
-  setEventScaleData
+  setEventScaleData,
+  setCurrentMode
 }: MainContainerProps) => {
   const defaultMobileMenuHeight =
     currentMode?.id === defaultMode?.id ? MODILE_MENU_HEIGHT_WITHOUT_SCALE : MODILE_MENU_HEIGHT_WITH_SCALE;
@@ -181,7 +183,7 @@ const MainContainer = ({
         }
       } else percent = undefined;
 
-      if (percent && isNaN(percent)) percent = undefined;
+      if (typeof percent !== "undefined" && isNaN(percent)) percent = undefined;
 
       const eventScaleData: EventScaleData = {
         gradient,
@@ -224,6 +226,12 @@ const MainContainer = ({
       setHasIframe(true);
     }, 1000);
   }, []);
+
+  useEffect(() => {
+    if (!currentHeadline && currentMode) {
+      setCurrentMode(currentMode);
+    }
+  }, [currentHeadline]);
 
   // https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often
   const browserWidthMutable = useRef(browserWidth);
