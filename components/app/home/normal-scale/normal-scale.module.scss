@@ -5,26 +5,26 @@
 .c-normal-scale {
   display: flex;
   flex-direction: row;
-  padding: 7px 12px;
+  padding: 16px 12px 10px 12px;
   border-radius: 8px;
   align-items: flex-start;
   text-align: left;
   width: 100%;
   justify-content: center;
-  background-color: $colour-midnight;
   align-items: center;
+  background-color: $colour-midnight;
 
   &__label {
-    flex: 88px;
+    flex: 75px;
     font-weight: 500;
     @include font-size(16px, 24px);
+    margin-bottom: 6px;
   }
 
   &__content {
     display: flex;
     flex-direction: column;
     flex: 100%;
-    padding: 4px;
     align-items: center;
     justify-content: space-around;
   }
@@ -40,28 +40,13 @@
     margin-bottom: 2px;
   }
 
-  &__normal-range {
-    background-color: rgba(255, 255, 255, 0.6);
-    display: block;
-    height: 10px;
-    width: 40%;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    border-radius: 5px;
-  }
-
   &__thermometer-value {
     position: absolute;
     background-color: $colour-flame;
-    height: 18px;
-    width: 18px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
-    border: 4px solid rgba(255, 255, 255, 0.5);
-    overflow: hidden;
-    text-indent: -60px;
+    border: 4px solid white;
   }
 
   &__thermometer-labels {
@@ -69,8 +54,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    margin-top: 5px;
     font-weight: 500;
-    @include font-size(16px, 16px);
+    @include font-size(16px, 24px);
   }
 }

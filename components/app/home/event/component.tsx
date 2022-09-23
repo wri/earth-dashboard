@@ -14,6 +14,7 @@ import { setIsShareOpen } from "slices/common";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { fireEvent } from "utils/gtag";
 import { EARTH_HQ_VIEWED_EXTREME_EVENT } from "constants/tag-manager";
+import { EventScaleData } from "slices/mapControls";
 
 type DataLayerOverviewProps = {
   currentMode?: Mode;
@@ -23,11 +24,12 @@ type DataLayerOverviewProps = {
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
   setDateOfDataShown: ActionCreatorWithPayload<string, string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
+  eventScaleData: EventScaleData | undefined;
+  setCurrentVisibleMode: ActionCreatorWithPayload<Mode, string>;
   onViewAllEventsClicked: () => any;
 };
 
 const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
-const SHARE_ICON = "/static/icons/together.svg";
 
 const ExtremeEvent = ({
   headline,
@@ -37,6 +39,8 @@ const ExtremeEvent = ({
   setCurrentScaleBy,
   setDateOfDataShown,
   setIsShareOpen,
+  eventScaleData,
+  setCurrentVisibleMode,
   onViewAllEventsClicked
 }: DataLayerOverviewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,6 +53,7 @@ const ExtremeEvent = ({
       extreme_event_title: headline.attributes.title,
       category_name: currentMode?.attributes.title ?? ""
     });
+    setCurrentVisibleMode(headline.attributes.mode);
   }, [headline]);
 
   useEffect(() => {
@@ -73,8 +78,6 @@ const ExtremeEvent = ({
       articleRef.current.scrollTo({ top: 0 });
     }
   }, [headline]);
-
-  const how_to_help_content = currentMode?.attributes?.how_to_help_content;
 
   const onScroll = (event: UIEvent<HTMLElement>) => {
     setScrollPosition(event.currentTarget.scrollTop);
@@ -111,12 +114,13 @@ const ExtremeEvent = ({
           style={{ marginTop: `${containerHeight + 24}px` }}
         >
           <p>{headline.attributes.mode.attributes.description}</p>
-          <NormalScale value={80} />
+          <NormalScale
+            value={eventScaleData?.value}
+            thermometerStyle={{ background: eventScaleData?.gradient ?? "" }}
+          />
         </ContentPanel>
-        <ContentPanel icon={SHARE_ICON} title="How to help">
-          <p>{how_to_help_content?.detail}</p>
-          <SharePanel ctaAction={() => setIsShareOpen(true)} />
-        </ContentPanel>
+
+        <SharePanel ctaAction={() => setIsShareOpen(true)} />
         <div className={styles["c-event__view-all-button--container"]}>
           <CtaButton text={"View All Extreme Events"} onClick={onViewAllEventsClicked} iconName="arrow-right" />
         </div>

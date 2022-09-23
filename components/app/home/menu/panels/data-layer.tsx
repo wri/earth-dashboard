@@ -71,7 +71,7 @@ const DataLayerOverview = ({
   if (currentMode == null) return null;
 
   const {
-    attributes: { icon, title, description, what_is_happening_content, what_will_happen_content, how_to_help_content }
+    attributes: { icon, title, description, what_will_happen_content }
   } = currentMode;
 
   return (

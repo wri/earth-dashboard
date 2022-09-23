@@ -12,18 +12,19 @@ import { fetchModes, getMenuTitle } from "services/gca";
 import MapIframe from "components/app/home/map";
 import Scale from "components/app/home/scale";
 import settingsButtonConfig from "constants/control-bar/controls/settings";
-import { UNIT_LABEL_MAP } from "utils/map";
+import { getIndicatorGeoJson, getOverlayData, UNIT_LABEL_MAP } from "utils/map";
 import IconButton from "components/ui/icon-button";
 import { Headline } from "slices/headlines";
 import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
-import { isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
+import { EventScaleData, isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
+import { SCALE_TYPES } from "constants/map";
 
 export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
 export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
@@ -48,6 +49,8 @@ type MainContainerProps = {
   pageTypeId: string;
   setPageTypeId: ActionCreatorWithPayload<string, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
+  setEventScaleData: ActionCreatorWithPayload<EventScaleData | undefined, string>;
+  setCurrentMode: ActionCreatorWithPayload<Mode, string>;
 };
 
 const MainContainer = ({
@@ -63,7 +66,9 @@ const MainContainer = ({
   currentMode,
   pageTypeId,
   setPageTypeId,
-  setReoriented
+  setReoriented,
+  setEventScaleData,
+  setCurrentMode
 }: MainContainerProps) => {
   const defaultMobileMenuHeight =
     currentMode?.id === defaultMode?.id ? MODILE_MENU_HEIGHT_WITHOUT_SCALE : MODILE_MENU_HEIGHT_WITH_SCALE;
@@ -135,6 +140,62 @@ const MainContainer = ({
     }
   }, [overlayLayer?.product]);
 
+  const getEventScaleValue = async () => {
+    if (!currentHeadline || !overlayLayer) return null;
+    const marker = getIndicatorGeoJson([
+      currentHeadline.attributes.location.lng,
+      currentHeadline.attributes.location.lat
+    ]);
+    const coordinates = marker.geometry.coordinates;
+    const samples = await earthServer.current?.sampleAt(null, coordinates);
+    const data = getOverlayData(samples, [overlayLayer]);
+    if (data) return data.value;
+    else return undefined;
+  };
+
+  useEffect(() => {
+    const getEventScaleData = async () => {
+      if (!currentHeadline || !overlayLayer?.product) {
+        return setEventScaleData(undefined);
+      }
+
+      const { units } = overlayLayer.product;
+      const [unitSymbol, [lo, hi]] = Object.entries(overlayLayer.product.scale.range)[0];
+      const precision = units[unitSymbol]?.precision ?? 0;
+
+      const min = parseFloat(lo.toFixed(precision));
+      const max = parseFloat(hi.toFixed(precision));
+      let value = await getEventScaleValue();
+      const gradient = overlayLayer.product.scale.getCss(90);
+
+      let percent: number | undefined = 0;
+
+      if (value) {
+        const scaleType = overlayLayer.product.scale.type;
+        const linearPercent = ((value - min) * 100) / (max - min);
+        const logPercent = ((Math.log(value) - Math.log(min)) * 100) / (Math.log(max) - Math.log(min));
+        percent = scaleType === SCALE_TYPES.log ? logPercent : linearPercent;
+        if (percent > 100) {
+          percent = 100;
+        }
+        if (percent < 0) {
+          percent = 0;
+        }
+      } else percent = undefined;
+
+      if (typeof percent !== "undefined" && isNaN(percent)) percent = undefined;
+
+      const eventScaleData: EventScaleData = {
+        gradient,
+        value: percent
+      };
+
+      setEventScaleData(eventScaleData);
+    };
+
+    getEventScaleData();
+  }, [currentHeadline, overlayLayer]);
+
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
@@ -165,6 +226,12 @@ const MainContainer = ({
       setHasIframe(true);
     }, 1000);
   }, []);
+
+  useEffect(() => {
+    if (!currentHeadline && currentMode) {
+      setCurrentMode(currentMode);
+    }
+  }, [currentHeadline]);
 
   // https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often
   const browserWidthMutable = useRef(browserWidth);
