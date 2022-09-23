@@ -68,6 +68,7 @@ function LayoutApp(props) {
     localStorage.setItem(GDPR_ACCEPTED_KEY, `${choice}`);
     localStorage.setItem(ANALYTICS_ACCEPTED, `${choice}`);
     localStorage.setItem(COOKIES_ACCEPTED, `${choice}`);
+    window.dispatchEvent(new Event("storage"));
     if (choice) fireEvent(COOKIES_ACCEPTED_TAG, null);
     else fireEvent(COOKIES_REJECTED_TAG, null);
   };

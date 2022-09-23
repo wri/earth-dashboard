@@ -13,6 +13,7 @@ const moduleExports = {
     WRI_API_URL: process.env.WRI_API_URL,
     GCA_API_URL: process.env.GCA_API_URL,
     API_ENV: process.env.API_ENV,
+    GA4_ID: process.env.GA4_ID,
     RW_GOGGLE_API_TOKEN_SHORTENER: process.env.RW_GOGGLE_API_TOKEN_SHORTENER,
     NEXTAUTH_URL: "https://earthhq.org",
     NULL_SCHOOL_IFRAME_BASE: process.env.NULL_SCHOOL_IFRAME_BASE

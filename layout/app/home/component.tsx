@@ -10,6 +10,8 @@ import { Mobile, Desktop, MediaContextProvider } from "utils/responsive";
 import styles from "./homepage.module.scss";
 import MainContainer from "components/app/home/main-container";
 import useWindowDimensions from "hooks/useWindowDimensions";
+import Head from "next/head";
+import Analytics from "./analytics";
 
 type LayoutHomeProps = {
   title: string;
@@ -40,6 +42,7 @@ const LayoutHome = ({ title, thumbnail, description, headerTabSelected = "site-n
       headerButtonPosition="right"
       themeColor="#D63C00"
     >
+      <Analytics />
       {/* TODO: convert to TS so no need for expect error */}
       {/* @ts-expect-error */}
       <MediaContextProvider>
