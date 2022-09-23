@@ -3,6 +3,8 @@ import { DATA_LAYER_TYPES, LEVELS } from "constants/datalayers";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import basemaps from "constants/basemaps";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { resetGlobeToDefault } from "slices/common";
 import { EarthClient } from "utils/iframeBridge/earthClient";
 import ToolTip from "components/ui/tooltip";
 import EventPoint from "components/ui/event-point";
@@ -53,6 +55,15 @@ const MapIframe = forwardRef(
     ref
   ) => {
     const { currentPosition } = useCurrentPosition(shouldFetchLocation);
+    const dispatch = useDispatch();
+
+    useEffect(
+      () => () => {
+        dispatch(resetGlobeToDefault());
+      },
+      [dispatch]
+    );
+
     // if the current mode changes, and there is an earth client, set the data layer values
     useEffect(() => {
       if (earthClient && loadDefaultModeValues) {
