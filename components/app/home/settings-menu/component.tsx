@@ -60,6 +60,12 @@ const SettingsMenu = ({
     setIsCookieOpen(false);
   };
 
+  const onRef = (e: HTMLDivElement) => {
+    if (e) {
+      e.scrollTo(0, 0);
+    }
+  };
+
   return isOpen ? (
     <DialogPanel onClose={handleClose} isMobile={isMobile} shouldAnimate={shouldAnimate}>
       <div className={styles["c-settings-menu-modal"]} aria-labelledby="settingsModalTitle" role="document">
@@ -95,7 +101,7 @@ const SettingsMenu = ({
 
         {/* Content */}
         <div className={styles["c-settings-menu-modal__body"]}>
-          <div className={styles["scroll"]}>
+          <div className={styles["scroll"]} ref={onRef}>
             {/* Dynamic views */}
             {isCookieOpen ? (
               <div className={styles["main"]}>
