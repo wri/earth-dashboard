@@ -346,7 +346,7 @@ const MainContainer = ({
         {overlayLayer && !isMobile && (
           <div className={classnames(styles["right"])}>
             <Scale
-              hidden={currentMode?.id === defaultMode?.id}
+              hidden={currentMode?.id === defaultMode?.id || !!currentHeadline}
               className={classnames(styles["scale"], styles["over-pointer"], shouldFadeControls && "u-opacity-faded")}
             />
             <div className={classnames(styles["controls"])}>
