@@ -128,11 +128,10 @@ const Menu = forwardRef(
 
     const getMenuContent = () => (
       <div
-        ref={ref}
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
         {currentHeadline && (
-          <MenuLayout title={`Back to ${pageTitle}`} onBack={clearHeadline} onClose={onClose}>
+          <MenuLayout ref={ref} title={`Back to ${pageTitle}`} onBack={clearHeadline} onClose={onClose}>
             <div className={styles["c-home-menu__event-container"]}>
               <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
             </div>
@@ -149,6 +148,7 @@ const Menu = forwardRef(
         )}
         {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
           <MenuLayout
+            ref={ref}
             iconName="globe"
             title={pageTitle}
             onClose={onClose}
@@ -163,6 +163,7 @@ const Menu = forwardRef(
         )}
         {!currentHeadline && pageTypeId == EXTREME_EVENTS_PAGE_ID && (
           <MenuLayout
+            ref={ref}
             title={pageTitle}
             onBack={
               currentMode && currentMode.id !== defaultMode.id
@@ -175,7 +176,7 @@ const Menu = forwardRef(
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == DATA_LAYER_PAGE_ID && (
-          <MenuLayout title={pageTitle} onBack={navigateTo(INFO_PAGE_ID)} onClose={onClose}>
+          <MenuLayout ref={ref} title={pageTitle} onBack={navigateTo(INFO_PAGE_ID)} onClose={onClose}>
             <DataLayerPanel onClickExtremeEvents={navigateTo(EXTREME_EVENTS_PAGE_ID)} />
           </MenuLayout>
         )}

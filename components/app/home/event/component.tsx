@@ -113,12 +113,14 @@ const ExtremeEvent = ({
           title="How Extreme Is This Event?"
           style={{ marginTop: `${containerHeight + 24}px` }}
         >
-          <p>{headline.attributes.content.body}</p>
+          <p>{headline.attributes.mode.attributes.description}</p>
           <NormalScale
             value={eventScaleData?.value}
             thermometerStyle={{ background: eventScaleData?.gradient ?? "" }}
           />
         </ContentPanel>
+
+        <SharePanel ctaAction={() => setIsShareOpen(true)} />
         <SharePanel ctaAction={() => setIsShareOpen(true)} />
         <div className={styles["c-event__view-all-button--container"]}>
           <CtaButton text={"View All Extreme Events"} onClick={onViewAllEventsClicked} iconName="arrow-right" />

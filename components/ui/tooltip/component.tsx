@@ -16,19 +16,33 @@ type ToolTipProps = {
   children?: React.ReactNode;
   className?: string;
   globeToolTip?: boolean;
+  // The tooltip will try not to go beyond this X coordinate
+  boundingX?: number;
 };
 
-const ToolTip = ({ x, y, children = null, arrowPosition = "right", className, globeToolTip }: ToolTipProps) => {
+const ToolTip = ({
+  x,
+  y,
+  children = null,
+  arrowPosition = "right",
+  className,
+  globeToolTip,
+  boundingX
+}: ToolTipProps) => {
   const { width: browserWidth } = useWindowDimensions();
-  let style: { top: string; right?: string; left?: string } = {
+  let style: { top: string; right?: string; left?: string; maxWidth?: string; minWidth?: string } = {
     top: `calc(${y} + 10px)`
   };
 
   if (globeToolTip) {
-    let right: string = (browserWidth - Number.parseFloat(x.toString())).toString();
-    right += "px";
+    let right = browserWidth - Number.parseFloat(x.toString());
 
-    style.right = `calc(${right} + 26px)`;
+    style.right = `calc(${right}px + 26px)`;
+
+    if (boundingX) {
+      style.maxWidth = `${Number.parseFloat(x.toString()) - (boundingX + 40)}px`;
+      style.minWidth = "150px";
+    }
   } else {
     style.left = `calc(${x} + 10px)`;
   }
