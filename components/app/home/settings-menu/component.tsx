@@ -11,7 +11,7 @@ import DatePicker from "components/date-picker";
 import { format } from "date-fns";
 import Footer from "./footer";
 import CookiePreferences from "./cookie-preferences";
-import { HTMLAttributes, useEffect } from "react";
+import { useEffect } from "react";
 import { fireEvent } from "utils/gtag";
 import { PAGE_VIEW } from "constants/tag-manager";
 
