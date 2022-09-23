@@ -165,7 +165,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                   <p
                     class="c-home-menu-item__desc"
                   >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Dive deeper into the full datasets available. Combine and overlay data to create unique maps and visualizations.
                   </p>
                   <div
                     class="c-home-menu-item__external-link"
@@ -340,7 +340,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
                       <p
                         class="c-home-menu-item__desc"
                       >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Dive deeper into the full datasets available. Combine and overlay data to create unique maps and visualizations.
                       </p>
                       <div
                         class="c-home-menu-item__external-link"
