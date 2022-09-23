@@ -25,6 +25,7 @@ type DataLayerOverviewProps = {
   setDateOfDataShown: ActionCreatorWithPayload<string, string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
   eventScaleData: EventScaleData | undefined;
+  setCurrentVisibleMode: ActionCreatorWithPayload<Mode, string>;
   onViewAllEventsClicked: () => any;
 };
 
@@ -39,6 +40,7 @@ const ExtremeEvent = ({
   setDateOfDataShown,
   setIsShareOpen,
   eventScaleData,
+  setCurrentVisibleMode,
   onViewAllEventsClicked
 }: DataLayerOverviewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,6 +53,7 @@ const ExtremeEvent = ({
       extreme_event_title: headline.attributes.title,
       category_name: currentMode?.attributes.title ?? ""
     });
+    setCurrentVisibleMode(headline.attributes.mode);
   }, [headline]);
 
   useEffect(() => {

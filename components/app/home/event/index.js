@@ -7,7 +7,7 @@ import {
   setCurrentScaleBy,
   setIsFetchLocationDisabled
 } from "slices/mapControls";
-import { NAME as modesSliceName, setDateOfDataShown } from "slices/modes";
+import { NAME as modesSliceName, setDateOfDataShown, setCurrentVisibleMode } from "slices/modes";
 
 export default connect(
   state => ({
@@ -21,6 +21,7 @@ export default connect(
     setCurrentLocation,
     setCurrentScale,
     setCurrentScaleBy,
-    setDateOfDataShown
+    setDateOfDataShown,
+    setCurrentVisibleMode
   }
 )(HeadlineComponent);

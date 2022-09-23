@@ -11,6 +11,7 @@ const initialState: ModesState = {
   defaultMode: undefined,
   currentModeId: undefined,
   currentMode: undefined,
+  currentVisibleMode: undefined,
   loadDefaultModeValues: true,
   allModes: undefined,
   animationValue: "",
@@ -64,7 +65,11 @@ const modesSlice = createSlice({
     setCurrentMode: (state, { payload }: PayloadAction<Mode>) => {
       state.loadDefaultModeValues = true;
       state.currentMode = payload;
+      state.currentVisibleMode = payload;
       state.currentModeId = payload?.id;
+    },
+    setCurrentVisibleMode: (state, { payload }: PayloadAction<Mode>) => {
+      state.currentVisibleMode = payload;
     },
     setAnimation: (state, { payload }: PayloadAction<string>) => {
       state.animationValue = payload;
@@ -98,6 +103,7 @@ const modesSlice = createSlice({
 export const {
   setModes,
   setCurrentMode,
+  setCurrentVisibleMode,
   setAnimation,
   setDataset,
   setMonitor,
