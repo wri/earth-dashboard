@@ -16,6 +16,16 @@ export type Headline = {
       };
       article_url: string;
     };
+    sections: [
+      {
+        attributes: {
+          icon_image_url: string;
+          main_image_url: string;
+          title: string;
+          detail: string;
+        };
+      }
+    ];
     location: {
       name: string;
       lat: number;

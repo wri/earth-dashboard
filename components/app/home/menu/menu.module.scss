@@ -185,6 +185,24 @@
       top: 87px;
     }
 
+    .section-text {
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+
+    .section-image {
+      height: 296px;
+      width: 100%;
+      border-radius: 12px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      @media screen and (max-width: $global-breakpoint-md) {
+        height: 160px;
+      }
+    }
+
     @media screen and (max-width: $global-breakpoint-md) {
       &::-webkit-scrollbar {
         width: 0px;

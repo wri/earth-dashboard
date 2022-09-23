@@ -119,6 +119,21 @@ const ExtremeEvent = ({
             thermometerStyle={{ background: eventScaleData?.gradient ?? "" }}
           />
         </ContentPanel>
+        {headline.attributes.sections.map(section => (
+          <ContentPanel
+            icon={section.attributes.icon_image_url}
+            title={section.attributes.title}
+            key={section.attributes.title}
+          >
+            <p>{section.attributes.detail}</p>
+            {section.attributes.main_image_url && (
+              <div
+                className={styles["section-image"]}
+                style={{ backgroundImage: `url(${section.attributes.main_image_url})` }}
+              />
+            )}
+          </ContentPanel>
+        ))}
 
         <SharePanel ctaAction={() => setIsShareOpen(true)} />
         <div className={styles["c-event__view-all-button--container"]}>
