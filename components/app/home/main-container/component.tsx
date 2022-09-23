@@ -257,7 +257,7 @@ const MainContainer = ({
 
       if (translateDistance <= totalDistance) {
         earthServer.current?.reorient({ translateBy: [translateInterval, 0] });
-        setTimeout(loop, translateDuration);
+        setTimeout(() => window.requestAnimationFrame(loop), translateDuration);
       } else if (!hasMenuOpen) {
         earthServer.current?.reorient({ translate: "default" });
       }
