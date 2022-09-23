@@ -26,6 +26,16 @@ export type Mode = {
     description: string;
     icon: string;
     source: null;
+    sections: [
+      {
+        attributes: {
+          icon_image_url: string;
+          main_image_url: string;
+          title: string;
+          detail: string;
+        };
+      }
+    ];
     data_layers: {
       default: DataLayer[];
       available: DataLayer[];

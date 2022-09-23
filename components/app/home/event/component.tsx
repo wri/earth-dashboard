@@ -110,9 +110,24 @@ const ExtremeEvent = ({
           title="How Extreme Is This Event?"
           style={{ marginTop: `${containerHeight + 24}px` }}
         >
-          <p>{headline.attributes.content.body}</p>
+          <p>{headline.attributes.mode.attributes.description}</p>
           <NormalScale value={80} />
         </ContentPanel>
+        {headline.attributes.sections.map(section => (
+          <ContentPanel
+            icon={section.attributes.icon_image_url}
+            title={section.attributes.title}
+            key={section.attributes.title}
+          >
+            <p>{section.attributes.detail}</p>
+            {section.attributes.main_image_url && (
+              <div
+                className={styles["section-image"]}
+                style={{ backgroundImage: `url(${section.attributes.main_image_url})` }}
+              />
+            )}
+          </ContentPanel>
+        ))}
         <ContentPanel icon={SHARE_ICON} title="How to help">
           <p>{how_to_help_content?.detail}</p>
           <SharePanel ctaAction={() => setIsShareOpen(true)} />

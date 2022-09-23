@@ -32,7 +32,6 @@ type DataIndexProps = {
 
 const MAX_NUMBER_OF_HEADLINES = 3;
 
-const WHAT_WILL_HAPPEN_ICON = "/static/icons/clock.svg";
 const EXTREME_EVENTS_ICON = "/static/icons/extreme-events.svg";
 const NEWS_ICON = "/static/icons/mode-news.svg";
 
@@ -71,7 +70,7 @@ const DataLayerOverview = ({
   if (currentMode == null) return null;
 
   const {
-    attributes: { icon, title, description, what_is_happening_content, what_will_happen_content, how_to_help_content }
+    attributes: { icon, title, description }
   } = currentMode;
 
   return (
@@ -85,7 +84,9 @@ const DataLayerOverview = ({
         buttonText="View All"
         ctaAction={mostRecentHeadlines.length <= 3 ? undefined : () => onClickExtremeEvents()}
       >
-        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>View the latest fire extreme events.</p>
+        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>
+          View the latest {currentMode.attributes.title.toLowerCase()} extreme events.
+        </p>
         <div className={styles["c-home-menu__events-list"]}>
           {!isFetching ? (
             mostRecentHeadlines.map(headline => (
@@ -101,11 +102,21 @@ const DataLayerOverview = ({
           )}
         </div>
       </ContentPanel>
-      <ContentPanel icon={WHAT_WILL_HAPPEN_ICON} title="What will happen if we don't take action?">
-        {/* TODO: replace with real data */}
-        {/* <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{what_will_happen_content.detail}</p> */}
-        <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>Lorem Ipsum</p>
-      </ContentPanel>
+      {currentMode.attributes.sections.map(section => (
+        <ContentPanel
+          icon={section.attributes.icon_image_url}
+          title={section.attributes.title}
+          key={section.attributes.title}
+        >
+          <p className={styles["section-text"]}>{section.attributes.detail}</p>
+          {section.attributes.main_image_url && (
+            <div
+              className={styles["section-image"]}
+              style={{ backgroundImage: `url(${section.attributes.main_image_url})` }}
+            />
+          )}
+        </ContentPanel>
+      ))}
       <SharePanel
         ctaAction={() => {
           fireEvent(EARTH_HQ_SHARED_CATEGORY, title);

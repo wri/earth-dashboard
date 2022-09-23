@@ -87,8 +87,22 @@
     padding: 0 12px 24px 24px;
     row-gap: 16px;
 
+    .section-image {
+      height: 296px;
+      width: 100%;
+      border-radius: 12px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      @media screen and (max-width: $global-breakpoint-md) {
+        height: 160px;
+      }
+    }
+
     p {
       font-weight: 500;
+      margin-bottom: 0;
       @include font-size(16px, 24px);
     }
 
