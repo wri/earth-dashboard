@@ -8,15 +8,14 @@ import {
   resetValues,
   setLayersLabelArr,
   setDateOfDataShown,
-  setHeight,
-  setCurrentMode
+  setHeight
 } from "slices/modes";
 import { RootState } from "store/types";
 import { setCurrentHeadline } from "slices/headlines";
 
 export default connect(
   (state: RootState) => ({
-    currentMode: state.modes.currentMode,
+    currentVisibleMode: state.modes.currentVisibleMode,
     loadDefaultModeValues: state.modes.loadDefaultModeValues,
     animationValue: state.modes.animationValue,
     monitorValue: state.modes.monitorValue,
@@ -48,7 +47,6 @@ export default connect(
     setCurrentLocation,
     setCurrentScale,
     setCurrentScaleBy,
-    setCurrentMode,
     setCurrentHeadline
   },
   null,

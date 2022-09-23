@@ -7,13 +7,21 @@ import {
   setCurrentScaleBy,
   setIsFetchLocationDisabled
 } from "slices/mapControls";
-import { NAME as modesSliceName, setDateOfDataShown } from "slices/modes";
+import { NAME as modesSliceName, setDateOfDataShown, setCurrentVisibleMode } from "slices/modes";
 
-export default connect(state => ({ currentMode: state[modesSliceName].currentMode, isMobile: state.common.isMobile }), {
-  setIsDatePickerDisabled,
-  setIsFetchLocationDisabled,
-  setCurrentLocation,
-  setCurrentScale,
-  setCurrentScaleBy,
-  setDateOfDataShown
-})(HeadlineComponent);
+export default connect(
+  state => ({
+    currentMode: state[modesSliceName].currentMode,
+    isMobile: state.common.isMobile,
+    eventScaleData: state.mapControls.eventScaleData
+  }),
+  {
+    setIsDatePickerDisabled,
+    setIsFetchLocationDisabled,
+    setCurrentLocation,
+    setCurrentScale,
+    setCurrentScaleBy,
+    setDateOfDataShown,
+    setCurrentVisibleMode
+  }
+)(HeadlineComponent);

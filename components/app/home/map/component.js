@@ -14,7 +14,7 @@ import styles from "./map.module.scss";
 const MapIframe = forwardRef(
   (
     {
-      currentMode,
+      currentVisibleMode,
       loadDefaultModeValues,
       resetValues,
       setAnimationValue,
@@ -49,7 +49,6 @@ const MapIframe = forwardRef(
       hasIframeConnected,
       mobileMenuHeight,
       setCurrentHeadline,
-      isMobile,
       hasReoriented,
       menuRef
     },
@@ -70,7 +69,7 @@ const MapIframe = forwardRef(
       if (earthClient && loadDefaultModeValues) {
         const newLayers = [];
         resetValues();
-        const defaults = currentMode?.attributes.data_layers.default || [];
+        const defaults = currentVisibleMode?.attributes.data_layers.default || [];
         defaults.forEach(layer => {
           let setter = () => {};
           switch (layer.attributes.category.attributes.title) {
@@ -94,7 +93,7 @@ const MapIframe = forwardRef(
         setLayersLabelArr(newLayers);
       }
     }, [
-      currentMode,
+      currentVisibleMode,
       earthClient,
       resetValues,
       setAnimationValue,
@@ -109,43 +108,44 @@ const MapIframe = forwardRef(
     useEffect(() => {
       if (earthServer.current && hasIframeConnected) {
         // If a data highlight mode, set the layers label
-        if (currentMode?.attributes.visibility.advanced_menu) {
+        if (currentVisibleMode?.attributes.visibility.advanced_menu) {
           const newLayers = [];
-          [...currentMode?.attributes?.data_layers.available, ...currentMode?.attributes?.data_layers.default].forEach(
-            layer => {
-              if (
-                (layer.attributes.data_key === animationValue &&
-                  layer.attributes.category.attributes.title === DATA_LAYER_TYPES.animation) ||
-                (layer.attributes.data_key === monitorValue &&
-                  layer.attributes.category.attributes.title === DATA_LAYER_TYPES.monitor) ||
-                (layer.attributes.data_key === datasetValue &&
-                  layer.attributes.category.attributes.title === DATA_LAYER_TYPES.dataset) ||
-                (layer.attributes.data_key === heightValue &&
-                  layer.attributes.category.attributes.title === DATA_LAYER_TYPES.height)
-              ) {
-                newLayers.push(layer.attributes.title);
-              }
+          [
+            ...currentVisibleMode?.attributes?.data_layers.available,
+            ...currentVisibleMode?.attributes?.data_layers.default
+          ].forEach(layer => {
+            if (
+              (layer.attributes.data_key === animationValue &&
+                layer.attributes.category.attributes.title === DATA_LAYER_TYPES.animation) ||
+              (layer.attributes.data_key === monitorValue &&
+                layer.attributes.category.attributes.title === DATA_LAYER_TYPES.monitor) ||
+              (layer.attributes.data_key === datasetValue &&
+                layer.attributes.category.attributes.title === DATA_LAYER_TYPES.dataset) ||
+              (layer.attributes.data_key === heightValue &&
+                layer.attributes.category.attributes.title === DATA_LAYER_TYPES.height)
+            ) {
+              newLayers.push(layer.attributes.title);
             }
-          );
+          });
           setLayersLabelArr(newLayers);
         }
 
         // Set the data layers
         let animation = { animation_enabled: false };
 
-        if (animationEnabled && animationValue && validateDataLayer(animationValue, currentMode)) {
+        if (animationEnabled && animationValue && validateDataLayer(animationValue, currentVisibleMode)) {
           animation = { animation_type: animationValue, animation_enabled: true };
         }
         const monitor =
-          monitorValue && validateDataLayer(monitorValue, currentMode)
+          monitorValue && validateDataLayer(monitorValue, currentVisibleMode)
             ? { annotation_type: monitorValue }
             : { annotation_type: "none" };
         const dataset =
-          datasetValue && validateDataLayer(datasetValue, currentMode)
+          datasetValue && validateDataLayer(datasetValue, currentVisibleMode)
             ? { overlay_type: datasetValue }
             : { annotation_type: "none" };
         const height =
-          heightValue && validateDataLayer(heightValue, currentMode)
+          heightValue && validateDataLayer(heightValue, currentVisibleMode)
             ? { z_level: heightValue }
             : { z_level: LEVELS.surface };
 
@@ -157,7 +157,7 @@ const MapIframe = forwardRef(
       datasetValue,
       monitorValue,
       heightValue,
-      currentMode,
+      currentVisibleMode,
       earthServer,
       setLayersLabelArr,
       hasIframeConnected
@@ -272,7 +272,7 @@ const MapIframe = forwardRef(
 MapIframe.displayName = "MapIframe";
 
 MapIframe.propTypes = {
-  currentMode: PropTypes.object,
+  currentVisibleMode: PropTypes.object,
   resetValues: PropTypes.func.isRequired,
   setAnimationValue: PropTypes.func.isRequired,
   setDatasetValue: PropTypes.func.isRequired,
@@ -301,7 +301,7 @@ MapIframe.propTypes = {
 };
 
 MapIframe.defaultProps = {
-  currentMode: null,
+  currentVisibleMode: null,
   earthServer: null,
   animationValue: null,
   datasetValue: null,

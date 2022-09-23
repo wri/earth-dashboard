@@ -11,6 +11,7 @@ const initialState: ModesState = {
   defaultMode: undefined,
   currentModeId: undefined,
   currentMode: undefined,
+  currentVisibleMode: undefined,
   loadDefaultModeValues: true,
   allModes: undefined,
   animationValue: "",
@@ -47,6 +48,7 @@ const modesSlice = createSlice({
       if (!state.currentMode && !state.currentModeId) {
         state.loadDefaultModeValues = true;
         state.currentMode = state.defaultMode;
+        state.currentVisibleMode = state.defaultMode;
         state.currentModeId = state.defaultModeId;
       } else if (state.currentModeId) {
         const newMode = payload.find(mode => mode.id === state.currentModeId);
@@ -54,15 +56,18 @@ const modesSlice = createSlice({
         if (newMode && newMode.attributes.title !== "Default") {
           state.loadDefaultModeValues = false;
           state.currentMode = newMode;
+          state.currentVisibleMode = newMode;
         } else {
           state.loadDefaultModeValues = true;
           state.currentMode = state.defaultMode;
+          state.currentVisibleMode = state.defaultMode;
           state.currentModeId = state.defaultModeId;
         }
       }
 
       if (!state.allModes) {
         state.currentMode = undefined;
+        state.currentVisibleMode = undefined;
       }
     },
     setCurrentModeId: (state, { payload }: PayloadAction<number>) => {
@@ -71,7 +76,11 @@ const modesSlice = createSlice({
     setCurrentMode: (state, { payload }: PayloadAction<Mode>) => {
       state.loadDefaultModeValues = true;
       state.currentMode = payload;
+      state.currentVisibleMode = payload;
       state.currentModeId = payload?.id;
+    },
+    setCurrentVisibleMode: (state, { payload }: PayloadAction<Mode>) => {
+      state.currentVisibleMode = payload;
     },
     setAnimation: (state, { payload }: PayloadAction<string>) => {
       state.animationValue = payload;
@@ -105,6 +114,7 @@ const modesSlice = createSlice({
 export const {
   setModes,
   setCurrentMode,
+  setCurrentVisibleMode,
   setAnimation,
   setDataset,
   setMonitor,
