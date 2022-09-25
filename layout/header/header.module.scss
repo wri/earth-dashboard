@@ -19,6 +19,8 @@
 
   &.fixed {
     position: fixed;
+    background-color: transparent;
+    pointer-events: none;
   }
 
   .top-section {
@@ -78,6 +80,9 @@
 
   @media screen and (min-width: $global-breakpoint-md) {
     padding: 22px 60px;
-    background-color: rgba($colour-galaxy, 0.4);
+
+    &.fixed {
+      background-color: rgba($colour-galaxy, 0.4);
+    }
   }
 }

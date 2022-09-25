@@ -1,18 +1,19 @@
 import classnames from "classnames";
+import { INFO_PAGE_ID } from "components/app/home/main-container/component";
 import LogoLink from "components/ui/logo-link";
 import HeaderLink from "layout/header/header-link";
 import HeaderOptions from "layout/header/header-options";
+import { resetGlobeToDefault } from "slices/common";
 import styles from "./header.module.scss";
 import { useRouter } from "next/router";
 import { Desktop, Mobile } from "utils/responsive";
 import Navbar from "layout/navbar";
 import { setCurrentHeadlineId, setCurrentHeadline, Headline as HeadlineType } from "slices/headlines";
 import { RootState } from "store/types";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { setPageTypeId } from "slices/modes";
-import { INFO_PAGE_ID } from "components/app/home/main-container/component";
 
 type HeaderProps = {
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
@@ -32,6 +33,13 @@ const Header = ({
 }: HeaderProps) => {
   // Navigation
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { pageTypeId, currentHeadlineId } = useSelector(state => ({
+    // @ts-ignore redux state not strictly typed
+    pageTypeId: state.modes.pageTypeId,
+    // @ts-ignore redux state not strictly typed
+    currentHeadlineId: state.headlines.currentHeadlineId
+  }));
 
   const title = (() => {
     switch (router.route) {
@@ -51,12 +59,8 @@ const Header = ({
     }
   })();
 
-  const logoClick = () => {
-    setCurrentHeadline(undefined);
-    setCurrentHeadlineId(undefined);
-    setCurrentScale("default");
-    setCurrentScaleBy(1);
-    setPageTypeId(INFO_PAGE_ID);
+  const handleGlobeReset = () => {
+    dispatch(resetGlobeToDefault());
   };
 
   return (
@@ -66,14 +70,21 @@ const Header = ({
       >
         <div className={styles["top-section"]}>
           {/* Logo */}
-          <div className={styles["top-section__logo"]} onClick={logoClick}>
+          <div className={styles["top-section__logo"]} onClick={handleGlobeReset}>
             <LogoLink />
           </div>
 
           {/* Navigation links */}
           <Desktop>
             <div className={styles["top-section__links"]}>
-              <HeaderLink href="/" text="Earth HQ" />
+              <HeaderLink
+                href="/"
+                text="Earth HQ"
+                onClick={handleGlobeReset}
+                isActive={
+                  pageTypeId !== INFO_PAGE_ID ? false : typeof currentHeadlineId !== "undefined" ? false : undefined
+                }
+              />
               <HeaderLink href="/news" text="News" />
               <HeaderLink href="/about" text="About" />
             </div>

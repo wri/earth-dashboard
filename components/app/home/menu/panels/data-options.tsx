@@ -104,7 +104,10 @@ const DataIndex = ({
         <a rel="noopener noreferrer" target="_blank" onClick={() => fireEvent(ADVANCED_MENU, null)}>
           <ContentPanel className={styles["c-home-menu-item--advanced-data-item"]} canFocus={true}>
             <h3 className={styles["c-home-menu-item__title"]}>Advanced Data</h3>
-            <p className={styles["c-home-menu-item__desc"]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p className={styles["c-home-menu-item__desc"]}>
+              Dive deeper into the full datasets available. Combine and overlay data to create unique maps and
+              visualizations.
+            </p>
 
             <div className={styles["c-home-menu-item__external-link"]}>
               <Image width={16} height={16} alt="" role="presentation" src={ExternalLinkIcon} />
