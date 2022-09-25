@@ -58,7 +58,7 @@ const DataIndex = ({
         isSelected={currentMode?.id === defaultMode?.id}
         className={styles["c-home-menu__all-events"]}
         title="All Extreme Events"
-        description="View all of the latest extreme events"
+        description="Stay up to date with Mongabay’s latest extreme events and the places being affected. Learn more about the planetary emergency with real-time data."
         buttonText="View All"
         onClick={defaultMode ? () => onClickDataLayer(defaultMode) : undefined}
         onClickCta={onClickExtremeEvents}
