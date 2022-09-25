@@ -8,7 +8,7 @@ import { BG_GALAXY } from "constants/section-colours";
 // TODO: Temporary bridging design, need to remove later
 const NewsPage = () => {
   return (
-    <Layout className={styles["c-news"]}>
+    <Layout title="News" className={styles["c-news"]}>
       <Section bgColour={BG_GALAXY} gridClassName={styles["c-topics"]} noWrap>
         {MenuItems.map(({ key, ...link }) => (
           <TopicCard key={key} {...link} />
