@@ -138,5 +138,5 @@ export const getMenuTitle = (currentHeadline, currentMode, pageTypeId) => {
     return currentMode && currentMode.attributes.title !== "Default"
       ? currentMode.attributes.title
       : "All Extreme Events";
-  return currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "Extreme Events";
+  return currentMode && currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "Extreme Events";
 };
