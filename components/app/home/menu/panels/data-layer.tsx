@@ -12,7 +12,8 @@ import {
   setHeadlines,
   NAME as headlineSliceName,
   Headline as HeadlineType,
-  setCurrentHeadline
+  setCurrentHeadline,
+  Headline
 } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
@@ -50,9 +51,16 @@ const DataLayerOverview = ({
     setIsFetching(true);
     const getHeadlines = async () => {
       try {
-        const resp = await fetchClimateAlerts({ mode_id: currentMode.id });
-        // @ts-expect-error
-        setHeadlines(resp.data.data);
+        const resp = await fetchClimateAlerts();
+
+        const filteredHeadlines =
+          // @ts-expect-error
+          resp.data.data
+            .reverse()
+            .slice(0, 25)
+            .filter((headline: Headline) => headline.attributes.mode.id === currentMode.id);
+
+        setHeadlines(filteredHeadlines);
       } catch (err) {
         console.log("Error fetching headlines", err);
       } finally {

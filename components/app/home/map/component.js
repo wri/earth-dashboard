@@ -199,19 +199,20 @@ const MapIframe = forwardRef(
         const scaleBy = currentScaleBy || 1;
         // When the app is first loaded, reorient may not work as the iframe isn't fully loaded
         // keep looping the reorient step until reorientStart sets hasReoriented to true
-        const loop = () => {
+        const loop = hasReoriented => {
           earthServer.current.reorient({
             rotate: [-long, -lat],
             scale,
             scaleBy
           });
+          setTimeout(() => {
+            // Check if false, because may be undefined in which we don't want to loop
+            if (hasReoriented === false) loop();
+          }, 100);
         };
-        loop();
-        setTimeout(() => {
-          if (!hasReoriented) loop();
-        }, 100);
+        loop(hasReoriented);
       }
-    }, [currentLocation, currentScale, currentScaleBy, earthServer]);
+    }, [currentLocation, currentScale, currentScaleBy, earthServer, hasReoriented]);
 
     useEffect(() => {
       if (earthServer.current && dateOfDataShown) {

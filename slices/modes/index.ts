@@ -81,6 +81,7 @@ const modesSlice = createSlice({
       state.currentModeId = payload?.id;
     },
     setCurrentVisibleMode: (state, { payload }: PayloadAction<Mode>) => {
+      state.loadDefaultModeValues = true;
       state.currentVisibleMode = payload;
     },
     setAnimation: (state, { payload }: PayloadAction<string>) => {

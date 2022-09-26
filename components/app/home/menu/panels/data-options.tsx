@@ -1,5 +1,5 @@
 import ContentPanel from "components/app/home/content-panel";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
@@ -11,6 +11,8 @@ import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { fireEvent } from "utils/gtag";
 import { ADVANCED_MENU, EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
+import { fetchClimateAlerts } from "services/gca";
+import { Headline } from "slices/headlines";
 
 const mapHighlightToOption = (
   mode: Mode,
@@ -47,10 +49,38 @@ const DataIndex = ({
   onClickDataLayer,
   onViewDataLayerSummary
 }: DataIndexProps) => {
+  const [modeEventCount, setModeEventCount] = useState<{ [id: number]: number }>({});
+
   const dataLayers = useMemo(
     () => highlights?.map(highlight => mapHighlightToOption(highlight, onClickDataLayer, onViewDataLayerSummary)) || [],
-    [highlights, onClickDataLayer]
+    [highlights, onClickDataLayer, modeEventCount]
   );
+
+  // Set headlines redux if mobile
+  useEffect(() => {
+    const getModeEventCount = async () => {
+      try {
+        const resp = await fetchClimateAlerts();
+
+        const filteredHeadlines =
+          // @ts-expect-error
+          resp.data.data.reverse().slice(0, 25);
+
+        let modeEventCount: { [id: number]: number } = {};
+
+        filteredHeadlines.forEach((headline: Headline) => {
+          const mode_id = headline.attributes.mode.id;
+          if (modeEventCount[mode_id]) modeEventCount[mode_id] += 1;
+          else modeEventCount[mode_id] = 1;
+        });
+        setModeEventCount(modeEventCount);
+      } catch (err) {
+        console.log("Error fetching modes");
+      }
+    };
+
+    getModeEventCount();
+  }, [setModeEventCount]);
 
   return (
     <div className={styles["c-home-menu__scroll-area"]}>
@@ -64,8 +94,8 @@ const DataIndex = ({
         onClickCta={onClickExtremeEvents}
       />
       {dataLayers
-        .sort((a, b) => (a.extreme_event_count > b.extreme_event_count ? -1 : 1))
-        .filter(({ extreme_event_count }) => extreme_event_count > 0)
+        .sort((a, b) => ((modeEventCount[a.id] ?? 0) > (modeEventCount[b.id] ?? 0) ? -1 : 1))
+        .filter(({ id }) => (modeEventCount[id] ?? 0) > 0)
         .map(dataLayer => (
           <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
         ))}
