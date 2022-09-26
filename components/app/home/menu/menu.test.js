@@ -49,6 +49,9 @@ test("<Menu /> renders correctly as mobile", async () => {
         <div
           class="c-condensed-menu__title-container"
         >
+          <div
+            class="c-condensed-menu__title-container--globe-icon"
+          />
           <p
             class="title"
           >

@@ -3,7 +3,6 @@ import React from "react";
 import { getMenuTitle } from "services/gca";
 import { Headline } from "slices/headlines";
 import { Mode } from "slices/modes";
-import { DATA_LAYER_PAGE_ID } from "../main-container/component";
 import styles from "./condensed-menu.module.scss";
 import Scale from "components/app/home/scale";
 
@@ -26,13 +25,25 @@ const CondensedMenu = ({
   currentMode,
   defaultMode
 }: CondensedMenuProps) => {
+  const icon =
+    currentMode && currentMode.attributes.title !== "Default"
+      ? currentMode.attributes.icon
+      : currentHeadline?.attributes.mode.attributes.icon;
+
+  const alt =
+    currentMode && currentMode.attributes.title !== "Default"
+      ? currentMode.attributes.title
+      : currentHeadline?.attributes.mode.attributes.title;
+
   return (
     <>
       <div className={styles["c-condensed-menu"]}>
         <div className={styles["c-condensed-menu__title-container"]}>
-          {pageTypeId == DATA_LAYER_PAGE_ID && currentMode && (
+          {(!currentMode || currentMode.attributes.title === "Default") && !currentHeadline ? (
+            <div className={styles["c-condensed-menu__title-container--globe-icon"]} />
+          ) : (
             <div className={styles["icon-container"]}>
-              <img src={currentMode.attributes.icon} alt={currentMode.attributes.title} />
+              <img src={icon} alt={alt} />
             </div>
           )}
           <p className={styles["title"]}>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</p>
