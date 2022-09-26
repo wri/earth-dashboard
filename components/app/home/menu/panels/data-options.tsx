@@ -103,15 +103,17 @@ const DataIndex = ({
       <Link href="https://earth.nullschool.net/">
         <a rel="noopener noreferrer" target="_blank" onClick={() => fireEvent(ADVANCED_MENU, null)}>
           <ContentPanel className={styles["c-home-menu-item--advanced-data-item"]} canFocus={true}>
-            <h3 className={styles["c-home-menu-item__title"]}>Advanced Data</h3>
-            <p className={styles["c-home-menu-item__desc"]}>
-              Dive deeper into the full datasets available. Combine and overlay data to create unique maps and
-              visualizations.
-            </p>
+            <div className={styles["c-home-menu-item__container"]}>
+              <h3 className={styles["c-home-menu-item__title"]}>Advanced Data</h3>
+              <p className={styles["c-home-menu-item__desc"]}>
+                Dive deeper into the full datasets available. Combine and overlay data to create unique maps and
+                visualizations.
+              </p>
 
-            <div className={styles["c-home-menu-item__external-link"]}>
-              <Image width={16} height={16} alt="" role="presentation" src={ExternalLinkIcon} />
-              <span>Earth Nullschool</span>
+              <div className={styles["c-home-menu-item__external-link"]}>
+                <Image width={16} height={16} alt="" role="presentation" src={ExternalLinkIcon} />
+                <span>Earth Nullschool</span>
+              </div>
             </div>
           </ContentPanel>
         </a>

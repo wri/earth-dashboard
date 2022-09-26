@@ -219,22 +219,26 @@ Source: CAMS / Copernicus / European Commission + ECMWF
                       />
                     </div>
                   </div>
-                  <h3
-                    class="c-home-menu-item__title"
-                  >
-                    Advanced Data
-                  </h3>
-                  <p
-                    class="c-home-menu-item__desc"
-                  >
-                    Dive deeper into the full datasets available. Combine and overlay data to create unique maps and visualizations.
-                  </p>
                   <div
-                    class="c-home-menu-item__external-link"
+                    class="c-home-menu-item__container"
                   >
-                    <span>
-                      Earth Nullschool
-                    </span>
+                    <h3
+                      class="c-home-menu-item__title"
+                    >
+                      Advanced Data
+                    </h3>
+                    <p
+                      class="c-home-menu-item__desc"
+                    >
+                      Dive deeper into the full datasets available. Combine and overlay data to create unique maps and visualizations.
+                    </p>
+                    <div
+                      class="c-home-menu-item__external-link"
+                    >
+                      <span>
+                        Earth Nullschool
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -394,22 +398,26 @@ test("<MainContainer /> renders correctly as mobile", async () => {
                           />
                         </div>
                       </div>
-                      <h3
-                        class="c-home-menu-item__title"
-                      >
-                        Advanced Data
-                      </h3>
-                      <p
-                        class="c-home-menu-item__desc"
-                      >
-                        Dive deeper into the full datasets available. Combine and overlay data to create unique maps and visualizations.
-                      </p>
                       <div
-                        class="c-home-menu-item__external-link"
+                        class="c-home-menu-item__container"
                       >
-                        <span>
-                          Earth Nullschool
-                        </span>
+                        <h3
+                          class="c-home-menu-item__title"
+                        >
+                          Advanced Data
+                        </h3>
+                        <p
+                          class="c-home-menu-item__desc"
+                        >
+                          Dive deeper into the full datasets available. Combine and overlay data to create unique maps and visualizations.
+                        </p>
+                        <div
+                          class="c-home-menu-item__external-link"
+                        >
+                          <span>
+                            Earth Nullschool
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
