@@ -9,6 +9,18 @@
     flex-direction: column;
   }
 
+  &__widget {
+    background-color: white;
+    color: black;
+    min-height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    .leaflet-container {
+      border-radius: 12px;
+    }
+  }
+
   &__hero {
     backdrop-filter: blur(10.8731px);
     position: relative;
