@@ -26,11 +26,13 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
     fireEvent(PAGE_VIEW, `onboarding_${counter + 1}`);
   }, [counter]);
 
+  const handleSkip = () => {
+    fireEvent(ONBOARDING_SKIPPED, (counter + 1).toString());
+    handleClose();
+  };
+
   const handleClose = () => {
     localStorage.setItem(ONBOARDING_COMPLETED, "true");
-    if (!isFinalSlide) {
-      fireEvent(ONBOARDING_SKIPPED, (counter + 1).toString());
-    }
     setShowModal(false);
   };
   const nextStep = () => {
@@ -83,7 +85,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
                 <Image src={nullSchoolLogo} alt="" />
               </div>
               {counter !== 2 && (
-                <h1 className={styles["modal__mobile__continue"]} onClick={handleClose}>
+                <h1 className={styles["modal__mobile__continue"]} onClick={handleSkip}>
                   SKIP
                 </h1>
               )}
@@ -120,7 +122,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
                   name="close"
                   size={11.25}
                   className={styles["modal__header__close-button"]}
-                  onClick={handleClose}
+                  onClick={handleSkip}
                 />
               )}
             </div>

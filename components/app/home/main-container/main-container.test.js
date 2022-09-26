@@ -262,7 +262,7 @@ Source: CAMS / Copernicus / European Commission + ECMWF
           class="c-home-menu-toggle__text-container"
         >
           <span>
-            I'd like to explore...
+            Fires
           </span>
         </div>
       </button>

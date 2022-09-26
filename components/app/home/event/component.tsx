@@ -15,6 +15,7 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { fireEvent } from "utils/gtag";
 import { EARTH_HQ_VIEWED_EXTREME_EVENT } from "constants/tag-manager";
 import { EventScaleData } from "slices/mapControls";
+import WidgetPreview from "components/widgets/preview";
 
 type DataLayerOverviewProps = {
   currentMode?: Mode;
@@ -121,6 +122,15 @@ const ExtremeEvent = ({
             thermometerStyle={{ background: eventScaleData?.gradient ?? "" }}
           />
         </ContentPanel>
+        {headline.attributes.content.media.widget && (
+          <div className={styles["c-event__widget"]}>
+            <WidgetPreview
+              // @ts-ignore attributes not present in type
+              widget={{ id: headline.attributes.content.media.widget.attributes.widget_id }}
+              widgetShouldBeLoaded
+            />
+          </div>
+        )}
         {headline.attributes.sections.map(section => (
           <ContentPanel
             icon={section.attributes.icon_image_url}

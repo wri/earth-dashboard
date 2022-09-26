@@ -8,7 +8,7 @@
   margin-bottom: 32px;
   padding: 20px;
 
-  background-image: url("/static/images/globe.png");
+  background-image: url("/static/images/globe@2x.png");
   background-position: center right;
   background-repeat: no-repeat;
   background-size: 232px 196px;
@@ -23,7 +23,6 @@
   }
 
   & .description {
-    max-width: 230px;
     margin-right: 100px;
     color: white;
     font-weight: 500;

@@ -126,12 +126,18 @@ const Menu = forwardRef(
       checkCurrentHeadline();
     }, [currentHeadline, setCurrentMode]);
 
+    const getHeaderTitle = () => {
+      if (pageTypeId === INFO_PAGE_ID) return "Back to Earth HQ";
+      else if (currentMode.attributes.title !== "Default") return `Back to ${currentMode.attributes.title}`;
+      return `Back to ${pageTitle}`;
+    };
+
     const getMenuContent = () => (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
         {currentHeadline && (
-          <MenuLayout ref={ref} title={`Back to ${pageTitle}`} onBack={clearHeadline} onClose={onClose}>
+          <MenuLayout ref={ref} title={getHeaderTitle()} onBack={clearHeadline} onClose={onClose}>
             <div className={styles["c-home-menu__event-container"]}>
               <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
             </div>
