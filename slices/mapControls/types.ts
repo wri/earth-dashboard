@@ -1,6 +1,8 @@
 export type EventScaleData = {
   gradient: string;
   value?: number;
+  minLabel: string;
+  maxLabel: string;
 };
 
 export type MapControlsState = {

@@ -140,20 +140,28 @@ const MainContainer = ({
     }
   }, [overlayLayer?.product]);
 
-  const getEventScaleValue = async () => {
-    if (!currentHeadline || !overlayLayer) return null;
-    const marker = getIndicatorGeoJson([
-      currentHeadline.attributes.location.lng,
-      currentHeadline.attributes.location.lat
-    ]);
-    const coordinates = marker.geometry.coordinates;
-    const samples = await earthServer.current?.sampleAt(null, coordinates);
-    const data = getOverlayData(samples, [overlayLayer]);
-    if (data) return data.value;
-    else return undefined;
-  };
-
   useEffect(() => {
+    const getEventScaleValue = async () => {
+      if (!currentHeadline || !overlayLayer) {
+        return null;
+      }
+
+      const marker = getIndicatorGeoJson([
+        currentHeadline.attributes.location.lng,
+        currentHeadline.attributes.location.lat
+      ]);
+
+      const coordinates = marker.geometry.coordinates;
+      const samples = await earthServer.current?.sampleAt(null, coordinates);
+      const data = getOverlayData(samples, [overlayLayer]);
+
+      if (data) {
+        return data.value;
+      } else {
+        return undefined;
+      }
+    };
+
     const getEventScaleData = async () => {
       if (!currentHeadline || !overlayLayer?.product) {
         return setEventScaleData(undefined);
@@ -185,15 +193,21 @@ const MainContainer = ({
 
       if (typeof percent !== "undefined" && isNaN(percent)) percent = undefined;
 
+      const minLabel = `${min} ${scaleData?.unitSymbol}`;
+      const maxLabel = `${max} ${scaleData?.unitSymbol}`;
+
       const eventScaleData: EventScaleData = {
         gradient,
-        value: percent
+        value: percent,
+        minLabel,
+        maxLabel
       };
 
       setEventScaleData(eventScaleData);
     };
 
     getEventScaleData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentHeadline, overlayLayer]);
 
   const toggleMenu = () => {
