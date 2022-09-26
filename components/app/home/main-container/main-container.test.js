@@ -132,6 +132,68 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                 </div>
               </div>
             </div>
+            <div
+              class="c-content-panel__underlay c-content-panel__underlay--can-focus"
+              data-testid="content-panel"
+            >
+              <div
+                class="c-content-panel c-content-panel--selected c-content-panel__focusable"
+                data-role="content"
+                tabindex="0"
+              >
+                <div
+                  class="c-content-panel__header-row c-content-panel__header-row--with-icon"
+                >
+                  <div
+                    class="c-content-panel__icon-container"
+                  >
+                    <img
+                      alt=""
+                      class="c-content-panel__image"
+                      role="presentation"
+                      src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/7v0sYUds12E9Y1MBEbkyamiQKIsKHQU7BV0kdFYc.png"
+                    />
+                  </div>
+                  <div
+                    class="c-content-panel__title-container"
+                  >
+                    <h3
+                      class="c-content-panel__title"
+                    >
+                      Fires
+                    </h3>
+                  </div>
+                </div>
+                <p
+                  class="c-menu-option__subtitle"
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Source: CAMS / Copernicus / European Commission + ECMWF
+                </p>
+                <div
+                  class="c-content-panel__cta"
+                >
+                  <span>
+                    <button
+                      class="c-cta-button"
+                    >
+                      <div
+                        class="c-cta-button__content"
+                      >
+                        <span
+                          class="c-cta-button__text"
+                        >
+                          Learn More
+                        </span>
+                        <span
+                          class="c-cta-button__icon"
+                        />
+                      </div>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
             <a
               href="https://earth.nullschool.net/"
               rel="noopener noreferrer"
