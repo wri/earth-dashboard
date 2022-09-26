@@ -1,6 +1,6 @@
 // Set this to true if you wish to debug Google Analytics in a non production
 // environment for example on localhost
-export const DEBUG = false;
+export const DEBUG = process.env.GA4_DEBUG === "true" || false;
 
 export const GA_TRACKING_ID = process.env.GA4_ID;
 import { ANALYTICS_ACCEPTED } from "../layout/layout/layout-app/constants";
