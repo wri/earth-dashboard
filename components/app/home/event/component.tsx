@@ -116,6 +116,8 @@ const ExtremeEvent = ({
           <p>{headline.attributes.mode.attributes.description}</p>
           <NormalScale
             value={eventScaleData?.value}
+            minLabel={eventScaleData?.minLabel}
+            maxLabel={eventScaleData?.maxLabel}
             thermometerStyle={{ background: eventScaleData?.gradient ?? "" }}
           />
         </ContentPanel>
