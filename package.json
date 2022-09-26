@@ -1,8 +1,8 @@
 {
   "name": "earth-dashboard",
-  "version": "0.1",
+  "version": "2.0.0",
   "description": "Earth Dashboard",
-  "author": "Vizzuality",
+  "author": "3 SIDED CUBE",
   "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.4.8",
