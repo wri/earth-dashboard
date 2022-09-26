@@ -503,6 +503,11 @@
   $this: &;
 
   &--advanced-data-item {
+    #{$this}__container {
+      row-gap: 0;
+      margin-top: -16px;
+    }
+
     #{$this}__title {
       font-family: "Barlow";
       @include font-size(20px, 30px);
@@ -523,7 +528,7 @@
 
     #{$this}__external-link {
       font-family: "Barlow";
-      display: flex;
+      display: inline-flex;
       gap: 10px;
       align-items: center;
       padding: 8px 16px;
