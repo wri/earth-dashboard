@@ -106,7 +106,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
                 <p
                   class="c-menu-option__subtitle"
                 >
-                  View all of the latest extreme events
+                  Stay up to date with Mongabay’s latest extreme events and the places being affected. Learn more about the planetary emergency with real-time data.
                 </p>
                 <div
                   class="c-content-panel__cta"
@@ -281,7 +281,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
                     <p
                       class="c-menu-option__subtitle"
                     >
-                      View all of the latest extreme events
+                      Stay up to date with Mongabay’s latest extreme events and the places being affected. Learn more about the planetary emergency with real-time data.
                     </p>
                     <div
                       class="c-content-panel__cta"
