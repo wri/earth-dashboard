@@ -134,8 +134,9 @@ export const fetchVideos = params => {
  */
 export const getMenuTitle = (currentHeadline, currentMode, pageTypeId) => {
   if (currentHeadline) return currentHeadline.attributes.title;
-  if (pageTypeId == INFO_PAGE_ID) return INFO_PAGE_HEADLINE;
-  if (pageTypeId == EXTREME_EVENTS_PAGE_ID) return EXTREME_EVENTS_PAGE_HEADLINE;
-  if (pageTypeId == DATA_LAYER_PAGE_ID && currentMode) return currentMode.attributes.title;
-  return "Extreme Events";
+  if (pageTypeId == INFO_PAGE_ID)
+    return currentMode && currentMode.attributes.title !== "Default"
+      ? currentMode.attributes.title
+      : "All Extreme Events";
+  return currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "Extreme Events";
 };
