@@ -25,6 +25,7 @@ import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
 import { SCALE_TYPES } from "constants/map";
+import moment from "moment";
 
 export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
 export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
@@ -312,7 +313,7 @@ const MainContainer = ({
     if (currentHeadline && earthServer.current) {
       enableToolTip(
         [currentHeadline.attributes.location.lng, currentHeadline.attributes.location.lat],
-        currentHeadline.attributes.title
+        moment(currentHeadline.attributes.climate_alert_date).format("Do MMMM YYYY")
       );
     } else {
       disableToolTip();
