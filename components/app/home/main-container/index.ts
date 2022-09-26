@@ -2,7 +2,7 @@ import MainContainerComponent from "./component";
 import { connect } from "react-redux";
 import { setIsMobile } from "slices/common";
 import { RootState } from "store/types";
-import { setModes, setPageTypeId, setCurrentMode } from "slices/modes";
+import { setModes, setPageTypeId, setCurrentMode, setDateOfDataShown } from "slices/modes";
 import { setHeadlines } from "slices/headlines";
 import { setEventScaleData, setReoriented } from "slices/mapControls";
 
@@ -23,6 +23,7 @@ export default connect(
     setPageTypeId,
     setReoriented,
     setEventScaleData,
-    setCurrentMode
+    setCurrentMode,
+    setDateOfDataShown
   }
 )(MainContainerComponent);

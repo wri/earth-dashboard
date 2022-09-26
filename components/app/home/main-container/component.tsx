@@ -52,6 +52,7 @@ type MainContainerProps = {
   setReoriented: ActionCreatorWithoutPayload<string>;
   setEventScaleData: ActionCreatorWithPayload<EventScaleData | undefined, string>;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
+  setDateOfDataShown: ActionCreatorWithPayload<string, string>;
 };
 
 const MainContainer = ({
@@ -69,7 +70,8 @@ const MainContainer = ({
   setPageTypeId,
   setReoriented,
   setEventScaleData,
-  setCurrentMode
+  setCurrentMode,
+  setDateOfDataShown
 }: MainContainerProps) => {
   const defaultMobileMenuHeight =
     currentMode?.id === defaultMode?.id ? MODILE_MENU_HEIGHT_WITHOUT_SCALE : MODILE_MENU_HEIGHT_WITH_SCALE;
@@ -308,6 +310,10 @@ const MainContainer = ({
 
     getTemplates();
   }, [setModes]);
+
+  useEffect(() => {
+    if (!currentHeadline) setDateOfDataShown(new Date().toString());
+  }, [currentHeadline]);
 
   useEffect(() => {
     if (currentHeadline && earthServer.current) {
