@@ -23,6 +23,7 @@ type HeadlinesPanerProps = {
 
 const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHeadline }: HeadlinesPanerProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [bannerHeight, setBannerHeight] = useState<number>(150);
   const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(HEADLINE_BATCH_SIZE);
 
   const mostRecentHeadlines = useMemo(() => {
@@ -30,6 +31,7 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
   }, [headlines, numHeadlinesToShow]);
 
   const articleRef = useRef<HTMLDivElement>(null);
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   const onSelectHeadline = (headline: HeadlineType) => {
     setCurrentHeadline(headline);
@@ -42,6 +44,10 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
     }
   }, [currentHeadline]);
 
+  useEffect(() => {
+    if (bannerRef.current) setBannerHeight(bannerRef.current.offsetHeight);
+  }, [bannerRef.current]);
+
   const onScroll = (event: UIEvent<HTMLElement>) => {
     if (event.currentTarget.scrollTop > SCOLL_THRESHOLD && scrollPosition > SCOLL_THRESHOLD) {
       return;
@@ -53,13 +59,15 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
     currentMode && currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "All Extreme Events";
 
   const description =
-    currentMode && currentMode.attributes.title !== "Default"
-      ? "View the latest Extreme Events"
-      : "View all of the latest Extreme Events";
+    "Stay up to date with Mongabay’s latest extreme events and the places being affected. Learn more about the planetary emergency with real-time data.";
 
   return (
     <>
-      <div className={styles["c-home-menu__extreme-events--header"]} style={{ top: `${-scrollPosition}px` }}>
+      <div
+        ref={bannerRef}
+        className={styles["c-home-menu__extreme-events--header"]}
+        style={{ top: `${-scrollPosition}px` }}
+      >
         <h3>{title}</h3>
         <p>{description}</p>
       </div>
@@ -68,7 +76,7 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
         ref={articleRef}
         onScroll={onScroll}
       >
-        <div className={styles["c-home-menu__extreme-events"]}>
+        <div className={styles["c-home-menu__extreme-events"]} style={{ marginTop: bannerHeight }}>
           {mostRecentHeadlines.map(headline => (
             <EventCard
               key={headline.id}
