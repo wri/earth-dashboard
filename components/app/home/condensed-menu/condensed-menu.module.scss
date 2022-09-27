@@ -18,10 +18,12 @@
       background-image: url("/static/icons/home-menu/search-globe.svg");
       background-size: contain;
       background-repeat: no-repeat;
-      height: 50px;
-      width: 50px;
-      min-width: 50px;
-      margin: -9px 3px -9px -9px;
+      height: 32px;
+      width: 32px;
+      min-width: 32px;
+      margin-right: 12px;
+      box-shadow: 0px 2px 10px rgba(26, 26, 25, 0.24);
+      border-radius: 32px;
     }
 
     .icon-container {

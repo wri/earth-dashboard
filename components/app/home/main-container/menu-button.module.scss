@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   color: white;
-  padding: 8px 10px;
+  padding: 14px 10px 14px 15px;
   max-width: 400px;
   cursor: pointer;
   border: 2px solid transparent;
@@ -60,9 +60,9 @@
       background-image: url("/static/icons/home-menu/search-globe.svg");
       background-size: contain;
       background-repeat: no-repeat;
-      height: 52px;
-      width: 52px;
-      min-width: 52px;
+      height: 36px;
+      width: 36px;
+      min-width: 36px;
       margin-right: 12px;
     }
 
@@ -91,6 +91,7 @@
     background-repeat: no-repeat;
     height: 10px;
     width: 18px;
+    min-width: 18px;
     margin-left: 24px;
     margin-right: 12px;
     transition: transform 0.3s ease-in;
