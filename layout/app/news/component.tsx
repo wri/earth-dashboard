@@ -87,7 +87,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
         {/* Most Recent */}
         {mostRecentArticle ? (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
-            <NewsArticle featured={true} topic={topic} {...mostRecentArticle} />
+            <NewsArticle topic={topic} {...mostRecentArticle} featured />
           </div>
         ) : (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>

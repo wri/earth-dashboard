@@ -21,3 +21,12 @@ export type MongabayPost = {
   };
   uri: string;
 };
+
+export type FormattedMongabayPost = {
+  key: string;
+  title: string;
+  author: string;
+  date: Date;
+  image: string;
+  link: string;
+};

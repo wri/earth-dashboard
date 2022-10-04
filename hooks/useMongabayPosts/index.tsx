@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import { GetPostsQuery, formatPosts } from "utils/news";
 import TOPICS from "constants/news";
-import { MongabayPost } from "./types";
+import { FormattedMongabayPost } from "./types";
 
 const LIMIT = 10;
 
@@ -15,7 +15,7 @@ type UseMongabayPosts = {
   /** True if an error has occurred during the fetch. */
   hasErrored: boolean;
   /** An array of formated posts from the endpoint. */
-  posts: MongabayPost[];
+  posts: FormattedMongabayPost[];
   /** True if there are more posts available from the endpoint after the previous query. */
   canFetchMore: boolean;
   /** True if more posts are being fetched from the endpoint. */
@@ -31,7 +31,7 @@ type UseMongabayPosts = {
  * @param limit - Override for the max number of posts that can be returned from the endpoint.
  */
 const useMongabayPosts = (topic: keyof typeof TOPICS, limit: number = LIMIT): UseMongabayPosts => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<FormattedMongabayPost[]>([]);
 
   const { loading, error, data, networkStatus, refetch, fetchMore } = useQuery(GetPostsQuery, {
     variables: {
