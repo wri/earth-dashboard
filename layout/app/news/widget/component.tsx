@@ -28,7 +28,7 @@ type WidgetProps = {
 };
 
 /** Widget for the news page. */
-const Widget = ({ className, widget, bordered, ...rest }: WidgetProps) => {
+const Widget = ({ className = "", widget, bordered, ...rest }: WidgetProps) => {
   const {
     attributes: { widget_id: widgetId }
   } = widget;
