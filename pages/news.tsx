@@ -1,20 +1,17 @@
-import Layout from "layout/layout/layout-app";
-import Section from "layout/app/news/section";
-import TopicCard from "layout/app/news/topic-card";
-import styles from "layout/app/news/news.module.scss";
-import { MenuItems } from "constants/menu-items";
-import { BG_GALAXY } from "constants/section-colours";
+import { Desktop, MediaContextProvider, Mobile } from "utils/responsive";
+import NewsLayout from "layout/app/news";
 
-// TODO: Temporary bridging design, need to remove later
 const NewsPage = () => {
   return (
-    <Layout title="News" className={styles["c-news"]}>
-      <Section bgColour={BG_GALAXY} gridClassName={styles["c-topics"]} noWrap>
-        {MenuItems.map(({ key, ...link }) => (
-          <TopicCard key={key} {...link} />
-        ))}
-      </Section>
-    </Layout>
+    // @ts-expect-error
+    <MediaContextProvider>
+      <Desktop>
+        <NewsLayout topic="climate" />
+      </Desktop>
+      <Mobile>
+        <NewsLayout topic="climate" isMobile />
+      </Mobile>
+    </MediaContextProvider>
   );
 };
 

@@ -24,7 +24,7 @@ const LOAD_MORE_LIMIT = 9;
 
 type NewsLayoutProps = {
   topic: keyof typeof TOPICS;
-  isMobile: boolean;
+  isMobile?: boolean;
   setIsMobile: ActionCreatorWithPayload<boolean, string>;
 };
 
@@ -44,7 +44,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
 
   // Store the isMobile flag in the redux store
   useEffect(() => {
-    setIsMobile(isMobile);
+    setIsMobile(!!isMobile);
   }, [isMobile, setIsMobile]);
 
   let mostRecentArticle,
