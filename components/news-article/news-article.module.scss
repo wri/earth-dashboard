@@ -59,12 +59,25 @@ $c-news-article-transition: 0.3s ease-in-out;
       gap: 16px;
       padding: 20px;
 
+      @media screen and (min-width: $global-breakpoint-md) {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
       .image {
         height: 80px;
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          height: 160px;
+        }
       }
 
       .title {
         @include font-size(16px, 24px);
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          @include font-size(18px, 27px);
+        }
       }
     }
 
@@ -98,6 +111,10 @@ $c-news-article-transition: 0.3s ease-in-out;
 
     .title {
       font-weight: 500;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        font-weight: 600;
+      }
     }
   }
 
