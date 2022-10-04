@@ -44,12 +44,7 @@ const NewsArticle = ({ className = "", topic, featured, title, author, date, ima
           {author} . {formatDate(date)}
         </span>
 
-        <ExternalLink
-          className={styles["c-news-article__link"]}
-          onClick={handleClick}
-          link={link}
-          label="Read full article"
-        />
+        <ExternalLink className={styles["c-news-article__link"]} onClick={handleClick} link={link} label="Mongabay" />
       </div>
     </article>
   );
