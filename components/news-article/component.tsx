@@ -27,8 +27,15 @@ const NewsArticle = ({ className = "", topic, featured, title, author, date, ima
 
   return (
     <article
-      className={classnames(className, styles["c-news-article"], featured && styles["c-news-article--featured"])}
+      className={classnames(
+        styles["c-news-article"],
+        {
+          [styles["featured"]]: featured
+        },
+        className
+      )}
     >
+      {/* Backdrop */}
       <Image
         src={testImage}
         layout="fill"
