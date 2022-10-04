@@ -96,7 +96,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
         )}
         {firstWidget && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
-            <Widget data-testid="first-widget" widget={firstWidget} bordered={true} />
+            <Widget data-testid="first-widget" widget={firstWidget} bordered />
           </div>
         )}
       </Section>

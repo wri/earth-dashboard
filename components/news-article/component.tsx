@@ -8,7 +8,7 @@ import { NEWS_OPENED_ARTICLE } from "constants/tag-manager";
 import TOPICS from "constants/news";
 
 type NewsArticleProps = {
-  featured: boolean;
+  featured?: boolean;
   title: string;
   author: string;
   date: Date;
