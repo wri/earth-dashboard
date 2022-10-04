@@ -28,7 +28,7 @@ const HeaderOptions = ({
   const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
 
   // Navigation
-  const router = useRouter();
+  const { pathname } = useRouter();
 
   /** Opens the more menu. */
   const handleOpenMore = () => {
@@ -58,15 +58,14 @@ const HeaderOptions = ({
       )}
 
       {/* Share or search */}
-      {/*{router.pathname !== "/about" && ( ToDo: Search Hidden until new Sprint*/}
-      {router.pathname === "/" && (
+      {pathname !== "about" && (
         <IconButton
-          name={router.pathname === "/" ? "share" : "search"}
+          name={pathname === "/" ? "share" : "search"}
           size={16}
-          aria-label={router.pathname === "/" ? "Share" : "Search"}
+          aria-label={pathname === "/" ? "Share" : "Search"}
           className={classnames(styles["c-header-options__share"], styles["c-header-options__icon-button"])}
-          onClick={router.pathname === "/" ? onShareClick : () => fireEvent(NEWS_SEARCH, null)}
-          iconStyle={{ marginRight: router.pathname === "/" ? "2px" : "0" }}
+          onClick={pathname === "/" ? onShareClick : () => fireEvent(NEWS_SEARCH, null)}
+          iconStyle={{ marginRight: pathname === "/" ? "2px" : "0" }}
         />
       )}
 
