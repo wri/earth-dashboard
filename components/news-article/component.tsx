@@ -34,18 +34,6 @@ const NewsArticle = ({ className = "", topic, featured, title, author, date, ima
         className
       )}
     >
-      {/* Backdrop */}
-      <Image
-        src={image}
-        layout="fill"
-        objectFit="cover"
-        role="presentation"
-        alt=""
-        className={classnames(styles["backdrop"], {
-          [styles["no-image"]]: !image
-        })}
-      />
-
       {/* Top section */}
       <div className={styles["top"]}>
         <div
@@ -69,6 +57,18 @@ const NewsArticle = ({ className = "", topic, featured, title, author, date, ima
         {/* Article link */}
         <ExternalLink className={styles["link"]} onClick={handleClick} link={link} label={author} />
       </div>
+
+      {/* Backdrop */}
+      <Image
+        src={image}
+        layout="fill"
+        objectFit="cover"
+        role="presentation"
+        alt=""
+        className={classnames(styles["backdrop"], {
+          [styles["no-image"]]: !image
+        })}
+      />
     </article>
   );
 };
