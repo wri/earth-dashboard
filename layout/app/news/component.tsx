@@ -5,7 +5,6 @@ import useCMSVideos from "hooks/useCMSVideos";
 import { getPageMetadataByTopic } from "utils/share";
 import { getColorByTopic } from "utils/topics";
 import Layout from "layout/layout/layout-app";
-import HeroBanner from "./hero-banner";
 import AnchorCTA from "components/ui/anchor-cta";
 import Section from "./section";
 import EarthHQCTA from "layout/app/news/earth-hq-cta";
@@ -17,9 +16,7 @@ import { CLIMATE } from "utils/topics";
 import TOPICS from "constants/news";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import videoArticleStyles from "components/video-article/video-article.module.scss";
-import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scss";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
-import heroBannerTexts from "constants/news/banners";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 const LIMIT = 10;
@@ -75,14 +72,6 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
       thumbnail={pageMetadata?.thumbnail}
       themeColor={getColorByTopic(topic)}
     >
-      <Section
-        bgColour={BG_GALAXY}
-        paddingBottom={false}
-        gridClassName={heroBannerStyles["c-page-section-grid-hero-banner"]}
-      >
-        <HeroBanner title={heroBannerTexts[topic]?.title || `${topic} News`} body={heroBannerTexts[topic]?.body} />
-      </Section>
-
       <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>
         {/* Most Recent */}
         {mostRecentArticle ? (
