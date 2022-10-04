@@ -91,6 +91,10 @@ $c-news-article-transition: 0.3s ease-in-out;
     }
   }
 
+  .no-image {
+    background-color: $colour-galaxy;
+  }
+
   .backdrop {
     opacity: 0.2;
     z-index: -1;

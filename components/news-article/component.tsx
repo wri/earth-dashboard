@@ -6,7 +6,6 @@ import ExternalLink from "components/ui/external-link";
 import { fireEvent } from "utils/gtag";
 import { NEWS_OPENED_ARTICLE } from "constants/tag-manager";
 import TOPICS from "constants/news";
-import testImage from "public/static/images/basemaps/geography-basemap-thumbnail.png";
 
 type NewsArticleProps = {
   featured?: boolean;
@@ -37,19 +36,25 @@ const NewsArticle = ({ className = "", topic, featured, title, author, date, ima
     >
       {/* Backdrop */}
       <Image
-        src={testImage}
+        src={image}
         layout="fill"
         objectFit="cover"
         role="presentation"
         alt=""
-        className={styles["backdrop"]}
+        className={classnames(styles["backdrop"], {
+          [styles["no-image"]]: !image
+        })}
       />
 
       {/* Top section */}
       <div className={styles["top"]}>
-        <div className={styles["image"]}>
+        <div
+          className={classnames(styles["image"], {
+            [styles["no-image"]]: !image
+          })}
+        >
           {/* Thumbnail */}
-          <Image src={testImage} layout="fill" objectFit="cover" role="presentation" alt="" />
+          <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
         </div>
 
         {/* Title */}
