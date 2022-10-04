@@ -116,7 +116,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
               className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]}
               onClick={() => fetchMore(LOAD_MORE_LIMIT)}
             >
-              Load More {isFetchingMore && "Loading..."}
+              {isFetchingMore ? "Loading..." : "Load More "}
             </AnchorCTA>
           </div>
         )}
