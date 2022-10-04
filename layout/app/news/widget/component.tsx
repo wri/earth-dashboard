@@ -25,10 +25,11 @@ type WidgetProps = {
   className?: string;
   bordered?: boolean;
   widget: GCAWidget;
+  sourceButtonRight?: boolean;
 };
 
 /** Widget for the news page. */
-const Widget = ({ className = "", widget, bordered, ...rest }: WidgetProps) => {
+const Widget = ({ className = "", widget, bordered, sourceButtonRight, ...rest }: WidgetProps) => {
   const {
     attributes: { widget_id: widgetId }
   } = widget;
@@ -50,6 +51,7 @@ const Widget = ({ className = "", widget, bordered, ...rest }: WidgetProps) => {
       )}
       {...rest}
     >
+      {/* Text */}
       {includeInfo && (
         <div className={styles["c-page-section-widget__info"]}>
           <div className={styles["c-page-section-widget__name"]}>
@@ -62,13 +64,19 @@ const Widget = ({ className = "", widget, bordered, ...rest }: WidgetProps) => {
           <div className={styles["c-page-section-widget__desc"]}>{description}</div>
         </div>
       )}
+
+      {/* Widget */}
       <div className={styles["c-page-section-widget__widget"]}>
         <WidgetPreview widget={{ id: widgetId }} showSource widgetShouldBeLoaded />
       </div>
+
+      {/* Link */}
       {includeInfo && (
         <div>
           <ExternalLink
-            className={styles["c-page-section-widget__source"]}
+            className={classnames(styles["c-page-section-widget__source"], {
+              [styles["right"]]: sourceButtonRight
+            })}
             onClick={() =>
               fireEvent(NEWS_OPENED_SOURCE, null, {
                 source_link: RESOURCE_WATCH_WIDGET_LINK + widgetId,
