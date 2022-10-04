@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import useGCAWidgets from "hooks/useGCAWidgets";
 import useCMSVideos from "hooks/useCMSVideos";
-import { getPageMetadataByTopic } from "utils/share";
 import { getColorByTopic } from "utils/topics";
 import Layout from "layout/layout/layout-app";
 import AnchorCTA from "components/ui/anchor-cta";
@@ -40,8 +39,6 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
   const { videos: allCMSVideos } = useCMSVideos(topic);
 
-  const pageMetadata = getPageMetadataByTopic(topic);
-
   // Store the isMobile flag in the redux store
   useEffect(() => {
     setIsMobile(!!isMobile);
@@ -66,12 +63,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
   }
 
   return (
-    <Layout
-      title={pageMetadata?.title}
-      description={pageMetadata?.description}
-      thumbnail={pageMetadata?.thumbnail}
-      themeColor={getColorByTopic(topic)}
-    >
+    <Layout title="News" themeColor={getColorByTopic(topic)}>
       <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>
         {/* Most Recent */}
         {mostRecentArticle ? (
