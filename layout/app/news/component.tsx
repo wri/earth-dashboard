@@ -36,7 +36,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
     canFetchMore,
     isFetchingMore,
     fetchMore
-  } = useMongabayPosts(topic, LIMIT);
+  } = useMongabayPosts(LIMIT);
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
   const { videos: allCMSVideos } = useCMSVideos(topic);
 
