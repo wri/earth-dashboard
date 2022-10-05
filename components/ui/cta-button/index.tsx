@@ -4,9 +4,11 @@ import Icon, { IconNames } from "../Icon";
 import styles from "./cta-button.module.scss";
 
 type CtaButtonProps = {
+  type?: "Default" | "Light";
   as?: ElementType;
   href?: string;
   text?: string;
+  iconUrl?: string;
   iconName?: IconNames;
   iconSize?: number;
   className?: string;
@@ -14,7 +16,17 @@ type CtaButtonProps = {
 };
 
 /** Styled icon button. */
-const CtaButton = ({ as = "button", href, text, iconName, iconSize, className, onClick }: CtaButtonProps) => {
+const CtaButton = ({
+  type,
+  as = "button",
+  href,
+  text,
+  iconUrl,
+  iconName,
+  iconSize,
+  className,
+  onClick
+}: CtaButtonProps) => {
   const CtaElement = as;
   return (
     <CtaElement className={classnames(styles["c-cta-button"], className)} onClick={onClick} href={href}>
@@ -27,6 +39,11 @@ const CtaButton = ({ as = "button", href, text, iconName, iconSize, className, o
             <Icon name={iconName} type="decorative" size={iconSize ?? 12} />
           </span>
         )}
+        {/* {iconUrl && (
+          <span className={styles["c-cta-button__icon"]}>
+            <Icon url={iconUrl} type="decorative" size={iconSize ?? 12} />
+          </span>
+        )} */}
       </div>
     </CtaElement>
   );

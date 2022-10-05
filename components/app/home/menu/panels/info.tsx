@@ -13,6 +13,7 @@ import { fireEvent } from "utils/gtag";
 import { ADVANCED_MENU, EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
 import { fetchClimateAlerts } from "services/gca";
 import { Headline } from "slices/headlines";
+import EventCard from "../../event-card/component";
 
 const mapHighlightToOption = (
   mode: Mode,
@@ -33,6 +34,7 @@ const mapHighlightToOption = (
 };
 
 type InfoPanelProps = {
+  headlines: Headline[];
   highlights: Mode[] | undefined;
   defaultMode: Mode | undefined;
   currentMode: Mode | undefined;
@@ -42,6 +44,7 @@ type InfoPanelProps = {
 };
 
 const InfoPanel = ({
+  headlines,
   highlights,
   defaultMode,
   currentMode,
@@ -84,40 +87,9 @@ const InfoPanel = ({
 
   return (
     <div className={styles["c-home-menu__scroll-area"]}>
-      <MenuOption
-        isSelected={currentMode?.id === defaultMode?.id}
-        className={styles["c-home-menu__all-events"]}
-        title="All Extreme Events"
-        description="Stay up to date with Mongabay’s latest extreme events and the places being affected. Learn more about the planetary emergency with real-time data."
-        buttonText="View All"
-        onClick={defaultMode ? () => onClickDataLayer(defaultMode) : undefined}
-        onClickCta={onClickExtremeEvents}
-      />
-      {dataLayers
-        .sort((a, b) => ((modeEventCount[a.id] ?? 0) > (modeEventCount[b.id] ?? 0) ? -1 : 1))
-        .filter(({ id }) => (modeEventCount[id] ?? 0) > 0)
-        .map(dataLayer => (
-          <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
-        ))}
-
-      <Link href="https://earth.nullschool.net/">
-        <a rel="noopener noreferrer" target="_blank" onClick={() => fireEvent(ADVANCED_MENU, null)}>
-          <ContentPanel className={styles["c-home-menu-item--advanced-data-item"]} canFocus={true}>
-            <div className={styles["c-home-menu-item__container"]}>
-              <h3 className={styles["c-home-menu-item__title"]}>Advanced Data</h3>
-              <p className={styles["c-home-menu-item__desc"]}>
-                Dive deeper into the full datasets available. Combine and overlay data to create unique maps and
-                visualizations.
-              </p>
-
-              <div className={styles["c-home-menu-item__external-link"]}>
-                <Image width={16} height={16} alt="" role="presentation" src={ExternalLinkIcon} />
-                <span>Earth Nullschool</span>
-              </div>
-            </div>
-          </ContentPanel>
-        </a>
-      </Link>
+      {headlines.map(headline => (
+        <EventCard headline={headline} onClick={() => {}} type="Condensed" key={headline.id} />
+      ))}
     </div>
   );
 };
@@ -126,7 +98,8 @@ export default connect(
   (state: RootState) => ({
     defaultMode: state[modesSliceName].defaultMode,
     currentMode: state[modesSliceName].currentMode,
-    highlights: state[modesSliceName].allModes?.filter(mode => mode.attributes.visibility.data_highlights)
+    highlights: state[modesSliceName].allModes?.filter(mode => mode.attributes.visibility.data_highlights),
+    headlines: state.headlines.headlines
   }),
   {}
 )(InfoPanel);
