@@ -13,10 +13,12 @@ import Widget from "layout/app/news/widget";
 import { Desktop, MediaContextProvider } from "utils/responsive";
 import { CLIMATE } from "utils/topics";
 import TOPICS from "constants/news";
+import styles from "./news.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import videoArticleStyles from "components/video-article/video-article.module.scss";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import IconButton from "components/ui/icon-button";
 
 const LIMIT = 10;
 const LOAD_MORE_LIMIT = 9;
@@ -62,8 +64,19 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
     postsLoadingMessage = "An error has occurred when trying to loading the News Articles, please try again later";
   }
 
+  /** Scrolls to top. */
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
   return (
     <Layout title="News" themeColor={getColorByTopic(topic)}>
+      {/* To top button */}
+      <IconButton name="arrow-up" onClick={handleScrollToTop} className={styles["c-news__top-button"]} />
+
       <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>
         {/* Most Recent */}
         {mostRecentArticle ? (
