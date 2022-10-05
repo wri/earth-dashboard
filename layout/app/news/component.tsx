@@ -75,7 +75,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
   return (
     <Layout title="News" themeColor={getColorByTopic(topic)}>
       {/* To top button */}
-      <IconButton name="arrow-up" onClick={handleScrollToTop} className={styles["c-news__top-button"]} />
+      <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["c-news__top-button"]} />
 
       <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>
         {/* Most Recent */}
