@@ -12,6 +12,7 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import IconButton from "components/ui/icon-button";
 import Section from "../section";
 import { BG_GALAXY } from "constants/section-colours";
+import NewsSearch from "./news-search/component";
 
 const LIMIT = 9;
 const LOAD_MORE_LIMIT = 9;
@@ -44,6 +45,10 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
     <Layout title="News">
       {/* To top button */}
       <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["c-news__top-button"]} />
+
+      <Section>
+        <NewsSearch />
+      </Section>
 
       {/* Search results */}
       <Section
