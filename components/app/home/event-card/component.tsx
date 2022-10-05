@@ -49,7 +49,12 @@ const EventCard = ({ headline, onClick, type = "Default", className }: EventCard
         </div>
         <div className={styles["c-event-card-condensed__footer"]}>
           <p className={styles["date"]}>{moment(headline.attributes.climate_alert_date).format("MMM D YYYY")}</p>
-          <CtaButton text={headline.attributes.mode.attributes.title} />
+          <CtaButton
+            iconUrl={headline.attributes.mode.attributes.icon}
+            text={headline.attributes.mode.attributes.title}
+            type="Light"
+            iconPosition="Left"
+          />
         </div>
       </div>
     );

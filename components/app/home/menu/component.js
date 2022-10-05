@@ -155,7 +155,7 @@ const Menu = forwardRef(
         {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
           <MenuLayout
             ref={ref}
-            iconName="globe"
+            // iconName="globe"
             title={pageTitle}
             onClose={onClose}
             style={isMobile ? { paddingBottom: "56px" } : {}}

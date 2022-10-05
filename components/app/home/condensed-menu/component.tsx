@@ -39,13 +39,12 @@ const CondensedMenu = ({
     <>
       <div className={styles["c-condensed-menu"]}>
         <div className={styles["c-condensed-menu__title-container"]}>
-          {(!currentMode || currentMode.attributes.title === "Default") && !currentHeadline ? (
-            <div className={styles["c-condensed-menu__title-container--globe-icon"]} />
-          ) : (
-            <div className={styles["icon-container"]}>
-              <img src={icon} alt={alt} />
-            </div>
-          )}
+          {(currentMode && currentMode.attributes.title !== "Default") ||
+            (currentHeadline && (
+              <div className={styles["icon-container"]}>
+                <img src={icon} alt={alt} />
+              </div>
+            ))}
           <p className={styles["title"]}>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</p>
           <IconButton
             onClick={handleToggleLocation}

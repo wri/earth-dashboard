@@ -32,7 +32,7 @@ export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
 export const INFO_PAGE_ID = "InfoPage";
 export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
 export const DATA_LAYER_PAGE_ID = "DataLayerPage";
-export const INFO_PAGE_HEADLINE = "I'd like to explore...";
+export const INFO_PAGE_HEADLINE = "This Is A Planetary Emergency...";
 export const EXTREME_EVENTS_PAGE_HEADLINE = "Extreme events";
 
 type MainContainerProps = {

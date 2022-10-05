@@ -12,7 +12,7 @@
 
   &__content {
     display: flex;
-    padding: 8px 8px 8px 24px;
+    padding: 8px;
     border-radius: 23px;
     background-color: $colour-flame;
     align-items: center;
@@ -31,11 +31,33 @@
         color: $white;
       }
     }
+
+    &.light {
+      background-color: white;
+      padding: 5px 6px;
+
+      .c-cta-button__icon {
+        background-color: none;
+      }
+
+      .c-cta-button__text {
+        color: $colour-galaxy;
+        margin: 0 8px;
+      }
+
+      &:hover {
+        background-color: $colour-flame;
+
+        .c-cta-button__text {
+          color: $white;
+        }
+      }
+    }
   }
 
   &__text {
     font-family: "Barlow Condensed";
-    margin-right: 16px;
+    margin: 0 16px;
     font-weight: 500;
     @include font-size(16px, 24px);
     color: white;

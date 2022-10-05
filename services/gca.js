@@ -137,6 +137,6 @@ export const getMenuTitle = (currentHeadline, currentMode, pageTypeId) => {
   if (pageTypeId == INFO_PAGE_ID)
     return currentMode && currentMode.attributes.title !== "Default"
       ? currentMode.attributes.title
-      : "All Extreme Events";
+      : "This Is A Planetary Emergency...";
   return currentMode && currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "Extreme Events";
 };

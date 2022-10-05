@@ -53,7 +53,8 @@ type AccessibilityProps =
     };
 
 type CommonProps = {
-  name: IconNames;
+  name?: IconNames;
+  url?: string;
   size?: number;
   className?: string;
   style?: CSSProperties;
@@ -66,20 +67,20 @@ export type IconProps = CommonProps & AccessibilityProps;
  * meaningful - Requires accessibilityText, use this for icons which needs context.
  * decorative - Will apply aria-hidden, use this if the icon is accompanied with some text or doesn't need more context.
  */
-const Icon = ({ name, size, className, accessibilityText, type, style }: IconProps): JSX.Element => {
+const Icon = ({ name, url, size, className, accessibilityText, type, style }: IconProps): JSX.Element => {
   const [path, setPath] = useState<string>();
 
   // Imports the SVG
   useEffect(() => {
     (async () => {
-      setPath((await import(`public/static/icons/${name}.svg`)).default.src);
+      if (name) setPath((await import(`public/static/icons/${name}.svg`)).default.src);
     })();
     // eslint-disable-next-line
   }, [name]);
 
   return (
     <SVG
-      src={path ?? ""}
+      src={url ?? path ?? ""}
       aria-label={accessibilityText}
       aria-hidden={type === "decorative"}
       title={accessibilityText}
