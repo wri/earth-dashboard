@@ -26,7 +26,7 @@ export const BIODIVERSITY_COLOR = "#009A67";
 export const BIODIVERSITY_DARK_COLOR = "#004D33";
 export const BIODIVERSITY_SECONDARY_COLOR = "#004D33";
 
-export function getColorByTopic(topicSt) {
+export function getColorByTopic(topicSt: string) {
   switch (topicSt) {
     case CLIMATE:
       return CLIMATE_COLOR;
@@ -41,7 +41,7 @@ export function getColorByTopic(topicSt) {
   }
 }
 
-export function getNavigationDotsColorByTopic(topicSt) {
+export function getNavigationDotsColorByTopic(topicSt: string) {
   switch (topicSt) {
     case CLIMATE:
       return "#6E2517";
@@ -60,21 +60,21 @@ export function getNavigationDotsColorByTopic(topicSt) {
 
 const SHARE_ICONS_COMMON_PATH = "/static/images/share";
 
-export function getEmailIconPerTopic(topicSt) {
+export function getEmailIconPerTopic(topicSt: string) {
   if (topicSt) {
     return `${SHARE_ICONS_COMMON_PATH}/email_${topicSt}.svg`;
   } else {
     return `${SHARE_ICONS_COMMON_PATH}/email_white.svg`;
   }
 }
-export function getFacebookIconPerTopic(topicSt) {
+export function getFacebookIconPerTopic(topicSt: string) {
   if (topicSt) {
     return `${SHARE_ICONS_COMMON_PATH}/facebook_${topicSt}.svg`;
   } else {
     return `${SHARE_ICONS_COMMON_PATH}/facebook_white.svg`;
   }
 }
-export function getTwitterIconPerTopic(topicSt) {
+export function getTwitterIconPerTopic(topicSt: string) {
   if (topicSt) {
     return `${SHARE_ICONS_COMMON_PATH}/twitter_${topicSt}.svg`;
   } else {

@@ -4,16 +4,16 @@ import classnames from "classnames";
 import ExternalLink from "components/ui/external-link";
 import { RESOURCE_WATCH_WIDGET_LINK } from "constants/widgets";
 import styles from "./widget.module.scss";
-import PropTypes from "prop-types";
 import { fireEvent } from "utils/gtag";
 import { NEWS_OPENED_SOURCE } from "constants/tag-manager";
+import { GCAWidget } from "hooks/useGCAWidgets/types";
 
 // Matches {{...}}
 const nameHighlightWrapperRegex = /\{\{([^\}]+)\}\}/g;
 
-const findWrappedText = (string = "", wrapperRegex) => {
-  const split = string.split(wrapperRegex);
-  const matches = string.match(wrapperRegex);
+const findWrappedText = (string = "") => {
+  const split = string.split(nameHighlightWrapperRegex);
+  const matches = string.match(nameHighlightWrapperRegex);
 
   return split.map(el => ({
     string: el,
@@ -21,7 +21,14 @@ const findWrappedText = (string = "", wrapperRegex) => {
   }));
 };
 
-const Widget = ({ className, widget, bordered, ...rest }) => {
+type WidgetProps = {
+  className?: string;
+  bordered?: boolean;
+  widget: GCAWidget;
+};
+
+/** Widget for the news page. */
+const Widget = ({ className = "", widget, bordered, ...rest }: WidgetProps) => {
   const {
     attributes: { widget_id: widgetId }
   } = widget;
@@ -46,7 +53,7 @@ const Widget = ({ className, widget, bordered, ...rest }) => {
       {includeInfo && (
         <div className={styles["c-page-section-widget__info"]}>
           <div className={styles["c-page-section-widget__name"]}>
-            {findWrappedText(name, nameHighlightWrapperRegex).map((el, index) => (
+            {findWrappedText(name).map((el, index) => (
               <span key={index} className={classnames(el.wrapped && styles["c-page-section-widget__name--highlight"])}>
                 {el.string}
               </span>
@@ -75,16 +82,6 @@ const Widget = ({ className, widget, bordered, ...rest }) => {
       )}
     </div>
   );
-};
-
-Widget.propTypes = {
-  className: PropTypes.string,
-  bordered: PropTypes.bool,
-  widget: PropTypes.shape({
-    attributes: PropTypes.shape({
-      widget_id: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired
 };
 
 Widget.defaultProps = {

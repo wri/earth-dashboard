@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import useGCAWidgets from "hooks/useGCAWidgets";
 import useCMSVideos from "hooks/useCMSVideos";
-import PropTypes from "prop-types";
 import { getPageMetadataByTopic } from "utils/share";
 import { getColorByTopic } from "utils/topics";
 import Layout from "layout/layout/layout-app";
@@ -21,11 +20,18 @@ import videoArticleStyles from "components/video-article/video-article.module.sc
 import heroBannerStyles from "layout/app/news/hero-banner/hero-banner.module.scss";
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 import heroBannerTexts from "constants/news/banners";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 const LIMIT = 10;
 const LOAD_MORE_LIMIT = 9;
 
-const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
+type NewsLayoutProps = {
+  topic: keyof typeof TOPICS;
+  isMobile: boolean;
+  setIsMobile: ActionCreatorWithPayload<boolean, string>;
+};
+
+const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps) => {
   const {
     isLoading: isPostsLoading,
     hasErrored: hasPostsErrorred,
@@ -36,9 +42,13 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
   } = useMongabayPosts(topic, LIMIT);
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
   const { videos: allCMSVideos } = useCMSVideos(topic);
-  const pageMetadata = getPageMetadataByTopic(topic) || {};
+
+  const pageMetadata = getPageMetadataByTopic(topic);
+
   // Store the isMobile flag in the redux store
-  useEffect(() => setIsMobile(isMobile), [isMobile, setIsMobile]);
+  useEffect(() => {
+    setIsMobile(isMobile);
+  }, [isMobile, setIsMobile]);
 
   let mostRecentArticle,
     otherArticles,
@@ -60,9 +70,9 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
 
   return (
     <Layout
-      title={pageMetadata.title}
-      description={pageMetadata.description}
-      thumbnail={pageMetadata.thumbnail}
+      title={pageMetadata?.title}
+      description={pageMetadata?.description}
+      thumbnail={pageMetadata?.thumbnail}
       themeColor={getColorByTopic(topic)}
     >
       <Section
@@ -77,7 +87,7 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
         {/* Most Recent */}
         {mostRecentArticle ? (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
-            <NewsArticle featured={true} topic={topic} {...mostRecentArticle} />
+            <NewsArticle topic={topic} {...mostRecentArticle} featured />
           </div>
         ) : (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
@@ -86,7 +96,7 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
         )}
         {firstWidget && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
-            <Widget data-testid="first-widget" widget={firstWidget} bordered={true} />
+            <Widget data-testid="first-widget" widget={firstWidget} bordered />
           </div>
         )}
       </Section>
@@ -131,6 +141,7 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
         )}
       </Section>
 
+      {/* @ts-expect-error */}
       <MediaContextProvider>
         <Desktop>
           <EarthHQCTA />
@@ -140,12 +151,4 @@ const NewsTopicLayout = ({ topic, isMobile, setIsMobile }) => {
   );
 };
 
-NewsTopicLayout.propTypes = {
-  topic: PropTypes.oneOf(Object.keys(TOPICS)).isRequired
-};
-
-NewsTopicLayout.defaultProps = {
-  topic: CLIMATE
-};
-
-export default NewsTopicLayout;
+export default NewsLayout;

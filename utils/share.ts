@@ -1,7 +1,13 @@
 // constants
 import { CLIMATE, FORESTS, OCEAN, FRESHWATER, BIODIVERSITY } from "./topics";
 
-export function getPageMetadataByTopic(topicSt, isDataPage = false) {
+export type PageMetadata = {
+  title: string;
+  description: string;
+  thumbnail: string;
+};
+
+export function getPageMetadataByTopic(topicSt: string, isDataPage = false) {
   switch (topicSt) {
     case CLIMATE:
       if (!isDataPage) {

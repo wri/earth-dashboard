@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { FormattedMongabayPost, MongabayPost, MongabayTopic } from "hooks/useMongabayPosts/types";
 
 export const APOLLO_CLIENT = new ApolloClient({
   uri: "https://news.mongabay.com/graphql",
@@ -29,15 +30,9 @@ export const APOLLO_CLIENT = new ApolloClient({
 export const MONGABAY_NEWS_DOMAIN = "https://news.mongabay.com";
 export const NOW_THIS_EARTH_RSS_URL = "https://feeds.groupninemedia.com/feeds/nowthis/earthhq";
 
-/**
- * Formats the posts so that they can render within the news-article component
- * @see components/news-article
- *
- * @param {Array} posts - The array of posts from the endpoint
- * @returns {Array} The formated posts
- */
-export const formatPosts = posts =>
-  posts.reduce((accumulator, currentValue) => {
+/** Formats the posts so that they can render within the news-article component. */
+export const formatPosts = (posts: MongabayPost[]): FormattedMongabayPost[] =>
+  posts.reduce((accumulator: FormattedMongabayPost[], currentValue) => {
     accumulator.push({
       key: currentValue.id,
       title: currentValue.title,
@@ -81,7 +76,7 @@ export const GetPostsQuery = gql`
 `;
 
 // ** Legacy **
-export const GET_NEWS_BY_TOPIC_QUERY = (topics, limit) => gql`
+export const GET_NEWS_BY_TOPIC_QUERY = (topics: MongabayTopic[], limit: number) => gql`
 query {
   posts (first: ${limit}, where: { tag: "${topics}" }) {
     nodes {
@@ -90,7 +85,7 @@ query {
           name
         }
       }
-      title,
+      title,string
       date,
       uri,
       featuredImage {
