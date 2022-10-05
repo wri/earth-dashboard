@@ -64,7 +64,7 @@ const HeaderOptions = ({
       )}
 
       {/* Share or search */}
-      {pathname !== "about" && (
+      {pathname !== "/about" && pathname !== "/news/search" && (
         <IconButton
           name={pathname === "/" ? "share" : "search"}
           size={16}
