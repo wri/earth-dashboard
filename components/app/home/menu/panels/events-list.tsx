@@ -12,7 +12,7 @@ import CtaButton from "components/ui/cta-button";
 const HEADLINE_BATCH_SIZE = 6;
 const SCOLL_THRESHOLD = 180;
 
-type HeadlinesPanerProps = {
+type EventsListPanelProps = {
   currentMode?: Mode;
   headlines: HeadlineType[];
   forceInfoPage: boolean;
@@ -21,7 +21,7 @@ type HeadlinesPanerProps = {
   currentHeadline?: HeadlineType;
 };
 
-const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHeadline }: HeadlinesPanerProps) => {
+const EventsListPanel = ({ currentMode, headlines, setCurrentHeadline, currentHeadline }: EventsListPanelProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [bannerHeight, setBannerHeight] = useState<number>(150);
   const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(HEADLINE_BATCH_SIZE);
@@ -80,7 +80,6 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
           {mostRecentHeadlines.map(headline => (
             <EventCard
               key={headline.id}
-              as="button"
               headline={headline}
               className={styles["c-home-menu__headline"]}
               onClick={() => onSelectHeadline(headline)}
@@ -108,4 +107,4 @@ export default connect(
     currentHeadline: state.headlines.currentHeadline
   }),
   { setHeadlines, setCurrentMode, setCurrentHeadline }
-)(HeadlinesPanel);
+)(EventsListPanel);

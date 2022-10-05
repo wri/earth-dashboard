@@ -32,7 +32,7 @@ const mapHighlightToOption = (
   };
 };
 
-type DataIndexProps = {
+type InfoPanelProps = {
   highlights: Mode[] | undefined;
   defaultMode: Mode | undefined;
   currentMode: Mode | undefined;
@@ -41,14 +41,14 @@ type DataIndexProps = {
   onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>;
 };
 
-const DataIndex = ({
+const InfoPanel = ({
   highlights,
   defaultMode,
   currentMode,
   onClickExtremeEvents,
   onClickDataLayer,
   onViewDataLayerSummary
-}: DataIndexProps) => {
+}: InfoPanelProps) => {
   const [modeEventCount, setModeEventCount] = useState<{ [id: number]: number }>({});
 
   const dataLayers = useMemo(
@@ -129,4 +129,4 @@ export default connect(
     highlights: state[modesSliceName].allModes?.filter(mode => mode.attributes.visibility.data_highlights)
   }),
   {}
-)(DataIndex);
+)(InfoPanel);

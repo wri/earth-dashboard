@@ -100,12 +100,7 @@ const DataLayerOverview = ({
         <div className={styles["c-home-menu__events-list"]}>
           {!isFetching ? (
             mostRecentHeadlines.map(headline => (
-              <EventCard
-                key={headline.id}
-                as="button"
-                headline={headline}
-                onClick={() => setCurrentHeadline(headline)}
-              />
+              <EventCard key={headline.id} headline={headline} onClick={() => setCurrentHeadline(headline)} />
             ))
           ) : (
             <p>Loading</p>

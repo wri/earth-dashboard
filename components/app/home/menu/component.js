@@ -2,10 +2,10 @@ import { forwardRef, useState, useEffect, useMemo } from "react";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
-import DataIndexPanel from "./panels/data-options";
+import InfoPanel from "./panels/info";
 import DataLayerPanel from "./panels/data-layer";
 import MenuLayout from "./layout";
-import ClimateAlerts from "./panels/climate-alerts";
+import EventsListPanel from "./panels/events-list";
 import Event from "components/app/home/event";
 import MobileMenuContainer from "./menu-mobile-container";
 import {
@@ -160,7 +160,7 @@ const Menu = forwardRef(
             onClose={onClose}
             style={isMobile ? { paddingBottom: "56px" } : {}}
           >
-            <DataIndexPanel
+            <InfoPanel
               onClickDataLayer={setCurrentMode}
               onViewDataLayerSummary={navigateTo(DATA_LAYER_PAGE_ID)}
               onClickExtremeEvents={navigateTo(EXTREME_EVENTS_PAGE_ID)}
@@ -178,7 +178,7 @@ const Menu = forwardRef(
             }
             onClose={onClose}
           >
-            <ClimateAlerts />
+            <EventsListPanel />
           </MenuLayout>
         )}
         {!currentHeadline && pageTypeId == DATA_LAYER_PAGE_ID && (
