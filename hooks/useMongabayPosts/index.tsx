@@ -27,17 +27,17 @@ type UseMongabayPosts = {
 /**
  * Fetches posts from the mongabay graphql endpoint based on predefined topics.
  *
- * @param topic - Posts returned from the endpoint will be part of this topic.
  * @param limit - Override for the max number of posts that can be returned from the endpoint.
+ * @param topic - (optional) Posts returned from the endpoint will be part of this topic. If optional returns all.
  */
-const useMongabayPosts = (topic: keyof typeof TOPICS, limit: number = LIMIT): UseMongabayPosts => {
+const useMongabayPosts = (limit: number = LIMIT, topic?: keyof typeof TOPICS): UseMongabayPosts => {
   const [posts, setPosts] = useState<FormattedMongabayPost[]>([]);
 
   const { loading, error, data, networkStatus, refetch, fetchMore } = useQuery(GetPostsQuery, {
     variables: {
       first: limit,
       after: null,
-      topics: TOPICS[topic]
+      topics: topic ?? Object.values(TOPICS).flat()
     },
     notifyOnNetworkStatusChange: true,
     errorPolicy: "all"

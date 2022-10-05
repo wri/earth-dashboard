@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import styles from "./news-article.module.scss";
 import Image from "next/image";
-import { formatDate } from "utils/dates";
+import { formatDatePretty } from "utils/dates";
 import ExternalLink from "components/ui/external-link";
 import { fireEvent } from "utils/gtag";
 import { NEWS_OPENED_ARTICLE } from "constants/tag-manager";
@@ -26,31 +26,49 @@ const NewsArticle = ({ className = "", topic, featured, title, author, date, ima
 
   return (
     <article
-      className={classnames(className, styles["c-news-article"], featured && styles["c-news-article--featured"])}
+      className={classnames(
+        styles["c-news-article"],
+        {
+          [styles["featured"]]: featured
+        },
+        className
+      )}
     >
-      <div className={styles["c-news-article__image"]}>
-        <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
+      {/* Top section */}
+      <div className={styles["top"]}>
+        <div
+          className={classnames(styles["image"], {
+            [styles["no-image"]]: !image
+          })}
+        >
+          {/* Thumbnail */}
+          <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
+        </div>
+
+        {/* Title */}
+        <span className={styles["title"]}>{title}</span>
       </div>
 
-      <div className={styles["c-news-article__content"]}>
-        {!featured && (
-          <span className={classnames(styles["c-news-article__title"], styles["c-news-article__author"])}>
-            {author}
-          </span>
-        )}
+      {/* Bottom section */}
+      <div className={styles["bottom"]}>
+        {/* Date */}
+        <span className={styles["date"]}>{formatDatePretty(date)}</span>
 
-        <span className={styles["c-news-article__title"]}>{title}</span>
-        <span className={styles["c-news-article__date"]}>
-          {author} . {formatDate(date)}
-        </span>
-
-        <ExternalLink
-          className={styles["c-news-article__link"]}
-          onClick={handleClick}
-          link={link}
-          label="Read full article"
-        />
+        {/* Article link */}
+        <ExternalLink className={styles["link"]} onClick={handleClick} link={link} label={author} />
       </div>
+
+      {/* Backdrop */}
+      <Image
+        src={image}
+        layout="fill"
+        objectFit="cover"
+        role="presentation"
+        alt=""
+        className={classnames(styles["backdrop"], {
+          [styles["no-image"]]: !image
+        })}
+      />
     </article>
   );
 };
