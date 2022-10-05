@@ -28,7 +28,7 @@ const HeaderOptions = ({
   const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
 
   // Navigation
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
 
   /** Opens the more menu. */
   const handleOpenMore = () => {
@@ -37,7 +37,13 @@ const HeaderOptions = ({
     setSettingsOpen();
   };
 
-  /** Opens share modal and fires event trigger */
+  /** Navigates to the search page. */
+  const onSearch = () => {
+    fireEvent(NEWS_SEARCH, null);
+    push("/news/search");
+  };
+
+  /** Opens share modal and fires event trigger. */
   const onShareClick = () => {
     fireEvent(MAP_SHARE, null);
     setIsShareOpen(true);
@@ -64,7 +70,7 @@ const HeaderOptions = ({
           size={16}
           aria-label={pathname === "/" ? "Share" : "Search"}
           className={classnames(styles["c-header-options__share"], styles["c-header-options__icon-button"])}
-          onClick={pathname === "/" ? onShareClick : () => fireEvent(NEWS_SEARCH, null)}
+          onClick={pathname === "/" ? onShareClick : onSearch}
           iconStyle={{ marginRight: pathname === "/" ? "2px" : "0" }}
         />
       )}
