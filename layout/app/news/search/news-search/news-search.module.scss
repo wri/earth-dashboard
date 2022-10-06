@@ -1,0 +1,10 @@
+@import "css/settings";
+
+.c-news-search {
+  width: 100%;
+  max-width: 600px;
+
+  .input {
+    background-color: $colour-night;
+  }
+}

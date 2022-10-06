@@ -6,7 +6,8 @@ import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
 import { Desktop, MediaContextProvider } from "utils/responsive";
 import TOPICS from "constants/news";
-import styles from "../news.module.scss";
+import styles from "./search.module.scss";
+import newsStyles from "../news.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import IconButton from "components/ui/icon-button";
@@ -44,11 +45,12 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
   return (
     <Layout title="News">
       {/* To top button */}
-      <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["c-news__top-button"]} />
+      <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={newsStyles["c-news__top-button"]} />
 
-      <Section>
+      <div className={styles["c-page-search__top"]}>
+        <h2 className={styles["title"]}>Search News</h2>
         <NewsSearch />
-      </Section>
+      </div>
 
       {/* Search results */}
       <Section
