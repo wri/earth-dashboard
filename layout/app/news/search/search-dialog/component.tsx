@@ -7,6 +7,7 @@ import TOPICS from "constants/news";
 import useDialogPanel from "hooks/useDialogPanel";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import { useState } from "react";
+import EarthHQCTA from "../../earth-hq-cta/component";
 import Section from "../../section";
 import NewsSearch from "../news-search";
 import styles from "./search-dialog.module.scss";
@@ -57,11 +58,14 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
 
         {/* Results */}
         <Section title="All Results" subtext="Showing..." className={styles["content"]} gridClassName={styles["grid"]}>
+          {/* Posts */}
           {posts || isLoading ? (
             posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
           ) : (
             <div>Loading...</div>
           )}
+
+          {/* Load more */}
           {canFetchMore && (
             <AnchorCTA className={styles["load-more"]} onClick={() => fetchMore(LOAD_MORE_LIMIT)}>
               {isFetchingMore ? "Loading..." : "Load More "}
