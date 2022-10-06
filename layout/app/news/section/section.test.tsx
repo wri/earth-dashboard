@@ -6,7 +6,14 @@ import { BG_GALAXY } from "constants/section-colours";
 describe("Page Section", () => {
   test("renders correctly", () => {
     const { container } = render(
-      <Section className="Test" gridClassName="Test" title="Test" bgColour={BG_GALAXY} paddingBottom={false}>
+      <Section
+        className="Test"
+        gridClassName="Test"
+        title="Test"
+        subtext="Test"
+        bgColour={BG_GALAXY}
+        paddingBottom={false}
+      >
         <div>child</div>
       </Section>
     );
@@ -23,6 +30,11 @@ describe("Page Section", () => {
       >
         Test
       </h2>
+      <p
+        class="o-page-section__subtext"
+      >
+        Test
+      </p>
       <div
         class="o-page-section__grid Test"
       >
@@ -34,10 +46,5 @@ describe("Page Section", () => {
   </div>
 </div>
 `);
-  });
-
-  test("renders no additional children when no children are passed", () => {
-    const { container } = render(<Section></Section>);
-    expect(container.firstChild.children.length).toBe(0);
   });
 });

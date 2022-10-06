@@ -58,6 +58,7 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
       {/* Search results */}
       <Section
         title="All Results"
+        subtext="Showing..."
         gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
         bgColour={BG_GALAXY}
       >
