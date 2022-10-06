@@ -62,7 +62,6 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
         gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
         bgColour={BG_GALAXY}
       >
-        {/* More News */}
         {posts || isLoading ? (
           posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
         ) : (

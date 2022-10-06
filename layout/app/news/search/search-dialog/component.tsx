@@ -1,11 +1,18 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import DialogPanel from "components/app/home/dialog-panel";
+import NewsArticle from "components/news-article";
+import AnchorCTA from "components/ui/anchor-cta/component";
 import IconButton from "components/ui/icon-button";
 import TOPICS from "constants/news";
 import useDialogPanel from "hooks/useDialogPanel";
+import useMongabayPosts from "hooks/useMongabayPosts";
 import { useState } from "react";
+import Section from "../../section";
 import NewsSearch from "../news-search";
 import styles from "./search-dialog.module.scss";
+
+const LIMIT = 12;
+const LOAD_MORE_LIMIT = 12;
 
 type SearchDialogProps = {
   isOpen: boolean;
@@ -16,6 +23,9 @@ type SearchDialogProps = {
 /** Shows the search bar and filter with its results. */
 const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogProps) => {
   const [topic, setTopic] = useState<keyof typeof TOPICS>();
+
+  // Data
+  const { isLoading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(LIMIT, topic);
 
   // Dialog controls
   const { shouldAnimate, handleClose } = useDialogPanel(isOpen, () => {
@@ -44,6 +54,20 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
             />
           </div>
         </div>
+
+        {/* Results */}
+        <Section title="All Results" subtext="Showing..." className={styles["content"]} gridClassName={styles["grid"]}>
+          {posts || isLoading ? (
+            posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
+          ) : (
+            <div>Loading...</div>
+          )}
+          {canFetchMore && (
+            <AnchorCTA className={styles["load-more"]} onClick={() => fetchMore(LOAD_MORE_LIMIT)}>
+              {isFetchingMore ? "Loading..." : "Load More "}
+            </AnchorCTA>
+          )}
+        </Section>
       </div>
     </DialogPanel>
   ) : null;
