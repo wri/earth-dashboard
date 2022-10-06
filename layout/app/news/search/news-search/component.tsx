@@ -13,7 +13,7 @@ type NewsSearchProps = {
 /** Contains search bar logic and topic filters. */
 const NewsSearch = ({ topic, setTopic }: NewsSearchProps) => {
   // Form
-  const { register, setValue, setFocus } = useForm();
+  const form = useForm();
 
   const topics = Object.keys(TOPICS) as (keyof typeof TOPICS)[];
 
@@ -23,11 +23,9 @@ const NewsSearch = ({ topic, setTopic }: NewsSearchProps) => {
       <Input
         iconName="search"
         name="search"
-        register={register}
-        setValue={setValue}
-        setFocus={setFocus}
         className={styles["input"]}
         placeholder="What are you looking for?"
+        {...form}
       />
 
       {/* Filters */}

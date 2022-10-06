@@ -1,25 +1,25 @@
 import classnames from "classnames";
-import { UseFormRegister, UseFormSetFocus, UseFormSetValue } from "react-hook-form";
+import { FieldValues, UseFormReturn } from "react-hook-form";
 import Icon, { IconNames } from "components/ui/Icon";
 import IconButton from "components/ui/icon-button";
 import styles from "./input.module.scss";
 
 type InputProps = {
   name: string;
-  register: UseFormRegister<any>;
-  setValue: UseFormSetValue<any>;
-  setFocus: UseFormSetFocus<any>;
   iconName?: IconNames;
   className?: string;
-} & Partial<HTMLInputElement>;
+} & UseFormReturn<FieldValues, any> &
+  Partial<HTMLInputElement>;
 
 /** Styles generic input. */
-const Input = ({ register, name, setValue, setFocus, iconName, className, placeholder }: InputProps) => {
+const Input = ({ name, register, watch, setValue, setFocus, iconName, className, placeholder }: InputProps) => {
   /** Clears the text-entry of the input and re-focuses. */
   const handleClearInput = () => {
     setValue(name, undefined);
     setFocus(name);
   };
+
+  const value = watch(name);
 
   return (
     <div className={classnames(styles["c-input"], className)}>
@@ -30,7 +30,7 @@ const Input = ({ register, name, setValue, setFocus, iconName, className, placeh
       <input className={styles["text-entry"]} placeholder={placeholder} {...register(name)} />
 
       {/* On clear */}
-      <IconButton name="close" size={9} onClick={handleClearInput} extraSmall />
+      {!!value && <IconButton name="close" size={9} onClick={handleClearInput} extraSmall />}
     </div>
   );
 };
