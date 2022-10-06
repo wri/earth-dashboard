@@ -15,7 +15,7 @@ export const pluralisedTopicNames = {
   [BIODIVERSITY]: "biodiversities"
 };
 
-const topics = {
+const TOPICS = {
   [CLIMATE]: climateTopics,
   [FORESTS]: forestsTopics,
   [OCEAN]: oceanTopics,
@@ -23,4 +23,4 @@ const topics = {
   [BIODIVERSITY]: biodiversityTopics
 };
 
-export default topics;
+export default TOPICS;

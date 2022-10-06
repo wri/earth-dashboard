@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import Layout from "layout/layout/layout-app";
 import AnchorCTA from "components/ui/anchor-cta";
@@ -26,8 +26,10 @@ type NewsSearchLayoutProps = {
 
 /** Shows the search bar and its results. */
 const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
+  const [topic, setTopic] = useState<keyof typeof TOPICS>();
+
   // Data
-  const { isLoading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(LIMIT);
+  const { isLoading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(LIMIT, topic);
 
   // Store the isMobile flag in the redux store
   useEffect(() => {
@@ -49,7 +51,7 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
 
       <div className={styles["c-page-search__top"]}>
         <h2 className={styles["title"]}>Search News</h2>
-        <NewsSearch />
+        <NewsSearch topic={topic} setTopic={setTopic} />
       </div>
 
       {/* Search results */}
