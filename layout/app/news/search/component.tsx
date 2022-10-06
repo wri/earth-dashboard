@@ -15,8 +15,8 @@ import Section from "../section";
 import { BG_GALAXY } from "constants/section-colours";
 import NewsSearch from "./news-search/component";
 
-const LIMIT = 9;
-const LOAD_MORE_LIMIT = 9;
+const LIMIT = 12;
+const LOAD_MORE_LIMIT = 12;
 
 type NewsSearchLayoutProps = {
   topic: keyof typeof TOPICS;
