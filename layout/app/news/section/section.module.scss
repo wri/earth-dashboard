@@ -42,7 +42,6 @@
   &__title,
   &__subtext {
     color: $white;
-    font-weight: 500;
   }
 
   &__title {
@@ -50,6 +49,14 @@
 
     text-transform: uppercase;
     margin-bottom: 0;
+    font-weight: 600;
+  }
+
+  &__subtext {
+    @include font-size(16px, 20px);
+
+    font-weight: 500;
+    margin-top: 8px;
   }
 
   &__grid {
@@ -69,7 +76,9 @@
     }
 
     &__title {
-      @include font-size(24px, 36px);
+      @include font-size(20px, 30px);
+
+      font-family: Barlow;
     }
   }
 }
