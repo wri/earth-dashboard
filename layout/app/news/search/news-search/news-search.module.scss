@@ -13,6 +13,7 @@
   .filters {
     display: flex;
     align-items: center;
+    overflow-x: auto;
 
     button {
       @include font-size(16px, 24px);
