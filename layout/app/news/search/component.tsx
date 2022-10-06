@@ -49,6 +49,7 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
       {/* To top button */}
       <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={newsStyles["c-news__top-button"]} />
 
+      {/* Search controls */}
       <div className={styles["c-page-search__top"]}>
         <h2 className={styles["title"]}>Search News</h2>
         <NewsSearch topic={topic} setTopic={setTopic} />
