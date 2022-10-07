@@ -13,6 +13,7 @@ import NewsSearch from "../news-search";
 import SearchEmptyState from "../search-empty-state";
 import styles from "./search-dialog.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
+import EarthHQCTA from "../../earth-hq-cta";
 
 const LIMIT = 12;
 const LOAD_MORE_LIMIT = 12;
@@ -111,6 +112,8 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
               </AnchorCTA>
             </div>
           )}
+
+          <EarthHQCTA className={styles["cta"]} />
         </Section>
       </div>
     </DialogPanel>

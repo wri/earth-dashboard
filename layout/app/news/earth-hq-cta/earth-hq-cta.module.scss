@@ -8,9 +8,18 @@
   background-image: url("/static/images/star-background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  height: 405px;
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    height: auto;
+  }
 
   &:not(:empty) {
-    padding: 60px;
+    padding: 20px 40px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      padding: 60px;
+    }
   }
 
   &:after {
@@ -19,10 +28,14 @@
     top: 0;
     right: 0;
     bottom: 0;
-    left: 600px;
-    background-image: url("/static/images/globe-fires.png");
+    left: 0;
     background-repeat: no-repeat;
     background-size: cover;
+    background-image: url("/static/images/globe-fires-mobile.png");
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      background-image: url("/static/images/globe-fires.png");
+    }
 
     @media screen and (min-width: $o-page-section-wrap-max-width) {
       left: auto;
@@ -31,31 +44,56 @@
   }
 
   &__content {
-    padding: 72px 40px;
+    padding: 0px;
     width: 100%;
     max-width: 658px;
     backdrop-filter: blur(5.43656px);
-    background-color: rgba($colour-galaxy, 0.6);
+    background-color: transparent;
     border-radius: 12px;
+    margin-top: -16px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      padding: 72px 40px;
+      background-color: rgba($colour-galaxy, 0.6);
+      margin-top: 0px;
+    }
   }
 
   &__title,
   &__text {
     color: $white;
-    font-weight: 600;
   }
 
   &__title {
-    @include font-size(32px, 48px);
+    @include font-size(20px, 30px);
 
-    font-family: Barlow;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-weight: 600;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      @include font-size(32px, 48px);
+
+      font-family: Barlow;
+      text-align: left;
+      margin-bottom: 20px;
+    }
   }
 
   &__text {
-    @include font-size(18px, 27px);
+    @include font-size(16px, 24px);
 
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    text-align: center;
+    font-weight: 500;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      @include font-size(18px, 27px);
+
+      text-align: left;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
   }
 
   &__link {
@@ -64,6 +102,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 8px;
+    margin: auto;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      margin: 0px;
+    }
 
     .text {
       @include font-size(20px, 30px);
