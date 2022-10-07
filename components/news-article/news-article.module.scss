@@ -221,6 +221,14 @@ $c-news-article-transition: 0.3s ease-in-out;
   display: grid;
   gap: 16px;
 
+  &.no-top-margin {
+    margin-top: 0px;
+  }
+
+  &__loading {
+    color: $white;
+  }
+
   &__load-more {
     display: flex;
     justify-content: center;

@@ -59,6 +59,29 @@
   }
 
   &__link {
-    min-width: 257px;
+    max-width: 257px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+
+    .text {
+      @include font-size(20px, 30px);
+
+      font-family: "Barlow Condensed";
+      font-weight: 500;
+      margin-bottom: 0px;
+      margin-left: 24px;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $white;
+      border-radius: 50%;
+      color: $colour-galaxy;
+      padding: 9px;
+    }
   }
 }
