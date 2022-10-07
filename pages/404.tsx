@@ -16,7 +16,7 @@ const PageNotFound = () => {
 
         {/* Button */}
         <AnchorCTA className={styles["back-btn"]} href="/">
-          <p className={styles["text"]}>Back Earth HQ</p>
+          <p className={styles["text"]}>Back To Earth HQ</p>
           <div className={styles["icon"]}>
             <Icon name="arrow-right" size={15} type="decorative" />
           </div>
