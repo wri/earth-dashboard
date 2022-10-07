@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { useEffect, useState } from "react";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import Layout from "layout/layout/layout-app";
@@ -14,6 +15,7 @@ import IconButton from "components/ui/icon-button";
 import Section from "../section";
 import { BG_GALAXY } from "constants/section-colours";
 import NewsSearch from "./news-search/component";
+import SearchEmptyState from "./search-empty-state";
 
 const LIMIT = 12;
 const LOAD_MORE_LIMIT = 12;
@@ -44,6 +46,8 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
     });
   };
 
+  const hasSearchResults = !isLoading && posts && posts.length > 0;
+
   return (
     <Layout title="News">
       {/* To top button */}
@@ -57,13 +61,23 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
 
       {/* Search results */}
       <Section
-        title="All Results"
-        subtext="Showing..."
-        gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
+        gridClassName={classnames(newsArticleStyles["c-page-section-grid-news-articles"], {
+          [newsArticleStyles["no-top-margin"]]: !hasSearchResults
+        })}
         bgColour={BG_GALAXY}
+        {...(hasSearchResults
+          ? {
+              title: "All Results",
+              subtext: "Showing..."
+            }
+          : {})}
       >
-        {posts || isLoading ? (
-          posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
+        {!isLoading ? (
+          !posts || !posts.length ? (
+            <SearchEmptyState />
+          ) : (
+            posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
+          )
         ) : (
           <div>Loading...</div>
         )}
@@ -79,12 +93,14 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
         )}
       </Section>
 
-      {/* @ts-expect-error */}
-      <MediaContextProvider>
-        <Desktop>
-          <EarthHQCTA />
-        </Desktop>
-      </MediaContextProvider>
+      {hasSearchResults && (
+        // @ts-expect-error
+        <MediaContextProvider>
+          <Desktop>
+            <EarthHQCTA />
+          </Desktop>
+        </MediaContextProvider>
+      )}
     </Layout>
   );
 };
