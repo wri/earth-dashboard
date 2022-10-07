@@ -26,4 +26,8 @@
       overflow-x: auto;
     }
   }
+
+  &__load-more__btn:focus {
+    background-color: $colour-midnight;
+  }
 }

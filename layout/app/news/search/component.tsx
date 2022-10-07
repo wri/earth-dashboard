@@ -84,7 +84,10 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
         {canFetchMore && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
             <AnchorCTA
-              className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]}
+              className={classnames(
+                newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"],
+                styles["c-page-search__load-more__btn"]
+              )}
               onClick={() => fetchMore(LOAD_MORE_LIMIT)}
             >
               {isFetchingMore ? "Loading..." : "Load More "}
