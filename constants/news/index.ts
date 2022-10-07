@@ -9,17 +9,17 @@ import { CLIMATE, FRESHWATER, OCEAN, FORESTS, BIODIVERSITY } from "utils/topics"
 // Pluralised topics - needed for the NowThis video keywords...
 export const pluralisedTopicNames = {
   [CLIMATE]: "climates",
+  [FRESHWATER]: "freshwaters",
   [FORESTS]: "forests",
   [OCEAN]: "oceans",
-  [FRESHWATER]: "freshwaters",
   [BIODIVERSITY]: "biodiversities"
 };
 
 const TOPICS = {
   [CLIMATE]: climateTopics,
+  [FRESHWATER]: freshwaterTopcis,
   [FORESTS]: forestsTopics,
   [OCEAN]: oceanTopics,
-  [FRESHWATER]: freshwaterTopcis,
   [BIODIVERSITY]: biodiversityTopics
 };
 
