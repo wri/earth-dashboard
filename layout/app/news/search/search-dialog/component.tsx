@@ -35,6 +35,18 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
     setIsNewsSearchOpen(false);
   });
 
+  /** Scrolls to top. */
+  const handleScrollToTop = () => {
+    const dialogEl = document.getElementById("search-dialog-content");
+
+    if (!dialogEl) return;
+
+    dialogEl.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
   const hasSearchResults = !isLoading && posts && posts.length > 0;
 
   return isOpen ? (
@@ -62,6 +74,7 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
 
         {/* Results */}
         <Section
+          id="search-dialog-content"
           className={styles["content"]}
           gridClassName={classnames(newsArticleStyles["c-page-section-grid-news-articles"], {
             [newsArticleStyles["no-top-margin"]]: !hasSearchResults
@@ -73,6 +86,9 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
               }
             : {})}
         >
+          {/* To top button */}
+          <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["top-button"]} />
+
           {/* Posts */}
           {!isLoading ? (
             !posts || !posts.length ? (

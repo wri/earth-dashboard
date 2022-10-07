@@ -5,6 +5,7 @@ import styles from "./section.module.scss";
 
 type SectionProps = {
   children: ReactNode;
+  id?: string;
   paddingBottom?: boolean;
   className?: string;
   gridClassName?: string;
@@ -15,6 +16,7 @@ type SectionProps = {
 };
 
 const Section = ({
+  id,
   className = "",
   gridClassName = "",
   title,
@@ -25,6 +27,7 @@ const Section = ({
   children
 }: SectionProps) => (
   <div
+    id={id}
     className={classnames(
       className,
       styles["o-page-section"],

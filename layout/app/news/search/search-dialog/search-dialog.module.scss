@@ -15,6 +15,20 @@
   border-radius: 12px 12px 0 0;
   overflow: hidden;
 
+  .top-button {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    right: 24px;
+    bottom: 16px;
+    z-index: 10;
+
+    svg {
+      min-width: 16px;
+      min-height: 16px;
+    }
+  }
+
   .header {
     display: flex;
     flex-direction: column;
