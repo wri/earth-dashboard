@@ -1,10 +1,29 @@
-import { Children } from "react";
+import { Children, ReactNode } from "react";
 import classnames from "classnames";
-import sectionBgColours, { BG_SPACE } from "constants/section-colours";
+import { BG_SPACE } from "constants/section-colours";
 import styles from "./section.module.scss";
-import PropTypes from "prop-types";
 
-const Section = ({ className, gridClassName, title, bgColour, paddingBottom, noWrap, children }) => (
+type SectionProps = {
+  children: ReactNode;
+  paddingBottom?: boolean;
+  className?: string;
+  gridClassName?: string;
+  title?: string;
+  subtext?: string;
+  bgColour?: string;
+  noWrap?: boolean;
+};
+
+const Section = ({
+  className = "",
+  gridClassName = "",
+  title,
+  subtext,
+  bgColour = BG_SPACE,
+  paddingBottom = true,
+  noWrap,
+  children
+}: SectionProps) => (
   <div
     className={classnames(
       className,
@@ -16,27 +35,11 @@ const Section = ({ className, gridClassName, title, bgColour, paddingBottom, noW
     {Children.count(children) > 0 && (
       <div className={noWrap ? styles["o-page-section__nowrap"] : styles["o-page-section__wrap"]}>
         {title && <h2 className={styles["o-page-section__title"]}>{title}</h2>}
+        {subtext && <p className={styles["o-page-section__subtext"]}>{subtext}</p>}
         <div className={classnames(styles["o-page-section__grid"], gridClassName)}>{children}</div>
       </div>
     )}
   </div>
 );
-
-Section.propTypes = {
-  className: PropTypes.string,
-  gridClassName: PropTypes.string,
-  title: PropTypes.string,
-  bgColour: PropTypes.oneOf(sectionBgColours),
-  paddingBottom: PropTypes.bool.isRequired,
-  noWrap: PropTypes.bool
-};
-
-Section.defaultProps = {
-  className: "",
-  gridClassName: "",
-  bgColour: BG_SPACE,
-  paddingBottom: true,
-  noWrap: false
-};
 
 export default Section;

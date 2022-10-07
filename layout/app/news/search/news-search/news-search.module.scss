@@ -1,0 +1,35 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-news-search {
+  .input {
+    background-color: $colour-night;
+    margin-bottom: 16px;
+  }
+
+  .filters {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+
+    button {
+      @include font-size(16px, 24px);
+
+      background-color: $colour-night;
+      color: $white;
+      padding: 6px 12px;
+      font-weight: 500;
+      border-radius: 10px;
+      text-transform: capitalize;
+
+      &.active {
+        background-color: $white;
+        color: $colour-night;
+      }
+
+      &:not(:last-child) {
+        margin-right: 12px;
+      }
+    }
+  }
+}

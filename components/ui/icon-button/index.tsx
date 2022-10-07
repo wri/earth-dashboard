@@ -7,6 +7,7 @@ type IconButtonProps = {
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
+  extraSmall?: boolean;
   small?: boolean;
   medium?: boolean;
   iconStyle?: Object;
@@ -21,6 +22,7 @@ const IconButton = forwardRef(
       size,
       onClick,
       className = "",
+      extraSmall,
       small,
       medium,
       disabled,
@@ -36,7 +38,7 @@ const IconButton = forwardRef(
         ref={ref}
         className={classnames(
           styles["c-icon-button"],
-          { [styles["small"]]: small, [styles["medium"]]: medium },
+          { [styles["extra-small"]]: extraSmall, [styles["small"]]: small, [styles["medium"]]: medium },
           className
         )}
         onClick={onClick}
