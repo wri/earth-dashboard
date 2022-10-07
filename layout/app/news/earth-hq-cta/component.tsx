@@ -2,6 +2,7 @@ import styles from "layout/app/news/earth-hq-cta/earth-hq-cta.module.scss";
 import Section from "layout/app/news/section";
 import AnchorCTA from "components/ui/anchor-cta";
 import classnames from "classnames";
+import Icon from "components/ui/Icon";
 
 type EarthHQCTAProps = {
   className?: string;
@@ -22,7 +23,10 @@ const EarthHQCTA = ({ className = "" }: EarthHQCTAProps) => (
 
       {/* Button */}
       <AnchorCTA className={styles["c-earth-hq-cta__link"]} href="/">
-        Explore Earth HQ
+        <p className={styles["text"]}>Explore Earth HQ</p>
+        <div className={styles["icon"]}>
+          <Icon name="arrow-right" size={15} type="decorative" />
+        </div>
       </AnchorCTA>
     </div>
   </Section>
