@@ -81,16 +81,16 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
       <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>
         {/* Most Recent */}
         {mostRecentArticle ? (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
+          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__article"]}>
             <NewsArticle topic={topic} {...mostRecentArticle} featured />
           </div>
         ) : (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
+          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__article"]}>
             <div>{postsLoadingMessage}</div>
           </div>
         )}
         {firstWidget && (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__column"]}>
+          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__widget"]}>
             <Widget data-testid="first-widget" widget={firstWidget} bordered sourceButtonRight />
           </div>
         )}
