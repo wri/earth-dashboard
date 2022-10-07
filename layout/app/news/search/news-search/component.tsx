@@ -8,28 +8,47 @@ import styles from "./news-search.module.scss";
 type NewsSearchProps = {
   topic: keyof typeof TOPICS | undefined;
   setTopic: Dispatch<SetStateAction<keyof typeof TOPICS | undefined>>;
+  darkColors?: boolean;
+  className?: string;
+  inputClassName?: string;
+  filtersClassName?: string;
 };
 
 /** Contains search bar logic and topic filters. */
-const NewsSearch = ({ topic, setTopic }: NewsSearchProps) => {
+const NewsSearch = ({
+  topic,
+  setTopic,
+  darkColors,
+  className = "",
+  inputClassName = "",
+  filtersClassName = ""
+}: NewsSearchProps) => {
   // Form
   const form = useForm();
 
   const topics = Object.keys(TOPICS) as (keyof typeof TOPICS)[];
 
   return (
-    <div className={styles["c-news-search"]}>
+    <div
+      className={classnames(
+        styles["c-news-search"],
+        {
+          [styles["dark"]]: darkColors
+        },
+        className
+      )}
+    >
       {/* Search bar */}
       <Input
         iconName="search"
         name="search"
-        className={styles["input"]}
+        className={classnames(styles["input"], inputClassName)}
         placeholder="What are you looking for?"
         {...form}
       />
 
       {/* Filters */}
-      <div className={styles["filters"]}>
+      <div className={classnames(styles["filters"], filtersClassName)}>
         {/* All */}
         <button
           onClick={() => setTopic(undefined)}

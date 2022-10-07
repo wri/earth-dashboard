@@ -10,7 +10,7 @@ import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
 import VideoArticle from "components/video-article";
 import Widget from "layout/app/news/widget";
-import { Desktop, MediaContextProvider } from "utils/responsive";
+import { Desktop, MediaContextProvider, Mobile } from "utils/responsive";
 import { CLIMATE } from "utils/topics";
 import TOPICS from "constants/news";
 import styles from "./news.module.scss";
@@ -19,6 +19,7 @@ import videoArticleStyles from "components/video-article/video-article.module.sc
 import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import IconButton from "components/ui/icon-button";
+import SearchDialog from "./search/search-dialog";
 
 const LIMIT = 10;
 const LOAD_MORE_LIMIT = 9;
@@ -140,6 +141,10 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
         <Desktop>
           <EarthHQCTA />
         </Desktop>
+        <Mobile>
+          {/* Search */}
+          <SearchDialog />
+        </Mobile>
       </MediaContextProvider>
     </Layout>
   );

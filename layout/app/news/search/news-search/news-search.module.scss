@@ -2,15 +2,27 @@
 @import "css/tools/fontSize";
 
 .c-news-search {
+  &.dark {
+    .filters {
+      button {
+        background-color: $colour-midnight;
+      }
+    }
+  }
+
+  &:not(.dark) {
+    .input {
+      background-color: $colour-night;
+    }
+  }
+
   .input {
-    background-color: $colour-night;
     margin-bottom: 16px;
   }
 
   .filters {
     display: flex;
     align-items: center;
-    overflow-x: auto;
 
     button {
       @include font-size(16px, 24px);

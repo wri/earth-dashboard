@@ -15,6 +15,7 @@ type HeaderOptionsProps = {
   setSettingsOpen: ActionCreatorWithoutPayload<string>;
   setSettingsClose: ActionCreatorWithoutPayload<string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
+  setIsNewsSearchOpen: ActionCreatorWithPayload<boolean, string>;
 };
 
 /** Header options for languages, share, and more. */
@@ -23,7 +24,8 @@ const HeaderOptions = ({
   isMobile,
   setSettingsOpen,
   setSettingsClose,
-  setIsShareOpen
+  setIsShareOpen,
+  setIsNewsSearchOpen
 }: HeaderOptionsProps) => {
   const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
 
@@ -40,6 +42,7 @@ const HeaderOptions = ({
   /** Navigates to the search page. */
   const onSearch = () => {
     fireEvent(NEWS_SEARCH, null);
+    if (isMobile) return setIsNewsSearchOpen(true);
     push("/news/search");
   };
 

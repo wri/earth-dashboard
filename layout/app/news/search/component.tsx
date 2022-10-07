@@ -52,7 +52,7 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
       {/* Search controls */}
       <div className={styles["c-page-search__top"]}>
         <h2 className={styles["title"]}>Search News</h2>
-        <NewsSearch topic={topic} setTopic={setTopic} />
+        <NewsSearch topic={topic} setTopic={setTopic} filtersClassName={styles["filters"]} />
       </div>
 
       {/* Search results */}
@@ -62,7 +62,6 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
         gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
         bgColour={BG_GALAXY}
       >
-        {/* More News */}
         {posts || isLoading ? (
           posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
         ) : (
