@@ -13,6 +13,7 @@ import NewsSearch from "../news-search";
 import SearchEmptyState from "../search-empty-state";
 import styles from "./search-dialog.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
+import EarthHQCTA from "../../earth-hq-cta";
 
 const LIMIT = 12;
 const LOAD_MORE_LIMIT = 12;
@@ -34,6 +35,18 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
   const { shouldAnimate, handleClose } = useDialogPanel(isOpen, () => {
     setIsNewsSearchOpen(false);
   });
+
+  /** Scrolls to top. */
+  const handleScrollToTop = () => {
+    const dialogEl = document.getElementById("search-dialog-content");
+
+    if (!dialogEl) return;
+
+    dialogEl.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 
   const hasSearchResults = !isLoading && posts && posts.length > 0;
 
@@ -62,6 +75,7 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
 
         {/* Results */}
         <Section
+          id="search-dialog-content"
           className={styles["content"]}
           gridClassName={classnames(newsArticleStyles["c-page-section-grid-news-articles"], {
             [newsArticleStyles["no-top-margin"]]: !hasSearchResults
@@ -73,6 +87,9 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
               }
             : {})}
         >
+          {/* To top button */}
+          <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["top-button"]} />
+
           {/* Posts */}
           {!isLoading ? (
             !posts || !posts.length ? (
@@ -95,6 +112,8 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
               </AnchorCTA>
             </div>
           )}
+
+          <EarthHQCTA className={styles["cta"]} />
         </Section>
       </div>
     </DialogPanel>

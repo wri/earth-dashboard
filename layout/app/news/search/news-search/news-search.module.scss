@@ -1,7 +1,14 @@
 @import "css/settings";
+@import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
 .c-news-search {
+  width: 100%;
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    width: auto;
+  }
+
   &.dark {
     .filters {
       button {
