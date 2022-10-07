@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import DialogPanel from "components/app/home/dialog-panel";
 import NewsArticle from "components/news-article";
@@ -7,10 +8,11 @@ import TOPICS from "constants/news";
 import useDialogPanel from "hooks/useDialogPanel";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import { useState } from "react";
-import EarthHQCTA from "../../earth-hq-cta/component";
 import Section from "../../section";
 import NewsSearch from "../news-search";
+import SearchEmptyState from "../search-empty-state";
 import styles from "./search-dialog.module.scss";
+import newsArticleStyles from "components/news-article/news-article.module.scss";
 
 const LIMIT = 12;
 const LOAD_MORE_LIMIT = 12;
@@ -32,6 +34,8 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
   const { shouldAnimate, handleClose } = useDialogPanel(isOpen, () => {
     setIsNewsSearchOpen(false);
   });
+
+  const hasSearchResults = !isLoading && posts && posts.length > 0;
 
   return isOpen ? (
     <DialogPanel onClose={handleClose} isMobile={isMobile} shouldAnimate={shouldAnimate}>
@@ -57,19 +61,39 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
         </div>
 
         {/* Results */}
-        <Section title="All Results" subtext="Showing..." className={styles["content"]} gridClassName={styles["grid"]}>
+        <Section
+          className={styles["content"]}
+          gridClassName={classnames(newsArticleStyles["c-page-section-grid-news-articles"], {
+            [newsArticleStyles["no-top-margin"]]: !hasSearchResults
+          })}
+          {...(hasSearchResults
+            ? {
+                title: "All Results",
+                subtext: "Showing..."
+              }
+            : {})}
+        >
           {/* Posts */}
-          {posts || isLoading ? (
-            posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
+          {!isLoading ? (
+            !posts || !posts.length ? (
+              <SearchEmptyState />
+            ) : (
+              posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
+            )
           ) : (
-            <div>Loading...</div>
+            <p className={newsArticleStyles["c-page-section-grid-news-articles__loading"]}>Loading...</p>
           )}
 
           {/* Load more */}
           {canFetchMore && (
-            <AnchorCTA className={styles["load-more"]} onClick={() => fetchMore(LOAD_MORE_LIMIT)}>
-              {isFetchingMore ? "Loading..." : "Load More "}
-            </AnchorCTA>
+            <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
+              <AnchorCTA
+                className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}
+                onClick={() => fetchMore(LOAD_MORE_LIMIT)}
+              >
+                {isFetchingMore ? "Loading..." : "Load More "}
+              </AnchorCTA>
+            </div>
           )}
         </Section>
       </div>
