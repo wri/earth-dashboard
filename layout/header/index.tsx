@@ -32,8 +32,6 @@ const Header = ({
   setCurrentScaleBy,
   setPageTypeId
 }: HeaderProps) => {
-  const is404 = useRef<boolean>(false);
-
   // Navigation
   const router = useRouter();
   const dispatch = useDispatch();
@@ -66,9 +64,7 @@ const Header = ({
     dispatch(resetGlobeToDefault());
   };
 
-  useEffect(() => {
-    is404.current = document.title === "404";
-  }, []);
+  const is404 = router.pathname === "/404";
 
   return (
     <>
@@ -116,9 +112,12 @@ const Header = ({
           </div>
         )}
       </header>
-      <Mobile>
-        <Navbar />
-      </Mobile>
+
+      {!is404 && (
+        <Mobile>
+          <Navbar />
+        </Mobile>
+      )}
     </>
   );
 };

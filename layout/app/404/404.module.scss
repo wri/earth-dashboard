@@ -11,7 +11,6 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
 
   .container {
@@ -20,6 +19,7 @@
     align-items: center;
     justify-content: center;
     max-width: 600px;
+    margin: 0 24px;
     margin-bottom: 92px;
 
     h1,
@@ -30,10 +30,14 @@
     }
 
     h1 {
-      @include font-size(32px, 48px);
+      @include font-size(20px, 30px);
 
       font-weight: 600;
       margin-bottom: 8px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        @include font-size(32px, 48px);
+      }
     }
 
     p {
@@ -74,16 +78,26 @@
 
   .globe {
     position: relative;
-    height: calc(981px / 2);
-    width: 981px;
+    height: calc(375px / 2);
+    width: 375px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      height: calc(981px / 2);
+      width: 981px;
+    }
 
     .shadow {
       position: absolute;
       top: 0;
       border-radius: 50%;
-      height: 981px;
-      width: 981px;
+      height: 375px;
+      width: 375px;
       box-shadow: 0px 0px 111.16368103027344px 0px rgba(0, 0, 0, 1);
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        height: 981px;
+        width: 981px;
+      }
     }
   }
 }

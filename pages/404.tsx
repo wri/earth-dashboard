@@ -4,8 +4,18 @@ import AnchorCTA from "components/ui/anchor-cta/component";
 import Icon from "components/ui/Icon";
 import Image from "next/image";
 import GlobeFiresHalf from "public/static/images/globe-fires-half.png";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const PageNotFound = () => {
+  const { replace } = useRouter();
+
+  useEffect(() => {
+    replace("/404");
+
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <Layout title="404" className={styles["c-page-404"]}>
       {/* Container */}
