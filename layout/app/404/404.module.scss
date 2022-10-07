@@ -1,4 +1,5 @@
 @import "css/settings";
+@import "css/settings/breakpoints";
 @import "css/tools/fontSize";
 
 .c-page-404 {
@@ -6,11 +7,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   width: 100vw;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+  overflow: hidden;
 
   .container {
     display: flex;
@@ -18,6 +20,7 @@
     align-items: center;
     justify-content: center;
     max-width: 600px;
+    margin-bottom: 92px;
 
     h1,
     p {
@@ -38,6 +41,49 @@
 
       font-weight: 500;
       margin-bottom: 32px;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px;
+      margin: auto;
+
+      .text {
+        @include font-size(20px, 30px);
+
+        font-family: "Barlow Condensed";
+        font-weight: 500;
+        margin-bottom: 0;
+        margin-left: 24px;
+        margin-right: 16px;
+      }
+
+      .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $white;
+        border-radius: 50%;
+        color: $colour-galaxy;
+        padding: 9px;
+      }
+    }
+  }
+
+  .globe {
+    position: relative;
+    height: calc(981px / 2);
+    width: 981px;
+
+    .shadow {
+      position: absolute;
+      top: 0;
+      border-radius: 50%;
+      height: 981px;
+      width: 981px;
+      box-shadow: 0px 0px 111.16368103027344px 0px rgba(0, 0, 0, 1);
     }
   }
 }

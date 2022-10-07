@@ -14,6 +14,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { setPageTypeId } from "slices/modes";
+import { useEffect, useRef } from "react";
 
 type HeaderProps = {
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
@@ -31,6 +32,8 @@ const Header = ({
   setCurrentScaleBy,
   setPageTypeId
 }: HeaderProps) => {
+  const is404 = useRef<boolean>(false);
+
   // Navigation
   const router = useRouter();
   const dispatch = useDispatch();
@@ -63,12 +66,16 @@ const Header = ({
     dispatch(resetGlobeToDefault());
   };
 
+  useEffect(() => {
+    is404.current = document.title === "404";
+  }, []);
+
   return (
     <>
       <header
         className={classnames(
           styles["c-site-header"],
-          router.pathname === "/" || document.title === "404" ? styles["fixed"] : styles["sticky"]
+          router.pathname === "/" || is404 ? styles["fixed"] : styles["sticky"]
         )}
       >
         <div className={styles["top-section"]}>
