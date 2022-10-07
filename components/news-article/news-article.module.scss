@@ -225,6 +225,10 @@ $c-news-article-transition: 0.3s ease-in-out;
     margin-top: 0px;
   }
 
+  &__loading {
+    color: $white;
+  }
+
   &__load-more {
     display: flex;
     justify-content: center;

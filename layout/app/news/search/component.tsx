@@ -79,7 +79,7 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
             posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
           )
         ) : (
-          <div>Loading...</div>
+          <div className={newsArticleStyles["c-page-section-grid-news-articles__loading"]}>Loading...</div>
         )}
         {canFetchMore && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
