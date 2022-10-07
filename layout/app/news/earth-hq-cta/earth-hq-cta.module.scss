@@ -25,16 +25,21 @@
   &:after {
     content: "";
     position: absolute;
+    border-radius: 12px;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-image: url("/static/images/globe-fires-mobile.png");
+    background-position: bottom;
 
     @media screen and (min-width: $global-breakpoint-md) {
       background-image: url("/static/images/globe-fires.png");
+      left: 600px;
+      background-size: cover;
+      background-position: initial;
     }
 
     @media screen and (min-width: $o-page-section-wrap-max-width) {
@@ -47,7 +52,6 @@
     padding: 0px;
     width: 100%;
     max-width: 658px;
-    backdrop-filter: blur(5.43656px);
     background-color: transparent;
     border-radius: 12px;
     margin-top: -16px;
@@ -55,6 +59,7 @@
     @media screen and (min-width: $global-breakpoint-md) {
       padding: 72px 40px;
       background-color: rgba($colour-galaxy, 0.6);
+      backdrop-filter: blur(5.43656px);
       margin-top: 0px;
     }
   }
