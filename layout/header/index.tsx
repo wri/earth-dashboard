@@ -66,7 +66,10 @@ const Header = ({
   return (
     <>
       <header
-        className={classnames(styles["c-site-header"], router.pathname === "/" ? styles["fixed"] : styles["sticky"])}
+        className={classnames(
+          styles["c-site-header"],
+          router.pathname === "/" || document.title === "404" ? styles["fixed"] : styles["sticky"]
+        )}
       >
         <div className={styles["top-section"]}>
           {/* Logo */}
