@@ -39,6 +39,7 @@ const EarthHQCTA = ({ className = "", isMobile }: EarthHQCTAProps) => (
         src={isMobile ? GlobeFiresMobile : GlobeFires}
         layout="fill"
         objectFit="cover"
+        objectPosition="left"
         role="presentation"
         alt=""
       />
