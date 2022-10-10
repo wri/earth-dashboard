@@ -174,23 +174,24 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
             })}
           >
             {/* Back button */}
-            <OutlineButton
-              text="BACK"
+            <div
               className={classnames(styles["back-button"], {
                 [styles["hide"]]: isFirstSlide
               })}
-              onClick={backStep}
-            />
+            >
+              <OutlineButton text="BACK" onClick={backStep} />
+            </div>
 
             {!isMobile && <SlideLocator isMobile={isMobile} counter={counter} setCounter={setCounter} />}
 
             {/* Next button */}
-            <DefaultButton
-              text={isFinalSlide ? "EXPLORE" : "CONTINUE"}
-              icon={<Icon name={isFinalSlide ? "check" : "arrow-right"} size={15} type="decorative" />}
-              className={styles["next-button"]}
-              onClick={nextStep}
-            />
+            <div className={styles["next-button"]}>
+              <DefaultButton
+                text={isFinalSlide ? "EXPLORE" : "CONTINUE"}
+                icon={<Icon name={isFinalSlide ? "check" : "arrow-right"} size={15} type="decorative" />}
+                onClick={nextStep}
+              />
+            </div>
           </div>
         </div>
       </div>

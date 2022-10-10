@@ -239,6 +239,15 @@
           }
         }
 
+        .next-button,
+        .back-button {
+          width: auto;
+
+          @media screen and (min-width: $global-breakpoint-md) {
+            width: 152px;
+          }
+        }
+
         .back-button {
           &.hide {
             display: none;
