@@ -21,8 +21,7 @@
     flex-direction: column;
     background-color: $black;
     width: 620px;
-    max-height: 691px;
-    height: 90%;
+    height: 691px;
     margin: auto;
     border-radius: 12px;
     overflow: hidden;
@@ -180,10 +179,13 @@
         .image {
           height: 288px;
           width: 100vw;
-          position: relative;
           display: flex;
-          align-items: flex-end;
-          object-fit: cover;
+          position: relative;
+
+          @media screen and (min-width: $global-breakpoint-md) {
+            height: 328px;
+            width: 620px;
+          }
         }
 
         .text {
@@ -197,6 +199,11 @@
           text-align: center;
           padding: 24px 24px 40px 24px;
           margin-bottom: 0;
+
+          @media screen and (min-width: $global-breakpoint-md) {
+            background-color: $colour-space;
+            padding: 60px 60px 0 60px;
+          }
         }
       }
     }
