@@ -1,4 +1,5 @@
 @import "css/settings";
+@import "css/settings/breakpoints";
 
 .c-slider-locator {
   display: flex;
@@ -7,26 +8,14 @@
 
   &__divider {
     display: flex;
-    align-self: center;
+    align-self: flex-start;
 
-    &--mobile {
-      align-self: flex-start;
+    @media screen and (min-width: $global-breakpoint-lg) {
+      align-self: center;
     }
 
-    &--selected {
-      background-color: $colour-flame;
+    &__dot {
       height: 10px;
-      width: 32px;
-      border-radius: 10px;
-      margin: 0 3px;
-      transition: width 0.5s;
-    }
-
-    &--unselected {
-      background-color: $white;
-      opacity: 0.8;
-      height: 10px;
-      width: 10px;
       border-radius: 10px;
       margin: 0 3px;
       transition: width 0.5s;

@@ -24,6 +24,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
   const infoRef = useRef<HTMLDivElement>();
 
   const [counter, setCounter] = useState<number>(0);
+  const [progress, setProgress] = useState<number>(0);
 
   const isFirstSlide = counter == 0;
   const isFinalSlide = counter === 2;
@@ -32,6 +33,8 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
     if (!infoRef.current) return;
 
     const { clientWidth, scrollLeft } = infoRef.current;
+
+    setProgress(scrollLeft / (clientWidth * 2));
 
     if (scrollLeft > 0 && scrollLeft < clientWidth) setCounter(0);
     else if (scrollLeft >= clientWidth && scrollLeft < clientWidth * 2) setCounter(1);
@@ -164,7 +167,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
         {/* Bottom section */}
         <div className={styles["modal__content"]}>
           {/* Pagination (mobile) */}
-          {isMobile && <SlideLocator isMobile={isMobile} counter={counter} setCounter={setCounter} />}
+          {isMobile && <SlideLocator setCounter={setCounter} progress={progress} />}
 
           {/* Pagination (desktop) */}
           <div
@@ -182,7 +185,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
               <OutlineButton text="BACK" onClick={backStep} />
             </div>
 
-            {!isMobile && <SlideLocator isMobile={isMobile} counter={counter} setCounter={setCounter} />}
+            {!isMobile && <SlideLocator setCounter={setCounter} progress={progress} />}
 
             {/* Next button */}
             <div className={styles["next-button"]}>
