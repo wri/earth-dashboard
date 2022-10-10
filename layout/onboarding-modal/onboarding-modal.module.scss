@@ -159,6 +159,10 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
 
+      @media screen and (min-width: $global-breakpoint-md) {
+        overflow-x: hidden;
+      }
+
       &::-webkit-scrollbar {
         width: 0 !important;
         height: 0 !important;
