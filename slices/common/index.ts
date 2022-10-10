@@ -9,7 +9,8 @@ export * from "./types";
 const initialState: CommonState = {
   hostname: "https://earthhq.org/",
   isMobile: true,
-  isShareOpen: false
+  isShareOpen: false,
+  isNewsSearchOpen: false
 };
 
 const commonSlice = createSlice({
@@ -20,14 +21,13 @@ const commonSlice = createSlice({
       state.hostname = payload;
     },
     setIsMobile: (state, { payload }: PayloadAction<boolean>) => {
-      if (typeof payload !== "boolean") return;
-
       state.isMobile = payload;
     },
     setIsShareOpen: (state, { payload }: PayloadAction<boolean>) => {
-      if (typeof payload !== "boolean") return;
-
       state.isShareOpen = payload;
+    },
+    setIsNewsSearchOpen: (state, { payload }: PayloadAction<boolean>) => {
+      state.isNewsSearchOpen = payload;
     }
   }
 });
@@ -39,6 +39,6 @@ export const resetGlobeToDefault = () => (dispatch: any) => {
   dispatch(setCurrentScaleBy(1));
 };
 
-export const { setHostname, setIsMobile, setIsShareOpen } = commonSlice.actions;
+export const { setHostname, setIsMobile, setIsShareOpen, setIsNewsSearchOpen } = commonSlice.actions;
 
 export default commonSlice.reducer;

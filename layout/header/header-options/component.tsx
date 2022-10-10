@@ -15,6 +15,7 @@ type HeaderOptionsProps = {
   setSettingsOpen: ActionCreatorWithoutPayload<string>;
   setSettingsClose: ActionCreatorWithoutPayload<string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
+  setIsNewsSearchOpen: ActionCreatorWithPayload<boolean, string>;
 };
 
 /** Header options for languages, share, and more. */
@@ -23,12 +24,13 @@ const HeaderOptions = ({
   isMobile,
   setSettingsOpen,
   setSettingsClose,
-  setIsShareOpen
+  setIsShareOpen,
+  setIsNewsSearchOpen
 }: HeaderOptionsProps) => {
   const [language, setLanguage] = useState<{ value: string; label: string }>(LANGUAGES[0]);
 
   // Navigation
-  const router = useRouter();
+  const { pathname, push } = useRouter();
 
   /** Opens the more menu. */
   const handleOpenMore = () => {
@@ -37,7 +39,14 @@ const HeaderOptions = ({
     setSettingsOpen();
   };
 
-  /** Opens share modal and fires event trigger */
+  /** Navigates to the search page. */
+  const onSearch = () => {
+    fireEvent(NEWS_SEARCH, null);
+    if (isMobile) return setIsNewsSearchOpen(true);
+    push("/news/search");
+  };
+
+  /** Opens share modal and fires event trigger. */
   const onShareClick = () => {
     fireEvent(MAP_SHARE, null);
     setIsShareOpen(true);
@@ -58,15 +67,14 @@ const HeaderOptions = ({
       )}
 
       {/* Share or search */}
-      {/*{router.pathname !== "/about" && ( ToDo: Search Hidden until new Sprint*/}
-      {router.pathname === "/" && (
+      {pathname !== "/about" && pathname !== "/news/search" && (
         <IconButton
-          name={router.pathname === "/" ? "share" : "search"}
+          name={pathname === "/" ? "share" : "search"}
           size={16}
-          aria-label={router.pathname === "/" ? "Share" : "Search"}
+          aria-label={pathname === "/" ? "Share" : "Search"}
           className={classnames(styles["c-header-options__share"], styles["c-header-options__icon-button"])}
-          onClick={router.pathname === "/" ? onShareClick : () => fireEvent(NEWS_SEARCH, null)}
-          iconStyle={{ marginRight: router.pathname === "/" ? "2px" : "0" }}
+          onClick={pathname === "/" ? onShareClick : onSearch}
+          iconStyle={{ marginRight: pathname === "/" ? "2px" : "0" }}
         />
       )}
 

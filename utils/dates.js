@@ -78,14 +78,14 @@ export const formatDatePretty = (date, dateFormat = "YYYY-MM-DD") => {
   const d = new Date(date);
   const hasDays = dateFormat.includes("DD");
   const hasMonths = dateFormat.includes("MM");
-  const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEPT", "OCT", "NOV", "DEC"];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
   let day = d.getDate().toString();
   const month = d.getMonth();
   const year = d.getFullYear();
 
   if (day.length < 2) day = `0${day}`;
 
-  return `${hasDays ? `${day} ` : ""}${hasMonths ? `${months[month]} ` : ""}${year}`;
+  return `${hasMonths ? `${months[month]} ` : ""}${hasDays ? `${day} ` : ""}${year}`;
 };
 
 const MS_PER_DAY = 1000 * 60 * 60 * 24;

@@ -1,0 +1,91 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-search-dialog {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 8px;
+  height: 100%;
+  width: 100%;
+  background-color: $colour-space;
+  mix-blend-mode: normal;
+  backdrop-filter: blur(10.8731px);
+  box-shadow: 0px 0px 113.425px #000000;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+
+  .top-button {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    right: 24px;
+    bottom: 24px;
+    z-index: 10;
+
+    svg {
+      min-width: 16px;
+      min-height: 16px;
+    }
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    background-color: $colour-night;
+    padding-top: 25px;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding: 0px 24px;
+
+      .title {
+        @include font-size(20px, 30px);
+
+        font-family: "Barlow Condensed";
+        font-weight: 600;
+        margin-bottom: 0;
+        color: $white;
+        text-transform: uppercase;
+      }
+    }
+
+    .bottom {
+      .input {
+        margin-left: 24px;
+        margin-right: 24px;
+      }
+
+      .filters {
+        padding-right: 0 24px;
+        padding-bottom: 25px;
+        overflow-x: auto;
+
+        > button:first-child {
+          margin-left: 24px;
+        }
+
+        > button:last-child {
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+
+  .content {
+    overflow-y: auto;
+    padding: 32px 24px 60px 24px;
+
+    .cta {
+      border-radius: 12px;
+      margin-top: calc(48px - 16px);
+    }
+  }
+
+  .grid {
+    display: grid;
+    gap: 12px;
+  }
+}

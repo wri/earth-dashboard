@@ -18,7 +18,7 @@
   }
 
   &--bordered {
-    padding: 16px 20px;
+    padding: 20px;
     background-color: $colour-galaxy;
     border-radius: 12px;
     overflow: hidden;
@@ -49,12 +49,16 @@
   }
 
   &__source {
-    margin-top: 8px;
+    margin-top: 24px;
+
+    &.right {
+      margin-left: auto;
+    }
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
     &--bordered {
-      padding: 24px 32px;
+      padding: 32px;
       border-radius: 16px;
     }
 
@@ -80,7 +84,6 @@
     }
 
     &__source {
-      margin-top: 12px;
       justify-content: flex-end;
     }
   }

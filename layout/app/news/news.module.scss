@@ -1,21 +1,30 @@
+@import "css/settings";
 @import "css/settings/breakpoints";
 
 .c-news {
-  .c-topics {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2.5rem;
-    margin-top: -12px;
+  &__top-button {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    right: 24px;
+    bottom: 76px;
+    z-index: 10;
 
-    @media screen and (max-width: $global-breakpoint-lg) {
-      grid-template-columns: 1fr 1fr;
+    svg {
+      min-width: 16px;
+      min-height: 16px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        min-width: 24px;
+        min-height: 24px;
+      }
     }
 
-    @media screen and (max-width: $global-breakpoint-sm) {
-      grid-template-columns: 1fr;
-      // Desired padding + navbar height
-      margin-bottom: calc(60px + 58px);
-      gap: 16px;
+    @media screen and (min-width: $global-breakpoint-md) {
+      width: 48px;
+      height: 48px;
+      right: 60px;
+      bottom: 40px;
     }
   }
 }

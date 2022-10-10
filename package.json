@@ -66,6 +66,7 @@
     "react-globe": "^5.0.2",
     "react-globe.gl": "^2.14.6",
     "react-graph-vis": "1.0.2",
+    "react-hook-form": "^7.36.1",
     "react-inlinesvg": "^3.0.1",
     "react-input-range": "^1.2.1",
     "react-intersection-observer": "^8.29.0",
