@@ -13,7 +13,7 @@
   height: 100vh;
   overflow: hidden;
 
-  .container {
+  &__container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,7 +76,7 @@
     }
   }
 
-  .globe {
+  &__globe {
     position: relative;
     height: calc(375px / 2);
     width: 375px;
