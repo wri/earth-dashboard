@@ -14,6 +14,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { setPageTypeId } from "slices/modes";
+import { useEffect, useRef } from "react";
 
 type HeaderProps = {
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
@@ -63,10 +64,15 @@ const Header = ({
     dispatch(resetGlobeToDefault());
   };
 
+  const is404 = router.pathname === "/404";
+
   return (
     <>
       <header
-        className={classnames(styles["c-site-header"], router.pathname === "/" ? styles["fixed"] : styles["sticky"])}
+        className={classnames(
+          styles["c-site-header"],
+          router.pathname === "/" || is404 ? styles["fixed"] : styles["sticky"]
+        )}
       >
         <div className={styles["top-section"]}>
           {/* Logo */}
@@ -75,23 +81,27 @@ const Header = ({
           </div>
 
           {/* Navigation links */}
-          <Desktop>
-            <div className={styles["top-section__links"]}>
-              <HeaderLink
-                href="/"
-                text="Earth HQ"
-                onClick={handleGlobeReset}
-                isActive={
-                  pageTypeId !== INFO_PAGE_ID ? false : typeof currentHeadlineId !== "undefined" ? false : undefined
-                }
-              />
-              <HeaderLink href="/news" text="News" />
-              <HeaderLink href="/about" text="About" />
-            </div>
-          </Desktop>
+          {!is404 && (
+            <>
+              <Desktop>
+                <div className={styles["top-section__links"]}>
+                  <HeaderLink
+                    href="/"
+                    text="Earth HQ"
+                    onClick={handleGlobeReset}
+                    isActive={
+                      pageTypeId !== INFO_PAGE_ID ? false : typeof currentHeadlineId !== "undefined" ? false : undefined
+                    }
+                  />
+                  <HeaderLink href="/news" text="News" />
+                  <HeaderLink href="/about" text="About" />
+                </div>
+              </Desktop>
 
-          {/* Options */}
-          <HeaderOptions />
+              {/* Options */}
+              <HeaderOptions />
+            </>
+          )}
         </div>
 
         {/* Text section */}
@@ -102,9 +112,12 @@ const Header = ({
           </div>
         )}
       </header>
-      <Mobile>
-        <Navbar />
-      </Mobile>
+
+      {!is404 && (
+        <Mobile>
+          <Navbar />
+        </Mobile>
+      )}
     </>
   );
 };
