@@ -9,15 +9,15 @@ type NewsArticleSkeletonProps = {
 /** Skeleton for the news articles. */
 const NewsArticleSkeleton = ({ featured }: NewsArticleSkeletonProps) => {
   return (
-    <Skeleton className={styles["c-news-article-skeleton"]}>
+    <Skeleton className={styles["c-news-article-skeleton"]} dark>
       {/* Top */}
       <div
         className={classnames(styles["c-news-article-skeleton__top"], {
           [styles["featured"]]: featured
         })}
       >
-        <Skeleton className={styles["image"]} dark pulse />
-        <Skeleton.Text widths={["100%", "100%", "40%"]} dark />
+        <Skeleton className={styles["image"]} pulse />
+        <Skeleton.Text widths={["100%", "100%", "40%"]} />
       </div>
 
       {/* Bottom */}
