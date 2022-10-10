@@ -1,0 +1,20 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-outline-button {
+  @include font-size(20px, 30px);
+
+  padding: 8px 24px;
+  color: $white;
+  font-family: "Barlow Condensed";
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 2px solid $white;
+  border-radius: 48px;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: $white;
+    color: $colour-night;
+  }
+}

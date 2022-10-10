@@ -11,6 +11,8 @@ import nullSchoolLogo from "public/static/images/logo-earth-hq.svg";
 import { fireEvent } from "utils/gtag";
 import { ONBOARDING_SKIPPED, ONBOARDING_COMPLETED as ONBOARDING_COMPLETED_TAG, PAGE_VIEW } from "constants/tag-manager";
 import SlideLocator from "./slide-locator";
+import DefaultButton from "components/ui/default-button";
+import OutlineButton from "components/ui/outline-button";
 
 type OnboardingModalProps = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
@@ -167,64 +169,22 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
             })}
           >
             {/* Back button */}
-            <div
-              className={classnames({
-                [styles["modal__content__controls__box"]]: true,
-                [styles["modal__content__controls__box__hide"]]: isFirstSlide,
-                [styles["modal__content__controls__box__remove"]]: isFirstSlide && isMobile
+            <OutlineButton
+              text="BACK"
+              onClick={() => setCounter(state => state - 1)}
+              className={classnames(styles["back-button"], {
+                [styles["hide"]]: isFirstSlide
               })}
-            >
-              <button
-                data-testid="back-btn"
-                disabled={isFirstSlide}
-                className={classnames({
-                  [styles["modal__content__controls__box__back-button"]]: true,
-                  [styles["modal__content__controls__box__back-button-mobile"]]: isMobile,
-                  [styles["hide"]]: isFirstSlide
-                })}
-                onClick={() => setCounter(state => state - 1)}
-              >
-                BACK
-              </button>
-            </div>
+            />
 
             {!isMobile && <SlideLocator isMobile={isMobile} counter={counter} setCounter={setCounter} />}
 
             {/* Next button */}
-            <div
-              className={classnames({
-                [styles["modal__content__controls__box"]]: true,
-                [styles["modal__content__controls__box__mobile"]]: isMobile && isFirstSlide,
-                [styles["modal__content__controls__box__continue"]]: counter !== 0 && isMobile
-              })}
-            >
-              <button
-                data-testid="forward-btn"
-                className={classnames({
-                  [styles["modal__content__controls__box__continueBtn"]]: true,
-                  [styles["modal__content__controls__box__continueBtn-mobile"]]: isMobile
-                })}
-                onClick={nextStep}
-              >
-                <h4
-                  className={classnames({
-                    [styles["modal__content__controls__box__continueBtn__text"]]: true,
-                    [styles["modal__content__controls__box__continueBtn__text-mobile"]]: isMobile
-                  })}
-                >
-                  {isFinalSlide ? "EXPLORE" : "CONTINUE"}
-                </h4>
-                <Icon
-                  name={isFinalSlide ? "check" : "arrow-right"}
-                  size={32}
-                  type="decorative"
-                  className={classnames({
-                    [styles["modal__content__controls__box__continueBtn__icon"]]: true,
-                    [styles["modal__content__controls__box__continueBtn__icon-mobile"]]: isMobile
-                  })}
-                />
-              </button>
-            </div>
+            <DefaultButton
+              text={isFinalSlide ? "EXPLORE" : "CONTINUE"}
+              icon={<Icon name={isFinalSlide ? "check" : "arrow-right"} size={15} type="decorative" />}
+              onClick={nextStep}
+            />
           </div>
         </div>
       </div>
