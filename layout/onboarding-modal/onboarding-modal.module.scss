@@ -187,46 +187,50 @@
     }
 
     &__content {
-      padding: 50px 60px;
+      padding: 24px 24px 32px 24px;
 
-      &__text {
-        color: $white;
-        font-family: "Barlow";
-        @include font-size(22px, 31px);
-        font-weight: 600;
-        text-align: center;
-        height: 6rem;
-
-        &__mobile {
-          font-family: "Barlow";
-          font-style: normal;
-          font-weight: 600;
-          @include font-size(18px, 27px);
-          height: 81px;
-          margin: auto auto 2rem auto;
-          width: 327px;
-
-          display: flex;
-          align-items: center;
-          text-align: center;
-          color: $white;
-        }
+      @media screen and (min-width: $global-breakpoint-md) {
+        padding: 60px;
       }
 
-      &__mobile {
-        display: flex;
-        flex-direction: column;
-        height: 45%;
-        padding: 24px;
+      &__text {
+        @include font-size(18px, 27px);
+
+        color: $white;
+        font-family: "Barlow";
+        font-style: normal;
+        font-weight: 600;
+        text-align: center;
+        color: $white;
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          @include font-size(22px, 31px);
+        }
       }
 
       &__controls {
         display: flex;
+        margin-top: 60px;
         justify-content: space-between;
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          margin-top: 0;
+        }
+
+        &.first {
+          @media screen and (max-width: $global-breakpoint-md) {
+            justify-content: center;
+          }
+        }
 
         .back-button {
           &.hide {
-            visibility: hidden;
+            display: none;
+
+            @media screen and (min-width: $global-breakpoint-md) {
+              display: block;
+              visibility: hidden;
+            }
           }
         }
       }

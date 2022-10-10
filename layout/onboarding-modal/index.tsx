@@ -143,21 +143,9 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
         </div>
 
         {/* Bottom section */}
-        <div
-          className={classnames({
-            [styles["modal__content"]]: !isMobile,
-            [styles["modal__content__mobile"]]: isMobile
-          })}
-        >
+        <div className={styles["modal__content"]}>
           {/* Description */}
-          <h4
-            className={classnames({
-              [styles["modal__content__text"]]: !isMobile,
-              [styles["modal__content__text__mobile"]]: isMobile
-            })}
-          >
-            {data[counter].title}
-          </h4>
+          <h4 className={styles["modal__content__text"]}>{data[counter].title}</h4>
 
           {/* Pagination (mobile) */}
           {isMobile && <SlideLocator isMobile={isMobile} counter={counter} setCounter={setCounter} />}
@@ -165,7 +153,8 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
           {/* Pagination (desktop) */}
           <div
             className={classnames({
-              [styles["modal__content__controls"]]: true
+              [styles["modal__content__controls"]]: true,
+              [styles["first"]]: isFirstSlide
             })}
           >
             {/* Back button */}
@@ -183,6 +172,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
             <DefaultButton
               text={isFinalSlide ? "EXPLORE" : "CONTINUE"}
               icon={<Icon name={isFinalSlide ? "check" : "arrow-right"} size={15} type="decorative" />}
+              className={styles["next-button"]}
               onClick={nextStep}
             />
           </div>
