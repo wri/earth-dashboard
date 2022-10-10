@@ -2,7 +2,7 @@ import classnames from "classnames";
 import styles from "./onboarding-modal.module.scss";
 import IconButton from "components/ui/icon-button";
 import Icon from "components/ui/Icon";
-import starBG from "public/static/images/star-background.jpg";
+import STAR_BG from "public/static/images/star-background.jpg";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { data } from "./onboarding";
@@ -10,31 +10,37 @@ import { ONBOARDING_COMPLETED } from "layout/layout/layout-app/constants";
 import nullSchoolLogo from "public/static/images/logo-earth-hq.svg";
 import { fireEvent } from "utils/gtag";
 import { ONBOARDING_SKIPPED, ONBOARDING_COMPLETED as ONBOARDING_COMPLETED_TAG, PAGE_VIEW } from "constants/tag-manager";
+import SlideLocator from "./slide-locator";
 
-interface IOnBoardingModal {
-  showModal: boolean;
+type OnboardingModalProps = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
   isMobile: boolean;
-}
+};
 
-const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, isMobile }) => {
+/** Shows information on how to use the site. */
+const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
   const [counter, setCounter] = useState(0);
   const isFirstSlide = counter == 0;
   const isFinalSlide = counter === 2;
 
+  // Tracks GA events
   useEffect(() => {
     fireEvent(PAGE_VIEW, `onboarding_${counter + 1}`);
   }, [counter]);
 
+  /** Tracks GA event that user has skipped this flow. */
   const handleSkip = () => {
     fireEvent(ONBOARDING_SKIPPED, (counter + 1).toString());
     handleClose();
   };
 
+  /** Closes the modal and sets flag in local storage. */
   const handleClose = () => {
     localStorage.setItem(ONBOARDING_COMPLETED, "true");
     setShowModal(false);
   };
+
+  /** Navigate to the next step. */
   const nextStep = () => {
     if (isFinalSlide) {
       fireEvent(ONBOARDING_COMPLETED_TAG, null);
@@ -42,28 +48,6 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
     }
     setCounter(state => (state += 1));
   };
-
-  const SlideLocator = () => (
-    <div className={styles["modal__content__controls__box"]}>
-      <div
-        className={classnames({
-          [styles["modal__content__controls__box__divider"]]: true,
-          [styles["modal__content__controls__box__divider__mobile"]]: isMobile
-        })}
-      >
-        {[0, 1, 2].map(point => (
-          <div
-            key={point}
-            className={classnames({
-              [styles["modal__content__controls__box__divider--unselected"]]: counter !== point,
-              [styles["modal__content__controls__box__divider--selected"]]: counter === point
-            })}
-            onClick={() => setCounter(point)}
-          ></div>
-        ))}
-      </div>
-    </div>
-  );
 
   return (
     <div className={styles["modal-backdrop"]}>
@@ -73,12 +57,16 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
           [styles["modal__mobile"]]: isMobile
         })}
       >
+        {/* Header */}
         <div
           className={classnames({
             [styles["modal__top"]]: !isMobile,
             [styles["modal__top__mobile"]]: isMobile
           })}
         >
+          <Image src={STAR_BG} layout="fill" objectFit="cover" alt="" />
+
+          {/* Mobile content */}
           {isMobile && (
             <div className={styles["modal__mobile__nav"]}>
               <div className={styles["modal__mobile__nav__logo"]}>
@@ -91,7 +79,8 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
               )}
             </div>
           )}
-          {starBG.src && <Image layout="fill" objectFit="cover" src={starBG.src} alt="" />}
+
+          {/* General content */}
           <div
             className={classnames({
               [styles["modal__top__contain"]]: !isMobile,
@@ -104,6 +93,7 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
                 [styles["modal__header__mobile"]]: isMobile
               })}
             >
+              {/* Desktop title and mobile logo */}
               <div className={styles["modal__logo"]}>
                 {!isMobile && (
                   <Icon name="earth-hq" size={32} type="decorative" className={styles["modal__logo__earth-hq"]} />
@@ -117,6 +107,8 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
                   WELCOME TO EARTH HQ
                 </h3>
               </div>
+
+              {/* X button */}
               {!isMobile && (
                 <IconButton
                   name="close"
@@ -126,6 +118,8 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
                 />
               )}
             </div>
+
+            {/* Slider image */}
             <div className={styles["modal__image"]}>
               {data.map((image, index) => (
                 <Image
@@ -145,12 +139,15 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
             </div>
           </div>
         </div>
+
+        {/* Bottom section */}
         <div
           className={classnames({
             [styles["modal__content"]]: !isMobile,
             [styles["modal__content__mobile"]]: isMobile
           })}
         >
+          {/* Description */}
           <h4
             className={classnames({
               [styles["modal__content__text"]]: !isMobile,
@@ -159,12 +156,17 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
           >
             {data[counter].title}
           </h4>
-          {isMobile && <SlideLocator />}
+
+          {/* Pagination (mobile) */}
+          {isMobile && <SlideLocator isMobile={isMobile} counter={counter} setCounter={setCounter} />}
+
+          {/* Pagination (desktop) */}
           <div
             className={classnames({
               [styles["modal__content__controls"]]: true
             })}
           >
+            {/* Back button */}
             <div
               className={classnames({
                 [styles["modal__content__controls__box"]]: true,
@@ -185,7 +187,10 @@ const OnboardingModal: React.FC<IOnBoardingModal> = ({ showModal, setShowModal, 
                 BACK
               </button>
             </div>
-            {!isMobile && <SlideLocator />}
+
+            {!isMobile && <SlideLocator isMobile={isMobile} counter={counter} setCounter={setCounter} />}
+
+            {/* Next button */}
             <div
               className={classnames({
                 [styles["modal__content__controls__box"]]: true,
