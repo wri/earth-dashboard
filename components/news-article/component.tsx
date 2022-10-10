@@ -6,13 +6,11 @@ import ExternalLink from "components/ui/external-link";
 import { fireEvent } from "utils/gtag";
 import { NEWS_OPENED_ARTICLE } from "constants/tag-manager";
 import TOPICS from "constants/news";
-import Skeleton from "components/ui/skeleton";
 
 type NewsArticleProps = {
   featured?: boolean;
   title: string;
   author: string;
-  isLoading: boolean;
   date: Date;
   image: string;
   link: string;
@@ -21,35 +19,10 @@ type NewsArticleProps = {
 };
 
 /** News article card for news page. */
-const NewsArticle = ({
-  className = "",
-  topic,
-  featured,
-  title,
-  author,
-  date,
-  image,
-  link,
-  isLoading
-}: NewsArticleProps) => {
+const NewsArticle = ({ className = "", topic, featured, title, author, date, image, link }: NewsArticleProps) => {
   const handleClick = () => {
     fireEvent(NEWS_OPENED_ARTICLE, null, { news_title: title, category_name: topic });
   };
-
-  if (!isLoading)
-    return (
-      <Skeleton className={styles["c-news-article-skeleton"]}>
-        <div className={styles["c-news-article-skeleton__top"]}>
-          <Skeleton className={styles["image"]} dark />
-          <Skeleton.Text widths={["100%", "100%", "40%"]} dark />
-        </div>
-
-        <div className={styles["c-news-article-skeleton__bottom"]}>
-          <Skeleton.Text widths={["100%"]} className={styles["text"]} dark />
-          <Skeleton.ExternalLink dark />
-        </div>
-      </Skeleton>
-    );
 
   return (
     <article

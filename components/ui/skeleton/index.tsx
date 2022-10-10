@@ -8,16 +8,18 @@ type SkeletonProps = {
   children?: ReactNode;
   className?: string;
   dark?: boolean;
+  pulse?: boolean;
 };
 
 /** Main entry point for skeleton. */
-const Skeleton = ({ children, className = "", dark }: SkeletonProps) => {
+const Skeleton = ({ children, className = "", dark, pulse }: SkeletonProps) => {
   return (
     <div
       className={classnames(
         styles["c-skeleton"],
         {
-          [styles["dark"]]: dark
+          [styles["dark"]]: dark,
+          [styles["pulse"]]: pulse
         },
         className
       )}

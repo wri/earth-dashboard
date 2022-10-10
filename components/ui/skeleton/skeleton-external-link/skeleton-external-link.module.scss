@@ -1,6 +1,9 @@
 @import "css/settings";
+@import "css/settings/animations";
 
 .c-skeleton-external-link {
+  @include animate-pulse();
+
   display: flex;
   align-items: center;
   padding: 6px;
