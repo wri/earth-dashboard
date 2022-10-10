@@ -15,11 +15,6 @@
     background-color: $colour-night;
   }
 
-  &:active,
-  &:focus {
-    background-color: $colour-galaxy;
-  }
-
   &__text {
     @include font-size(20px, 30px);
 

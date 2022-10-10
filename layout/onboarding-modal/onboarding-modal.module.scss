@@ -224,17 +224,10 @@
         display: flex;
         justify-content: space-between;
 
-        &__center {
-          justify-content: center;
-        }
-
-        &__mobile {
-          flex: 1;
-          align-items: center;
-        }
-
-        &__mobile {
-          align-self: flex-start;
+        .back-button {
+          &.hide {
+            visibility: hidden;
+          }
         }
       }
     }
