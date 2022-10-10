@@ -43,8 +43,6 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
   const { videos: allCMSVideos } = useCMSVideos(topic);
 
-  console.log("=============", isPostsLoading, hasPostsErrorred);
-
   // Store the isMobile flag in the redux store
   useEffect(() => {
     setIsMobile(!!isMobile);
@@ -119,11 +117,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
       <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
         {isPostsLoading ? (
-          <>
-            <NewsArticleSkeleton />
-            <NewsArticleSkeleton />
-            <NewsArticleSkeleton />
-          </>
+          [0, 1, 2, 3, 4, 5, 6, 7, 8].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
         ) : hasPostsErrorred ? (
           <p>An error has occurred when trying to loading the News Articles, please try again later</p>
         ) : (
