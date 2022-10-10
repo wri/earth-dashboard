@@ -76,8 +76,8 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
       <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["c-news__top-button"]} />
 
       <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>
-        {/* Most Recent */}
         <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__article"]}>
+          {/* Most Recent */}
           {isPostsLoading ? (
             <NewsArticleSkeleton featured />
           ) : mostRecentArticle ? (
@@ -86,6 +86,8 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
             <p>{postsLoadingMessage}</p>
           )}
         </div>
+
+        {/* Top widget */}
         {firstWidget && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__widget"]}>
             <Widget data-testid="first-widget" widget={firstWidget} bordered sourceButtonRight />
@@ -93,10 +95,12 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
         )}
       </Section>
 
+      {/* Second widget */}
       <Section bgColour={BG_GALAXY}>
         {secondWidget && <Widget data-testid="second-widget" widget={secondWidget} />}
       </Section>
 
+      {/* Videos */}
       <Section
         title="Must Watch"
         bgColour={BG_LIGHT_SPACE}
