@@ -82,7 +82,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
         {/* Most Recent */}
         {mostRecentArticle ? (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__article"]}>
-            <NewsArticle topic={topic} {...mostRecentArticle} featured />
+            <NewsArticle topic={topic} isLoading={isPostsLoading} featured {...mostRecentArticle} />
           </div>
         ) : (
           <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__article"]}>
@@ -120,7 +120,9 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
       <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
         {otherArticles ? (
-          otherArticles.map(({ key, ...articleProps }) => <NewsArticle key={key} topic={topic} {...articleProps} />)
+          otherArticles.map(({ key, ...articleProps }) => (
+            <NewsArticle key={key} topic={topic} isLoading={isPostsLoading} {...articleProps} />
+          ))
         ) : (
           <div>{postsLoadingMessage}</div>
         )}

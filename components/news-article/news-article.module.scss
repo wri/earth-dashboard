@@ -4,6 +4,36 @@
 
 $c-news-article-transition: 0.3s ease-in-out;
 
+.c-news-article-skeleton {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+
+  &__top {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    padding: 20px 20px 0 20px;
+
+    .image {
+      height: 80px;
+      width: 80px;
+      border-radius: 12px;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+
+    .text {
+      width: 72px;
+    }
+  }
+}
+
 .c-news-article {
   display: flex;
   flex-direction: column;

@@ -1,0 +1,9 @@
+@import "css/settings";
+
+.c-skeleton {
+  background-color: $colour-galaxy;
+
+  &.dark {
+    background-color: $colour-midnight;
+  }
+}
