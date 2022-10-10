@@ -4,7 +4,7 @@ import IconButton from "components/ui/icon-button";
 import Icon from "components/ui/Icon";
 import STAR_BG from "public/static/images/star-background.jpg";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { data } from "./onboarding";
 import { ONBOARDING_COMPLETED } from "layout/layout/layout-app/constants";
 import nullSchoolLogo from "public/static/images/logo-earth-hq.svg";
@@ -21,9 +21,30 @@ type OnboardingModalProps = {
 
 /** Shows information on how to use the site. */
 const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
-  const [counter, setCounter] = useState(0);
+  const infoRef = useRef<HTMLDivElement>();
+
+  const [counter, setCounter] = useState<number>(0);
+
   const isFirstSlide = counter == 0;
   const isFinalSlide = counter === 2;
+
+  const handleScroll = () => {
+    if (!infoRef.current) return;
+
+    const { clientWidth, scrollLeft } = infoRef.current;
+
+    if (scrollLeft > 0 && scrollLeft < clientWidth) setCounter(0);
+    else if (scrollLeft >= clientWidth && scrollLeft < clientWidth * 2) setCounter(1);
+    else if (scrollLeft === clientWidth * 2) setCounter(2);
+  };
+
+  useEffect(() => {
+    infoRef.current?.addEventListener("scroll", handleScroll);
+
+    return () => {
+      infoRef.current?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   // Tracks GA events
   useEffect(() => {
@@ -42,13 +63,27 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
     setShowModal(false);
   };
 
+  /** Navigate to the previous step. */
+  const backStep = () => {
+    if (!infoRef.current) return;
+
+    infoRef.current.children[counter - 1].scrollIntoView({
+      behavior: "smooth"
+    });
+  };
+
   /** Navigate to the next step. */
   const nextStep = () => {
     if (isFinalSlide) {
       fireEvent(ONBOARDING_COMPLETED_TAG, null);
       return handleClose();
     }
-    setCounter(state => (state += 1));
+
+    if (!infoRef.current) return;
+
+    infoRef.current.children[counter + 1].scrollIntoView({
+      behavior: "smooth"
+    });
   };
 
   return (
@@ -122,7 +157,12 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
             </div>
 
             {/* Slider image */}
-            <div className={styles["modal__info"]}>
+            <div
+              ref={ref => {
+                if (ref) infoRef.current = ref;
+              }}
+              className={styles["modal__info"]}
+            >
               {data.map(image => (
                 <div key={image.id} className={styles["section"]}>
                   <div className={styles["image"]}>
@@ -158,10 +198,10 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
             {/* Back button */}
             <OutlineButton
               text="BACK"
-              onClick={() => setCounter(state => state - 1)}
               className={classnames(styles["back-button"], {
                 [styles["hide"]]: isFirstSlide
               })}
+              onClick={backStep}
             />
 
             {!isMobile && <SlideLocator isMobile={isMobile} counter={counter} setCounter={setCounter} />}
