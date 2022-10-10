@@ -5,25 +5,51 @@
   flex-direction: column;
   border-radius: 16px;
 
+  @media screen and (min-width: $global-breakpoint-md) {
+    justify-content: space-between;
+    height: 100%;
+  }
+
   &__top {
     display: grid;
-    grid-template-columns: 80px 1fr;
     gap: 16px;
     padding: 20px 20px 0 20px;
 
-    @media screen and (min-width: $global-breakpoint-md) {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .image {
-      height: 80px;
-      width: 80px;
-      border-radius: 12px;
+    &:not(.featured) {
+      grid-template-columns: 80px 1fr;
 
       @media screen and (min-width: $global-breakpoint-md) {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .image {
+        height: 80px;
+        width: 80px;
+        border-radius: 12px;
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          height: 160px;
+          width: 100%;
+        }
+      }
+    }
+
+    &.featured {
+      gap: 12px;
+      padding: 20px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        padding: 32px;
+      }
+
+      .image {
         height: 160px;
-        width: 100%;
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          min-height: 275px;
+          height: 100%;
+        }
       }
     }
   }
@@ -33,6 +59,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 16px 20px;
+
+    &.featured {
+      padding: 20px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        padding: 32px;
+      }
+    }
 
     .text {
       width: 72px;
