@@ -1,3 +1,5 @@
+@import "css/settings/breakpoints";
+
 .c-news-article-skeleton {
   display: flex;
   flex-direction: column;
@@ -9,10 +11,20 @@
     gap: 16px;
     padding: 20px 20px 0 20px;
 
+    @media screen and (min-width: $global-breakpoint-md) {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
     .image {
       height: 80px;
       width: 80px;
       border-radius: 12px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        height: 160px;
+        width: 100%;
+      }
     }
   }
 
