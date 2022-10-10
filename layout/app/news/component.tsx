@@ -21,6 +21,8 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import IconButton from "components/ui/icon-button";
 import SearchDialog from "./search/search-dialog";
 import NewsArticleSkeleton from "components/news-article/news-article-skeleton";
+import Skeleton from "components/ui/skeleton";
+import WidgetSkeleton from "./widget/widget-skeleton";
 
 const LIMIT = 10;
 const LOAD_MORE_LIMIT = 9;
@@ -88,11 +90,13 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
         </div>
 
         {/* Top widget */}
-        {firstWidget && (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__widget"]}>
-            <Widget data-testid="first-widget" widget={firstWidget} bordered sourceButtonRight />
-          </div>
-        )}
+        <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__widget"]}>
+          {isWidgetsLoading ? (
+            <WidgetSkeleton />
+          ) : (
+            firstWidget && <Widget data-testid="first-widget" widget={firstWidget} bordered sourceButtonRight />
+          )}
+        </div>
       </Section>
 
       {/* Second widget */}
