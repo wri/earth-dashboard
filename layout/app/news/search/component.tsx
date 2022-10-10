@@ -16,6 +16,7 @@ import Section from "../section";
 import { BG_GALAXY } from "constants/section-colours";
 import NewsSearch from "./news-search/component";
 import SearchEmptyState from "./search-empty-state";
+import NewsArticleSkeleton from "components/news-article/news-article-skeleton";
 
 const LIMIT = 12;
 const LOAD_MORE_LIMIT = 12;
@@ -46,7 +47,7 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
     });
   };
 
-  const hasSearchResults = !isLoading && posts && posts.length > 0;
+  const hasSearchResults = posts && posts.length > 0;
 
   return (
     <Layout title="News">
@@ -72,14 +73,12 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
             }
           : {})}
       >
-        {!isLoading ? (
-          !posts || !posts.length ? (
-            <SearchEmptyState />
-          ) : (
-            posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
-          )
+        {isLoading ? (
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
+        ) : !posts || !posts.length ? (
+          <SearchEmptyState />
         ) : (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles__loading"]}>Loading...</div>
+          posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
         )}
         {canFetchMore && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>

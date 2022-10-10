@@ -21,7 +21,6 @@
       grid-template-columns: 80px 1fr;
 
       @media screen and (min-width: $global-breakpoint-md) {
-        margin-bottom: 0;
         grid-template-columns: 1fr;
         gap: 12px;
       }
