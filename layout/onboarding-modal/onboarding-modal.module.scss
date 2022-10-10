@@ -156,6 +156,7 @@
 
     &__info {
       display: flex;
+      overflow-y: hidden;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
 
@@ -164,8 +165,7 @@
       }
 
       &::-webkit-scrollbar {
-        width: 0 !important;
-        height: 0 !important;
+        display: none;
       }
 
       .section {
