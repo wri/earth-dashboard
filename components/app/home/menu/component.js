@@ -8,13 +8,7 @@ import MenuLayout from "./layout";
 import EventsListPanel from "./panels/events-list";
 import Event from "components/app/home/event";
 import MobileMenuContainer from "./menu-mobile-container";
-import {
-  INFO_PAGE_ID,
-  EXTREME_EVENTS_PAGE_ID,
-  DATA_LAYER_PAGE_ID,
-  INFO_PAGE_HEADLINE,
-  EXTREME_EVENTS_PAGE_HEADLINE
-} from "../main-container/component";
+import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE, EXTREME_EVENTS_PAGE_HEADLINE } from "../main-container/component";
 import HeadlineFooter from "../headline-footer";
 
 const MIN_SWIPE_DISTANCE = 50;
@@ -39,16 +33,11 @@ const Menu = forwardRef(
       headlines,
       handleToggleLocation,
       isLocationDisabled,
-      hasMenuOpen
+      hasMenuOpen,
+      previousPageTypeId
     },
     ref
   ) => {
-    const pageTitle = useMemo(() => {
-      if (pageTypeId == INFO_PAGE_ID) return INFO_PAGE_HEADLINE;
-      if (pageTypeId == EXTREME_EVENTS_PAGE_ID) return EXTREME_EVENTS_PAGE_HEADLINE;
-      if (pageTypeId == DATA_LAYER_PAGE_ID) return currentMode.attributes.title;
-    }, [currentMode, pageTypeId]);
-
     const navigateTo = pageId => () => setPageTypeId(pageId);
 
     const [footerHeading, setFooterHeading] = useState("");
@@ -88,7 +77,7 @@ const Menu = forwardRef(
 
     const viewAllExtremeEvents = () => {
       clearHeadline();
-      setPageTypeId(EXTREME_EVENTS_PAGE_ID);
+      setPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
     };
 
     const navigateHeadline = action => {
@@ -126,18 +115,12 @@ const Menu = forwardRef(
       checkCurrentHeadline();
     }, [currentHeadline, setCurrentMode]);
 
-    const getHeaderTitle = () => {
-      if (pageTypeId === INFO_PAGE_ID) return "Back to Earth HQ";
-      else if (currentMode.attributes.title !== "Default") return `Back to ${currentMode.attributes.title}`;
-      return `Back to ${pageTitle}`;
-    };
-
     const getMenuContent = () => (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
-        {currentHeadline && (
-          <MenuLayout ref={ref} title={getHeaderTitle()} onBack={clearHeadline} onClose={onClose}>
+        {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
+          <MenuLayout ref={ref} title="Back" onBack={() => setPageTypeId(previousPageTypeId)} onClose={onClose}>
             <div className={styles["c-home-menu__event-container"]}>
               <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
             </div>
@@ -152,38 +135,33 @@ const Menu = forwardRef(
             />
           </MenuLayout>
         )}
-        {!currentHeadline && pageTypeId == INFO_PAGE_ID && (
+        {pageTypeId == PAGE_TYPE_ID.INFO_PAGE && (
           <MenuLayout
             ref={ref}
-            // iconName="globe"
-            title={pageTitle}
+            title={INFO_PAGE_HEADLINE}
             onClose={onClose}
             style={isMobile ? { paddingBottom: "56px" } : {}}
           >
-            <InfoPanel
-              onClickDataLayer={setCurrentMode}
-              onViewDataLayerSummary={navigateTo(DATA_LAYER_PAGE_ID)}
-              onClickExtremeEvents={navigateTo(EXTREME_EVENTS_PAGE_ID)}
-            />
+            <InfoPanel />
           </MenuLayout>
         )}
-        {!currentHeadline && pageTypeId == EXTREME_EVENTS_PAGE_ID && (
+        {pageTypeId == PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE && (
           <MenuLayout
             ref={ref}
-            title={pageTitle}
+            title="Back"
             onBack={
               currentMode && currentMode.id !== defaultMode.id
-                ? navigateTo(DATA_LAYER_PAGE_ID)
-                : navigateTo(INFO_PAGE_ID)
+                ? navigateTo(PAGE_TYPE_ID.DATA_LAYER_PAGE)
+                : navigateTo(PAGE_TYPE_ID.INFO_PAGE)
             }
             onClose={onClose}
           >
             <EventsListPanel />
           </MenuLayout>
         )}
-        {!currentHeadline && pageTypeId == DATA_LAYER_PAGE_ID && (
-          <MenuLayout ref={ref} title={pageTitle} onBack={navigateTo(INFO_PAGE_ID)} onClose={onClose}>
-            <DataLayerPanel onClickExtremeEvents={navigateTo(EXTREME_EVENTS_PAGE_ID)} />
+        {pageTypeId == PAGE_TYPE_ID.DATA_LAYER_PAGE && (
+          <MenuLayout ref={ref} title="Back" onBack={navigateTo(PAGE_TYPE_ID.INFO_PAGE)} onClose={onClose}>
+            <DataLayerPanel onClickExtremeEvents={navigateTo(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE)} />
           </MenuLayout>
         )}
       </div>
@@ -196,7 +174,7 @@ const Menu = forwardRef(
           panelHeight={mobileMenuHeight}
           setPanelHeight={setMobileMenuHeight}
           toggleMenu={onClose}
-          pageTypeId={currentHeadline ? "headline" : pageTypeId}
+          pageTypeId={pageTypeId}
           handleToggleLocation={handleToggleLocation}
           isLocationDisabled={isLocationDisabled}
           hasMenuOpen={hasMenuOpen}
@@ -220,7 +198,8 @@ Menu.propTypes = {
   setDateOfDataShown: PropTypes.func.isRequired,
   handleToggleLocation: PropTypes.func.isRequired,
   isLocationDisabled: PropTypes.bool.isRequired,
-  hasMenuOpen: PropTypes.bool.isRequired
+  hasMenuOpen: PropTypes.bool.isRequired,
+  previousPageTypeId: PropTypes.string.isRequired
 };
 
 export default Menu;

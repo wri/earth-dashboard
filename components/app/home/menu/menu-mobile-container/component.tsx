@@ -2,7 +2,7 @@ import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react"
 import ResizablePanel from "./resizable-panel";
 import styles from "./menu-mobile-container.module.scss";
 import CondensedMenu from "../../condensed-menu";
-import { INFO_PAGE_ID } from "../../main-container/component";
+import { PAGE_TYPE_ID } from "../../main-container/component";
 
 type MenuMobileContainerProps = {
   defaultPanelHeight: number;
@@ -49,7 +49,7 @@ const MenuMobileContainer = ({
   return (
     <div
       className={styles["c-mobile-menu-container"]}
-      style={{ height: panelHeight, zIndex: pageTypeId === INFO_PAGE_ID || !hasMenuOpen ? 1000 : 1001 }}
+      style={{ height: panelHeight, zIndex: pageTypeId === PAGE_TYPE_ID.INFO_PAGE || !hasMenuOpen ? 1000 : 1001 }}
     >
       <ResizablePanel
         defaultHeight={defaultPanelHeight}

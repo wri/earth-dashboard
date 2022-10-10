@@ -1,0 +1,35 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-view-all-card {
+  width: 100%;
+  min-width: 100%;
+  border-radius: 12px;
+  background-color: $colour-galaxy;
+  padding: 17px 20px;
+  scroll-snap-align: center;
+  height: 172px;
+
+  background-image: url("/static/images/globe@2x.png");
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: 232px 196px;
+
+  & .title {
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: "Barlow Condensed";
+    @include font-size(20px, 30px);
+    margin-bottom: 8px;
+  }
+
+  & .description {
+    margin-right: 100px;
+    color: white;
+    font-weight: 500;
+    font-family: "Barlow";
+    margin-bottom: 12px;
+    @include font-size(16px, 24px);
+  }
+}

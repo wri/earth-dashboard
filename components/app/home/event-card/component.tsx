@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import classnames from "classnames";
-import styles from "./event.module.scss";
+import styles from "./event-card.module.scss";
 import moment from "moment";
 import Image from "next/image";
 import { Headline } from "slices/headlines";

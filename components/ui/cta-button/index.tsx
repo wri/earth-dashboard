@@ -3,11 +3,11 @@ import classnames from "classnames";
 import Icon, { IconNames } from "../Icon";
 import styles from "./cta-button.module.scss";
 
-type CtaIcon = { iconName: never; iconUrl: string } | { iconName: IconNames; iconUrl: never };
-
-type CtaButtonProps = CtaIcon & {
-  type: "Default" | "Light";
-  iconPosition: "Right" | "Left";
+type CtaButtonProps = {
+  type?: "Default" | "Light";
+  iconPosition?: "Right" | "Left";
+  iconName?: IconNames;
+  iconUrl?: string;
   as?: ElementType;
   href?: string;
   text?: string;

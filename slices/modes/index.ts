@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { INFO_PAGE_ID } from "components/app/home/main-container/component";
 import { Mode, ModesState } from "./types";
 
 export * from "./types";
@@ -20,7 +19,8 @@ const initialState: ModesState = {
   heightValue: "",
   layersLabelArr: [],
   dateOfDataShown: new Date().toString(),
-  pageTypeId: "InfoPage"
+  pageTypeId: "InfoPage",
+  previousPageTypeId: "InfoPage"
 };
 
 const modesSlice = createSlice({
@@ -109,6 +109,9 @@ const modesSlice = createSlice({
     },
     setPageTypeId: (state, { payload }: PayloadAction<string>) => {
       state.pageTypeId = payload;
+    },
+    setPreviousPageTypeId: (state, { payload }: PayloadAction<string>) => {
+      state.previousPageTypeId = payload;
     }
   }
 });
@@ -126,6 +129,7 @@ export const {
   setDateOfDataShown,
   setCurrentModeId,
   setPageTypeId,
+  setPreviousPageTypeId,
   selectDefaultMode
 } = modesSlice.actions;
 

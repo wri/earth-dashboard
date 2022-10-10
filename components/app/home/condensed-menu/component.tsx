@@ -5,6 +5,8 @@ import { Headline } from "slices/headlines";
 import { Mode } from "slices/modes";
 import styles from "./condensed-menu.module.scss";
 import Scale from "components/app/home/scale";
+import { PAGE_TYPE_ID } from "../main-container/component";
+import EventPrompt from "../event-prompt";
 
 type CondensedMenuProps = {
   toggleMenu: () => void;
@@ -35,16 +37,18 @@ const CondensedMenu = ({
       ? currentMode.attributes.title
       : currentHeadline?.attributes.mode.attributes.title;
 
+  console.log(pageTypeId);
+
   return (
     <>
       <div className={styles["c-condensed-menu"]}>
         <div className={styles["c-condensed-menu__title-container"]}>
-          {(currentMode && currentMode.attributes.title !== "Default") ||
-            (currentHeadline && (
+          {pageTypeId !== PAGE_TYPE_ID.INFO_PAGE &&
+            ((currentMode && currentMode.attributes.title !== "Default") || currentHeadline) && (
               <div className={styles["icon-container"]}>
                 <img src={icon} alt={alt} />
               </div>
-            ))}
+            )}
           <p className={styles["title"]}>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</p>
           <IconButton
             onClick={handleToggleLocation}
@@ -55,6 +59,7 @@ const CondensedMenu = ({
           />
           <IconButton onClick={toggleMenu} name="expand" size={16} className={styles["expand-icon"]} small />
         </div>
+        {pageTypeId === PAGE_TYPE_ID.INFO_PAGE && <EventPrompt />}
         {currentMode?.id !== defaultMode?.id && (
           <Scale hidden={currentMode?.id === defaultMode?.id} hideTooltipLabel isHorizontal />
         )}

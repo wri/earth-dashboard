@@ -29,7 +29,8 @@ export default connect(
     animationEnabled: state[globalSettingsSliceName][animationsId],
     dialogHeight: state[dialogSliceName].dialogHeight,
     currentHeadline: state[headlinesSliceName].currentHeadline,
-    headlines: state[headlinesSliceName].headlines
+    headlines: state[headlinesSliceName].headlines,
+    previousPageTypeId: state[modesSliceName].previousPageTypeId
   }),
   {
     setCurrentMode,

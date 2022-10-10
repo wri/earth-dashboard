@@ -1,105 +1,109 @@
-import ContentPanel from "components/app/home/content-panel";
-import { useEffect, useMemo, useState } from "react";
-import styles from "../menu.module.scss";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./info.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
-import { NAME as modesSliceName, Mode } from "slices/modes";
-import MenuOption from "components/app/home/menu-option";
-import Link from "next/link";
-import Image from "next/image";
-import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { fireEvent } from "utils/gtag";
-import { ADVANCED_MENU, EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
-import { fetchClimateAlerts } from "services/gca";
-import { Headline } from "slices/headlines";
+import { Headline, setCurrentHeadline } from "slices/headlines";
 import EventCard from "../../event-card/component";
+import Carousel from "components/ui/carousel";
+import ViewAllCard from "../../view-all-card";
+import { setPageTypeId, setPreviousPageTypeId } from "slices/modes";
+import { PAGE_TYPE_ID } from "../../main-container/component";
+import EventPrompt from "../../event-prompt/component";
 
-const mapHighlightToOption = (
-  mode: Mode,
-  onClickDataLayer: ActionCreatorWithPayload<Mode, string>,
-  onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>
-) => {
-  const { id, attributes } = mode;
-  return {
-    id,
-    ...attributes,
-    buttonText: "Learn More",
-    onClick: () => onClickDataLayer(mode),
-    onClickCta: () => {
-      fireEvent(EARTH_HQ_VIEWED_CATEGORY, attributes.title);
-      onViewDataLayerSummary(mode);
-    }
-  };
-};
+const SCROLL_NORMALIZE_VALUE = 37;
 
 type InfoPanelProps = {
+  currentHeadline: Headline | undefined;
   headlines: Headline[];
-  highlights: Mode[] | undefined;
-  defaultMode: Mode | undefined;
-  currentMode: Mode | undefined;
-  onClickExtremeEvents: () => void;
-  onClickDataLayer: ActionCreatorWithPayload<Mode, string>;
-  onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>;
+  setCurrentHeadline: ActionCreatorWithPayload<Headline | undefined, string>;
+  setPageTypeId: ActionCreatorWithPayload<string, string>;
+  setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
+  previousPageTypeId: string;
+  isMobile: boolean;
 };
 
 const InfoPanel = ({
+  currentHeadline,
   headlines,
-  highlights,
-  defaultMode,
-  currentMode,
-  onClickExtremeEvents,
-  onClickDataLayer,
-  onViewDataLayerSummary
+  setCurrentHeadline,
+  setPageTypeId,
+  setPreviousPageTypeId,
+  previousPageTypeId,
+  isMobile
 }: InfoPanelProps) => {
-  const [modeEventCount, setModeEventCount] = useState<{ [id: number]: number }>({});
+  const [carouselScroll, setCarouselScroll] = useState<number>(0);
+  const [carouselWidth, setCarouselWidth] = useState<number>();
 
-  const dataLayers = useMemo(
-    () => highlights?.map(highlight => mapHighlightToOption(highlight, onClickDataLayer, onViewDataLayerSummary)) || [],
-    [highlights, onClickDataLayer, modeEventCount]
-  );
+  const containerRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Set headlines redux if mobile
+  const handleEventClicked = (headline: Headline) => {
+    setCurrentHeadline(headline);
+    setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+    setPreviousPageTypeId(PAGE_TYPE_ID.INFO_PAGE);
+  };
+
   useEffect(() => {
-    const getModeEventCount = async () => {
-      try {
-        const resp = await fetchClimateAlerts();
+    if (!carouselWidth || !carouselRef.current) return;
 
-        const filteredHeadlines =
-          // @ts-expect-error
-          resp.data.data.reverse().slice(0, 25);
+    if (!currentHeadline && previousPageTypeId === PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE) {
+      const index = headlines.length;
+      const scrollLeft = index * (carouselWidth - SCROLL_NORMALIZE_VALUE);
+      carouselRef.current.scrollTo({ left: scrollLeft });
+    }
 
-        let modeEventCount: { [id: number]: number } = {};
+    if (!currentHeadline) return;
+    const index = headlines.findIndex(headline => headline.id === currentHeadline.id);
 
-        filteredHeadlines.forEach((headline: Headline) => {
-          const mode_id = headline.attributes.mode.id;
-          if (modeEventCount[mode_id]) modeEventCount[mode_id] += 1;
-          else modeEventCount[mode_id] = 1;
-        });
-        setModeEventCount(modeEventCount);
-      } catch (err) {
-        console.log("Error fetching modes");
-      }
-    };
+    if (!index) return;
+    const scrollLeft = index * (carouselWidth - SCROLL_NORMALIZE_VALUE);
+    carouselRef.current.scrollTo({ left: scrollLeft });
+  }, [currentHeadline, carouselWidth, carouselRef.current]);
 
-    getModeEventCount();
-  }, [setModeEventCount]);
+  useEffect(() => {
+    if (containerRef.current) setCarouselWidth(containerRef.current.offsetWidth);
+  }, [containerRef.current, window.innerWidth]);
+
+  useEffect(() => {
+    if (!carouselWidth) return;
+
+    let index = Math.round(carouselScroll / (carouselWidth - SCROLL_NORMALIZE_VALUE));
+    if (index < headlines.length) {
+      setCurrentHeadline(headlines[index]);
+      setPreviousPageTypeId(PAGE_TYPE_ID.INFO_PAGE);
+    } else {
+      setCurrentHeadline(undefined);
+      setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+    }
+  }, [carouselScroll, carouselWidth]);
 
   return (
-    <div className={styles["c-home-menu__scroll-area"]}>
-      {headlines.map(headline => (
-        <EventCard headline={headline} onClick={() => {}} type="Condensed" key={headline.id} />
-      ))}
+    <div ref={containerRef} className={styles["info-container"]}>
+      {!isMobile && <EventPrompt />}
+      <Carousel
+        items={headlines.map(headline => (
+          <EventCard
+            headline={headline}
+            type="Condensed"
+            key={headline.id}
+            onClick={() => handleEventClicked(headline)}
+          />
+        ))}
+        finalItem={<ViewAllCard />}
+        ref={carouselRef}
+        setScroll={setCarouselScroll}
+      />
     </div>
   );
 };
 
 export default connect(
   (state: RootState) => ({
-    defaultMode: state[modesSliceName].defaultMode,
-    currentMode: state[modesSliceName].currentMode,
-    highlights: state[modesSliceName].allModes?.filter(mode => mode.attributes.visibility.data_highlights),
-    headlines: state.headlines.headlines
+    currentHeadline: state.headlines.currentHeadline,
+    headlines: state.headlines.headlines,
+    previousPageTypeId: state.modes.previousPageTypeId,
+    isMobile: state.common.isMobile
   }),
-  {}
+  { setCurrentHeadline, setPageTypeId, setPreviousPageTypeId }
 )(InfoPanel);

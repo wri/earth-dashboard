@@ -1,0 +1,12 @@
+@import "css/settings/zIndex";
+@import "css/settings/breakpoints";
+
+.info-container {
+  height: 100%;
+  z-index: $z-index-menu;
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    display: flex;
+    align-items: center;
+  }
+}

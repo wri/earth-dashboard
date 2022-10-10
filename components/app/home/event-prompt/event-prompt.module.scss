@@ -1,0 +1,22 @@
+@import "css/_settings.scss";
+@import "css/tools/_fontSize.scss";
+@import "css/settings/breakpoints";
+
+.event-prompt-container {
+  background-color: $colour-galaxy;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 12px;
+  margin-bottom: 3px;
+
+  p {
+    font-weight: 500;
+    color: white;
+    @include font-size(16px, 24px);
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    margin: 24px 24px 0 24px;
+    padding: 16px;
+  }
+}

@@ -65,6 +65,7 @@
 
 .c-event-card-condensed {
   width: 100%;
+  min-width: 100%;
   border-radius: 16px;
   position: relative;
   overflow: hidden;
@@ -73,6 +74,7 @@
   padding: 12px;
   height: 172px;
   min-height: 172px;
+  scroll-snap-align: center;
 
   &__background {
     filter: brightness(50%) blur(4px);
@@ -105,6 +107,7 @@
       position: relative;
       display: block;
       height: 82px;
+      max-height: 82px;
       width: 68px;
       min-width: 68px;
       overflow: hidden;

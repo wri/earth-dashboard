@@ -2,12 +2,13 @@ import { useState, useEffect, useMemo, useRef, UIEvent } from "react";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
-import { setHeadlines, setCurrentHeadline, Headline as HeadlineType } from "slices/headlines";
+import { setHeadlines, setCurrentHeadline, Headline as HeadlineType, Headline } from "slices/headlines";
 import EventCard from "components/app/home/event-card";
-import { Mode, setCurrentMode } from "slices/modes";
+import { Mode, setCurrentMode, setPageTypeId, setPreviousPageTypeId } from "slices/modes";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
+import { PAGE_TYPE_ID } from "../../main-container/component";
 
 const HEADLINE_BATCH_SIZE = 6;
 const SCOLL_THRESHOLD = 180;
@@ -19,9 +20,18 @@ type EventsListPanelProps = {
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
   currentHeadline?: HeadlineType;
+  setPageTypeId: ActionCreatorWithPayload<string, string>;
+  setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
 };
 
-const EventsListPanel = ({ currentMode, headlines, setCurrentHeadline, currentHeadline }: EventsListPanelProps) => {
+const EventsListPanel = ({
+  currentMode,
+  headlines,
+  setCurrentHeadline,
+  currentHeadline,
+  setPageTypeId,
+  setPreviousPageTypeId
+}: EventsListPanelProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [bannerHeight, setBannerHeight] = useState<number>(150);
   const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(HEADLINE_BATCH_SIZE);
@@ -30,19 +40,18 @@ const EventsListPanel = ({ currentMode, headlines, setCurrentHeadline, currentHe
     return headlines.slice(0, numHeadlinesToShow);
   }, [headlines, numHeadlinesToShow]);
 
-  const articleRef = useRef<HTMLDivElement>(null);
   const bannerRef = useRef<HTMLDivElement>(null);
 
   const onSelectHeadline = (headline: HeadlineType) => {
     setCurrentHeadline(headline);
+    setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+    setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
   };
 
-  // Scroll to top of article when headline changes
   useEffect(() => {
-    if (articleRef.current) {
-      articleRef.current.scrollTo({ top: 0 });
-    }
-  }, [currentHeadline]);
+    setCurrentHeadline(undefined);
+    setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+  }, []);
 
   useEffect(() => {
     if (bannerRef.current) setBannerHeight(bannerRef.current.offsetHeight);
@@ -73,7 +82,6 @@ const EventsListPanel = ({ currentMode, headlines, setCurrentHeadline, currentHe
       </div>
       <div
         className={classnames(styles["c-home-menu__scroll-area"], styles["c-home-menu__extreme-events--scroll"])}
-        ref={articleRef}
         onScroll={onScroll}
       >
         <div className={styles["c-home-menu__extreme-events"]} style={{ marginTop: bannerHeight }}>
@@ -106,5 +114,5 @@ export default connect(
     headlines: state.headlines.headlines,
     currentHeadline: state.headlines.currentHeadline
   }),
-  { setHeadlines, setCurrentMode, setCurrentHeadline }
+  { setHeadlines, setCurrentMode, setCurrentHeadline, setPageTypeId, setPreviousPageTypeId }
 )(EventsListPanel);

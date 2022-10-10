@@ -2,13 +2,7 @@
 import { GCAAPI } from "utils/axios";
 import { logger } from "utils/logs";
 
-import {
-  DATA_LAYER_PAGE_ID,
-  EXTREME_EVENTS_PAGE_HEADLINE,
-  EXTREME_EVENTS_PAGE_ID,
-  INFO_PAGE_HEADLINE,
-  INFO_PAGE_ID
-} from "components/app/home/main-container/component";
+import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
 
 // API docs: https://resource-watch.github.io/doc-api/index-rw.html#dataset
 
@@ -133,10 +127,7 @@ export const fetchVideos = params => {
  * @returns title for the menu
  */
 export const getMenuTitle = (currentHeadline, currentMode, pageTypeId) => {
+  if (pageTypeId == PAGE_TYPE_ID.INFO_PAGE) return "This Is A Planetary Emergency...";
   if (currentHeadline) return currentHeadline.attributes.title;
-  if (pageTypeId == INFO_PAGE_ID)
-    return currentMode && currentMode.attributes.title !== "Default"
-      ? currentMode.attributes.title
-      : "This Is A Planetary Emergency...";
   return currentMode && currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "Extreme Events";
 };
