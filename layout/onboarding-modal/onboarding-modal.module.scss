@@ -202,9 +202,12 @@
         font-weight: 600;
         text-align: center;
         color: $white;
+        margin-bottom: 40px;
 
         @media screen and (min-width: $global-breakpoint-md) {
           @include font-size(22px, 31px);
+
+          margin-bottom: 60px;
         }
       }
 
