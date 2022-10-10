@@ -122,21 +122,22 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
             </div>
 
             {/* Slider image */}
-            <div className={styles["modal__image"]}>
-              {data.map((image, index) => (
-                <Image
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition={isMobile ? undefined : "bottom"}
-                  priority={true}
-                  key={image.id}
-                  src={isMobile ? image.mobileURL : image.desktopURL}
-                  alt={image.title}
-                  className={classnames({
-                    [styles["modal__image__hide"]]: true,
-                    [styles["modal__image__show"]]: counter === index
-                  })}
-                />
+            <div className={styles["modal__info"]}>
+              {data.map(image => (
+                <div key={image.id} className={styles["section"]}>
+                  <div className={styles["image"]}>
+                    <Image
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition={isMobile ? undefined : "bottom"}
+                      src={isMobile ? image.mobileURL : image.desktopURL}
+                      alt={image.title}
+                    />
+                  </div>
+
+                  {/* Description */}
+                  <h4 className={styles["text"]}>{data[counter].title}</h4>
+                </div>
               ))}
             </div>
           </div>
@@ -144,9 +145,6 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
 
         {/* Bottom section */}
         <div className={styles["modal__content"]}>
-          {/* Description */}
-          <h4 className={styles["modal__content__text"]}>{data[counter].title}</h4>
-
           {/* Pagination (mobile) */}
           {isMobile && <SlideLocator isMobile={isMobile} counter={counter} setCounter={setCounter} />}
 
