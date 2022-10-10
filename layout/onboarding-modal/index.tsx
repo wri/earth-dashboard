@@ -95,12 +95,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
         })}
       >
         {/* Header */}
-        <div
-          className={classnames({
-            [styles["modal__top"]]: !isMobile,
-            [styles["modal__top__mobile"]]: isMobile
-          })}
-        >
+        <div className={styles["modal__top"]}>
           <Image src={STAR_BG} layout="fill" objectFit="cover" alt="" />
 
           {/* Mobile content */}
@@ -118,31 +113,14 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
           )}
 
           {/* General content */}
-          <div
-            className={classnames({
-              [styles["modal__top__contain"]]: !isMobile,
-              [styles["modal__top__contain-mobile"]]: isMobile
-            })}
-          >
-            <div
-              className={classnames({
-                [styles["modal__header"]]: true,
-                [styles["modal__header__mobile"]]: isMobile
-              })}
-            >
+          <div className={styles["modal__top__contain"]}>
+            <div className={styles["modal__header"]}>
               {/* Desktop title and mobile logo */}
               <div className={styles["modal__logo"]}>
                 {!isMobile && (
                   <Icon name="earth-hq" size={32} type="decorative" className={styles["modal__logo__earth-hq"]} />
                 )}
-                <h3
-                  className={classnames({
-                    [styles["modal__header__title"]]: !isMobile,
-                    [styles["modal__header__title__mobile"]]: isMobile
-                  })}
-                >
-                  WELCOME TO EARTH HQ
-                </h3>
+                <h3 className={styles["modal__header__title"]}>WELCOME TO EARTH HQ</h3>
               </div>
 
               {/* X button */}
