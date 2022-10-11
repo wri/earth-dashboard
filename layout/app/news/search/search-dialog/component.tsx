@@ -107,17 +107,19 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
 
           {/* Load more */}
           {canFetchMore && (
-            <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
-              <AnchorCTA
-                className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}
-                onClick={() => fetchMore(LOAD_MORE_LIMIT)}
-              >
-                {isFetchingMore ? "Loading..." : "Load More "}
-              </AnchorCTA>
-            </div>
-          )}
+            <>
+              <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
+                <AnchorCTA
+                  className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}
+                  onClick={() => fetchMore(LOAD_MORE_LIMIT)}
+                >
+                  {isFetchingMore ? "Loading..." : "Load More "}
+                </AnchorCTA>
+              </div>
 
-          <EarthHQCTA className={styles["cta"]} />
+              <EarthHQCTA className={styles["cta"]} />
+            </>
+          )}
         </Section>
       </div>
     </DialogPanel>
