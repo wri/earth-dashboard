@@ -7,10 +7,11 @@ import styles from "./widgets-carousel.module.scss";
 
 type WidgetsCarouselProps = {
   widgets: GCAWidget[];
+  max?: number;
 };
 
 /** Shows a carousel of featured widgets. */
-const WidgetsCarousel = ({ widgets }: WidgetsCarouselProps) => {
+const WidgetsCarousel = ({ widgets, max = 6 }: WidgetsCarouselProps) => {
   const carouselRef = useRef<HTMLDivElement>();
 
   const [viewedWidget, setViewedWidget] = useState<string>();
@@ -76,7 +77,7 @@ const WidgetsCarousel = ({ widgets }: WidgetsCarouselProps) => {
         }}
         className={styles["c-widgets-carousel__wrapper"]}
       >
-        {widgets.map(widget => (
+        {widgets.slice(0, max).map(widget => (
           <div key={widget.id} id={widget.id.toString()} className={styles["widget"]}>
             <Widget widget={widget} />
           </div>
@@ -89,7 +90,10 @@ const WidgetsCarousel = ({ widgets }: WidgetsCarouselProps) => {
         <IconButton name="arrow-left" size={16} onClick={handlePrevious} small />
 
         {/* Indicator */}
-        <CarouselViewIndicator ids={widgets.map(widget => widget.id.toString())} activeId={viewedWidget} />
+        <CarouselViewIndicator
+          ids={widgets.slice(0, max).map(widget => widget.id.toString())}
+          activeId={viewedWidget}
+        />
 
         {/* Next button */}
         <IconButton name="arrow-right" size={16} onClick={handleNext} small />
