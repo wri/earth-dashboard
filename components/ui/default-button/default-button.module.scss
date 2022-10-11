@@ -1,0 +1,39 @@
+@import "css/settings";
+@import "css/tools/fontSize";
+
+.c-default-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: $colour-flame;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 48px;
+  font-weight: 500;
+
+  &:hover {
+    background-color: $colour-night;
+  }
+
+  &__text {
+    @include font-size(20px, 30px);
+
+    color: $white;
+    font-family: "Barlow Condensed";
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-left: 20px;
+    margin-right: 16px;
+    text-transform: uppercase;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $white;
+    border-radius: 50%;
+    color: $colour-galaxy;
+    padding: 8px;
+  }
+}
