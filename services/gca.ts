@@ -95,6 +95,40 @@ export const fetchWidgets = async (params: object) => {
     });
 };
 
+/**
+ * Fetch all Widgets for carousel.
+ * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
+ */
+export const fetchCarouselWidgets = async () => {
+  return GCAAPI.get("/widget-carousels", {
+    headers: {
+      ...GCAAPI.defaults.headers
+    }
+  })
+    .then(response => {
+      const {
+        status,
+        statusText,
+        data: { data }
+      } = response;
+
+      if (status >= 300) {
+        logger.error("Error fetching carousel widgets:", `${status}: ${statusText}`);
+        throw new Error(statusText);
+      }
+
+      if (data.length === 0) return [];
+
+      return data[0].relationships.widgets;
+    })
+    .catch(response => {
+      const { status, statusText } = response;
+
+      logger.error(`Error fetching carousel widgets: ${status}: ${statusText}`);
+      throw new Error(`Error fetching carousel widgets: ${status}: ${statusText}`);
+    });
+};
+
 export const fetchVideos = async (params: object) => {
   return GCAAPI.get("/videos", {
     headers: {

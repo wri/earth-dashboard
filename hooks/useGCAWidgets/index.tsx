@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchWidgets } from "services/gca";
+import { fetchCarouselWidgets, fetchWidgets } from "services/gca";
 import TOPICS from "constants/news";
 import { GCAWidget } from "./types";
 
@@ -10,6 +10,8 @@ type UseGCAWidgets = {
   hasErrored: boolean;
   /** An array of widgets from the endpoint. */
   widgets: GCAWidget[];
+  /** An array of widgets for the featured carousel. */
+  featuredWidgets: GCAWidget[];
 };
 
 /**
@@ -18,6 +20,7 @@ type UseGCAWidgets = {
  */
 const useGCAWidgets = (topic?: keyof typeof TOPICS): UseGCAWidgets => {
   const [widgets, setWidgets] = useState<GCAWidget[]>([]);
+  const [featuredWidgets, setFeaturedWidgets] = useState<GCAWidget[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [hasErrored, setHasErrored] = useState<boolean>(false);
 
@@ -37,6 +40,13 @@ const useGCAWidgets = (topic?: keyof typeof TOPICS): UseGCAWidgets => {
         setHasErrored(true);
       }
 
+      try {
+        const response = await fetchCarouselWidgets();
+
+        setFeaturedWidgets(response as GCAWidget[]);
+      } catch (err) {
+        setHasErrored(true);
+      }
       setIsLoading(false);
     })();
   }, [topic]);
@@ -44,7 +54,8 @@ const useGCAWidgets = (topic?: keyof typeof TOPICS): UseGCAWidgets => {
   return {
     isLoading,
     hasErrored,
-    widgets
+    widgets,
+    featuredWidgets
   };
 };
 
