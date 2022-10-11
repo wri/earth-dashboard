@@ -21,6 +21,7 @@ import SearchDialog from "./search/search-dialog";
 import NewsArticleSkeleton from "components/news-article/news-article-skeleton";
 import WidgetSkeleton from "./widget/widget-skeleton";
 import SkeletonVideo from "components/ui/skeleton/skeleton-video";
+import WidgetsCarousel from "./widgets-carousel";
 
 const LIMIT = 10;
 const LOAD_MORE_LIMIT = 9;
@@ -40,7 +41,7 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
     isFetchingMore,
     fetchMore
   } = useMongabayPosts(LIMIT);
-  const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets();
+  const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets, featuredWidgets } = useGCAWidgets();
   const { videos: allCMSVideos, isLoading: isVideosLoading } = useCMSVideos();
 
   // Store the isMobile flag in the redux store
@@ -53,7 +54,6 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
     postsLoadingMessage = "Loading...",
     availableWidgets = [...widgets],
     firstWidget = !isWidgetsLoading && !hasWidgetsErrorred && availableWidgets.shift(),
-    secondWidget = !isWidgetsLoading && !hasWidgetsErrorred && availableWidgets.shift(),
     availableVideos = [...allCMSVideos],
     videos = availableVideos.splice(0, 3);
 
@@ -98,9 +98,10 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
       </Section>
 
       {/* Second widget */}
-      <Section bgColour={BG_GALAXY}>
-        {secondWidget && <Widget data-testid="second-widget" widget={secondWidget} />}
-      </Section>
+      <div className={styles["c-news__featured-widgets"]}>
+        <h2>FEATURED</h2>
+        <WidgetsCarousel widgets={featuredWidgets} />
+      </div>
 
       {/* Videos */}
       <Section

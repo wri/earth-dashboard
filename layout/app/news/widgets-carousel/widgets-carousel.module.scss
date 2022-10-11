@@ -1,0 +1,31 @@
+@import "css/settings";
+
+.c-widgets-carousel {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__widget-wrapper {
+    flex-shrink: 0;
+    width: 90%;
+    padding: 24px 16px;
+    margin: 0 12px;
+    background-color: $colour-midnight;
+    border-radius: 12px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+
+    &:first-child {
+      margin-left: 24px;
+    }
+
+    &:last-child {
+      margin-right: 24px;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
+@import "css/tools/fontSize";
 
 .c-news {
   &__top-button {
@@ -25,6 +26,18 @@
       height: 48px;
       right: 60px;
       bottom: 40px;
+    }
+  }
+
+  &__featured-widgets {
+    padding: 24px 0;
+
+    > h2 {
+      @include font-size(20px, 30px);
+
+      color: $white;
+      font-weight: 600;
+      margin: 0 24px 12px 24px;
     }
   }
 
