@@ -1,0 +1,26 @@
+@import "css/settings";
+@import "css/settings/animations";
+
+.c-skeleton-video {
+  @include animate-pulse();
+
+  background-color: $colour-midnight;
+  border-radius: 12px;
+
+  &__top {
+    min-height: 132px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 65px 0 32px 0;
+
+    .icon {
+      color: $white;
+    }
+  }
+
+  &__bottom {
+    padding: 23px 16px 20px 16px;
+    border-radius: 0 0 12px 12px;
+  }
+}
