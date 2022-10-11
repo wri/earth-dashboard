@@ -44,8 +44,8 @@ const WidgetsCarousel = ({ widgets, max = 6 }: WidgetsCarouselProps) => {
           if (!entry.isIntersecting) return;
 
           setViewedWidget(entry.target.id);
-          setPrevWidget(entry.target.previousSibling as Element);
-          setNextWidget(entry.target.nextSibling as Element);
+          setPrevWidget(entry.target.previousElementSibling ?? entry.target.parentElement?.lastElementChild);
+          setNextWidget(entry.target.nextElementSibling ?? entry.target.parentElement?.firstElementChild);
         });
       },
       {
