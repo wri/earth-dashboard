@@ -14,6 +14,7 @@ import SearchEmptyState from "../search-empty-state";
 import styles from "./search-dialog.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import EarthHQCTA from "../../earth-hq-cta";
+import NewsArticleSkeleton from "components/news-article/news-article-skeleton";
 
 const LIMIT = 12;
 const LOAD_MORE_LIMIT = 12;
@@ -97,14 +98,12 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
           <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["top-button"]} />
 
           {/* Posts */}
-          {!isLoading ? (
-            !posts || !posts.length ? (
-              <SearchEmptyState />
-            ) : (
-              posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
-            )
+          {isLoading ? (
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
+          ) : !posts || !posts.length ? (
+            <SearchEmptyState />
           ) : (
-            <p className={newsArticleStyles["c-page-section-grid-news-articles__loading"]}>Loading...</p>
+            posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
           )}
 
           {/* Load more */}
