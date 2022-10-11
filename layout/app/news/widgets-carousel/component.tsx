@@ -1,4 +1,5 @@
 import CarouselViewIndicator from "components/ui/carousel-view-indicator";
+import IconButton from "components/ui/icon-button";
 import { GCAWidget } from "hooks/useGCAWidgets/types";
 import { useEffect, useRef, useState } from "react";
 import Widget from "../widget/component";
@@ -13,6 +14,26 @@ const WidgetsCarousel = ({ widgets }: WidgetsCarouselProps) => {
   const carouselRef = useRef<HTMLDivElement>();
 
   const [viewedWidget, setViewedWidget] = useState<string>();
+  const [prevWidget, setPrevWidget] = useState<Element | null>();
+  const [nextWidget, setNextWidget] = useState<Element | null>();
+
+  /** Scrolls to the previous widget. */
+  const handlePrevious = () => {
+    if (!prevWidget) return;
+
+    prevWidget.scrollIntoView({
+      behavior: "smooth"
+    });
+  };
+
+  /** Scrolls to the next widget. */
+  const handleNext = () => {
+    if (!nextWidget) return;
+
+    nextWidget.scrollIntoView({
+      behavior: "smooth"
+    });
+  };
 
   // Observes each item and checks if in viewport
   useEffect(() => {
@@ -22,6 +43,8 @@ const WidgetsCarousel = ({ widgets }: WidgetsCarouselProps) => {
           if (!entry.isIntersecting) return;
 
           setViewedWidget(entry.target.id);
+          setPrevWidget(entry.target.previousSibling as Element);
+          setNextWidget(entry.target.nextSibling as Element);
         });
       },
       {
@@ -61,11 +84,16 @@ const WidgetsCarousel = ({ widgets }: WidgetsCarouselProps) => {
       </div>
 
       {/* Controls */}
-      <CarouselViewIndicator
-        ids={widgets.map(widget => widget.id.toString())}
-        activeId={viewedWidget}
-        className={styles["c-widgets-carousel__controls"]}
-      />
+      <div className={styles["c-widgets-carousel__controls"]}>
+        {/* Previous button */}
+        <IconButton name="arrow-left" size={16} onClick={handlePrevious} small />
+
+        {/* Indicator */}
+        <CarouselViewIndicator ids={widgets.map(widget => widget.id.toString())} activeId={viewedWidget} />
+
+        {/* Next button */}
+        <IconButton name="arrow-right" size={16} onClick={handleNext} small />
+      </div>
     </div>
   );
 };

@@ -33,6 +33,8 @@
   }
 
   &__controls {
+    display: flex;
+    justify-content: space-between;
     padding: 20px 24px;
     background-color: $colour-midnight;
   }
