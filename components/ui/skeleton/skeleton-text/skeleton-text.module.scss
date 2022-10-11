@@ -1,0 +1,22 @@
+@import "css/settings";
+@import "css/settings/animations";
+
+.c-skeleton-text {
+  > div:not(:last-child) {
+    margin-bottom: 14px;
+  }
+
+  &.dark {
+    > div {
+      background-color: $colour-midnight;
+    }
+  }
+
+  > div {
+    @include animate-pulse();
+
+    height: 14px;
+    background-color: $colour-galaxy;
+    border-radius: 12px;
+  }
+}

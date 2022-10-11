@@ -1,0 +1,60 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/settings/animations";
+
+.c-skeleton-video {
+  @include animate-pulse();
+
+  background-color: $colour-midnight;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__top {
+    min-height: 132px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      min-height: 365px;
+    }
+
+    @media screen and (min-width: $global-breakpoint-xl) {
+      min-height: 132px;
+    }
+
+    div:nth-child(1) {
+      flex: 1.5;
+    }
+
+    div:nth-child(2) {
+      flex: 1;
+
+      .icon {
+        color: $white;
+        height: 100%;
+        width: 100%;
+        min-width: 50px;
+        max-width: 100px;
+      }
+    }
+
+    div:nth-child(3) {
+      flex: 1;
+    }
+  }
+
+  &__bottom {
+    padding: 23px 16px 20px 16px;
+    border-radius: 0 0 12px 12px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      padding: 24px;
+    }
+  }
+}

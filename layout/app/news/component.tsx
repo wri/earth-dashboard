@@ -20,6 +20,9 @@ import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import IconButton from "components/ui/icon-button";
 import SearchDialog from "./search/search-dialog";
+import NewsArticleSkeleton from "components/news-article/news-article-skeleton";
+import WidgetSkeleton from "./widget/widget-skeleton";
+import SkeletonVideo from "components/ui/skeleton/skeleton-video";
 
 const LIMIT = 10;
 const LOAD_MORE_LIMIT = 9;
@@ -40,7 +43,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
     fetchMore
   } = useMongabayPosts(LIMIT);
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
-  const { videos: allCMSVideos } = useCMSVideos(topic);
+  const { videos: allCMSVideos, isLoading: isVideosLoading } = useCMSVideos(topic);
 
   // Store the isMobile flag in the redux store
   useEffect(() => {
@@ -61,10 +64,6 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
     mostRecentArticle = otherArticles.shift();
   }
 
-  if (hasPostsErrorred) {
-    postsLoadingMessage = "An error has occurred when trying to loading the News Articles, please try again later";
-  }
-
   /** Scrolls to top. */
   const handleScrollToTop = () => {
     window.scrollTo({
@@ -79,50 +78,65 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
       <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["c-news__top-button"]} />
 
       <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>
-        {/* Most Recent */}
-        {mostRecentArticle ? (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__article"]}>
-            <NewsArticle topic={topic} {...mostRecentArticle} featured />
-          </div>
-        ) : (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__article"]}>
-            <div>{postsLoadingMessage}</div>
-          </div>
-        )}
-        {firstWidget && (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__widget"]}>
-            <Widget data-testid="first-widget" widget={firstWidget} bordered sourceButtonRight />
-          </div>
-        )}
+        <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__article"]}>
+          {/* Most Recent */}
+          {isPostsLoading ? (
+            <NewsArticleSkeleton featured />
+          ) : mostRecentArticle ? (
+            <NewsArticle topic={topic} featured {...mostRecentArticle} />
+          ) : (
+            <p>{postsLoadingMessage}</p>
+          )}
+        </div>
+
+        {/* Top widget */}
+        <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__widget"]}>
+          {isWidgetsLoading ? (
+            <WidgetSkeleton />
+          ) : (
+            firstWidget && <Widget data-testid="first-widget" widget={firstWidget} bordered sourceButtonRight />
+          )}
+        </div>
       </Section>
 
+      {/* Second widget */}
       <Section bgColour={BG_GALAXY}>
         {secondWidget && <Widget data-testid="second-widget" widget={secondWidget} />}
       </Section>
 
+      {/* Videos */}
       <Section
         title="Must Watch"
         bgColour={BG_LIGHT_SPACE}
         gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
       >
-        {/* Must Watch */}
-        {videos?.map(({ id, attributes: video }) => (
-          <VideoArticle
-            key={id}
-            topic={topic}
-            title={video["title"]}
-            image={video["thumbnail_image"]}
-            videoURL={video["url"]}
-          />
-        ))}
+        {isVideosLoading
+          ? [0, 1, 2].map(key => (
+              <SkeletonVideo
+                key={`video-${key}`}
+                className={key === 0 ? styles["c-news__must-watch-skeleton"] : undefined}
+                large={!isMobile && key === 0}
+              />
+            ))
+          : videos?.map(({ id, attributes: video }) => (
+              <VideoArticle
+                key={id}
+                topic={topic}
+                title={video["title"]}
+                image={video["thumbnail_image"]}
+                videoURL={video["url"]}
+              />
+            ))}
       </Section>
 
       <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
-        {otherArticles ? (
-          otherArticles.map(({ key, ...articleProps }) => <NewsArticle key={key} topic={topic} {...articleProps} />)
+        {isPostsLoading ? (
+          [0, 1, 2, 3, 4, 5, 6, 7, 8].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
+        ) : hasPostsErrorred ? (
+          <p>An error has occurred when trying to loading the News Articles, please try again later</p>
         ) : (
-          <div>{postsLoadingMessage}</div>
+          otherArticles?.map(({ key, ...articleProps }) => <NewsArticle key={key} topic={topic} {...articleProps} />)
         )}
         {canFetchMore && (
           <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
