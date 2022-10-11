@@ -32,7 +32,6 @@ const useGCAWidgets = (topic?: keyof typeof TOPICS): UseGCAWidgets => {
       try {
         const response = await fetchWidgets({ category: topic });
 
-        // Order the topics
         response.sort((a: any, b: any) => a.attributes.order - b.attributes.order);
 
         setWidgets(response as GCAWidget[]);
@@ -42,6 +41,8 @@ const useGCAWidgets = (topic?: keyof typeof TOPICS): UseGCAWidgets => {
 
       try {
         const response = await fetchCarouselWidgets();
+
+        response.sort((a: any, b: any) => a.attributes.order - b.attributes.order);
 
         setFeaturedWidgets(response as GCAWidget[]);
       } catch (err) {
