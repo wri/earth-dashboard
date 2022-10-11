@@ -1,3 +1,4 @@
+import { useDebounce } from "react-use";
 import classnames from "classnames";
 import Input from "components/form/input";
 import TOPICS from "constants/news";
@@ -37,12 +38,18 @@ const NewsSearch = ({
   const topics = Object.keys(TOPICS) as (keyof typeof TOPICS)[];
 
   // Emits query value to parent
-  useEffect(() => {
-    if (!search || search.length < 3) return;
+  useDebounce(
+    () => {
+      if (!search) return setSearch(undefined);
 
-    setSearch(search);
-    // eslint-disable-next-line
-  }, [search]);
+      if (search.length < 3) return;
+
+      setSearch(search);
+      // eslint-disable-next-line
+    },
+    400,
+    [search]
+  );
 
   return (
     <div
