@@ -89,8 +89,7 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
           })}
           {...(hasSearchResults
             ? {
-                title: "All Results",
-                subtext: "Showing..."
+                title: "All Results"
               }
             : {})}
         >

@@ -73,8 +73,7 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
         bgColour={BG_GALAXY}
         {...(hasSearchResults
           ? {
-              title: "All Results",
-              subtext: "Showing..."
+              title: "All Results"
             }
           : {})}
       >
