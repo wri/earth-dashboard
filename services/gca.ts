@@ -29,7 +29,7 @@ export const fetchClimateAlertById = async (id: string) => {
  * Fetch all Latest Extreme Events (Climate Alerts)
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
  */
-export const fetchClimateAlerts = async (params: object) => {
+export const fetchClimateAlerts = async (params?: object) => {
   return GCAAPI.get("/climate-alerts", {
     params,
     headers: {
@@ -64,7 +64,7 @@ export const fetchModes = async () => {
  * Fetch all Widgets
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
  */
-export const fetchWidgets = async (params: object) => {
+export const fetchWidgets = async (params?: object) => {
   return GCAAPI.get("/widgets", {
     headers: {
       ...GCAAPI.defaults.headers
@@ -129,7 +129,7 @@ export const fetchCarouselWidgets = async () => {
     });
 };
 
-export const fetchVideos = async (params: object) => {
+export const fetchVideos = async (params?: object) => {
   return GCAAPI.get("/videos", {
     headers: {
       ...GCAAPI.defaults.headers
