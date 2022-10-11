@@ -1,5 +1,7 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+@import "layout/app/news/section/section-settings";
 
 .c-news {
   &__top-button {
@@ -8,7 +10,7 @@
     height: 32px;
     right: 24px;
     bottom: 76px;
-    z-index: 10;
+    z-index: 1000;
 
     svg {
       min-width: 16px;
@@ -25,6 +27,23 @@
       height: 48px;
       right: 60px;
       bottom: 40px;
+    }
+  }
+
+  &__featured-widgets {
+    padding-top: 24px;
+
+    > h2 {
+      @include font-size(20px, 30px);
+
+      color: $white;
+      font-weight: 600;
+      margin: 0 $o-page-section-padding-x 16px $o-page-section-padding-x;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        margin: 0 $o-page-section-padding-x-desktop 16px $o-page-section-padding-x-desktop;
+        font-family: Barlow;
+      }
     }
   }
 

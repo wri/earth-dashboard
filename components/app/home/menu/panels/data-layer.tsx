@@ -53,12 +53,10 @@ const DataLayerOverview = ({
       try {
         const resp = await fetchClimateAlerts();
 
-        const filteredHeadlines =
-          // @ts-expect-error
-          resp.data.data
-            .reverse()
-            .slice(0, 25)
-            .filter((headline: Headline) => headline.attributes.mode.id === currentMode.id);
+        const filteredHeadlines = resp.data.data
+          .reverse()
+          .slice(0, 25)
+          .filter((headline: Headline) => headline.attributes.mode.id === currentMode.id);
 
         setHeadlines(filteredHeadlines);
       } catch (err) {

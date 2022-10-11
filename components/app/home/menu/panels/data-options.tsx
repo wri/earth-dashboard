@@ -62,9 +62,7 @@ const DataIndex = ({
       try {
         const resp = await fetchClimateAlerts();
 
-        const filteredHeadlines =
-          // @ts-expect-error
-          resp.data.data.reverse().slice(0, 25);
+        const filteredHeadlines = resp.data.data.reverse().slice(0, 25);
 
         let modeEventCount: { [id: number]: number } = {};
 
