@@ -17,11 +17,16 @@
       flex-shrink: 0;
       width: 90%;
       padding: 24px 16px;
-      margin: 0 12px;
-      background-color: $colour-midnight;
+      margin: 0 4px;
+      background-color: $colour-night;
       border-radius: 12px;
       scroll-snap-align: center;
       scroll-snap-stop: always;
+      transition: background-color 0.5s;
+
+      &.active {
+        background-color: $colour-midnight;
+      }
 
       &:first-child {
         margin-left: 24px;

@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import CarouselViewIndicator from "components/ui/carousel-view-indicator";
 import IconButton from "components/ui/icon-button";
 import { GCAWidget } from "hooks/useGCAWidgets/types";
@@ -8,6 +9,7 @@ import styles from "./widgets-carousel.module.scss";
 type WidgetsCarouselProps = {
   widgets: GCAWidget[];
   max?: number;
+  isLoading: boolean;
 };
 
 /** Shows a carousel of featured widgets. */
@@ -80,7 +82,13 @@ const WidgetsCarousel = ({ widgets, max = 6 }: WidgetsCarouselProps) => {
         className={styles["c-widgets-carousel__wrapper"]}
       >
         {widgets.slice(0, max).map(widget => (
-          <div key={widget.id} id={widget.id.toString()} className={styles["widget"]}>
+          <div
+            key={widget.id}
+            id={widget.id.toString()}
+            className={classnames(styles["widget"], {
+              [styles["active"]]: widget.id.toString() === viewedWidget
+            })}
+          >
             <Widget widget={widget} />
           </div>
         ))}
