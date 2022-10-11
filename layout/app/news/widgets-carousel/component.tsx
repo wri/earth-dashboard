@@ -70,7 +70,7 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6 }: WidgetsCarouselProps) 
         observer.unobserve(node as Element);
       });
     };
-  }, [widgets]);
+  }, [isLoading]);
 
   return (
     <div className={styles["c-widgets-carousel"]}>
