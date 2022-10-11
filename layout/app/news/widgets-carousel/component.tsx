@@ -23,6 +23,7 @@ const WidgetsCarousel = ({ widgets, max = 6 }: WidgetsCarouselProps) => {
     if (!prevWidget) return;
 
     prevWidget.scrollIntoView({
+      block: "center",
       behavior: "smooth"
     });
   };
@@ -32,6 +33,7 @@ const WidgetsCarousel = ({ widgets, max = 6 }: WidgetsCarouselProps) => {
     if (!nextWidget) return;
 
     nextWidget.scrollIntoView({
+      block: "center",
       behavior: "smooth"
     });
   };
