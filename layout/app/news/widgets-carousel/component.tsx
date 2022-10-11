@@ -9,7 +9,6 @@ import styles from "./widgets-carousel.module.scss";
 type WidgetsCarouselProps = {
   widgets: GCAWidget[];
   max?: number;
-  isLoading: boolean;
 };
 
 /** Shows a carousel of featured widgets. */

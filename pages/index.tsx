@@ -45,9 +45,7 @@ HomePage.getInitialProps = async ({ query }: { query: any }) => {
 
   try {
     const resp = await fetchClimateAlertById(query.headline);
-    // @ts-expect-error
     if (resp.data) {
-      // @ts-expect-error
       const initCurrentHeadline = resp.data.data;
       return { initCurrentHeadline };
     }
