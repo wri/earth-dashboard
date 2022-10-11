@@ -1,4 +1,6 @@
 @import "css/settings";
+@import "css/settings/breakpoints";
+@import "layout/app/news/section/section-settings";
 
 .c-widgets-carousel {
   &__wrapper {
@@ -8,6 +10,10 @@
     scroll-snap-type: x mandatory;
     margin-bottom: 16px;
     scrollbar-width: none;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      overflow-x: hidden;
+    }
 
     &::-webkit-scrollbar {
       display: none;
@@ -29,11 +35,17 @@
       }
 
       &:first-child {
-        margin-left: 24px;
+        margin-left: $o-page-section-padding-x;
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          margin-left: $o-page-section-padding-x-desktop;
+        }
       }
 
       &:last-child {
-        margin-right: 24px;
+        @media screen and (min-width: $global-breakpoint-md) {
+          margin-right: $o-page-section-padding-x-desktop;
+        }
       }
     }
   }
@@ -41,7 +53,11 @@
   &__controls {
     display: flex;
     justify-content: space-between;
-    padding: 20px 24px;
     background-color: $colour-midnight;
+    padding: 20px $o-page-section-padding-x;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      padding: 20px $o-page-section-padding-x-desktop;
+    }
   }
 }

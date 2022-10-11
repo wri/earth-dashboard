@@ -1,6 +1,7 @@
 @import "css/settings";
 @import "css/settings/breakpoints";
 @import "css/tools/fontSize";
+@import "layout/app/news/section/section-settings";
 
 .c-news {
   &__top-button {
@@ -37,7 +38,11 @@
 
       color: $white;
       font-weight: 600;
-      margin: 0 24px 16px 24px;
+      margin: 0 $o-page-section-padding-x 16px $o-page-section-padding-x;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        margin: 0 $o-page-section-padding-x-desktop 16px $o-page-section-padding-x-desktop;
+      }
     }
   }
 
