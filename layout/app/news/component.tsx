@@ -14,7 +14,7 @@ import TOPICS from "constants/news";
 import styles from "./news.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import videoArticleStyles from "components/video-article/video-article.module.scss";
-import { BG_LIGHT_SPACE, BG_GALAXY } from "constants/section-colours";
+import { BG_LIGHT_SPACE } from "constants/section-colours";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import IconButton from "components/ui/icon-button";
 import SearchDialog from "./search/search-dialog";

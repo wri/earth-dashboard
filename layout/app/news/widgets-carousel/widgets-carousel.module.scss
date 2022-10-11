@@ -1,31 +1,39 @@
 @import "css/settings";
 
 .c-widgets-carousel {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
+  &__wrapper {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    margin-bottom: 16px;
 
-  &::-webkit-scrollbar {
-    display: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .widget {
+      flex-shrink: 0;
+      width: 90%;
+      padding: 24px 16px;
+      margin: 0 12px;
+      background-color: $colour-midnight;
+      border-radius: 12px;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+
+      &:first-child {
+        margin-left: 24px;
+      }
+
+      &:last-child {
+        margin-right: 24px;
+      }
+    }
   }
 
-  &__widget-wrapper {
-    flex-shrink: 0;
-    width: 90%;
-    padding: 24px 16px;
-    margin: 0 12px;
+  &__controls {
+    padding: 20px 24px;
     background-color: $colour-midnight;
-    border-radius: 12px;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-
-    &:first-child {
-      margin-left: 24px;
-    }
-
-    &:last-child {
-      margin-right: 24px;
-    }
   }
 }

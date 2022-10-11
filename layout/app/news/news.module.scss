@@ -9,7 +9,7 @@
     height: 32px;
     right: 24px;
     bottom: 76px;
-    z-index: 10;
+    z-index: 1000;
 
     svg {
       min-width: 16px;
@@ -30,14 +30,14 @@
   }
 
   &__featured-widgets {
-    padding: 24px 0;
+    padding-top: 24px;
 
     > h2 {
       @include font-size(20px, 30px);
 
       color: $white;
       font-weight: 600;
-      margin: 0 24px 12px 24px;
+      margin: 0 24px 0 24px;
     }
   }
 

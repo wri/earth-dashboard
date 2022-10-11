@@ -1,0 +1,26 @@
+@import "css/settings";
+
+.c-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 12px;
+    background-color: $white;
+    opacity: 0.8;
+    transition: width 0.5s;
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    &.active {
+      width: 32px;
+      background-color: $colour-flame;
+      opacity: 1;
+    }
+  }
+}
