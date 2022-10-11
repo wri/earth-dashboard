@@ -27,9 +27,14 @@ type SearchDialogProps = {
 /** Shows the search bar and filter with its results. */
 const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogProps) => {
   const [topic, setTopic] = useState<keyof typeof TOPICS>();
+  const [search, setSearch] = useState<string>();
 
   // Data
-  const { isLoading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(LIMIT, topic);
+  const { isLoading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts({
+    limit: LIMIT,
+    topic,
+    search
+  });
 
   // Dialog controls
   const { shouldAnimate, handleClose } = useDialogPanel(isOpen, () => {
@@ -66,6 +71,7 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
             <NewsSearch
               topic={topic}
               setTopic={setTopic}
+              setSearch={setSearch}
               inputClassName={styles["input"]}
               filtersClassName={styles["filters"]}
               darkColors

@@ -21,7 +21,7 @@ type NewsArticleProps = {
 /** News article card for news page. */
 const NewsArticle = ({ className = "", topic, featured, title, author, date, image, link }: NewsArticleProps) => {
   const handleClick = () => {
-    fireEvent(NEWS_OPENED_ARTICLE, null, { news_title: title, category_name: topic });
+    fireEvent(NEWS_OPENED_ARTICLE, null, { news_title: title, category_name: topic ?? "all" });
   };
 
   return (

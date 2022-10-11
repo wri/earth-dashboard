@@ -29,10 +29,15 @@ type NewsSearchLayoutProps = {
 
 /** Shows the search bar and its results. */
 const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
+  const [search, setSearch] = useState<string>();
   const [topic, setTopic] = useState<keyof typeof TOPICS>();
 
   // Data
-  const { isLoading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(LIMIT, topic);
+  const { isLoading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts({
+    limit: LIMIT,
+    topic,
+    search
+  });
 
   // Store the isMobile flag in the redux store
   useEffect(() => {
@@ -57,7 +62,7 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
       {/* Search controls */}
       <div className={styles["c-page-search__top"]}>
         <h2 className={styles["title"]}>Search News</h2>
-        <NewsSearch topic={topic} setTopic={setTopic} filtersClassName={styles["filters"]} />
+        <NewsSearch topic={topic} setTopic={setTopic} setSearch={setSearch} filtersClassName={styles["filters"]} />
       </div>
 
       {/* Search results */}

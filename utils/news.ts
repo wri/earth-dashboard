@@ -45,11 +45,14 @@ export const formatPosts = (posts: MongabayPost[]): FormattedMongabayPost[] =>
   }, []);
 
 export const GetPostsQuery = gql`
-  query GetPosts($first: Int, $after: String, $topics: [String]) {
+  query GetPosts($first: Int, $after: String, $topics: [String], $search: String) {
     posts(
       first: $first
       after: $after
-      where: { taxQuery: { relation: OR, taxArray: [{ terms: $topics, taxonomy: TOPIC, operator: IN, field: SLUG }] } }
+      where: {
+        taxQuery: { relation: OR, taxArray: [{ terms: $topics, taxonomy: TOPIC, operator: IN, field: SLUG }] }
+        search: $search
+      }
     ) {
       pageInfo {
         hasNextPage

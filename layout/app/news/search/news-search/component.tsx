@@ -1,13 +1,18 @@
 import classnames from "classnames";
 import Input from "components/form/input";
 import TOPICS from "constants/news";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./news-search.module.scss";
+
+type NewsSearchFormData = {
+  search: string;
+};
 
 type NewsSearchProps = {
   topic: keyof typeof TOPICS | undefined;
   setTopic: Dispatch<SetStateAction<keyof typeof TOPICS | undefined>>;
+  setSearch: Dispatch<SetStateAction<string | undefined>>;
   darkColors?: boolean;
   className?: string;
   inputClassName?: string;
@@ -19,14 +24,25 @@ const NewsSearch = ({
   topic,
   setTopic,
   darkColors,
+  setSearch,
   className = "",
   inputClassName = "",
   filtersClassName = ""
 }: NewsSearchProps) => {
   // Form
-  const form = useForm();
+  const form = useForm<NewsSearchFormData>();
+
+  const search = form.watch("search");
 
   const topics = Object.keys(TOPICS) as (keyof typeof TOPICS)[];
+
+  // Emits query value to parent
+  useEffect(() => {
+    if (!search || search.length < 3) return;
+
+    setSearch(search);
+    // eslint-disable-next-line
+  }, [search]);
 
   return (
     <div
