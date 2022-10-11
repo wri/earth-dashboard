@@ -6,15 +6,20 @@ import styles from "./skeleton-video.module.scss";
 
 type SkeletonVideoProps = {
   className?: string;
+  large?: boolean;
 };
 
 /** Skeleton loading for video element. */
-const SkeletonVideo = ({ className = "" }: SkeletonVideoProps) => {
+const SkeletonVideo = ({ className = "", large }: SkeletonVideoProps) => {
   return (
     <div className={classnames(styles["c-skeleton-video"], className)}>
       {/* Top */}
       <div className={styles["c-skeleton-video__top"]}>
-        <Icon name="youtube-play" size={50} type="decorative" className={styles["icon"]} />
+        <div />
+        <div>
+          <Icon name="youtube-play" type="decorative" className={styles["icon"]} />
+        </div>
+        <div />
       </div>
 
       {/* Bottom */}

@@ -111,7 +111,13 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
         gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
       >
         {isVideosLoading
-          ? [0, 1, 2].map(key => <SkeletonVideo key={`video-${key}`} />)
+          ? [0, 1, 2].map(key => (
+              <SkeletonVideo
+                key={`video-${key}`}
+                className={key === 0 ? styles["c-news__must-watch-skeleton"] : undefined}
+                large={!isMobile && key === 0}
+              />
+            ))
           : videos?.map(({ id, attributes: video }) => (
               <VideoArticle
                 key={id}

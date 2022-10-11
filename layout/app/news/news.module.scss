@@ -27,4 +27,10 @@
       bottom: 40px;
     }
   }
+
+  &__must-watch-skeleton {
+    @media screen and (min-width: $global-breakpoint-md) {
+      grid-row-end: span 2;
+    }
+  }
 }
