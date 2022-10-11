@@ -10,9 +10,9 @@ import { ONBOARDING_COMPLETED } from "layout/layout/layout-app/constants";
 import nullSchoolLogo from "public/static/images/logo-earth-hq.svg";
 import { fireEvent } from "utils/gtag";
 import { ONBOARDING_SKIPPED, ONBOARDING_COMPLETED as ONBOARDING_COMPLETED_TAG, PAGE_VIEW } from "constants/tag-manager";
-import SlideLocator from "./slide-locator";
 import DefaultButton from "components/ui/default-button";
 import OutlineButton from "components/ui/outline-button";
+import CarouselViewIndicator from "components/ui/carousel-view-indicator";
 
 type OnboardingModalProps = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
@@ -21,42 +21,55 @@ type OnboardingModalProps = {
 
 /** Shows information on how to use the site. */
 const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
-  const infoRef = useRef<HTMLDivElement>();
+  const carouselRef = useRef<HTMLDivElement>();
 
   const [counter, setCounter] = useState<number>(0);
-  const [progress, setProgress] = useState<number>(0);
+  const [prevScreen, setPrevScreen] = useState<Element | null>();
+  const [nextScreen, setNextScreen] = useState<Element | null>();
 
-  const isFirstSlide = counter == 0;
-  const isFinalSlide = counter === 2;
+  const isFirstSlide = counter == 1;
+  const isFinalSlide = counter === 3;
 
-  const handleScroll = () => {
-    if (!infoRef.current) return;
-
-    const { clientWidth, scrollLeft } = infoRef.current;
-
-    setProgress(scrollLeft / (clientWidth * 2));
-
-    if (scrollLeft > 0 && scrollLeft < clientWidth) setCounter(0);
-    else if (scrollLeft >= clientWidth && scrollLeft < clientWidth * 2) setCounter(1);
-    else if (scrollLeft === clientWidth * 2) setCounter(2);
-  };
-
+  // Observes each item and checks if in viewport
   useEffect(() => {
-    infoRef.current?.addEventListener("scroll", handleScroll);
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const pos = entry.target.getAttribute("data-pos");
+
+          if (!entry.isIntersecting || !pos) return;
+
+          setCounter(parseInt(pos));
+          setPrevScreen(entry.target.previousElementSibling);
+          setNextScreen(entry.target.nextElementSibling);
+        });
+      },
+      {
+        root: carouselRef.current,
+        rootMargin: "0px",
+        threshold: 0.5
+      }
+    );
+
+    carouselRef.current?.childNodes.forEach(node => {
+      observer.observe(node as Element);
+    });
 
     return () => {
-      infoRef.current?.removeEventListener("scroll", handleScroll);
+      carouselRef.current?.childNodes.forEach(node => {
+        observer.unobserve(node as Element);
+      });
     };
   }, []);
 
   // Tracks GA events
   useEffect(() => {
-    fireEvent(PAGE_VIEW, `onboarding_${counter + 1}`);
+    fireEvent(PAGE_VIEW, `onboarding_${counter}`);
   }, [counter]);
 
   /** Tracks GA event that user has skipped this flow. */
   const handleSkip = () => {
-    fireEvent(ONBOARDING_SKIPPED, (counter + 1).toString());
+    fireEvent(ONBOARDING_SKIPPED, counter.toString());
     handleClose();
   };
 
@@ -66,25 +79,27 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
     setShowModal(false);
   };
 
-  /** Navigate to the previous step. */
-  const backStep = () => {
-    if (!infoRef.current) return;
+  /** Scrolls to the previous widget. */
+  const handlePrevious = () => {
+    if (!prevScreen) return;
 
-    infoRef.current.children[counter - 1].scrollIntoView({
+    prevScreen.scrollIntoView({
+      block: "center",
       behavior: "smooth"
     });
   };
 
-  /** Navigate to the next step. */
-  const nextStep = () => {
+  /** Scrolls to the next widget. */
+  const handleNext = () => {
     if (isFinalSlide) {
       fireEvent(ONBOARDING_COMPLETED_TAG, null);
       return handleClose();
     }
 
-    if (!infoRef.current) return;
+    if (!nextScreen) return;
 
-    infoRef.current.children[counter + 1].scrollIntoView({
+    nextScreen.scrollIntoView({
+      block: "center",
       behavior: "smooth"
     });
   };
@@ -107,7 +122,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
               <div className={styles["modal__mobile__nav__logo"]}>
                 <Image src={nullSchoolLogo} alt="" />
               </div>
-              {counter !== 2 && (
+              {counter !== 3 && (
                 <h1 className={styles["modal__mobile__continue"]} onClick={handleSkip}>
                   SKIP
                 </h1>
@@ -140,12 +155,12 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
             {/* Slider image */}
             <div
               ref={ref => {
-                if (ref) infoRef.current = ref;
+                if (ref) carouselRef.current = ref;
               }}
               className={styles["modal__info"]}
             >
               {data.map(image => (
-                <div key={image.id} className={styles["section"]}>
+                <div key={image.id} data-pos={image.id} className={styles["section"]}>
                   <div className={styles["image"]}>
                     <Image
                       layout="fill"
@@ -157,7 +172,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
                   </div>
 
                   {/* Description */}
-                  <h4 className={styles["text"]}>{data[counter].title}</h4>
+                  <h4 className={styles["text"]}>{counter > 0 ? data[counter - 1].title : ""}</h4>
                 </div>
               ))}
             </div>
@@ -167,7 +182,9 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
         {/* Bottom section */}
         <div className={styles["modal__content"]}>
           {/* Pagination (mobile) */}
-          {isMobile && <SlideLocator setCounter={setCounter} progress={progress} />}
+          {isMobile && (
+            <CarouselViewIndicator ids={data.map(({ id }) => id.toString())} activeId={counter.toString()} />
+          )}
 
           {/* Pagination (desktop) */}
           <div
@@ -182,17 +199,19 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
                 [styles["hide"]]: isFirstSlide
               })}
             >
-              <OutlineButton text="BACK" onClick={backStep} />
+              <OutlineButton text="BACK" onClick={handlePrevious} />
             </div>
 
-            {!isMobile && <SlideLocator setCounter={setCounter} progress={progress} />}
+            {!isMobile && (
+              <CarouselViewIndicator ids={data.map(({ id }) => id.toString())} activeId={counter.toString()} />
+            )}
 
             {/* Next button */}
             <div className={styles["next-button"]}>
               <DefaultButton
                 text={isFinalSlide ? "EXPLORE" : "CONTINUE"}
                 icon={<Icon name={isFinalSlide ? "check" : "arrow-right"} size={15} type="decorative" />}
-                onClick={nextStep}
+                onClick={handleNext}
               />
             </div>
           </div>
