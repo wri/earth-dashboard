@@ -76,12 +76,10 @@ const useIframeBridge = ({
         const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
         const resp = await fetchClimateAlerts();
 
-        const filteredHeadlines =
-          // @ts-expect-error
-          resp.data.data
-            .reverse()
-            .slice(0, 10)
-            .filter((headline: Headline) => (!mode_id ? true : headline.attributes.mode.id === mode_id));
+        const filteredHeadlines = resp.data.data
+          .reverse()
+          .slice(0, 10)
+          .filter((headline: Headline) => (!mode_id ? true : headline.attributes.mode.id === mode_id));
         setHeadlines(filteredHeadlines);
       } catch (err) {
         console.log("Error fetching modes");

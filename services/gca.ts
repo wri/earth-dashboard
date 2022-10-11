@@ -3,15 +3,16 @@ import { GCAAPI } from "utils/axios";
 import { logger } from "utils/logs";
 
 import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
+import { Mode } from "slices/modes";
+import { Headline } from "slices/headlines";
 
 // API docs: https://resource-watch.github.io/doc-api/index-rw.html#dataset
 
 /**
  * Fetches climate alert with id given
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
- * @returns {Object} climate alert.
  */
-export const fetchClimateAlertById = id => {
+export const fetchClimateAlertById = async (id: string) => {
   return GCAAPI.get(`/climate-alerts/${id}`, {
     headers: {
       ...GCAAPI.defaults.headers
@@ -27,10 +28,8 @@ export const fetchClimateAlertById = id => {
 /**
  * Fetch all Latest Extreme Events (Climate Alerts)
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
- * @returns {Array} Array of modes.
- * be included in the response or not.
  */
-export const fetchClimateAlerts = params => {
+export const fetchClimateAlerts = async (params?: object) => {
   return GCAAPI.get("/climate-alerts", {
     params,
     headers: {
@@ -47,10 +46,8 @@ export const fetchClimateAlerts = params => {
 /**
  * Fetch all modes
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
- * @returns {Array} Array of modes.
- * be included in the response or not.
  */
-export const fetchModes = () => {
+export const fetchModes = async () => {
   return GCAAPI.get("/modes", {
     headers: {
       ...GCAAPI.defaults.headers
@@ -66,13 +63,8 @@ export const fetchModes = () => {
 /**
  * Fetch all Widgets
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
- *
- * @param {Object} params
- * @property {String} category - filter widgets by cateogry
- *
- * @returns {Array} an array of widgets
  */
-export const fetchWidgets = params => {
+export const fetchWidgets = async (params?: object) => {
   return GCAAPI.get("/widgets", {
     headers: {
       ...GCAAPI.defaults.headers
@@ -103,7 +95,41 @@ export const fetchWidgets = params => {
     });
 };
 
-export const fetchVideos = params => {
+/**
+ * Fetch all Widgets for carousel.
+ * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
+ */
+export const fetchCarouselWidgets = async () => {
+  return GCAAPI.get("/widget-carousels", {
+    headers: {
+      ...GCAAPI.defaults.headers
+    }
+  })
+    .then(response => {
+      const {
+        status,
+        statusText,
+        data: { data }
+      } = response;
+
+      if (status >= 300) {
+        logger.error("Error fetching carousel widgets:", `${status}: ${statusText}`);
+        throw new Error(statusText);
+      }
+
+      if (data.length === 0) return [];
+
+      return data[0].relationships.widgets;
+    })
+    .catch(response => {
+      const { status, statusText } = response;
+
+      logger.error(`Error fetching carousel widgets: ${status}: ${statusText}`);
+      throw new Error(`Error fetching carousel widgets: ${status}: ${statusText}`);
+    });
+};
+
+export const fetchVideos = async (params?: object) => {
   return GCAAPI.get("/videos", {
     headers: {
       ...GCAAPI.defaults.headers
@@ -119,15 +145,13 @@ export const fetchVideos = params => {
   });
 };
 
-/**
- * Function that given parameters returns the title for the menu
- * @param {Headline | undefined} currentHeadline
- * @param {Mode | undefined} currentMode
- * @param {String} pageTypeId
- * @returns title for the menu
- */
-export const getMenuTitle = (currentHeadline, currentMode, pageTypeId) => {
+/** Function that given parameters returns the title for the menu. */
+export const getMenuTitle = (
+  currentHeadline: Headline | undefined,
+  currentMode: Mode | undefined,
+  pageTypeId: string
+) => {
   if (pageTypeId == PAGE_TYPE_ID.INFO_PAGE) return "This Is A Planetary Emergency...";
-  if (currentHeadline) return currentHeadline.attributes.title;
+  else if (currentHeadline) return currentHeadline.attributes.title;
   return currentMode && currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "Extreme Events";
 };
