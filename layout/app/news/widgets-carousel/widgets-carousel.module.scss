@@ -19,6 +19,15 @@
       display: none;
     }
 
+    .widget-skeleton {
+      width: 100%;
+      margin: 0 $o-page-section-padding-x;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        margin: 0 $o-page-section-padding-x-desktop;
+      }
+    }
+
     .widget {
       flex-shrink: 0;
       width: 90%;
@@ -55,6 +64,11 @@
     justify-content: space-between;
     background-color: $colour-midnight;
     padding: 20px $o-page-section-padding-x;
+
+    .indicator-skeleton {
+      width: 68px;
+      margin: auto;
+    }
 
     @media screen and (min-width: $global-breakpoint-md) {
       padding: 20px $o-page-section-padding-x-desktop;

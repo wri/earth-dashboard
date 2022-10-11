@@ -1,18 +1,21 @@
 import classnames from "classnames";
 import CarouselViewIndicator from "components/ui/carousel-view-indicator";
 import IconButton from "components/ui/icon-button";
+import Skeleton from "components/ui/skeleton";
 import { GCAWidget } from "hooks/useGCAWidgets/types";
 import { useEffect, useRef, useState } from "react";
 import Widget from "../widget/component";
+import WidgetSkeleton from "../widget/widget-skeleton";
 import styles from "./widgets-carousel.module.scss";
 
 type WidgetsCarouselProps = {
   widgets: GCAWidget[];
+  isLoading: boolean;
   max?: number;
 };
 
 /** Shows a carousel of featured widgets. */
-const WidgetsCarousel = ({ widgets, max = 6 }: WidgetsCarouselProps) => {
+const WidgetsCarousel = ({ widgets, isLoading, max = 6 }: WidgetsCarouselProps) => {
   const carouselRef = useRef<HTMLDivElement>();
 
   const [viewedWidget, setViewedWidget] = useState<string>();
@@ -69,8 +72,6 @@ const WidgetsCarousel = ({ widgets, max = 6 }: WidgetsCarouselProps) => {
     };
   }, [widgets]);
 
-  if (widgets.length === 0) return null;
-
   return (
     <div className={styles["c-widgets-carousel"]}>
       {/* Widgets */}
@@ -80,32 +81,50 @@ const WidgetsCarousel = ({ widgets, max = 6 }: WidgetsCarouselProps) => {
         }}
         className={styles["c-widgets-carousel__wrapper"]}
       >
-        {widgets.slice(0, max).map(widget => (
-          <div
-            key={widget.id}
-            id={widget.id.toString()}
-            className={classnames(styles["widget"], {
-              [styles["active"]]: widget.id.toString() === viewedWidget
-            })}
-          >
-            <Widget widget={widget} />
+        {isLoading ? (
+          <div className={styles["widget-skeleton"]}>
+            <WidgetSkeleton dark />
           </div>
-        ))}
+        ) : (
+          widgets.slice(0, max).map(widget => (
+            <div
+              key={widget.id}
+              id={widget.id.toString()}
+              className={classnames(styles["widget"], {
+                [styles["active"]]: widget.id.toString() === viewedWidget
+              })}
+            >
+              <Widget widget={widget} />
+            </div>
+          ))
+        )}
       </div>
 
       {/* Controls */}
       <div className={styles["c-widgets-carousel__controls"]}>
         {/* Previous button */}
-        <IconButton name="arrow-left" size={16} onClick={handlePrevious} small />
+        {isLoading ? (
+          <Skeleton.IconButton small />
+        ) : (
+          <IconButton name="arrow-left" size={16} onClick={handlePrevious} small />
+        )}
 
         {/* Indicator */}
-        <CarouselViewIndicator
-          ids={widgets.slice(0, max).map(widget => widget.id.toString())}
-          activeId={viewedWidget}
-        />
+        {isLoading ? (
+          <Skeleton.Text widths={["100%"]} className={styles["indicator-skeleton"]} />
+        ) : (
+          <CarouselViewIndicator
+            ids={widgets.slice(0, max).map(widget => widget.id.toString())}
+            activeId={viewedWidget}
+          />
+        )}
 
         {/* Next button */}
-        <IconButton name="arrow-right" size={16} onClick={handleNext} small />
+        {isLoading ? (
+          <Skeleton.IconButton small />
+        ) : (
+          <IconButton name="arrow-right" size={16} onClick={handleNext} small />
+        )}
       </div>
     </div>
   );
