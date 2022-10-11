@@ -14,10 +14,9 @@ type UseGCAWidgets = {
 
 /**
  * Fetches widgets from the GCA endpoint based on predefined topics.
- *
  * @param topic - Widgets returned from the endpoint will be part of this topic
  */
-const useGCAWidgets = (topic: keyof typeof TOPICS): UseGCAWidgets => {
+const useGCAWidgets = (topic?: keyof typeof TOPICS): UseGCAWidgets => {
   const [widgets, setWidgets] = useState<GCAWidget[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [hasErrored, setHasErrored] = useState<boolean>(false);
@@ -31,7 +30,7 @@ const useGCAWidgets = (topic: keyof typeof TOPICS): UseGCAWidgets => {
         const response = await fetchWidgets({ category: topic });
 
         // Order the topics
-        response.sort((a, b) => a.attributes.order - b.attributes.order);
+        response.sort((a: any, b: any) => a.attributes.order - b.attributes.order);
 
         setWidgets(response as GCAWidget[]);
       } catch (err) {

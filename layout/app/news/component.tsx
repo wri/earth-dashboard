@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import useGCAWidgets from "hooks/useGCAWidgets";
 import useCMSVideos from "hooks/useCMSVideos";
-import { getColorByTopic } from "utils/topics";
 import Layout from "layout/layout/layout-app";
 import AnchorCTA from "components/ui/anchor-cta";
 import Section from "./section";
@@ -11,7 +10,6 @@ import NewsArticle from "components/news-article";
 import VideoArticle from "components/video-article";
 import Widget from "layout/app/news/widget";
 import { Desktop, MediaContextProvider, Mobile } from "utils/responsive";
-import { CLIMATE } from "utils/topics";
 import TOPICS from "constants/news";
 import styles from "./news.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
@@ -33,7 +31,7 @@ type NewsLayoutProps = {
   setIsMobile: ActionCreatorWithPayload<boolean, string>;
 };
 
-const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps) => {
+const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
   const {
     isLoading: isPostsLoading,
     hasErrored: hasPostsErrorred,
@@ -42,8 +40,8 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
     isFetchingMore,
     fetchMore
   } = useMongabayPosts(LIMIT);
-  const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets(topic);
-  const { videos: allCMSVideos, isLoading: isVideosLoading } = useCMSVideos(topic);
+  const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets } = useGCAWidgets();
+  const { videos: allCMSVideos, isLoading: isVideosLoading } = useCMSVideos();
 
   // Store the isMobile flag in the redux store
   useEffect(() => {
@@ -73,7 +71,7 @@ const NewsLayout = ({ topic = CLIMATE, isMobile, setIsMobile }: NewsLayoutProps)
   };
 
   return (
-    <Layout title="News" themeColor={getColorByTopic(topic)}>
+    <Layout title="News">
       {/* To top button */}
       <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["c-news__top-button"]} />
 
