@@ -4,6 +4,7 @@
 .info-container {
   height: 100%;
   z-index: $z-index-menu;
+  position: relative;
 
   @media screen and (max-width: $global-breakpoint-md) {
     display: flex;
