@@ -1,7 +1,9 @@
 @import "css/settings";
 @import "css/tools/fontSize";
+@import "css/settings/breakpoints";
 
 .c-view-all-card {
+  position: relative;
   width: 100%;
   min-width: 100%;
   border-radius: 12px;
@@ -10,27 +12,81 @@
   scroll-snap-align: center;
   height: 172px;
   text-align: start;
+  overflow: hidden;
 
   background-image: url("/static/images/globe@2x.png");
   background-position: center right;
   background-repeat: no-repeat;
   background-size: 232px 196px;
 
-  & .title {
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-family: "Barlow Condensed";
-    @include font-size(20px, 30px);
-    margin-bottom: 8px;
+  @media screen and (min-width: $global-breakpoint-md) {
+    height: 100%;
+    background-image: url("/static/images/star-background.jpg");
+    background-position: center bottom;
+    background-size: cover;
+    display: flex;
+    justify-content: start;
+
+    &::after {
+      content: "";
+      background-image: url("/static/images/globe-fires-half.png");
+      position: absolute;
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: contain;
+      top: 65%;
+      bottom: -15%;
+      left: 0;
+      width: 100%;
+      z-index: 0;
+    }
   }
 
-  & .description {
-    margin-right: 100px;
-    color: white;
-    font-weight: 500;
-    font-family: "Barlow";
-    margin-bottom: 12px;
-    @include font-size(16px, 24px);
+  & .content-container {
+    z-index: 10;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 65%;
+    }
+
+    & .title {
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-family: "Barlow Condensed";
+      @include font-size(20px, 30px);
+      margin-bottom: 8px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        font-family: "Barlow";
+        @include font-size(32px, 48px);
+      }
+    }
+
+    & .description {
+      margin-right: 100px;
+      color: white;
+      font-weight: 500;
+      font-family: "Barlow";
+      margin-bottom: 12px;
+      @include font-size(16px, 24px);
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        margin-right: 0;
+        margin-bottom: 24px;
+      }
+    }
   }
 }

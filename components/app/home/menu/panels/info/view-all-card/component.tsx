@@ -1,5 +1,4 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import classnames from "classnames";
 import CtaButton from "components/ui/cta-button";
 import { PAGE_TYPE_ID } from "../../../../main-container/component";
 import styles from "./view-all-card.module.scss";
@@ -12,10 +11,12 @@ const ViewAllCard = ({ setPageTypeId }: ViewAllCardProps) => {
   };
 
   return (
-    <button className={classnames(styles["c-view-all-card"])} onClick={handleViewAllPress}>
-      <h1 className={classnames(styles["title"])}>All Extreme Events</h1>
-      <p className={classnames(styles["description"])}>View all of Mongabay’s latest extreme events</p>
-      <CtaButton text="VIEW ALL" iconName="arrow-right" onClick={handleViewAllPress} />
+    <button className={styles["c-view-all-card"]} onClick={handleViewAllPress}>
+      <div className={styles["content-container"]}>
+        <h1 className={styles["title"]}>All Extreme Events</h1>
+        <p className={styles["description"]}>View all of Mongabay’s latest extreme events</p>
+        <CtaButton text="VIEW ALL" iconName="arrow-right" onClick={handleViewAllPress} />
+      </div>
     </button>
   );
 };
