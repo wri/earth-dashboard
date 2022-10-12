@@ -76,5 +76,6 @@ export type ModesState = {
   layersLabelArr: string[];
   dateOfDataShown: string;
   pageTypeId: string;
+  previousPageTypeId: string;
   infoMode: Mode | undefined;
 };

@@ -1,27 +1,14 @@
 import HeadlineComponent from "./component";
 import { connect } from "react-redux";
-import {
-  setIsDatePickerDisabled,
-  setCurrentLocation,
-  setCurrentScale,
-  setCurrentScaleBy,
-  setIsFetchLocationDisabled
-} from "slices/mapControls";
-import { NAME as modesSliceName, setDateOfDataShown, setCurrentVisibleMode } from "slices/modes";
+import { NAME as modesSliceName } from "slices/modes";
+import { setIsShareOpen } from "slices/common";
 
 export default connect(
   state => ({
     currentMode: state[modesSliceName].currentMode,
-    isMobile: state.common.isMobile,
     eventScaleData: state.mapControls.eventScaleData
   }),
   {
-    setIsDatePickerDisabled,
-    setIsFetchLocationDisabled,
-    setCurrentLocation,
-    setCurrentScale,
-    setCurrentScaleBy,
-    setDateOfDataShown,
-    setCurrentVisibleMode
+    setIsShareOpen
   }
 )(HeadlineComponent);

@@ -1,0 +1,65 @@
+@import "css/_settings.scss";
+@import "css/settings/breakpoints";
+@import "css/settings/zIndex";
+@import "css/tools/scrollbar.scss";
+@import "css/tools/defaultScrollBar";
+@import "css/tools/fontSize.scss";
+
+.c-home-menu {
+  &__footer {
+    position: absolute;
+    bottom: 0;
+    height: 72px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0 0 16px 16px;
+    background-color: $colour-midnight;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    z-index: 999;
+
+    &--info {
+      overflow: hidden;
+      padding: 0 12px;
+
+      & h3 {
+        color: white;
+        padding: 0px;
+        margin: 0px;
+        text-transform: capitalize;
+        font-size: 20px;
+        line-height: 30px;
+        font-weight: 600;
+        font-family: "Barlow";
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+        @media screen and (max-width: $global-breakpoint-md) {
+          font-family: "Barlow Condensed";
+        }
+      }
+    }
+
+    &--btn {
+      min-width: 32px;
+      width: 32px;
+      height: 32px;
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      svg {
+        min-width: 16px;
+        min-height: 12px;
+      }
+    }
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      border-radius: 0;
+    }
+  }
+}

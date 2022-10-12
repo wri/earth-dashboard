@@ -30,11 +30,15 @@ import InfoModal from "../normal-scale/info-modal";
 
 export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
 export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
-export const INFO_PAGE_ID = "InfoPage";
-export const EXTREME_EVENTS_PAGE_ID = "ExtremeEventsPage";
-export const DATA_LAYER_PAGE_ID = "DataLayerPage";
-export const INFO_PAGE_HEADLINE = "I'd like to explore...";
+export const INFO_PAGE_HEADLINE = "This Is A Planetary Emergency...";
 export const EXTREME_EVENTS_PAGE_HEADLINE = "Extreme events";
+
+export const PAGE_TYPE_ID = {
+  INFO_PAGE: "InfoPage",
+  EXTREME_EVENTS_LIST_PAGE: "ExtremeEventsPage",
+  DATA_LAYER_PAGE: "DataLayerPage",
+  CURRENT_EVENT_PAGE: "CurrentEventPage"
+};
 
 type MainContainerProps = {
   isMobile: boolean;
@@ -49,11 +53,17 @@ type MainContainerProps = {
   currentMode?: Mode;
   defaultMode?: Mode;
   pageTypeId: string;
+  previousPageTypeId: string;
   setPageTypeId: ActionCreatorWithPayload<string, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
   setEventScaleData: ActionCreatorWithPayload<EventScaleData | undefined, string>;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setDateOfDataShown: ActionCreatorWithPayload<string, string>;
+  setCurrentLocation: ActionCreatorWithPayload<[number, number], string>;
+  setCurrentScale: ActionCreatorWithPayload<string, string>;
+  setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
+  setCurrentVisibleMode: ActionCreatorWithPayload<Mode, string>;
+  setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
 };
 
 const MainContainer = ({
@@ -68,14 +78,25 @@ const MainContainer = ({
   defaultMode,
   currentMode,
   pageTypeId,
+  previousPageTypeId,
   setPageTypeId,
   setReoriented,
   setEventScaleData,
   setCurrentMode,
-  setDateOfDataShown
+  setDateOfDataShown,
+  setCurrentLocation,
+  setCurrentScale,
+  setCurrentScaleBy,
+  setCurrentVisibleMode,
+  currentHeadlineId,
+  setPreviousPageTypeId
 }: MainContainerProps) => {
   const defaultMobileMenuHeight =
-    currentMode?.id === defaultMode?.id ? MODILE_MENU_HEIGHT_WITHOUT_SCALE : MODILE_MENU_HEIGHT_WITH_SCALE;
+    pageTypeId === PAGE_TYPE_ID.INFO_PAGE
+      ? MODILE_MENU_HEIGHT_WITH_SCALE + 28
+      : currentMode?.id === defaultMode?.id
+      ? MODILE_MENU_HEIGHT_WITHOUT_SCALE
+      : MODILE_MENU_HEIGHT_WITH_SCALE;
 
   const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
   const [hasIframe, setHasIframe] = useState<boolean>(false);
@@ -117,7 +138,12 @@ const MainContainer = ({
     setHeadlines,
     currentMode,
     defaultMode,
-    setReoriented
+    setReoriented,
+    pageTypeId,
+    currentHeadlineId,
+    setPageTypeId,
+    setPreviousPageTypeId,
+    previousPageTypeId
   });
 
   const overlayLayer = useMemo(() => {
@@ -217,7 +243,7 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(window.innerHeight * 0.6);
+      setMobileMenuHeight(pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? 380 : window.innerHeight * 0.6);
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {
@@ -332,10 +358,22 @@ const MainContainer = ({
   useEffect(() => {
     if (earthServer.current) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(window.innerHeight * 0.6);
+      setMobileMenuHeight(pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? 380 : window.innerHeight * 0.6);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [earthServer.current, setHasMenuOpen]);
+
+  useEffect(() => {
+    if (!currentHeadline) return;
+
+    setCurrentVisibleMode(currentHeadline.attributes.mode);
+
+    setCurrentLocation([currentHeadline.attributes.location.lat, currentHeadline.attributes.location.lng]);
+    setCurrentScale(currentHeadline.attributes.zoom_level.toString());
+    setCurrentScaleBy(1);
+
+    setDateOfDataShown(new Date(currentHeadline.attributes.climate_alert_date).toString());
+  }, [currentHeadline, setCurrentLocation, setCurrentScale, setCurrentScaleBy, setDateOfDataShown]);
 
   return (
     <IframeBridgeProvider scaleData={scaleData} scaleToolTipData={scaleToolTipData} overlayLayer={overlayLayer}>

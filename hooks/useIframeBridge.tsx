@@ -20,6 +20,7 @@ import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import { IframeBridgeContext } from "../context/IframeBridgeProvider";
+import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
 
 type GeoMarkerOverlayDetails = GeoMarkerOverlayLocation & { headline: Headline };
 
@@ -31,6 +32,11 @@ type UseIframeBridgeConfig = {
   defaultMode?: Mode;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
+  setPageTypeId: ActionCreatorWithPayload<string, string>;
+  setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
+  pageTypeId: string;
+  previousPageTypeId: string;
+  currentHeadlineId: number | undefined;
 };
 
 type Marker = { id: number; label: string };
@@ -46,8 +52,15 @@ const useIframeBridge = ({
   currentMode,
   defaultMode,
   setHeadlines,
-  setReoriented
+  setReoriented,
+  pageTypeId,
+  currentHeadlineId,
+  setPageTypeId,
+  setPreviousPageTypeId,
+  previousPageTypeId
 }: UseIframeBridgeConfig) => {
+  const [hasLoadedBefore, setHasLoadedBefore] = useState<boolean>(false);
+
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [markers, setMarkers] = useState<Marker[]>([]);
   const [error, setError] = useState<Error>();
@@ -76,9 +89,32 @@ const useIframeBridge = ({
         const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
         const resp = await fetchClimateAlerts();
 
+        let numberOfHeadlines =
+          pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
+            ? previousPageTypeId === PAGE_TYPE_ID.INFO_PAGE
+              ? 10
+              : 25
+            : pageTypeId === PAGE_TYPE_ID.INFO_PAGE
+            ? 10
+            : 25;
+
+        if (currentHeadlineId && !hasLoadedBefore) {
+          resp.data.data.forEach((headline: Headline, index: number) => {
+            if (headline.id === currentHeadlineId) {
+              if (index >= 10 && index < 25) {
+                console.log("Is Here");
+                numberOfHeadlines = 25;
+                setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+                setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+              }
+            }
+          });
+        }
+
+        setHasLoadedBefore(true);
+
         const filteredHeadlines = resp.data.data
-          .reverse()
-          .slice(0, 25)
+          .slice(0, numberOfHeadlines)
           .filter((headline: Headline) => (!mode_id ? true : headline.attributes.mode.id === mode_id));
         setHeadlines(filteredHeadlines);
       } catch (err) {
@@ -87,7 +123,7 @@ const useIframeBridge = ({
     };
 
     getHeadlines();
-  }, [setHeadlines, currentMode]);
+  }, [setHeadlines, currentMode, pageTypeId]);
 
   // Set the extreme event points
   useEffect(() => {
