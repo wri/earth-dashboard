@@ -89,6 +89,7 @@
     "react-tether": "0.6.1",
     "react-tooltip": "^4.2.10",
     "react-transition-group": "^4.4.2",
+    "react-use": "^17.4.0",
     "react-uuid": "^1.0.2",
     "redux-query-sync": "^0.1.10",
     "reselect": "3.0.1",

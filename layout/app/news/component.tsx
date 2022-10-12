@@ -40,7 +40,9 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
     canFetchMore,
     isFetchingMore,
     fetchMore
-  } = useMongabayPosts(LIMIT);
+  } = useMongabayPosts({
+    limit: LIMIT
+  });
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets, featuredWidgets } = useGCAWidgets();
   const { videos: allCMSVideos, isLoading: isVideosLoading } = useCMSVideos();
 

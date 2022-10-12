@@ -4,7 +4,11 @@ import { GetPostsQuery, formatPosts } from "utils/news";
 import TOPICS from "constants/news";
 import { FormattedMongabayPost } from "./types";
 
-const LIMIT = 10;
+type UseMongabayPostsVariables = {
+  limit: number;
+  topic?: keyof typeof TOPICS;
+  search?: string;
+};
 
 type UseMongabayPosts = {
   /**
@@ -24,20 +28,16 @@ type UseMongabayPosts = {
   fetchMore: (loadMoreLimit: number) => void;
 };
 
-/**
- * Fetches posts from the mongabay graphql endpoint based on predefined topics.
- *
- * @param limit - Override for the max number of posts that can be returned from the endpoint.
- * @param topic - (optional) Posts returned from the endpoint will be part of this topic. If optional returns all.
- */
-const useMongabayPosts = (limit: number = LIMIT, topic?: keyof typeof TOPICS): UseMongabayPosts => {
+/** Fetches posts from the mongabay graphql endpoint based on predefined topics. */
+const useMongabayPosts = ({ limit, topic, search }: UseMongabayPostsVariables): UseMongabayPosts => {
   const [posts, setPosts] = useState<FormattedMongabayPost[]>([]);
 
   const { loading, error, data, networkStatus, refetch, fetchMore } = useQuery(GetPostsQuery, {
     variables: {
       first: limit,
       after: null,
-      topics: topic ?? Object.values(TOPICS).flat()
+      topics: topic ?? Object.values(TOPICS).flat(),
+      search
     },
     notifyOnNetworkStatusChange: true,
     errorPolicy: "all"
@@ -47,7 +47,7 @@ const useMongabayPosts = (limit: number = LIMIT, topic?: keyof typeof TOPICS): U
   useEffect(() => {
     refetch();
     // eslint-disable-next-line
-  }, [topic, limit]);
+  }, [topic, search, limit]);
 
   // When the data object changes, format the posts and
   // save them into the state
