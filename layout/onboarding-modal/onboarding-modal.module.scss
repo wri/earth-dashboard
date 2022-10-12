@@ -170,12 +170,13 @@
       }
 
       .section {
+        flex-shrink: 0;
+        width: 100%;
         scroll-snap-align: start;
         scroll-snap-stop: always;
 
         .image {
           height: 288px;
-          width: 100vw;
           display: flex;
           position: relative;
 
