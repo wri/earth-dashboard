@@ -9,20 +9,31 @@ import CtaButton from "components/ui/cta-button";
 type EventCardProps = {
   headline: Headline;
   onClick: () => void;
+  isMobile: boolean;
   type?: "Default" | "Condensed";
   className?: string;
 };
 
-const EventCard = ({ headline, onClick, type = "Default", className }: EventCardProps) => {
-  const getEventCardContent = () => {
-    if (type === "Default")
-      return (
-        <div className={styles["c-event-card__detail"]}>
-          <h3 className={styles["c-event-card__title"]}>{headline.attributes.title}</h3>
-          <p className={styles["c-event-card__subtitle"]}>
-            {moment(headline.attributes.climate_alert_date).format("Do MMMM YYYY")}
-          </p>
-          <div className={styles["c-event-card__thumbnail"]}>
+const EventCard = ({ headline, onClick, isMobile, type = "Default", className }: EventCardProps) => {
+  const titleAbove = type === "Default" && !isMobile;
+
+  return (
+    <button
+      className={classnames(styles["c-event-card"], className)}
+      onClick={onClick}
+      data-testid="headline"
+      style={titleAbove ? { height: "auto" } : {}}
+    >
+      <div
+        className={styles["c-event-card__background"]}
+        style={{ backgroundImage: `url(${headline.attributes.thumbnail_image})` }}
+      />
+      <div className={styles["c-event-card__detail"]}>
+        <div className={styles["c-event-card__header"]}>
+          {titleAbove && (
+            <h3 className={classnames(styles["title"], styles["title-above"])}>{headline.attributes.title}</h3>
+          )}
+          <div className={styles["thumbnail"]} style={titleAbove ? { minHeight: 192 } : {}}>
             <Image
               src={headline.attributes.thumbnail_image}
               layout={"fill"}
@@ -31,23 +42,11 @@ const EventCard = ({ headline, onClick, type = "Default", className }: EventCard
               role="presentation"
             />
           </div>
+          {!titleAbove && (
+            <h3 className={classnames(styles["title"], styles["title-below"])}>{headline.attributes.title}</h3>
+          )}
         </div>
-      );
-    return (
-      <div className={styles["c-event-card-condensed__detail"]}>
-        <div className={styles["c-event-card-condensed__header"]}>
-          <div className={styles["thumbnail"]}>
-            <Image
-              src={headline.attributes.thumbnail_image}
-              layout={"fill"}
-              objectFit={"cover"}
-              alt=""
-              role="presentation"
-            />
-          </div>
-          <h3 className={styles["title"]}>{headline.attributes.title}</h3>
-        </div>
-        <div className={styles["c-event-card-condensed__footer"]}>
+        <div className={styles["c-event-card__footer"]}>
           <p className={styles["date"]}>{moment(headline.attributes.climate_alert_date).format("MMM D YYYY")}</p>
           <CtaButton
             iconUrl={headline.attributes.mode.attributes.icon}
@@ -57,20 +56,6 @@ const EventCard = ({ headline, onClick, type = "Default", className }: EventCard
           />
         </div>
       </div>
-    );
-  };
-
-  return (
-    <button
-      className={classnames(styles[type === "Default" ? "c-event-card" : "c-event-card-condensed"], className)}
-      onClick={onClick}
-      data-testid="headline"
-    >
-      <div
-        className={styles["c-event-card__background"]}
-        style={{ backgroundImage: `url(${headline.attributes.thumbnail_image})` }}
-      />
-      {getEventCardContent()}
     </button>
   );
 };

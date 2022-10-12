@@ -20,6 +20,7 @@ import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import { IframeBridgeContext } from "../context/IframeBridgeProvider";
+import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
 
 type GeoMarkerOverlayDetails = GeoMarkerOverlayLocation & { headline: Headline };
 
@@ -31,6 +32,7 @@ type UseIframeBridgeConfig = {
   defaultMode?: Mode;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
+  pageTypeId: string;
 };
 
 type Marker = { id: number; label: string };
@@ -46,7 +48,8 @@ const useIframeBridge = ({
   currentMode,
   defaultMode,
   setHeadlines,
-  setReoriented
+  setReoriented,
+  pageTypeId
 }: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [markers, setMarkers] = useState<Marker[]>([]);
@@ -76,9 +79,10 @@ const useIframeBridge = ({
         const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
         const resp = await fetchClimateAlerts();
 
+        const number_of_headlines = pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? 10 : 25;
+
         const filteredHeadlines = resp.data.data
-          .reverse()
-          .slice(0, 10)
+          .slice(0, number_of_headlines)
           .filter((headline: Headline) => (!mode_id ? true : headline.attributes.mode.id === mode_id));
         setHeadlines(filteredHeadlines);
       } catch (err) {
@@ -87,7 +91,7 @@ const useIframeBridge = ({
     };
 
     getHeadlines();
-  }, [setHeadlines, currentMode]);
+  }, [setHeadlines, currentMode, pageTypeId]);
 
   // Set the extreme event points
   useEffect(() => {

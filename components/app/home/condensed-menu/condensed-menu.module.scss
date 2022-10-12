@@ -13,6 +13,7 @@
 
   &__title-container {
     display: flex;
+    align-items: center;
 
     &--globe-icon {
       background-image: url("/static/icons/home-menu/search-globe.svg");
@@ -44,10 +45,15 @@
       font-weight: 600;
       font-family: "barlow condensed";
       @include font-size(20px, 30px);
+      padding-right: 16px;
+      max-width: 200px;
+    }
+
+    .title-condensed {
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      padding-right: 16px;
+      max-width: auto;
     }
 
     .location-icon {

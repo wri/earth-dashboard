@@ -86,7 +86,9 @@ const MainContainer = ({
   setCurrentVisibleMode
 }: MainContainerProps) => {
   const defaultMobileMenuHeight =
-    currentMode?.id === defaultMode?.id && pageTypeId !== PAGE_TYPE_ID.INFO_PAGE
+    pageTypeId === PAGE_TYPE_ID.INFO_PAGE
+      ? MODILE_MENU_HEIGHT_WITH_SCALE + 28
+      : currentMode?.id === defaultMode?.id
       ? MODILE_MENU_HEIGHT_WITHOUT_SCALE
       : MODILE_MENU_HEIGHT_WITH_SCALE;
 
@@ -130,7 +132,8 @@ const MainContainer = ({
     setHeadlines,
     currentMode,
     defaultMode,
-    setReoriented
+    setReoriented,
+    pageTypeId
   });
 
   const overlayLayer = useMemo(() => {
@@ -230,7 +233,7 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(window.innerHeight * 0.6);
+      setMobileMenuHeight(pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? 380 : window.innerHeight * 0.6);
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {
@@ -345,7 +348,7 @@ const MainContainer = ({
   useEffect(() => {
     if (earthServer.current) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(window.innerHeight * 0.6);
+      setMobileMenuHeight(pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? 380 : window.innerHeight * 0.6);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [earthServer.current, setHasMenuOpen]);

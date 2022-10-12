@@ -33,7 +33,10 @@ const MenuMobileContainer = ({
     if (typeof window !== "undefined") setWindowHeight(window.innerHeight);
   }, []);
 
-  const snapHeights = [defaultPanelHeight, windowHeight * 0.6, windowHeight * 0.9];
+  const snapHeights =
+    pageTypeId === PAGE_TYPE_ID.INFO_PAGE
+      ? [defaultPanelHeight, 380]
+      : [defaultPanelHeight, windowHeight * 0.6, windowHeight * 0.9];
 
   const handleResize = (e: any, direction: any, div: any) => setPanelHeight(div.offsetHeight);
 
@@ -56,7 +59,7 @@ const MenuMobileContainer = ({
         height={panelHeight}
         onResize={handleResize}
         onResizeStop={handleResizeStop}
-        maxHeight={`${windowHeight * 0.9}px`}
+        maxHeight={pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? "380px" : `${windowHeight * 0.9}px`}
         snap={snapHeights}
       >
         {panelHeight === defaultPanelHeight ? (

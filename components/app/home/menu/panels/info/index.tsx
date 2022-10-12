@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./info.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { Headline, setCurrentHeadline } from "slices/headlines";
-import EventCard from "../../../event-card/component";
+import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { Headline, setCurrentHeadline, setCurrentHeadlineId } from "slices/headlines";
+import EventCard from "../../../event-card";
 import Carousel from "components/ui/carousel";
 import ViewAllCard from "./view-all-card";
 import { setPageTypeId, setPreviousPageTypeId } from "slices/modes";
@@ -22,6 +22,7 @@ type InfoPanelProps = {
   setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
   previousPageTypeId: string;
   isMobile: boolean;
+  setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
 };
 
 const InfoPanel = ({
@@ -31,7 +32,8 @@ const InfoPanel = ({
   setPageTypeId,
   setPreviousPageTypeId,
   previousPageTypeId,
-  isMobile
+  isMobile,
+  setCurrentHeadlineId
 }: InfoPanelProps) => {
   const [carouselScroll, setCarouselScroll] = useState<number>(0);
   const [carouselWidth, setCarouselWidth] = useState<number>();
@@ -64,12 +66,12 @@ const InfoPanel = ({
     }
   };
 
-  useEffect(() => {
+  const scrollFromHeadline = (behavior?: "auto" | "smooth") => {
     if (!carouselWidth || !carouselRef.current) return;
 
     if (!currentHeadline && previousPageTypeId === PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE) {
       const index = headlines.length;
-      scrollToIndex(index, "smooth");
+      scrollToIndex(index, behavior);
       setCurrentHeadlineIndex(index);
     }
 
@@ -77,13 +79,22 @@ const InfoPanel = ({
     const index = headlines.findIndex(headline => headline.id === currentHeadline.id);
 
     if (!index) return;
-    scrollToIndex(index, "smooth");
+    scrollToIndex(index, behavior);
     setCurrentHeadlineIndex(index);
+  };
+
+  // Run at start so no scroll animation
+  useEffect(() => {
+    scrollFromHeadline();
+  }, [carouselWidth, carouselRef.current]);
+
+  useEffect(() => {
+    scrollFromHeadline("smooth");
   }, [currentHeadline, carouselWidth, carouselRef.current]);
 
   useEffect(() => {
     if (containerRef.current) setCarouselWidth(containerRef.current.offsetWidth);
-  }, [containerRef.current, window.innerWidth]);
+  }, [containerRef.current]);
 
   const setHeadlineToScroll = () => {
     if (!carouselWidth) return;
@@ -94,7 +105,9 @@ const InfoPanel = ({
       setCurrentHeadlineIndex(index);
       setPreviousPageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     } else {
+      console.log("here");
       setCurrentHeadline(undefined);
+      setCurrentHeadlineId(undefined);
       setCurrentHeadlineIndex(headlines.length);
       setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
     }
@@ -105,7 +118,6 @@ const InfoPanel = ({
     setIsScrolling(
       setTimeout(function () {
         setHeadlineToScroll();
-        console.log("Has Scrolled");
       }, 250)
     );
   }, [carouselScroll]);
@@ -132,6 +144,8 @@ const InfoPanel = ({
           disableBackButton={currentHeadlineIndex === 0}
           disableNextButton={currentHeadlineIndex === headlines.length}
           navigateInfo={navigateInfo}
+          index={currentHeadlineIndex}
+          length={headlines.length + 1}
         />
       )}
     </div>
@@ -145,5 +159,5 @@ export default connect(
     previousPageTypeId: state.modes.previousPageTypeId,
     isMobile: state.common.isMobile
   }),
-  { setCurrentHeadline, setPageTypeId, setPreviousPageTypeId }
+  { setCurrentHeadline, setPageTypeId, setPreviousPageTypeId, setCurrentHeadlineId }
 )(InfoPanel);

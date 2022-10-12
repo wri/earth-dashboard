@@ -2,10 +2,16 @@ import { useState, useEffect, useMemo, useRef, UIEvent } from "react";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
-import { setHeadlines, setCurrentHeadline, Headline as HeadlineType, Headline } from "slices/headlines";
+import {
+  setHeadlines,
+  setCurrentHeadline,
+  Headline as HeadlineType,
+  Headline,
+  setCurrentHeadlineId
+} from "slices/headlines";
 import EventCard from "components/app/home/event-card";
 import { Mode, setCurrentMode, setPageTypeId, setPreviousPageTypeId } from "slices/modes";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
 import { PAGE_TYPE_ID } from "../../main-container/component";
@@ -19,18 +25,18 @@ type EventsListPanelProps = {
   forceInfoPage: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
-  currentHeadline?: HeadlineType;
   setPageTypeId: ActionCreatorWithPayload<string, string>;
   setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
+  setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
 };
 
 const EventsListPanel = ({
   currentMode,
   headlines,
   setCurrentHeadline,
-  currentHeadline,
   setPageTypeId,
-  setPreviousPageTypeId
+  setPreviousPageTypeId,
+  setCurrentHeadlineId
 }: EventsListPanelProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [bannerHeight, setBannerHeight] = useState<number>(150);
@@ -50,6 +56,7 @@ const EventsListPanel = ({
 
   useEffect(() => {
     setCurrentHeadline(undefined);
+    setCurrentHeadlineId(undefined);
     setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
   }, []);
 
@@ -111,8 +118,7 @@ const EventsListPanel = ({
 export default connect(
   (state: RootState) => ({
     currentMode: state.modes.currentMode,
-    headlines: state.headlines.headlines,
-    currentHeadline: state.headlines.currentHeadline
+    headlines: state.headlines.headlines
   }),
-  { setHeadlines, setCurrentMode, setCurrentHeadline, setPageTypeId, setPreviousPageTypeId }
+  { setHeadlines, setCurrentMode, setCurrentHeadline, setPageTypeId, setPreviousPageTypeId, setCurrentHeadlineId }
 )(EventsListPanel);

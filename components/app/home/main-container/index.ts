@@ -20,7 +20,8 @@ export default connect(
     headlines: state.headlines.headlines,
     currentMode: state.modes.currentMode,
     defaultMode: state.modes.defaultMode,
-    pageTypeId: state.modes.pageTypeId
+    pageTypeId: state.modes.pageTypeId,
+    currentHeadlineId: state.headlines.currentHeadlineId
   }),
   {
     setModes,
