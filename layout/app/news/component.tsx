@@ -40,7 +40,9 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
     canFetchMore,
     isFetchingMore,
     fetchMore
-  } = useMongabayPosts(LIMIT);
+  } = useMongabayPosts({
+    limit: LIMIT
+  });
   const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets, featuredWidgets } = useGCAWidgets();
   const { videos: allCMSVideos, isLoading: isVideosLoading } = useCMSVideos();
 
@@ -100,7 +102,7 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
       {/* Second widget */}
       <div className={styles["c-news__featured-widgets"]}>
         <h2>FEATURED</h2>
-        <WidgetsCarousel widgets={featuredWidgets} />
+        <WidgetsCarousel widgets={featuredWidgets} isLoading={isWidgetsLoading} />
       </div>
 
       {/* Videos */}

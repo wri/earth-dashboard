@@ -130,7 +130,7 @@ VideoArticle.propTypes = {
 
 VideoArticle.defaultProps = {
   className: "",
-  topic: ""
+  topic: "all"
 };
 
 export default VideoArticle;

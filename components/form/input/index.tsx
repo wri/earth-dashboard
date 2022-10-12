@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { FieldValues, UseFormReturn } from "react-hook-form";
+import { UseFormReturn } from "react-hook-form";
 import Icon, { IconNames } from "components/ui/Icon";
 import IconButton from "components/ui/icon-button";
 import styles from "./input.module.scss";
@@ -8,7 +8,7 @@ type InputProps = {
   name: string;
   iconName?: IconNames;
   className?: string;
-} & UseFormReturn<FieldValues, any> &
+} & UseFormReturn<any, any> &
   Partial<HTMLInputElement>;
 
 /** Styles generic input. */

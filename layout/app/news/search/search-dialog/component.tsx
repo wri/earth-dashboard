@@ -14,6 +14,7 @@ import SearchEmptyState from "../search-empty-state";
 import styles from "./search-dialog.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import EarthHQCTA from "../../earth-hq-cta";
+import NewsArticleSkeleton from "components/news-article/news-article-skeleton";
 
 const LIMIT = 12;
 const LOAD_MORE_LIMIT = 12;
@@ -27,9 +28,14 @@ type SearchDialogProps = {
 /** Shows the search bar and filter with its results. */
 const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogProps) => {
   const [topic, setTopic] = useState<keyof typeof TOPICS>();
+  const [search, setSearch] = useState<string>();
 
   // Data
-  const { isLoading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts(LIMIT, topic);
+  const { isLoading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts({
+    limit: LIMIT,
+    topic,
+    search
+  });
 
   // Dialog controls
   const { shouldAnimate, handleClose } = useDialogPanel(isOpen, () => {
@@ -66,6 +72,7 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
             <NewsSearch
               topic={topic}
               setTopic={setTopic}
+              setSearch={setSearch}
               inputClassName={styles["input"]}
               filtersClassName={styles["filters"]}
               darkColors
@@ -82,8 +89,7 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
           })}
           {...(hasSearchResults
             ? {
-                title: "All Results",
-                subtext: "Showing..."
+                title: "All Results"
               }
             : {})}
         >
@@ -91,29 +97,29 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
           <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["top-button"]} />
 
           {/* Posts */}
-          {!isLoading ? (
-            !posts || !posts.length ? (
-              <SearchEmptyState />
-            ) : (
-              posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
-            )
+          {isLoading ? (
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
+          ) : !posts || !posts.length ? (
+            <SearchEmptyState />
           ) : (
-            <p className={newsArticleStyles["c-page-section-grid-news-articles__loading"]}>Loading...</p>
+            posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
           )}
 
           {/* Load more */}
           {canFetchMore && (
-            <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
-              <AnchorCTA
-                className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}
-                onClick={() => fetchMore(LOAD_MORE_LIMIT)}
-              >
-                {isFetchingMore ? "Loading..." : "Load More "}
-              </AnchorCTA>
-            </div>
-          )}
+            <>
+              <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
+                <AnchorCTA
+                  className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}
+                  onClick={() => fetchMore(LOAD_MORE_LIMIT)}
+                >
+                  {isFetchingMore ? "Loading…" : "Load More "}
+                </AnchorCTA>
+              </div>
 
-          <EarthHQCTA className={styles["cta"]} />
+              <EarthHQCTA className={styles["cta"]} />
+            </>
+          )}
         </Section>
       </div>
     </DialogPanel>
