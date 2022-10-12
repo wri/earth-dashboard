@@ -8,7 +8,7 @@ import MenuLayout from "./layout";
 import EventsListPanel from "./panels/events-list";
 import Event from "components/app/home/event";
 import MobileMenuContainer from "./menu-mobile-container";
-import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE, EXTREME_EVENTS_PAGE_HEADLINE } from "../main-container/component";
+import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE } from "../main-container/component";
 import HeadlineFooter from "../headline-footer";
 
 const MIN_SWIPE_DISTANCE = 50;

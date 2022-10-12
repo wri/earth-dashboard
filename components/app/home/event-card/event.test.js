@@ -10,6 +10,7 @@ test("<EventCard /> renders correctly as a Button", async () => {
   <button
     class="c-event-card"
     data-testid="headline"
+    style="height: auto;"
   >
     <div
       class="c-event-card__background"
@@ -18,32 +19,58 @@ test("<EventCard /> renders correctly as a Button", async () => {
     <div
       class="c-event-card__detail"
     >
-      <h3
-        class="c-event-card__title"
-      >
-        Rerum illo excepturi nobis quam earum corrupti at.
-      </h3>
-      <p
-        class="c-event-card__subtitle"
-      >
-        14th September 2021
-      </p>
       <div
-        class="c-event-card__thumbnail"
+        class="c-event-card__header"
       >
-        <span
-          style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+        <h3
+          class="title title-above"
         >
-          <img
-            alt=""
-            data-nimg="fill"
-            decoding="async"
-            role="presentation"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;"
-          />
-          <noscript />
-        </span>
+          Rerum illo excepturi nobis quam earum corrupti at.
+        </h3>
+        <div
+          class="thumbnail"
+          style="min-height: 192px;"
+        >
+          <span
+            style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+          >
+            <img
+              alt=""
+              data-nimg="fill"
+              decoding="async"
+              role="presentation"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;"
+            />
+            <noscript />
+          </span>
+        </div>
+      </div>
+      <div
+        class="c-event-card__footer"
+      >
+        <p
+          class="date"
+        >
+          Sep 14 2021
+        </p>
+        <button
+          class="c-cta-button"
+        >
+          <div
+            class="c-cta-button__content light"
+          >
+            <span
+              class="c-cta-button__icon"
+              style="background-image: url(https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/XbGLgZ4VVEuy4pu1o0K6KlEWZpoYqbpVzHqdDfPP.png); background-size: 24px;"
+            />
+            <span
+              class="c-cta-button__text"
+            >
+              Fires
+            </span>
+          </div>
+        </button>
       </div>
     </div>
   </button>
@@ -56,9 +83,10 @@ test("<EventCard /> renders correctly by default", async () => {
 
   expect(container).toMatchInlineSnapshot(`
 <div>
-  <div
+  <button
     class="c-event-card"
     data-testid="headline"
+    style="height: auto;"
   >
     <div
       class="c-event-card__background"
@@ -67,35 +95,61 @@ test("<EventCard /> renders correctly by default", async () => {
     <div
       class="c-event-card__detail"
     >
-      <h3
-        class="c-event-card__title"
-      >
-        Rerum illo excepturi nobis quam earum corrupti at.
-      </h3>
-      <p
-        class="c-event-card__subtitle"
-      >
-        14th September 2021
-      </p>
       <div
-        class="c-event-card__thumbnail"
+        class="c-event-card__header"
       >
-        <span
-          style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+        <h3
+          class="title title-above"
         >
-          <img
-            alt=""
-            data-nimg="fill"
-            decoding="async"
-            role="presentation"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;"
-          />
-          <noscript />
-        </span>
+          Rerum illo excepturi nobis quam earum corrupti at.
+        </h3>
+        <div
+          class="thumbnail"
+          style="min-height: 192px;"
+        >
+          <span
+            style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+          >
+            <img
+              alt=""
+              data-nimg="fill"
+              decoding="async"
+              role="presentation"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;"
+            />
+            <noscript />
+          </span>
+        </div>
+      </div>
+      <div
+        class="c-event-card__footer"
+      >
+        <p
+          class="date"
+        >
+          Sep 14 2021
+        </p>
+        <button
+          class="c-cta-button"
+        >
+          <div
+            class="c-cta-button__content light"
+          >
+            <span
+              class="c-cta-button__icon"
+              style="background-image: url(https://gca-earth-hq-api-production.s3.us-west-1.amazonaws.com/XbGLgZ4VVEuy4pu1o0K6KlEWZpoYqbpVzHqdDfPP.png); background-size: 24px;"
+            />
+            <span
+              class="c-cta-button__text"
+            >
+              Fires
+            </span>
+          </div>
+        </button>
       </div>
     </div>
-  </div>
+  </button>
 </div>
 `);
 });
