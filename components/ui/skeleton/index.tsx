@@ -3,6 +3,7 @@ import styles from "./skeleton.module.scss";
 import { ReactNode } from "react";
 import SkeletonText from "./skeleton-text";
 import SkeletonExternalLink from "./skeleton-external-link";
+import SkeletonIconButton from "./skeleton-icon-button";
 
 type SkeletonProps = {
   children?: ReactNode;
@@ -31,5 +32,6 @@ const Skeleton = ({ children, className = "", dark, pulse }: SkeletonProps) => {
 
 Skeleton.Text = SkeletonText;
 Skeleton.ExternalLink = SkeletonExternalLink;
+Skeleton.IconButton = SkeletonIconButton;
 
 export default Skeleton;
