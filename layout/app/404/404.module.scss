@@ -20,7 +20,11 @@
     justify-content: center;
     max-width: 600px;
     margin: 0 24px;
-    margin-bottom: 92px;
+    margin-bottom: 105px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      margin-bottom: 92px;
+    }
 
     h1,
     p {
@@ -82,7 +86,7 @@
     width: 375px;
 
     @media screen and (min-width: $global-breakpoint-md) {
-      height: calc(981px / 2);
+      height: 50vh;
       width: 981px;
     }
 
