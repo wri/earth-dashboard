@@ -120,7 +120,7 @@ const InfoPanel = ({
         setHeadlineToScroll();
       }, 250)
     );
-  }, [carouselScroll]);
+  }, [carouselScroll, carouselWidth]);
 
   return (
     <div ref={containerRef} className={styles["info-container"]}>
