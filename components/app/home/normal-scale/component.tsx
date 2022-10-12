@@ -22,8 +22,6 @@ const NormalScale = ({
   minLabel = "0%",
   maxLabel = "100%"
 }: NormalScaleProps) => {
-  console.log(headlineMode);
-
   return (
     <div className={classnames(styles["c-normal-scale"], className)} data-testid="normal-scale">
       <span
