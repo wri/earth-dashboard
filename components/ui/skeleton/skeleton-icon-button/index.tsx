@@ -17,7 +17,7 @@ const SkeletonIconButton = ({ className = "", dark, variant }: SkeletonIconButto
         styles["c-skeleton-icon-button"],
         {
           [styles["c-skeleton-icon-button--dark"]]: dark,
-          [styles[variant as SkeletonIconButtonVariant]]: variant
+          [styles[`c-skeleton-icon-button--${variant}`]]: variant
         },
         className
       )}
