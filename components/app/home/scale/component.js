@@ -87,9 +87,12 @@ const Scale = props => {
 
   return (
     <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>
-      <label htmlFor="scale" style={!currentMode.attributes.scale_info_detail ? { minWidth: "auto" } : {}}>
+      <label
+        htmlFor="scale"
+        style={!currentMode || !currentMode.attributes.scale_info_detail ? { minWidth: "auto" } : {}}
+      >
         Scale
-        {currentMode.attributes.scale_info_detail && (
+        {currentMode?.attributes.scale_info_detail && (
           <span className={styles["info"]} onClick={() => setInfoMode(currentMode)} />
         )}
       </label>
