@@ -4,29 +4,55 @@ import Icon, { IconNames } from "../Icon";
 import styles from "./cta-button.module.scss";
 
 type CtaButtonProps = {
+  type?: "Default" | "Light";
+  iconPosition?: "Right" | "Left";
+  iconName?: IconNames;
+  iconUrl?: string;
   as?: ElementType;
   href?: string;
   text?: string;
-  iconName?: IconNames;
   iconSize?: number;
   className?: string;
   onClick?: () => void;
 };
 
 /** Styled icon button. */
-const CtaButton = ({ as = "button", href, text, iconName, iconSize, className, onClick }: CtaButtonProps) => {
+const CtaButton = ({
+  type = "Default",
+  iconPosition = "Right",
+  as = "button",
+  href,
+  text,
+  iconUrl,
+  iconName,
+  iconSize,
+  className,
+  onClick
+}: CtaButtonProps) => {
   const CtaElement = as;
+
+  const renderIcon = () => (
+    <>
+      {iconName && (
+        <span className={styles["c-cta-button__icon"]}>
+          <Icon name={iconName} type="decorative" size={iconSize ?? 12} />
+        </span>
+      )}
+      {iconUrl && (
+        <span
+          className={styles["c-cta-button__icon"]}
+          style={{ backgroundImage: `url(${iconUrl})`, backgroundSize: "24px" }}
+        />
+      )}
+    </>
+  );
+
   return (
     <CtaElement className={classnames(styles["c-cta-button"], className)} onClick={onClick} href={href}>
-      <div className={styles["c-cta-button__content"]} style={!iconName ? { padding: "8px 24px" } : {}}>
-        <span className={styles["c-cta-button__text"]} style={!iconName ? { marginRight: "0px" } : {}}>
-          {text}
-        </span>
-        {iconName && (
-          <span className={styles["c-cta-button__icon"]}>
-            <Icon name={iconName} type="decorative" size={iconSize ?? 12} />
-          </span>
-        )}
+      <div className={classnames(styles["c-cta-button__content"], type === "Light" && styles["light"])}>
+        {iconPosition === "Left" && renderIcon()}
+        <span className={styles["c-cta-button__text"]}>{text}</span>
+        {iconPosition === "Right" && renderIcon()}
       </div>
     </CtaElement>
   );

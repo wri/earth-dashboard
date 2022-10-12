@@ -12,6 +12,7 @@ const useWidget = (widget, widgetShouldBeLoaded) => {
     const loadWidget = async () => {
       try {
         const res = await fetchWidget(widget.id, { includes: "metadata" });
+        if (!res) return;
         setWidgetData({
           id: res.id,
           loading: false,

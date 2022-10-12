@@ -42,9 +42,7 @@ test("<MainContainer /> renders correctly as desktop", async () => {
   GCAAPI.get.mockResolvedValueOnce({ data: headlines });
   useIframeBridge.mockReturnValue(mockIframeBridge);
 
-  const { container, getAllByTestId } = utilRender(<MainContainer isMobile={false} />);
-
-  await waitFor(() => getAllByTestId("content-panel"), { timeout: 3000 });
+  const { container } = utilRender(<MainContainer isMobile={false} />);
 
   expect(container).toMatchInlineSnapshot(`
 <div>
@@ -52,201 +50,6 @@ test("<MainContainer /> renders correctly as desktop", async () => {
     class="main-container -desktop -has-menu-open"
     data-testid="iframe-container"
   >
-    <div
-      class="c-home-menu-container"
-    >
-      <div
-        class="c-layout"
-      >
-        <div
-          class="c-layout__header"
-        >
-          <div
-            class="c-layout__header-content c-layout__header-content--has-globe-icon"
-          >
-            <h2
-              class="c-layout__header-text"
-            >
-              I'd like to explore...
-            </h2>
-            <button
-              aria-label="Close"
-              class="c-icon-button medium c-layout__close-button"
-            />
-          </div>
-        </div>
-        <div
-          class="c-layout__content u-padding-none"
-        >
-          <div
-            class="c-home-menu__scroll-area"
-          >
-            <div
-              class="c-content-panel__underlay c-content-panel__underlay--can-focus c-home-menu__all-events"
-              data-testid="content-panel"
-            >
-              <div
-                class="c-content-panel c-content-panel--selected c-content-panel__focusable"
-                data-role="content"
-                tabindex="0"
-              >
-                <div
-                  class="c-content-panel__header-row"
-                >
-                  <div
-                    class="c-content-panel__title-container"
-                  >
-                    <h3
-                      class="c-content-panel__title"
-                    >
-                      All Extreme Events
-                    </h3>
-                  </div>
-                </div>
-                <p
-                  class="c-menu-option__subtitle"
-                >
-                  Stay up to date with Mongabay’s latest extreme events and the places being affected. Learn more about the planetary emergency with real-time data.
-                </p>
-                <div
-                  class="c-content-panel__cta"
-                >
-                  <span>
-                    <button
-                      class="c-cta-button"
-                    >
-                      <div
-                        class="c-cta-button__content"
-                      >
-                        <span
-                          class="c-cta-button__text"
-                        >
-                          View All
-                        </span>
-                        <span
-                          class="c-cta-button__icon"
-                        />
-                      </div>
-                    </button>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="c-content-panel__underlay c-content-panel__underlay--can-focus"
-              data-testid="content-panel"
-            >
-              <div
-                class="c-content-panel c-content-panel--selected c-content-panel__focusable"
-                data-role="content"
-                tabindex="0"
-              >
-                <div
-                  class="c-content-panel__header-row c-content-panel__header-row--with-icon"
-                >
-                  <div
-                    class="c-content-panel__icon-container"
-                  >
-                    <img
-                      alt=""
-                      class="c-content-panel__image"
-                      role="presentation"
-                      src="https://gca-earth-hq-api-test.s3.us-west-1.amazonaws.com/7v0sYUds12E9Y1MBEbkyamiQKIsKHQU7BV0kdFYc.png"
-                    />
-                  </div>
-                  <div
-                    class="c-content-panel__title-container"
-                  >
-                    <h3
-                      class="c-content-panel__title"
-                    >
-                      Fires
-                    </h3>
-                  </div>
-                </div>
-                <p
-                  class="c-menu-option__subtitle"
-                >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Source: CAMS / Copernicus / European Commission + ECMWF
-                </p>
-                <div
-                  class="c-content-panel__cta"
-                >
-                  <span>
-                    <button
-                      class="c-cta-button"
-                    >
-                      <div
-                        class="c-cta-button__content"
-                      >
-                        <span
-                          class="c-cta-button__text"
-                        >
-                          Learn More
-                        </span>
-                        <span
-                          class="c-cta-button__icon"
-                        />
-                      </div>
-                    </button>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <a
-              href="https://earth.nullschool.net/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <div
-                class="c-content-panel__underlay c-content-panel__underlay--can-focus c-home-menu-item--advanced-data-item"
-                data-testid="content-panel"
-              >
-                <div
-                  class="c-content-panel c-content-panel__focusable"
-                  data-role="content"
-                  tabindex="0"
-                >
-                  <div
-                    class="c-content-panel__header-row"
-                  >
-                    <div
-                      class="c-content-panel__title-container"
-                    >
-                      <h3
-                        class="c-content-panel__title"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    class="c-home-menu-item__container"
-                  >
-                    <h3
-                      class="c-home-menu-item__title"
-                    >
-                      Advanced Data
-                    </h3>
-                    <p
-                      class="c-home-menu-item__desc"
-                    >
-                      Dive deeper into the full datasets available. Combine and overlay data to create unique maps and visualizations.
-                    </p>
-                    <div
-                      class="c-home-menu-item__external-link"
-                    >
-                      <span>
-                        Earth Nullschool
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
     <div
       class="c-home-actions over-pointer-absolute c-home-menu-action"
     >
@@ -262,7 +65,7 @@ Source: CAMS / Copernicus / European Commission + ECMWF
           class="c-home-menu-toggle__text-container"
         >
           <span>
-            Fires
+            This Is A Planetary Emergency...
           </span>
         </div>
       </button>
@@ -286,11 +89,11 @@ test("<MainContainer /> renders correctly as mobile", async () => {
   >
     <div
       class="c-mobile-menu-container"
-      style="height: 460.79999999999995px; z-index: 1000;"
+      style="height: 380px; z-index: 1000;"
     >
       <div
         class="c-mobile-menu-container__draggable"
-        style="position: relative; user-select: auto; width: 100vw; height: 460.79999999999995px; max-width: 100vw; max-height: 691.2px; min-width: 100vw; min-height: 148px; box-sizing: border-box; flex-shrink: 0;"
+        style="position: relative; user-select: auto; width: 100vw; height: 380px; max-width: 100vw; max-height: 380px; min-width: 100vw; min-height: 263px; box-sizing: border-box; flex-shrink: 0;"
       >
         <div
           class="c-home-menu-container"
@@ -303,12 +106,12 @@ test("<MainContainer /> renders correctly as mobile", async () => {
               class="c-layout__header"
             >
               <div
-                class="c-layout__header-content c-layout__header-content--has-globe-icon"
+                class="c-layout__header-content"
               >
                 <h2
                   class="c-layout__header-text"
                 >
-                  I'd like to explore...
+                  This Is A Planetary Emergency...
                 </h2>
                 <button
                   aria-label="Close"
@@ -320,108 +123,47 @@ test("<MainContainer /> renders correctly as mobile", async () => {
               class="c-layout__content u-padding-none"
             >
               <div
-                class="c-home-menu__scroll-area"
+                class="info-container"
               >
                 <div
-                  class="c-content-panel__underlay c-content-panel__underlay--can-focus c-home-menu__all-events"
-                  data-testid="content-panel"
+                  class="carousel-container"
+                  style="height: auto;"
                 >
-                  <div
-                    class="c-content-panel c-content-panel--selected c-content-panel__focusable"
-                    data-role="content"
-                    tabindex="0"
+                  <button
+                    class="c-view-all-card"
                   >
                     <div
-                      class="c-content-panel__header-row"
+                      class="content-container"
                     >
-                      <div
-                        class="c-content-panel__title-container"
+                      <h1
+                        class="title"
                       >
-                        <h3
-                          class="c-content-panel__title"
-                        >
-                          All Extreme Events
-                        </h3>
-                      </div>
-                    </div>
-                    <p
-                      class="c-menu-option__subtitle"
-                    >
-                      Stay up to date with Mongabay’s latest extreme events and the places being affected. Learn more about the planetary emergency with real-time data.
-                    </p>
-                    <div
-                      class="c-content-panel__cta"
-                    >
-                      <span>
-                        <button
-                          class="c-cta-button"
-                        >
-                          <div
-                            class="c-cta-button__content"
-                          >
-                            <span
-                              class="c-cta-button__text"
-                            >
-                              View All
-                            </span>
-                            <span
-                              class="c-cta-button__icon"
-                            />
-                          </div>
-                        </button>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <a
-                  href="https://earth.nullschool.net/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <div
-                    class="c-content-panel__underlay c-content-panel__underlay--can-focus c-home-menu-item--advanced-data-item"
-                    data-testid="content-panel"
-                  >
-                    <div
-                      class="c-content-panel c-content-panel__focusable"
-                      data-role="content"
-                      tabindex="0"
-                    >
-                      <div
-                        class="c-content-panel__header-row"
+                        All Extreme Events
+                      </h1>
+                      <p
+                        class="description"
+                      >
+                        View all of Mongabay’s latest extreme events
+                      </p>
+                      <button
+                        class="c-cta-button"
                       >
                         <div
-                          class="c-content-panel__title-container"
+                          class="c-cta-button__content"
                         >
-                          <h3
-                            class="c-content-panel__title"
+                          <span
+                            class="c-cta-button__text"
+                          >
+                            VIEW ALL
+                          </span>
+                          <span
+                            class="c-cta-button__icon"
                           />
                         </div>
-                      </div>
-                      <div
-                        class="c-home-menu-item__container"
-                      >
-                        <h3
-                          class="c-home-menu-item__title"
-                        >
-                          Advanced Data
-                        </h3>
-                        <p
-                          class="c-home-menu-item__desc"
-                        >
-                          Dive deeper into the full datasets available. Combine and overlay data to create unique maps and visualizations.
-                        </p>
-                        <div
-                          class="c-home-menu-item__external-link"
-                        >
-                          <span>
-                            Earth Nullschool
-                          </span>
-                        </div>
-                      </div>
+                      </button>
                     </div>
-                  </div>
-                </a>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

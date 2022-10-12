@@ -2,26 +2,42 @@ import { useState, useEffect, useMemo, useRef, UIEvent } from "react";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
-import { setHeadlines, setCurrentHeadline, Headline as HeadlineType } from "slices/headlines";
+import {
+  setHeadlines,
+  setCurrentHeadline,
+  Headline as HeadlineType,
+  Headline,
+  setCurrentHeadlineId
+} from "slices/headlines";
 import EventCard from "components/app/home/event-card";
-import { Mode, setCurrentMode } from "slices/modes";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { Mode, setCurrentMode, setPageTypeId, setPreviousPageTypeId } from "slices/modes";
+import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
+import { PAGE_TYPE_ID } from "../../main-container/component";
 
 const HEADLINE_BATCH_SIZE = 6;
 const SCOLL_THRESHOLD = 180;
 
-type HeadlinesPanerProps = {
+type EventsListPanelProps = {
   currentMode?: Mode;
   headlines: HeadlineType[];
   forceInfoPage: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
-  currentHeadline?: HeadlineType;
+  setPageTypeId: ActionCreatorWithPayload<string, string>;
+  setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
+  setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
 };
 
-const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHeadline }: HeadlinesPanerProps) => {
+const EventsListPanel = ({
+  currentMode,
+  headlines,
+  setCurrentHeadline,
+  setPageTypeId,
+  setPreviousPageTypeId,
+  setCurrentHeadlineId
+}: EventsListPanelProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [bannerHeight, setBannerHeight] = useState<number>(150);
   const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(HEADLINE_BATCH_SIZE);
@@ -30,19 +46,19 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
     return headlines.slice(0, numHeadlinesToShow);
   }, [headlines, numHeadlinesToShow]);
 
-  const articleRef = useRef<HTMLDivElement>(null);
   const bannerRef = useRef<HTMLDivElement>(null);
 
   const onSelectHeadline = (headline: HeadlineType) => {
     setCurrentHeadline(headline);
+    setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+    setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
   };
 
-  // Scroll to top of article when headline changes
   useEffect(() => {
-    if (articleRef.current) {
-      articleRef.current.scrollTo({ top: 0 });
-    }
-  }, [currentHeadline]);
+    setCurrentHeadline(undefined);
+    setCurrentHeadlineId(undefined);
+    setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+  }, []);
 
   useEffect(() => {
     if (bannerRef.current) setBannerHeight(bannerRef.current.offsetHeight);
@@ -73,14 +89,12 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
       </div>
       <div
         className={classnames(styles["c-home-menu__scroll-area"], styles["c-home-menu__extreme-events--scroll"])}
-        ref={articleRef}
         onScroll={onScroll}
       >
         <div className={styles["c-home-menu__extreme-events"]} style={{ marginTop: bannerHeight }}>
           {mostRecentHeadlines.map(headline => (
             <EventCard
               key={headline.id}
-              as="button"
               headline={headline}
               className={styles["c-home-menu__headline"]}
               onClick={() => onSelectHeadline(headline)}
@@ -104,8 +118,7 @@ const HeadlinesPanel = ({ currentMode, headlines, setCurrentHeadline, currentHea
 export default connect(
   (state: RootState) => ({
     currentMode: state.modes.currentMode,
-    headlines: state.headlines.headlines,
-    currentHeadline: state.headlines.currentHeadline
+    headlines: state.headlines.headlines
   }),
-  { setHeadlines, setCurrentMode, setCurrentHeadline }
-)(HeadlinesPanel);
+  { setHeadlines, setCurrentMode, setCurrentHeadline, setPageTypeId, setPreviousPageTypeId, setCurrentHeadlineId }
+)(EventsListPanel);

@@ -1,0 +1,35 @@
+@import "css/_settings.scss";
+@import "css/tools/_fontSize.scss";
+@import "css/settings/breakpoints";
+
+.event-prompt-container {
+  background-color: $colour-galaxy;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 12px;
+  margin-bottom: 3px;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+
+  p {
+    font-weight: 500;
+    color: white;
+    @include font-size(16px, 24px);
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    margin: 24px 24px 0 24px;
+    padding: 16px;
+    min-height: auto;
+  }
+}

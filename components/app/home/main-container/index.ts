@@ -2,9 +2,22 @@ import MainContainerComponent from "./component";
 import { connect } from "react-redux";
 import { setIsMobile } from "slices/common";
 import { RootState } from "store/types";
-import { setModes, setPageTypeId, setCurrentMode, setDateOfDataShown } from "slices/modes";
+import {
+  setModes,
+  setPageTypeId,
+  setCurrentMode,
+  setDateOfDataShown,
+  setCurrentVisibleMode,
+  setPreviousPageTypeId
+} from "slices/modes";
 import { setHeadlines } from "slices/headlines";
-import { setEventScaleData, setReoriented } from "slices/mapControls";
+import {
+  setCurrentLocation,
+  setCurrentScale,
+  setEventScaleData,
+  setReoriented,
+  setCurrentScaleBy
+} from "slices/mapControls";
 
 export default connect(
   (state: RootState) => ({
@@ -14,16 +27,23 @@ export default connect(
     headlines: state.headlines.headlines,
     currentMode: state.modes.currentMode,
     defaultMode: state.modes.defaultMode,
-    pageTypeId: state.modes.pageTypeId
+    pageTypeId: state.modes.pageTypeId,
+    previousPageTypeId: state.modes.previousPageTypeId,
+    currentHeadlineId: state.headlines.currentHeadlineId
   }),
   {
     setModes,
     setIsMobile,
     setHeadlines,
     setPageTypeId,
+    setPreviousPageTypeId,
     setReoriented,
     setEventScaleData,
     setCurrentMode,
-    setDateOfDataShown
+    setDateOfDataShown,
+    setCurrentLocation,
+    setCurrentScale,
+    setCurrentScaleBy,
+    setCurrentVisibleMode
   }
 )(MainContainerComponent);

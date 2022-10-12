@@ -10,6 +10,7 @@ import ToolTip from "components/ui/tooltip";
 import EventPoint from "components/ui/event-point";
 import { validateDataLayer } from "utils/map";
 import styles from "./map.module.scss";
+import { PAGE_TYPE_ID } from "../main-container/component";
 
 const MapIframe = forwardRef(
   (
@@ -50,7 +51,9 @@ const MapIframe = forwardRef(
       mobileMenuHeight,
       setCurrentHeadline,
       hasReoriented,
-      menuRef
+      menuRef,
+      pageTypeId,
+      setPageTypeId
     },
     ref
   ) => {
@@ -225,6 +228,7 @@ const MapIframe = forwardRef(
       setHasMenuOpen(true);
       setMobileMenuHeight(window.innerHeight * 0.6);
       setCurrentHeadline(headline);
+      if (pageTypeId !== PAGE_TYPE_ID.INFO_PAGE) setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
     };
 
     return (
@@ -298,7 +302,8 @@ MapIframe.propTypes = {
   hasIframeConnected: PropTypes.bool,
   loadDefaultModeValues: PropTypes.bool.isRequired,
   isMobileMenuOpen: PropTypes.bool,
-  menuRef: PropTypes.any
+  menuRef: PropTypes.any,
+  pageTypeId: PropTypes.string.isRequired
 };
 
 MapIframe.defaultProps = {

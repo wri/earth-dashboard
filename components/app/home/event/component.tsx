@@ -1,8 +1,6 @@
 import { useState, useRef, UIEvent, useEffect } from "react";
 import styles from "./event.module.scss";
-import { connect } from "react-redux";
-import { RootState } from "store/types";
-import { NAME as modesSliceName, Mode } from "slices/modes";
+import { Mode } from "slices/modes";
 import ContentPanel from "components/app/home/content-panel/component";
 import SharePanel from "components/app/home/share-panel/component";
 import { Headline as HeadlineType } from "slices/headlines";
@@ -10,23 +8,17 @@ import NormalScale from "components/app/home/normal-scale/component";
 import moment from "moment";
 import Image from "next/image";
 import CtaButton from "components/ui/cta-button";
-import { setIsShareOpen } from "slices/common";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { fireEvent } from "utils/gtag";
 import { EARTH_HQ_VIEWED_EXTREME_EVENT } from "constants/tag-manager";
 import { EventScaleData } from "slices/mapControls";
 import WidgetPreview from "components/widgets/preview";
 
-type DataLayerOverviewProps = {
+type ExtremeEventProps = {
   currentMode?: Mode;
   headline: HeadlineType;
-  setCurrentLocation: ActionCreatorWithPayload<number[], string>;
-  setCurrentScale: ActionCreatorWithPayload<number, string>;
-  setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
-  setDateOfDataShown: ActionCreatorWithPayload<string, string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
   eventScaleData: EventScaleData | undefined;
-  setCurrentVisibleMode: ActionCreatorWithPayload<Mode, string>;
   onViewAllEventsClicked: () => any;
 };
 
@@ -35,43 +27,26 @@ const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
 const ExtremeEvent = ({
   headline,
   currentMode,
-  setCurrentLocation,
-  setCurrentScale,
-  setCurrentScaleBy,
-  setDateOfDataShown,
   setIsShareOpen,
   eventScaleData,
-  setCurrentVisibleMode,
   onViewAllEventsClicked
-}: DataLayerOverviewProps) => {
+}: ExtremeEventProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const articleRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0);
 
   useEffect(() => {
+    if (!headline) return;
     fireEvent(EARTH_HQ_VIEWED_EXTREME_EVENT, null, {
       extreme_event_title: headline.attributes.title,
       category_name: currentMode?.attributes.title ?? ""
     });
-    setCurrentVisibleMode(headline.attributes.mode);
   }, [headline]);
 
   useEffect(() => {
     setContainerHeight(containerRef?.current?.offsetHeight ?? 0);
   }, [containerRef?.current?.clientHeight, headline?.id]);
-
-  useEffect(() => {
-    if (headline?.attributes.location) {
-      setCurrentLocation([headline?.attributes.location.lat, headline?.attributes.location.lng]);
-      setCurrentScale(headline.attributes.zoom_level);
-      setCurrentScaleBy(1);
-    }
-
-    if (headline?.attributes.climate_alert_date) {
-      setDateOfDataShown(new Date(headline?.attributes.climate_alert_date).toString());
-    }
-  }, [headline, setCurrentLocation, setCurrentScale, setCurrentScaleBy, setDateOfDataShown]);
 
   // Scroll to top of article when headline changes
   useEffect(() => {
@@ -84,6 +59,7 @@ const ExtremeEvent = ({
     setScrollPosition(event.currentTarget.scrollTop);
   };
 
+  if (!headline) return null;
   return (
     <div className={styles["c-event__container"]}>
       <div className={styles["c-event__hero"]} ref={containerRef} style={{ top: `${-scrollPosition}px` }}>
@@ -156,9 +132,4 @@ const ExtremeEvent = ({
   );
 };
 
-export default connect(
-  (state: RootState) => ({
-    currentMode: state[modesSliceName].currentMode
-  }),
-  { setIsShareOpen }
-)(ExtremeEvent);
+export default ExtremeEvent;

@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { INFO_PAGE_ID } from "components/app/home/main-container/component";
+import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
 import LogoLink from "components/ui/logo-link";
 import HeaderLink from "layout/header/header-link";
 import HeaderOptions from "layout/header/header-options";
@@ -90,7 +90,11 @@ const Header = ({
                     text="Earth HQ"
                     onClick={handleGlobeReset}
                     isActive={
-                      pageTypeId !== INFO_PAGE_ID ? false : typeof currentHeadlineId !== "undefined" ? false : undefined
+                      pageTypeId !== PAGE_TYPE_ID.INFO_PAGE
+                        ? false
+                        : typeof currentHeadlineId !== "undefined"
+                        ? false
+                        : undefined
                     }
                   />
                   <HeaderLink href="/news" text="News" />

@@ -8,7 +8,8 @@ import {
   resetValues,
   setLayersLabelArr,
   setDateOfDataShown,
-  setHeight
+  setHeight,
+  setPageTypeId
 } from "slices/modes";
 import { RootState } from "store/types";
 import { setCurrentHeadline } from "slices/headlines";
@@ -33,7 +34,8 @@ export default connect(
     showMapGrid: state.globalSettings.showMapGrid,
     animationEnabled: state.globalSettings.showAnimations,
     highDefinitionMode: state.globalSettings.showHighDefinition,
-    basemapType: state.globalSettings.basemap
+    basemapType: state.globalSettings.basemap,
+    pageTypeId: state.modes.pageTypeId
   }),
   {
     setAnimationValue: setAnimation,
@@ -47,7 +49,8 @@ export default connect(
     setCurrentLocation,
     setCurrentScale,
     setCurrentScaleBy,
-    setCurrentHeadline
+    setCurrentHeadline,
+    setPageTypeId
   },
   null,
   { forwardRef: true }
