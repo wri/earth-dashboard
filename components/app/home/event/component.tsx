@@ -37,6 +37,7 @@ const ExtremeEvent = ({
   const [containerHeight, setContainerHeight] = useState(0);
 
   useEffect(() => {
+    if (!headline) return;
     fireEvent(EARTH_HQ_VIEWED_EXTREME_EVENT, null, {
       extreme_event_title: headline.attributes.title,
       category_name: currentMode?.attributes.title ?? ""
@@ -58,6 +59,7 @@ const ExtremeEvent = ({
     setScrollPosition(event.currentTarget.scrollTop);
   };
 
+  if (!headline) return null;
   return (
     <div className={styles["c-event__container"]}>
       <div className={styles["c-event__hero"]} ref={containerRef} style={{ top: `${-scrollPosition}px` }}>

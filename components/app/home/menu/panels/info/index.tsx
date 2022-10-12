@@ -105,7 +105,6 @@ const InfoPanel = ({
       setCurrentHeadlineIndex(index);
       setPreviousPageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     } else {
-      console.log("here");
       setCurrentHeadline(undefined);
       setCurrentHeadlineId(undefined);
       setCurrentHeadlineIndex(headlines.length);

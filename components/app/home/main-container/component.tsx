@@ -61,6 +61,7 @@ type MainContainerProps = {
   setCurrentScale: ActionCreatorWithPayload<string, string>;
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
   setCurrentVisibleMode: ActionCreatorWithPayload<Mode, string>;
+  setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
 };
 
 const MainContainer = ({
@@ -83,7 +84,9 @@ const MainContainer = ({
   setCurrentLocation,
   setCurrentScale,
   setCurrentScaleBy,
-  setCurrentVisibleMode
+  setCurrentVisibleMode,
+  currentHeadlineId,
+  setPreviousPageTypeId
 }: MainContainerProps) => {
   const defaultMobileMenuHeight =
     pageTypeId === PAGE_TYPE_ID.INFO_PAGE
@@ -133,7 +136,10 @@ const MainContainer = ({
     currentMode,
     defaultMode,
     setReoriented,
-    pageTypeId
+    pageTypeId,
+    currentHeadlineId,
+    setPageTypeId,
+    setPreviousPageTypeId
   });
 
   const overlayLayer = useMemo(() => {

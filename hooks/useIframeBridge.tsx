@@ -32,7 +32,10 @@ type UseIframeBridgeConfig = {
   defaultMode?: Mode;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
+  setPageTypeId: ActionCreatorWithPayload<string, string>;
+  setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
   pageTypeId: string;
+  currentHeadlineId: number | undefined;
 };
 
 type Marker = { id: number; label: string };
@@ -49,8 +52,13 @@ const useIframeBridge = ({
   defaultMode,
   setHeadlines,
   setReoriented,
-  pageTypeId
+  pageTypeId,
+  currentHeadlineId,
+  setPageTypeId,
+  setPreviousPageTypeId
 }: UseIframeBridgeConfig) => {
+  const [hasLoadedBefore, setHasLoadedBefore] = useState<boolean>(false);
+
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [markers, setMarkers] = useState<Marker[]>([]);
   const [error, setError] = useState<Error>();
@@ -79,7 +87,20 @@ const useIframeBridge = ({
         const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
         const resp = await fetchClimateAlerts();
 
-        const number_of_headlines = pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? 10 : 25;
+        let number_of_headlines = pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? 10 : 25;
+
+        if (currentHeadlineId && !hasLoadedBefore) {
+          setHasLoadedBefore(true);
+          resp.data.data.forEach((headline: Headline, index: number) => {
+            if (headline.id === currentHeadlineId) {
+              if (index >= 10 && index < 25) {
+                number_of_headlines = 25;
+                setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+                setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+              }
+            }
+          });
+        }
 
         const filteredHeadlines = resp.data.data
           .slice(0, number_of_headlines)
