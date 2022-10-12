@@ -172,7 +172,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
                   </div>
 
                   {/* Description */}
-                  <h4 className={styles["text"]}>{counter > 0 ? data[counter - 1].title : ""}</h4>
+                  <h4 className={styles["text"]}>{image.title}</h4>
                 </div>
               ))}
             </div>
