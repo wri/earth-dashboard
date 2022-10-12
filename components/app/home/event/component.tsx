@@ -6,7 +6,7 @@ import { NAME as modesSliceName, Mode } from "slices/modes";
 import ContentPanel from "components/app/home/content-panel/component";
 import SharePanel from "components/app/home/share-panel/component";
 import { Headline as HeadlineType } from "slices/headlines";
-import NormalScale from "components/app/home/normal-scale/component";
+import NormalScale from "components/app/home/normal-scale";
 import moment from "moment";
 import Image from "next/image";
 import CtaButton from "components/ui/cta-button";
@@ -120,6 +120,7 @@ const ExtremeEvent = ({
             minLabel={eventScaleData?.minLabel}
             maxLabel={eventScaleData?.maxLabel}
             thermometerStyle={{ background: eventScaleData?.gradient ?? "" }}
+            headlineMode={headline.attributes.mode}
           />
         </ContentPanel>
         {headline.attributes.content.media.widget && (

@@ -20,7 +20,8 @@ const initialState: ModesState = {
   heightValue: "",
   layersLabelArr: [],
   dateOfDataShown: new Date().toString(),
-  pageTypeId: "InfoPage"
+  pageTypeId: "InfoPage",
+  infoMode: undefined
 };
 
 const modesSlice = createSlice({
@@ -109,6 +110,9 @@ const modesSlice = createSlice({
     },
     setPageTypeId: (state, { payload }: PayloadAction<string>) => {
       state.pageTypeId = payload;
+    },
+    setInfoMode: (state, { payload }: PayloadAction<Mode | undefined>) => {
+      state.infoMode = payload;
     }
   }
 });
@@ -126,7 +130,8 @@ export const {
   setDateOfDataShown,
   setCurrentModeId,
   setPageTypeId,
-  selectDefaultMode
+  selectDefaultMode,
+  setInfoMode
 } = modesSlice.actions;
 
 export default modesSlice.reducer;

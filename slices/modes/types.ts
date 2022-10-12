@@ -24,6 +24,7 @@ export type Mode = {
   attributes: {
     title: string;
     description: string;
+    scale_info_detail: string;
     icon: string;
     source: null;
     sections: [
@@ -75,4 +76,5 @@ export type ModesState = {
   layersLabelArr: string[];
   dateOfDataShown: string;
   pageTypeId: string;
+  infoMode: Mode | undefined;
 };

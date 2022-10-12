@@ -26,6 +26,7 @@ import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
 import { SCALE_TYPES } from "constants/map";
 import moment from "moment";
+import InfoModal from "../normal-scale/info-modal";
 
 export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
 export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
@@ -406,6 +407,7 @@ const MainContainer = ({
         )}
 
         <ShareModal />
+        <InfoModal />
 
         <Actions
           isMobile={isMobile}

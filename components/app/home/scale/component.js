@@ -10,7 +10,8 @@ import { DATA_LAYER_TYPES } from "constants/datalayers";
 import { useIframeBridgeContext } from "hooks/useIframeBridge";
 
 const Scale = props => {
-  const { className, isHorizontal, value, currentMode, datasetValue, hidden, hideTooltipLabel, ...rest } = props;
+  const { className, isHorizontal, value, currentMode, datasetValue, hidden, hideTooltipLabel, setInfoMode, ...rest } =
+    props;
 
   const {
     scaleData = { min: 0, max: 100, unitSymbol: "%", hasSmallLabels: false },
@@ -86,7 +87,12 @@ const Scale = props => {
 
   return (
     <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>
-      <label htmlFor="scale">Scale</label>
+      <label htmlFor="scale" style={!currentMode.attributes.scale_info_detail ? { minWidth: "auto" } : {}}>
+        Scale
+        {currentMode.attributes.scale_info_detail && (
+          <span className={styles["info"]} onClick={() => setInfoMode(currentMode)} />
+        )}
+      </label>
       <div className={styles["c-scale__input-container"]}>
         {shouldShowToolTip && !Number.isNaN(percent) && (
           <>
