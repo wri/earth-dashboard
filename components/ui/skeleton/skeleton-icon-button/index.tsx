@@ -1,25 +1,23 @@
 import classnames from "classnames";
 import styles from "./skeleton-icon-button.module.scss";
 
+type SkeletonIconButtonVariant = "xs" | "sm" | "md";
+
 type SkeletonIconButtonProps = {
   className?: string;
   dark?: boolean;
-  extraSmall?: boolean;
-  small?: boolean;
-  medium?: boolean;
+  variant?: SkeletonIconButtonVariant;
 };
 
 /** Skeleton for pill external link. */
-const SkeletonIconButton = ({ className = "", dark, extraSmall, small, medium }: SkeletonIconButtonProps) => {
+const SkeletonIconButton = ({ className = "", dark, variant }: SkeletonIconButtonProps) => {
   return (
     <div
       className={classnames(
         styles["c-skeleton-icon-button"],
         {
-          [styles["dark"]]: dark,
-          [styles["extra-small"]]: extraSmall,
-          [styles["small"]]: small,
-          [styles["medium"]]: medium
+          [styles["c-skeleton-icon-button--dark"]]: dark,
+          [styles[variant as SkeletonIconButtonVariant]]: variant
         },
         className
       )}

@@ -104,7 +104,7 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6 }: WidgetsCarouselProps) 
       <div className={styles["c-widgets-carousel__controls"]}>
         {/* Previous button */}
         {isLoading ? (
-          <Skeleton.IconButton small />
+          <Skeleton.IconButton variant="sm" />
         ) : (
           <IconButton name="arrow-left" size={16} onClick={handlePrevious} small />
         )}
@@ -121,7 +121,7 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6 }: WidgetsCarouselProps) 
 
         {/* Next button */}
         {isLoading ? (
-          <Skeleton.IconButton small />
+          <Skeleton.IconButton variant="sm" />
         ) : (
           <IconButton name="arrow-right" size={16} onClick={handleNext} small />
         )}

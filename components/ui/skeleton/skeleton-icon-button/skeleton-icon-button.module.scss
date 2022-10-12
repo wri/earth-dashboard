@@ -10,21 +10,21 @@
   background-color: $colour-galaxy;
   transition: all 0.1s ease-in-out;
 
-  &.dark {
+  &--dark {
     background-color: $colour-midnight;
   }
 
-  &.extra-small {
+  &.xs {
     height: 24px;
     width: 24px;
   }
 
-  &.small {
+  &.sm {
     height: 32px;
     width: 32px;
   }
 
-  &.medium {
+  &.md {
     height: 36px;
     width: 36px;
   }
