@@ -113,7 +113,7 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
                   className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}
                   onClick={() => fetchMore(LOAD_MORE_LIMIT)}
                 >
-                  {isFetchingMore ? "Loading..." : "Load More "}
+                  {isFetchingMore ? "Loading…" : "Load More "}
                 </AnchorCTA>
               </div>
 
