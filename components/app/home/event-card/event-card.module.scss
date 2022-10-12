@@ -12,8 +12,9 @@
   text-align: left;
   height: 172px;
   min-height: 172px;
-  scroll-snap-align: center;
   padding: 0;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 
   @media screen and (min-width: $global-breakpoint-md) {
     height: 100%;

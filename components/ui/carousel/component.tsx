@@ -29,6 +29,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
   }
 );
 
+// Needed due to using forward ref
 Carousel.displayName = "Carousel";
 
 export default Carousel;

@@ -143,8 +143,8 @@ const InfoPanel = ({
           disableBackButton={currentHeadlineIndex === 0}
           disableNextButton={currentHeadlineIndex === headlines.length}
           navigateInfo={navigateInfo}
-          index={currentHeadlineIndex}
-          length={headlines.length + 1}
+          index={carouselWidth ? Math.round(carouselScroll / (carouselWidth - SCROLL_NORMALIZE_VALUE)) : 0}
+          length={headlines.length + 1 > 11 ? 11 : headlines.length + 1}
         />
       )}
     </div>

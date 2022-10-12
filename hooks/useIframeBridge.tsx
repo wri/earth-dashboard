@@ -35,6 +35,7 @@ type UseIframeBridgeConfig = {
   setPageTypeId: ActionCreatorWithPayload<string, string>;
   setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
   pageTypeId: string;
+  previousPageTypeId: string;
   currentHeadlineId: number | undefined;
 };
 
@@ -55,7 +56,8 @@ const useIframeBridge = ({
   pageTypeId,
   currentHeadlineId,
   setPageTypeId,
-  setPreviousPageTypeId
+  setPreviousPageTypeId,
+  previousPageTypeId
 }: UseIframeBridgeConfig) => {
   const [hasLoadedBefore, setHasLoadedBefore] = useState<boolean>(false);
 
@@ -87,14 +89,21 @@ const useIframeBridge = ({
         const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
         const resp = await fetchClimateAlerts();
 
-        let number_of_headlines = pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? 10 : 25;
+        let numberOfHeadlines =
+          pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
+            ? previousPageTypeId === PAGE_TYPE_ID.INFO_PAGE
+              ? 10
+              : 25
+            : pageTypeId === PAGE_TYPE_ID.INFO_PAGE
+            ? 10
+            : 25;
 
         if (currentHeadlineId && !hasLoadedBefore) {
-          setHasLoadedBefore(true);
           resp.data.data.forEach((headline: Headline, index: number) => {
             if (headline.id === currentHeadlineId) {
               if (index >= 10 && index < 25) {
-                number_of_headlines = 25;
+                console.log("Is Here");
+                numberOfHeadlines = 25;
                 setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
                 setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
               }
@@ -102,8 +111,10 @@ const useIframeBridge = ({
           });
         }
 
+        setHasLoadedBefore(true);
+
         const filteredHeadlines = resp.data.data
-          .slice(0, number_of_headlines)
+          .slice(0, numberOfHeadlines)
           .filter((headline: Headline) => (!mode_id ? true : headline.attributes.mode.id === mode_id));
         setHeadlines(filteredHeadlines);
       } catch (err) {

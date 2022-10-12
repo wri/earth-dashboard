@@ -28,6 +28,7 @@ export default connect(
     currentMode: state.modes.currentMode,
     defaultMode: state.modes.defaultMode,
     pageTypeId: state.modes.pageTypeId,
+    previousPageTypeId: state.modes.previousPageTypeId,
     currentHeadlineId: state.headlines.currentHeadlineId
   }),
   {

@@ -52,6 +52,7 @@ type MainContainerProps = {
   currentMode?: Mode;
   defaultMode?: Mode;
   pageTypeId: string;
+  previousPageTypeId: string;
   setPageTypeId: ActionCreatorWithPayload<string, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
   setEventScaleData: ActionCreatorWithPayload<EventScaleData | undefined, string>;
@@ -76,6 +77,7 @@ const MainContainer = ({
   defaultMode,
   currentMode,
   pageTypeId,
+  previousPageTypeId,
   setPageTypeId,
   setReoriented,
   setEventScaleData,
@@ -139,7 +141,8 @@ const MainContainer = ({
     pageTypeId,
     currentHeadlineId,
     setPageTypeId,
-    setPreviousPageTypeId
+    setPreviousPageTypeId,
+    previousPageTypeId
   });
 
   const overlayLayer = useMemo(() => {

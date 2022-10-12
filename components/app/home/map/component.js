@@ -191,8 +191,6 @@ const MapIframe = forwardRef(
         setCurrentScale("default");
         setCurrentScaleBy(3);
         setShouldFetchLocation(false);
-
-        console.log("MAP");
       }
     }, [currentPosition, earthServer, setCurrentLocation, setShouldFetchLocation, setCurrentScale, setCurrentScaleBy]);
 
