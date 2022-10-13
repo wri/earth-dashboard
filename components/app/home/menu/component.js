@@ -42,8 +42,6 @@ const Menu = forwardRef(
 
     const [nextHeadlineEl, setNextHeadlineEl] = useState();
     const [prevHeadlineEl, setPrevHeadlineEl] = useState();
-    const [scrollPercentage, setScrollPercentage] = useState(0);
-    const [clientHeight, setClientHeight] = useState(0);
 
     const [footerHeading, setFooterHeading] = useState("");
 
@@ -94,16 +92,14 @@ const Menu = forwardRef(
 
     /** Moves headlines. */
     const navigateHeadline = action => {
-      const { index, total } = getCurrentHeadlineIndex();
-
       if (action === "back") {
         return prevHeadlineEl.scrollIntoView({
-          behavior: index === 0 ? "auto" : "smooth"
+          behavior: "smooth"
         });
       }
 
       nextHeadlineEl.scrollIntoView({
-        behavior: index + 1 === total ? "auto" : "smooth"
+        behavior: "smooth"
       });
     };
 
