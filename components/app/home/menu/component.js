@@ -10,6 +10,8 @@ import Event from "components/app/home/event";
 import MobileMenuContainer from "./menu-mobile-container";
 import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE } from "../main-container/component";
 import HeadlineFooter from "../headline-footer";
+import { fireEvent } from "utils/gtag";
+import { VIEW_ALL_EXTREME_EVENTS } from "constants/tag-manager";
 
 const Menu = forwardRef(
   (
@@ -87,6 +89,7 @@ const Menu = forwardRef(
     const viewAllExtremeEvents = () => {
       clearHeadline();
       setPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+      fireEvent(VIEW_ALL_EXTREME_EVENTS, "web_earth_hq_carousel");
     };
 
     /** Moves headlines. */

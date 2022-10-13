@@ -4,6 +4,8 @@ import SocialIcon from "components/ui/social-icon";
 import { QuickLinks, SocialLinks } from "constants/menu-items";
 import styles from "./footer.module.scss";
 import Link from "next/link";
+import { fireEvent } from "utils/gtag";
+import { MORE_ABOUT } from "constants/tag-manager";
 
 /** Footer component for the settings modal. */
 
@@ -14,6 +16,11 @@ type FooterProps = {
 };
 
 const Footer = ({ setIsCookieOpen, setSettingsClose }: FooterProps) => {
+  const aboutClickHandler = () => {
+    setSettingsClose();
+    fireEvent(MORE_ABOUT, null);
+  };
+
   return (
     <div className={styles["c-footer"]}>
       <h2 className={styles["c-footer__title"]}>Other</h2>
@@ -24,7 +31,7 @@ const Footer = ({ setIsCookieOpen, setSettingsClose }: FooterProps) => {
             <p onClick={() => setIsCookieOpen(true)}>Cookies</p>
           ) : key === "about-us" ? (
             <Link key={key} href="/about">
-              <a onClick={setSettingsClose}>{label}</a>
+              <a onClick={aboutClickHandler}>{label}</a>
             </Link>
           ) : (
             <a key={key} href={link} onClick={onClick && onClick} target="_blank" rel="nofollow noreferrer">

@@ -2,8 +2,10 @@ import classnames from "classnames";
 import CarouselViewIndicator from "components/ui/carousel-view-indicator";
 import IconButton from "components/ui/icon-button";
 import Skeleton from "components/ui/skeleton";
+import { NEWS_CAROUSEL_COMPLETED, NEWS_CAROUSEL_STARTED, NEWS_CAROUSEL_VIEWED } from "constants/tag-manager";
 import { GCAWidget } from "hooks/useGCAWidgets/types";
 import { useEffect, useRef, useState } from "react";
+import { fireEvent } from "utils/gtag";
 import Widget from "../widget/component";
 import WidgetSkeleton from "../widget/widget-skeleton";
 import styles from "./widgets-carousel.module.scss";
@@ -12,15 +14,24 @@ type WidgetsCarouselProps = {
   widgets: GCAWidget[];
   isLoading: boolean;
   max?: number;
+  page?: string;
 };
 
 /** Shows a carousel of featured widgets. */
-const WidgetsCarousel = ({ widgets, isLoading, max = 6 }: WidgetsCarouselProps) => {
+const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselProps) => {
   const carouselRef = useRef<HTMLDivElement>();
 
   const [viewedWidget, setViewedWidget] = useState<string>();
   const [prevWidget, setPrevWidget] = useState<Element | null>();
   const [nextWidget, setNextWidget] = useState<Element | null>();
+
+  const getCarouselCurrentIndex = () => {
+    const nodes = carouselRef?.current?.childNodes;
+    const items = nodes && (Array.from(nodes) as Element[]);
+    const index = items?.findIndex(item => item.id === viewedWidget) ?? -1;
+
+    return index === -1 ? 0 : index;
+  };
 
   /** Scrolls to the previous widget. */
   const handlePrevious = () => {
@@ -71,6 +82,17 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6 }: WidgetsCarouselProps) 
       });
     };
   }, [isLoading]);
+
+  useEffect(() => {
+    const carouselIndex = getCarouselCurrentIndex();
+    if (page === "news" && !isLoading) {
+      if (carouselIndex === 0) fireEvent(NEWS_CAROUSEL_STARTED, null);
+      if (carouselRef.current && carouselIndex === carouselRef.current?.childNodes.length - 1)
+        fireEvent(NEWS_CAROUSEL_COMPLETED, null);
+
+      fireEvent(NEWS_CAROUSEL_VIEWED, `carousel_${carouselIndex + 1}`);
+    }
+  }, [viewedWidget]);
 
   return (
     <div className={styles["c-widgets-carousel"]}>

@@ -5,6 +5,8 @@ import TOPICS from "constants/news";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./news-search.module.scss";
+import { fireEvent } from "utils/gtag";
+import { NEWS_SEARCH_FILTER } from "constants/tag-manager";
 
 type NewsSearchFormData = {
   search: string;
@@ -51,6 +53,13 @@ const NewsSearch = ({
     [search]
   );
 
+  const setTopicHandler = (
+    topicName: SetStateAction<"climate" | "freshwater" | "ocean" | "biodiversity" | "forests" | undefined>
+  ) => {
+    setTopic(topicName);
+    fireEvent(NEWS_SEARCH_FILTER, topicName as string);
+  };
+
   return (
     <div
       className={classnames(
@@ -86,7 +95,7 @@ const NewsSearch = ({
         {topics.map(topicText => (
           <button
             key={topicText}
-            onClick={() => setTopic(topicText)}
+            onClick={() => setTopicHandler(topicText)}
             className={classnames({
               [styles["active"]]: topicText === topic
             })}

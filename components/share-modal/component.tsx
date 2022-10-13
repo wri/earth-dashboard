@@ -9,6 +9,8 @@ import GlobeCard from "./globe-card";
 import HeadlineCard from "./headline-card/component";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import useDialogPanel from "hooks/useDialogPanel";
+import { fireEvent } from "utils/gtag";
+import { SHARE_EXTREME_EVENT } from "constants/tag-manager";
 
 type ShareModalProps = {
   isMobile: boolean;
@@ -28,6 +30,7 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline }: 
   const handleFaceBookPress = () => {
     const link = window.location.href;
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, "_blank");
+    fireEvent(SHARE_EXTREME_EVENT, `${currentHeadline?.attributes.title}_facebook`);
   };
 
   // Copies the link to the clipboard
@@ -36,12 +39,14 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline }: 
     navigator.clipboard.writeText(link);
     setCopiedLinkTimeout(true);
     setTimeout(() => setCopiedLinkTimeout(false), 1000);
+    fireEvent(SHARE_EXTREME_EVENT, `${currentHeadline?.attributes.title}_copylink`);
   };
 
   // Opens twitter share page
   const handleTwitterPress = () => {
     const link = window.location.href;
     window.open(`https://twitter.com/share?url=${encodeURIComponent(link)}`, "_blank");
+    fireEvent(SHARE_EXTREME_EVENT, `${currentHeadline?.attributes.title}_twitter`);
   };
 
   // Opens native share method
