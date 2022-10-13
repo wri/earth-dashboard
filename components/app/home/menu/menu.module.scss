@@ -63,7 +63,8 @@
 
   &__events {
     display: flex;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
 
@@ -73,22 +74,6 @@
 
     &::-webkit-scrollbar {
       display: none;
-    }
-  }
-
-  &__scrollbar {
-    position: absolute;
-    width: $default-scrollbar-size;
-    background-color: $default-scrollbar-background-colour;
-    top: 90px;
-    right: 8px;
-    border-radius: 8px;
-
-    > div {
-      height: 50%;
-      width: 100%;
-      background-color: $default-scrollbar-foreground-colour;
-      border-radius: 8px;
     }
   }
 
