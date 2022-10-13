@@ -47,7 +47,7 @@ export const fetchClimateAlerts = async (params?: object) => {
  * Fetch all modes
  * Check out the API docs for this endpoint {@link https://test.api.earthhq.org/documentation|here}
  */
-export const fetchModes = async () => {
+export const fetchModes = async (): Promise<{ data: { data: Mode[] } }> => {
   return GCAAPI.get("/modes", {
     headers: {
       ...GCAAPI.defaults.headers
