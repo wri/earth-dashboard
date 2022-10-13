@@ -185,7 +185,7 @@ const Menu = forwardRef(
               <div
                 className={styles["c-home-menu__scrollbar"]}
                 style={{
-                  height: clientHeight - (isMobile ? 84 : 0)
+                  height: clientHeight - 84
                 }}
               >
                 <div
