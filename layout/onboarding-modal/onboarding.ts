@@ -18,7 +18,7 @@ interface IOnBoarding {
 export const data: IOnBoarding[] = [
   {
     id: 1,
-    title: "The effects of human-induced climate change can be seen and felt across the planet.",
+    title: "The impacts of the climate emergency can be seen and felt across the planet. EarthHQ is tracking them.",
     desktopURL: halfEarth.src,
     mobileURL: halfEarthShadow.src,
     width: halfEarth.width,
@@ -26,7 +26,8 @@ export const data: IOnBoarding[] = [
   },
   {
     id: 2,
-    title: "Extreme climate events worldwide have made ecosystems even more prone to damage.",
+    title:
+      "Swipe left to discover the latest extreme events. Share them to mobilize responses to fix the damage. Or explore the data yourself.",
     desktopURL: halfEarth2.src,
     mobileURL: halfEarth2Shadow.src,
     width: halfEarth2.width,
@@ -35,7 +36,7 @@ export const data: IOnBoarding[] = [
   {
     id: 3,
     title:
-      "Our partners tell the epic story of what is happening to our planet, confronting the accelerating global crisis.",
+      "EarthHQ reveals the epic planet-scale story of climate change with news from Mongabay's global network of reporters.",
     desktopURL: threeCards.src,
     mobileURL: threeCardsShadow.src,
     width: threeCards.width,
