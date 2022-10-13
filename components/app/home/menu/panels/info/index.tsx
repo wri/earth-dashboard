@@ -107,8 +107,12 @@ const InfoPanel = ({
   }, [containerRef.current]);
 
   useEffect(() => {
-    if (headlines.length === currentHeadlineIndex) fireEvent(EARTH_HQ_CAROUSEL_COMPLETED, null);
-    if (currentHeadlineIndex === 0) fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
+    if (headlines.length === currentHeadlineIndex) {
+      fireEvent(EARTH_HQ_CAROUSEL_COMPLETED, null);
+    } else if (currentHeadlineIndex === 0) {
+      fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
+    }
+
     fireEvent(EARTH_HQ_CAROUSEL_VIEWED, `carousel_${currentHeadlineIndex + 1}`);
   }, [currentHeadlineIndex]);
 
