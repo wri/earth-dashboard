@@ -26,6 +26,7 @@ import * as d3 from "utils/d3";
 import { reorientController } from "utils/iframeBridge/iframeBridge";
 import { SCALE_TYPES } from "constants/map";
 import moment from "moment";
+import { useRouter } from "next/router";
 
 export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
 export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
@@ -102,6 +103,8 @@ const MainContainer = ({
   const [isClosingMenu, setIsClosingMenu] = useState(false);
   const [isFetchingTemplates, setIsFetchingTemplates] = useState<boolean>(false);
   const [mobileMenuHeight, setMobileMenuHeight] = useState<number>(defaultMobileMenuHeight);
+
+  const router = useRouter();
 
   const { width: browserWidth } = useWindowDimensions();
 
@@ -325,8 +328,15 @@ const MainContainer = ({
     setIsFetchingTemplates(true);
     const getTemplates = async () => {
       try {
-        const resp: any = await fetchModes();
-        setModes(resp.data.data);
+        const { data } = await fetchModes();
+
+        // Checks if current mode is valid else show 404
+        const query = new URLSearchParams(window.location.search);
+        const queryMode = query.get("mode");
+
+        if (queryMode && !data.data.map(mode => mode.id.toString()).includes(queryMode)) router.push("/404");
+
+        setModes(data.data);
       } catch (err) {
         console.log("Error fetching modes");
       } finally {
