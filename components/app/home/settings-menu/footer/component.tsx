@@ -23,7 +23,7 @@ const Footer = ({ setIsCookieOpen, setSettingsClose }: FooterProps) => {
           !link ? (
             <p onClick={() => setIsCookieOpen(true)}>Cookies</p>
           ) : key === "about-us" ? (
-            <Link href="/about">
+            <Link key={key} href="/about">
               <a onClick={setSettingsClose}>{label}</a>
             </Link>
           ) : (
