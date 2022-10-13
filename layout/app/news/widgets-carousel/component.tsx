@@ -26,13 +26,11 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
   const [nextWidget, setNextWidget] = useState<Element | null>();
 
   const getCarouselCurrentIndex = () => {
-    const items = carouselRef?.current?.childNodes;
-    let index = 0;
-    items?.forEach((item, indx) => {
-      // @ts-ignore
-      if (item?.id == viewedWidget) index = indx;
-    });
-    return index;
+    const nodes = carouselRef?.current?.childNodes;
+    const items = nodes && Array.from(nodes);
+    const index = items?.findIndex(item => item?.id === viewedWidget) ?? -1;
+
+    return index === -1 ? 0 : index;
   };
 
   /** Scrolls to the previous widget. */
