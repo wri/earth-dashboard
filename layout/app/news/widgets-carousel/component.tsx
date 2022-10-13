@@ -27,8 +27,8 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
 
   const getCarouselCurrentIndex = () => {
     const nodes = carouselRef?.current?.childNodes;
-    const items = nodes && Array.from(nodes);
-    const index = items?.findIndex(item => item?.id === viewedWidget) ?? -1;
+    const items = nodes && (Array.from(nodes) as Element[]);
+    const index = items?.findIndex(item => item.id === viewedWidget) ?? -1;
 
     return index === -1 ? 0 : index;
   };
@@ -85,7 +85,7 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
 
   useEffect(() => {
     const carouselIndex = getCarouselCurrentIndex();
-    if (page === "news") {
+    if (page === "news" && !isLoading) {
       if (carouselIndex === 0) fireEvent(NEWS_CAROUSEL_STARTED, null);
       if (carouselRef.current && carouselIndex === carouselRef.current?.childNodes.length - 1)
         fireEvent(NEWS_CAROUSEL_COMPLETED, null);
