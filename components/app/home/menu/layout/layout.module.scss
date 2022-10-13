@@ -110,6 +110,8 @@
   }
 
   &__content {
+    @include defaultScrollBar();
+
     flex-grow: 1;
     border-radius: 0 0 16px 16px;
     display: flex;
