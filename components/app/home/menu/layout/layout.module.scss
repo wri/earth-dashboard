@@ -110,8 +110,6 @@
   }
 
   &__content {
-    @include defaultScrollBar();
-
     flex-grow: 1;
     border-radius: 0 0 16px 16px;
     display: flex;
@@ -119,6 +117,11 @@
     background: $colour-space;
     overflow-y: auto;
     z-index: -1;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__info-title {

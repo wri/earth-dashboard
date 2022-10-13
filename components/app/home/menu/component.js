@@ -66,6 +66,14 @@ const Menu = forwardRef(
           text = `${currentHeadlineIndex + 1}/${total} ${currentMode.attributes?.title}`;
         else text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
         setFooterHeading(text);
+
+        const headlineEl = document.getElementById(`headline-${currentHeadline.id}`);
+
+        if (!headlineEl) return;
+
+        headlineEl.scrollIntoView({
+          behavior: "smooth"
+        });
       }
     };
 
@@ -126,18 +134,12 @@ const Menu = forwardRef(
             setCurrentHeadline(newHeadline);
             setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.parentElement.firstElementChild);
             setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.parentElement.lastElementChild);
-            setTimeout(() => {
-              ref.current.lastElementChild.scrollTo({
-                top: 0,
-                behavior: "smooth"
-              });
-            }, 400);
           });
         },
         {
           root,
           rootMargin: "0px",
-          threshold: 0.5
+          threshold: 1
         }
       );
 
