@@ -115,8 +115,13 @@
     display: flex;
     flex-direction: column;
     background: $colour-space;
-    position: relative;
+    overflow-y: auto;
     z-index: -1;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__info-title {

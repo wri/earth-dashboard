@@ -3,7 +3,7 @@ import classnames from "classnames";
 import styles from "./layout.module.scss";
 import IconButton from "components/ui/icon-button";
 
-const MenuLayout = forwardRef(({ title, iconName, className, onBack, onClose, children, ...rest }, ref) => {
+const MenuLayout = forwardRef(({ title, iconName, className, onBack, onClose, children, onScroll, ...rest }, ref) => {
   return (
     <div ref={ref} className={classnames(styles["c-layout"], className)} {...rest}>
       <div className={classnames(styles["c-layout__header"])}>
@@ -36,7 +36,9 @@ const MenuLayout = forwardRef(({ title, iconName, className, onBack, onClose, ch
           )}
         </div>
       </div>
-      <div className={classnames(styles["c-layout__content"], "u-padding-none")}>{children}</div>
+      <div className={classnames(styles["c-layout__content"], "u-padding-none")} onScroll={onScroll}>
+        {children}
+      </div>
     </div>
   );
 });

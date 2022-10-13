@@ -1,4 +1,4 @@
-import { useState, useRef, UIEvent, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import styles from "./event.module.scss";
 import { Mode } from "slices/modes";
 import ContentPanel from "components/app/home/content-panel/component";
@@ -31,10 +31,7 @@ const ExtremeEvent = ({
   eventScaleData,
   onViewAllEventsClicked
 }: ExtremeEventProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const articleRef = useRef<HTMLDivElement>(null);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(0);
 
   useEffect(() => {
     if (!headline) return;
@@ -42,11 +39,8 @@ const ExtremeEvent = ({
       extreme_event_title: headline.attributes.title,
       category_name: currentMode?.attributes.title ?? ""
     });
+    // eslint-disable-next-line
   }, [headline]);
-
-  useEffect(() => {
-    setContainerHeight(containerRef?.current?.offsetHeight ?? 0);
-  }, [containerRef?.current?.clientHeight, headline?.id]);
 
   // Scroll to top of article when headline changes
   useEffect(() => {
@@ -55,18 +49,19 @@ const ExtremeEvent = ({
     }
   }, [headline]);
 
-  const onScroll = (event: UIEvent<HTMLElement>) => {
-    setScrollPosition(event.currentTarget.scrollTop);
-  };
-
   if (!headline) return null;
+
   return (
-    <div className={styles["c-event__container"]}>
-      <div className={styles["c-event__hero"]} ref={containerRef} style={{ top: `${-scrollPosition}px` }}>
-        <span
+    <div id={`headline-${headline.id}`} className={styles["c-event__container"]}>
+      {/* Hero */}
+      <div className={styles["c-event__hero"]}>
+        {/* Image */}
+        <div
           className={styles["c-event__hero--background"]}
           style={{ backgroundImage: `url(${headline.attributes.thumbnail_image})` }}
         />
+
+        {/* Details */}
         <div className={styles["c-event__hero--detail"]}>
           <h3 className={styles["c-event__hero--title"]}>{headline.attributes.title}</h3>
           <p className={styles["c-event__hero--subtitle"]}>
@@ -84,12 +79,11 @@ const ExtremeEvent = ({
           <p className={styles["c-event__hero--description"]}>{headline.attributes.content.body}</p>
         </div>
       </div>
-      <div className={styles["c-event__scroll-area"]} onScroll={onScroll} ref={articleRef}>
-        <ContentPanel
-          icon={WHAT_IS_HAPPENING_ICON}
-          title="How Extreme Is This Event?"
-          style={{ marginTop: `${containerHeight + 24}px` }}
-        >
+
+      {/* Content */}
+      <div className={styles["c-event__content"]} ref={articleRef}>
+        {/* Scale */}
+        <ContentPanel icon={WHAT_IS_HAPPENING_ICON} title="How Extreme Is This Event?">
           <p>{headline.attributes.mode.attributes.description}</p>
           <NormalScale
             value={eventScaleData?.value}
@@ -98,6 +92,8 @@ const ExtremeEvent = ({
             thermometerStyle={{ background: eventScaleData?.gradient ?? "" }}
           />
         </ContentPanel>
+
+        {/* Widget */}
         {headline.attributes.content.media.widget && (
           <div className={styles["c-event__widget"]}>
             <WidgetPreview
@@ -107,6 +103,8 @@ const ExtremeEvent = ({
             />
           </div>
         )}
+
+        {/* Sections */}
         {headline.attributes.sections.map(section => (
           <ContentPanel
             icon={section.attributes.icon_image_url}
@@ -123,7 +121,10 @@ const ExtremeEvent = ({
           </ContentPanel>
         ))}
 
+        {/* Share */}
         <SharePanel ctaAction={() => setIsShareOpen(true)} />
+
+        {/* View all */}
         <div className={styles["c-event__view-all-button--container"]}>
           <CtaButton text={"View All Extreme Events"} onClick={onViewAllEventsClicked} iconName="arrow-right" />
         </div>

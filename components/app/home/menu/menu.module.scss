@@ -61,8 +61,35 @@
     }
   }
 
-  &__event-container {
-    height: 0;
+  &__events {
+    display: flex;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      overflow-x: hidden;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__scrollbar {
+    position: absolute;
+    width: $default-scrollbar-size;
+    background-color: $default-scrollbar-background-colour;
+    top: 90px;
+    right: 8px;
+    border-radius: 8px;
+
+    > div {
+      height: 50%;
+      width: 100%;
+      background-color: $default-scrollbar-foreground-colour;
+      border-radius: 8px;
+    }
   }
 
   &__tab-container {
