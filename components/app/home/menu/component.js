@@ -1,4 +1,4 @@
-import { forwardRef, useState, useEffect, useMemo } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
@@ -10,8 +10,6 @@ import Event from "components/app/home/event";
 import MobileMenuContainer from "./menu-mobile-container";
 import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE } from "../main-container/component";
 import HeadlineFooter from "../headline-footer";
-
-const MIN_SWIPE_DISTANCE = 50;
 
 const Menu = forwardRef(
   (
@@ -40,9 +38,11 @@ const Menu = forwardRef(
   ) => {
     const navigateTo = pageId => () => setPageTypeId(pageId);
 
+    const [nextHeadlineEl, setNextHeadlineEl] = useState();
+    const [prevHeadlineEl, setPrevHeadlineEl] = useState();
+    const [scrollStopper, setScrollStopper] = useState();
+
     const [footerHeading, setFooterHeading] = useState("");
-    const [touchStart, setTouchStart] = useState(null);
-    const [touchEnd, setTouchEnd] = useState(null);
 
     const getCurrentHeadlineIndex = () => {
       let index = -1;
@@ -80,35 +80,17 @@ const Menu = forwardRef(
       setPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
     };
 
+    /** Moves headlines. */
     const navigateHeadline = action => {
-      const { index: headlineIndex, total, headlines } = getCurrentHeadlineIndex();
-      let headline = null;
-
       if (action === "back") {
-        const indexModulus = (headlineIndex - 1 + total) % total;
-        headline = headlines[indexModulus];
-        setCurrentHeadline(headline);
-      } else {
-        const indexModulus = (headlineIndex + 1) % total;
-        headline = headlines[indexModulus];
-        setCurrentHeadline(headline);
+        return prevHeadlineEl.scrollIntoView({
+          behavior: "smooth"
+        });
       }
-    };
 
-    const onTouchStart = e => {
-      setTouchEnd(null);
-      setTouchStart(e.targetTouches[0].clientX);
-    };
-
-    const onTouchMove = e => setTouchEnd(e.targetTouches[0].clientX);
-
-    const onTouchEnd = () => {
-      if (!touchStart || !touchEnd) return;
-      const distance = touchStart - touchEnd;
-      const isLeftSwipe = distance < -MIN_SWIPE_DISTANCE;
-
-      if (isLeftSwipe) navigateHeadline("back");
-      else navigateHeadline("next");
+      nextHeadlineEl.scrollIntoView({
+        behavior: "smooth"
+      });
     };
 
     useEffect(() => {
@@ -122,10 +104,59 @@ const Menu = forwardRef(
 
       if (!headlineEl) return;
 
-      const headlineHeight = headlineEl.lastElementChild.clientHeight + 100;
+      const heroEl = headlineEl.firstElementChild;
+      const contentEl = headlineEl.lastElementChild;
+      const scrollPercentage = (e.target.clientHeight + e.target.scrollTop) / e.target.scrollHeight;
+      const cutoff = (heroEl.clientHeight + contentEl.clientHeight) / headlineEl.clientHeight;
 
-      if (e.target.scrollTop >= headlineHeight) e.target.scrollTop = headlineHeight;
+      if (!scrollStopper && scrollPercentage >= cutoff) setScrollStopper(e.target.scrollTop);
+
+      // if (scrollPercentage >= cutoff) e.target.scrollTop = scrollStopper;
     };
+
+    // Observes each item and checks if in viewport
+    useEffect(() => {
+      const root = document.getElementById("events");
+
+      if (pageTypeId !== PAGE_TYPE_ID.CURRENT_EVENT_PAGE || !root) return;
+
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            const newHeadline = headlines.find(headline => entry.target.id === `headline-${headline.id}`);
+
+            if (!entry.isIntersecting || !newHeadline) return;
+
+            setCurrentHeadline(newHeadline);
+            setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.firstElementChild);
+            setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.lastElementChild);
+            setScrollStopper(undefined);
+            setTimeout(() => {
+              ref.current.lastElementChild.scrollTo({
+                top: 0,
+                behavior: "smooth"
+              });
+            }, 400);
+          });
+        },
+        {
+          root,
+          rootMargin: "0px",
+          threshold: 0.5
+        }
+      );
+
+      root.childNodes.forEach(node => {
+        observer.observe(node);
+      });
+
+      return () => {
+        root.childNodes.forEach(node => {
+          observer.unobserve(node);
+        });
+      };
+      // eslint-disable-next-line
+    }, [pageTypeId]);
 
     const getMenuContent = () => (
       <div
@@ -140,7 +171,7 @@ const Menu = forwardRef(
             onScroll={handleScrollStop}
           >
             <div>
-              <div className={styles["c-home-menu__events"]}>
+              <div id="events" className={styles["c-home-menu__events"]}>
                 {headlines.map(headline => (
                   <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
                 ))}
@@ -150,9 +181,6 @@ const Menu = forwardRef(
               footerHeading={footerHeading}
               disableBackButton={headlines?.length == 1}
               disableNextButton={headlines?.length == 1}
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEnd}
               navigateHeadline={navigateHeadline}
             />
           </MenuLayout>
