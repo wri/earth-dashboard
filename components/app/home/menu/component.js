@@ -40,6 +40,8 @@ const Menu = forwardRef(
 
     const [nextHeadlineEl, setNextHeadlineEl] = useState();
     const [prevHeadlineEl, setPrevHeadlineEl] = useState();
+    const [scrollPercentage, setScrollPercentage] = useState(0);
+    const [clientHeight, setClientHeight] = useState(0);
 
     const [footerHeading, setFooterHeading] = useState("");
 
@@ -117,6 +119,10 @@ const Menu = forwardRef(
       const contentEl = headlineEl.lastElementChild;
       const cutoff = heroEl.clientHeight + contentEl.clientHeight - ref.current.clientHeight + 72;
 
+      setScrollPercentage(Math.min(Math.max((e.target.scrollTop / cutoff) * 100, 0), 100));
+
+      setClientHeight(ref.current.lastElementChild.clientHeight);
+
       if (e.target.scrollTop > cutoff) e.target.scrollTop = cutoff;
     };
 
@@ -174,6 +180,19 @@ const Menu = forwardRef(
                 {headlines.map(headline => (
                   <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
                 ))}
+              </div>
+
+              <div
+                className={styles["c-home-menu__scrollbar"]}
+                style={{
+                  height: clientHeight - (isMobile ? 84 : 0)
+                }}
+              >
+                <div
+                  style={{
+                    transform: `translateY(${scrollPercentage}%)`
+                  }}
+                />
               </div>
             </div>
             <HeadlineFooter

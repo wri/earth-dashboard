@@ -76,6 +76,22 @@
     }
   }
 
+  &__scrollbar {
+    position: absolute;
+    width: $default-scrollbar-size;
+    background-color: $default-scrollbar-background-colour;
+    top: 90px;
+    right: 8px;
+    border-radius: 8px;
+
+    > div {
+      height: 50%;
+      width: 100%;
+      background-color: $default-scrollbar-foreground-colour;
+      border-radius: 8px;
+    }
+  }
+
   &__tab-container {
     background: rgba($colour-space, 0.8);
     backdrop-filter: blur(10.8731px);
