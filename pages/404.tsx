@@ -6,13 +6,15 @@ import Image from "next/image";
 import GlobeFiresHalf from "public/static/images/globe-fires-half.png";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { fireEvent } from "utils/gtag";
+import { ERROR_BACK_EARTH_HQ, PAGE_VIEW } from "constants/tag-manager";
 
 const PageNotFound = () => {
   const { replace } = useRouter();
 
   useEffect(() => {
     replace("/404");
-
+    fireEvent(PAGE_VIEW, "error_404");
     // eslint-disable-next-line
   }, []);
 
@@ -25,7 +27,7 @@ const PageNotFound = () => {
         <p>Ooops, that page could no longer be found. Head back to Earth HQ to explore the latest extreme events.</p>
 
         {/* Button */}
-        <AnchorCTA className={styles["back-btn"]} href="/">
+        <AnchorCTA className={styles["back-btn"]} href="/" onClick={() => fireEvent(ERROR_BACK_EARTH_HQ, null)}>
           <p className={styles["text"]}>Back To Earth HQ</p>
           <div className={styles["icon"]}>
             <Icon name="arrow-right" size={15} type="decorative" />

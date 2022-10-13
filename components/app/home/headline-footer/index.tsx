@@ -7,9 +7,6 @@ type HeadlineFooterProps = {
   footerHeading: string;
   disableBackButton: boolean;
   disableNextButton: boolean;
-  onTouchStart: () => void;
-  onTouchMove: () => void;
-  onTouchEnd: () => void;
   navigateHeadline: (action: string) => void;
 };
 
@@ -17,18 +14,10 @@ export default function HeadlineFooter({
   footerHeading,
   disableBackButton,
   disableNextButton,
-  onTouchStart,
-  onTouchMove,
-  onTouchEnd,
   navigateHeadline
 }: HeadlineFooterProps) {
   return (
-    <div
-      className={classnames(styles["c-home-menu__footer"])}
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
-    >
+    <div className={classnames(styles["c-home-menu__footer"])}>
       <IconButton
         name="arrow-left"
         size={16}

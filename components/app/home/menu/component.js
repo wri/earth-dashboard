@@ -1,4 +1,4 @@
-import { forwardRef, useState, useEffect, useMemo } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
@@ -10,8 +10,8 @@ import Event from "components/app/home/event";
 import MobileMenuContainer from "./menu-mobile-container";
 import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE } from "../main-container/component";
 import HeadlineFooter from "../headline-footer";
-
-const MIN_SWIPE_DISTANCE = 50;
+import { fireEvent } from "utils/gtag";
+import { VIEW_ALL_EXTREME_EVENTS } from "constants/tag-manager";
 
 const Menu = forwardRef(
   (
@@ -40,9 +40,12 @@ const Menu = forwardRef(
   ) => {
     const navigateTo = pageId => () => setPageTypeId(pageId);
 
+    const [nextHeadlineEl, setNextHeadlineEl] = useState();
+    const [prevHeadlineEl, setPrevHeadlineEl] = useState();
+    const [scrollPercentage, setScrollPercentage] = useState(0);
+    const [clientHeight, setClientHeight] = useState(0);
+
     const [footerHeading, setFooterHeading] = useState("");
-    const [touchStart, setTouchStart] = useState(null);
-    const [touchEnd, setTouchEnd] = useState(null);
 
     const getCurrentHeadlineIndex = () => {
       let index = -1;
@@ -67,6 +70,14 @@ const Menu = forwardRef(
           text = `${currentHeadlineIndex + 1}/${total} ${currentMode.attributes?.title}`;
         else text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
         setFooterHeading(text);
+
+        const headlineEl = document.getElementById(`headline-${currentHeadline.id}`);
+
+        if (!headlineEl) return;
+
+        headlineEl.scrollIntoView({
+          behavior: "smooth"
+        });
       }
     };
 
@@ -78,59 +89,119 @@ const Menu = forwardRef(
     const viewAllExtremeEvents = () => {
       clearHeadline();
       setPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+      fireEvent(VIEW_ALL_EXTREME_EVENTS, "web_earth_hq_carousel");
     };
 
+    /** Moves headlines. */
     const navigateHeadline = action => {
-      const { index: headlineIndex, total, headlines } = getCurrentHeadlineIndex();
-      let headline = null;
+      const { index, total } = getCurrentHeadlineIndex();
 
       if (action === "back") {
-        const indexModulus = (headlineIndex - 1 + total) % total;
-        headline = headlines[indexModulus];
-        setCurrentHeadline(headline);
-      } else {
-        const indexModulus = (headlineIndex + 1) % total;
-        headline = headlines[indexModulus];
-        setCurrentHeadline(headline);
+        return prevHeadlineEl.scrollIntoView({
+          behavior: index === 0 ? "auto" : "smooth"
+        });
       }
-    };
 
-    const onTouchStart = e => {
-      setTouchEnd(null);
-      setTouchStart(e.targetTouches[0].clientX);
-    };
-
-    const onTouchMove = e => setTouchEnd(e.targetTouches[0].clientX);
-
-    const onTouchEnd = () => {
-      if (!touchStart || !touchEnd) return;
-      const distance = touchStart - touchEnd;
-      const isLeftSwipe = distance < -MIN_SWIPE_DISTANCE;
-
-      if (isLeftSwipe) navigateHeadline("back");
-      else navigateHeadline("next");
+      nextHeadlineEl.scrollIntoView({
+        behavior: index + 1 === total ? "auto" : "smooth"
+      });
     };
 
     useEffect(() => {
       checkCurrentHeadline();
+      // eslint-disable-next-line
     }, [currentHeadline, setCurrentMode]);
+
+    /** Stops the scroll if at the bottom of the container. */
+    const handleScrollStop = e => {
+      const headlineEl = document.getElementById(`headline-${currentHeadline.id}`);
+
+      if (!headlineEl) return;
+
+      const heroEl = headlineEl.firstElementChild;
+      const contentEl = headlineEl.lastElementChild;
+      const cutoff = heroEl.clientHeight + contentEl.clientHeight - ref.current.clientHeight + 72;
+
+      setScrollPercentage(Math.min(Math.max((e.target.scrollTop / cutoff) * 100, 0), 100));
+
+      setClientHeight(ref.current.lastElementChild.clientHeight);
+
+      if (e.target.scrollTop > cutoff) e.target.scrollTop = cutoff;
+    };
+
+    // Observes each item and checks if in viewport
+    useEffect(() => {
+      const root = document.getElementById("events");
+
+      if (pageTypeId !== PAGE_TYPE_ID.CURRENT_EVENT_PAGE || !root) return;
+
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            const newHeadline = headlines.find(headline => entry.target.id === `headline-${headline.id}`);
+
+            if (!entry.isIntersecting || !newHeadline) return;
+
+            setCurrentHeadline(newHeadline);
+            setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.parentElement.firstElementChild);
+            setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.parentElement.lastElementChild);
+          });
+        },
+        {
+          root,
+          rootMargin: "0px",
+          threshold: 1
+        }
+      );
+
+      root.childNodes.forEach(node => {
+        observer.observe(node);
+      });
+
+      return () => {
+        root.childNodes.forEach(node => {
+          observer.unobserve(node);
+        });
+      };
+      // eslint-disable-next-line
+    }, [pageTypeId]);
 
     const getMenuContent = () => (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
-          <MenuLayout ref={ref} title="Back" onBack={() => setPageTypeId(previousPageTypeId)} onClose={onClose}>
-            <div className={styles["c-home-menu__event-container"]}>
-              <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
+          <MenuLayout
+            ref={ref}
+            title="Back"
+            onBack={() => setPageTypeId(previousPageTypeId)}
+            onClose={onClose}
+            onScroll={handleScrollStop}
+          >
+            <div>
+              <div id="events" className={styles["c-home-menu__events"]}>
+                {headlines.map(headline => (
+                  <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
+                ))}
+              </div>
+
+              <div
+                className={styles["c-home-menu__scrollbar"]}
+                style={{
+                  height: clientHeight - 84
+                }}
+              >
+                <div
+                  style={{
+                    transform: `translateY(${scrollPercentage}%)`
+                  }}
+                />
+              </div>
             </div>
             <HeadlineFooter
               footerHeading={footerHeading}
               disableBackButton={headlines?.length == 1}
               disableNextButton={headlines?.length == 1}
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEnd}
               navigateHeadline={navigateHeadline}
             />
           </MenuLayout>

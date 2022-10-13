@@ -1,24 +1,38 @@
 import { IconNames } from "components/ui/Icon";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import SocialIcon from "components/ui/social-icon";
 import { QuickLinks, SocialLinks } from "constants/menu-items";
 import styles from "./footer.module.scss";
+import Link from "next/link";
+import { fireEvent } from "utils/gtag";
+import { MORE_ABOUT } from "constants/tag-manager";
 
 /** Footer component for the settings modal. */
 
 type FooterProps = {
   isCookieOpen: boolean;
   setIsCookieOpen: ActionCreatorWithPayload<boolean, string>;
+  setSettingsClose: ActionCreatorWithoutPayload<string>;
 };
-const Footer = ({ setIsCookieOpen }: FooterProps) => {
+
+const Footer = ({ setIsCookieOpen, setSettingsClose }: FooterProps) => {
+  const aboutClickHandler = () => {
+    setSettingsClose();
+    fireEvent(MORE_ABOUT, null);
+  };
+
   return (
     <div className={styles["c-footer"]}>
       <h2 className={styles["c-footer__title"]}>Other</h2>
 
       <div className={styles["c-footer__links"]}>
-        {QuickLinks.filter(link => link.external).map(({ key, link, label, onClick }) =>
+        {QuickLinks.map(({ key, link, label, onClick }) =>
           !link ? (
             <p onClick={() => setIsCookieOpen(true)}>Cookies</p>
+          ) : key === "about-us" ? (
+            <Link key={key} href="/about">
+              <a onClick={aboutClickHandler}>{label}</a>
+            </Link>
           ) : (
             <a key={key} href={link} onClick={onClick && onClick} target="_blank" rel="nofollow noreferrer">
               {label}

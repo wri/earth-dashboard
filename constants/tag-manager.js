@@ -27,3 +27,22 @@ export const NEWS_OPENED_ARTICLE = "news_opened_article";
 export const NEWS_PLAYED_VIDEO = "news_played_video";
 export const NEWS_OPENED_SOURCE = "news_opened_source";
 export const NEWS_SEARCH = "news_search";
+export const NEWS_CAROUSEL_STARTED = "news_carousel_started";
+export const NEWS_CAROUSEL_VIEWED = "news_carousel_viewed";
+export const NEWS_CAROUSEL_COMPLETED = "news_carousel_completed";
+export const NEWS_SEARCH_FILTER = "news_search_filter";
+
+// CAROUSEL
+export const EARTH_HQ_CAROUSEL_STARTED = "earthhq_carousel_started";
+export const EARTH_HQ_CAROUSEL_VIEWED = "earthhq_carousel_viewed";
+export const EARTH_HQ_CAROUSEL_COMPLETED = "earthhq_carousel_completed";
+
+// Events
+export const VIEW_ALL_EXTREME_EVENTS = "view_all_extreme_events";
+export const SHARE_EXTREME_EVENT = "share_extreme_event";
+
+// 404
+export const ERROR_BACK_EARTH_HQ = "error_back_earthhq";
+
+// More menu
+export const MORE_ABOUT = "more_about";

@@ -11,6 +11,12 @@ import { setPageTypeId, setPreviousPageTypeId } from "slices/modes";
 import { PAGE_TYPE_ID } from "../../../main-container/component";
 import EventPrompt from "../../../event-prompt/component";
 import InfoFooter from "./info-footer";
+import { fireEvent } from "utils/gtag";
+import {
+  EARTH_HQ_CAROUSEL_COMPLETED,
+  EARTH_HQ_CAROUSEL_STARTED,
+  EARTH_HQ_CAROUSEL_VIEWED
+} from "constants/tag-manager";
 
 const SCROLL_NORMALIZE_VALUE = 37;
 
@@ -57,12 +63,16 @@ const InfoPanel = ({
   };
 
   const navigateInfo = (action: string) => {
+    let index = currentHeadlineIndex;
+
     if (action === "back") {
-      scrollToIndex(currentHeadlineIndex - 1, "smooth");
-      setCurrentHeadlineIndex(currentHeadlineIndex - 1);
+      index = currentHeadlineIndex - 1;
+      scrollToIndex(index, "smooth");
+      setCurrentHeadlineIndex(index);
     } else {
-      scrollToIndex(currentHeadlineIndex + 1, "smooth");
-      setCurrentHeadlineIndex(currentHeadlineIndex + 1);
+      index = currentHeadlineIndex + 1;
+      scrollToIndex(index, "smooth");
+      setCurrentHeadlineIndex(index);
     }
   };
 
@@ -95,6 +105,16 @@ const InfoPanel = ({
   useEffect(() => {
     if (containerRef.current) setCarouselWidth(containerRef.current.offsetWidth);
   }, [containerRef.current]);
+
+  useEffect(() => {
+    if (headlines.length === currentHeadlineIndex) {
+      fireEvent(EARTH_HQ_CAROUSEL_COMPLETED, null);
+    } else if (currentHeadlineIndex === 0) {
+      fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
+    }
+
+    fireEvent(EARTH_HQ_CAROUSEL_VIEWED, `carousel_${currentHeadlineIndex + 1}`);
+  }, [currentHeadlineIndex]);
 
   const setHeadlineToScroll = () => {
     if (!carouselWidth) return;
