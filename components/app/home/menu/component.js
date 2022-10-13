@@ -124,8 +124,8 @@ const Menu = forwardRef(
             if (!entry.isIntersecting || !newHeadline) return;
 
             setCurrentHeadline(newHeadline);
-            setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.firstElementChild);
-            setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.lastElementChild);
+            setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.parentElement.firstElementChild);
+            setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.parentElement.lastElementChild);
             setTimeout(() => {
               ref.current.lastElementChild.scrollTo({
                 top: 0,
