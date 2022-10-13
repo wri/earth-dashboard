@@ -113,16 +113,38 @@ const Menu = forwardRef(
 
     useEffect(() => {
       checkCurrentHeadline();
+      // eslint-disable-next-line
     }, [currentHeadline, setCurrentMode]);
+
+    /** Stops the scroll if at the bottom of the container. */
+    const handleScrollStop = e => {
+      const headlineEl = document.getElementById(`headline-${currentHeadline.id}`);
+
+      if (!headlineEl) return;
+
+      const headlineHeight = headlineEl.lastElementChild.clientHeight + 100;
+
+      if (e.target.scrollTop >= headlineHeight) e.target.scrollTop = headlineHeight;
+    };
 
     const getMenuContent = () => (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
-          <MenuLayout ref={ref} title="Back" onBack={() => setPageTypeId(previousPageTypeId)} onClose={onClose}>
-            <div className={styles["c-home-menu__event-container"]}>
-              <Event headline={currentHeadline} onViewAllEventsClicked={viewAllExtremeEvents} />
+          <MenuLayout
+            ref={ref}
+            title="Back"
+            onBack={() => setPageTypeId(previousPageTypeId)}
+            onClose={onClose}
+            onScroll={handleScrollStop}
+          >
+            <div>
+              <div className={styles["c-home-menu__events"]}>
+                {headlines.map(headline => (
+                  <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
+                ))}
+              </div>
             </div>
             <HeadlineFooter
               footerHeading={footerHeading}

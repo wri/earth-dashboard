@@ -61,8 +61,19 @@
     }
   }
 
-  &__event-container {
-    height: 0;
+  &__events {
+    display: flex;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    // @media screen and (min-width: $global-breakpoint-md) {
+    //   overflow-x: hidden;
+    // }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__tab-container {
