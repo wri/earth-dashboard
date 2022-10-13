@@ -40,7 +40,6 @@ const Menu = forwardRef(
 
     const [nextHeadlineEl, setNextHeadlineEl] = useState();
     const [prevHeadlineEl, setPrevHeadlineEl] = useState();
-    const [scrollStopper, setScrollStopper] = useState();
 
     const [footerHeading, setFooterHeading] = useState("");
 
@@ -106,12 +105,9 @@ const Menu = forwardRef(
 
       const heroEl = headlineEl.firstElementChild;
       const contentEl = headlineEl.lastElementChild;
-      const scrollPercentage = (e.target.clientHeight + e.target.scrollTop) / e.target.scrollHeight;
-      const cutoff = (heroEl.clientHeight + contentEl.clientHeight) / headlineEl.clientHeight;
+      const cutoff = heroEl.clientHeight + contentEl.clientHeight - ref.current.clientHeight + 72;
 
-      if (!scrollStopper && scrollPercentage >= cutoff) setScrollStopper(e.target.scrollTop);
-
-      // if (scrollPercentage >= cutoff) e.target.scrollTop = scrollStopper;
+      if (e.target.scrollTop > cutoff) e.target.scrollTop = cutoff;
     };
 
     // Observes each item and checks if in viewport
@@ -130,7 +126,6 @@ const Menu = forwardRef(
             setCurrentHeadline(newHeadline);
             setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.firstElementChild);
             setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.lastElementChild);
-            setScrollStopper(undefined);
             setTimeout(() => {
               ref.current.lastElementChild.scrollTo({
                 top: 0,
