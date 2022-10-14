@@ -97,12 +97,12 @@ const Menu = forwardRef(
     /** Moves headlines. */
     const navigateHeadline = action => {
       if (action === "back") {
-        return prevHeadlineEl.scrollIntoView({
+        return prevHeadlineEl?.scrollIntoView({
           behavior: "smooth"
         });
       }
 
-      nextHeadlineEl.scrollIntoView({
+      nextHeadlineEl?.scrollIntoView({
         behavior: "smooth"
       });
     };
