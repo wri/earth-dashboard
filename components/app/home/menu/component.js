@@ -62,7 +62,7 @@ const Menu = forwardRef(
     const checkCurrentHeadline = () => {
       const { index: currentHeadlineIndex, total } = getCurrentHeadlineIndex();
 
-      if (currentHeadline) {
+      if (currentHeadline && currentMode) {
         let text = "";
         if (currentMode.attributes?.title !== "Default")
           text = `${currentHeadlineIndex + 1}/${total} ${currentMode.attributes?.title}`;

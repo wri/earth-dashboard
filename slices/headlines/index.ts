@@ -8,7 +8,8 @@ export const NAME = "headlines";
 const initialState: HeadlinesState = {
   headlines: [],
   currentHeadline: undefined,
-  currentHeadlineId: undefined
+  currentHeadlineId: undefined,
+  headlinesLoading: false
 };
 
 const MAX_NUMBER_OF_HEADLINES_PER_LAYER = 10;
@@ -44,6 +45,9 @@ const headlinesSlice = createSlice({
     },
     setCurrentHeadlineId: (state, { payload }: PayloadAction<number | undefined>) => {
       state.currentHeadlineId = payload;
+    },
+    setHeadlinesLoading: (state, { payload }: PayloadAction<boolean>) => {
+      state.headlinesLoading = payload;
     }
   }
 });
@@ -64,7 +68,7 @@ const filterHeadlines = (headlines: Headline[]) => {
   return filtered;
 };
 
-export const { removeSelectedHeadline, setHeadlines, setCurrentHeadline, setCurrentHeadlineId } =
+export const { removeSelectedHeadline, setHeadlines, setCurrentHeadline, setCurrentHeadlineId, setHeadlinesLoading } =
   headlinesSlice.actions;
 
 export default headlinesSlice.reducer;
