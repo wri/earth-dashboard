@@ -160,7 +160,7 @@ const Menu = forwardRef(
       >
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
           <MenuLayout ref={ref} title="Back" onBack={() => setPageTypeId(previousPageTypeId)} onClose={onClose}>
-            {!headlinesLoading ? (
+            {headlinesLoading ? (
               <EventSkeleton />
             ) : (
               <div id="events" className={styles["c-home-menu__events"]}>
