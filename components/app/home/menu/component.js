@@ -12,6 +12,7 @@ import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE } from "../main-container/component";
 import HeadlineFooter from "../headline-footer";
 import { fireEvent } from "utils/gtag";
 import { VIEW_ALL_EXTREME_EVENTS } from "constants/tag-manager";
+import EventSkeleton from "../event/event-skeleton";
 
 const Menu = forwardRef(
   (
@@ -32,6 +33,7 @@ const Menu = forwardRef(
       setPageTypeId,
       defaultMobileMenuHeight,
       headlines,
+      headlinesLoading,
       handleToggleLocation,
       isLocationDisabled,
       hasMenuOpen,
@@ -95,12 +97,12 @@ const Menu = forwardRef(
     /** Moves headlines. */
     const navigateHeadline = action => {
       if (action === "back") {
-        return prevHeadlineEl.scrollIntoView({
+        return prevHeadlineEl?.scrollIntoView({
           behavior: "smooth"
         });
       }
 
-      nextHeadlineEl.scrollIntoView({
+      nextHeadlineEl?.scrollIntoView({
         behavior: "smooth"
       });
     };
@@ -113,7 +115,7 @@ const Menu = forwardRef(
     useEffect(() => {
       checkCurrentHeadline();
       // eslint-disable-next-line
-    }, [currentHeadline, setCurrentMode]);
+    }, [currentHeadline, setCurrentMode, headlinesLoading]);
 
     // Observes each item and checks if in viewport
     useEffect(() => {
@@ -145,12 +147,10 @@ const Menu = forwardRef(
       });
 
       return () => {
-        root.childNodes.forEach(node => {
-          observer.unobserve(node);
-        });
+        observer.disconnect();
       };
       // eslint-disable-next-line
-    }, [pageTypeId]);
+    }, [pageTypeId, headlinesLoading]);
 
     const getMenuContent = () => (
       <div
@@ -158,16 +158,21 @@ const Menu = forwardRef(
       >
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
           <MenuLayout ref={ref} title="Back" onBack={() => setPageTypeId(previousPageTypeId)} onClose={onClose}>
-            <div id="events" className={styles["c-home-menu__events"]}>
-              {headlines.map(headline => (
-                <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
-              ))}
-            </div>
+            {headlinesLoading ? (
+              <EventSkeleton />
+            ) : (
+              <div id="events" className={styles["c-home-menu__events"]}>
+                {headlines.map(headline => (
+                  <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
+                ))}
+              </div>
+            )}
             <HeadlineFooter
               footerHeading={footerHeading}
               disableBackButton={headlines?.length == 1}
               disableNextButton={headlines?.length == 1}
               navigateHeadline={navigateHeadline}
+              isLoading={headlinesLoading}
             />
           </MenuLayout>
         )}

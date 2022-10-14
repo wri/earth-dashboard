@@ -24,6 +24,10 @@
       overflow: hidden;
       padding: 0 12px;
 
+      &--skeleton {
+        width: 180px;
+      }
+
       & h3 {
         color: white;
         padding: 0px;

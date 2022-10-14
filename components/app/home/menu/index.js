@@ -31,6 +31,7 @@ export default connect(
     dialogHeight: state[dialogSliceName].dialogHeight,
     currentHeadline: state[headlinesSliceName].currentHeadline,
     headlines: state[headlinesSliceName].headlines,
+    headlinesLoading: state[headlinesSliceName].headlinesLoading,
     previousPageTypeId: state[modesSliceName].previousPageTypeId
   }),
   {

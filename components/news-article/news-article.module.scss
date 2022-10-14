@@ -151,17 +151,21 @@ $c-news-article-transition: 0.3s ease-in-out;
       font-weight: 600;
     }
 
-    .link:after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: transparent;
-      opacity: 0.15;
-      transition: background-color $c-news-article-transition;
+    .link {
       z-index: 1;
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: transparent;
+        opacity: 0.15;
+        transition: background-color $c-news-article-transition;
+        z-index: 1;
+      }
     }
   }
 }
