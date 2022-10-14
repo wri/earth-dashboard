@@ -174,6 +174,7 @@ const InfoPanel = ({
           navigateInfo={navigateInfo}
           index={carouselWidth ? Math.round(carouselScroll / (carouselWidth - SCROLL_NORMALIZE_VALUE)) : 0}
           length={headlines.length + 1 > 11 ? 11 : headlines.length + 1}
+          isLoading={isLoading}
         />
       )}
     </div>
