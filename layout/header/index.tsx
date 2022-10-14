@@ -54,7 +54,7 @@ const Header = ({
   const description = (() => {
     switch (router.route) {
       case "/news":
-        return "Our partners tell the epic story of what is happening to our planet.";
+        return "Real stories of planetary emergencies from partners across the globe.";
       default:
         return undefined;
     }
