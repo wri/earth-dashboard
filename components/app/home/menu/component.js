@@ -172,6 +172,7 @@ const Menu = forwardRef(
               disableBackButton={headlines?.length == 1}
               disableNextButton={headlines?.length == 1}
               navigateHeadline={navigateHeadline}
+              isLoading={headlinesLoading}
             />
           </MenuLayout>
         )}
