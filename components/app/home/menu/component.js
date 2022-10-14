@@ -42,8 +42,6 @@ const Menu = forwardRef(
 
     const [nextHeadlineEl, setNextHeadlineEl] = useState();
     const [prevHeadlineEl, setPrevHeadlineEl] = useState();
-    const [scrollPercentage, setScrollPercentage] = useState(0);
-    const [clientHeight, setClientHeight] = useState(0);
 
     const [footerHeading, setFooterHeading] = useState("");
 
@@ -94,16 +92,14 @@ const Menu = forwardRef(
 
     /** Moves headlines. */
     const navigateHeadline = action => {
-      const { index, total } = getCurrentHeadlineIndex();
-
       if (action === "back") {
         return prevHeadlineEl.scrollIntoView({
-          behavior: index === 0 ? "auto" : "smooth"
+          behavior: "smooth"
         });
       }
 
       nextHeadlineEl.scrollIntoView({
-        behavior: index + 1 === total ? "auto" : "smooth"
+        behavior: "smooth"
       });
     };
 
@@ -111,23 +107,6 @@ const Menu = forwardRef(
       checkCurrentHeadline();
       // eslint-disable-next-line
     }, [currentHeadline, setCurrentMode]);
-
-    /** Stops the scroll if at the bottom of the container. */
-    const handleScrollStop = e => {
-      const headlineEl = document.getElementById(`headline-${currentHeadline.id}`);
-
-      if (!headlineEl) return;
-
-      const heroEl = headlineEl.firstElementChild;
-      const contentEl = headlineEl.lastElementChild;
-      const cutoff = heroEl.clientHeight + contentEl.clientHeight - ref.current.clientHeight + 72;
-
-      setScrollPercentage(Math.min(Math.max((e.target.scrollTop / cutoff) * 100, 0), 100));
-
-      setClientHeight(ref.current.lastElementChild.clientHeight);
-
-      if (e.target.scrollTop > cutoff) e.target.scrollTop = cutoff;
-    };
 
     // Observes each item and checks if in viewport
     useEffect(() => {
@@ -171,32 +150,11 @@ const Menu = forwardRef(
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
-          <MenuLayout
-            ref={ref}
-            title="Back"
-            onBack={() => setPageTypeId(previousPageTypeId)}
-            onClose={onClose}
-            onScroll={handleScrollStop}
-          >
-            <div>
-              <div id="events" className={styles["c-home-menu__events"]}>
-                {headlines.map(headline => (
-                  <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
-                ))}
-              </div>
-
-              <div
-                className={styles["c-home-menu__scrollbar"]}
-                style={{
-                  height: clientHeight - 84
-                }}
-              >
-                <div
-                  style={{
-                    transform: `translateY(${scrollPercentage}%)`
-                  }}
-                />
-              </div>
+          <MenuLayout ref={ref} title="Back" onBack={() => setPageTypeId(previousPageTypeId)} onClose={onClose}>
+            <div id="events" className={styles["c-home-menu__events"]}>
+              {headlines.map(headline => (
+                <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
+              ))}
             </div>
             <HeadlineFooter
               footerHeading={footerHeading}

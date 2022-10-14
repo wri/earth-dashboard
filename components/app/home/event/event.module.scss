@@ -5,12 +5,15 @@
 
 .c-event {
   &__container {
+    @include defaultScrollBar();
+
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     width: 100%;
     scroll-snap-align: center;
     scroll-snap-stop: always;
+    overflow-y: auto;
   }
 
   &__widget {
@@ -27,6 +30,7 @@
   }
 
   &__hero {
+    position: relative;
     backdrop-filter: blur(10.8731px);
     display: flex;
     align-items: center;
