@@ -23,6 +23,7 @@ const Menu = forwardRef(
       currentMode,
       setCurrentMode,
       currentHeadline,
+      currentHeadlineId,
       setCurrentHeadline,
       setCurrentHeadlineId,
       mobileMenuHeight,
@@ -67,6 +68,7 @@ const Menu = forwardRef(
         if (currentMode.attributes?.title !== "Default")
           text = `${currentHeadlineIndex + 1}/${total} ${currentMode.attributes?.title}`;
         else text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
+
         setFooterHeading(text);
 
         const headlineEl = document.getElementById(`headline-${currentHeadline.id}`);
@@ -102,6 +104,11 @@ const Menu = forwardRef(
         behavior: "smooth"
       });
     };
+
+    useEffect(() => {
+      if (currentHeadlineId) setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+      // eslint-disable-next-line
+    }, [currentHeadlineId]);
 
     useEffect(() => {
       checkCurrentHeadline();

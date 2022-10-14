@@ -22,6 +22,7 @@ export default connect(
     defaultMode: state[modesSliceName].defaultMode,
     currentMode: state[modesSliceName].currentMode,
     currentHeadline: state[headlinesSliceName].currentHeadline,
+    currentHeadlineId: state[headlinesSliceName].currentHeadlineId,
     animationValue: state[modesSliceName].animationValue,
     monitorValue: state[modesSliceName].monitorValue,
     datasetValue: state[modesSliceName].datasetValue,
