@@ -22,7 +22,24 @@
     font-family: "Barlow";
     font-weight: 500;
     color: white;
-    text-align: center;
+    min-width: 65px;
+
+    & .info {
+      border-radius: 8px;
+      width: 16px;
+      height: 16px;
+      background-color: white;
+      color: $colour-galaxy;
+      margin-left: 5px;
+      margin-bottom: -2px;
+      min-width: 16px;
+      display: inline-block;
+      background-image: url("/static/images/info.png");
+      background-repeat: no-repeat;
+      background-size: auto 10px;
+      background-position: center;
+      cursor: pointer;
+    }
   }
 
   &__gradient {
