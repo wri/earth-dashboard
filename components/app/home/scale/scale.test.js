@@ -15,6 +15,7 @@ test("<Scale /> renders correctly with default values", async () => {
   >
     <label
       for="scale"
+      style="min-width: auto;"
     >
       Scale
     </label>
@@ -64,6 +65,7 @@ test("<Scale /> renders correctly with values", async () => {
   >
     <label
       for="scale"
+      style="min-width: auto;"
     >
       Scale
     </label>
@@ -113,6 +115,7 @@ test("<Scale /> renders correctly horizontal", async () => {
   >
     <label
       for="scale"
+      style="min-width: auto;"
     >
       Scale
     </label>
