@@ -13,6 +13,7 @@ import {
   NAME as headlineSliceName,
   Headline as HeadlineType,
   setCurrentHeadline,
+  setHeadlinesLoading,
   Headline
 } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
@@ -26,6 +27,7 @@ type DataIndexProps = {
   currentMode: Mode | undefined;
   headlines: HeadlineType[];
   setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
+  setHeadlinesLoading: ActionCreatorWithPayload<boolean, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
   onClickExtremeEvents: () => {};
@@ -40,6 +42,7 @@ const DataLayerOverview = ({
   currentMode,
   headlines,
   setHeadlines,
+  setHeadlinesLoading,
   setCurrentHeadline,
   setIsShareOpen,
   onClickExtremeEvents
@@ -50,6 +53,7 @@ const DataLayerOverview = ({
     if (!currentMode) return;
     setIsFetching(true);
     const getHeadlines = async () => {
+      setHeadlinesLoading(true);
       try {
         const resp = await fetchClimateAlerts();
 
@@ -63,6 +67,7 @@ const DataLayerOverview = ({
         console.log("Error fetching headlines", err);
       } finally {
         setIsFetching(false);
+        setHeadlinesLoading(false);
       }
     };
 
@@ -148,5 +153,5 @@ export default connect(
     headlines: state[headlineSliceName].headlines,
     currentMode: state[modesSliceName].currentMode
   }),
-  { setHeadlines, setCurrentHeadline, setIsShareOpen }
+  { setHeadlines, setCurrentHeadline, setIsShareOpen, setHeadlinesLoading }
 )(DataLayerOverview);

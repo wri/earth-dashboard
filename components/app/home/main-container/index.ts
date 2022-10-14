@@ -10,7 +10,7 @@ import {
   setCurrentVisibleMode,
   setPreviousPageTypeId
 } from "slices/modes";
-import { setHeadlines } from "slices/headlines";
+import { setHeadlines, setHeadlinesLoading } from "slices/headlines";
 import {
   setCurrentLocation,
   setCurrentScale,
@@ -35,6 +35,7 @@ export default connect(
     setModes,
     setIsMobile,
     setHeadlines,
+    setHeadlinesLoading,
     setPageTypeId,
     setPreviousPageTypeId,
     setReoriented,

@@ -50,6 +50,7 @@ type MainContainerProps = {
   currentHeadlineId?: number;
   shouldFadeControls: boolean;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  setHeadlinesLoading: ActionCreatorWithPayload<boolean, string>;
   currentMode?: Mode;
   defaultMode?: Mode;
   pageTypeId: string;
@@ -75,6 +76,7 @@ const MainContainer = ({
   shouldFadeControls,
   currentHeadline,
   setHeadlines,
+  setHeadlinesLoading,
   defaultMode,
   currentMode,
   pageTypeId,
@@ -138,6 +140,7 @@ const MainContainer = ({
     allowClickEvents: !currentHeadline,
     headlines,
     setHeadlines,
+    setHeadlinesLoading,
     currentMode,
     defaultMode,
     setReoriented,
