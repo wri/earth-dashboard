@@ -43,6 +43,9 @@ const Menu = forwardRef(
   ) => {
     const navigateTo = pageId => () => setPageTypeId(pageId);
 
+    const [nextHeadlineEl, setNextHeadlineEl] = useState();
+    const [prevHeadlineEl, setPrevHeadlineEl] = useState();
+
     const [footerHeading, setFooterHeading] = useState("");
 
     const getCurrentHeadlineIndex = () => {
@@ -93,27 +96,13 @@ const Menu = forwardRef(
 
     /** Moves headlines. */
     const navigateHeadline = action => {
-      if (!headlines) return;
+      if (action === "back") {
+        return prevHeadlineEl.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
 
-      const { index: currentHeadlineIndex, total } = getCurrentHeadlineIndex();
-
-      const goBack = action === "back";
-
-      const headlineIndex = (() => {
-        const idx = currentHeadlineIndex + (goBack ? -1 : 1);
-
-        return idx === total ? 0 : idx === -1 ? 9 : idx;
-      })();
-
-      const targetHeadline = headlines.find((_, index) => index === headlineIndex);
-
-      if (!targetHeadline) return;
-
-      const targetHeadlineEl = document.getElementById(`headline-${targetHeadline.id}`);
-
-      if (!targetHeadlineEl) return;
-
-      targetHeadlineEl.scrollIntoView({
+      nextHeadlineEl.scrollIntoView({
         behavior: "smooth"
       });
     };
@@ -142,6 +131,8 @@ const Menu = forwardRef(
             if (!entry.isIntersecting || !newHeadline) return;
 
             setCurrentHeadline(newHeadline);
+            setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.parentElement.firstElementChild);
+            setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.parentElement.lastElementChild);
           });
         },
         {
