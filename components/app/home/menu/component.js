@@ -147,9 +147,7 @@ const Menu = forwardRef(
       });
 
       return () => {
-        root.childNodes.forEach(node => {
-          observer.unobserve(node);
-        });
+        observer.disconnect();
       };
       // eslint-disable-next-line
     }, [pageTypeId]);
