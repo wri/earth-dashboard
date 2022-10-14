@@ -108,7 +108,7 @@ const Menu = forwardRef(
     useEffect(() => {
       if (currentHeadlineId) setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
       // eslint-disable-next-line
-    }, [currentHeadlineId]);
+    }, []);
 
     useEffect(() => {
       checkCurrentHeadline();
