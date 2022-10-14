@@ -59,7 +59,7 @@ const CondensedMenu = ({
         />
         <IconButton onClick={toggleMenu} name="expand" size={16} className={styles["expand-icon"]} small />
       </div>
-      {pageTypeId === PAGE_TYPE_ID.INFO_PAGE && <EventPrompt />}
+      {pageTypeId === PAGE_TYPE_ID.INFO_PAGE && <EventPrompt isMobile />}
       {currentMode?.id !== defaultMode?.id && (
         <Scale hidden={currentMode?.id === defaultMode?.id} hideTooltipLabel isHorizontal />
       )}

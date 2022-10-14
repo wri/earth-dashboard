@@ -17,6 +17,7 @@ import {
   EARTH_HQ_CAROUSEL_STARTED,
   EARTH_HQ_CAROUSEL_VIEWED
 } from "constants/tag-manager";
+import EventCardSkeleton from "components/app/home/event-card/event-card-skeleton";
 
 const SCROLL_NORMALIZE_VALUE = 37;
 
@@ -28,6 +29,7 @@ type InfoPanelProps = {
   setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
   previousPageTypeId: string;
   isMobile: boolean;
+  isLoading: boolean;
   setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
 };
 
@@ -39,6 +41,7 @@ const InfoPanel = ({
   setPreviousPageTypeId,
   previousPageTypeId,
   isMobile,
+  isLoading,
   setCurrentHeadlineId
 }: InfoPanelProps) => {
   const [carouselScroll, setCarouselScroll] = useState<number>(0);
@@ -144,20 +147,26 @@ const InfoPanel = ({
   return (
     <div ref={containerRef} className={styles["info-container"]}>
       {!isMobile && <EventPrompt />}
-      <Carousel
-        items={headlines.map(headline => (
-          <EventCard
-            headline={headline}
-            type="Condensed"
-            key={headline.id}
-            onClick={() => handleEventClicked(headline)}
-          />
-        ))}
-        finalItem={<ViewAllCard />}
-        ref={carouselRef}
-        setScroll={setCarouselScroll}
-        style={{ height: isMobile ? "auto" : "calc(100% - 176px)" }}
-      />
+
+      {isLoading ? (
+        <EventCardSkeleton />
+      ) : (
+        <Carousel
+          items={headlines.map(headline => (
+            <EventCard
+              headline={headline}
+              type="Condensed"
+              key={headline.id}
+              onClick={() => handleEventClicked(headline)}
+            />
+          ))}
+          finalItem={<ViewAllCard />}
+          ref={carouselRef}
+          setScroll={setCarouselScroll}
+          style={{ height: isMobile ? "auto" : "calc(100% - 176px)" }}
+        />
+      )}
+
       {!isMobile && (
         <InfoFooter
           disableBackButton={currentHeadlineIndex === 0}
@@ -165,6 +174,7 @@ const InfoPanel = ({
           navigateInfo={navigateInfo}
           index={carouselWidth ? Math.round(carouselScroll / (carouselWidth - SCROLL_NORMALIZE_VALUE)) : 0}
           length={headlines.length + 1 > 11 ? 11 : headlines.length + 1}
+          isLoading={isLoading}
         />
       )}
     </div>
@@ -176,7 +186,8 @@ export default connect(
     currentHeadline: state.headlines.currentHeadline,
     headlines: state.headlines.headlines,
     previousPageTypeId: state.modes.previousPageTypeId,
-    isMobile: state.common.isMobile
+    isMobile: state.common.isMobile,
+    isLoading: state.headlines.headlinesLoading
   }),
   { setCurrentHeadline, setPageTypeId, setPreviousPageTypeId, setCurrentHeadlineId }
 )(InfoPanel);

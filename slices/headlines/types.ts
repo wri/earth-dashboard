@@ -40,4 +40,5 @@ export type HeadlinesState = {
   headlines: Headline[];
   currentHeadline?: Headline;
   currentHeadlineId?: number;
+  headlinesLoading: boolean;
 };

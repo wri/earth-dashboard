@@ -31,6 +31,7 @@ type UseIframeBridgeConfig = {
   currentMode?: Mode;
   defaultMode?: Mode;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
+  setHeadlinesLoading: ActionCreatorWithPayload<boolean, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
   setPageTypeId: ActionCreatorWithPayload<string, string>;
   setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
@@ -49,6 +50,7 @@ const useIframeBridge = ({
   callback,
   allowClickEvents,
   headlines,
+  setHeadlinesLoading,
   currentMode,
   defaultMode,
   setHeadlines,
@@ -85,6 +87,7 @@ const useIframeBridge = ({
   // Set headlines redux if mobile
   useEffect(() => {
     const getHeadlines = async () => {
+      setHeadlinesLoading(true);
       try {
         const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
         const resp = await fetchClimateAlerts();
@@ -120,6 +123,7 @@ const useIframeBridge = ({
       } catch (err) {
         console.log("Error fetching modes");
       }
+      setHeadlinesLoading(false);
     };
 
     getHeadlines();
