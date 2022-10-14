@@ -150,7 +150,7 @@ const Menu = forwardRef(
         observer.disconnect();
       };
       // eslint-disable-next-line
-    }, [pageTypeId]);
+    }, [pageTypeId, headlinesLoading]);
 
     const getMenuContent = () => (
       <div
