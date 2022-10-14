@@ -115,7 +115,7 @@ const Menu = forwardRef(
     useEffect(() => {
       checkCurrentHeadline();
       // eslint-disable-next-line
-    }, [currentHeadline, setCurrentMode]);
+    }, [currentHeadline, setCurrentMode, headlinesLoading]);
 
     // Observes each item and checks if in viewport
     useEffect(() => {
