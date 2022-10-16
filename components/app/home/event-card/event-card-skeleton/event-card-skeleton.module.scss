@@ -4,11 +4,9 @@
 .c-event-card-skeleton {
   border-radius: 16px;
   width: 100%;
-  margin: 0 24px;
   overflow: hidden;
 
   @media screen and (min-width: $global-breakpoint-md) {
-    margin-top: 16px;
     width: auto;
   }
 

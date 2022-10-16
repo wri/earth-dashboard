@@ -9,6 +9,8 @@ import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@red
 import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
 import { PAGE_TYPE_ID } from "../../main-container/component";
+import EventCardSkeleton from "../../event-card/event-card-skeleton";
+import Skeleton from "components/ui/skeleton";
 
 const HEADLINE_BATCH_SIZE = 6;
 const SCOLL_THRESHOLD = 180;
@@ -16,6 +18,7 @@ const SCOLL_THRESHOLD = 180;
 type EventsListPanelProps = {
   currentMode?: Mode;
   headlines: HeadlineType[];
+  headlinesLoading: boolean;
   forceInfoPage: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
@@ -27,6 +30,7 @@ type EventsListPanelProps = {
 const EventsListPanel = ({
   currentMode,
   headlines,
+  headlinesLoading,
   setCurrentHeadline,
   setPageTypeId,
   setPreviousPageTypeId,
@@ -77,19 +81,23 @@ const EventsListPanel = ({
       <div className={classnames(styles["c-home-menu__content"])} onScroll={onScroll}>
         {/* Events */}
         <div className={styles["c-home-menu__extreme-events__list"]}>
-          {mostRecentHeadlines.map(headline => (
-            <EventCard
-              key={headline.id}
-              headline={headline}
-              className={styles["c-home-menu__headline"]}
-              onClick={() => onSelectHeadline(headline)}
-            />
-          ))}
+          {headlinesLoading
+            ? ["headline-skeleton-1", "headline-skeleton-2", "headline-skeleton-3"].map(item => (
+                <EventCardSkeleton key={item} className={styles["c-home-menu__headline"]} />
+              ))
+            : mostRecentHeadlines.map(headline => (
+                <EventCard
+                  key={headline.id}
+                  headline={headline}
+                  className={styles["c-home-menu__headline"]}
+                  onClick={() => onSelectHeadline(headline)}
+                />
+              ))}
         </div>
 
         {/* CTA */}
         <div className={styles["c-home-menu__extreme-events__controls"]}>
-          {headlines.length > numHeadlinesToShow && (
+          {!headlinesLoading && headlines.length > numHeadlinesToShow && (
             <CtaButton
               text="Load More"
               className={styles["c-home-menu__cta"]}

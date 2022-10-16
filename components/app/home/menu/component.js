@@ -156,6 +156,7 @@ const Menu = forwardRef(
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
+        {/* Single event view */}
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
           <MenuLayout ref={ref} title="Back" onBack={() => setPageTypeId(previousPageTypeId)} onClose={onClose}>
             {headlinesLoading ? (
@@ -176,6 +177,8 @@ const Menu = forwardRef(
             />
           </MenuLayout>
         )}
+
+        {/* Main extreme events view */}
         {pageTypeId == PAGE_TYPE_ID.INFO_PAGE && (
           <MenuLayout
             ref={ref}
@@ -186,6 +189,8 @@ const Menu = forwardRef(
             <InfoPanel />
           </MenuLayout>
         )}
+
+        {/* All extreme events view */}
         {pageTypeId == PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE && (
           <MenuLayout
             ref={ref}
@@ -197,9 +202,11 @@ const Menu = forwardRef(
             }
             onClose={onClose}
           >
-            <EventsListPanel />
+            <EventsListPanel headlinesLoading={headlinesLoading} />
           </MenuLayout>
         )}
+
+        {/* Data layer */}
         {pageTypeId == PAGE_TYPE_ID.DATA_LAYER_PAGE && (
           <MenuLayout ref={ref} title="Back" onBack={navigateTo(PAGE_TYPE_ID.INFO_PAGE)} onClose={onClose}>
             <DataLayerPanel onClickExtremeEvents={navigateTo(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE)} />

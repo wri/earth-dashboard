@@ -99,14 +99,17 @@ const InfoPanel = ({
   // Run at start so no scroll animation
   useEffect(() => {
     scrollFromHeadline();
+    // eslint-disable-next-line
   }, [carouselWidth, carouselRef.current]);
 
   useEffect(() => {
     scrollFromHeadline("smooth");
+    // eslint-disable-next-line
   }, [currentHeadline, carouselWidth, carouselRef.current]);
 
   useEffect(() => {
     if (containerRef.current) setCarouselWidth(containerRef.current.offsetWidth);
+    // eslint-disable-next-line
   }, [containerRef.current]);
 
   useEffect(() => {
@@ -117,6 +120,7 @@ const InfoPanel = ({
     }
 
     fireEvent(EARTH_HQ_CAROUSEL_VIEWED, `carousel_${currentHeadlineIndex + 1}`);
+    // eslint-disable-next-line
   }, [currentHeadlineIndex]);
 
   const setHeadlineToScroll = () => {
@@ -142,6 +146,7 @@ const InfoPanel = ({
         setHeadlineToScroll();
       }, 250)
     );
+    // eslint-disable-next-line
   }, [carouselScroll, carouselWidth]);
 
   return (
@@ -149,7 +154,7 @@ const InfoPanel = ({
       {!isMobile && <EventPrompt />}
 
       {isLoading ? (
-        <EventCardSkeleton />
+        <EventCardSkeleton className={styles["info-container__skeleton"]} />
       ) : (
         <Carousel
           items={headlines.map(headline => (
