@@ -109,20 +109,17 @@
   }
 
   &__extreme-events {
-    &--controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    @include defaultScrollBar();
 
-    &--header {
-      z-index: 0;
+    overflow-y: auto;
+    padding-bottom: 40px;
+
+    &__header {
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      position: absolute;
       background-color: rgba($colour-galaxy, 0.45);
-      width: 100%;
       background-image: url("/static/images/globe@2x.png");
       background-position: center right;
       background-repeat: no-repeat;
@@ -159,6 +156,16 @@
         background-position: center right -30px;
         background-size: 296px 250px;
       }
+    }
+
+    &__list {
+      padding: 32px 24px 16px 24px;
+    }
+
+    &__controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 
