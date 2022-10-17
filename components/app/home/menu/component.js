@@ -82,7 +82,9 @@ const Menu = forwardRef(
         if (!headlineEl) return;
 
         headlineEl.scrollIntoView({
-          behavior: "smooth"
+          behavior: "smooth",
+          block: "nearest",
+          inline: "nearest"
         });
       }
     };
@@ -102,12 +104,16 @@ const Menu = forwardRef(
     const navigateHeadline = action => {
       if (action === "back") {
         return prevHeadlineEl?.scrollIntoView({
-          behavior: "smooth"
+          behavior: "smooth",
+          block: "nearest",
+          inline: "nearest"
         });
       }
 
       nextHeadlineEl?.scrollIntoView({
-        behavior: "smooth"
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest"
       });
     };
 
