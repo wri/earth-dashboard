@@ -36,7 +36,7 @@ const useMongabayPosts = ({ limit, topic, search }: UseMongabayPostsVariables): 
     variables: {
       first: limit,
       after: null,
-      topics: topic ?? Object.values(TOPICS).flat(),
+      topics: TOPICS[topic as keyof typeof TOPICS] ?? Object.values(TOPICS).flat(),
       search
     },
     notifyOnNetworkStatusChange: true,
