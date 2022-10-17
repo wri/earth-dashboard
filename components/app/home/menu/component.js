@@ -105,12 +105,14 @@ const Menu = forwardRef(
       const { index, total } = getCurrentHeadlineIndex();
 
       if (action === "back" && prevHeadlineEl) {
+        prevHeadlineEl.scrollTop = 0;
         prevHeadlineEl.scrollIntoView({
           behavior: index === 0 ? "auto" : "smooth",
           block: "nearest",
           inline: "nearest"
         });
       } else if (nextHeadlineEl) {
+        nextHeadlineEl.scrollTop = 0;
         nextHeadlineEl.scrollIntoView({
           behavior: index === total - 1 ? "auto" : "smooth",
           block: "nearest",
@@ -142,10 +144,6 @@ const Menu = forwardRef(
 
             if (!entry.isIntersecting || !newHeadline) return;
 
-            entry.target.scrollTo({
-              top: 0,
-              behavior: "smooth"
-            });
             setCurrentHeadline(newHeadline);
             setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.parentElement.firstElementChild);
             setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.parentElement.lastElementChild);
