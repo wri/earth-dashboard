@@ -1,0 +1,81 @@
+@import "css/_settings.scss";
+@import "css/tools/_fontSize.scss";
+@import "css/settings/breakpoints";
+
+.c-carousel-card {
+  display: flex;
+  flex-direction: column;
+  border: 4px solid transparent;
+  background-color: rgba($colour-galaxy, 0.45);
+  border-radius: 12px;
+  width: 100%;
+  min-width: 100%;
+  padding: 20px;
+  height: 200px;
+  min-height: 200px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+
+  &--selected {
+    border: 4px solid $colour-flame;
+    outline: none;
+  }
+
+  &__header-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__icon-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    min-width: 40px;
+    margin-right: 12px;
+  }
+
+  &__image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  &__title {
+    font-family: "Barlow";
+    font-weight: 600;
+    @include font-size(20px, 30px);
+    margin-bottom: 0;
+    text-transform: uppercase;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      font-family: "Barlow Condensed";
+    }
+  }
+
+  &__subtitle {
+    font-family: "Barlow";
+    font-weight: 500;
+    margin: 8px 0 16px 0;
+    @include font-size(16px, 24px);
+    color: white;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  &__cta {
+    margin-top: auto;
+  }
+}

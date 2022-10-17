@@ -8,10 +8,21 @@ import useDataLayers from "hooks/useDataLayers";
 import { SCALE_TYPES } from "constants/map";
 import { DATA_LAYER_TYPES } from "constants/datalayers";
 import { useIframeBridgeContext } from "hooks/useIframeBridge";
+import { PAGE_TYPE_ID } from "../main-container/component";
 
 const Scale = props => {
-  const { className, isHorizontal, value, currentMode, datasetValue, hidden, hideTooltipLabel, setInfoMode, ...rest } =
-    props;
+  const {
+    className,
+    isHorizontal,
+    value,
+    currentMode,
+    datasetValue,
+    hidden,
+    hideTooltipLabel,
+    setInfoMode,
+    pageTypeId,
+    ...rest
+  } = props;
 
   const {
     scaleData = { min: 0, max: 100, unitSymbol: "%", hasSmallLabels: false },
@@ -81,12 +92,16 @@ const Scale = props => {
     return (
       <div
         className={classnames(className, styles["c-scale--hidden"], isHorizontal && styles["c-scale--horizontal"])}
+        style={pageTypeId === PAGE_TYPE_ID.INFO_PAGE && isHorizontal ? { marginTop: 9 } : {}}
       ></div>
     );
   }
 
   return (
-    <div className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}>
+    <div
+      className={classnames(className, styles["c-scale"], isHorizontal && styles["c-scale--horizontal"])}
+      style={pageTypeId === PAGE_TYPE_ID.INFO_PAGE && isHorizontal ? { marginTop: 9 } : {}}
+    >
       <label
         htmlFor="scale"
         style={!currentMode || !currentMode.attributes.scale_info_detail ? { minWidth: "auto" } : {}}

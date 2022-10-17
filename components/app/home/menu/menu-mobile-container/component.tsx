@@ -3,6 +3,7 @@ import ResizablePanel from "./resizable-panel";
 import styles from "./menu-mobile-container.module.scss";
 import CondensedMenu from "../../condensed-menu";
 import { PAGE_TYPE_ID } from "../../main-container/component";
+import { useRouter } from "next/router";
 
 type MenuMobileContainerProps = {
   defaultPanelHeight: number;
@@ -27,16 +28,22 @@ const MenuMobileContainer = ({
   hasMenuOpen,
   children
 }: MenuMobileContainerProps) => {
+  const router = useRouter();
+
   const [windowHeight, setWindowHeight] = useState<number>(0);
 
   useEffect(() => {
     if (typeof window !== "undefined") setWindowHeight(window.innerHeight);
   }, []);
 
-  const snapHeights =
-    pageTypeId === PAGE_TYPE_ID.INFO_PAGE
-      ? [defaultPanelHeight, 380]
-      : [defaultPanelHeight, windowHeight * 0.6, windowHeight * 0.9];
+  const isInfoPage = pageTypeId === PAGE_TYPE_ID.INFO_PAGE && router.pathname === "/";
+  const isDataInfoPage = pageTypeId === PAGE_TYPE_ID.INFO_PAGE && router.pathname === "/explore";
+
+  const snapHeights = isInfoPage
+    ? [defaultPanelHeight, 380]
+    : isDataInfoPage
+    ? [defaultPanelHeight, 480]
+    : [defaultPanelHeight, windowHeight * 0.6, windowHeight * 0.9];
 
   const handleResize = (e: any, direction: any, div: any) => setPanelHeight(div.offsetHeight);
 
@@ -59,7 +66,7 @@ const MenuMobileContainer = ({
         height={panelHeight}
         onResize={handleResize}
         onResizeStop={handleResizeStop}
-        maxHeight={pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? "380px" : `${windowHeight * 0.9}px`}
+        maxHeight={isInfoPage ? "380px" : isDataInfoPage ? "480px" : `${windowHeight * 0.9}px`}
         snap={snapHeights}
       >
         {panelHeight === defaultPanelHeight ? (

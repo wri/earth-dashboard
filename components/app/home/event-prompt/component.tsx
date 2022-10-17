@@ -20,7 +20,16 @@ const EventPrompt = ({ isMobile, isCondensed }: EventPromptProps) => {
       : "Select a category to explore real-time data.";
 
   return (
-    <div className={styles["event-prompt-container"]}>
+    <div
+      className={styles["event-prompt-container"]}
+      style={
+        router?.pathname === "/explore" && !isCondensed && isMobile
+          ? { margin: "24px 24px 0", minHeight: "auto" }
+          : router?.pathname === "/explore" && !isMobile
+          ? { margin: 0 }
+          : {}
+      }
+    >
       <p>{text}</p>
     </div>
   );
