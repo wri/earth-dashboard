@@ -33,7 +33,7 @@ type DataIndexProps = {
   setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
   pagePush: ActionCreatorWithPayload<string, string>;
-  onClickExtremeEvents: () => {};
+  onClickExtremeEvents: () => void;
 };
 
 const MAX_NUMBER_OF_HEADLINES = 3;

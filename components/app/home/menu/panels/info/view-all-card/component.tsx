@@ -22,7 +22,7 @@ const ViewAllCard = ({ pagePush, setRoutePageTypeId }: ViewAllCardProps) => {
       <div className={styles["content-container"]}>
         <h1 className={styles["title"]}>All Extreme Events</h1>
         <p className={styles["description"]}>View all of Mongabay’s latest extreme events</p>
-        <CtaButton text="VIEW ALL" iconName="arrow-right" onClick={() => {}} />
+        <CtaButton text="VIEW ALL" iconName="arrow-right" />
       </div>
     </button>
   );
