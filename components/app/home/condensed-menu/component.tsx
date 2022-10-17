@@ -44,7 +44,7 @@ const CondensedMenu = ({
   return (
     <div className={styles["c-condensed-menu"]}>
       <div className={styles["c-condensed-menu__title-container"]}>
-        {pageTypeId !== PAGE_TYPE_ID.INFO_PAGE &&
+        {(pageTypeId !== PAGE_TYPE_ID.INFO_PAGE || router?.pathname === "/explore") &&
           ((currentMode && currentMode.attributes.title !== "Default") || currentHeadline) && (
             <div className={styles["icon-container"]}>
               <img src={icon} alt={alt} />
@@ -63,8 +63,12 @@ const CondensedMenu = ({
         <IconButton onClick={toggleMenu} name="expand" size={16} className={styles["expand-icon"]} small />
       </div>
       {pageTypeId === PAGE_TYPE_ID.INFO_PAGE && <EventPrompt isMobile isCondensed />}
-      {currentMode?.id !== defaultMode?.id && (
-        <Scale hidden={currentMode?.id === defaultMode?.id} hideTooltipLabel isHorizontal />
+      {(currentMode?.id !== defaultMode?.id || router?.pathname === "/explore") && (
+        <Scale
+          hidden={currentMode?.id === defaultMode?.id && router?.pathname !== "/explore"}
+          hideTooltipLabel
+          isHorizontal
+        />
       )}
     </div>
   );

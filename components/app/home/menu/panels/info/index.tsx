@@ -32,6 +32,7 @@ type InfoPanelProps = {
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   defaultMode: Mode | undefined;
   setRoutePageTypeId: ActionCreatorWithPayload<string, string>;
+  routePageTypeId: string;
 };
 
 const InfoPanel = ({
@@ -44,7 +45,8 @@ const InfoPanel = ({
   setCurrentHeadlineId,
   defaultMode,
   setCurrentMode,
-  setRoutePageTypeId
+  setRoutePageTypeId,
+  routePageTypeId
 }: InfoPanelProps) => {
   const [carouselScroll, setCarouselScroll] = useState<number>(0);
   const [carouselWidth, setCarouselWidth] = useState<number>();
@@ -56,6 +58,7 @@ const InfoPanel = ({
 
   const handleEventClicked = (headline: Headline) => {
     setCurrentHeadline(headline);
+    setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
   };
 
@@ -81,7 +84,15 @@ const InfoPanel = ({
   };
 
   const scrollFromHeadline = (behavior?: "auto" | "smooth") => {
-    if (!carouselWidth || !carouselRef.current || !currentHeadline) return;
+    if (!carouselWidth || !carouselRef.current) return;
+
+    if (!currentHeadline && routePageTypeId === PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE) {
+      const index = headlines.length;
+      scrollToIndex(index, behavior);
+      setCurrentHeadlineIndex(index);
+    }
+
+    if (!currentHeadline) return;
 
     const index = headlines.findIndex(headline => headline.id === currentHeadline.id);
 
@@ -124,10 +135,12 @@ const InfoPanel = ({
     if (index < headlines.length) {
       setCurrentHeadline(headlines[index]);
       setCurrentHeadlineIndex(index);
+      setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     } else {
       setCurrentHeadline(undefined);
       setCurrentHeadlineId(undefined);
       setCurrentHeadlineIndex(headlines.length);
+      setRoutePageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
     }
   };
 
@@ -189,7 +202,8 @@ export default connect(
     headlines: state.headlines.headlines,
     isMobile: state.common.isMobile,
     isLoading: state.headlines.headlinesLoading,
-    defaultMode: state.modes.defaultMode
+    defaultMode: state.modes.defaultMode,
+    routePageTypeId: state.modes.routePageTypeId
   }),
   { setCurrentHeadline, pagePush, setCurrentHeadlineId, setCurrentMode, setRoutePageTypeId }
 )(InfoPanel);
