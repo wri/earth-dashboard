@@ -503,7 +503,7 @@ const MainContainer = ({
                 data-testid="toggle"
               >
                 <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
-                  <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId, router.pathname)}</span>
+                  <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId, router?.pathname)}</span>
                 </div>
               </button>
             </>

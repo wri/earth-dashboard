@@ -29,7 +29,7 @@ const CondensedMenu = ({
   currentMode,
   defaultMode
 }: CondensedMenuProps) => {
-  const { pathname } = useRouter();
+  const router = useRouter();
 
   const icon =
     currentMode && currentMode.attributes.title !== "Default"
@@ -51,7 +51,7 @@ const CondensedMenu = ({
             </div>
           )}
         <p className={classnames(styles["title"], pageTypeId !== PAGE_TYPE_ID.INFO_PAGE && styles["title-condensed"])}>
-          {getMenuTitle(currentHeadline, currentMode, pageTypeId, pathname)}
+          {getMenuTitle(currentHeadline, currentMode, pageTypeId, router?.pathname)}
         </p>
         <IconButton
           onClick={handleToggleLocation}

@@ -8,10 +8,10 @@ type EventPromptProps = {
 
 /** Shows information on how to use the globe. */
 const EventPrompt = ({ isMobile, isCondensed }: EventPromptProps) => {
-  const { pathname } = useRouter();
+  const router = useRouter();
 
   const text =
-    pathname === "/"
+    router?.pathname === "/"
       ? isMobile
         ? "Swipe left or select a point on the globe to view the latest extreme events from Mongabay."
         : "Select a point on the globe to view the latest Extreme Events from Mongabay."

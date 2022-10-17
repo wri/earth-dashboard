@@ -43,7 +43,7 @@ const Menu = forwardRef(
     },
     ref
   ) => {
-    const { pathname } = useRouter();
+    const router = useRouter();
 
     const navigateTo = pageId => () => setPageTypeId(pageId);
 
@@ -182,7 +182,7 @@ const Menu = forwardRef(
           </MenuLayout>
         )}
         {/* Main extreme events view */}
-        {pageTypeId == PAGE_TYPE_ID.INFO_PAGE && pathname === "/" && (
+        {pageTypeId == PAGE_TYPE_ID.INFO_PAGE && router?.pathname === "/" && (
           <MenuLayout
             ref={ref}
             title={INFO_PAGE_HEADLINE}
@@ -194,7 +194,7 @@ const Menu = forwardRef(
         )}
 
         {/* Main data layers view */}
-        {pageTypeId == PAGE_TYPE_ID.INFO_PAGE && pathname === "/explore" && (
+        {pageTypeId == PAGE_TYPE_ID.INFO_PAGE && router?.pathname === "/explore" && (
           <MenuLayout
             ref={ref}
             title={DATA_INFO_PAGE_HEADLINE}

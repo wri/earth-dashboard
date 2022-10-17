@@ -97,77 +97,7 @@ test("<MainContainer /> renders correctly as mobile", async () => {
       >
         <div
           class="c-home-menu-container"
-        >
-          <div
-            class="c-layout"
-            style="padding-bottom: 56px;"
-          >
-            <div
-              class="c-layout__header"
-            >
-              <div
-                class="c-layout__header-content"
-              >
-                <h2
-                  class="c-layout__header-text"
-                >
-                  This Is A Planetary Emergency...
-                </h2>
-                <button
-                  aria-label="Close"
-                  class="c-icon-button medium c-layout__close-button"
-                />
-              </div>
-            </div>
-            <div
-              class="c-layout__content u-padding-none"
-            >
-              <div
-                class="info-container"
-              >
-                <div
-                  class="carousel-container"
-                  style="height: auto;"
-                >
-                  <button
-                    class="c-view-all-card"
-                  >
-                    <div
-                      class="content-container"
-                    >
-                      <h1
-                        class="title"
-                      >
-                        All Extreme Events
-                      </h1>
-                      <p
-                        class="description"
-                      >
-                        View all of Mongabay’s latest extreme events
-                      </p>
-                      <button
-                        class="c-cta-button"
-                      >
-                        <div
-                          class="c-cta-button__content"
-                        >
-                          <span
-                            class="c-cta-button__text"
-                          >
-                            VIEW ALL
-                          </span>
-                          <span
-                            class="c-cta-button__icon"
-                          />
-                        </div>
-                      </button>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        />
         <div>
           <div
             class="c-mobile-menu-container__draggable__handle c-mobile-menu-container__draggable__handle__open"
