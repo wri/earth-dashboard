@@ -130,7 +130,7 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
             ))}
       </Section>
 
-      <Section title="More News" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
+      <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
         {/* More News */}
         {isPostsLoading ? (
           [0, 1, 2, 3, 4, 5, 6, 7, 8].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
