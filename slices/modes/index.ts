@@ -119,6 +119,9 @@ const modesSlice = createSlice({
     setRoutePageTypeId: (state, { payload }: PayloadAction<string>) => {
       state.routePageTypeId = payload;
     },
+    resetPageStack: state => {
+      state.pageTypeIdStack = ["InfoPage"];
+    },
     pagePush: (state, { payload }: PayloadAction<string>) => {
       if (payload === state.pageTypeId) return;
       state.pageTypeId = payload;
@@ -147,6 +150,7 @@ export const {
   setInfoMode,
   setModesLoading,
   setRoutePageTypeId,
+  resetPageStack,
   pagePush,
   pagePop
 } = modesSlice.actions;

@@ -2,12 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./info.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
-import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import {
+  ActionCreatorWithOptionalPayload,
+  ActionCreatorWithoutPayload,
+  ActionCreatorWithPayload
+} from "@reduxjs/toolkit";
 import { Headline, setCurrentHeadline, setCurrentHeadlineId } from "slices/headlines";
 import EventCard from "../../../event-card";
 import Carousel from "components/ui/carousel";
 import ViewAllCard from "./view-all-card";
-import { Mode, pagePush, setCurrentMode, setRoutePageTypeId } from "slices/modes";
+import { Mode, pagePush, resetPageStack, setCurrentMode, setRoutePageTypeId } from "slices/modes";
 import { PAGE_TYPE_ID } from "../../../main-container/component";
 import EventPrompt from "../../../event-prompt/component";
 import InfoFooter from "./info-footer";
@@ -32,6 +36,7 @@ type InfoPanelProps = {
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   defaultMode: Mode | undefined;
   setRoutePageTypeId: ActionCreatorWithPayload<string, string>;
+  resetPageStack: ActionCreatorWithoutPayload<string>;
 };
 
 const InfoPanel = ({
@@ -44,7 +49,8 @@ const InfoPanel = ({
   setCurrentHeadlineId,
   defaultMode,
   setCurrentMode,
-  setRoutePageTypeId
+  setRoutePageTypeId,
+  resetPageStack
 }: InfoPanelProps) => {
   const [carouselScroll, setCarouselScroll] = useState<number>(0);
   const [carouselWidth, setCarouselWidth] = useState<number>();
@@ -142,6 +148,7 @@ const InfoPanel = ({
   }, [carouselScroll, carouselWidth]);
 
   useEffect(() => {
+    resetPageStack();
     setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     if (defaultMode) setCurrentMode(defaultMode);
   }, []);
@@ -191,5 +198,5 @@ export default connect(
     isLoading: state.headlines.headlinesLoading,
     defaultMode: state.modes.defaultMode
   }),
-  { setCurrentHeadline, pagePush, setCurrentHeadlineId, setCurrentMode, setRoutePageTypeId }
+  { setCurrentHeadline, pagePush, resetPageStack, setCurrentHeadlineId, setCurrentMode, setRoutePageTypeId }
 )(InfoPanel);
