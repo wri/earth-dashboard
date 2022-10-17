@@ -24,6 +24,7 @@ export type IconNames =
   | "earth-hq"
   | "error-circle"
   | "expand"
+  | "explore"
   | "external-link"
   | "facebook"
   | "instagram"

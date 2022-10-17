@@ -1,14 +1,16 @@
 import { forwardRef, useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
 import PropTypes from "prop-types";
 import InfoPanel from "./panels/info";
+import DataInfoPanel from "./panels/data-info";
 import DataLayerPanel from "./panels/data-layer";
 import MenuLayout from "./layout";
 import EventsListPanel from "./panels/events-list";
 import Event from "components/app/home/event";
 import MobileMenuContainer from "./menu-mobile-container";
-import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE } from "../main-container/component";
+import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE, DATA_INFO_PAGE_HEADLINE } from "../main-container/component";
 import HeadlineFooter from "../headline-footer";
 import { fireEvent } from "utils/gtag";
 import { VIEW_ALL_EXTREME_EVENTS } from "constants/tag-manager";
@@ -41,6 +43,8 @@ const Menu = forwardRef(
     },
     ref
   ) => {
+    const router = useRouter();
+
     const navigateTo = pageId => () => setPageTypeId(pageId);
 
     const [nextHeadlineEl, setNextHeadlineEl] = useState();
@@ -177,9 +181,8 @@ const Menu = forwardRef(
             />
           </MenuLayout>
         )}
-
         {/* Main extreme events view */}
-        {pageTypeId == PAGE_TYPE_ID.INFO_PAGE && (
+        {pageTypeId == PAGE_TYPE_ID.INFO_PAGE && router?.pathname === "/" && (
           <MenuLayout
             ref={ref}
             title={INFO_PAGE_HEADLINE}
@@ -187,6 +190,18 @@ const Menu = forwardRef(
             style={isMobile ? { paddingBottom: "56px" } : {}}
           >
             <InfoPanel />
+          </MenuLayout>
+        )}
+
+        {/* Main data layers view */}
+        {pageTypeId == PAGE_TYPE_ID.INFO_PAGE && router?.pathname === "/explore" && (
+          <MenuLayout
+            ref={ref}
+            title={DATA_INFO_PAGE_HEADLINE}
+            onClose={onClose}
+            style={isMobile ? { paddingBottom: "56px" } : {}}
+          >
+            <DataInfoPanel />
           </MenuLayout>
         )}
 

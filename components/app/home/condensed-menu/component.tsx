@@ -8,6 +8,7 @@ import Scale from "components/app/home/scale";
 import { PAGE_TYPE_ID } from "../main-container/component";
 import EventPrompt from "../event-prompt";
 import classnames from "classnames";
+import { useRouter } from "next/router";
 
 type CondensedMenuProps = {
   toggleMenu: () => void;
@@ -28,6 +29,8 @@ const CondensedMenu = ({
   currentMode,
   defaultMode
 }: CondensedMenuProps) => {
+  const router = useRouter();
+
   const icon =
     currentMode && currentMode.attributes.title !== "Default"
       ? currentMode.attributes.icon
@@ -48,7 +51,7 @@ const CondensedMenu = ({
             </div>
           )}
         <p className={classnames(styles["title"], pageTypeId !== PAGE_TYPE_ID.INFO_PAGE && styles["title-condensed"])}>
-          {getMenuTitle(currentHeadline, currentMode, pageTypeId)}
+          {getMenuTitle(currentHeadline, currentMode, pageTypeId, router?.pathname)}
         </p>
         <IconButton
           onClick={handleToggleLocation}
@@ -59,7 +62,7 @@ const CondensedMenu = ({
         />
         <IconButton onClick={toggleMenu} name="expand" size={16} className={styles["expand-icon"]} small />
       </div>
-      {pageTypeId === PAGE_TYPE_ID.INFO_PAGE && <EventPrompt isMobile />}
+      {pageTypeId === PAGE_TYPE_ID.INFO_PAGE && <EventPrompt isMobile isCondensed />}
       {currentMode?.id !== defaultMode?.id && (
         <Scale hidden={currentMode?.id === defaultMode?.id} hideTooltipLabel isHorizontal />
       )}

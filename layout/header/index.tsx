@@ -14,7 +14,6 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { setPageTypeId } from "slices/modes";
-import { useEffect, useRef } from "react";
 
 type HeaderProps = {
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
@@ -71,7 +70,7 @@ const Header = ({
       <header
         className={classnames(
           styles["c-site-header"],
-          router.pathname === "/" || is404 ? styles["fixed"] : styles["sticky"]
+          router.pathname === "/" || router.pathname === "/explore" || is404 ? styles["fixed"] : styles["sticky"]
         )}
       >
         <div className={styles["top-section"]}>
@@ -97,8 +96,8 @@ const Header = ({
                         : undefined
                     }
                   />
+                  <HeaderLink href="/explore" text="Explore" />
                   <HeaderLink href="/news" text="News" />
-                  <HeaderLink href="/about" text="About" />
                 </div>
               </Desktop>
 
