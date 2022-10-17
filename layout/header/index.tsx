@@ -13,24 +13,16 @@ import { RootState } from "store/types";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { setPageTypeId } from "slices/modes";
 
 type HeaderProps = {
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
   setCurrentHeadlineId: ActionCreatorWithPayload<number | undefined, string>;
   setCurrentScale: ActionCreatorWithPayload<string, string>;
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
-  setPageTypeId: ActionCreatorWithPayload<string, string>;
 };
 
 /** Header component for the site with the logo, links, and controls. */
-const Header = ({
-  setCurrentHeadline,
-  setCurrentHeadlineId,
-  setCurrentScale,
-  setCurrentScaleBy,
-  setPageTypeId
-}: HeaderProps) => {
+const Header = ({ setCurrentHeadline, setCurrentHeadlineId, setCurrentScale, setCurrentScaleBy }: HeaderProps) => {
   // Navigation
   const router = useRouter();
   const dispatch = useDispatch();
@@ -129,6 +121,5 @@ export default connect((state: RootState) => {}, {
   setCurrentHeadline,
   setCurrentHeadlineId,
   setCurrentScale,
-  setCurrentScaleBy,
-  setPageTypeId
+  setCurrentScaleBy
 })(Header);

@@ -19,8 +19,9 @@ const initialState: ModesState = {
   heightValue: "",
   layersLabelArr: [],
   dateOfDataShown: new Date().toString(),
+  routePageTypeId: "InfoPage",
   pageTypeId: "InfoPage",
-  previousPageTypeId: "InfoPage",
+  pageTypeIdStack: ["InfoPage"],
   infoMode: undefined,
   modesLoading: false
 };
@@ -109,17 +110,23 @@ const modesSlice = createSlice({
 
       state.dateOfDataShown = payload;
     },
-    setPageTypeId: (state, { payload }: PayloadAction<string>) => {
-      state.pageTypeId = payload;
-    },
-    setPreviousPageTypeId: (state, { payload }: PayloadAction<string>) => {
-      state.previousPageTypeId = payload;
-    },
     setInfoMode: (state, { payload }: PayloadAction<Mode | undefined>) => {
       state.infoMode = payload;
     },
     setModesLoading: (state, { payload }: PayloadAction<boolean>) => {
       state.modesLoading = payload;
+    },
+    setRoutePageTypeId: (state, { payload }: PayloadAction<string>) => {
+      state.routePageTypeId = payload;
+    },
+    pagePush: (state, { payload }: PayloadAction<string>) => {
+      if (payload === state.pageTypeId) return;
+      state.pageTypeId = payload;
+      state.pageTypeIdStack.unshift(payload);
+    },
+    pagePop: state => {
+      state.pageTypeIdStack.shift();
+      state.pageTypeId = state.pageTypeIdStack[0];
     }
   }
 });
@@ -136,11 +143,12 @@ export const {
   setLayersLabelArr,
   setDateOfDataShown,
   setCurrentModeId,
-  setPageTypeId,
-  setPreviousPageTypeId,
   selectDefaultMode,
   setInfoMode,
-  setModesLoading
+  setModesLoading,
+  setRoutePageTypeId,
+  pagePush,
+  pagePop
 } = modesSlice.actions;
 
 export default modesSlice.reducer;

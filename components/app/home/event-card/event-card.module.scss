@@ -110,6 +110,7 @@
     align-items: center;
     padding: 16px 20px;
     background-color: rgba($colour-galaxy, 0.5);
+    height: 66px;
 
     @media screen and (min-width: $global-breakpoint-md) {
       padding: 16px 20px;
@@ -122,5 +123,12 @@
       margin-bottom: 0;
       @include font-size(14px, 18px);
     }
+  }
+
+  .cta {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    z-index: 10;
   }
 }

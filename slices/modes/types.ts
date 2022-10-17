@@ -75,8 +75,9 @@ export type ModesState = {
   heightValue: string;
   layersLabelArr: string[];
   dateOfDataShown: string;
+  routePageTypeId: string;
   pageTypeId: string;
-  previousPageTypeId: string;
+  pageTypeIdStack: string[];
   infoMode: Mode | undefined;
   modesLoading: boolean;
 };

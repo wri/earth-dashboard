@@ -5,11 +5,15 @@ import { fireEvent } from "utils/gtag";
 import { PAGE_TYPE_ID } from "../../../../main-container/component";
 import styles from "./view-all-card.module.scss";
 
-type ViewAllCardProps = { setPageTypeId: ActionCreatorWithPayload<string, string> };
+type ViewAllCardProps = {
+  pagePush: ActionCreatorWithPayload<string, string>;
+  setRoutePageTypeId: ActionCreatorWithPayload<string, string>;
+};
 
-const ViewAllCard = ({ setPageTypeId }: ViewAllCardProps) => {
+const ViewAllCard = ({ pagePush, setRoutePageTypeId }: ViewAllCardProps) => {
   const handleViewAllCardPress = () => {
-    setPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+    setRoutePageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+    pagePush(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
     fireEvent(VIEW_ALL_EXTREME_EVENTS, "web_earth_hq_carousel");
   };
 
@@ -18,7 +22,7 @@ const ViewAllCard = ({ setPageTypeId }: ViewAllCardProps) => {
       <div className={styles["content-container"]}>
         <h1 className={styles["title"]}>All Extreme Events</h1>
         <p className={styles["description"]}>View all of Mongabay’s latest extreme events</p>
-        <CtaButton text="VIEW ALL" iconName="arrow-right" onClick={handleViewAllCardPress} />
+        <CtaButton text="VIEW ALL" iconName="arrow-right" onClick={() => {}} />
       </div>
     </button>
   );

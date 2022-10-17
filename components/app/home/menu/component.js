@@ -32,20 +32,20 @@ const Menu = forwardRef(
       mobileMenuHeight,
       setMobileMenuHeight,
       pageTypeId,
-      setPageTypeId,
       defaultMobileMenuHeight,
       headlines,
       headlinesLoading,
       handleToggleLocation,
       isLocationDisabled,
       hasMenuOpen,
-      previousPageTypeId
+      pagePush,
+      pagePop
     },
     ref
   ) => {
     const router = useRouter();
 
-    const navigateTo = pageId => () => setPageTypeId(pageId);
+    const navigateTo = pageId => () => pagePush(pageId);
 
     const [nextHeadlineEl, setNextHeadlineEl] = useState();
     const [prevHeadlineEl, setPrevHeadlineEl] = useState();
@@ -94,7 +94,7 @@ const Menu = forwardRef(
 
     const viewAllExtremeEvents = () => {
       clearHeadline();
-      setPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+      pagePush(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
       fireEvent(VIEW_ALL_EXTREME_EVENTS, "web_earth_hq_carousel");
     };
 
@@ -112,7 +112,7 @@ const Menu = forwardRef(
     };
 
     useEffect(() => {
-      if (currentHeadlineId) setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+      if (currentHeadlineId) pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
       // eslint-disable-next-line
     }, []);
 
@@ -162,7 +162,7 @@ const Menu = forwardRef(
       >
         {/* Single event view */}
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
-          <MenuLayout ref={ref} title="Back" onBack={() => setPageTypeId(previousPageTypeId)} onClose={onClose}>
+          <MenuLayout ref={ref} title="Back" onBack={pagePop} onClose={onClose}>
             {headlinesLoading ? (
               <EventSkeleton />
             ) : (
@@ -207,23 +207,14 @@ const Menu = forwardRef(
 
         {/* All extreme events view */}
         {pageTypeId == PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE && (
-          <MenuLayout
-            ref={ref}
-            title="Back"
-            onBack={
-              currentMode && currentMode.id !== defaultMode.id
-                ? navigateTo(PAGE_TYPE_ID.DATA_LAYER_PAGE)
-                : navigateTo(PAGE_TYPE_ID.INFO_PAGE)
-            }
-            onClose={onClose}
-          >
+          <MenuLayout ref={ref} title="Back" onBack={pagePop} onClose={onClose}>
             <EventsListPanel headlinesLoading={headlinesLoading} />
           </MenuLayout>
         )}
 
         {/* Data layer */}
         {pageTypeId == PAGE_TYPE_ID.DATA_LAYER_PAGE && (
-          <MenuLayout ref={ref} title="Back" onBack={navigateTo(PAGE_TYPE_ID.INFO_PAGE)} onClose={onClose}>
+          <MenuLayout ref={ref} title="Back" onBack={pagePop} onClose={onClose}>
             <DataLayerPanel onClickExtremeEvents={navigateTo(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE)} />
           </MenuLayout>
         )}
@@ -261,8 +252,7 @@ Menu.propTypes = {
   setDateOfDataShown: PropTypes.func.isRequired,
   handleToggleLocation: PropTypes.func.isRequired,
   isLocationDisabled: PropTypes.bool.isRequired,
-  hasMenuOpen: PropTypes.bool.isRequired,
-  previousPageTypeId: PropTypes.string.isRequired
+  hasMenuOpen: PropTypes.bool.isRequired
 };
 
 export default Menu;

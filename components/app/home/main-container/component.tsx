@@ -56,8 +56,7 @@ type MainContainerProps = {
   currentMode?: Mode;
   defaultMode?: Mode;
   pageTypeId: string;
-  previousPageTypeId: string;
-  setPageTypeId: ActionCreatorWithPayload<string, string>;
+  pagePush: ActionCreatorWithPayload<string, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
   setEventScaleData: ActionCreatorWithPayload<EventScaleData | undefined, string>;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
@@ -66,9 +65,9 @@ type MainContainerProps = {
   setCurrentScale: ActionCreatorWithPayload<string, string>;
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
   setCurrentVisibleMode: ActionCreatorWithPayload<Mode, string>;
-  setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
   setModesLoading: ActionCreatorWithPayload<boolean, string>;
   modesLoading: boolean;
+  routePageTypeId: string;
 };
 
 const MainContainer = ({
@@ -84,8 +83,6 @@ const MainContainer = ({
   defaultMode,
   currentMode,
   pageTypeId,
-  previousPageTypeId,
-  setPageTypeId,
   setReoriented,
   setEventScaleData,
   setCurrentMode,
@@ -95,9 +92,10 @@ const MainContainer = ({
   setCurrentScaleBy,
   setCurrentVisibleMode,
   currentHeadlineId,
-  setPreviousPageTypeId,
   setModesLoading,
-  modesLoading
+  modesLoading,
+  pagePush,
+  routePageTypeId
 }: MainContainerProps) => {
   const router = useRouter();
 
@@ -157,9 +155,8 @@ const MainContainer = ({
     setReoriented,
     pageTypeId,
     currentHeadlineId,
-    setPageTypeId,
-    setPreviousPageTypeId,
-    previousPageTypeId
+    pagePush,
+    routePageTypeId
   });
 
   const overlayLayer = useMemo(() => {
@@ -459,7 +456,6 @@ const MainContainer = ({
             mobileMenuHeight={mobileMenuHeight}
             setMobileMenuHeight={setMobileMenuHeight}
             pageTypeId={pageTypeId}
-            setPageTypeId={setPageTypeId}
             defaultMobileMenuHeight={defaultMobileMenuHeight}
             handleToggleLocation={handleToggleLocation}
             isLocationDisabled={isLocationDisabled}

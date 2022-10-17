@@ -9,7 +9,7 @@ import {
   setLayersLabelArr,
   setDateOfDataShown,
   setHeight,
-  setPageTypeId
+  pagePush
 } from "slices/modes";
 import { RootState } from "store/types";
 import { setCurrentHeadline } from "slices/headlines";
@@ -50,7 +50,7 @@ export default connect(
     setCurrentScale,
     setCurrentScaleBy,
     setCurrentHeadline,
-    setPageTypeId
+    pagePush
   },
   null,
   { forwardRef: true }

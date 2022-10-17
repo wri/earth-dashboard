@@ -5,17 +5,35 @@ import moment from "moment";
 import Image from "next/image";
 import { Headline } from "slices/headlines";
 import CtaButton from "components/ui/cta-button";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { Mode } from "slices/modes";
+import { PAGE_TYPE_ID } from "../main-container/component";
 
 type EventCardProps = {
   headline: Headline;
   onClick: () => void;
   isMobile: boolean;
+  pagePush: ActionCreatorWithPayload<string, string>;
+  setCurrentMode: ActionCreatorWithPayload<Mode | undefined, string>;
   type?: "Default" | "Condensed";
   className?: string;
 };
 
-const EventCard = ({ headline, onClick, isMobile, type = "Default", className }: EventCardProps) => {
+const EventCard = ({
+  headline,
+  onClick,
+  isMobile,
+  pagePush,
+  setCurrentMode,
+  type = "Default",
+  className
+}: EventCardProps) => {
   const titleAbove = type === "Default" && !isMobile;
+
+  const handleModeClicked = () => {
+    setCurrentMode(headline.attributes.mode);
+    pagePush(PAGE_TYPE_ID.DATA_LAYER_PAGE);
+  };
 
   return (
     <button
@@ -53,6 +71,10 @@ const EventCard = ({ headline, onClick, isMobile, type = "Default", className }:
             text={headline.attributes.mode.attributes.title}
             type="Light"
             iconPosition="Left"
+            onClick={e => {
+              e.stopPropagation();
+              handleModeClicked();
+            }}
           />
         </div>
       </div>

@@ -1,10 +1,11 @@
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import styles from "../menu.module.scss";
+import classnames from "classnames";
 import dataLayerStyles from "./data-layer.module.scss";
 import panelStyles from "components/app/home/content-panel/panel.module.scss";
 import { connect } from "react-redux";
 import { RootState } from "store/types";
-import { NAME as modesSliceName, Mode } from "slices/modes";
+import { NAME as modesSliceName, Mode, pagePush } from "slices/modes";
 import ContentPanel from "components/app/home/content-panel/component";
 import SharePanel from "components/app/home/share-panel/component";
 import EventCard from "components/app/home/event-card";
@@ -14,22 +15,24 @@ import {
   Headline as HeadlineType,
   setCurrentHeadline,
   setHeadlinesLoading,
-  Headline
+  Headline,
+  setCurrentHeadlineId
 } from "slices/headlines";
 import { fetchClimateAlerts } from "services/gca";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
 import { setIsShareOpen } from "slices/common";
 import { fireEvent } from "utils/gtag";
 import { EARTH_HQ_EXPLORED_NEWS, EARTH_HQ_SHARED_CATEGORY } from "constants/tag-manager";
+import { PAGE_TYPE_ID } from "../../main-container/component";
 
 type DataIndexProps = {
   currentMode: Mode | undefined;
   headlines: HeadlineType[];
-  setHeadlines: ActionCreatorWithPayload<HeadlineType[], string>;
-  setHeadlinesLoading: ActionCreatorWithPayload<boolean, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
+  setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
+  pagePush: ActionCreatorWithPayload<string, string>;
   onClickExtremeEvents: () => {};
 };
 
@@ -41,42 +44,20 @@ const NEWS_ICON = "/static/icons/mode-news.svg";
 const DataLayerOverview = ({
   currentMode,
   headlines,
-  setHeadlines,
-  setHeadlinesLoading,
   setCurrentHeadline,
+  setCurrentHeadlineId,
   setIsShareOpen,
+  pagePush,
   onClickExtremeEvents
 }: DataIndexProps) => {
-  const [isFetching, setIsFetching] = useState(true);
-
-  useEffect(() => {
-    if (!currentMode) return;
-    setIsFetching(true);
-    const getHeadlines = async () => {
-      setHeadlinesLoading(true);
-      try {
-        const resp = await fetchClimateAlerts();
-
-        const filteredHeadlines = resp.data.data
-          .reverse()
-          .slice(0, 25)
-          .filter((headline: Headline) => headline.attributes.mode.id === currentMode.id);
-
-        setHeadlines(filteredHeadlines);
-      } catch (err) {
-        console.log("Error fetching headlines", err);
-      } finally {
-        setIsFetching(false);
-        setHeadlinesLoading(false);
-      }
-    };
-
-    getHeadlines();
-  }, [setHeadlines, currentMode]);
-
   const mostRecentHeadlines = useMemo(() => {
     return headlines.slice(0, MAX_NUMBER_OF_HEADLINES);
   }, [headlines]);
+
+  useEffect(() => {
+    setCurrentHeadline(undefined);
+    setCurrentHeadlineId(undefined);
+  }, []);
 
   if (currentMode == null) return null;
 
@@ -84,8 +65,13 @@ const DataLayerOverview = ({
     attributes: { icon, title, description }
   } = currentMode;
 
+  const handleEventClicked = (headline: Headline) => {
+    setCurrentHeadline(headline);
+    pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+  };
+
   return (
-    <div className={styles["c-home-menu__scroll-area"]}>
+    <div className={classnames(styles["c-home-menu__scroll-area"], styles["c-home-menu__scroll-area--extra-top"])}>
       <ContentPanel icon={icon} title={title}>
         <p className={dataLayerStyles["c-data-layer-menu-panel__card-desc"]}>{description}</p>
       </ContentPanel>
@@ -101,13 +87,9 @@ const DataLayerOverview = ({
           View the latest {currentMode.attributes.title.toLowerCase()} extreme events.
         </p>
         <div className={styles["c-home-menu__events-list"]}>
-          {!isFetching ? (
-            mostRecentHeadlines.map(headline => (
-              <EventCard key={headline.id} headline={headline} onClick={() => setCurrentHeadline(headline)} />
-            ))
-          ) : (
-            <p>Loading</p>
-          )}
+          {mostRecentHeadlines.map(headline => (
+            <EventCard key={headline.id} headline={headline} onClick={() => handleEventClicked(headline)} />
+          ))}
         </div>
       </ContentPanel>
       {currentMode.attributes.sections.map(section => (
@@ -153,5 +135,10 @@ export default connect(
     headlines: state[headlineSliceName].headlines,
     currentMode: state[modesSliceName].currentMode
   }),
-  { setHeadlines, setCurrentHeadline, setIsShareOpen, setHeadlinesLoading }
+  {
+    setCurrentHeadline,
+    setCurrentHeadlineId,
+    setIsShareOpen,
+    pagePush
+  }
 )(DataLayerOverview);

@@ -13,7 +13,9 @@ import {
   setHeight,
   resetValues,
   setDateOfDataShown,
-  NAME as modesSliceName
+  NAME as modesSliceName,
+  pagePush,
+  pagePop
 } from "slices/modes";
 
 export default connect(
@@ -31,8 +33,7 @@ export default connect(
     dialogHeight: state[dialogSliceName].dialogHeight,
     currentHeadline: state[headlinesSliceName].currentHeadline,
     headlines: state[headlinesSliceName].headlines,
-    headlinesLoading: state[headlinesSliceName].headlinesLoading,
-    previousPageTypeId: state[modesSliceName].previousPageTypeId
+    headlinesLoading: state[headlinesSliceName].headlinesLoading
   }),
   {
     setCurrentMode,
@@ -45,7 +46,9 @@ export default connect(
     setDialogHeight,
     setHeadlines,
     setCurrentHeadline,
-    setCurrentHeadlineId
+    setCurrentHeadlineId,
+    pagePush,
+    pagePop
   },
   null,
   { forwardRef: true }
