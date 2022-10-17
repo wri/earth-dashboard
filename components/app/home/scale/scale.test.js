@@ -112,6 +112,7 @@ test("<Scale /> renders correctly horizontal", async () => {
 <div>
   <div
     class="c-some-class c-scale c-scale--horizontal"
+    style="margin-top: 9px;"
   >
     <label
       for="scale"

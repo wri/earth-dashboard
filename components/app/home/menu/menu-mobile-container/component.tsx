@@ -36,8 +36,8 @@ const MenuMobileContainer = ({
     if (typeof window !== "undefined") setWindowHeight(window.innerHeight);
   }, []);
 
-  const isInfoPage = pageTypeId === PAGE_TYPE_ID.INFO_PAGE && router.pathname === "/";
-  const isDataInfoPage = pageTypeId === PAGE_TYPE_ID.INFO_PAGE && router.pathname === "/explore";
+  const isInfoPage = pageTypeId === PAGE_TYPE_ID.INFO_PAGE && router?.pathname === "/";
+  const isDataInfoPage = pageTypeId === PAGE_TYPE_ID.INFO_PAGE && router?.pathname === "/explore";
 
   const snapHeights = isInfoPage
     ? [defaultPanelHeight, 380]

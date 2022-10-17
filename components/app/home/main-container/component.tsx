@@ -103,7 +103,7 @@ const MainContainer = ({
 
   const defaultMobileMenuHeight =
     pageTypeId === PAGE_TYPE_ID.INFO_PAGE
-      ? router.pathname === "/"
+      ? router?.pathname === "/"
         ? MODILE_MENU_HEIGHT_WITH_SCALE + 28
         : MODILE_MENU_HEIGHT_WITH_SCALE + 68
       : currentMode?.id === defaultMode?.id
@@ -129,6 +129,10 @@ const MainContainer = ({
   /** Toggles the current location setting. */
   const handleToggleLocation = () => {
     dispatch((() => setShouldFetchLocation(true))());
+  };
+
+  const getOpenMenuHeight = () => {
+    return pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? (router?.pathname === "/" ? 380 : 480) : window.innerHeight * 0.6;
   };
 
   const {
@@ -255,9 +259,7 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(
-        pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? (router.pathname === "/" ? 380 : 480) : window.innerHeight * 0.6
-      );
+      setMobileMenuHeight(getOpenMenuHeight());
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {
@@ -379,9 +381,7 @@ const MainContainer = ({
   useEffect(() => {
     if (earthServer.current) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(
-        pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? (router.pathname === "/" ? 380 : 480) : window.innerHeight * 0.6
-      );
+      setMobileMenuHeight(getOpenMenuHeight());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [earthServer.current, setHasMenuOpen]);

@@ -1,8 +1,8 @@
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import MenuOption from "components/app/home/menu-option";
 import Carousel from "components/ui/carousel";
 import { EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
-import React, { useEffect, useMemo, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { Mode, setCurrentMode } from "slices/modes";
 import { RootState } from "store/types";
