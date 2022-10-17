@@ -1,4 +1,3 @@
-import React from "react";
 import EventPrompt from "../../event-prompt";
 import styles from "../menu.module.scss";
 

@@ -6,6 +6,14 @@
   z-index: $z-index-menu;
   position: relative;
 
+  &__skeleton {
+    margin: 0 24px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      margin-top: 16px;
+    }
+  }
+
   @media screen and (max-width: $global-breakpoint-md) {
     display: flex;
     align-items: center;
