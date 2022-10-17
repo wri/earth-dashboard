@@ -24,7 +24,7 @@ const PageNotFound = () => {
       <div className={styles["c-page-404__container"]}>
         {/* Text */}
         <h1>404</h1>
-        <p>Ooops, that page could not be found. Head back to Earth HQ to explore the latest extreme events.</p>
+        <p>Oops, that page could not be found. Head back to Earth HQ to explore the latest extreme events.</p>
 
         {/* Button */}
         <AnchorCTA className={styles["back-btn"]} href="/" onClick={() => fireEvent(ERROR_BACK_EARTH_HQ, null)}>
