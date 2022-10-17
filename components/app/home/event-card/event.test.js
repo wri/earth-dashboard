@@ -1,6 +1,6 @@
 import { render } from "test-utils";
 import headlines from "test/headlines.json";
-import EventCard from "./component";
+import EventCard from "./index";
 
 test("<EventCard /> renders correctly as a Button", async () => {
   const { container } = render(<EventCard headline={headlines.data[0]} as="button" />);
@@ -10,7 +10,6 @@ test("<EventCard /> renders correctly as a Button", async () => {
   <button
     class="c-event-card"
     data-testid="headline"
-    style="height: auto;"
   >
     <div
       class="c-event-card__background"
@@ -22,14 +21,8 @@ test("<EventCard /> renders correctly as a Button", async () => {
       <div
         class="c-event-card__header"
       >
-        <h3
-          class="title title-above"
-        >
-          Rerum illo excepturi nobis quam earum corrupti at.
-        </h3>
         <div
           class="thumbnail"
-          style="min-height: 192px;"
         >
           <span
             style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -45,6 +38,11 @@ test("<EventCard /> renders correctly as a Button", async () => {
             <noscript />
           </span>
         </div>
+        <h3
+          class="title title-below"
+        >
+          Rerum illo excepturi nobis quam earum corrupti at.
+        </h3>
       </div>
       <div
         class="c-event-card__footer"
@@ -86,7 +84,6 @@ test("<EventCard /> renders correctly by default", async () => {
   <button
     class="c-event-card"
     data-testid="headline"
-    style="height: auto;"
   >
     <div
       class="c-event-card__background"
@@ -98,14 +95,8 @@ test("<EventCard /> renders correctly by default", async () => {
       <div
         class="c-event-card__header"
       >
-        <h3
-          class="title title-above"
-        >
-          Rerum illo excepturi nobis quam earum corrupti at.
-        </h3>
         <div
           class="thumbnail"
-          style="min-height: 192px;"
         >
           <span
             style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -121,6 +112,11 @@ test("<EventCard /> renders correctly by default", async () => {
             <noscript />
           </span>
         </div>
+        <h3
+          class="title title-below"
+        >
+          Rerum illo excepturi nobis quam earum corrupti at.
+        </h3>
       </div>
       <div
         class="c-event-card__footer"

@@ -14,7 +14,7 @@ type EventCardProps = {
   onClick: () => void;
   isMobile: boolean;
   pagePush: ActionCreatorWithPayload<string, string>;
-  setCurrentMode: ActionCreatorWithPayload<Mode | undefined, string>;
+  setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   type?: "Default" | "Condensed";
   className?: string;
 };
