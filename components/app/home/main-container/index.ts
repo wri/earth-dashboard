@@ -8,7 +8,8 @@ import {
   setCurrentMode,
   setDateOfDataShown,
   setCurrentVisibleMode,
-  setPreviousPageTypeId
+  setPreviousPageTypeId,
+  setModesLoading
 } from "slices/modes";
 import { setHeadlines, setHeadlinesLoading } from "slices/headlines";
 import {
@@ -29,7 +30,8 @@ export default connect(
     defaultMode: state.modes.defaultMode,
     pageTypeId: state.modes.pageTypeId,
     previousPageTypeId: state.modes.previousPageTypeId,
-    currentHeadlineId: state.headlines.currentHeadlineId
+    currentHeadlineId: state.headlines.currentHeadlineId,
+    modesLoading: state.modes.modesLoading
   }),
   {
     setModes,
@@ -45,6 +47,7 @@ export default connect(
     setCurrentLocation,
     setCurrentScale,
     setCurrentScaleBy,
-    setCurrentVisibleMode
+    setCurrentVisibleMode,
+    setModesLoading
   }
 )(MainContainerComponent);

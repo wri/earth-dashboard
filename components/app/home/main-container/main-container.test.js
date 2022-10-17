@@ -89,11 +89,11 @@ test("<MainContainer /> renders correctly as mobile", async () => {
   >
     <div
       class="c-mobile-menu-container"
-      style="height: 380px; z-index: 1000;"
+      style="height: 480px; z-index: 1000;"
     >
       <div
         class="c-mobile-menu-container__draggable"
-        style="position: relative; user-select: auto; width: 100vw; height: 380px; max-width: 100vw; max-height: 380px; min-width: 100vw; min-height: 263px; box-sizing: border-box; flex-shrink: 0;"
+        style="position: relative; user-select: auto; width: 100vw; height: 480px; max-width: 100vw; max-height: 691.2px; min-width: 100vw; min-height: 303px; box-sizing: border-box; flex-shrink: 0;"
       >
         <div
           class="c-home-menu-container"

@@ -78,4 +78,5 @@ export type ModesState = {
   pageTypeId: string;
   previousPageTypeId: string;
   infoMode: Mode | undefined;
+  modesLoading: boolean;
 };

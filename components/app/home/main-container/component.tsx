@@ -67,6 +67,8 @@ type MainContainerProps = {
   setCurrentScaleBy: ActionCreatorWithPayload<number, string>;
   setCurrentVisibleMode: ActionCreatorWithPayload<Mode, string>;
   setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
+  setModesLoading: ActionCreatorWithPayload<boolean, string>;
+  modesLoading: boolean;
 };
 
 const MainContainer = ({
@@ -93,11 +95,17 @@ const MainContainer = ({
   setCurrentScaleBy,
   setCurrentVisibleMode,
   currentHeadlineId,
-  setPreviousPageTypeId
+  setPreviousPageTypeId,
+  setModesLoading,
+  modesLoading
 }: MainContainerProps) => {
+  const router = useRouter();
+
   const defaultMobileMenuHeight =
     pageTypeId === PAGE_TYPE_ID.INFO_PAGE
-      ? MODILE_MENU_HEIGHT_WITH_SCALE + 28
+      ? router?.pathname === "/"
+        ? MODILE_MENU_HEIGHT_WITH_SCALE + 28
+        : MODILE_MENU_HEIGHT_WITH_SCALE + 68
       : currentMode?.id === defaultMode?.id
       ? MODILE_MENU_HEIGHT_WITHOUT_SCALE
       : MODILE_MENU_HEIGHT_WITH_SCALE;
@@ -105,10 +113,7 @@ const MainContainer = ({
   const [hasMenuOpen, setHasMenuOpen] = useState<boolean>(false);
   const [hasIframe, setHasIframe] = useState<boolean>(false);
   const [isClosingMenu, setIsClosingMenu] = useState(false);
-  const [isFetchingTemplates, setIsFetchingTemplates] = useState<boolean>(false);
   const [mobileMenuHeight, setMobileMenuHeight] = useState<number>(defaultMobileMenuHeight);
-
-  const router = useRouter();
 
   const { width: browserWidth } = useWindowDimensions();
 
@@ -124,6 +129,10 @@ const MainContainer = ({
   /** Toggles the current location setting. */
   const handleToggleLocation = () => {
     dispatch((() => setShouldFetchLocation(true))());
+  };
+
+  const getOpenMenuHeight = () => {
+    return pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? (router?.pathname === "/" ? 380 : 480) : window.innerHeight * 0.6;
   };
 
   const {
@@ -250,7 +259,7 @@ const MainContainer = ({
   const toggleMenu = () => {
     if (!hasMenuOpen) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? 380 : window.innerHeight * 0.6);
+      setMobileMenuHeight(getOpenMenuHeight());
     } else {
       setIsClosingMenu(true);
       setTimeout(() => {
@@ -330,8 +339,8 @@ const MainContainer = ({
 
   // Fetch Templates from the GCA CMS
   useEffect(() => {
-    setIsFetchingTemplates(true);
     const getTemplates = async () => {
+      setModesLoading(true);
       try {
         const { data } = await fetchModes();
 
@@ -345,7 +354,7 @@ const MainContainer = ({
       } catch (err) {
         console.log("Error fetching modes");
       } finally {
-        setIsFetchingTemplates(false);
+        setModesLoading(false);
       }
     };
 
@@ -372,7 +381,7 @@ const MainContainer = ({
   useEffect(() => {
     if (earthServer.current) {
       setHasMenuOpen(true);
-      setMobileMenuHeight(pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? 380 : window.innerHeight * 0.6);
+      setMobileMenuHeight(getOpenMenuHeight());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [earthServer.current, setHasMenuOpen]);
@@ -437,7 +446,7 @@ const MainContainer = ({
             </div>
           </div>
         )}
-        {((hasMenuOpen && !isFetchingTemplates) || isMobile) && (
+        {((hasMenuOpen && !modesLoading) || isMobile) && (
           <Menu
             // @ts-expect-error
             isMobile={isMobile}
