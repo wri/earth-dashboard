@@ -104,19 +104,19 @@ const Menu = forwardRef(
     const navigateHeadline = action => {
       const { index, total } = getCurrentHeadlineIndex();
 
-      if (action === "back") {
-        return prevHeadlineEl?.scrollIntoView({
+      if (action === "back" && prevHeadlineEl) {
+        prevHeadlineEl.scrollIntoView({
           behavior: index === 0 ? "auto" : "smooth",
           block: "nearest",
           inline: "nearest"
         });
+      } else if (nextHeadlineEl) {
+        nextHeadlineEl.scrollIntoView({
+          behavior: index === total - 1 ? "auto" : "smooth",
+          block: "nearest",
+          inline: "nearest"
+        });
       }
-
-      nextHeadlineEl?.scrollIntoView({
-        behavior: index === total - 1 ? "auto" : "smooth",
-        block: "nearest",
-        inline: "nearest"
-      });
     };
 
     useEffect(() => {
@@ -142,6 +142,10 @@ const Menu = forwardRef(
 
             if (!entry.isIntersecting || !newHeadline) return;
 
+            entry.target.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
             setCurrentHeadline(newHeadline);
             setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.parentElement.firstElementChild);
             setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.parentElement.lastElementChild);
