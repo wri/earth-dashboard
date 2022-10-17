@@ -2,7 +2,7 @@
 import { GCAAPI } from "utils/axios";
 import { logger } from "utils/logs";
 
-import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
+import { DATA_INFO_PAGE_HEADLINE, PAGE_TYPE_ID } from "components/app/home/main-container/component";
 import { Mode } from "slices/modes";
 import { Headline } from "slices/headlines";
 
@@ -149,9 +149,12 @@ export const fetchVideos = async (params?: object) => {
 export const getMenuTitle = (
   currentHeadline: Headline | undefined,
   currentMode: Mode | undefined,
-  pageTypeId: string
+  pageTypeId: string,
+  route?: string
 ) => {
-  if (pageTypeId == PAGE_TYPE_ID.INFO_PAGE) return "This Is A Planetary Emergency...";
-  else if (currentHeadline) return currentHeadline.attributes.title;
+  if (pageTypeId == PAGE_TYPE_ID.INFO_PAGE) {
+    if (route && route === "/explore") return DATA_INFO_PAGE_HEADLINE;
+    return "This Is A Planetary Emergency...";
+  } else if (currentHeadline) return currentHeadline.attributes.title;
   return currentMode && currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "Extreme Events";
 };

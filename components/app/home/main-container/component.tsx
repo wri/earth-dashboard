@@ -32,6 +32,7 @@ import { useRouter } from "next/router";
 export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
 export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
 export const INFO_PAGE_HEADLINE = "This Is A Planetary Emergency...";
+export const DATA_INFO_PAGE_HEADLINE = "I'd like to explore...";
 export const EXTREME_EVENTS_PAGE_HEADLINE = "Extreme events";
 
 export const PAGE_TYPE_ID = {
@@ -502,7 +503,7 @@ const MainContainer = ({
                 data-testid="toggle"
               >
                 <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
-                  <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId)}</span>
+                  <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId, router.pathname)}</span>
                 </div>
               </button>
             </>

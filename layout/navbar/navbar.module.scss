@@ -75,6 +75,20 @@
           min-width: 28px;
           min-height: 28px;
         }
+
+        .explore-icon {
+          svg {
+            min-width: 20px;
+            min-height: 20px;
+            fill: #80929f;
+          }
+
+          &-selected {
+            svg {
+              fill: $white;
+            }
+          }
+        }
       }
 
       &-container > * {

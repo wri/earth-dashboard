@@ -10,7 +10,6 @@ import { Mobile, Desktop, MediaContextProvider } from "utils/responsive";
 import styles from "./homepage.module.scss";
 import MainContainer from "components/app/home/main-container";
 import useWindowDimensions from "hooks/useWindowDimensions";
-import Head from "next/head";
 import Analytics from "./analytics";
 
 type LayoutHomeProps = {
