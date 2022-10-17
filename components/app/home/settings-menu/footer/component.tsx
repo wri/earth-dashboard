@@ -31,7 +31,7 @@ const Footer = ({ setIsCookieOpen, setSettingsClose }: FooterProps) => {
             <p onClick={() => setIsCookieOpen(true)}>Cookies</p>
           ) : key === "about-us" ? (
             <Link key={key} href="/about">
-              <a onClick={aboutClickHandler}>{label}</a>
+              <a onClick={aboutClickHandler}>About</a>
             </Link>
           ) : (
             <a key={key} href={link} onClick={onClick && onClick} target="_blank" rel="nofollow noreferrer">
