@@ -31,6 +31,7 @@
     .widget {
       flex-shrink: 0;
       width: 90%;
+      max-width: auto;
       padding: 24px 16px;
       margin: 0 4px;
       background-color: $colour-night;
@@ -38,6 +39,10 @@
       scroll-snap-align: center;
       scroll-snap-stop: always;
       transition: background-color 0.5s;
+
+      @media screen and (min-width: $global-breakpoint-xxl) {
+        max-width: $o-page-section-wrap-max-width;
+      }
 
       &.active {
         background-color: $colour-midnight;
@@ -49,11 +54,19 @@
         @media screen and (min-width: $global-breakpoint-md) {
           margin-left: $o-page-section-padding-x-desktop;
         }
+
+        @media screen and (min-width: $global-breakpoint-xxl) {
+          margin-left: calc((100% - #{$o-page-section-wrap-max-width}) / 2);
+        }
       }
 
       &:last-child {
         @media screen and (min-width: $global-breakpoint-md) {
           margin-right: $o-page-section-padding-x-desktop;
+        }
+
+        @media screen and (min-width: $global-breakpoint-xxl) {
+          margin-right: calc((100% - #{$o-page-section-wrap-max-width}) / 2);
         }
       }
     }
@@ -72,6 +85,10 @@
 
     @media screen and (min-width: $global-breakpoint-md) {
       padding: 20px $o-page-section-padding-x-desktop;
+    }
+
+    @media screen and (min-width: $global-breakpoint-xxl) {
+      padding: 20px calc((100% - #{$o-page-section-wrap-max-width}) / 2);
     }
   }
 }

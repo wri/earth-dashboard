@@ -44,6 +44,11 @@
         margin: 0 $o-page-section-padding-x-desktop 16px $o-page-section-padding-x-desktop;
         font-family: Barlow;
       }
+
+      @media screen and (min-width: $global-breakpoint-xxl) {
+        margin: 0 calc((100% - #{$o-page-section-wrap-max-width}) / 2) 16px
+          calc((100% - #{$o-page-section-wrap-max-width}) / 2);
+      }
     }
   }
 
