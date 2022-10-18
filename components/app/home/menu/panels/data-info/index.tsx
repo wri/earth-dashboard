@@ -139,12 +139,15 @@ const DataInfo = ({
           ? styles["data-info-container"]
           : classnames(menuStyles["c-home-menu__scroll-area"], menuStyles["c-home-menu__scroll-area--extra-top"])
       }
+      style={isLoading ? { overflow: "hidden" } : {}}
     >
       <EventPrompt isMobile={isMobile} />
 
       {isMobile &&
         (isLoading ? (
-          <ContentPanelSkeleton className={styles["data-info-container__skeleton"]} />
+          <div className={styles["skeleton-container"]}>
+            <ContentPanelSkeleton className={styles["data-info-container__skeleton"]} />
+          </div>
         ) : (
           <Carousel
             items={
@@ -190,7 +193,11 @@ const DataInfo = ({
 
       {!isMobile &&
         (isLoading ? (
-          <ContentPanelSkeleton className={styles["data-info-container__skeleton"]} />
+          <>
+            <ContentPanelSkeleton className={styles["data-info-container__skeleton"]} />
+            <ContentPanelSkeleton className={styles["data-info-container__skeleton"]} />
+            <ContentPanelSkeleton className={styles["data-info-container__skeleton"]} />
+          </>
         ) : (
           <>
             {dataLayers.map(dataLayer => (
