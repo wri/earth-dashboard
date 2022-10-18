@@ -8,7 +8,7 @@ import { VIEW_ALL_EXTREME_EVENTS } from "constants/tag-manager";
 import { useEffect, useState } from "react";
 import { RootState } from "store/types";
 import { connect } from "react-redux";
-import { pagePush } from "slices/modes";
+import { Mode, pagePush } from "slices/modes";
 import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { PAGE_TYPE_ID } from "../../main-container/component";
 
@@ -16,11 +16,10 @@ type CurrentEventProps = {
   headlines: Headline[];
   headlinesLoading: boolean;
   currentHeadlineId: number | undefined;
+  currentMode: Mode | undefined;
   setCurrentHeadline: ActionCreatorWithOptionalPayload<Headline | undefined, string>;
   setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
   pagePush: ActionCreatorWithPayload<string, string>;
-  footerHeading: string;
-  checkCurrentHeadline: () => void;
 };
 
 /** Menu view to show a singular extreme event. */
@@ -28,12 +27,12 @@ const CurrentEvent = ({
   headlines,
   headlinesLoading,
   currentHeadlineId,
+  currentMode,
   setCurrentHeadline,
   setCurrentHeadlineId,
-  pagePush,
-  footerHeading,
-  checkCurrentHeadline
+  pagePush
 }: CurrentEventProps) => {
+  const [footerHeading, setFooterHeading] = useState<string>("");
   const [nextHeadlineEl, setNextHeadlineEl] = useState<Element | null>();
   const [prevHeadlineEl, setPrevHeadlineEl] = useState<Element | null>();
 
@@ -105,8 +104,6 @@ const CurrentEvent = ({
           setCurrentHeadlineId(newHeadline.id);
           setNextHeadlineEl(entry.target.nextElementSibling);
           setPrevHeadlineEl(entry.target.previousElementSibling);
-
-          checkCurrentHeadline();
         });
       },
       {
@@ -125,6 +122,22 @@ const CurrentEvent = ({
     };
     // eslint-disable-next-line
   }, [headlinesLoading]);
+
+  // Auto updates the footer text
+  useEffect(() => {
+    const currentHeadlineIndex = headlines.findIndex(headline => headline.id === currentHeadlineId);
+    const total = headlines.length;
+
+    if (currentHeadlineIndex === undefined || !currentMode) return;
+
+    setFooterHeading(
+      currentMode.attributes?.title !== "Default"
+        ? `${currentHeadlineIndex + 1}/${total} ${currentMode.attributes?.title}`
+        : `${currentHeadlineIndex + 1}/${total} Extreme Events`
+    );
+
+    // eslint-disable-next-line
+  }, [currentHeadlineId]);
 
   return (
     <>
@@ -154,7 +167,8 @@ export default connect(
   (state: RootState) => ({
     headlines: state.headlines.headlines,
     headlinesLoading: state.headlines.headlinesLoading,
-    currentHeadlineId: state.headlines.currentHeadlineId
+    currentHeadlineId: state.headlines.currentHeadlineId,
+    currentMode: state.modes.currentMode
   }),
   {
     setCurrentHeadline,

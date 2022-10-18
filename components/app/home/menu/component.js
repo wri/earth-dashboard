@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef } from "react";
 import { useRouter } from "next/router";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
@@ -18,13 +18,10 @@ const Menu = forwardRef(
       isMobile,
       onClose,
       isClosing,
-      currentMode,
-      currentHeadline,
       mobileMenuHeight,
       setMobileMenuHeight,
       pageTypeId,
       defaultMobileMenuHeight,
-      headlines,
       headlinesLoading,
       handleToggleLocation,
       isLocationDisabled,
@@ -38,40 +35,6 @@ const Menu = forwardRef(
 
     const navigateTo = pageId => () => pagePush(pageId);
 
-    const [footerHeading, setFooterHeading] = useState("");
-
-    const getCurrentHeadlineIndex = () => {
-      let index = -1;
-      let total = 0;
-
-      if (currentHeadline) {
-        index = headlines.findIndex(headline => headline.id === currentHeadline.id);
-        if (index > -1) {
-          total = headlines.length;
-        }
-      }
-      return { index, total, headlines };
-    };
-
-    // Checks current headline to set the footer text
-    const checkCurrentHeadline = () => {
-      const { index: currentHeadlineIndex, total } = getCurrentHeadlineIndex();
-
-      if (currentHeadline && currentMode) {
-        let text = "";
-        if (currentMode.attributes?.title !== "Default")
-          text = `${currentHeadlineIndex + 1}/${total} ${currentMode.attributes?.title}`;
-        else text = `${currentHeadlineIndex + 1}/${total} Extreme Events`;
-
-        setFooterHeading(text);
-      }
-    };
-
-    useEffect(() => {
-      checkCurrentHeadline();
-      // eslint-disable-next-line
-    }, [currentHeadline, headlinesLoading]);
-
     const getMenuContent = () => (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
@@ -79,11 +42,7 @@ const Menu = forwardRef(
         {/* Single event view */}
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
           <MenuLayout ref={ref} title="Back" onBack={pagePop} onClose={onClose}>
-            <CurrentEvent
-              footerHeading={footerHeading}
-              getCurrentHeadlineIndex={getCurrentHeadlineIndex}
-              checkCurrentHeadline={checkCurrentHeadline}
-            />
+            <CurrentEvent />
           </MenuLayout>
         )}
         {/* Main extreme events view */}
