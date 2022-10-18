@@ -14,15 +14,13 @@ const ContentPanelSkeleton = ({ className = "" }: ContentPanelSkeletonProps) => 
       <div className={styles["c-content-panel-skeleton__top"]}>
         <Skeleton className={styles["image"]} dark pulse />
 
-        <Skeleton.Text widths={["100%", "40%"]} className={styles["text"]} dark />
+        <Skeleton.Text widths={["60%"]} className={styles["text"]} dark />
       </div>
 
       {/* Bottom */}
-      <div className={styles["c-content-panel-skeleton__bottom"]}>
-        <Skeleton.Text widths={["100%"]} className={styles["text"]} />
+      <Skeleton.Text widths={["100%", "50%"]} className={styles["text-description"]} dark />
 
-        <Skeleton.ExternalLink className={styles["link"]} />
-      </div>
+      <Skeleton.ExternalLink className={styles["link"]} dark />
     </Skeleton>
   );
 };

@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { Mode, setCurrentMode, pagePush, resetPageStack } from "slices/modes";
 import { RootState } from "store/types";
 import { fireEvent } from "utils/gtag";
-import EventCardSkeleton from "../../../event-card/event-card-skeleton";
 import EventPrompt from "../../../event-prompt";
 import CarouselCard from "./carousel-card";
 import styles from "./data-info.module.scss";
@@ -19,6 +18,7 @@ import Link from "next/link";
 import ContentPanel from "components/app/home/content-panel";
 import Image from "next/image";
 import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
+import ContentPanelSkeleton from "components/app/home/content-panel/content-panel-skeleton";
 
 const SCROLL_NORMALIZE_VALUE = 37;
 
@@ -144,7 +144,7 @@ const DataInfo = ({
 
       {isMobile &&
         (isLoading ? (
-          <EventCardSkeleton className={styles["data-info-container__skeleton"]} />
+          <ContentPanelSkeleton className={styles["data-info-container__skeleton"]} />
         ) : (
           <Carousel
             items={
@@ -190,7 +190,7 @@ const DataInfo = ({
 
       {!isMobile &&
         (isLoading ? (
-          <EventCardSkeleton className={styles["data-info-container__skeleton"]} />
+          <ContentPanelSkeleton className={styles["data-info-container__skeleton"]} />
         ) : (
           <>
             {dataLayers.map(dataLayer => (

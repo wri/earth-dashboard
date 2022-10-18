@@ -7,12 +7,9 @@
   position: relative;
 
   &__skeleton {
-    margin: 0 24px;
-    width: auto;
-    margin-top: 16px;
-
-    @media screen and (min-width: $global-breakpoint-md) {
-      margin-top: 16px;
+    @media screen and (max-width: $global-breakpoint-md) {
+      margin: 16px 24px 0;
+      width: auto;
     }
   }
 }
