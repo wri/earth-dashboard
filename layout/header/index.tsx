@@ -82,7 +82,12 @@ const Header = ({ setCurrentHeadline, setCurrentHeadlineId, setCurrentScale, set
                     onClick={handleGlobeReset}
                     isActive={pageTypeId !== PAGE_TYPE_ID.INFO_PAGE ? false : undefined}
                   />
-                  <HeaderLink href="/explore" text="Explore" />
+                  <HeaderLink
+                    href="/explore"
+                    text="Explore"
+                    onClick={handleGlobeReset}
+                    isActive={pageTypeId !== PAGE_TYPE_ID.INFO_PAGE ? false : undefined}
+                  />
                   <HeaderLink href="/news" text="News" />
                 </div>
               </Desktop>
