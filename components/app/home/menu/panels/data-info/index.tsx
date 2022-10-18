@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import MenuOption from "components/app/home/menu-option";
 import Carousel from "components/ui/carousel";
-import { EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
+import { ADVANCED_MENU, EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
 import { connect } from "react-redux";
 import { Mode, setCurrentMode, pagePush, resetPageStack } from "slices/modes";
 import { RootState } from "store/types";
@@ -15,6 +15,10 @@ import menuStyles from "../../menu.module.scss";
 import classnames from "classnames";
 import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
 import { removeSelectedHeadline } from "slices/headlines";
+import Link from "next/link";
+import ContentPanel from "components/app/home/content-panel";
+import Image from "next/image";
+import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
 
 const SCROLL_NORMALIZE_VALUE = 37;
 
@@ -81,10 +85,30 @@ const DataInfo = ({
     if (index < modes.length) setCurrentMode(modes[index]);
   };
 
+  const scrollToIndex = (index: number, behavior?: "auto" | "smooth") => {
+    if (!carouselWidth || !carouselRef.current) return;
+
+    const scrollLeft = index * (carouselWidth - SCROLL_NORMALIZE_VALUE);
+    carouselRef.current.scrollTo({ left: scrollLeft, behavior });
+  };
+
+  const scrollFromMode = (behavior?: "auto" | "smooth") => {
+    if (!carouselWidth || !carouselRef.current || !currentMode || !modes) return;
+
+    const index = modes.findIndex(mode => mode.id === currentMode.id);
+
+    if (!index) return;
+    scrollToIndex(index, behavior);
+  };
+
   useEffect(() => {
     if (containerRef.current) setCarouselWidth(containerRef.current.offsetWidth);
     // eslint-disable-next-line
   }, [containerRef.current]);
+
+  useEffect(() => {
+    scrollFromMode();
+  }, [carouselWidth, carouselRef.current]);
 
   useEffect(() => {
     if (isMobile) {
@@ -136,6 +160,31 @@ const DataInfo = ({
             style={{ height: "100%" }}
             ref={carouselRef}
             setScroll={setCarouselScroll}
+            finalItem={
+              <Link href="https://earth.nullschool.net/">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  onClick={() => fireEvent(ADVANCED_MENU, null)}
+                  style={{ minWidth: "100%" }}
+                >
+                  <ContentPanel className={menuStyles["c-home-menu-item--advanced-data-item"]} canFocus={false}>
+                    <div className={menuStyles["c-home-menu-item__container"]}>
+                      <h3 className={menuStyles["c-home-menu-item__title"]}>Advanced Data</h3>
+                      <p className={menuStyles["c-home-menu-item__desc"]}>
+                        Dive deeper into the full datasets available. Combine and overlay data to create unique maps and
+                        visualizations.
+                      </p>
+
+                      <div className={menuStyles["c-home-menu-item__external-link"]}>
+                        <Image width={16} height={16} alt="" role="presentation" src={ExternalLinkIcon} />
+                        <span>Earth Nullschool</span>
+                      </div>
+                    </div>
+                  </ContentPanel>
+                </a>
+              </Link>
+            }
           />
         ))}
 
@@ -143,9 +192,29 @@ const DataInfo = ({
         (isLoading ? (
           <EventCardSkeleton className={styles["data-info-container__skeleton"]} />
         ) : (
-          dataLayers.map(dataLayer => (
-            <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
-          ))
+          <>
+            {dataLayers.map(dataLayer => (
+              <MenuOption isSelected={currentMode?.id === dataLayer.id} key={dataLayer.id} {...dataLayer} />
+            ))}
+            <Link href="https://earth.nullschool.net/">
+              <a rel="noopener noreferrer" target="_blank" onClick={() => fireEvent(ADVANCED_MENU, null)}>
+                <ContentPanel className={menuStyles["c-home-menu-item--advanced-data-item"]} canFocus={true}>
+                  <div className={menuStyles["c-home-menu-item__container"]}>
+                    <h3 className={menuStyles["c-home-menu-item__title"]}>Advanced Data</h3>
+                    <p className={menuStyles["c-home-menu-item__desc"]}>
+                      Dive deeper into the full datasets available. Combine and overlay data to create unique maps and
+                      visualizations.
+                    </p>
+
+                    <div className={menuStyles["c-home-menu-item__external-link"]}>
+                      <Image width={16} height={16} alt="" role="presentation" src={ExternalLinkIcon} />
+                      <span>Earth Nullschool</span>
+                    </div>
+                  </div>
+                </ContentPanel>
+              </a>
+            </Link>
+          </>
         ))}
     </div>
   );

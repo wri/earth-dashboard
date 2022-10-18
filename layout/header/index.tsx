@@ -80,13 +80,7 @@ const Header = ({ setCurrentHeadline, setCurrentHeadlineId, setCurrentScale, set
                     href="/"
                     text="Earth HQ"
                     onClick={handleGlobeReset}
-                    isActive={
-                      pageTypeId !== PAGE_TYPE_ID.INFO_PAGE
-                        ? false
-                        : typeof currentHeadlineId !== "undefined"
-                        ? false
-                        : undefined
-                    }
+                    isActive={pageTypeId !== PAGE_TYPE_ID.INFO_PAGE ? false : undefined}
                   />
                   <HeaderLink href="/explore" text="Explore" />
                   <HeaderLink href="/news" text="News" />

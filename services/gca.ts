@@ -153,7 +153,10 @@ export const getMenuTitle = (
   route?: string
 ) => {
   if (pageTypeId == PAGE_TYPE_ID.INFO_PAGE) {
-    if (route && route === "/explore") return DATA_INFO_PAGE_HEADLINE;
+    if (route && route === "/explore")
+      return currentMode && currentMode.attributes.title !== "Default"
+        ? currentMode.attributes.title
+        : DATA_INFO_PAGE_HEADLINE;
     return "This Is A Planetary Emergency...";
   } else if (currentHeadline) return currentHeadline.attributes.title;
   return currentMode && currentMode.attributes.title !== "Default" ? currentMode.attributes.title : "Extreme Events";

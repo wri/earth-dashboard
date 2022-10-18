@@ -383,6 +383,11 @@ const MainContainer = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [earthServer.current, setHasMenuOpen]);
 
+  // When enter info page, set height as is different to others
+  useEffect(() => {
+    if (pageTypeId === PAGE_TYPE_ID.INFO_PAGE) setMobileMenuHeight(getOpenMenuHeight());
+  }, [pageTypeId]);
+
   useEffect(() => {
     if (!currentHeadline) return;
 
