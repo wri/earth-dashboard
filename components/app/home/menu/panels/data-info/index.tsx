@@ -4,7 +4,7 @@ import MenuOption from "components/app/home/menu-option";
 import Carousel from "components/ui/carousel";
 import { ADVANCED_MENU, EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
 import { connect } from "react-redux";
-import { Mode, setCurrentMode, pagePush } from "slices/modes";
+import { Mode, setCurrentMode, pagePush, resetPageStack } from "slices/modes";
 import { RootState } from "store/types";
 import { fireEvent } from "utils/gtag";
 import EventCardSkeleton from "../../../event-card/event-card-skeleton";
@@ -46,6 +46,7 @@ type DataInfoProps = {
   pagePush: ActionCreatorWithPayload<string, string>;
   removeSelectedHeadline: ActionCreatorWithoutPayload<string>;
   defaultMode: Mode | undefined;
+  resetPageStack: ActionCreatorWithoutPayload<string>;
 };
 
 const DataInfo = ({
@@ -56,7 +57,8 @@ const DataInfo = ({
   currentMode,
   pagePush,
   removeSelectedHeadline,
-  defaultMode
+  defaultMode,
+  resetPageStack
 }: DataInfoProps) => {
   const [carouselScroll, setCarouselScroll] = useState<number>(0);
   const [carouselWidth, setCarouselWidth] = useState<number>();
@@ -122,6 +124,7 @@ const DataInfo = ({
 
   useEffect(() => {
     removeSelectedHeadline();
+    resetPageStack();
   }, []);
 
   useEffect(() => {
@@ -227,5 +230,5 @@ export default connect(
     currentMode: state.modes.currentMode,
     defaultMode: state.modes.defaultMode
   }),
-  { setCurrentMode, pagePush, removeSelectedHeadline }
+  { setCurrentMode, pagePush, resetPageStack, removeSelectedHeadline }
 )(DataInfo);
