@@ -20,7 +20,6 @@ const Menu = forwardRef(
       isClosing,
       currentMode,
       currentHeadline,
-      currentHeadlineId,
       mobileMenuHeight,
       setMobileMenuHeight,
       pageTypeId,
@@ -80,7 +79,11 @@ const Menu = forwardRef(
         {/* Single event view */}
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
           <MenuLayout ref={ref} title="Back" onBack={pagePop} onClose={onClose}>
-            <CurrentEvent footerHeading={footerHeading} getCurrentHeadlineIndex={getCurrentHeadlineIndex} />
+            <CurrentEvent
+              footerHeading={footerHeading}
+              getCurrentHeadlineIndex={getCurrentHeadlineIndex}
+              checkCurrentHeadline={checkCurrentHeadline}
+            />
           </MenuLayout>
         )}
         {/* Main extreme events view */}

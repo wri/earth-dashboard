@@ -20,6 +20,7 @@ type CurrentEventProps = {
   setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
   pagePush: ActionCreatorWithPayload<string, string>;
   footerHeading: string;
+  checkCurrentHeadline: () => void;
 };
 
 /** Menu view to show a singular extreme event. */
@@ -30,7 +31,8 @@ const CurrentEvent = ({
   setCurrentHeadline,
   setCurrentHeadlineId,
   pagePush,
-  footerHeading
+  footerHeading,
+  checkCurrentHeadline
 }: CurrentEventProps) => {
   const [nextHeadlineEl, setNextHeadlineEl] = useState<Element | null>();
   const [prevHeadlineEl, setPrevHeadlineEl] = useState<Element | null>();
@@ -103,6 +105,8 @@ const CurrentEvent = ({
           setCurrentHeadlineId(newHeadline.id);
           setNextHeadlineEl(entry.target.nextElementSibling);
           setPrevHeadlineEl(entry.target.previousElementSibling);
+
+          checkCurrentHeadline();
         });
       },
       {
