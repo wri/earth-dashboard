@@ -20,6 +20,8 @@ type ExtremeEventProps = {
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
   eventScaleData: EventScaleData | undefined;
   onViewAllEventsClicked: () => any;
+  first?: boolean;
+  last?: boolean;
 };
 
 const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
@@ -29,7 +31,9 @@ const ExtremeEvent = ({
   currentMode,
   setIsShareOpen,
   eventScaleData,
-  onViewAllEventsClicked
+  onViewAllEventsClicked,
+  first,
+  last
 }: ExtremeEventProps) => {
   const articleRef = useRef<HTMLDivElement>(null);
 
@@ -52,7 +56,12 @@ const ExtremeEvent = ({
   if (!headline) return null;
 
   return (
-    <div id={`headline-${headline.id}`} className={styles["c-event__container"]}>
+    <div
+      id={`${first ? "first-" : last ? "last-" : ""}headline-${headline.id}`}
+      className={styles["c-event__container"]}
+      data-first={first}
+      data-last={last}
+    >
       {/* Hero */}
       <div className={styles["c-event__hero"]}>
         {/* Image */}

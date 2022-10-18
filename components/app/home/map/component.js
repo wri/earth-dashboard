@@ -230,8 +230,19 @@ const MapIframe = forwardRef(
       setHasMenuOpen(true);
       setMobileMenuHeight(window.innerHeight * 0.6);
       setCurrentHeadline(headline);
+
       if (pageTypeId !== PAGE_TYPE_ID.INFO_PAGE || router?.pathname === "/explore") {
         pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+
+        const headlineEl = document.getElementById(`headline-${headline.id}`);
+
+        if (!headlineEl) return;
+
+        headlineEl.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "nearest"
+        });
       }
     };
 
