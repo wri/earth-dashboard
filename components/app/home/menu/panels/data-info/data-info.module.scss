@@ -6,13 +6,18 @@
   z-index: $z-index-menu;
   position: relative;
 
-  &__skeleton {
-    margin: 0 24px;
-    width: auto;
-    margin-top: 16px;
+  .skeleton-container {
+    width: 100%;
+    padding: 0 24px;
+  }
 
-    @media screen and (min-width: $global-breakpoint-md) {
+  &__skeleton {
+    min-height: 186px;
+
+    @media screen and (max-width: $global-breakpoint-md) {
       margin-top: 16px;
+      width: auto;
+      min-height: auto;
     }
   }
 }

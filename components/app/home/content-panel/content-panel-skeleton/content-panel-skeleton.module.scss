@@ -1,0 +1,37 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+
+.c-content-panel-skeleton {
+  border-radius: 16px;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px;
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    width: auto;
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+
+    .image {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+    }
+
+    .text {
+      flex: 1;
+      margin-left: 12px;
+    }
+  }
+
+  .text-description {
+    margin: 12px 0;
+  }
+
+  .link {
+    margin-top: 16px;
+  }
+}
