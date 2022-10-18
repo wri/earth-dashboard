@@ -64,6 +64,7 @@ const InfoPanel = ({
 
   const handleEventClicked = (headline: Headline) => {
     setCurrentHeadline(headline);
+    setCurrentHeadlineId(headline.id);
     setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
   };
@@ -164,6 +165,7 @@ const InfoPanel = ({
     resetPageStack();
     setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     if (defaultMode) setCurrentMode(defaultMode);
+    // eslint-disable-next-line
   }, []);
 
   return (
