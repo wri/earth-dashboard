@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { removeSelectedHeadline } from "slices/headlines";
 import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
-import { selectDefaultMode } from "slices/modes";
+import { resetPageStack, selectDefaultMode } from "slices/modes";
 import { CommonState } from "./types";
 
 export * from "./types";
@@ -37,6 +37,7 @@ export const resetGlobeToDefault = () => (dispatch: any) => {
   dispatch(removeSelectedHeadline());
   dispatch(setCurrentScale("default"));
   dispatch(setCurrentScaleBy(1));
+  dispatch(resetPageStack());
 };
 
 export const { setHostname, setIsMobile, setIsShareOpen, setIsNewsSearchOpen } = commonSlice.actions;
