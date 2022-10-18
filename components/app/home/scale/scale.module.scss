@@ -23,6 +23,11 @@
     font-weight: 500;
     color: white;
     min-width: 65px;
+    text-align: center;
+
+    @media screen and (max-width: $global-breakpoint-md) {
+      text-align: left;
+    }
 
     & .info {
       border-radius: 8px;

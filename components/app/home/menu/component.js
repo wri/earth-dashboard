@@ -82,7 +82,9 @@ const Menu = forwardRef(
         if (!headlineEl) return;
 
         headlineEl.scrollIntoView({
-          behavior: "smooth"
+          behavior: "smooth",
+          block: "nearest",
+          inline: "nearest"
         });
       }
     };
@@ -100,15 +102,23 @@ const Menu = forwardRef(
 
     /** Moves headlines. */
     const navigateHeadline = action => {
-      if (action === "back") {
-        return prevHeadlineEl?.scrollIntoView({
-          behavior: "smooth"
+      const { index, total } = getCurrentHeadlineIndex();
+
+      if (action === "back" && prevHeadlineEl) {
+        prevHeadlineEl.scrollTop = 0;
+        prevHeadlineEl.scrollIntoView({
+          behavior: index === 0 ? "auto" : "smooth",
+          block: "nearest",
+          inline: "nearest"
+        });
+      } else if (nextHeadlineEl) {
+        nextHeadlineEl.scrollTop = 0;
+        nextHeadlineEl.scrollIntoView({
+          behavior: index === total - 1 ? "auto" : "smooth",
+          block: "nearest",
+          inline: "nearest"
         });
       }
-
-      nextHeadlineEl?.scrollIntoView({
-        behavior: "smooth"
-      });
     };
 
     useEffect(() => {
