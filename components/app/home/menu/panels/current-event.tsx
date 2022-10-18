@@ -15,6 +15,7 @@ import { PAGE_TYPE_ID } from "../../main-container/component";
 type CurrentEventProps = {
   headlines: Headline[];
   headlinesLoading: boolean;
+  currentHeadlineId: number | undefined;
   setCurrentHeadline: ActionCreatorWithOptionalPayload<Headline | undefined, string>;
   setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
   pagePush: ActionCreatorWithPayload<string, string>;
@@ -22,9 +23,11 @@ type CurrentEventProps = {
   getCurrentHeadlineIndex: () => { index: number; total: number; headlines: Headline[] };
 };
 
+/** Menu view to show a singular extreme event. */
 const CurrentEvent = ({
   headlines,
   headlinesLoading,
+  currentHeadlineId,
   setCurrentHeadline,
   setCurrentHeadlineId,
   pagePush,
@@ -34,6 +37,7 @@ const CurrentEvent = ({
   const [nextHeadlineEl, setNextHeadlineEl] = useState<Element | null>();
   const [prevHeadlineEl, setPrevHeadlineEl] = useState<Element | null>();
 
+  /** Navigates to view all events view. */
   const viewAllExtremeEvents = () => {
     setCurrentHeadline(undefined);
     setCurrentHeadlineId(undefined);
@@ -61,6 +65,22 @@ const CurrentEvent = ({
       });
     }
   };
+
+  // Scrolls to the initial article
+  useEffect(() => {
+    setTimeout(() => {
+      const targetEl = document.getElementById(`headline-${currentHeadlineId}`);
+
+      if (!targetEl) return;
+
+      targetEl.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest"
+      });
+    }, 1000);
+    // eslint-disable-next-line
+  }, []);
 
   // Observes each item and checks if in viewport
   useEffect(() => {
@@ -123,7 +143,8 @@ const CurrentEvent = ({
 export default connect(
   (state: RootState) => ({
     headlines: state.headlines.headlines,
-    headlinesLoading: state.headlines.headlinesLoading
+    headlinesLoading: state.headlines.headlinesLoading,
+    currentHeadlineId: state.headlines.currentHeadlineId
   }),
   {
     setCurrentHeadline,
