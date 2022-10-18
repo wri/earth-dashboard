@@ -58,6 +58,7 @@ const InfoPanel = ({
   const [carouselWidth, setCarouselWidth] = useState<number>();
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState<number>(0);
   const [isScrolling, setIsScrolling] = useState<NodeJS.Timeout>();
+  const [firstOpen, setFirstOpen] = useState<boolean>(true);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -107,33 +108,6 @@ const InfoPanel = ({
     setCurrentHeadlineIndex(index);
   };
 
-  // Run at start so no scroll animation
-  useEffect(() => {
-    scrollFromHeadline();
-    // eslint-disable-next-line
-  }, [carouselWidth, carouselRef.current]);
-
-  useEffect(() => {
-    scrollFromHeadline("smooth");
-    // eslint-disable-next-line
-  }, [currentHeadline, carouselWidth, carouselRef.current]);
-
-  useEffect(() => {
-    if (containerRef.current) setCarouselWidth(containerRef.current.offsetWidth);
-    // eslint-disable-next-line
-  }, [containerRef.current]);
-
-  useEffect(() => {
-    if (headlines.length === currentHeadlineIndex) {
-      fireEvent(EARTH_HQ_CAROUSEL_COMPLETED, null);
-    } else if (currentHeadlineIndex === 0) {
-      fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
-    }
-
-    fireEvent(EARTH_HQ_CAROUSEL_VIEWED, `carousel_${currentHeadlineIndex + 1}`);
-    // eslint-disable-next-line
-  }, [currentHeadlineIndex]);
-
   const setHeadlineToScroll = () => {
     if (!carouselWidth) return;
 
@@ -150,7 +124,43 @@ const InfoPanel = ({
     }
   };
 
+  // Initial setting of variables
   useEffect(() => {
+    resetPageStack();
+    setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
+    if (defaultMode) setCurrentMode(defaultMode);
+  }, []);
+
+  // Setting carousel width to be used for calculation
+  useEffect(() => {
+    if (containerRef.current) setCarouselWidth(containerRef.current.offsetWidth);
+    // eslint-disable-next-line
+  }, [containerRef.current]);
+
+  // Run at at start and when headline changes
+  useEffect(() => {
+    if (isLoading) return;
+    const behavior = firstOpen ? "auto" : "smooth";
+    scrollFromHeadline("smooth");
+    setFirstOpen(false);
+    // eslint-disable-next-line
+  }, [carouselWidth, carouselRef.current, currentHeadline, isLoading]);
+
+  // Firing events when focusing on headlines
+  useEffect(() => {
+    if (headlines.length === currentHeadlineIndex) {
+      fireEvent(EARTH_HQ_CAROUSEL_COMPLETED, null);
+    } else if (currentHeadlineIndex === 0) {
+      fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
+    }
+
+    fireEvent(EARTH_HQ_CAROUSEL_VIEWED, `carousel_${currentHeadlineIndex + 1}`);
+    // eslint-disable-next-line
+  }, [currentHeadlineIndex]);
+
+  // Runs so function only called on scroll end
+  useEffect(() => {
+    if (isLoading) return;
     window.clearTimeout(isScrolling);
     setIsScrolling(
       setTimeout(function () {
@@ -158,13 +168,7 @@ const InfoPanel = ({
       }, 250)
     );
     // eslint-disable-next-line
-  }, [carouselScroll, carouselWidth]);
-
-  useEffect(() => {
-    resetPageStack();
-    setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
-    if (defaultMode) setCurrentMode(defaultMode);
-  }, []);
+  }, [carouselScroll, carouselWidth, isLoading]);
 
   return (
     <div ref={containerRef} className={styles["info-container"]}>
