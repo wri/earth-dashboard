@@ -141,7 +141,7 @@ const InfoPanel = ({
   useEffect(() => {
     if (isLoading) return;
     const behavior = firstOpen ? "auto" : "smooth";
-    scrollFromHeadline("smooth");
+    scrollFromHeadline(behavior);
     setFirstOpen(false);
     // eslint-disable-next-line
   }, [carouselWidth, carouselRef.current, currentHeadline, isLoading]);
