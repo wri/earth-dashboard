@@ -65,6 +65,7 @@ const InfoPanel = ({
 
   const handleEventClicked = (headline: Headline) => {
     setCurrentHeadline(headline);
+    setCurrentHeadlineId(headline.id);
     setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
   };
@@ -103,7 +104,9 @@ const InfoPanel = ({
 
     const index = headlines.findIndex(headline => headline.id === currentHeadline.id);
 
-    if (!index) return;
+    if (index === -1) return;
+
+    setFirstOpen(false);
     scrollToIndex(index, behavior);
     setCurrentHeadlineIndex(index);
   };
@@ -142,7 +145,6 @@ const InfoPanel = ({
     if (isLoading) return;
     const behavior = firstOpen ? "auto" : "smooth";
     scrollFromHeadline(behavior);
-    setFirstOpen(false);
     // eslint-disable-next-line
   }, [carouselWidth, carouselRef.current, currentHeadline, isLoading]);
 
@@ -160,7 +162,7 @@ const InfoPanel = ({
 
   // Runs so function only called on scroll end
   useEffect(() => {
-    if (isLoading) return;
+    if (isLoading || firstOpen) return;
     window.clearTimeout(isScrolling);
     setIsScrolling(
       setTimeout(function () {
