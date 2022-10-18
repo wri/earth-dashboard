@@ -16,7 +16,7 @@ const EventPrompt = ({ isMobile, isCondensed }: EventPromptProps) => {
         ? "Swipe left or select a point on the globe to view the latest extreme events from Mongabay."
         : "Select a point on the globe or use the arrows to view the latest extreme events from Mongabay."
       : isCondensed
-      ? "Select a location on the globe to view how extreme the emergency is."
+      ? "Select a location on the globe to view how extreme the situation is."
       : "Select a category to explore real-time data.";
 
   return (
