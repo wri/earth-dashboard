@@ -22,9 +22,7 @@ const Menu = forwardRef(
       isMobile,
       onClose,
       isClosing,
-      defaultMode,
       currentMode,
-      setCurrentMode,
       currentHeadline,
       currentHeadlineId,
       setCurrentHeadline,
@@ -69,7 +67,7 @@ const Menu = forwardRef(
     const checkCurrentHeadline = () => {
       const { index: currentHeadlineIndex, total } = getCurrentHeadlineIndex();
 
-      if (currentHeadline && currentMode) {
+      if (currentHeadline) {
         let text = "";
         if (currentMode.attributes?.title !== "Default")
           text = `${currentHeadlineIndex + 1}/${total} ${currentMode.attributes?.title}`;
@@ -129,7 +127,7 @@ const Menu = forwardRef(
     useEffect(() => {
       checkCurrentHeadline();
       // eslint-disable-next-line
-    }, [currentHeadline, setCurrentMode, headlinesLoading]);
+    }, [currentHeadline, headlinesLoading]);
 
     // Observes each item and checks if in viewport
     useEffect(() => {
@@ -145,6 +143,7 @@ const Menu = forwardRef(
             if (!entry.isIntersecting || !newHeadline) return;
 
             setCurrentHeadline(newHeadline);
+            setCurrentHeadlineId(newHeadline.id);
             setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.parentElement.firstElementChild);
             setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.parentElement.lastElementChild);
           });
