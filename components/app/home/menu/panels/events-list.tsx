@@ -4,7 +4,7 @@ import styles from "../menu.module.scss";
 import { connect } from "react-redux";
 import { setHeadlines, setCurrentHeadline, Headline as HeadlineType, setCurrentHeadlineId } from "slices/headlines";
 import EventCard from "components/app/home/event-card";
-import { Mode, setCurrentMode, setPageTypeId, setPreviousPageTypeId } from "slices/modes";
+import { Mode, setCurrentMode, pagePush } from "slices/modes";
 import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
@@ -22,9 +22,10 @@ type EventsListPanelProps = {
   forceInfoPage: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
-  setPageTypeId: ActionCreatorWithPayload<string, string>;
-  setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
+  pagePush: ActionCreatorWithPayload<string, string>;
   setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
+  pageTypeIdStack: string[];
+  defaultMode: Mode | undefined;
 };
 
 const EventsListPanel = ({
@@ -32,9 +33,11 @@ const EventsListPanel = ({
   headlines,
   headlinesLoading,
   setCurrentHeadline,
-  setPageTypeId,
-  setPreviousPageTypeId,
-  setCurrentHeadlineId
+  pagePush,
+  setCurrentHeadlineId,
+  pageTypeIdStack,
+  defaultMode,
+  setCurrentMode
 }: EventsListPanelProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [numHeadlinesToShow, setNumHeadlinesToShow] = useState(HEADLINE_BATCH_SIZE);
@@ -45,14 +48,13 @@ const EventsListPanel = ({
 
   const onSelectHeadline = (headline: HeadlineType) => {
     setCurrentHeadline(headline);
-    setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
-    setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+    pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
   };
 
   useEffect(() => {
     setCurrentHeadline(undefined);
     setCurrentHeadlineId(undefined);
-    setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+    if (pageTypeIdStack.length === 2 && defaultMode) setCurrentMode(defaultMode);
     // eslint-disable-next-line
   }, []);
 
@@ -113,7 +115,9 @@ const EventsListPanel = ({
 export default connect(
   (state: RootState) => ({
     currentMode: state.modes.currentMode,
-    headlines: state.headlines.headlines
+    headlines: state.headlines.headlines,
+    pageTypeIdStack: state.modes.pageTypeIdStack,
+    defaultMode: state.modes.defaultMode
   }),
-  { setHeadlines, setCurrentMode, setCurrentHeadline, setPageTypeId, setPreviousPageTypeId, setCurrentHeadlineId }
+  { setHeadlines, setCurrentMode, setCurrentHeadline, pagePush, setCurrentHeadlineId }
 )(EventsListPanel);

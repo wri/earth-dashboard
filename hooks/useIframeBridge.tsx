@@ -33,10 +33,9 @@ type UseIframeBridgeConfig = {
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
   setHeadlinesLoading: ActionCreatorWithPayload<boolean, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
-  setPageTypeId: ActionCreatorWithPayload<string, string>;
-  setPreviousPageTypeId: ActionCreatorWithPayload<string, string>;
+  pagePush: ActionCreatorWithPayload<string, string>;
   pageTypeId: string;
-  previousPageTypeId: string;
+  routePageTypeId: string;
   currentHeadlineId: number | undefined;
 };
 
@@ -57,9 +56,8 @@ const useIframeBridge = ({
   setReoriented,
   pageTypeId,
   currentHeadlineId,
-  setPageTypeId,
-  setPreviousPageTypeId,
-  previousPageTypeId
+  pagePush,
+  routePageTypeId
 }: UseIframeBridgeConfig) => {
   const [hasLoadedBefore, setHasLoadedBefore] = useState<boolean>(false);
 
@@ -90,25 +88,25 @@ const useIframeBridge = ({
       setHeadlinesLoading(true);
       try {
         const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
-        const resp = await fetchClimateAlerts();
 
-        let numberOfHeadlines =
-          pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
-            ? previousPageTypeId === PAGE_TYPE_ID.INFO_PAGE
-              ? 10
-              : 25
-            : pageTypeId === PAGE_TYPE_ID.INFO_PAGE
+        let numberOfHeadlines = mode_id
+          ? 10
+          : pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
+          ? routePageTypeId === PAGE_TYPE_ID.INFO_PAGE
             ? 10
-            : 25;
+            : 25
+          : pageTypeId === PAGE_TYPE_ID.INFO_PAGE
+          ? 10
+          : 25;
+
+        const resp = await fetchClimateAlerts({ count: 25, in_top_events: 25, mode_id: mode_id });
 
         if (currentHeadlineId && !hasLoadedBefore) {
           resp.data.data.forEach((headline: Headline, index: number) => {
             if (headline.id === currentHeadlineId) {
               if (index >= 10 && index < 25) {
-                console.log("Is Here");
                 numberOfHeadlines = 25;
-                setPageTypeId(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
-                setPreviousPageTypeId(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
+                pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
               }
             }
           });
@@ -116,9 +114,8 @@ const useIframeBridge = ({
 
         setHasLoadedBefore(true);
 
-        const filteredHeadlines = resp.data.data
-          .slice(0, numberOfHeadlines)
-          .filter((headline: Headline) => (!mode_id ? true : headline.attributes.mode.id === mode_id));
+        const filteredHeadlines = resp.data.data.slice(0, numberOfHeadlines);
+
         setHeadlines(filteredHeadlines);
       } catch (err) {
         console.log("Error fetching modes");

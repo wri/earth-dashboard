@@ -13,7 +13,7 @@ type CtaButtonProps = {
   text?: string;
   iconSize?: number;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
 };
 
 /** Styled icon button. */

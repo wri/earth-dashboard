@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import MenuOption from "components/app/home/menu-option";
 import Carousel from "components/ui/carousel";
 import { EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
 import { connect } from "react-redux";
-import { Mode, setCurrentMode } from "slices/modes";
+import { Mode, setCurrentMode, pagePush, resetPageStack } from "slices/modes";
 import { RootState } from "store/types";
 import { fireEvent } from "utils/gtag";
 import EventCardSkeleton from "../../../event-card/event-card-skeleton";
@@ -13,13 +13,15 @@ import CarouselCard from "./carousel-card";
 import styles from "./data-info.module.scss";
 import menuStyles from "../../menu.module.scss";
 import classnames from "classnames";
+import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
+import { removeSelectedHeadline } from "slices/headlines";
 
 const SCROLL_NORMALIZE_VALUE = 37;
 
 const mapHighlightToOption = (
   mode: Mode,
   onClickDataLayer: ActionCreatorWithPayload<Mode, string>,
-  onViewDataLayerSummary: ActionCreatorWithPayload<Mode, string>
+  onClickCta: () => void
 ) => {
   const { id, attributes } = mode;
   return {
@@ -27,10 +29,7 @@ const mapHighlightToOption = (
     ...attributes,
     buttonText: "Learn More",
     onClick: () => onClickDataLayer(mode),
-    onClickCta: () => {
-      fireEvent(EARTH_HQ_VIEWED_CATEGORY, attributes.title);
-      onViewDataLayerSummary(mode);
-    }
+    onClickCta
   };
 };
 
@@ -40,9 +39,23 @@ type DataInfoProps = {
   modes: Mode[] | undefined;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   currentMode: Mode | undefined;
+  pagePush: ActionCreatorWithPayload<string, string>;
+  removeSelectedHeadline: ActionCreatorWithoutPayload<string>;
+  defaultMode: Mode | undefined;
+  resetPageStack: ActionCreatorWithoutPayload<string>;
 };
 
-const DataInfo = ({ isMobile, isLoading, modes, setCurrentMode, currentMode }: DataInfoProps) => {
+const DataInfo = ({
+  isMobile,
+  isLoading,
+  modes,
+  setCurrentMode,
+  currentMode,
+  pagePush,
+  removeSelectedHeadline,
+  defaultMode,
+  resetPageStack
+}: DataInfoProps) => {
   const [carouselScroll, setCarouselScroll] = useState<number>(0);
   const [carouselWidth, setCarouselWidth] = useState<number>();
   const [isScrolling, setIsScrolling] = useState<NodeJS.Timeout>();
@@ -50,9 +63,15 @@ const DataInfo = ({ isMobile, isLoading, modes, setCurrentMode, currentMode }: D
   const containerRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
+  const handleModeClicked = (mode: Mode) => {
+    fireEvent(EARTH_HQ_VIEWED_CATEGORY, mode.attributes.title);
+    setCurrentMode(mode);
+    pagePush(PAGE_TYPE_ID.DATA_LAYER_PAGE);
+  };
+
   const dataLayers = useMemo(
-    () => modes?.map(highlight => mapHighlightToOption(highlight, setCurrentMode, setCurrentMode)) || [],
-    [modes, setCurrentMode]
+    () => modes?.map(mode => mapHighlightToOption(mode, setCurrentMode, () => handleModeClicked(mode))) || [],
+    [modes, setCurrentMode, pagePush]
   );
 
   const setModeToScroll = () => {
@@ -68,14 +87,25 @@ const DataInfo = ({ isMobile, isLoading, modes, setCurrentMode, currentMode }: D
   }, [containerRef.current]);
 
   useEffect(() => {
-    window.clearTimeout(isScrolling);
-    setIsScrolling(
-      setTimeout(function () {
-        setModeToScroll();
-      }, 250)
-    );
+    if (isMobile) {
+      window.clearTimeout(isScrolling);
+      setIsScrolling(
+        setTimeout(function () {
+          setModeToScroll();
+        }, 250)
+      );
+    }
     // eslint-disable-next-line
   }, [carouselScroll, carouselWidth]);
+
+  useEffect(() => {
+    removeSelectedHeadline();
+    resetPageStack();
+  }, []);
+
+  useEffect(() => {
+    if ((!currentMode || currentMode === defaultMode) && modes) setCurrentMode(modes[0]);
+  }, [modes, currentMode, defaultMode]);
 
   return (
     <div
@@ -98,7 +128,7 @@ const DataInfo = ({ isMobile, isLoading, modes, setCurrentMode, currentMode }: D
                 <CarouselCard
                   isSelected={currentMode?.id === mode.id}
                   key={mode.id}
-                  onClick={() => {}}
+                  onClick={() => handleModeClicked(mode)}
                   {...mode.attributes}
                 />
               )) ?? []
@@ -125,8 +155,11 @@ export default connect(
   (state: RootState) => ({
     isMobile: state.common.isMobile,
     isLoading: state.modes.modesLoading,
-    modes: state.modes.allModes?.filter(mode => mode.attributes.visibility.data_highlights),
-    currentMode: state.modes.currentMode
+    modes: state.modes.allModes
+      ?.filter(mode => mode.attributes.visibility.data_highlights && mode.attributes.extreme_event_count !== 0)
+      .sort((a, b) => (a.attributes.extreme_event_count > b.attributes.extreme_event_count ? -1 : 1)),
+    currentMode: state.modes.currentMode,
+    defaultMode: state.modes.defaultMode
   }),
-  { setCurrentMode }
+  { setCurrentMode, pagePush, resetPageStack, removeSelectedHeadline }
 )(DataInfo);

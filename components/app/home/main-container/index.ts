@@ -4,12 +4,11 @@ import { setIsMobile } from "slices/common";
 import { RootState } from "store/types";
 import {
   setModes,
-  setPageTypeId,
   setCurrentMode,
   setDateOfDataShown,
   setCurrentVisibleMode,
-  setPreviousPageTypeId,
-  setModesLoading
+  setModesLoading,
+  pagePush
 } from "slices/modes";
 import { setHeadlines, setHeadlinesLoading } from "slices/headlines";
 import {
@@ -29,17 +28,15 @@ export default connect(
     currentMode: state.modes.currentMode,
     defaultMode: state.modes.defaultMode,
     pageTypeId: state.modes.pageTypeId,
-    previousPageTypeId: state.modes.previousPageTypeId,
     currentHeadlineId: state.headlines.currentHeadlineId,
-    modesLoading: state.modes.modesLoading
+    modesLoading: state.modes.modesLoading,
+    routePageTypeId: state.modes.routePageTypeId
   }),
   {
     setModes,
     setIsMobile,
     setHeadlines,
     setHeadlinesLoading,
-    setPageTypeId,
-    setPreviousPageTypeId,
     setReoriented,
     setEventScaleData,
     setCurrentMode,
@@ -48,6 +45,7 @@ export default connect(
     setCurrentScale,
     setCurrentScaleBy,
     setCurrentVisibleMode,
-    setModesLoading
+    setModesLoading,
+    pagePush
   }
 )(MainContainerComponent);

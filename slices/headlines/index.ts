@@ -12,9 +12,6 @@ const initialState: HeadlinesState = {
   headlinesLoading: false
 };
 
-const MAX_NUMBER_OF_HEADLINES_PER_LAYER = 10;
-const MAX_NUMBER_OF_HEADLINES_IN_TOTAL = 25;
-
 const headlinesSlice = createSlice({
   name: NAME,
   initialState,
@@ -24,7 +21,7 @@ const headlinesSlice = createSlice({
       state.currentHeadlineId = undefined;
     },
     setHeadlines: (state, { payload }: PayloadAction<Headline[]>) => {
-      state.headlines = filterHeadlines(payload);
+      state.headlines = payload;
 
       if (state.currentHeadlineId) {
         const headline = payload.find(headline => headline.id === state.currentHeadlineId);
@@ -51,22 +48,6 @@ const headlinesSlice = createSlice({
     }
   }
 });
-
-const filterHeadlines = (headlines: Headline[]) => {
-  const countsByMode = {};
-  let totalHeadlines = 0;
-  const filtered = headlines.filter(headline => {
-    if (totalHeadlines >= MAX_NUMBER_OF_HEADLINES_IN_TOTAL) return false;
-    const modeId = `${headline.attributes.mode.id}`;
-    // @ts-expect-error
-    countsByMode[modeId] = countsByMode[modeId] ? countsByMode[modeId] + 1 : 1;
-    // @ts-expect-error
-    const include = countsByMode[modeId] <= MAX_NUMBER_OF_HEADLINES_PER_LAYER;
-    if (include) totalHeadlines++;
-    return include;
-  });
-  return filtered;
-};
 
 export const { removeSelectedHeadline, setHeadlines, setCurrentHeadline, setCurrentHeadlineId, setHeadlinesLoading } =
   headlinesSlice.actions;
