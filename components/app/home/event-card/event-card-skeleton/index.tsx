@@ -6,7 +6,7 @@ type EventCardSkeletonProps = {
   className?: string;
 };
 
-/** Skeletong for event cards on the menu dialog/modal. */
+/** Skeleton for event cards on the menu dialog/modal. */
 const EventCardSkeleton = ({ className = "" }: EventCardSkeletonProps) => {
   return (
     <Skeleton className={classnames(styles["c-event-card-skeleton"], className)}>
@@ -17,7 +17,7 @@ const EventCardSkeleton = ({ className = "" }: EventCardSkeletonProps) => {
         <Skeleton.Text widths={["100%", "40%"]} className={styles["text"]} dark />
       </div>
 
-      {/* Top */}
+      {/* Bottom */}
       <div className={styles["c-event-card-skeleton__bottom"]}>
         <Skeleton.Text widths={["100%"]} className={styles["text"]} />
 
