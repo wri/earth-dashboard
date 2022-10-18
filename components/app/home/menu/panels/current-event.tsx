@@ -83,7 +83,7 @@ const CurrentEvent = ({
     );
 
     // eslint-disable-next-line
-  }, [currentHeadlineId]);
+  }, [currentHeadlineId, headlinesLoading]);
 
   const handleCarouselScroll = () => {
     if (!carouselRef.current) return;
