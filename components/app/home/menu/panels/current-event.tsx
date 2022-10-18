@@ -34,9 +34,6 @@ const CurrentEvent = ({
   footerHeading,
   getCurrentHeadlineIndex
 }: CurrentEventProps) => {
-  const [nextHeadlineEl, setNextHeadlineEl] = useState<Element | null>();
-  const [prevHeadlineEl, setPrevHeadlineEl] = useState<Element | null>();
-
   /** Navigates to view all events view. */
   const viewAllExtremeEvents = () => {
     setCurrentHeadline(undefined);
@@ -47,38 +44,36 @@ const CurrentEvent = ({
 
   /** Moves headlines. */
   const navigateHeadline = (action: string) => {
-    const { index, total } = getCurrentHeadlineIndex();
+    const { index: currentHeadlineIndex, total } = getCurrentHeadlineIndex();
 
-    if (action === "back" && prevHeadlineEl) {
-      prevHeadlineEl.scrollTop = 0;
-      prevHeadlineEl.scrollIntoView({
-        behavior: index === 0 ? "auto" : "smooth",
-        block: "nearest",
-        inline: "nearest"
-      });
-    } else if (nextHeadlineEl) {
-      nextHeadlineEl.scrollTop = 0;
-      nextHeadlineEl.scrollIntoView({
-        behavior: index === total - 1 ? "auto" : "smooth",
-        block: "nearest",
-        inline: "nearest"
-      });
-    }
+    const targetHeadline = headlines.find((_, index) => {
+      const targetIndex = currentHeadlineIndex + (action === "back" ? -1 : 1);
+      const loopedTargetIndex = targetIndex < 0 ? total - 1 : targetIndex >= total ? 0 : targetIndex;
+
+      return loopedTargetIndex === index;
+    });
+
+    if (!targetHeadline) return;
+
+    const targetEl = document.getElementById(`headline-${targetHeadline.id}`);
+
+    if (!targetEl) return;
+
+    targetEl.scrollTop = 0;
+    targetEl.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "nearest"
+    });
   };
 
   // Scrolls to the initial article
   useEffect(() => {
-    setTimeout(() => {
-      const targetEl = document.getElementById(`headline-${currentHeadlineId}`);
+    const targetEl = document.getElementById(`headline-${currentHeadlineId}`);
 
-      if (!targetEl) return;
+    if (!targetEl) return;
 
-      targetEl.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "nearest"
-      });
-    }, 1000);
+    targetEl.scrollIntoView();
     // eslint-disable-next-line
   }, []);
 
@@ -91,14 +86,26 @@ const CurrentEvent = ({
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+
+          const isFirst = entry.target.getAttribute("data-first");
+          const isLast = entry.target.getAttribute("data-last");
+
+          if (isFirst) {
+            const lastEl = root.lastElementChild?.previousElementSibling;
+            lastEl?.scrollIntoView();
+          }
+          if (isLast) {
+            const firstEl = root.firstElementChild?.nextElementSibling;
+            firstEl?.scrollIntoView();
+          }
+
           const newHeadline = headlines.find(headline => entry.target.id === `headline-${headline.id}`);
 
-          if (!entry.isIntersecting || !newHeadline) return;
+          if (!newHeadline) return;
 
           setCurrentHeadline(newHeadline);
           setCurrentHeadlineId(newHeadline.id);
-          setNextHeadlineEl(entry.target.nextElementSibling ?? entry.target.parentElement?.firstElementChild);
-          setPrevHeadlineEl(entry.target.previousElementSibling ?? entry.target.parentElement?.lastElementChild);
         });
       },
       {
@@ -124,9 +131,11 @@ const CurrentEvent = ({
         <EventSkeleton />
       ) : (
         <div id="events" className={styles["c-home-menu__events"]}>
+          <Event headline={headlines[headlines.length - 1]} onViewAllEventsClicked={viewAllExtremeEvents} first />
           {headlines.map(headline => (
             <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
           ))}
+          <Event headline={headlines[0]} onViewAllEventsClicked={viewAllExtremeEvents} last />
         </div>
       )}
       <HeadlineFooter
