@@ -121,6 +121,7 @@ const modesSlice = createSlice({
     },
     resetPageStack: state => {
       state.pageTypeIdStack = ["InfoPage"];
+      state.pageTypeId = "InfoPage";
     },
     pagePush: (state, { payload }: PayloadAction<string>) => {
       if (payload === state.pageTypeId) return;
