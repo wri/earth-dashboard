@@ -5,7 +5,7 @@ import HeadlineFooter from "../../headline-footer";
 import styles from "../menu.module.scss";
 import { fireEvent } from "utils/gtag";
 import { VIEW_ALL_EXTREME_EVENTS } from "constants/tag-manager";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RootState } from "store/types";
 import { connect } from "react-redux";
 import { Mode, pagePush } from "slices/modes";
@@ -33,8 +33,8 @@ const CurrentEvent = ({
   pagePush
 }: CurrentEventProps) => {
   const [footerHeading, setFooterHeading] = useState<string>("");
-  const [nextHeadlineEl, setNextHeadlineEl] = useState<Element | null>();
-  const [prevHeadlineEl, setPrevHeadlineEl] = useState<Element | null>();
+
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   /** Navigates to view all events view. */
   const viewAllExtremeEvents = () => {
@@ -46,21 +46,17 @@ const CurrentEvent = ({
 
   /** Moves headlines. */
   const navigateHeadline = (action: string) => {
-    if (action === "back" && prevHeadlineEl) {
-      prevHeadlineEl.scrollTop = 0;
-      prevHeadlineEl.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "nearest"
-      });
-    } else if (nextHeadlineEl) {
-      nextHeadlineEl.scrollTop = 0;
-      nextHeadlineEl.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "nearest"
-      });
-    }
+    if (!carouselRef.current) return;
+
+    const eventWidth = carouselRef.current.clientWidth;
+
+    const targetHeadlineIndex =
+      headlines.findIndex(headline => headline.id === currentHeadlineId) + (action === "back" ? -1 : 1);
+
+    carouselRef.current.scrollTo({
+      left: eventWidth * (targetHeadlineIndex + 1),
+      behavior: "smooth"
+    });
   };
 
   // Scrolls to the initial article
@@ -73,78 +69,57 @@ const CurrentEvent = ({
     // eslint-disable-next-line
   }, [headlinesLoading]);
 
-  // Observes each item and checks if in viewport
-  useEffect(() => {
-    const root = document.getElementById("events");
-
-    if (!root) return;
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-
-          const isFirst = entry.target.getAttribute("data-first");
-          const isLast = entry.target.getAttribute("data-last");
-
-          if (isFirst) {
-            const lastEl = root.lastElementChild?.previousElementSibling;
-            lastEl?.scrollIntoView();
-          }
-          if (isLast) {
-            const firstEl = root.firstElementChild?.nextElementSibling;
-            firstEl?.scrollIntoView();
-          }
-
-          const newHeadline = headlines.find(headline => entry.target.id === `headline-${headline.id}`);
-
-          if (!newHeadline) return;
-
-          setCurrentHeadline(newHeadline);
-          setCurrentHeadlineId(newHeadline.id);
-          setNextHeadlineEl(entry.target.nextElementSibling);
-          setPrevHeadlineEl(entry.target.previousElementSibling);
-        });
-      },
-      {
-        root,
-        rootMargin: "0px",
-        threshold: 1
-      }
-    );
-
-    root.childNodes.forEach(node => {
-      observer.observe(node as Element);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-    // eslint-disable-next-line
-  }, [headlinesLoading]);
-
   // Auto updates the footer text
   useEffect(() => {
     const currentHeadlineIndex = headlines.findIndex(headline => headline.id === currentHeadlineId);
     const total = headlines.length;
 
-    if (currentHeadlineIndex === undefined || !currentMode) return;
+    if (currentHeadlineIndex === undefined) return;
 
     setFooterHeading(
-      currentMode.attributes?.title !== "Default"
-        ? `${currentHeadlineIndex + 1}/${total} ${currentMode.attributes?.title}`
+      currentMode?.attributes?.title !== "Default"
+        ? `${currentHeadlineIndex + 1}/${total} ${currentMode?.attributes?.title}`
         : `${currentHeadlineIndex + 1}/${total} Extreme Events`
     );
 
     // eslint-disable-next-line
   }, [currentHeadlineId]);
 
+  const handleCarouselScroll = () => {
+    if (!carouselRef.current) return;
+
+    const eventWidth = carouselRef.current.clientWidth;
+    const scrollPos = carouselRef.current.scrollLeft;
+
+    const maxScrollPos = headlines.length * eventWidth;
+
+    if (scrollPos === 0) {
+      return carouselRef.current.scrollTo({
+        left: maxScrollPos
+      });
+    }
+    if (scrollPos === maxScrollPos + eventWidth) {
+      return carouselRef.current.scrollTo({
+        left: eventWidth
+      });
+    }
+
+    const newHeadlineIndex = Math.round(scrollPos / eventWidth) - 1;
+
+    const newHeadline = headlines.find((_, index) => newHeadlineIndex === index);
+
+    if (!newHeadline || newHeadline.id === currentHeadlineId) return;
+
+    setCurrentHeadline(newHeadline);
+    setCurrentHeadlineId(newHeadline.id);
+  };
+
   return (
     <>
       {headlinesLoading ? (
         <EventSkeleton />
       ) : (
-        <div id="events" className={styles["c-home-menu__events"]}>
+        <div ref={carouselRef} id="events" className={styles["c-home-menu__events"]} onScroll={handleCarouselScroll}>
           <Event headline={headlines[headlines.length - 1]} onViewAllEventsClicked={viewAllExtremeEvents} first />
           {headlines.map(headline => (
             <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
