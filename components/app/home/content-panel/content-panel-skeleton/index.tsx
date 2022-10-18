@@ -6,7 +6,7 @@ type ContentPanelSkeletonProps = {
   className?: string;
 };
 
-/** Skeletong for event cards on the menu dialog/modal. */
+/** Skeleton for content panel on the menu */
 const ContentPanelSkeleton = ({ className = "" }: ContentPanelSkeletonProps) => {
   return (
     <Skeleton className={classnames(styles["c-content-panel-skeleton"], className)}>

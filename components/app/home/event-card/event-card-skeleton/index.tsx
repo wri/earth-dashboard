@@ -6,7 +6,7 @@ type EventCardSkeletonProps = {
   className?: string;
 };
 
-/** Skeletong for event cards on the menu dialog/modal. */
+/** Skeleton for event cards on the menu dialog/modal. */
 const EventCardSkeleton = ({ className = "" }: EventCardSkeletonProps) => {
   return (
     <Skeleton className={classnames(styles["c-event-card-skeleton"], className)}>
