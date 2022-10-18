@@ -70,7 +70,7 @@ const CurrentEvent = ({
 
     targetEl.scrollIntoView();
     // eslint-disable-next-line
-  }, []);
+  }, [headlinesLoading]);
 
   // Observes each item and checks if in viewport
   useEffect(() => {
