@@ -20,7 +20,6 @@ type CurrentEventProps = {
   setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
   pagePush: ActionCreatorWithPayload<string, string>;
   footerHeading: string;
-  getCurrentHeadlineIndex: () => { index: number; total: number; headlines: Headline[] };
 };
 
 /** Menu view to show a singular extreme event. */
@@ -31,9 +30,11 @@ const CurrentEvent = ({
   setCurrentHeadline,
   setCurrentHeadlineId,
   pagePush,
-  footerHeading,
-  getCurrentHeadlineIndex
+  footerHeading
 }: CurrentEventProps) => {
+  const [nextHeadlineEl, setNextHeadlineEl] = useState<Element | null>();
+  const [prevHeadlineEl, setPrevHeadlineEl] = useState<Element | null>();
+
   /** Navigates to view all events view. */
   const viewAllExtremeEvents = () => {
     setCurrentHeadline(undefined);
@@ -44,27 +45,21 @@ const CurrentEvent = ({
 
   /** Moves headlines. */
   const navigateHeadline = (action: string) => {
-    const { index: currentHeadlineIndex, total } = getCurrentHeadlineIndex();
-
-    const targetHeadline = headlines.find((_, index) => {
-      const targetIndex = currentHeadlineIndex + (action === "back" ? -1 : 1);
-      const loopedTargetIndex = targetIndex < 0 ? total - 1 : targetIndex >= total ? 0 : targetIndex;
-
-      return loopedTargetIndex === index;
-    });
-
-    if (!targetHeadline) return;
-
-    const targetEl = document.getElementById(`headline-${targetHeadline.id}`);
-
-    if (!targetEl) return;
-
-    targetEl.scrollTop = 0;
-    targetEl.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "nearest"
-    });
+    if (action === "back" && prevHeadlineEl) {
+      prevHeadlineEl.scrollTop = 0;
+      prevHeadlineEl.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest"
+      });
+    } else if (nextHeadlineEl) {
+      nextHeadlineEl.scrollTop = 0;
+      nextHeadlineEl.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest"
+      });
+    }
   };
 
   // Scrolls to the initial article
@@ -106,6 +101,8 @@ const CurrentEvent = ({
 
           setCurrentHeadline(newHeadline);
           setCurrentHeadlineId(newHeadline.id);
+          setNextHeadlineEl(entry.target.nextElementSibling);
+          setPrevHeadlineEl(entry.target.previousElementSibling);
         });
       },
       {
