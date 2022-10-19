@@ -82,20 +82,24 @@ const NewsSearchLayout = ({ isMobile, setIsMobile }: NewsSearchLayoutProps) => {
         ) : !posts || !posts.length ? (
           <SearchEmptyState />
         ) : (
-          posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)
-        )}
-        {canFetchMore && (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
-            <AnchorCTA
-              className={classnames(
-                newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"],
-                styles["c-page-search__load-more__btn"]
-              )}
-              onClick={() => fetchMore(LOAD_MORE_LIMIT)}
-            >
-              {isFetchingMore ? "Loading..." : "Load More "}
-            </AnchorCTA>
-          </div>
+          <>
+            {posts.map(({ key, ...articleProps }) => (
+              <NewsArticle key={key} {...articleProps} />
+            ))}
+            {canFetchMore && (
+              <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
+                <AnchorCTA
+                  className={classnames(
+                    newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"],
+                    styles["c-page-search__load-more__btn"]
+                  )}
+                  onClick={() => fetchMore(LOAD_MORE_LIMIT)}
+                >
+                  {isFetchingMore ? "Loading..." : "Load More "}
+                </AnchorCTA>
+              </div>
+            )}
+          </>
         )}
       </Section>
 

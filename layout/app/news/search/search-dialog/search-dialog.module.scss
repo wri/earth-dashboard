@@ -50,6 +50,13 @@
         color: $white;
         text-transform: uppercase;
       }
+
+      button {
+        svg {
+          min-width: 12px;
+          min-height: 12px;
+        }
+      }
     }
 
     .bottom {

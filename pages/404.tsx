@@ -20,24 +20,26 @@ const PageNotFound = () => {
 
   return (
     <Layout title="404" className={styles["c-page-404"]}>
-      {/* Container */}
       <div className={styles["c-page-404__container"]}>
-        {/* Text */}
-        <h1>404</h1>
-        <p>Oops, that page could not be found. Head back to Earth HQ to explore the latest extreme events.</p>
+        {/* Container */}
+        <div className={styles["c-page-404__container__top"]}>
+          {/* Text */}
+          <h1>404</h1>
+          <p>Oops, that page could not be found. Head back to Earth HQ to explore the latest extreme events.</p>
 
-        {/* Button */}
-        <AnchorCTA className={styles["back-btn"]} href="/" onClick={() => fireEvent(ERROR_BACK_EARTH_HQ, null)}>
-          <p className={styles["text"]}>Back To Earth HQ</p>
-          <div className={styles["icon"]}>
-            <Icon name="arrow-right" size={15} type="decorative" />
-          </div>
-        </AnchorCTA>
-      </div>
+          {/* Button */}
+          <AnchorCTA className={styles["back-btn"]} href="/" onClick={() => fireEvent(ERROR_BACK_EARTH_HQ, null)}>
+            <p className={styles["text"]}>Back To Earth HQ</p>
+            <div className={styles["icon"]}>
+              <Icon name="arrow-right" size={15} type="decorative" />
+            </div>
+          </AnchorCTA>
+        </div>
 
-      <div className={styles["c-page-404__globe"]}>
-        <Image src={GlobeFiresHalf} layout="fill" objectFit="cover" objectPosition="top" role="presentation" alt="" />
-        <div className={styles["shadow"]} />
+        <div className={styles["c-page-404__container__globe"]}>
+          <Image src={GlobeFiresHalf} layout="fill" objectFit="cover" objectPosition="top" role="presentation" alt="" />
+          <div className={styles["shadow"]} />
+        </div>
       </div>
     </Layout>
   );
