@@ -66,6 +66,10 @@
       backdrop-filter: blur(5.43656px);
       margin: 60px;
     }
+
+    @media screen and (min-width: $global-breakpoint-xxl) {
+      margin-left: calc((100% - #{$o-page-section-wrap-max-width}) / 2);
+    }
   }
 
   &__title,
