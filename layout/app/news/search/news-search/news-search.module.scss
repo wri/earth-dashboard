@@ -47,7 +47,11 @@
       }
 
       &:not(:last-child) {
-        margin-right: 12px;
+        margin-right: 8px;
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          margin-right: 12px;
+        }
       }
     }
   }
