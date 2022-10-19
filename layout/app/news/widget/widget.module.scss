@@ -50,10 +50,6 @@
 
   &__source {
     margin-top: 24px;
-
-    &.right {
-      margin-left: auto;
-    }
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
