@@ -19,6 +19,7 @@ import ContentPanel from "components/app/home/content-panel";
 import Image from "next/image";
 import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
 import ContentPanelSkeleton from "components/app/home/content-panel/content-panel-skeleton";
+import { setAppLoaded } from "slices/common";
 
 const SCROLL_NORMALIZE_VALUE = 37;
 
@@ -47,6 +48,8 @@ type DataInfoProps = {
   removeSelectedHeadline: ActionCreatorWithoutPayload<string>;
   defaultMode: Mode | undefined;
   resetPageStack: ActionCreatorWithoutPayload<string>;
+  hasAppLoaded: boolean;
+  setAppLoaded: ActionCreatorWithoutPayload<string>;
 };
 
 const DataInfo = ({
@@ -58,7 +61,8 @@ const DataInfo = ({
   pagePush,
   removeSelectedHeadline,
   defaultMode,
-  resetPageStack
+  resetPageStack,
+  hasAppLoaded
 }: DataInfoProps) => {
   const [carouselScroll, setCarouselScroll] = useState<number>(0);
   const [carouselWidth, setCarouselWidth] = useState<number>();
@@ -102,6 +106,13 @@ const DataInfo = ({
   };
 
   useEffect(() => {
+    removeSelectedHeadline();
+    resetPageStack();
+    if (currentMode && defaultMode && currentMode !== defaultMode && !hasAppLoaded)
+      pagePush(PAGE_TYPE_ID.DATA_LAYER_PAGE);
+  }, []);
+
+  useEffect(() => {
     if (containerRef.current) setCarouselWidth(containerRef.current.offsetWidth);
     // eslint-disable-next-line
   }, [containerRef.current]);
@@ -121,11 +132,6 @@ const DataInfo = ({
     }
     // eslint-disable-next-line
   }, [carouselScroll, carouselWidth]);
-
-  useEffect(() => {
-    removeSelectedHeadline();
-    resetPageStack();
-  }, []);
 
   useEffect(() => {
     if ((!currentMode || currentMode === defaultMode) && modes) setCurrentMode(modes[0]);
@@ -235,7 +241,8 @@ export default connect(
       ?.filter(mode => mode.attributes.visibility.data_highlights && mode.attributes.extreme_event_count !== 0)
       .sort((a, b) => (a.attributes.extreme_event_count > b.attributes.extreme_event_count ? -1 : 1)),
     currentMode: state.modes.currentMode,
-    defaultMode: state.modes.defaultMode
+    defaultMode: state.modes.defaultMode,
+    hasAppLoaded: state.common.hasAppLoaded
   }),
-  { setCurrentMode, pagePush, resetPageStack, removeSelectedHeadline }
+  { setCurrentMode, pagePush, resetPageStack, removeSelectedHeadline, setAppLoaded }
 )(DataInfo);
