@@ -61,7 +61,6 @@ const MenuMobileContainer = ({
       className={styles["c-mobile-menu-container"]}
       style={{ height: panelHeight, zIndex: pageTypeId === PAGE_TYPE_ID.INFO_PAGE || !hasMenuOpen ? 1000 : 1001 }}
     >
-      <div className={styles["c-mobile-menu-container__handle"]} />
       <ResizablePanel
         defaultHeight={defaultPanelHeight}
         height={panelHeight}

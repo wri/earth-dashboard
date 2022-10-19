@@ -8,20 +8,6 @@
   left: 0;
   z-index: $z-index-header;
 
-  &__handle {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -5px;
-    width: 115px;
-    height: 6px;
-    background-color: $white;
-    opacity: 0.8;
-    border-radius: 3px;
-    transform: translateX(-50%);
-    z-index: 10000;
-  }
-
   &__draggable {
     position: absolute !important;
     bottom: 0;
