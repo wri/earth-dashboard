@@ -160,6 +160,7 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
+      overscroll-behavior-x: none;
 
       @media screen and (min-width: $global-breakpoint-md) {
         overflow-x: hidden;
