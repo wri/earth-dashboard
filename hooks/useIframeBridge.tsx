@@ -119,8 +119,9 @@ const useIframeBridge = ({
         setHeadlines(filteredHeadlines);
       } catch (err) {
         console.log("Error fetching modes");
+      } finally {
+        setHeadlinesLoading(false);
       }
-      setHeadlinesLoading(false);
     };
 
     getHeadlines();

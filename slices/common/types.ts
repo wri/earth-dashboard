@@ -3,4 +3,5 @@ export type CommonState = {
   isMobile: boolean;
   isShareOpen: boolean;
   isNewsSearchOpen: boolean;
+  hasAppLoaded: boolean;
 };

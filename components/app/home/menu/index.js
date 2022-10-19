@@ -4,6 +4,7 @@ import { ID as animationsId } from "schemas/global-settings/animations";
 import { NAME as globalSettingsSliceName } from "slices/globalSettings";
 import { NAME as dialogSliceName, setDialogHeight } from "slices/dialog";
 import { setHeadlines, setCurrentHeadline, setCurrentHeadlineId, NAME as headlinesSliceName } from "slices/headlines";
+import { setAppLoaded } from "slices/common";
 
 import {
   setCurrentMode,
@@ -48,7 +49,8 @@ export default connect(
     setCurrentHeadline,
     setCurrentHeadlineId,
     pagePush,
-    pagePop
+    pagePop,
+    setAppLoaded
   },
   null,
   { forwardRef: true }
