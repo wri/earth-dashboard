@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import styles from "./news-search.module.scss";
 import { fireEvent } from "utils/gtag";
 import { NEWS_SEARCH_FILTER } from "constants/tag-manager";
+import IconButton from "components/ui/icon-button";
 
 type NewsSearchFormData = {
   search: string;
