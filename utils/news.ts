@@ -38,7 +38,7 @@ export const formatPosts = (posts: MongabayPost[]): FormattedMongabayPost[] =>
       title: currentValue.title,
       author: "Mongabay",
       date: new Date(currentValue.date),
-      image: currentValue.featuredImage.node.mediaItemUrl,
+      image: currentValue.featuredImage?.node.mediaItemUrl,
       link: MONGABAY_NEWS_DOMAIN + currentValue.uri
     });
     return accumulator;
