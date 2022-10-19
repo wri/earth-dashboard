@@ -83,6 +83,13 @@
       margin: auto;
     }
 
+    button {
+      svg {
+        min-width: 16px;
+        min-height: 16px;
+      }
+    }
+
     @media screen and (min-width: $global-breakpoint-md) {
       padding: 20px $o-page-section-padding-x-desktop;
     }
