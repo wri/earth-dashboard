@@ -17,6 +17,7 @@ type EventCardProps = {
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   type?: "Default" | "Condensed";
   className?: string;
+  gradient?: boolean;
 };
 
 const EventCard = ({
@@ -26,7 +27,8 @@ const EventCard = ({
   pagePush,
   setCurrentMode,
   type = "Default",
-  className
+  className = "",
+  gradient
 }: EventCardProps) => {
   const titleAbove = type === "Default" && !isMobile;
 
@@ -46,7 +48,11 @@ const EventCard = ({
         className={styles["c-event-card__background"]}
         style={{ backgroundImage: `url(${headline.attributes.thumbnail_image})` }}
       />
-      <div className={styles["c-event-card__detail"]}>
+      <div
+        className={classnames(styles["c-event-card__detail"], {
+          [styles["c-event-card__detail--gradient"]]: gradient
+        })}
+      >
         <div className={styles["c-event-card__header"]}>
           {titleAbove && (
             <h3 className={classnames(styles["title"], styles["title-above"])}>{headline.attributes.title}</h3>
