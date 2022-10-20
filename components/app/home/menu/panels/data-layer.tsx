@@ -10,15 +10,12 @@ import ContentPanel from "components/app/home/content-panel/component";
 import SharePanel from "components/app/home/share-panel/component";
 import EventCard from "components/app/home/event-card";
 import {
-  setHeadlines,
   NAME as headlineSliceName,
   Headline as HeadlineType,
   setCurrentHeadline,
-  setHeadlinesLoading,
   Headline,
   setCurrentHeadlineId
 } from "slices/headlines";
-import { fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Link from "next/link";
 import { setIsShareOpen } from "slices/common";

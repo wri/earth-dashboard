@@ -2,7 +2,12 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import MenuOption from "components/app/home/menu-option";
 import Carousel from "components/ui/carousel";
-import { ADVANCED_MENU, EARTH_HQ_VIEWED_CATEGORY } from "constants/tag-manager";
+import {
+  ADVANCED_MENU,
+  EARTH_HQ_VIEWED_CATEGORY,
+  EXPLORE_CLICKED_DATA_LAYER,
+  EXPLORE_VIEWED_DATA_LAYER
+} from "constants/tag-manager";
 import { connect } from "react-redux";
 import { Mode, setCurrentMode, pagePush, resetPageStack } from "slices/modes";
 import { RootState } from "store/types";
@@ -20,6 +25,7 @@ import Image from "next/image";
 import ExternalLinkIcon from "public/static/icons/external-link-v2.svg";
 import ContentPanelSkeleton from "components/app/home/content-panel/content-panel-skeleton";
 import { setAppLoaded } from "slices/common";
+import { useDebounce } from "react-use";
 
 const SCROLL_NORMALIZE_VALUE = 37;
 
@@ -73,13 +79,25 @@ const DataInfo = ({
 
   const handleModeClicked = (mode: Mode) => {
     fireEvent(EARTH_HQ_VIEWED_CATEGORY, mode.attributes.title);
+    fireEvent(EXPLORE_VIEWED_DATA_LAYER, mode.attributes.title);
     setCurrentMode(mode);
     pagePush(PAGE_TYPE_ID.DATA_LAYER_PAGE);
   };
 
   const dataLayers = useMemo(
     () => modes?.map(mode => mapHighlightToOption(mode, setCurrentMode, () => handleModeClicked(mode))) || [],
+    // eslint-disable-next-line
     [modes, setCurrentMode, pagePush]
+  );
+
+  // Tracks events after debounce
+  useDebounce(
+    () => {
+      if (!currentMode) return;
+      fireEvent(EXPLORE_CLICKED_DATA_LAYER, currentMode.attributes.title);
+    },
+    1000,
+    [dataLayers]
   );
 
   const setModeToScroll = () => {
@@ -110,6 +128,7 @@ const DataInfo = ({
     resetPageStack();
     if (currentMode && defaultMode && currentMode !== defaultMode && !hasAppLoaded)
       pagePush(PAGE_TYPE_ID.DATA_LAYER_PAGE);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -119,6 +138,7 @@ const DataInfo = ({
 
   useEffect(() => {
     scrollFromMode();
+    // eslint-disable-next-line
   }, [carouselWidth, carouselRef.current]);
 
   useEffect(() => {
@@ -135,6 +155,7 @@ const DataInfo = ({
 
   useEffect(() => {
     if ((!currentMode || currentMode === defaultMode) && modes) setCurrentMode(modes[0]);
+    // eslint-disable-next-line
   }, [modes, currentMode, defaultMode]);
 
   return (
