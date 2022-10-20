@@ -165,7 +165,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
                     <Image
                       layout="fill"
                       objectFit="cover"
-                      objectPosition={isMobile ? undefined : "bottom"}
+                      objectPosition="bottom"
                       src={isMobile ? image.mobileURL : image.desktopURL}
                       alt={image.title}
                     />

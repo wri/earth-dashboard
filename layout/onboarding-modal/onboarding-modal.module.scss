@@ -104,12 +104,17 @@
     }
 
     &__header {
+      margin-top: 8px;
+      width: 100%;
+      position: absolute;
       display: flex;
       justify-content: center;
       background-color: transparent;
       padding: 0;
 
       @media screen and (min-width: $global-breakpoint-md) {
+        margin-top: 0;
+        position: relative;
         justify-content: space-between;
         align-items: center;
         padding: 24px;
@@ -177,7 +182,7 @@
         scroll-snap-stop: always;
 
         .image {
-          height: 288px;
+          height: 75vw;
           display: flex;
           position: relative;
 
