@@ -88,7 +88,6 @@
         flex: 1;
         overflow: hidden;
       }
-
       &__contain {
         display: flex;
         position: relative;
@@ -184,6 +183,10 @@
           height: 60%;
           display: flex;
           position: relative;
+
+          @media screen and (max-width: 375px) {
+            height: 50%;
+          }
 
           @media screen and (min-width: $global-breakpoint-md) {
             height: 328px;
