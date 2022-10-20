@@ -33,33 +33,19 @@
     border-radius: 16px 16px 0 0;
   }
 
+  &__header-icon {
+    height: 32px;
+    width: 32px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: $colour-galaxy;
+    margin-right: 12px;
+    box-shadow: 0px 2px 10px rgba(26, 26, 25, 0.24);
+  }
+
   &__header-content {
     display: flex;
     align-items: center;
-
-    &--no-icon {
-      justify-content: space-between;
-      &:before {
-        content: initial;
-      }
-    }
-
-    &--has-globe-icon {
-      padding-left: 48px;
-      &:before {
-        left: 25px;
-        content: "";
-        position: absolute;
-        display: block;
-        background-image: url("/static/icons/home-menu/search-globe.svg");
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 36px;
-        width: 36px;
-        box-shadow: 0px 2px 10px rgba(26, 26, 25, 0.24);
-        border-radius: 36px;
-      }
-    }
   }
 
   &__header-text {

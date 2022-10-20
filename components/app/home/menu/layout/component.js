@@ -3,17 +3,12 @@ import classnames from "classnames";
 import styles from "./layout.module.scss";
 import IconButton from "components/ui/icon-button";
 
-const MenuLayout = forwardRef(({ title, iconName, className, onBack, onClose, children, ...rest }, ref) => {
+const MenuLayout = forwardRef(({ title, icon = null, className, onBack, onClose, children, ...rest }, ref) => {
   return (
     <div ref={ref} className={classnames(styles["c-layout"], className)} {...rest}>
       <div className={classnames(styles["c-layout__header"])}>
-        <div
-          className={classnames(
-            styles["c-layout__header-content"],
-            iconName == "globe" ? styles["c-layout__header-content--has-globe-icon"] : undefined
-          )}
-        >
-          {onBack && (
+        <div className={classnames(styles["c-layout__header-content"])}>
+          {onBack ? (
             <IconButton
               className={styles["c-layout__back-button"]}
               name="arrow-left"
@@ -22,6 +17,8 @@ const MenuLayout = forwardRef(({ title, iconName, className, onBack, onClose, ch
               aria-label="Back"
               size={18}
             />
+          ) : (
+            <div className={styles["c-layout__header-icon"]}>{icon}</div>
           )}
           <h2 className={styles["c-layout__header-text"]}>{title}</h2>
           {onClose && (
