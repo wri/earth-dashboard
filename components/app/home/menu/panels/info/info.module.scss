@@ -15,6 +15,10 @@
     }
   }
 
+  &__carousel {
+    padding-top: 32px;
+  }
+
   @media screen and (max-width: $global-breakpoint-md) {
     display: flex;
   }

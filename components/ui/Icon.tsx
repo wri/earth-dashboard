@@ -4,6 +4,8 @@ import SVG from "react-inlinesvg";
 export type IconNames =
   | "2d"
   | "3d"
+  | "globe"
+  | "globe-search"
   | "arrow-up"
   | "arrow-down-homepage"
   | "arrow-right"

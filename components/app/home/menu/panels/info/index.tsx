@@ -202,6 +202,7 @@ const InfoPanel = ({
           finalItem={<ViewAllCard />}
           ref={carouselRef}
           setScroll={setCarouselScroll}
+          className={styles["info-container__carousel"]}
           style={{ height: isMobile ? "auto" : "calc(100% - 176px)" }}
         />
       )}
