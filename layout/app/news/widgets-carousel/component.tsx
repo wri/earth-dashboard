@@ -22,8 +22,6 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
   const carouselRef = useRef<HTMLDivElement>();
 
   const [viewedWidget, setViewedWidget] = useState<string>();
-  const [prevWidget, setPrevWidget] = useState<Element | null>();
-  const [nextWidget, setNextWidget] = useState<Element | null>();
 
   const getCarouselCurrentIndex = () => {
     const nodes = carouselRef?.current?.childNodes;
@@ -33,55 +31,30 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
     return index === -1 ? 0 : index;
   };
 
-  /** Scrolls to the previous widget. */
-  const handlePrevious = () => {
-    if (!prevWidget) return;
+  /** Moves headlines. */
+  const navigateWidget = (action: "back" | "next") => {
+    if (!carouselRef.current) return;
 
-    prevWidget.scrollIntoView({
-      block: "center",
+    const widgetWidth = carouselRef.current.firstElementChild?.clientWidth;
+
+    if (!widgetWidth) return;
+
+    const targetWidgetIndex =
+      widgets.findIndex(headline => headline.id.toString() === viewedWidget) + (action === "back" ? -1 : 1);
+
+    // Scrolls to next widget but loops if on the ends
+    carouselRef.current.scrollTo({
+      left:
+        widgetWidth *
+        (targetWidgetIndex < 0 ? widgets.length - 1 : targetWidgetIndex >= widgets.length ? 0 : targetWidgetIndex),
       behavior: "smooth"
     });
   };
 
-  /** Scrolls to the next widget. */
-  const handleNext = () => {
-    if (!nextWidget) return;
-
-    nextWidget.scrollIntoView({
-      block: "center",
-      behavior: "smooth"
-    });
-  };
-
-  // Observes each item and checks if in viewport
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-
-          setViewedWidget(entry.target.id);
-          setPrevWidget(entry.target.previousElementSibling ?? entry.target.parentElement?.lastElementChild);
-          setNextWidget(entry.target.nextElementSibling ?? entry.target.parentElement?.firstElementChild);
-        });
-      },
-      {
-        root: carouselRef.current,
-        rootMargin: "0px",
-        threshold: 0.5
-      }
-    );
-
-    carouselRef.current?.childNodes.forEach(node => {
-      observer.observe(node as Element);
-    });
-
-    return () => {
-      carouselRef.current?.childNodes.forEach(node => {
-        observer.unobserve(node as Element);
-      });
-    };
-  }, [isLoading]);
+    if (!viewedWidget && widgets && widgets.length > 0) setViewedWidget(widgets[0].id.toString());
+    // eslint-disable-next-line
+  }, [widgets]);
 
   useEffect(() => {
     const carouselIndex = getCarouselCurrentIndex();
@@ -92,7 +65,26 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
 
       fireEvent(NEWS_CAROUSEL_VIEWED, `carousel_${carouselIndex + 1}`);
     }
+    // eslint-disable-next-line
   }, [viewedWidget]);
+
+  /** Updates the currently viewed widget. */
+  const handleCarouselScroll = () => {
+    if (!carouselRef.current) return;
+
+    const widgetWidth = carouselRef.current.firstElementChild?.clientWidth;
+    const scrollPos = carouselRef.current.scrollLeft;
+
+    if (!widgetWidth) return;
+
+    const newWidgetIndex = Math.round(scrollPos / widgetWidth);
+
+    const newWidget = widgets.find((_, index) => newWidgetIndex === index);
+
+    if (!newWidget) return;
+
+    setViewedWidget(newWidget.id.toString());
+  };
 
   return (
     <div className={styles["c-widgets-carousel"]}>
@@ -102,6 +94,7 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
           if (ref) carouselRef.current = ref;
         }}
         className={styles["c-widgets-carousel__wrapper"]}
+        onScroll={handleCarouselScroll}
       >
         {isLoading ? (
           <div className={styles["widget-skeleton"]}>
@@ -128,7 +121,7 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
         {isLoading ? (
           <Skeleton.IconButton variant="sm" />
         ) : (
-          <IconButton name="arrow-left" size={16} onClick={handlePrevious} small />
+          <IconButton name="arrow-left" size={16} onClick={() => navigateWidget("back")} small />
         )}
 
         {/* Indicator */}
@@ -145,7 +138,7 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
         {isLoading ? (
           <Skeleton.IconButton variant="sm" />
         ) : (
-          <IconButton name="arrow-right" size={16} onClick={handleNext} small />
+          <IconButton name="arrow-right" size={16} onClick={() => navigateWidget("next")} small />
         )}
       </div>
     </div>

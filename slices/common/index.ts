@@ -10,7 +10,8 @@ const initialState: CommonState = {
   hostname: "https://earthhq.org/",
   isMobile: true,
   isShareOpen: false,
-  isNewsSearchOpen: false
+  isNewsSearchOpen: false,
+  hasAppLoaded: false
 };
 
 const commonSlice = createSlice({
@@ -28,6 +29,9 @@ const commonSlice = createSlice({
     },
     setIsNewsSearchOpen: (state, { payload }: PayloadAction<boolean>) => {
       state.isNewsSearchOpen = payload;
+    },
+    setAppLoaded: state => {
+      state.hasAppLoaded = true;
     }
   }
 });
@@ -40,6 +44,6 @@ export const resetGlobeToDefault = () => (dispatch: any) => {
   dispatch(resetPageStack());
 };
 
-export const { setHostname, setIsMobile, setIsShareOpen, setIsNewsSearchOpen } = commonSlice.actions;
+export const { setHostname, setIsMobile, setIsShareOpen, setIsNewsSearchOpen, setAppLoaded } = commonSlice.actions;
 
 export default commonSlice.reducer;

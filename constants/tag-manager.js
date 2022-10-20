@@ -22,6 +22,10 @@ export const EARTH_HQ_EXPLORED_NEWS = "earth_hq_explored_news";
 export const ADVANCED_MENU = "advanced_menu";
 export const MAP_SHARE = "map_share";
 
+// Explore
+export const EXPLORE_CLICKED_DATA_LAYER = "explore_clicked_data_layer";
+export const EXPLORE_VIEWED_DATA_LAYER = "explore_viewed_data_layer";
+
 // News
 export const NEWS_OPENED_ARTICLE = "news_opened_article";
 export const NEWS_PLAYED_VIDEO = "news_played_video";
@@ -40,6 +44,7 @@ export const EARTH_HQ_CAROUSEL_COMPLETED = "earthhq_carousel_completed";
 // Events
 export const VIEW_ALL_EXTREME_EVENTS = "view_all_extreme_events";
 export const SHARE_EXTREME_EVENT = "share_extreme_event";
+export const SCALE_VIEWED_INFO = "scale_viewed_info";
 
 // 404
 export const ERROR_BACK_EARTH_HQ = "error_back_earthhq";

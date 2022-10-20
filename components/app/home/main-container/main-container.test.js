@@ -97,7 +97,11 @@ test("<MainContainer /> renders correctly as mobile", async () => {
       >
         <div
           class="c-home-menu-container"
-        />
+        >
+          <div
+            class="c-home-menu-container__handle"
+          />
+        </div>
         <div>
           <div
             class="c-mobile-menu-container__draggable__handle c-mobile-menu-container__draggable__handle__open"

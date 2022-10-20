@@ -38,6 +38,9 @@ type InfoPanelProps = {
   setRoutePageTypeId: ActionCreatorWithPayload<string, string>;
   routePageTypeId: string;
   resetPageStack: ActionCreatorWithoutPayload<string>;
+  hasAppLoaded: boolean;
+  setAppLoaded: ActionCreatorWithoutPayload<string>;
+  currentHeadlineId: number | undefined;
 };
 
 const InfoPanel = ({
@@ -52,7 +55,9 @@ const InfoPanel = ({
   setCurrentMode,
   setRoutePageTypeId,
   routePageTypeId,
-  resetPageStack
+  resetPageStack,
+  hasAppLoaded,
+  currentHeadlineId
 }: InfoPanelProps) => {
   const [carouselScroll, setCarouselScroll] = useState<number>(0);
   const [carouselWidth, setCarouselWidth] = useState<number>();
@@ -132,6 +137,7 @@ const InfoPanel = ({
     resetPageStack();
     setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     if (defaultMode) setCurrentMode(defaultMode);
+    if (!hasAppLoaded && currentHeadlineId) pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
   }, []);
 
   // Setting carousel width to be used for calculation
@@ -172,20 +178,25 @@ const InfoPanel = ({
     // eslint-disable-next-line
   }, [carouselScroll, carouselWidth, isLoading]);
 
+  const currentIndex = carouselWidth ? Math.round(carouselScroll / (carouselWidth - SCROLL_NORMALIZE_VALUE)) : 0;
+
   return (
     <div ref={containerRef} className={styles["info-container"]}>
       {!isMobile && <EventPrompt />}
 
       {isLoading ? (
-        <EventCardSkeleton className={styles["info-container__skeleton"]} />
+        <div className={styles["info-container__skeleton-wrapper"]}>
+          <EventCardSkeleton />
+        </div>
       ) : (
         <Carousel
-          items={headlines.map(headline => (
+          items={headlines.map((headline, index) => (
             <EventCard
               headline={headline}
               type="Condensed"
               key={headline.id}
               onClick={() => handleEventClicked(headline)}
+              gradient={currentIndex !== index}
             />
           ))}
           finalItem={<ViewAllCard />}
@@ -200,7 +211,7 @@ const InfoPanel = ({
           disableBackButton={currentHeadlineIndex === 0}
           disableNextButton={currentHeadlineIndex === headlines.length}
           navigateInfo={navigateInfo}
-          index={carouselWidth ? Math.round(carouselScroll / (carouselWidth - SCROLL_NORMALIZE_VALUE)) : 0}
+          index={currentIndex}
           length={headlines.length + 1 > 11 ? 11 : headlines.length + 1}
           isLoading={isLoading}
         />
@@ -216,7 +227,16 @@ export default connect(
     isMobile: state.common.isMobile,
     isLoading: state.headlines.headlinesLoading,
     defaultMode: state.modes.defaultMode,
-    routePageTypeId: state.modes.routePageTypeId
+    routePageTypeId: state.modes.routePageTypeId,
+    hasAppLoaded: state.common.hasAppLoaded,
+    currentHeadlineId: state.headlines.currentHeadlineId
   }),
-  { setCurrentHeadline, pagePush, resetPageStack, setCurrentHeadlineId, setCurrentMode, setRoutePageTypeId }
+  {
+    setCurrentHeadline,
+    pagePush,
+    resetPageStack,
+    setCurrentHeadlineId,
+    setCurrentMode,
+    setRoutePageTypeId
+  }
 )(InfoPanel);

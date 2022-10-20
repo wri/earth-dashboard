@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
@@ -27,18 +27,24 @@ const Menu = forwardRef(
       isLocationDisabled,
       hasMenuOpen,
       pagePush,
-      pagePop
+      pagePop,
+      setAppLoaded
     },
     ref
   ) => {
     const router = useRouter();
 
-    const navigateTo = pageId => () => pagePush(pageId);
+    useEffect(() => {
+      setAppLoaded();
+    }, []);
 
     const getMenuContent = () => (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
+        {/* Resizable handle */}
+        <div className={styles["c-home-menu-container__handle"]} />
+
         {/* Single event view */}
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
           <MenuLayout ref={ref} title="Back" onBack={pagePop} onClose={onClose}>
@@ -79,7 +85,7 @@ const Menu = forwardRef(
         {/* Data layer */}
         {pageTypeId == PAGE_TYPE_ID.DATA_LAYER_PAGE && (
           <MenuLayout ref={ref} title="Back" onBack={pagePop} onClose={onClose}>
-            <DataLayerPanel onClickExtremeEvents={navigateTo(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE)} />
+            <DataLayerPanel onClickExtremeEvents={() => pagePush(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE)} />
           </MenuLayout>
         )}
       </div>

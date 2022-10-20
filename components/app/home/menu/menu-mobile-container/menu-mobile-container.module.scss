@@ -1,3 +1,4 @@
+@import "css/settings";
 @import "css/settings/zIndex";
 
 .c-mobile-menu-container {
@@ -15,19 +16,6 @@
     &__handle {
       position: relative;
       z-index: 1001;
-
-      &:after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        bottom: 8px;
-        width: 115px;
-        height: 6px;
-        background-color: white;
-        opacity: 0.8;
-        border-radius: 3px;
-        transform: translateX(-50%);
-      }
 
       &__closed {
         &:before {

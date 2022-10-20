@@ -43,6 +43,10 @@ const CondensedMenu = ({
 
   return (
     <div className={styles["c-condensed-menu"]}>
+      {/* Resizable handle */}
+      <div className={styles["c-condensed-menu__handle"]} />
+
+      {/* Content */}
       <div className={styles["c-condensed-menu__title-container"]}>
         {(pageTypeId !== PAGE_TYPE_ID.INFO_PAGE || router?.pathname === "/explore") &&
           ((currentMode && currentMode.attributes.title !== "Default") || currentHeadline) && (

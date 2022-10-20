@@ -19,7 +19,11 @@ test("<Menu /> renders correctly as desktop", async () => {
     <div>
       <div
         class="c-home-menu-container"
-      />
+      >
+        <div
+          class="c-home-menu-container__handle"
+        />
+      </div>
     </div>
   `);
 });
@@ -46,6 +50,9 @@ test("<Menu /> renders correctly as mobile", async () => {
       <div
         class="c-condensed-menu"
       >
+        <div
+          class="c-condensed-menu__handle"
+        />
         <div
           class="c-condensed-menu__title-container"
         >

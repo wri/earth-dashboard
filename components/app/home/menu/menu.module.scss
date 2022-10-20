@@ -554,6 +554,20 @@
 .c-home-menu-container {
   animation: FadeIn 0.3s ease-in;
 
+  &__handle {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -5px;
+    width: 115px;
+    height: 6px;
+    background-color: $white;
+    opacity: 0.8;
+    border-radius: 3px;
+    transform: translateX(-50%);
+    z-index: 1001;
+  }
+
   &--closing {
     opacity: 0;
     animation: FadeOut 0.3s ease-in;
