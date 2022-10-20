@@ -2,6 +2,8 @@ import classnames from "classnames";
 import styles from "./normal-scale.module.scss";
 import { Mode } from "slices/modes";
 import { ActionCreatorWithOptionalPayload } from "@reduxjs/toolkit";
+import { fireEvent } from "utils/gtag";
+import { SCALE_VIEWED_INFO } from "constants/tag-manager";
 
 export type NormalScaleProps = {
   headlineMode: Mode;
@@ -22,6 +24,12 @@ const NormalScale = ({
   minLabel = "0%",
   maxLabel = "100%"
 }: NormalScaleProps) => {
+  /** Sets the scale modal to open and track event. */
+  const handleSetInfo = () => {
+    fireEvent(SCALE_VIEWED_INFO, null);
+    setInfoMode(headlineMode);
+  };
+
   return (
     <div className={classnames(styles["c-normal-scale"], className)} data-testid="normal-scale">
       <span
@@ -30,7 +38,7 @@ const NormalScale = ({
       >
         Scale
         {headlineMode.attributes.scale_info_detail && (
-          <span className={styles["c-normal-scale__info"]} onClick={() => setInfoMode(headlineMode)} />
+          <span className={styles["c-normal-scale__info"]} onClick={handleSetInfo} />
         )}
       </span>
       <div className={styles["c-normal-scale__content"]}>
