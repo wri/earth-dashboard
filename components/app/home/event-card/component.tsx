@@ -81,6 +81,7 @@ const EventCard = ({
               e.stopPropagation();
               handleModeClicked();
             }}
+            className={styles["data-button"]}
           />
         </div>
       </div>

@@ -127,5 +127,9 @@
       margin-bottom: 0;
       @include font-size(14px, 18px);
     }
+
+    .data-button span {
+      text-transform: capitalize;
+    }
   }
 }
