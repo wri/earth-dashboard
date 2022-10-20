@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef, UIEvent } from "react";
+import { useState, useEffect, useMemo, UIEvent } from "react";
 import classnames from "classnames";
 import styles from "../menu.module.scss";
 import { connect } from "react-redux";
@@ -10,7 +10,6 @@ import { RootState } from "store/types";
 import CtaButton from "components/ui/cta-button";
 import { PAGE_TYPE_ID } from "../../main-container/component";
 import EventCardSkeleton from "../../event-card/event-card-skeleton";
-import Skeleton from "components/ui/skeleton";
 
 const HEADLINE_BATCH_SIZE = 6;
 const SCOLL_THRESHOLD = 180;

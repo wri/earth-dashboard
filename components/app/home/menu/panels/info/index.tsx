@@ -183,7 +183,9 @@ const InfoPanel = ({
       {!isMobile && <EventPrompt />}
 
       {isLoading ? (
-        <EventCardSkeleton className={styles["info-container__skeleton"]} />
+        <div className={styles["info-container__skeleton-wrapper"]}>
+          <EventCardSkeleton />
+        </div>
       ) : (
         <Carousel
           items={headlines.map(headline => (
