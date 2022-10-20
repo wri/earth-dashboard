@@ -40,6 +40,11 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    transition: background-color 0.5s;
+  }
+
+  &__detail--gradient {
+    background-color: rgba(255, 255, 255, 0.3);
   }
 
   &__header {
@@ -121,6 +126,10 @@
       font-weight: 600;
       margin-bottom: 0;
       @include font-size(14px, 18px);
+    }
+
+    .data-button span {
+      text-transform: capitalize;
     }
   }
 }

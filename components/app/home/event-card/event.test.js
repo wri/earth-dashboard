@@ -53,7 +53,7 @@ test("<EventCard /> renders correctly as a Button", async () => {
           Sep 14 2021
         </p>
         <button
-          class="c-cta-button"
+          class="c-cta-button data-button"
         >
           <div
             class="c-cta-button__content light"
@@ -127,7 +127,7 @@ test("<EventCard /> renders correctly by default", async () => {
           Sep 14 2021
         </p>
         <button
-          class="c-cta-button"
+          class="c-cta-button data-button"
         >
           <div
             class="c-cta-button__content light"

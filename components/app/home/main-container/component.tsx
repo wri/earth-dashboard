@@ -130,7 +130,7 @@ const MainContainer = ({
   };
 
   const getOpenMenuHeight = () => {
-    return pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? (router?.pathname === "/" ? 380 : 480) : window.innerHeight * 0.6;
+    return pageTypeId === PAGE_TYPE_ID.INFO_PAGE ? (router?.pathname === "/" ? 404 : 480) : window.innerHeight * 0.6;
   };
 
   const {

@@ -178,20 +178,25 @@ const InfoPanel = ({
     // eslint-disable-next-line
   }, [carouselScroll, carouselWidth, isLoading]);
 
+  const currentIndex = carouselWidth ? Math.round(carouselScroll / (carouselWidth - SCROLL_NORMALIZE_VALUE)) : 0;
+
   return (
     <div ref={containerRef} className={styles["info-container"]}>
       {!isMobile && <EventPrompt />}
 
       {isLoading ? (
-        <EventCardSkeleton className={styles["info-container__skeleton"]} />
+        <div className={styles["info-container__skeleton-wrapper"]}>
+          <EventCardSkeleton />
+        </div>
       ) : (
         <Carousel
-          items={headlines.map(headline => (
+          items={headlines.map((headline, index) => (
             <EventCard
               headline={headline}
               type="Condensed"
               key={headline.id}
               onClick={() => handleEventClicked(headline)}
+              gradient={currentIndex !== index}
             />
           ))}
           finalItem={<ViewAllCard />}
@@ -206,7 +211,7 @@ const InfoPanel = ({
           disableBackButton={currentHeadlineIndex === 0}
           disableNextButton={currentHeadlineIndex === headlines.length}
           navigateInfo={navigateInfo}
-          index={carouselWidth ? Math.round(carouselScroll / (carouselWidth - SCROLL_NORMALIZE_VALUE)) : 0}
+          index={currentIndex}
           length={headlines.length + 1 > 11 ? 11 : headlines.length + 1}
           isLoading={isLoading}
         />
