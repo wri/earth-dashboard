@@ -19,11 +19,7 @@ test("<Menu /> renders correctly as desktop", async () => {
     <div>
       <div
         class="c-home-menu-container"
-      >
-        <div
-          class="c-home-menu-container__handle"
-        />
-      </div>
+      />
     </div>
   `);
 });
