@@ -1,6 +1,13 @@
 import LayoutHome from "layout/app/home";
+import { useEffect } from "react";
+import { PAGE_VIEW } from "constants/tag-manager";
+import { fireEvent } from "utils/gtag";
 
 const ExplorePage = () => {
+  useEffect(() => {
+    fireEvent(PAGE_VIEW, "explore_tab");
+  }, []);
+
   return (
     <LayoutHome
       title="The Science is in. This is not a drill. It's a Planetary Emergency"
