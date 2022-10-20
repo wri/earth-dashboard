@@ -60,7 +60,7 @@ const Menu = forwardRef(
             title={INFO_PAGE_HEADLINE}
             onClose={onClose}
             style={isMobile ? { paddingBottom: "56px" } : {}}
-            icon={<Icon name="globe" size={22} />}
+            icon={!isMobile && <Icon name="globe" size={22} />}
           >
             <InfoPanel />
           </MenuLayout>
@@ -73,7 +73,7 @@ const Menu = forwardRef(
             title={DATA_INFO_PAGE_HEADLINE}
             onClose={onClose}
             style={isMobile ? { paddingBottom: "56px" } : {}}
-            icon={<Icon name="globe-search" size={22} />}
+            icon={!isMobile && <Icon name="globe-search" size={22} />}
           >
             <DataInfoPanel />
           </MenuLayout>

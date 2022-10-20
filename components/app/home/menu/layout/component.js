@@ -3,7 +3,7 @@ import classnames from "classnames";
 import styles from "./layout.module.scss";
 import IconButton from "components/ui/icon-button";
 
-const MenuLayout = forwardRef(({ title, icon = null, className, onBack, onClose, children, ...rest }, ref) => {
+const MenuLayout = forwardRef(({ title, icon, className, onBack, onClose, children, ...rest }, ref) => {
   return (
     <div ref={ref} className={classnames(styles["c-layout"], className)} {...rest}>
       <div className={classnames(styles["c-layout__header"])}>
@@ -18,7 +18,7 @@ const MenuLayout = forwardRef(({ title, icon = null, className, onBack, onClose,
               size={18}
             />
           ) : (
-            <div className={styles["c-layout__header-icon"]}>{icon}</div>
+            icon && <div className={styles["c-layout__header-icon"]}>{icon}</div>
           )}
           <h2 className={styles["c-layout__header-text"]}>{title}</h2>
           {onClose && (
