@@ -126,7 +126,7 @@ $video-thumbnail-transition-ms: 1000;
     width: 100%;
     color: $white;
     padding: 11px 20px;
-    @include font-size(14px, 21px);
+    @include font-size(16px, 24px);
     font-weight: 500;
     mix-blend-mode: normal;
     backdrop-filter: blur(10.8731px);
@@ -134,6 +134,9 @@ $video-thumbnail-transition-ms: 1000;
     transition: background-color $c-video-article-transition;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
@@ -194,7 +197,7 @@ $video-thumbnail-transition-ms: 1000;
 
         #{$this}__title {
           padding: 16px 24px;
-          @include font-size(14px, 21px);
+          @include font-size(16px, 24px);
         }
       }
     }

@@ -30,7 +30,7 @@ $c-news-article-transition: 0.3s ease-in-out;
   &.featured {
     .top {
       gap: 12px;
-      padding: 20px;
+      padding: 20px 20px 0 20px;
 
       @media screen and (min-width: $global-breakpoint-md) {
         padding: 32px;
@@ -55,7 +55,7 @@ $c-news-article-transition: 0.3s ease-in-out;
     }
 
     .bottom {
-      padding: 20px;
+      padding: 16px 20px 20px 20px;
 
       @media screen and (min-width: $global-breakpoint-md) {
         padding: 32px;

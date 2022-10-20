@@ -66,6 +66,10 @@
       backdrop-filter: blur(5.43656px);
       margin: 60px;
     }
+
+    @media screen and (min-width: $global-breakpoint-xxl) {
+      margin-left: calc((100% - #{$o-page-section-wrap-max-width}) / 2);
+    }
   }
 
   &__title,
@@ -108,7 +112,7 @@
   }
 
   &__link {
-    max-width: 257px;
+    max-width: 212px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -125,7 +129,8 @@
       font-family: "Barlow Condensed";
       font-weight: 500;
       margin-bottom: 0;
-      margin-left: 24px;
+      // Padding sub margin
+      margin-left: calc(24px - 8px);
     }
 
     .icon {
