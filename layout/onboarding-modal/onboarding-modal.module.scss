@@ -24,7 +24,6 @@
     height: 691px;
     margin: auto;
     border-radius: 12px;
-    overflow: hidden;
     -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
@@ -40,7 +39,7 @@
       width: 100%;
       margin: auto;
       border-radius: unset;
-      overflow: hidden;
+      overflow-y: auto;
       background-color: #001928;
 
       &__nav {
