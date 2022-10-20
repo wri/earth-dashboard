@@ -43,7 +43,7 @@ const Menu = forwardRef(
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
         {/* Resizable handle */}
-        <div className={styles["c-home-menu-container__handle"]} />
+        {isMobile && <div className={styles["c-home-menu-container__handle"]} />}
 
         {/* Single event view */}
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
