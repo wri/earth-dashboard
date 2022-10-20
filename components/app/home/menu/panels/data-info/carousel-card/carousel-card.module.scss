@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: column;
   border: 4px solid transparent;
-  background-color: rgba($colour-galaxy, 0.45);
   border-radius: 12px;
   width: 100%;
   min-width: 100%;
@@ -15,10 +14,13 @@
   min-height: 200px;
   scroll-snap-align: center;
   scroll-snap-stop: always;
+  background-color: rgba($white, 0.3);
+  transition: background-color 0.5s;
 
   &--selected {
     border: 4px solid $colour-flame;
     outline: none;
+    background-color: rgba($colour-galaxy, 0.45);
   }
 
   &__header-row {

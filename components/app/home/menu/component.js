@@ -11,6 +11,7 @@ import EventsListPanel from "./panels/events-list";
 import MobileMenuContainer from "./menu-mobile-container";
 import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE, DATA_INFO_PAGE_HEADLINE } from "../main-container/component";
 import CurrentEvent from "./panels/current-event";
+import Icon from "components/ui/Icon";
 
 const Menu = forwardRef(
   (
@@ -36,6 +37,7 @@ const Menu = forwardRef(
 
     useEffect(() => {
       setAppLoaded();
+      // eslint-disable-next-line
     }, []);
 
     const getMenuContent = () => (
@@ -43,7 +45,7 @@ const Menu = forwardRef(
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
       >
         {/* Resizable handle */}
-        <div className={styles["c-home-menu-container__handle"]} />
+        {isMobile && <div className={styles["c-home-menu-container__handle"]} />}
 
         {/* Single event view */}
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
@@ -58,6 +60,7 @@ const Menu = forwardRef(
             title={INFO_PAGE_HEADLINE}
             onClose={onClose}
             style={isMobile ? { paddingBottom: "56px" } : {}}
+            icon={!isMobile && <Icon name="globe" size={22} />}
           >
             <InfoPanel />
           </MenuLayout>
@@ -70,6 +73,7 @@ const Menu = forwardRef(
             title={DATA_INFO_PAGE_HEADLINE}
             onClose={onClose}
             style={isMobile ? { paddingBottom: "56px" } : {}}
+            icon={!isMobile && <Icon name="globe-search" size={22} />}
           >
             <DataInfoPanel />
           </MenuLayout>
