@@ -65,6 +65,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
   ) => {
     const router = useRouter();
 
+    // Initial redirect from share link
     useEffect(() => {
       if (!share) return;
 
@@ -76,6 +77,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       // eslint-disable-next-line
     }, []);
 
+    /** Content for either mobile or desktop wrapper. */
     const getMenuContent = () => (
       <div
         className={classnames(styles["c-home-menu-container"], isClosing && styles["c-home-menu-container--closing"])}
