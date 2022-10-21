@@ -18,6 +18,7 @@ import {
   ActionCreatorWithPayload
 } from "@reduxjs/toolkit";
 import { Headline } from "slices/headlines";
+import { ShareType } from "slices/common";
 
 type MenuProps = {
   isMobile: boolean;
@@ -37,7 +38,8 @@ type MenuProps = {
   hasMenuOpen: boolean;
   pagePush: ActionCreatorWithPayload<string, string>;
   pagePop: ActionCreatorWithoutPayload<string>;
-  setAppLoaded: ActionCreatorWithoutPayload<string>;
+  share: ShareType;
+  setShare: ActionCreatorWithOptionalPayload<ShareType, string>;
 };
 
 const Menu = forwardRef<HTMLDivElement, MenuProps>(
@@ -56,14 +58,21 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       hasMenuOpen,
       pagePush,
       pagePop,
-      setAppLoaded
+      share,
+      setShare
     },
     ref
   ) => {
     const router = useRouter();
 
     useEffect(() => {
-      setAppLoaded();
+      if (!share) return;
+
+      if (share === "event") pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+      else if (share === "layer") pagePush(PAGE_TYPE_ID.DATA_LAYER_PAGE);
+
+      setShare(undefined);
+
       // eslint-disable-next-line
     }, []);
 

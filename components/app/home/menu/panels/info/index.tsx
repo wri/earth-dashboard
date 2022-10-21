@@ -38,8 +38,6 @@ type InfoPanelProps = {
   setRoutePageTypeId: ActionCreatorWithPayload<string, string>;
   routePageTypeId: string;
   resetPageStack: ActionCreatorWithoutPayload<string>;
-  hasAppLoaded: boolean;
-  currentHeadlineId: number | undefined;
 };
 
 const InfoPanel = ({
@@ -54,9 +52,7 @@ const InfoPanel = ({
   setCurrentMode,
   setRoutePageTypeId,
   routePageTypeId,
-  resetPageStack,
-  hasAppLoaded,
-  currentHeadlineId
+  resetPageStack
 }: InfoPanelProps) => {
   const [carouselScroll, setCarouselScroll] = useState<number>(0);
   const [carouselWidth, setCarouselWidth] = useState<number>();
@@ -136,7 +132,6 @@ const InfoPanel = ({
     resetPageStack();
     setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     if (defaultMode) setCurrentMode(defaultMode);
-    if (!hasAppLoaded && currentHeadlineId) pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
     // eslint-disable-next-line
   }, []);
 
@@ -228,9 +223,7 @@ export default connect(
     isMobile: state.common.isMobile,
     isLoading: state.headlines.headlinesLoading,
     defaultMode: state.modes.defaultMode,
-    routePageTypeId: state.modes.routePageTypeId,
-    hasAppLoaded: state.common.hasAppLoaded,
-    currentHeadlineId: state.headlines.currentHeadlineId
+    routePageTypeId: state.modes.routePageTypeId
   }),
   {
     setCurrentHeadline,

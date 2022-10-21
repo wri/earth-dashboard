@@ -2,20 +2,23 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { removeSelectedHeadline } from "slices/headlines";
 import { setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
 import { resetPageStack, selectDefaultMode } from "slices/modes";
-import { CommonState } from "./types";
+import { CommonState, ShareType } from "./types";
 
 export * from "./types";
+
+export const NAME = "common";
 
 const initialState: CommonState = {
   hostname: "https://earthhq.org/",
   isMobile: true,
   isShareOpen: false,
   isNewsSearchOpen: false,
-  hasAppLoaded: false
+  hasAppLoaded: false,
+  share: undefined
 };
 
 const commonSlice = createSlice({
-  name: "common",
+  name: NAME,
   initialState,
   reducers: {
     setHostname: (state, { payload }: PayloadAction<string>) => {
@@ -32,6 +35,9 @@ const commonSlice = createSlice({
     },
     setAppLoaded: state => {
       state.hasAppLoaded = true;
+    },
+    setShare: (state, { payload }: PayloadAction<ShareType>) => {
+      state.share = payload;
     }
   }
 });
@@ -44,6 +50,7 @@ export const resetGlobeToDefault = () => (dispatch: any) => {
   dispatch(resetPageStack());
 };
 
-export const { setHostname, setIsMobile, setIsShareOpen, setIsNewsSearchOpen, setAppLoaded } = commonSlice.actions;
+export const { setHostname, setIsMobile, setIsShareOpen, setIsNewsSearchOpen, setAppLoaded, setShare } =
+  commonSlice.actions;
 
 export default commonSlice.reducer;

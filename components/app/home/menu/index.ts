@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import Menu from "./component";
 import { setDialogHeight } from "slices/dialog";
 import { setHeadlines, setCurrentHeadline, setCurrentHeadlineId, NAME as headlinesSliceName } from "slices/headlines";
-import { setAppLoaded } from "slices/common";
 
 import {
   setCurrentMode,
@@ -16,6 +15,7 @@ import {
   pagePop
 } from "slices/modes";
 import { RootState } from "store/types";
+import { setShare } from "slices/common";
 
 export default connect(
   (state: RootState) => ({
@@ -31,7 +31,8 @@ export default connect(
     animationEnabled: state.globalSettings.showAnimations,
     dialogHeight: state.dialog.dialogHeight,
     headlines: state.headlines.headlines,
-    headlinesLoading: state.headlines.headlinesLoading
+    headlinesLoading: state.headlines.headlinesLoading,
+    share: state.common.share
   }),
   {
     setCurrentMode,
@@ -47,7 +48,7 @@ export default connect(
     setCurrentHeadlineId,
     pagePush,
     pagePop,
-    setAppLoaded
+    setShare
   },
   null,
   { forwardRef: true }
