@@ -24,6 +24,7 @@
       margin-bottom: 105px;
 
       @media screen and (min-width: $global-breakpoint-md) {
+        margin-top: calc(92px + 104px);
         margin-bottom: 92px;
       }
 
@@ -87,7 +88,7 @@
       width: 375px;
 
       @media screen and (min-width: $global-breakpoint-md) {
-        height: 30vw;
+        height: 50vh;
         width: 981px;
       }
 
