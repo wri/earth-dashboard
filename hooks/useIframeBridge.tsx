@@ -21,6 +21,7 @@ import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/
 import { Mode } from "slices/modes";
 import { IframeBridgeContext } from "../context/IframeBridgeProvider";
 import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
+import { useRouter } from "next/router";
 
 type GeoMarkerOverlayDetails = GeoMarkerOverlayLocation & { headline: Headline };
 
@@ -75,6 +76,8 @@ const useIframeBridge = ({
   const [extremeEventLocations, setExtremeEventLocations] = useState<GeoMarkerOverlayDetails[]>([]);
 
   const { width } = useWindowDimensions();
+
+  const router = useRouter();
 
   // References
   const iframeRef = useRef<any>();
@@ -133,6 +136,11 @@ const useIframeBridge = ({
       const markersToRemove = markers.filter(marker => !headlines.find(headline => headline.id === marker.id));
       markersToRemove.forEach(marker => earthServer.current.annotate(marker.label, null));
 
+      // Removes all markers only on explore info page
+      if (router.pathname === "/explore" && pageTypeId === PAGE_TYPE_ID.INFO_PAGE) {
+        return markers.forEach(marker => earthServer.current.annotate(marker.label, null));
+      }
+
       const newMarkers: Marker[] = [];
       headlines.forEach(headline => {
         const annotationId = `indicator-${headline.id}`;
@@ -144,7 +152,7 @@ const useIframeBridge = ({
       });
       setMarkers(newMarkers);
     }
-  }, [headlines, earthServer.current]);
+  }, [headlines, earthServer.current, pageTypeId]);
 
   // Set locations for extreme event buttons (overlay)
   useEffect(() => {

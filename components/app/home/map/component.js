@@ -251,7 +251,10 @@ const MapIframe = forwardRef(
         {extremeEventLocations &&
           extremeEventLocations.length > 0 &&
           extremeEventLocations.map(location => {
+            if (router.pathname === "/explore" && pageTypeId === PAGE_TYPE_ID.INFO_PAGE) return null;
+
             if (!location.isVisible) return null;
+
             return (
               <EventPoint
                 x={`${location.x}px`}
