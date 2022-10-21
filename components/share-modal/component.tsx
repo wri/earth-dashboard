@@ -11,20 +11,25 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import useDialogPanel from "hooks/useDialogPanel";
 import { fireEvent } from "utils/gtag";
 import { SHARE_EXTREME_EVENT } from "constants/tag-manager";
+import { useRouter } from "next/router";
+import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
 
 type ShareModalProps = {
   isMobile: boolean;
   isShareOpen: boolean;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
+  pageTypeId: string;
   currentHeadline?: Headline;
 };
 
-const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline }: ShareModalProps) => {
+const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pageTypeId }: ShareModalProps) => {
   const [copiedLinkTimeout, setCopiedLinkTimeout] = useState<boolean>(false);
 
   const { shouldAnimate, handleClose } = useDialogPanel(isShareOpen, () => {
     setIsShareOpen(false);
   });
+
+  const router = useRouter();
 
   // Opens facebook share page
   const handleFaceBookPress = () => {
@@ -35,8 +40,11 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline }: 
 
   // Copies the link to the clipboard
   const handleCopyPress = () => {
-    const link = window.location.href;
-    navigator.clipboard.writeText(link);
+    const { origin, search } = window.location;
+    navigator.clipboard.writeText(
+      `${origin}${pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE ? "/" : router.pathname}${search}`
+    );
+
     setCopiedLinkTimeout(true);
     setTimeout(() => setCopiedLinkTimeout(false), 1000);
     fireEvent(SHARE_EXTREME_EVENT, `${currentHeadline?.attributes.title}_copylink`);
@@ -79,6 +87,7 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline }: 
             small
           />
         </div>
+
         {/* Body */}
         <div className={classnames(styles["c-share-modal__body"])}>
           <div className={classnames(styles["scroll"])}>
