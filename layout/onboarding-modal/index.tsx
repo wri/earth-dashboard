@@ -165,10 +165,11 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
                     <Image
                       layout="fill"
                       objectFit="cover"
-                      objectPosition={isMobile ? undefined : "bottom"}
+                      objectPosition={isMobile ? "top" : "bottom"}
                       src={isMobile ? image.mobileURL : image.desktopURL}
                       alt={image.title}
                     />
+                    {isMobile && <div className={styles["shadow"]} />}
                   </div>
 
                   {/* Description */}
