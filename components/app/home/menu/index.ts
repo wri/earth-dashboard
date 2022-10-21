@@ -1,8 +1,6 @@
 import { connect } from "react-redux";
 import Menu from "./component";
-import { ID as animationsId } from "schemas/global-settings/animations";
-import { NAME as globalSettingsSliceName } from "slices/globalSettings";
-import { NAME as dialogSliceName, setDialogHeight } from "slices/dialog";
+import { setDialogHeight } from "slices/dialog";
 import { setHeadlines, setCurrentHeadline, setCurrentHeadlineId, NAME as headlinesSliceName } from "slices/headlines";
 import { setAppLoaded } from "slices/common";
 
@@ -14,27 +12,26 @@ import {
   setHeight,
   resetValues,
   setDateOfDataShown,
-  NAME as modesSliceName,
   pagePush,
   pagePop
 } from "slices/modes";
+import { RootState } from "store/types";
 
 export default connect(
-  state => ({
-    modes: state[modesSliceName].allModes,
-    defaultMode: state[modesSliceName].defaultMode,
-    currentMode: state[modesSliceName].currentMode,
+  (state: RootState) => ({
+    modes: state.modes.allModes,
+    defaultMode: state.modes.defaultMode,
+    currentMode: state.modes.currentMode,
     currentHeadline: state[headlinesSliceName].currentHeadline,
     currentHeadlineId: state[headlinesSliceName].currentHeadlineId,
-    animationValue: state[modesSliceName].animationValue,
-    monitorValue: state[modesSliceName].monitorValue,
-    datasetValue: state[modesSliceName].datasetValue,
-    heightValue: state[modesSliceName].heightValue,
-    animationEnabled: state[globalSettingsSliceName][animationsId],
-    dialogHeight: state[dialogSliceName].dialogHeight,
-    currentHeadline: state[headlinesSliceName].currentHeadline,
-    headlines: state[headlinesSliceName].headlines,
-    headlinesLoading: state[headlinesSliceName].headlinesLoading
+    animationValue: state.modes.animationValue,
+    monitorValue: state.modes.monitorValue,
+    datasetValue: state.modes.datasetValue,
+    heightValue: state.modes.heightValue,
+    animationEnabled: state.globalSettings.showAnimations,
+    dialogHeight: state.dialog.dialogHeight,
+    headlines: state.headlines.headlines,
+    headlinesLoading: state.headlines.headlinesLoading
   }),
   {
     setCurrentMode,

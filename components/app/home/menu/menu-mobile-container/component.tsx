@@ -13,7 +13,7 @@ type MenuMobileContainerProps = {
   pageTypeId: string;
   handleToggleLocation: () => void;
   isLocationDisabled: boolean;
-  hasMenuOpen: ConstrainBooleanParameters;
+  hasMenuOpen: boolean;
   children: ReactNode;
 };
 

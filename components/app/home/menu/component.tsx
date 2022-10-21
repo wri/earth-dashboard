@@ -1,8 +1,7 @@
-import { forwardRef, useEffect } from "react";
+import { Dispatch, forwardRef, SetStateAction, useEffect } from "react";
 import { useRouter } from "next/router";
 import classnames from "classnames";
 import styles from "./menu.module.scss";
-import PropTypes from "prop-types";
 import InfoPanel from "./panels/info";
 import DataInfoPanel from "./panels/data-info";
 import DataLayerPanel from "./panels/data-layer";
@@ -12,8 +11,36 @@ import MobileMenuContainer from "./menu-mobile-container";
 import { PAGE_TYPE_ID, INFO_PAGE_HEADLINE, DATA_INFO_PAGE_HEADLINE } from "../main-container/component";
 import CurrentEvent from "./panels/current-event";
 import Icon from "components/ui/Icon";
+import { EarthLayer } from "../main-container/types";
+import {
+  ActionCreatorWithOptionalPayload,
+  ActionCreatorWithoutPayload,
+  ActionCreatorWithPayload
+} from "@reduxjs/toolkit";
+import { Headline } from "slices/headlines";
 
-const Menu = forwardRef(
+type MenuProps = {
+  isMobile: boolean;
+  isClosing: boolean;
+  onClose: () => void;
+  mobileMenuHeight: number;
+  setMobileMenuHeight: Dispatch<SetStateAction<number>>;
+  pageTypeId: string;
+  defaultMobileMenuHeight: number;
+  headlinesLoading: boolean;
+  layers: EarthLayer[];
+  setCurrentHeadline: ActionCreatorWithPayload<Headline | undefined, string>;
+  setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
+  setDateOfDataShown: ActionCreatorWithPayload<string, string>;
+  handleToggleLocation: () => void;
+  isLocationDisabled: boolean;
+  hasMenuOpen: boolean;
+  pagePush: ActionCreatorWithPayload<string, string>;
+  pagePop: ActionCreatorWithoutPayload<string>;
+  setAppLoaded: ActionCreatorWithoutPayload<string>;
+};
+
+const Menu = forwardRef<HTMLDivElement, MenuProps>(
   (
     {
       isMobile,
@@ -60,7 +87,7 @@ const Menu = forwardRef(
             title={INFO_PAGE_HEADLINE}
             onClose={onClose}
             style={isMobile ? { paddingBottom: "56px" } : {}}
-            icon={!isMobile && <Icon name="globe" size={22} />}
+            icon={!isMobile && <Icon name="globe" size={22} type="decorative" />}
           >
             <InfoPanel />
           </MenuLayout>
@@ -73,7 +100,7 @@ const Menu = forwardRef(
             title={DATA_INFO_PAGE_HEADLINE}
             onClose={onClose}
             style={isMobile ? { paddingBottom: "56px" } : {}}
-            icon={!isMobile && <Icon name="globe-search" size={22} />}
+            icon={!isMobile && <Icon name="globe-search" size={22} type="decorative" />}
           >
             <DataInfoPanel />
           </MenuLayout>
@@ -115,18 +142,5 @@ const Menu = forwardRef(
 );
 
 Menu.displayName = "Menu";
-
-Menu.propTypes = {
-  isMobile: PropTypes.bool.isRequired,
-  isClosing: PropTypes.bool.isRequired,
-  onClose: PropTypes.func,
-  layers: PropTypes.array.isRequired,
-  setCurrentHeadline: PropTypes.func.isRequired,
-  setCurrentHeadlineId: PropTypes.func.isRequired,
-  setDateOfDataShown: PropTypes.func.isRequired,
-  handleToggleLocation: PropTypes.func.isRequired,
-  isLocationDisabled: PropTypes.bool.isRequired,
-  hasMenuOpen: PropTypes.bool.isRequired
-};
 
 export default Menu;

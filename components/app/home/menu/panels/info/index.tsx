@@ -39,7 +39,6 @@ type InfoPanelProps = {
   routePageTypeId: string;
   resetPageStack: ActionCreatorWithoutPayload<string>;
   hasAppLoaded: boolean;
-  setAppLoaded: ActionCreatorWithoutPayload<string>;
   currentHeadlineId: number | undefined;
 };
 

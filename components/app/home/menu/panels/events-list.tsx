@@ -18,7 +18,7 @@ type EventsListPanelProps = {
   currentMode?: Mode;
   headlines: HeadlineType[];
   headlinesLoading: boolean;
-  forceInfoPage: boolean;
+  forceInfoPage?: boolean;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setCurrentHeadline: ActionCreatorWithPayload<HeadlineType | undefined, string>;
   pagePush: ActionCreatorWithPayload<string, string>;
