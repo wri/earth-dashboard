@@ -7,7 +7,8 @@ export default connect(
   (state: RootState) => ({
     isMobile: state.common.isMobile,
     isShareOpen: state.common.isShareOpen,
-    currentHeadline: state.headlines.currentHeadline
+    currentHeadline: state.headlines.currentHeadline,
+    pageTypeId: state.modes.pageTypeId
   }),
   {
     setIsShareOpen
