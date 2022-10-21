@@ -41,8 +41,14 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
   // Copies the link to the clipboard
   const handleCopyPress = () => {
     const { origin, search } = window.location;
+    const shareType =
+      pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
+        ? "event"
+        : pageTypeId === PAGE_TYPE_ID.DATA_LAYER_PAGE
+        ? "layer"
+        : undefined;
     navigator.clipboard.writeText(
-      `${origin}${pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE ? "/" : router.pathname}${search}`
+      `${origin}${pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE ? "/" : router.pathname}${search}&share=${shareType}`
     );
 
     setCopiedLinkTimeout(true);

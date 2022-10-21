@@ -451,10 +451,10 @@ const MainContainer = ({
         {((hasMenuOpen && !modesLoading) || isMobile) && (
           <Menu
             // @ts-expect-error
+            ref={menuRef}
             isMobile={isMobile}
             onClose={toggleMenu}
             id="menu"
-            ref={menuRef}
             isClosing={isClosingMenu}
             earthServer={earthServer.current}
             layers={layers}

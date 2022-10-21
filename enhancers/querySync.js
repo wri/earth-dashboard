@@ -12,6 +12,7 @@ import {
   NAME as modesSliceName,
   setDateOfDataShown
 } from "slices/modes";
+import { NAME as commonSliceName, setShare } from "slices/common";
 import { setCurrentHeadlineId, NAME as headlineSliceName } from "slices/headlines";
 import ReduxQuerySync from "redux-query-sync";
 
@@ -50,6 +51,10 @@ const querySyncEnhancer = ReduxQuerySync.enhancer({
       action: setDateOfDataShown,
       stringToValue: string => new Date(Number.parseInt(string, 10)).toString(),
       valueToString: value => new Date(value).getTime()
+    },
+    share: {
+      selector: state => state[commonSliceName].share,
+      action: setShare
     }
   },
   initialTruth: "location",
