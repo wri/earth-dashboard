@@ -168,7 +168,7 @@ const InfoPanel = ({
 
   // Runs so function only called on scroll end
   useEffect(() => {
-    if (isLoading || firstOpen) return;
+    if (isLoading) return;
     window.clearTimeout(isScrolling);
     setIsScrolling(
       setTimeout(function () {
