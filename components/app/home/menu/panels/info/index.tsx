@@ -38,8 +38,6 @@ type InfoPanelProps = {
   setRoutePageTypeId: ActionCreatorWithPayload<string, string>;
   routePageTypeId: string;
   resetPageStack: ActionCreatorWithoutPayload<string>;
-  hasAppLoaded: boolean;
-  setAppLoaded: ActionCreatorWithoutPayload<string>;
   currentHeadlineId: number | undefined;
 };
 
@@ -56,7 +54,6 @@ const InfoPanel = ({
   setRoutePageTypeId,
   routePageTypeId,
   resetPageStack,
-  hasAppLoaded,
   currentHeadlineId
 }: InfoPanelProps) => {
   const [carouselScroll, setCarouselScroll] = useState<number>(0);
@@ -137,7 +134,7 @@ const InfoPanel = ({
     resetPageStack();
     setRoutePageTypeId(PAGE_TYPE_ID.INFO_PAGE);
     if (defaultMode) setCurrentMode(defaultMode);
-    if (!hasAppLoaded && currentHeadlineId) pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+    if (currentHeadlineId) pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
   }, []);
 
   // Setting carousel width to be used for calculation
@@ -229,7 +226,6 @@ export default connect(
     isLoading: state.headlines.headlinesLoading,
     defaultMode: state.modes.defaultMode,
     routePageTypeId: state.modes.routePageTypeId,
-    hasAppLoaded: state.common.hasAppLoaded,
     currentHeadlineId: state.headlines.currentHeadlineId
   }),
   {
