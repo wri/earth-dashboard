@@ -102,7 +102,14 @@ const useIframeBridge = ({
           ? 10
           : 25;
 
-        const resp = await fetchClimateAlerts({ count: 25, in_top_events: 25, mode_id: mode_id });
+        const isExplore = router.pathname === "/explore";
+
+        // Fetches all or mode specific events for explore page
+        const resp = await fetchClimateAlerts({
+          count: 25,
+          in_top_events: 25,
+          mode_id: isExplore ? mode_id : undefined
+        });
 
         if (currentHeadlineId && !hasLoadedBefore) {
           resp.data.data.forEach((headline: Headline, index: number) => {
