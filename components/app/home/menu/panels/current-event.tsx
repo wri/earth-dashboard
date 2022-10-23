@@ -98,7 +98,7 @@ const CurrentEvent = ({
         left: maxScrollPos
       });
     }
-    if (scrollPos === maxScrollPos + eventWidth) {
+    if (scrollPos >= maxScrollPos + eventWidth) {
       return carouselRef.current.scrollTo({
         left: eventWidth
       });
