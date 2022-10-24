@@ -38,8 +38,6 @@ const CurrentEvent = ({
 
   /** Navigates to view all events view. */
   const viewAllExtremeEvents = () => {
-    setCurrentHeadline(undefined);
-    setCurrentHeadlineId(undefined);
     pagePush(PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE);
     fireEvent(VIEW_ALL_EXTREME_EVENTS, "web_earth_hq_carousel");
   };

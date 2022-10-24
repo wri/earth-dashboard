@@ -51,8 +51,6 @@ const EventsListPanel = ({
   };
 
   useEffect(() => {
-    setCurrentHeadline(undefined);
-    setCurrentHeadlineId(undefined);
     if (pageTypeIdStack.length === 2 && defaultMode) setCurrentMode(defaultMode);
     // eslint-disable-next-line
   }, []);
