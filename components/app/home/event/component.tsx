@@ -1,6 +1,5 @@
 import { useRef, useEffect } from "react";
 import styles from "./event.module.scss";
-import { Mode } from "slices/modes";
 import ContentPanel from "components/app/home/content-panel/component";
 import SharePanel from "components/app/home/share-panel/component";
 import { Headline as HeadlineType } from "slices/headlines";
@@ -15,7 +14,6 @@ import { EventScaleData } from "slices/mapControls";
 import WidgetPreview from "components/widgets/preview";
 
 type ExtremeEventProps = {
-  currentMode?: Mode;
   headline: HeadlineType;
   setIsShareOpen: ActionCreatorWithPayload<boolean, string>;
   eventScaleData: EventScaleData | undefined;
@@ -28,7 +26,6 @@ const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
 
 const ExtremeEvent = ({
   headline,
-  currentMode,
   setIsShareOpen,
   eventScaleData,
   onViewAllEventsClicked,
@@ -39,10 +36,7 @@ const ExtremeEvent = ({
 
   useEffect(() => {
     if (!headline) return;
-    fireEvent(EARTH_HQ_VIEWED_EXTREME_EVENT, null, {
-      extreme_event_title: headline.attributes.title,
-      category_name: currentMode?.attributes.title ?? ""
-    });
+    fireEvent(EARTH_HQ_VIEWED_EXTREME_EVENT, headline.attributes.title);
     // eslint-disable-next-line
   }, [headline]);
 
