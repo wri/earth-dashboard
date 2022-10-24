@@ -63,7 +63,7 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
       if (carouselRef.current && carouselIndex === carouselRef.current?.childNodes.length - 1)
         fireEvent(NEWS_CAROUSEL_COMPLETED, null);
 
-      fireEvent(NEWS_CAROUSEL_VIEWED, `carousel_${carouselIndex + 1}`);
+      fireEvent(NEWS_CAROUSEL_VIEWED, `${carouselIndex + 1}`);
     }
     // eslint-disable-next-line
   }, [viewedWidget]);
