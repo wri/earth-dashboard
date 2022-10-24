@@ -116,7 +116,6 @@ const useIframeBridge = ({
             if (headline.id === currentHeadlineId) {
               if (index >= 10 && index < 25) {
                 numberOfHeadlines = 25;
-                pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
               }
             }
           });
