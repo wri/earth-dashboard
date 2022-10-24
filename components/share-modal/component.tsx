@@ -10,7 +10,7 @@ import HeadlineCard from "./headline-card/component";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import useDialogPanel from "hooks/useDialogPanel";
 import { fireEvent } from "utils/gtag";
-import { SHARE_EXTREME_EVENT } from "constants/tag-manager";
+import { MAP_SHARE, SHARE_EXTREME_EVENT } from "constants/tag-manager";
 import { useRouter } from "next/router";
 import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
 
@@ -30,12 +30,20 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
   });
 
   const router = useRouter();
+  const isExplore = router.pathname === "/explore" && pageTypeId === PAGE_TYPE_ID.DATA_LAYER_PAGE;
 
   // Opens facebook share page
   const handleFaceBookPress = () => {
     const link = window.location.href;
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, "_blank");
-    fireEvent(SHARE_EXTREME_EVENT, `${currentHeadline?.attributes.title}_facebook`);
+    fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
+      sharing_option: "facebook",
+      ...(isExplore
+        ? {
+            event_title: currentHeadline?.attributes.title
+          }
+        : {})
+    });
   };
 
   // Copies the link to the clipboard
@@ -53,14 +61,28 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
 
     setCopiedLinkTimeout(true);
     setTimeout(() => setCopiedLinkTimeout(false), 1000);
-    fireEvent(SHARE_EXTREME_EVENT, `${currentHeadline?.attributes.title}_copylink`);
+    fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
+      sharing_option: "copy_link",
+      ...(isExplore
+        ? {
+            event_title: currentHeadline?.attributes.title
+          }
+        : {})
+    });
   };
 
   // Opens twitter share page
   const handleTwitterPress = () => {
     const link = window.location.href;
     window.open(`https://twitter.com/share?url=${encodeURIComponent(link)}`, "_blank");
-    fireEvent(SHARE_EXTREME_EVENT, `${currentHeadline?.attributes.title}_twitter`);
+    fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
+      sharing_option: "twitter",
+      ...(isExplore
+        ? {
+            event_title: currentHeadline?.attributes.title
+          }
+        : {})
+    });
   };
 
   // Opens native share method
