@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { LANGUAGES } from "constants/settings";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { fireEvent } from "utils/gtag";
-import { MAP_SHARE, NEWS_SEARCH, PAGE_VIEW } from "constants/tag-manager";
+import { NEWS_SEARCH, PAGE_VIEW } from "constants/tag-manager";
 
 type HeaderOptionsProps = {
   isSettingsOpen: boolean;
@@ -48,7 +48,6 @@ const HeaderOptions = ({
 
   /** Opens share modal and fires event trigger. */
   const onShareClick = () => {
-    fireEvent(MAP_SHARE, null);
     setIsShareOpen(true);
   };
 
