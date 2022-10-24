@@ -138,7 +138,8 @@ const useIframeBridge = ({
 
       // Removes all markers only on explore info page
       if (router.pathname === "/explore" && pageTypeId === PAGE_TYPE_ID.INFO_PAGE) {
-        return markers.forEach(marker => earthServer.current.annotate(marker.label, null));
+        markers.forEach(marker => earthServer.current.annotate(marker.label, null));
+        return setMarkers([]);
       }
 
       const newMarkers: Marker[] = [];
