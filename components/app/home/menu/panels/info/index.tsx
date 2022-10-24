@@ -157,7 +157,7 @@ const InfoPanel = ({
       fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
     }
 
-    fireEvent(EARTH_HQ_CAROUSEL_VIEWED, `carousel_${currentHeadlineIndex + 1}`);
+    fireEvent(EARTH_HQ_CAROUSEL_VIEWED, `${currentHeadlineIndex + 1}`);
     // eslint-disable-next-line
   }, [currentHeadlineIndex]);
 
