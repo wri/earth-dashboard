@@ -37,10 +37,10 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
     const link = window.location.href;
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, "_blank");
     fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
-      event_title: currentHeadline?.attributes.title,
+      sharing_option: "facebook",
       ...(isExplore
         ? {
-            sharing_option: "facebook"
+            event_title: currentHeadline?.attributes.title
           }
         : {})
     });
@@ -62,10 +62,10 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
     setCopiedLinkTimeout(true);
     setTimeout(() => setCopiedLinkTimeout(false), 1000);
     fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
-      event_title: currentHeadline?.attributes.title,
+      sharing_option: "copy_link",
       ...(isExplore
         ? {
-            sharing_option: "copy_link"
+            event_title: currentHeadline?.attributes.title
           }
         : {})
     });
@@ -76,10 +76,10 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
     const link = window.location.href;
     window.open(`https://twitter.com/share?url=${encodeURIComponent(link)}`, "_blank");
     fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
-      event_title: currentHeadline?.attributes.title,
+      sharing_option: "twitter",
       ...(isExplore
         ? {
-            sharing_option: "twitter"
+            event_title: currentHeadline?.attributes.title
           }
         : {})
     });
