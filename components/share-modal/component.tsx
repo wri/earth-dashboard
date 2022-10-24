@@ -56,7 +56,7 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
         ? "layer"
         : undefined;
     navigator.clipboard.writeText(
-      `${origin}${pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE ? "/" : router.pathname}${search}&share=${shareType}`
+      `${origin}${pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE ? "/" : "/explore"}${search}&share=${shareType}`
     );
 
     setCopiedLinkTimeout(true);

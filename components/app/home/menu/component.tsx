@@ -69,8 +69,11 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
     useEffect(() => {
       if (!share) return;
 
-      if (share === "event") pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
-      else if (share === "layer") pagePush(PAGE_TYPE_ID.DATA_LAYER_PAGE);
+      if (share === "event") {
+        pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
+      } else if (share === "layer") {
+        pagePush(PAGE_TYPE_ID.DATA_LAYER_PAGE);
+      }
 
       setShare(undefined);
 
