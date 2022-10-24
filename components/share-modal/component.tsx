@@ -35,7 +35,10 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
   const handleFaceBookPress = () => {
     const link = window.location.href;
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, "_blank");
-    fireEvent(SHARE_EXTREME_EVENT, `${currentHeadline?.attributes.title}_facebook`);
+    fireEvent(SHARE_EXTREME_EVENT, null, {
+      event_title: currentHeadline?.attributes.title,
+      sharing_option: "facebook"
+    });
   };
 
   // Copies the link to the clipboard
@@ -53,14 +56,20 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
 
     setCopiedLinkTimeout(true);
     setTimeout(() => setCopiedLinkTimeout(false), 1000);
-    fireEvent(SHARE_EXTREME_EVENT, `${currentHeadline?.attributes.title}_copylink`);
+    fireEvent(SHARE_EXTREME_EVENT, null, {
+      event_title: currentHeadline?.attributes.title,
+      sharing_option: "copy_link"
+    });
   };
 
   // Opens twitter share page
   const handleTwitterPress = () => {
     const link = window.location.href;
     window.open(`https://twitter.com/share?url=${encodeURIComponent(link)}`, "_blank");
-    fireEvent(SHARE_EXTREME_EVENT, `${currentHeadline?.attributes.title}_twitter`);
+    fireEvent(SHARE_EXTREME_EVENT, null, {
+      event_title: currentHeadline?.attributes.title,
+      sharing_option: "twitter"
+    });
   };
 
   // Opens native share method
