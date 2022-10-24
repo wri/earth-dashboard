@@ -27,7 +27,7 @@ const SCROLL_NORMALIZE_VALUE = 37;
 
 type InfoPanelProps = {
   currentHeadline: Headline | undefined;
-  headlines: Headline[];
+  allHeadlines: Headline[];
   setCurrentHeadline: ActionCreatorWithPayload<Headline | undefined, string>;
   pagePush: ActionCreatorWithPayload<string, string>;
   isMobile: boolean;
@@ -42,7 +42,7 @@ type InfoPanelProps = {
 
 const InfoPanel = ({
   currentHeadline,
-  headlines,
+  allHeadlines,
   setCurrentHeadline,
   pagePush,
   isMobile,
@@ -59,6 +59,8 @@ const InfoPanel = ({
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState<number>(0);
   const [isScrolling, setIsScrolling] = useState<NodeJS.Timeout>();
   const [firstOpen, setFirstOpen] = useState<boolean>(true);
+
+  const headlines = allHeadlines.slice(0, 10);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -219,7 +221,7 @@ const InfoPanel = ({
 export default connect(
   (state: RootState) => ({
     currentHeadline: state.headlines.currentHeadline,
-    headlines: state.headlines.headlines,
+    allHeadlines: state.headlines.headlines,
     isMobile: state.common.isMobile,
     isLoading: state.headlines.headlinesLoading,
     defaultMode: state.modes.defaultMode,

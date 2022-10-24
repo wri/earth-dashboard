@@ -56,7 +56,6 @@ type MainContainerProps = {
   currentMode?: Mode;
   defaultMode?: Mode;
   pageTypeId: string;
-  pagePush: ActionCreatorWithPayload<string, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
   setEventScaleData: ActionCreatorWithPayload<EventScaleData | undefined, string>;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
@@ -94,7 +93,6 @@ const MainContainer = ({
   currentHeadlineId,
   setModesLoading,
   modesLoading,
-  pagePush,
   routePageTypeId
 }: MainContainerProps) => {
   const router = useRouter();
@@ -155,7 +153,6 @@ const MainContainer = ({
     setReoriented,
     pageTypeId,
     currentHeadlineId,
-    pagePush,
     routePageTypeId
   });
 

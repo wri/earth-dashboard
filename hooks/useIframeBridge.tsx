@@ -34,7 +34,6 @@ type UseIframeBridgeConfig = {
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
   setHeadlinesLoading: ActionCreatorWithPayload<boolean, string>;
   setReoriented: ActionCreatorWithoutPayload<string>;
-  pagePush: ActionCreatorWithPayload<string, string>;
   pageTypeId: string;
   routePageTypeId: string;
   currentHeadlineId: number | undefined;
@@ -57,11 +56,8 @@ const useIframeBridge = ({
   setReoriented,
   pageTypeId,
   currentHeadlineId,
-  pagePush,
   routePageTypeId
 }: UseIframeBridgeConfig) => {
-  const [hasLoadedBefore, setHasLoadedBefore] = useState<boolean>(false);
-
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [markers, setMarkers] = useState<Marker[]>([]);
   const [error, setError] = useState<Error>();
@@ -111,18 +107,15 @@ const useIframeBridge = ({
           mode_id: isExplore ? mode_id : undefined
         });
 
-        if (currentHeadlineId && !hasLoadedBefore) {
+        if (currentHeadlineId) {
           resp.data.data.forEach((headline: Headline, index: number) => {
             if (headline.id === currentHeadlineId) {
               if (index >= 10 && index < 25) {
                 numberOfHeadlines = 25;
-                pagePush(PAGE_TYPE_ID.CURRENT_EVENT_PAGE);
               }
             }
           });
         }
-
-        setHasLoadedBefore(true);
 
         const filteredHeadlines = resp.data.data.slice(0, numberOfHeadlines);
 
