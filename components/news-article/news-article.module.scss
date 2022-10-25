@@ -8,7 +8,6 @@ $c-news-article-transition: 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   position: relative;
-  backdrop-filter: blur(2px);
   border-radius: 16px;
   overflow: hidden;
   transition: background-color $c-news-article-transition;
@@ -114,6 +113,7 @@ $c-news-article-transition: 0.3s ease-in-out;
   .backdrop {
     opacity: 0.2;
     z-index: 0;
+    filter: blur(2px);
   }
 
   .top {
