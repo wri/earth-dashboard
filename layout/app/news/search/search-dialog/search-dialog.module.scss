@@ -75,7 +75,16 @@
         }
 
         > button:last-child {
-          margin-right: 24px;
+          position: relative;
+
+          &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            right: -24px;
+            width: 24px;
+            height: 1px;
+          }
         }
       }
     }
