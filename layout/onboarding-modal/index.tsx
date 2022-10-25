@@ -145,7 +145,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
               {!isMobile && (
                 <IconButton
                   name="close"
-                  size={11.25}
+                  size={11}
                   className={styles["modal__header__close-button"]}
                   onClick={handleSkip}
                 />
