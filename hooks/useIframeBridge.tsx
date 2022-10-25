@@ -16,12 +16,13 @@ import {
 import { EarthLayer } from "components/app/home/main-container/types";
 import { GeoProjection } from "d3-geo";
 import { Headline } from "slices/headlines";
-import { fetchClimateAlerts } from "services/gca";
+import { fetchClimateAlertById, fetchClimateAlerts } from "services/gca";
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import { IframeBridgeContext } from "../context/IframeBridgeProvider";
 import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
 import { useRouter } from "next/router";
+import { ShareType } from "slices/common";
 
 type GeoMarkerOverlayDetails = GeoMarkerOverlayLocation & { headline: Headline };
 
@@ -37,6 +38,7 @@ type UseIframeBridgeConfig = {
   pageTypeId: string;
   routePageTypeId: string;
   currentHeadlineId: number | undefined;
+  share: ShareType;
 };
 
 type Marker = { id: number; label: string };
@@ -56,7 +58,8 @@ const useIframeBridge = ({
   setReoriented,
   pageTypeId,
   currentHeadlineId,
-  routePageTypeId
+  routePageTypeId,
+  share
 }: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [markers, setMarkers] = useState<Marker[]>([]);
@@ -107,6 +110,7 @@ const useIframeBridge = ({
           mode_id: isExplore ? mode_id : undefined
         });
 
+        let singleHeadline: Headline | null = null;
         if (currentHeadlineId) {
           resp.data.data.forEach((headline: Headline, index: number) => {
             if (headline.id === currentHeadlineId) {
@@ -115,11 +119,17 @@ const useIframeBridge = ({
               }
             }
           });
+
+          // Shows single shared event
+          if (!(resp.data.data as Headline[]).map(headline => headline.id).includes(currentHeadlineId) && share) {
+            const singleResp = await fetchClimateAlertById(currentHeadlineId.toString());
+            singleHeadline = singleResp.data.data;
+          }
         }
 
-        const filteredHeadlines = resp.data.data.slice(0, numberOfHeadlines);
+        const filteredHeadlines = (resp.data.data as Headline[]).slice(0, numberOfHeadlines);
 
-        setHeadlines(filteredHeadlines);
+        setHeadlines(singleHeadline ? [singleHeadline] : filteredHeadlines);
       } catch (err) {
         console.log("Error fetching modes");
       } finally {

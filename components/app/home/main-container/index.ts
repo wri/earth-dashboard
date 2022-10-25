@@ -30,7 +30,8 @@ export default connect(
     pageTypeId: state.modes.pageTypeId,
     currentHeadlineId: state.headlines.currentHeadlineId,
     modesLoading: state.modes.modesLoading,
-    routePageTypeId: state.modes.routePageTypeId
+    routePageTypeId: state.modes.routePageTypeId,
+    share: state.common.share
   }),
   {
     setModes,

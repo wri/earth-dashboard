@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Menu from "./component";
 import { setDialogHeight } from "slices/dialog";
-import { setHeadlines, setCurrentHeadline, setCurrentHeadlineId, NAME as headlinesSliceName } from "slices/headlines";
+import { setHeadlines, setCurrentHeadline, setCurrentHeadlineId } from "slices/headlines";
 
 import {
   setCurrentMode,
@@ -22,8 +22,8 @@ export default connect(
     modes: state.modes.allModes,
     defaultMode: state.modes.defaultMode,
     currentMode: state.modes.currentMode,
-    currentHeadline: state[headlinesSliceName].currentHeadline,
-    currentHeadlineId: state[headlinesSliceName].currentHeadlineId,
+    currentHeadline: state.headlines.currentHeadline,
+    currentHeadlineId: state.headlines.currentHeadlineId,
     animationValue: state.modes.animationValue,
     monitorValue: state.modes.monitorValue,
     datasetValue: state.modes.datasetValue,

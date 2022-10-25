@@ -28,6 +28,7 @@ import { SCALE_TYPES } from "constants/map";
 import InfoModal from "../normal-scale/info-modal";
 import { useRouter } from "next/router";
 import { formatDatePretty } from "utils/dates";
+import { ShareType } from "slices/common";
 
 export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
 export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
@@ -67,6 +68,7 @@ type MainContainerProps = {
   setModesLoading: ActionCreatorWithPayload<boolean, string>;
   modesLoading: boolean;
   routePageTypeId: string;
+  share: ShareType;
 };
 
 const MainContainer = ({
@@ -93,7 +95,8 @@ const MainContainer = ({
   currentHeadlineId,
   setModesLoading,
   modesLoading,
-  routePageTypeId
+  routePageTypeId,
+  share
 }: MainContainerProps) => {
   const router = useRouter();
 
@@ -153,7 +156,8 @@ const MainContainer = ({
     setReoriented,
     pageTypeId,
     currentHeadlineId,
-    routePageTypeId
+    routePageTypeId,
+    share
   });
 
   const overlayLayer = useMemo(() => {
