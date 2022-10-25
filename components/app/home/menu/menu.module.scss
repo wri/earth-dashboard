@@ -510,6 +510,17 @@
       scroll-snap-align: center;
       scroll-snap-stop: always;
       max-height: 200px;
+      background-color: $colour-galaxy !important;
+
+      position: relative;
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        right: -24px;
+        width: 24px;
+        height: 1px;
+      }
     }
 
     #{$this}__container {

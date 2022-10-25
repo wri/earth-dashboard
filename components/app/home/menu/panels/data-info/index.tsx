@@ -173,9 +173,13 @@ const DataInfo = ({
         ) : (
           <Carousel
             items={
-              modes?.map(mode => (
+              modes?.map((mode, index) => (
                 <CarouselCard
-                  isSelected={currentMode?.id === mode.id}
+                  isSelected={
+                    carouselWidth
+                      ? Math.round(carouselScroll / (carouselWidth - SCROLL_NORMALIZE_VALUE)) === index
+                      : false
+                  }
                   key={mode.id}
                   onClick={() => handleModeClicked(mode)}
                   {...mode.attributes}

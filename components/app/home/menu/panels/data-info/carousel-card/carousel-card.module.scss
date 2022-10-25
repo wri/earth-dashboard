@@ -20,7 +20,7 @@
   &--selected {
     border: 4px solid $colour-flame;
     outline: none;
-    background-color: rgba($colour-galaxy, 0.45);
+    background-color: $colour-galaxy;
   }
 
   &__header-row {

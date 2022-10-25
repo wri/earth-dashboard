@@ -9,15 +9,25 @@
   border-radius: 12px;
   background-color: $colour-galaxy;
   padding: 17px 20px;
-  scroll-snap-align: center;
   height: 172px;
   text-align: start;
-  overflow: hidden;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 
   background-image: url("/static/images/globe@2x.png");
   background-position: center right;
   background-repeat: no-repeat;
   background-size: 232px 196px;
+
+  // Adds margin right for safari
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: -24px;
+    width: 24px;
+    height: 1px;
+  }
 
   @media screen and (min-width: $global-breakpoint-md) {
     height: 100%;
@@ -26,19 +36,34 @@
     background-size: cover;
     display: flex;
     justify-content: start;
+  }
 
-    &::after {
-      content: "";
-      background-image: url("/static/images/globe-fires-half.png");
+  & .desktop-globe {
+    display: none;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      display: block;
       position: absolute;
-      background-repeat: no-repeat;
-      background-position: center bottom;
-      background-size: contain;
-      top: 65%;
-      bottom: -15%;
+      bottom: 0;
       left: 0;
       width: 100%;
-      z-index: 0;
+      height: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+
+      &::after {
+        content: "";
+        background-image: url("/static/images/globe-fires-half.png");
+        position: absolute;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: contain;
+        top: 65%;
+        bottom: -15%;
+        left: 0;
+        width: 100%;
+        z-index: 0;
+      }
     }
   }
 

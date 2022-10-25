@@ -19,6 +19,7 @@ const ViewAllCard = ({ pagePush, setRoutePageTypeId }: ViewAllCardProps) => {
 
   return (
     <button className={styles["c-view-all-card"]} onClick={handleViewAllCardPress}>
+      <div className={styles["desktop-globe"]} />
       <div className={styles["content-container"]}>
         <h1 className={styles["title"]}>All Extreme Events</h1>
         <p className={styles["description"]}>View all of Mongabay’s latest extreme events</p>
