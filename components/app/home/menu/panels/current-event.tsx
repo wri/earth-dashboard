@@ -66,11 +66,10 @@ const CurrentEvent = ({
     const eventWidth = carouselRef.current.clientWidth;
     const targetHeadlineIndex = headlines.findIndex(headline => headline.id === currentHeadlineId);
 
-    if (!targetHeadlineIndex) return;
+    if (targetHeadlineIndex === undefined) return;
 
     carouselRef.current.scrollTo({
-      left: eventWidth * (targetHeadlineIndex + 1),
-      behavior: "smooth"
+      left: eventWidth * (targetHeadlineIndex + 1)
     });
 
     // eslint-disable-next-line
