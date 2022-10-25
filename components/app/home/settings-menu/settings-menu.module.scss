@@ -46,13 +46,20 @@
       }
 
       & .title {
+        @include font-size(20px, 30px);
+
         margin: 0 auto;
         margin-left: 12px;
         color: $white;
         font-weight: 600;
         text-transform: uppercase;
         font-family: "Barlow Condensed";
-        @include font-size(20px, 30px);
+
+        &.no-left-margin {
+          @media screen and (max-width: $global-breakpoint-md) {
+            margin-left: 0;
+          }
+        }
 
         @media screen and (min-width: $global-breakpoint-md) {
           font-family: Barlow;

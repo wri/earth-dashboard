@@ -11,7 +11,7 @@ import DatePicker from "components/date-picker";
 import { format } from "date-fns";
 import Footer from "./footer";
 import CookiePreferences from "./cookie-preferences";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fireEvent } from "utils/gtag";
 import { PAGE_VIEW } from "constants/tag-manager";
 
@@ -39,6 +39,8 @@ const SettingsMenu = ({
   setIsDatePickerOpen,
   setIsCookieOpen
 }: SettingsMenuProps) => {
+  const [isOnboarding, setIsOnboarding] = useState<boolean>(false);
+
   const { shouldAnimate, handleClose } = useDialogPanel(isOpen, () => {
     setSettingsClose();
     setIsDatePickerOpen(false);
@@ -47,6 +49,10 @@ const SettingsMenu = ({
 
   useEffect(() => {
     if (isCookieOpen) fireEvent(PAGE_VIEW, "cookies");
+
+    const onboardingEl = document.getElementById("onboarding-modal");
+
+    setIsOnboarding(!!onboardingEl);
   }, [isCookieOpen]);
 
   /** Sets the current date data. */
@@ -73,17 +79,26 @@ const SettingsMenu = ({
         <div className={classnames(styles["c-settings-menu-modal__header"], "u-text-center")}>
           {/* Header */}
           <div>
-            {isDatePickerOpen || isCookieOpen ? (
-              <IconButton
-                name="arrow-left-v2"
-                onClick={handleBack}
-                small
-                className={styles["c-settings-menu-modal__back"]}
-              />
-            ) : (
-              <Icon name={"more"} size={30} type="decorative" className={styles["icon"]} />
-            )}
-            <h2 id="settingsModalTitle" className={classnames(styles["title"], "u-margin-bottom-none")}>
+            {!isOnboarding ? (
+              isDatePickerOpen || isCookieOpen ? (
+                <IconButton
+                  name="arrow-left-v2"
+                  onClick={handleBack}
+                  small
+                  className={styles["c-settings-menu-modal__back"]}
+                />
+              ) : (
+                <Icon name={"more"} size={30} type="decorative" className={styles["icon"]} />
+              )
+            ) : null}
+            <h2
+              id="settingsModalTitle"
+              className={classnames(
+                styles["title"],
+                { [styles["no-left-margin"]]: isOnboarding },
+                "u-margin-bottom-none"
+              )}
+            >
               {isCookieOpen ? "Cookies" : isDatePickerOpen ? "Change Date" : "More"}
             </h2>
           </div>

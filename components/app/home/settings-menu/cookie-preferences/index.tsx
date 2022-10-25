@@ -6,11 +6,11 @@ import styles from "./cookie-preferences.module.scss";
 /** Contains all preference global settings. */
 const CookiePreferences = () => {
   const [analytics, setAnalytics] = useState<boolean>(true);
-  const [cookies, setCookies] = useState<boolean>(true);
 
   useEffect(() => {
     setAnalytics(localStorage.getItem(ANALYTICS_ACCEPTED) === "false" ? false : true);
   }, []);
+
   return (
     <div className={styles["c-preferences"]}>
       <h3>Preferences</h3>

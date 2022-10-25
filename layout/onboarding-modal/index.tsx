@@ -105,7 +105,7 @@ const OnboardingModal = ({ setShowModal, isMobile }: OnboardingModalProps) => {
   };
 
   return (
-    <div className={styles["modal-backdrop"]}>
+    <div id="onboarding-modal" className={styles["modal-backdrop"]}>
       <div
         className={classnames({
           [styles["modal"]]: !isMobile,
