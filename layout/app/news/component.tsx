@@ -100,10 +100,13 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
       </Section>
 
       {/* Second widget */}
-      <div className={styles["c-news__featured-widgets"]}>
-        <h2>FEATURED</h2>
-        <WidgetsCarousel widgets={featuredWidgets} isLoading={isWidgetsLoading} page="news" />
-      </div>
+      {isWidgetsLoading ||
+        (featuredWidgets && featuredWidgets.length > 0 && (
+          <div className={styles["c-news__featured-widgets"]}>
+            <h2>FEATURED</h2>
+            <WidgetsCarousel widgets={featuredWidgets} isLoading={isWidgetsLoading} page="news" />
+          </div>
+        ))}
 
       {/* Videos */}
       <Section
