@@ -130,7 +130,12 @@ const CurrentEvent = ({
             <Event headline={headlines[headlines.length - 1]} onViewAllEventsClicked={viewAllExtremeEvents} first />
           )}
           {(outdatedHeadline ? [outdatedHeadline] : headlines).map(headline => (
-            <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
+            <Event
+              key={headline.id}
+              headline={headline}
+              onViewAllEventsClicked={viewAllExtremeEvents}
+              hideViewAll={!!outdatedHeadline}
+            />
           ))}
           {!outdatedHeadline && <Event headline={headlines[0]} onViewAllEventsClicked={viewAllExtremeEvents} last />}
         </div>
