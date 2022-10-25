@@ -13,9 +13,10 @@
   border-radius: 12px;
 
   p {
+    @include font-size(14px, 21px);
+
     font-family: "Barlow";
     font-weight: 500;
-    @include font-size(14px, 21px);
   }
 
   &:after {
@@ -74,9 +75,8 @@
     padding: 8.5px 12px;
     display: flex;
     flex-direction: column;
+
     p {
-      font-family: "Barlow";
-      font-weight: 500;
       @include font-size(12px, 18px);
     }
   }

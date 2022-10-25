@@ -12,6 +12,7 @@ import { fireEvent } from "utils/gtag";
 import { EARTH_HQ_VIEWED_EXTREME_EVENT } from "constants/tag-manager";
 import { EventScaleData } from "slices/mapControls";
 import WidgetPreview from "components/widgets/preview";
+import { formatDatePretty } from "utils/dates";
 
 type ExtremeEventProps = {
   headline: HeadlineType;
@@ -68,7 +69,7 @@ const ExtremeEvent = ({
         <div className={styles["c-event__hero--detail"]}>
           <h3 className={styles["c-event__hero--title"]}>{headline.attributes.title}</h3>
           <p className={styles["c-event__hero--subtitle"]}>
-            {moment(headline.attributes.climate_alert_date).format("Do MMMM YYYY")}
+            {formatDatePretty(headline.attributes.climate_alert_date)}
           </p>
           <div className={styles["c-event__hero--thumbnail"]}>
             <Image

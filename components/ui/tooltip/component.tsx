@@ -41,7 +41,6 @@ const ToolTip = ({
 
     if (boundingX) {
       style.maxWidth = `${Number.parseFloat(x.toString()) - (boundingX + 40)}px`;
-      style.minWidth = "150px";
     }
   } else {
     style.left = `calc(${x} + 10px)`;
