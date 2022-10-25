@@ -41,4 +41,5 @@ export type HeadlinesState = {
   currentHeadline?: Headline;
   currentHeadlineId?: number;
   headlinesLoading: boolean;
+  outdatedHeadline?: Headline;
 };

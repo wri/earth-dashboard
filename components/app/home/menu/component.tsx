@@ -40,6 +40,7 @@ type MenuProps = {
   pagePop: ActionCreatorWithoutPayload<string>;
   share: ShareType;
   setShare: ActionCreatorWithOptionalPayload<ShareType, string>;
+  setOutdatedHeadline: ActionCreatorWithPayload<Headline | undefined, string>;
 };
 
 const Menu = forwardRef<HTMLDivElement, MenuProps>(
@@ -59,7 +60,8 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       pagePush,
       pagePop,
       share,
-      setShare
+      setShare,
+      setOutdatedHeadline
     },
     ref
   ) => {
@@ -80,6 +82,11 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       // eslint-disable-next-line
     }, []);
 
+    const handleCurrentEventBack = () => {
+      setOutdatedHeadline(undefined);
+      pagePop();
+    };
+
     /** Content for either mobile or desktop wrapper. */
     const getMenuContent = () => (
       <div
@@ -90,7 +97,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
 
         {/* Single event view */}
         {pageTypeId == PAGE_TYPE_ID.CURRENT_EVENT_PAGE && (
-          <MenuLayout ref={ref} title="Back" onBack={pagePop} onClose={onClose}>
+          <MenuLayout ref={ref} title="Back" onBack={handleCurrentEventBack} onClose={onClose}>
             <CurrentEvent />
           </MenuLayout>
         )}

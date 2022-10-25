@@ -17,7 +17,11 @@ import { EarthLayer } from "components/app/home/main-container/types";
 import { GeoProjection } from "d3-geo";
 import { Headline } from "slices/headlines";
 import { fetchClimateAlertById, fetchClimateAlerts } from "services/gca";
-import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import {
+  ActionCreatorWithOptionalPayload,
+  ActionCreatorWithoutPayload,
+  ActionCreatorWithPayload
+} from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import { IframeBridgeContext } from "../context/IframeBridgeProvider";
 import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
@@ -38,6 +42,10 @@ type UseIframeBridgeConfig = {
   pageTypeId: string;
   routePageTypeId: string;
   currentHeadlineId: number | undefined;
+  outdatedHeadline: Headline | undefined;
+  setOutdatedHeadline: ActionCreatorWithPayload<Headline | undefined, string>;
+  setCurrentHeadline: ActionCreatorWithOptionalPayload<Headline | undefined, string>;
+  setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
   share: ShareType;
 };
 
@@ -59,6 +67,10 @@ const useIframeBridge = ({
   pageTypeId,
   currentHeadlineId,
   routePageTypeId,
+  outdatedHeadline,
+  setOutdatedHeadline,
+  setCurrentHeadline,
+  setCurrentHeadlineId,
   share
 }: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
@@ -86,7 +98,7 @@ const useIframeBridge = ({
 
   // Set headlines redux if mobile
   useEffect(() => {
-    const getHeadlines = async () => {
+    (async () => {
       setHeadlinesLoading(true);
       try {
         const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
@@ -110,7 +122,6 @@ const useIframeBridge = ({
           mode_id: isExplore ? mode_id : undefined
         });
 
-        let singleHeadline: Headline | null = null;
         if (currentHeadlineId) {
           resp.data.data.forEach((headline: Headline, index: number) => {
             if (headline.id === currentHeadlineId) {
@@ -121,28 +132,40 @@ const useIframeBridge = ({
           });
 
           // Shows single shared event
-          if (!(resp.data.data as Headline[]).map(headline => headline.id).includes(currentHeadlineId) && share) {
+          if (
+            share === "event" &&
+            !(resp.data.data as Headline[]).map(headline => headline.id).includes(currentHeadlineId)
+          ) {
             const singleResp = await fetchClimateAlertById(currentHeadlineId.toString());
-            singleHeadline = singleResp.data.data;
+            setOutdatedHeadline(singleResp.data.data);
           }
         }
 
         const filteredHeadlines = (resp.data.data as Headline[]).slice(0, numberOfHeadlines);
 
-        setHeadlines(singleHeadline ? [singleHeadline] : filteredHeadlines);
+        setHeadlines(filteredHeadlines);
       } catch (err) {
         console.log("Error fetching modes");
       } finally {
         setHeadlinesLoading(false);
       }
-    };
-
-    getHeadlines();
+    })();
+    // eslint-disable-next-line
   }, [setHeadlines, currentMode, pageTypeId]);
 
   // Set the extreme event points
   useEffect(() => {
     if (earthServer.current) {
+      if (outdatedHeadline) {
+        const marker = getIndicatorGeoJson([
+          outdatedHeadline.attributes.location.lng,
+          outdatedHeadline.attributes.location.lat
+        ]);
+        const annotationId = `indicator-${outdatedHeadline.id}`;
+        earthServer.current.annotate(annotationId, marker);
+        return setMarkers([{ id: outdatedHeadline.id, label: annotationId }]);
+      }
+
       const markersToRemove = markers.filter(marker => !headlines.find(headline => headline.id === marker.id));
       markersToRemove.forEach(marker => earthServer.current.annotate(marker.label, null));
 
@@ -163,21 +186,31 @@ const useIframeBridge = ({
       });
       setMarkers(newMarkers);
     }
-  }, [headlines, earthServer.current, pageTypeId]);
+
+    // eslint-disable-next-line
+  }, [headlines, earthServer.current, pageTypeId, outdatedHeadline]);
 
   // Set locations for extreme event buttons (overlay)
   useEffect(() => {
     if (earthServer.current) {
       let extremeEventLocations: GeoMarkerOverlayDetails[] = [];
-      headlines.forEach(headline => {
+
+      (outdatedHeadline ? [outdatedHeadline] : headlines).forEach(headline => {
         const projectionD3Func = currentProjectionFunc();
         const marker = getIndicatorGeoJson([headline.attributes.location.lng, headline.attributes.location.lat]);
         const location = getMarkerProperties(marker, projectionD3Func);
         if (location) extremeEventLocations.push({ ...location, headline: headline });
       });
       setExtremeEventLocations(extremeEventLocations);
+
+      if (outdatedHeadline) {
+        setCurrentHeadline(outdatedHeadline);
+        setCurrentHeadlineId(outdatedHeadline.id);
+      }
     }
-  }, [headlines, currentProjectionFunc, currentProjection, earthServer.current]);
+
+    // eslint-disable-next-line
+  }, [headlines, currentProjectionFunc, currentProjection, earthServer.current, outdatedHeadline]);
 
   // Set details for the tool tip on extreme event
   useEffect(() => {
@@ -264,6 +297,8 @@ const useIframeBridge = ({
         setCurrentProjection(projection);
       }
     })();
+
+    // eslint-disable-next-line
   }, []);
 
   const setRef = useCallback(

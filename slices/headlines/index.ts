@@ -9,7 +9,8 @@ const initialState: HeadlinesState = {
   headlines: [],
   currentHeadline: undefined,
   currentHeadlineId: undefined,
-  headlinesLoading: false
+  headlinesLoading: false,
+  outdatedHeadline: undefined
 };
 
 const headlinesSlice = createSlice({
@@ -45,11 +46,20 @@ const headlinesSlice = createSlice({
     },
     setHeadlinesLoading: (state, { payload }: PayloadAction<boolean>) => {
       state.headlinesLoading = payload;
+    },
+    setOutdatedHeadline: (state, { payload }: PayloadAction<Headline | undefined>) => {
+      state.outdatedHeadline = payload;
     }
   }
 });
 
-export const { removeSelectedHeadline, setHeadlines, setCurrentHeadline, setCurrentHeadlineId, setHeadlinesLoading } =
-  headlinesSlice.actions;
+export const {
+  removeSelectedHeadline,
+  setHeadlines,
+  setCurrentHeadline,
+  setCurrentHeadlineId,
+  setHeadlinesLoading,
+  setOutdatedHeadline
+} = headlinesSlice.actions;
 
 export default headlinesSlice.reducer;

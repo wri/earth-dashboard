@@ -19,7 +19,11 @@ import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { EventScaleData, isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
-import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import {
+  ActionCreatorWithOptionalPayload,
+  ActionCreatorWithoutPayload,
+  ActionCreatorWithPayload
+} from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
@@ -68,6 +72,10 @@ type MainContainerProps = {
   setModesLoading: ActionCreatorWithPayload<boolean, string>;
   modesLoading: boolean;
   routePageTypeId: string;
+  outdatedHeadline: Headline | undefined;
+  setOutdatedHeadline: ActionCreatorWithPayload<Headline | undefined, string>;
+  setCurrentHeadline: ActionCreatorWithOptionalPayload<Headline | undefined, string>;
+  setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
   share: ShareType;
 };
 
@@ -96,6 +104,10 @@ const MainContainer = ({
   setModesLoading,
   modesLoading,
   routePageTypeId,
+  outdatedHeadline,
+  setOutdatedHeadline,
+  setCurrentHeadline,
+  setCurrentHeadlineId,
   share
 }: MainContainerProps) => {
   const router = useRouter();
@@ -157,6 +169,10 @@ const MainContainer = ({
     pageTypeId,
     currentHeadlineId,
     routePageTypeId,
+    outdatedHeadline,
+    setOutdatedHeadline,
+    setCurrentHeadline,
+    setCurrentHeadlineId,
     share
   });
 

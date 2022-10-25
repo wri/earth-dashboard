@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Menu from "./component";
 import { setDialogHeight } from "slices/dialog";
-import { setHeadlines, setCurrentHeadline, setCurrentHeadlineId } from "slices/headlines";
+import { setHeadlines, setCurrentHeadline, setCurrentHeadlineId, setOutdatedHeadline } from "slices/headlines";
 
 import {
   setCurrentMode,
@@ -48,7 +48,8 @@ export default connect(
     setCurrentHeadlineId,
     pagePush,
     pagePop,
-    setShare
+    setShare,
+    setOutdatedHeadline
   },
   null,
   { forwardRef: true }

@@ -10,7 +10,13 @@ import {
   setModesLoading,
   pagePush
 } from "slices/modes";
-import { setHeadlines, setHeadlinesLoading } from "slices/headlines";
+import {
+  setCurrentHeadline,
+  setCurrentHeadlineId,
+  setHeadlines,
+  setHeadlinesLoading,
+  setOutdatedHeadline
+} from "slices/headlines";
 import {
   setCurrentLocation,
   setCurrentScale,
@@ -31,6 +37,7 @@ export default connect(
     currentHeadlineId: state.headlines.currentHeadlineId,
     modesLoading: state.modes.modesLoading,
     routePageTypeId: state.modes.routePageTypeId,
+    outdatedHeadline: state.headlines.outdatedHeadline,
     share: state.common.share
   }),
   {
@@ -47,6 +54,9 @@ export default connect(
     setCurrentScaleBy,
     setCurrentVisibleMode,
     setModesLoading,
-    pagePush
+    pagePush,
+    setOutdatedHeadline,
+    setCurrentHeadline,
+    setCurrentHeadlineId
   }
 )(MainContainerComponent);
