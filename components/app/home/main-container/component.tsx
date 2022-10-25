@@ -19,7 +19,11 @@ import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { EventScaleData, isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
-import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import {
+  ActionCreatorWithOptionalPayload,
+  ActionCreatorWithoutPayload,
+  ActionCreatorWithPayload
+} from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
@@ -28,6 +32,7 @@ import { SCALE_TYPES } from "constants/map";
 import InfoModal from "../normal-scale/info-modal";
 import { useRouter } from "next/router";
 import { formatDatePretty } from "utils/dates";
+import { ShareType } from "slices/common";
 
 export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
 export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
@@ -67,6 +72,11 @@ type MainContainerProps = {
   setModesLoading: ActionCreatorWithPayload<boolean, string>;
   modesLoading: boolean;
   routePageTypeId: string;
+  outdatedHeadline: Headline | undefined;
+  setOutdatedHeadline: ActionCreatorWithPayload<Headline | undefined, string>;
+  setCurrentHeadline: ActionCreatorWithOptionalPayload<Headline | undefined, string>;
+  setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
+  share: ShareType;
 };
 
 const MainContainer = ({
@@ -93,7 +103,12 @@ const MainContainer = ({
   currentHeadlineId,
   setModesLoading,
   modesLoading,
-  routePageTypeId
+  routePageTypeId,
+  outdatedHeadline,
+  setOutdatedHeadline,
+  setCurrentHeadline,
+  setCurrentHeadlineId,
+  share
 }: MainContainerProps) => {
   const router = useRouter();
 
@@ -153,7 +168,12 @@ const MainContainer = ({
     setReoriented,
     pageTypeId,
     currentHeadlineId,
-    routePageTypeId
+    routePageTypeId,
+    outdatedHeadline,
+    setOutdatedHeadline,
+    setCurrentHeadline,
+    setCurrentHeadlineId,
+    share
   });
 
   const overlayLayer = useMemo(() => {

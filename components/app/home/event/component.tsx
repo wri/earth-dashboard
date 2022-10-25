@@ -4,7 +4,6 @@ import ContentPanel from "components/app/home/content-panel/component";
 import SharePanel from "components/app/home/share-panel/component";
 import { Headline as HeadlineType } from "slices/headlines";
 import NormalScale from "components/app/home/normal-scale";
-import moment from "moment";
 import Image from "next/image";
 import CtaButton from "components/ui/cta-button";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
@@ -21,6 +20,7 @@ type ExtremeEventProps = {
   onViewAllEventsClicked: () => any;
   first?: boolean;
   last?: boolean;
+  hideViewAll?: boolean;
 };
 
 const WHAT_IS_HAPPENING_ICON = "/static/icons/question.svg";
@@ -31,7 +31,8 @@ const ExtremeEvent = ({
   eventScaleData,
   onViewAllEventsClicked,
   first,
-  last
+  last,
+  hideViewAll
 }: ExtremeEventProps) => {
   const articleRef = useRef<HTMLDivElement>(null);
 
@@ -130,9 +131,11 @@ const ExtremeEvent = ({
         <SharePanel ctaAction={() => setIsShareOpen(true)} />
 
         {/* View all */}
-        <div className={styles["c-event__view-all-button--container"]}>
-          <CtaButton text={"View All Extreme Events"} onClick={onViewAllEventsClicked} iconName="arrow-right" />
-        </div>
+        {!hideViewAll && (
+          <div className={styles["c-event__view-all-button--container"]}>
+            <CtaButton text={"View All Extreme Events"} onClick={onViewAllEventsClicked} iconName="arrow-right" />
+          </div>
+        )}
       </div>
     </div>
   );

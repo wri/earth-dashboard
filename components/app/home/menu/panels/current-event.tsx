@@ -20,6 +20,7 @@ type CurrentEventProps = {
   setCurrentHeadline: ActionCreatorWithOptionalPayload<Headline | undefined, string>;
   setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
   pagePush: ActionCreatorWithPayload<string, string>;
+  outdatedHeadline: Headline | undefined;
 };
 
 /** Menu view to show a singular extreme event. */
@@ -30,7 +31,8 @@ const CurrentEvent = ({
   currentMode,
   setCurrentHeadline,
   setCurrentHeadlineId,
-  pagePush
+  pagePush,
+  outdatedHeadline
 }: CurrentEventProps) => {
   const [footerHeading, setFooterHeading] = useState<string>("");
 
@@ -59,11 +61,17 @@ const CurrentEvent = ({
 
   // Scrolls to the initial article
   useEffect(() => {
-    const targetEl = document.getElementById(`headline-${currentHeadlineId}`);
+    if (!carouselRef.current) return;
 
-    if (!targetEl) return;
+    const eventWidth = carouselRef.current.clientWidth;
+    const targetHeadlineIndex = headlines.findIndex(headline => headline.id === currentHeadlineId);
 
-    targetEl.scrollIntoView();
+    if (targetHeadlineIndex === undefined) return;
+
+    carouselRef.current.scrollTo({
+      left: eventWidth * (targetHeadlineIndex + 1)
+    });
+
     // eslint-disable-next-line
   }, [headlinesLoading]);
 
@@ -118,20 +126,30 @@ const CurrentEvent = ({
         <EventSkeleton />
       ) : (
         <div ref={carouselRef} id="events" className={styles["c-home-menu__events"]} onScroll={handleCarouselScroll}>
-          <Event headline={headlines[headlines.length - 1]} onViewAllEventsClicked={viewAllExtremeEvents} first />
-          {headlines.map(headline => (
-            <Event key={headline.id} headline={headline} onViewAllEventsClicked={viewAllExtremeEvents} />
+          {!outdatedHeadline && (
+            <Event headline={headlines[headlines.length - 1]} onViewAllEventsClicked={viewAllExtremeEvents} first />
+          )}
+          {(outdatedHeadline ? [outdatedHeadline] : headlines).map(headline => (
+            <Event
+              key={headline.id}
+              headline={headline}
+              onViewAllEventsClicked={viewAllExtremeEvents}
+              hideViewAll={!!outdatedHeadline}
+            />
           ))}
-          <Event headline={headlines[0]} onViewAllEventsClicked={viewAllExtremeEvents} last />
+          {!outdatedHeadline && <Event headline={headlines[0]} onViewAllEventsClicked={viewAllExtremeEvents} last />}
         </div>
       )}
-      <HeadlineFooter
-        footerHeading={footerHeading}
-        disableBackButton={headlines?.length == 1}
-        disableNextButton={headlines?.length == 1}
-        navigateHeadline={navigateHeadline}
-        isLoading={headlinesLoading}
-      />
+
+      {!outdatedHeadline && (
+        <HeadlineFooter
+          footerHeading={footerHeading}
+          disableBackButton={headlines?.length == 1}
+          disableNextButton={headlines?.length == 1}
+          navigateHeadline={navigateHeadline}
+          isLoading={headlinesLoading}
+        />
+      )}
     </>
   );
 };
@@ -141,7 +159,8 @@ export default connect(
     headlines: state.headlines.headlines,
     headlinesLoading: state.headlines.headlinesLoading,
     currentHeadlineId: state.headlines.currentHeadlineId,
-    currentMode: state.modes.currentMode
+    currentMode: state.modes.currentMode,
+    outdatedHeadline: state.headlines.outdatedHeadline
   }),
   {
     setCurrentHeadline,
