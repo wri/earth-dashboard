@@ -119,6 +119,13 @@ const DataInfo = ({
     scrollToIndex(index, behavior);
   };
 
+  const getIsSelected = (index: number, length: number) => {
+    if (!carouselWidth) return false;
+    const scrollIndex = Math.round(carouselScroll / (carouselWidth - SCROLL_NORMALIZE_VALUE));
+    if (index === scrollIndex || (index === length - 1 && scrollIndex === length)) return true;
+    return false;
+  };
+
   // Sets the initial state for the view
   useEffect(() => {
     removeSelectedHeadline();
@@ -173,9 +180,9 @@ const DataInfo = ({
         ) : (
           <Carousel
             items={
-              modes?.map(mode => (
+              modes?.map((mode, index) => (
                 <CarouselCard
-                  isSelected={currentMode?.id === mode.id}
+                  isSelected={getIsSelected(index, modes.length)}
                   key={mode.id}
                   onClick={() => handleModeClicked(mode)}
                   {...mode.attributes}
