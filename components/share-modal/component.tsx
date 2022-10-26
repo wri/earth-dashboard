@@ -125,7 +125,11 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
         {/* Body */}
         <div className={classnames(styles["c-share-modal__body"])}>
           <div className={classnames(styles["scroll"])}>
-            {currentHeadline ? <HeadlineCard currentHeadline={currentHeadline} /> : <GlobeCard />}
+            {currentHeadline && pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE ? (
+              <HeadlineCard currentHeadline={currentHeadline} />
+            ) : (
+              <GlobeCard />
+            )}
             <ShareRow text="Share Via FaceBook" icon="facebook" onClick={handleFaceBookPress} />
             <ShareRow text="Share Via Twitter" icon="twitter" onClick={handleTwitterPress} />
             <ShareRow
