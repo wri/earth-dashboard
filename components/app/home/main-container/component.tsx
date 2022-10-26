@@ -363,7 +363,15 @@ const MainContainer = ({
         const query = new URLSearchParams(window.location.search);
         const queryMode = query.get("mode");
 
-        if (queryMode && !data.data.map(mode => mode.id.toString()).includes(queryMode)) router.push("/404");
+        // Redirect to 404 if share link and expired
+        if (
+          queryMode &&
+          share === "layer" &&
+          (!data.data.map(mode => mode.id.toString()).includes(queryMode) ||
+            data.data.find(mode => mode.id.toString() === queryMode)?.attributes.extreme_event_count === 0)
+        ) {
+          router.push("/404");
+        }
 
         setModes(data.data);
       } catch (err) {
