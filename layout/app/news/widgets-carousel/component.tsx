@@ -5,6 +5,7 @@ import Skeleton from "components/ui/skeleton";
 import { NEWS_CAROUSEL_COMPLETED, NEWS_CAROUSEL_STARTED, NEWS_CAROUSEL_VIEWED } from "constants/tag-manager";
 import { GCAWidget } from "hooks/useGCAWidgets/types";
 import { useEffect, useRef, useState } from "react";
+import { useDebounce } from "react-use";
 import { fireEvent } from "utils/gtag";
 import Widget from "../widget/component";
 import WidgetSkeleton from "../widget/widget-skeleton";
@@ -22,6 +23,7 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
   const carouselRef = useRef<HTMLDivElement>();
 
   const [viewedWidget, setViewedWidget] = useState<string>();
+  const [scrollPos, setScrollPos] = useState<number>(0);
 
   const getCarouselCurrentIndex = () => {
     const nodes = carouselRef?.current?.childNodes;
@@ -42,17 +44,26 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
     const targetWidgetIndex =
       widgets.findIndex(headline => headline.id.toString() === viewedWidget) + (action === "back" ? -1 : 1);
 
-    // Scrolls to next widget but loops if on the ends
     carouselRef.current.scrollTo({
-      left:
-        widgetWidth *
-        (targetWidgetIndex < 0 ? widgets.length - 1 : targetWidgetIndex >= widgets.length ? 0 : targetWidgetIndex),
+      left: widgetWidth * (targetWidgetIndex + 1),
       behavior: "smooth"
     });
   };
 
   useEffect(() => {
-    if (!viewedWidget && widgets && widgets.length > 0) setViewedWidget(widgets[0].id.toString());
+    if (!viewedWidget && widgets && widgets.length > 0) {
+      setViewedWidget(widgets[0].id.toString());
+
+      if (!carouselRef.current) return;
+
+      const widgetWidth = carouselRef.current.firstElementChild?.clientWidth;
+
+      if (!widgetWidth) return;
+
+      carouselRef.current.scrollTo({
+        left: widgetWidth
+      });
+    }
     // eslint-disable-next-line
   }, [widgets]);
 
@@ -73,11 +84,23 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
     if (!carouselRef.current) return;
 
     const widgetWidth = carouselRef.current.firstElementChild?.clientWidth;
-    const scrollPos = carouselRef.current.scrollLeft;
 
     if (!widgetWidth) return;
 
-    const newWidgetIndex = Math.round(scrollPos / widgetWidth);
+    const maxScrollPos = widgets.length * widgetWidth;
+
+    if (scrollPos <= 5) {
+      return carouselRef.current.scrollTo({
+        left: maxScrollPos
+      });
+    }
+    if (scrollPos >= maxScrollPos + widgetWidth) {
+      return carouselRef.current.scrollTo({
+        left: widgetWidth
+      });
+    }
+
+    const newWidgetIndex = Math.round(scrollPos / widgetWidth) - 1;
 
     const newWidget = widgets.find((_, index) => newWidgetIndex === index);
 
@@ -85,6 +108,8 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
 
     setViewedWidget(newWidget.id.toString());
   };
+
+  useDebounce(handleCarouselScroll, 50, [scrollPos]);
 
   return (
     <div className={styles["c-widgets-carousel"]}>
@@ -94,24 +119,38 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
           if (ref) carouselRef.current = ref;
         }}
         className={styles["c-widgets-carousel__wrapper"]}
-        onScroll={handleCarouselScroll}
+        onScroll={() => setScrollPos(carouselRef.current?.scrollLeft ?? 0)}
       >
         {isLoading ? (
           <div className={styles["widget-skeleton"]}>
             <WidgetSkeleton dark />
           </div>
         ) : (
-          widgets.slice(0, max).map(widget => (
-            <div
-              key={widget.id}
-              id={widget.id.toString()}
-              className={classnames(styles["widget"], {
-                [styles["active"]]: widget.id.toString() === viewedWidget
-              })}
-            >
-              <Widget widget={widget} />
-            </div>
-          ))
+          <>
+            {widgets.length > 1 && (
+              <div id={`first-${widgets[widgets.length - 1].id}`} className={styles["widget"]}>
+                <Widget widget={widgets[widgets.length - 1]} />
+              </div>
+            )}
+
+            {widgets.slice(0, max).map(widget => (
+              <div
+                key={widget.id}
+                id={widget.id.toString()}
+                className={classnames(styles["widget"], {
+                  [styles["active"]]: widget.id.toString() === viewedWidget
+                })}
+              >
+                <Widget widget={widget} />
+              </div>
+            ))}
+
+            {widgets.length > 1 && (
+              <div id={`last-${widgets[0].id}`} className={styles["widget"]}>
+                <Widget widget={widgets[0]} />
+              </div>
+            )}
+          </>
         )}
       </div>
 
