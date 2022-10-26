@@ -113,13 +113,13 @@ const useIframeBridge = ({
           ? 10
           : 25;
 
-        const isExplore = router.pathname === "/explore";
+        const isEventInfo = router.pathname === "/" && pageTypeId === PAGE_TYPE_ID.INFO_PAGE;
 
         // Fetches all or mode specific events for explore page
         const resp = await fetchClimateAlerts({
           count: 25,
           in_top_events: 25,
-          mode_id: isExplore ? mode_id : undefined
+          mode_id: isEventInfo ? undefined : mode_id
         });
 
         if (currentHeadlineId) {
