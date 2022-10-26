@@ -134,7 +134,7 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
       </Section>
 
       <Section
-        title="Most Recent"
+        title="More News"
         bgColour={BG_GALAXY}
         gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
       >
