@@ -1,5 +1,5 @@
 import IframeBridgeProvider from "../../../../context/IframeBridgeProvider";
-import { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menu-button.module.scss";
@@ -33,6 +33,7 @@ import InfoModal from "../normal-scale/info-modal";
 import { useRouter } from "next/router";
 import { formatDatePretty } from "utils/dates";
 import { ShareType } from "slices/common";
+import Icon from "components/ui/Icon";
 
 export const MODILE_MENU_HEIGHT_WITH_SCALE = 235;
 export const MODILE_MENU_HEIGHT_WITHOUT_SCALE = 148;
@@ -530,6 +531,24 @@ const MainContainer = ({
                 data-testid="toggle"
               >
                 <div className={menuButtonStyles["c-home-menu-toggle__text-container"]}>
+                  {pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE || pageTypeId === PAGE_TYPE_ID.DATA_LAYER_PAGE ? (
+                    <div
+                      className={menuButtonStyles["icon"]}
+                      style={{
+                        backgroundImage: currentHeadline
+                          ? `url(${currentHeadline?.attributes.mode.attributes.icon})`
+                          : `url(${currentMode?.attributes.icon})`
+                      }}
+                    />
+                  ) : (
+                    <Icon
+                      type="decorative"
+                      // @ts-expect-error
+                      name={router?.pathname === "/" ? "home-menu/globe" : "home-menu/search-globe"}
+                      size={36}
+                      className={menuButtonStyles["icon"]}
+                    />
+                  )}
                   <span>{getMenuTitle(currentHeadline, currentMode, pageTypeId, router?.pathname)}</span>
                 </div>
               </button>
