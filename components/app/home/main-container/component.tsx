@@ -1,5 +1,5 @@
 import IframeBridgeProvider from "../../../../context/IframeBridgeProvider";
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import classnames from "classnames";
 import styles from "layout/app/home/homepage.module.scss";
 import menuButtonStyles from "./menu-button.module.scss";
