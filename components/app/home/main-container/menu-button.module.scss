@@ -29,21 +29,6 @@
     }
   }
 
-  & .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    border-radius: 50%;
-    background-color: $colour-flame;
-    transition: background-color 0.3s ease-in-out;
-    margin-right: 12px;
-  }
-
-  &:hover .icon {
-    background-color: $colour-galaxy;
-  }
-
   &__text-container {
     flex-grow: 1;
     overflow: hidden;
@@ -54,16 +39,14 @@
     display: flex;
     align-items: center;
 
-    &:before {
-      content: "";
-      display: block;
-      background-image: url("/static/icons/home-menu/search-globe.svg");
+    & .icon {
       background-size: contain;
       background-repeat: no-repeat;
       height: 36px;
       width: 36px;
       min-width: 36px;
       margin-right: 12px;
+      border-radius: 18px;
     }
 
     span {
