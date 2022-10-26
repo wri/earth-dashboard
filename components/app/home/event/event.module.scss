@@ -31,7 +31,6 @@
 
   &__hero {
     position: relative;
-    backdrop-filter: blur(10.8731px);
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -39,6 +38,7 @@
     width: 100%;
 
     &--background {
+      filter: blur(2px);
       position: absolute;
       width: 100%;
       height: 100%;
