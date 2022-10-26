@@ -507,8 +507,6 @@
     @media screen and (max-width: $global-breakpoint-md) and (max-height: 760px) {
       width: 100%;
       min-width: 100%;
-      scroll-snap-align: center;
-      scroll-snap-stop: always;
       max-height: 200px;
       background-color: $colour-galaxy !important;
 

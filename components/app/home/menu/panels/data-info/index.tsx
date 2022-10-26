@@ -198,6 +198,7 @@ const DataInfo = ({
                   rel="noopener noreferrer"
                   target="_blank"
                   onClick={() => fireEvent(ADVANCED_MENU, null)}
+                  className={styles["data-info-container__carousel-last-item"]}
                   style={{ minWidth: "100%" }}
                 >
                   <ContentPanel className={menuStyles["c-home-menu-item--advanced-data-item"]} canFocus={false}>
