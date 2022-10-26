@@ -21,7 +21,7 @@ import {
   setCurrentLocation,
   setCurrentScale,
   setEventScaleData,
-  setReoriented,
+  setHasReoriented,
   setCurrentScaleBy
 } from "slices/mapControls";
 
@@ -45,7 +45,7 @@ export default connect(
     setIsMobile,
     setHeadlines,
     setHeadlinesLoading,
-    setReoriented,
+    setHasReoriented,
     setEventScaleData,
     setCurrentMode,
     setDateOfDataShown,

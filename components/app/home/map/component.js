@@ -52,6 +52,7 @@ const MapIframe = forwardRef(
       mobileMenuHeight,
       setCurrentHeadline,
       hasReoriented,
+      setHasReoriented,
       menuRef,
       pageTypeId,
       pagePush
@@ -197,6 +198,8 @@ const MapIframe = forwardRef(
     }, [currentPosition, earthServer, setCurrentLocation, setShouldFetchLocation, setCurrentScale, setCurrentScaleBy]);
 
     useEffect(() => {
+      if (!earthServer.current) setHasReoriented(false);
+
       if (earthServer.current && currentLocation) {
         const long = currentLocation[1];
         const lat = currentLocation[0];

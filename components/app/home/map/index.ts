@@ -1,6 +1,12 @@
 import { connect } from "react-redux";
 import MapComponent from "./component";
-import { setShouldFetchLocation, setCurrentLocation, setCurrentScale, setCurrentScaleBy } from "slices/mapControls";
+import {
+  setShouldFetchLocation,
+  setCurrentLocation,
+  setCurrentScale,
+  setCurrentScaleBy,
+  setHasReoriented
+} from "slices/mapControls";
 import {
   setAnimation,
   setDataset,
@@ -50,7 +56,8 @@ export default connect(
     setCurrentScale,
     setCurrentScaleBy,
     setCurrentHeadline,
-    pagePush
+    pagePush,
+    setHasReoriented
   },
   null,
   { forwardRef: true }
