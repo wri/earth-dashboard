@@ -61,7 +61,8 @@
     &--map,
     &--chart {
       #{$this}__widget {
-        height: 325px;
+        height: 30vh;
+        max-height: 325px;
       }
     }
 

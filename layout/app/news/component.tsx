@@ -14,7 +14,7 @@ import TOPICS from "constants/news";
 import styles from "./news.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
 import videoArticleStyles from "components/video-article/video-article.module.scss";
-import { BG_LIGHT_SPACE } from "constants/section-colours";
+import { BG_GALAXY, BG_LIGHT_SPACE } from "constants/section-colours";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import IconButton from "components/ui/icon-button";
 import SearchDialog from "./search/search-dialog";
@@ -133,7 +133,11 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
             ))}
       </Section>
 
-      <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}>
+      <Section
+        title="More News"
+        bgColour={BG_GALAXY}
+        gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
+      >
         {/* More News */}
         {isPostsLoading ? (
           [0, 1, 2, 3, 4, 5, 6, 7, 8].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
