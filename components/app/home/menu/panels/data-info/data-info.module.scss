@@ -20,4 +20,9 @@
       min-height: auto;
     }
   }
+
+  &__carousel-last-item {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
 }
