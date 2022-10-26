@@ -32,9 +32,27 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
   const router = useRouter();
   const isExplore = router.pathname === "/explore" && pageTypeId === PAGE_TYPE_ID.DATA_LAYER_PAGE;
 
+  const getShareLink = () => {
+    const { origin, search } = window.location;
+    const shareType =
+      pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
+        ? "event"
+        : pageTypeId === PAGE_TYPE_ID.DATA_LAYER_PAGE
+        ? "layer"
+        : "any";
+
+    return `${location.origin}${
+      pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
+        ? "/"
+        : pageTypeId === PAGE_TYPE_ID.DATA_LAYER_PAGE
+        ? "/explore"
+        : router.pathname
+    }${location.search}&share=${shareType}`;
+  };
+
   // Opens facebook share page
   const handleFaceBookPress = () => {
-    const link = window.location.href;
+    const link = getShareLink();
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, "_blank");
     fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
       sharing_option: "facebook",
@@ -48,22 +66,8 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
 
   // Copies the link to the clipboard
   const handleCopyPress = () => {
-    const { origin, search } = window.location;
-    const shareType =
-      pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
-        ? "event"
-        : pageTypeId === PAGE_TYPE_ID.DATA_LAYER_PAGE
-        ? "layer"
-        : "any";
-    navigator.clipboard.writeText(
-      `${origin}${
-        pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
-          ? "/"
-          : pageTypeId === PAGE_TYPE_ID.DATA_LAYER_PAGE
-          ? "/explore"
-          : router.pathname
-      }${search}&share=${shareType}`
-    );
+    const link = getShareLink();
+    navigator.clipboard.writeText(link);
 
     setCopiedLinkTimeout(true);
     setTimeout(() => setCopiedLinkTimeout(false), 1000);
@@ -79,7 +83,7 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
 
   // Opens twitter share page
   const handleTwitterPress = () => {
-    const link = window.location.href;
+    const link = getShareLink();
     window.open(`https://twitter.com/share?url=${encodeURIComponent(link)}`, "_blank");
     fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
       sharing_option: "twitter",
@@ -93,7 +97,7 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
 
   // Opens native share method
   const handleMorePress = async () => {
-    const link = window.location.href;
+    const link = getShareLink();
     try {
       await navigator.share({ title: "Earth HQ", url: link });
     } catch (err) {
