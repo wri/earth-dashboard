@@ -50,7 +50,7 @@ test("<EventCard /> renders correctly as a Button", async () => {
         <p
           class="date"
         >
-          Sep 14 2021
+          Sept 14 2021
         </p>
         <button
           class="c-cta-button data-button"
@@ -124,7 +124,7 @@ test("<EventCard /> renders correctly by default", async () => {
         <p
           class="date"
         >
-          Sep 14 2021
+          Sept 14 2021
         </p>
         <button
           class="c-cta-button data-button"
