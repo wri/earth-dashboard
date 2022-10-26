@@ -38,7 +38,7 @@ type UseIframeBridgeConfig = {
   defaultMode?: Mode;
   setHeadlines: ActionCreatorWithPayload<Headline[], string>;
   setHeadlinesLoading: ActionCreatorWithPayload<boolean, string>;
-  setReoriented: ActionCreatorWithoutPayload<string>;
+  setHasReoriented: ActionCreatorWithPayload<boolean, string>;
   pageTypeId: string;
   routePageTypeId: string;
   currentHeadlineId: number | undefined;
@@ -63,7 +63,7 @@ const useIframeBridge = ({
   currentMode,
   defaultMode,
   setHeadlines,
-  setReoriented,
+  setHasReoriented,
   pageTypeId,
   currentHeadlineId,
   routePageTypeId,
@@ -286,7 +286,7 @@ const useIframeBridge = ({
       }
 
       reorientStart() {
-        setReoriented();
+        setHasReoriented(true);
       }
 
       reorientStep(projection: any) {

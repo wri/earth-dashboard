@@ -74,8 +74,8 @@ const mapControlsSlice = createSlice({
     setCurrentScaleBy: (state, { payload }: PayloadAction<number>) => {
       state.currentScaleBy = payload;
     },
-    setReoriented: state => {
-      state.hasReoriented = true;
+    setHasReoriented: (state, { payload }: PayloadAction<boolean>) => {
+      state.hasReoriented = payload;
     },
     setEventScaleData: (state, { payload }: PayloadAction<EventScaleData | undefined>) => {
       state.eventScaleData = payload;
@@ -98,7 +98,7 @@ export const {
   setCurrentLocation,
   setCurrentScale,
   setCurrentScaleBy,
-  setReoriented,
+  setHasReoriented,
   setEventScaleData
 } = mapControlsSlice.actions;
 export const isSettingsOpen = (state: RootState) => state[NAME].isSettingsOpen;

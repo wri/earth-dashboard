@@ -61,7 +61,7 @@ type MainContainerProps = {
   currentMode?: Mode;
   defaultMode?: Mode;
   pageTypeId: string;
-  setReoriented: ActionCreatorWithoutPayload<string>;
+  setHasReoriented: ActionCreatorWithPayload<boolean, string>;
   setEventScaleData: ActionCreatorWithPayload<EventScaleData | undefined, string>;
   setCurrentMode: ActionCreatorWithPayload<Mode, string>;
   setDateOfDataShown: ActionCreatorWithPayload<string, string>;
@@ -92,7 +92,7 @@ const MainContainer = ({
   defaultMode,
   currentMode,
   pageTypeId,
-  setReoriented,
+  setHasReoriented,
   setEventScaleData,
   setCurrentMode,
   setDateOfDataShown,
@@ -165,7 +165,7 @@ const MainContainer = ({
     setHeadlinesLoading,
     currentMode,
     defaultMode,
-    setReoriented,
+    setHasReoriented,
     pageTypeId,
     currentHeadlineId,
     routePageTypeId,
