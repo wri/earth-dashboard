@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import classnames from "classnames";
 import styles from "./event-card.module.scss";
-import moment from "moment";
 import Image from "next/image";
 import { Headline } from "slices/headlines";
 import CtaButton from "components/ui/cta-button";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import { PAGE_TYPE_ID } from "../main-container/component";
+import { formatDatePretty } from "utils/dates";
 
 type EventCardProps = {
   headline: Headline;
@@ -71,7 +71,7 @@ const EventCard = ({
           )}
         </div>
         <div className={styles["c-event-card__footer"]}>
-          <p className={styles["date"]}>{moment(headline.attributes.climate_alert_date).format("MMM D YYYY")}</p>
+          <p className={styles["date"]}>{formatDatePretty(headline.attributes.climate_alert_date)}</p>
           <CtaButton
             iconUrl={headline.attributes.mode.attributes.icon}
             text={headline.attributes.mode.attributes.title}
