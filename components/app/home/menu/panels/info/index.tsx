@@ -153,7 +153,7 @@ const InfoPanel = ({
 
   // Firing events when focusing on headlines
   useEffect(() => {
-    if (headlines.length === currentHeadlineIndex) {
+    if (headlines.length > 0 && headlines.length === currentHeadlineIndex) {
       fireEvent(EARTH_HQ_CAROUSEL_COMPLETED, null);
     } else if (currentHeadlineIndex === 0) {
       fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
