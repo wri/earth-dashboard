@@ -10,13 +10,19 @@ import { fireEvent } from "utils/gtag";
 import { ERROR_BACK_EARTH_HQ, PAGE_VIEW } from "constants/tag-manager";
 
 const PageNotFound = () => {
-  const { replace } = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
-    replace("/404");
+    router.replace("/404");
     fireEvent(PAGE_VIEW, "error_404");
     // eslint-disable-next-line
   }, []);
+
+  const handleBackToEarthHQ = () => {
+    fireEvent(ERROR_BACK_EARTH_HQ, null);
+    window.location.href = window.origin;
+    router.push("/");
+  };
 
   return (
     <Layout title="404" className={styles["c-page-404"]}>
@@ -28,7 +34,7 @@ const PageNotFound = () => {
           <p>Oops, that page could not be found. Head back to Earth HQ to explore the latest extreme events.</p>
 
           {/* Button */}
-          <AnchorCTA className={styles["back-btn"]} href="/" onClick={() => fireEvent(ERROR_BACK_EARTH_HQ, null)}>
+          <AnchorCTA className={styles["back-btn"]} onClick={handleBackToEarthHQ}>
             <p className={styles["text"]}>Back To Earth HQ</p>
             <div className={styles["icon"]}>
               <Icon name="arrow-right" size={15} type="decorative" />
