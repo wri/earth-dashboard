@@ -20,6 +20,7 @@ const PageNotFound = () => {
 
   const handleBackToEarthHQ = () => {
     fireEvent(ERROR_BACK_EARTH_HQ, null);
+    window.location.href = window.origin;
     router.push("/");
   };
 
