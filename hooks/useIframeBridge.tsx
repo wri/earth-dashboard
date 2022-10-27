@@ -136,8 +136,12 @@ const useIframeBridge = ({
             share === "event" &&
             !(resp.data.data as Headline[]).map(headline => headline.id).includes(currentHeadlineId)
           ) {
-            const singleResp = await fetchClimateAlertById(currentHeadlineId.toString());
-            setOutdatedHeadline(singleResp.data.data);
+            try {
+              const singleResp = await fetchClimateAlertById(currentHeadlineId.toString());
+              setOutdatedHeadline(singleResp.data.data);
+            } catch (e) {
+              router.push("/404");
+            }
           }
         }
 
