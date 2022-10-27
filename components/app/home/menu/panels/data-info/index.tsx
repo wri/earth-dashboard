@@ -70,6 +70,9 @@ const DataInfo = ({
   const [carouselWidth, setCarouselWidth] = useState<number>();
   const [isScrolling, setIsScrolling] = useState<NodeJS.Timeout>();
 
+  // Analytics
+  const [lastClicked, setLastClicked] = useState<number>();
+
   const containerRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -89,8 +92,9 @@ const DataInfo = ({
   // Tracks events after debounce
   useDebounce(
     () => {
-      if (!currentMode) return;
+      if (!currentMode || currentMode.id === lastClicked) return;
       fireEvent(EXPLORE_CLICKED_DATA_LAYER, currentMode.attributes.title);
+      setLastClicked(currentMode.id);
     },
     1000,
     [dataLayers]
