@@ -70,9 +70,11 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
   useEffect(() => {
     const carouselIndex = getCarouselCurrentIndex();
     if (page === "news" && !isLoading) {
-      if (carouselIndex === 0) fireEvent(NEWS_CAROUSEL_STARTED, null);
-      if (carouselRef.current && carouselIndex === carouselRef.current?.childNodes.length - 1)
+      const carouselItems = carouselRef.current?.childNodes.length;
+      if (carouselItems && carouselIndex === 0) fireEvent(NEWS_CAROUSEL_STARTED, null);
+      if (carouselRef.current && carouselItems && carouselIndex === carouselItems - 1) {
         fireEvent(NEWS_CAROUSEL_COMPLETED, null);
+      }
 
       fireEvent(NEWS_CAROUSEL_VIEWED, `${carouselIndex + 1}`);
     }
