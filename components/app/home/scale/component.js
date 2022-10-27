@@ -9,6 +9,8 @@ import { SCALE_TYPES } from "constants/map";
 import { DATA_LAYER_TYPES } from "constants/datalayers";
 import { useIframeBridgeContext } from "hooks/useIframeBridge";
 import { PAGE_TYPE_ID } from "../main-container/component";
+import { fireEvent } from "utils/gtag";
+import { SCALE_VIEWED_INFO } from "constants/tag-manager";
 
 const Scale = props => {
   const {
@@ -108,7 +110,13 @@ const Scale = props => {
       >
         Scale
         {currentMode?.attributes.scale_info_detail && (
-          <span className={styles["info"]} onClick={() => setInfoMode(currentMode)} />
+          <span
+            className={styles["info"]}
+            onClick={() => {
+              fireEvent(SCALE_VIEWED_INFO, null);
+              setInfoMode(currentMode);
+            }}
+          />
         )}
       </label>
       <div className={styles["c-scale__input-container"]}>
