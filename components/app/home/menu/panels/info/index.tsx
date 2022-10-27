@@ -64,6 +64,7 @@ const InfoPanel = ({
   // Analytics
   const [viewedCarousel, setViewedCarousel] = useState<boolean>(false);
   const [completedCarousel, setCompletedCarousel] = useState<boolean>(false);
+  const onboarded = localStorage.getItem(ONBOARDING_COMPLETED);
 
   const headlines = allHeadlines.slice(0, 10);
 
@@ -158,16 +159,11 @@ const InfoPanel = ({
 
   // Firing events when focusing on headlines
   useEffect(() => {
-    const onboarded = localStorage.getItem(ONBOARDING_COMPLETED);
-
     if (!onboarded) return;
 
     if (!completedCarousel && headlines.length > 0 && headlines.length === currentHeadlineIndex) {
       fireEvent(EARTH_HQ_CAROUSEL_COMPLETED, null);
       setCompletedCarousel(true);
-    } else if (!viewedCarousel && currentHeadlineIndex === 0) {
-      fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
-      setViewedCarousel(true);
     }
 
     fireEvent(EARTH_HQ_CAROUSEL_VIEWED, `${currentHeadlineIndex + 1}`);
@@ -177,6 +173,12 @@ const InfoPanel = ({
   // Runs so function only called on scroll end
   useEffect(() => {
     if (isLoading) return;
+
+    if (onboarded && !viewedCarousel) {
+      fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
+      setViewedCarousel(true);
+    }
+
     window.clearTimeout(isScrolling);
     setIsScrolling(
       setTimeout(function () {
