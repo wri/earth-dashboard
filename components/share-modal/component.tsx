@@ -100,6 +100,14 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
     const link = getShareLink();
     try {
       await navigator.share({ title: "Earth HQ", url: link });
+      fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
+        sharing_option: "more_options",
+        ...(isExplore
+          ? {
+              event_title: currentHeadline?.attributes.title
+            }
+          : {})
+      });
     } catch (err) {
       console.log("Error: " + err);
     }
