@@ -22,6 +22,7 @@ import {
   EARTH_HQ_CAROUSEL_VIEWED
 } from "constants/tag-manager";
 import EventCardSkeleton from "components/app/home/event-card/event-card-skeleton";
+import { ONBOARDING_COMPLETED } from "layout/layout/layout-app/constants";
 
 const SCROLL_NORMALIZE_VALUE = 37;
 
@@ -59,6 +60,11 @@ const InfoPanel = ({
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState<number>(0);
   const [isScrolling, setIsScrolling] = useState<NodeJS.Timeout>();
   const [firstOpen, setFirstOpen] = useState<boolean>(true);
+
+  // Analytics
+  const [viewedCarousel, setViewedCarousel] = useState<boolean>(false);
+  const [completedCarousel, setCompletedCarousel] = useState<boolean>(false);
+  const onboarded = localStorage.getItem(ONBOARDING_COMPLETED);
 
   const headlines = allHeadlines.slice(0, 10);
 
@@ -153,10 +159,11 @@ const InfoPanel = ({
 
   // Firing events when focusing on headlines
   useEffect(() => {
-    if (headlines.length === currentHeadlineIndex) {
+    if (!onboarded) return;
+
+    if (!completedCarousel && headlines.length > 0 && headlines.length === currentHeadlineIndex) {
       fireEvent(EARTH_HQ_CAROUSEL_COMPLETED, null);
-    } else if (currentHeadlineIndex === 0) {
-      fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
+      setCompletedCarousel(true);
     }
 
     fireEvent(EARTH_HQ_CAROUSEL_VIEWED, `${currentHeadlineIndex + 1}`);
@@ -166,6 +173,12 @@ const InfoPanel = ({
   // Runs so function only called on scroll end
   useEffect(() => {
     if (isLoading) return;
+
+    if (onboarded && !viewedCarousel) {
+      fireEvent(EARTH_HQ_CAROUSEL_STARTED, null);
+      setViewedCarousel(true);
+    }
+
     window.clearTimeout(isScrolling);
     setIsScrolling(
       setTimeout(function () {

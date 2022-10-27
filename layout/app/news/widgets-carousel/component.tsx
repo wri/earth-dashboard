@@ -24,6 +24,9 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
 
   const [viewedWidget, setViewedWidget] = useState<string>();
   const [scrollPos, setScrollPos] = useState<number>(0);
+  const [inView, setInView] = useState<boolean>(false);
+  const [viewed, setViewed] = useState<boolean>(false);
+  const [completed, setCompleted] = useState<boolean>(false);
 
   const getCarouselCurrentIndex = () => {
     const nodes = carouselRef?.current?.childNodes;
@@ -68,16 +71,44 @@ const WidgetsCarousel = ({ widgets, isLoading, max = 6, page }: WidgetsCarouselP
   }, [widgets]);
 
   useEffect(() => {
+    if (!inView) return;
+
     const carouselIndex = getCarouselCurrentIndex();
     if (page === "news" && !isLoading) {
-      if (carouselIndex === 0) fireEvent(NEWS_CAROUSEL_STARTED, null);
-      if (carouselRef.current && carouselIndex === carouselRef.current?.childNodes.length - 1)
+      const carouselItems = carouselRef.current?.childNodes.length;
+      if (!viewed && carouselItems && carouselIndex === 0) fireEvent(NEWS_CAROUSEL_STARTED, null);
+      if (!completed && carouselRef.current && carouselItems && carouselIndex === carouselItems - 2) {
         fireEvent(NEWS_CAROUSEL_COMPLETED, null);
+        setCompleted(true);
+      }
 
-      fireEvent(NEWS_CAROUSEL_VIEWED, `${carouselIndex + 1}`);
+      fireEvent(NEWS_CAROUSEL_VIEWED, `${carouselIndex}`);
     }
     // eslint-disable-next-line
-  }, [viewedWidget]);
+  }, [viewedWidget, inView]);
+
+  useEffect(() => {
+    if (!carouselRef.current || isLoading) return;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const elInView = entry.isIntersecting && entry.intersectionRatio < 1;
+          setInView(elInView);
+          if (elInView) setViewed(true);
+        });
+      },
+      { root: null, rootMargin: "0px", threshold: 0.5 }
+    );
+
+    observer.observe(carouselRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+
+    // eslint-disable-next-line
+  }, [carouselRef.current]);
 
   /** Updates the currently viewed widget. */
   const handleCarouselScroll = () => {

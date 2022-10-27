@@ -19,11 +19,7 @@ import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { EventScaleData, isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
-import {
-  ActionCreatorWithOptionalPayload,
-  ActionCreatorWithoutPayload,
-  ActionCreatorWithPayload
-} from "@reduxjs/toolkit";
+import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
 import * as d3 from "utils/d3";
