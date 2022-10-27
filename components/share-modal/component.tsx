@@ -31,9 +31,13 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
 
   const router = useRouter();
   const isExplore = router.pathname === "/explore" && pageTypeId === PAGE_TYPE_ID.DATA_LAYER_PAGE;
+  const eventTitle = !isExplore
+    ? {
+        event_title: currentHeadline?.attributes.title
+      }
+    : {};
 
   const getShareLink = () => {
-    const { origin, search } = window.location;
     const shareType =
       pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
         ? "event"
@@ -56,11 +60,7 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, "_blank");
     fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
       sharing_option: "facebook",
-      ...(isExplore
-        ? {
-            event_title: currentHeadline?.attributes.title
-          }
-        : {})
+      ...eventTitle
     });
   };
 
@@ -73,11 +73,7 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
     setTimeout(() => setCopiedLinkTimeout(false), 1000);
     fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
       sharing_option: "copy_link",
-      ...(isExplore
-        ? {
-            event_title: currentHeadline?.attributes.title
-          }
-        : {})
+      ...eventTitle
     });
   };
 
@@ -87,11 +83,7 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
     window.open(`https://twitter.com/share?url=${encodeURIComponent(link)}`, "_blank");
     fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
       sharing_option: "twitter",
-      ...(isExplore
-        ? {
-            event_title: currentHeadline?.attributes.title
-          }
-        : {})
+      ...eventTitle
     });
   };
 
@@ -102,11 +94,7 @@ const ShareModal = ({ isMobile, isShareOpen, setIsShareOpen, currentHeadline, pa
       await navigator.share({ title: "Earth HQ", url: link });
       fireEvent(isExplore ? MAP_SHARE : SHARE_EXTREME_EVENT, null, {
         sharing_option: "more_options",
-        ...(isExplore
-          ? {
-              event_title: currentHeadline?.attributes.title
-            }
-          : {})
+        ...eventTitle
       });
     } catch (err) {
       console.log("Error: " + err);
