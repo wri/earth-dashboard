@@ -73,7 +73,7 @@ const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
   };
 
   return (
-    <Layout title="News">
+    <Layout title="Earth News">
       {/* To top button */}
       <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["c-news__top-button"]} />
 
