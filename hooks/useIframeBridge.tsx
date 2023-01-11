@@ -16,12 +16,7 @@ import {
 import { EarthLayer } from "components/app/home/main-container/types";
 import { GeoProjection } from "d3-geo";
 import { Headline } from "slices/headlines";
-import { fetchClimateAlertById, fetchClimateAlerts } from "services/gca";
-import {
-  ActionCreatorWithOptionalPayload,
-  ActionCreatorWithoutPayload,
-  ActionCreatorWithPayload
-} from "@reduxjs/toolkit";
+import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import { IframeBridgeContext } from "../context/IframeBridgeProvider";
 import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
@@ -34,19 +29,11 @@ type UseIframeBridgeConfig = {
   callback?: () => void;
   allowClickEvents: boolean;
   headlines: Headline[];
-  currentMode?: Mode;
-  defaultMode?: Mode;
-  setHeadlines: ActionCreatorWithPayload<Headline[], string>;
-  setHeadlinesLoading: ActionCreatorWithPayload<boolean, string>;
   setHasReoriented: ActionCreatorWithPayload<boolean, string>;
   pageTypeId: string;
-  routePageTypeId: string;
-  currentHeadlineId: number | undefined;
   outdatedHeadline: Headline | undefined;
-  setOutdatedHeadline: ActionCreatorWithPayload<Headline | undefined, string>;
   setCurrentHeadline: ActionCreatorWithOptionalPayload<Headline | undefined, string>;
   setCurrentHeadlineId: ActionCreatorWithOptionalPayload<number | undefined, string>;
-  share: ShareType;
 };
 
 type Marker = { id: number; label: string };
@@ -59,19 +46,11 @@ const useIframeBridge = ({
   callback,
   allowClickEvents,
   headlines,
-  setHeadlinesLoading,
-  currentMode,
-  defaultMode,
-  setHeadlines,
   setHasReoriented,
   pageTypeId,
-  currentHeadlineId,
-  routePageTypeId,
   outdatedHeadline,
-  setOutdatedHeadline,
   setCurrentHeadline,
-  setCurrentHeadlineId,
-  share
+  setCurrentHeadlineId
 }: UseIframeBridgeConfig) => {
   const [earthClient, setEarthClient] = useState<EarthClient>();
   const [markers, setMarkers] = useState<Marker[]>([]);
@@ -95,67 +74,6 @@ const useIframeBridge = ({
   const earthServer = useRef<any>();
 
   const currentProjectionFunc = useCallback(() => getNewProjection(currentProjection), [currentProjection]);
-
-  // Set headlines redux if mobile
-  useEffect(() => {
-    (async () => {
-      setHeadlinesLoading(true);
-      try {
-        const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
-
-        let numberOfHeadlines = mode_id
-          ? 10
-          : pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
-          ? routePageTypeId === PAGE_TYPE_ID.INFO_PAGE
-            ? 10
-            : 25
-          : pageTypeId === PAGE_TYPE_ID.INFO_PAGE
-          ? 10
-          : 25;
-
-        const isEventInfo = router.pathname === "/" && pageTypeId === PAGE_TYPE_ID.INFO_PAGE;
-
-        // Fetches all or mode specific events for explore page
-        const resp = await fetchClimateAlerts({
-          count: 25,
-          in_top_events: 25,
-          mode_id: isEventInfo ? undefined : mode_id
-        });
-
-        if (currentHeadlineId) {
-          resp.data.data.forEach((headline: Headline, index: number) => {
-            if (headline.id === currentHeadlineId) {
-              if (index >= 10 && index < 25) {
-                numberOfHeadlines = 25;
-              }
-            }
-          });
-
-          // Shows single shared event
-          if (
-            share === "event" &&
-            !(resp.data.data as Headline[]).map(headline => headline.id).includes(currentHeadlineId)
-          ) {
-            try {
-              const singleResp = await fetchClimateAlertById(currentHeadlineId.toString());
-              setOutdatedHeadline(singleResp.data.data);
-            } catch (e) {
-              router.push("/404");
-            }
-          }
-        }
-
-        const filteredHeadlines = (resp.data.data as Headline[]).slice(0, numberOfHeadlines);
-
-        setHeadlines(filteredHeadlines);
-      } catch (err) {
-        console.log("Error fetching modes");
-      } finally {
-        setHeadlinesLoading(false);
-      }
-    })();
-    // eslint-disable-next-line
-  }, [setHeadlines, currentMode, pageTypeId]);
 
   // Set the extreme event points
   useEffect(() => {

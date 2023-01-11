@@ -19,6 +19,7 @@ import { EarthLayer } from "./types";
 import { useDispatch, useSelector } from "react-redux";
 import { EventScaleData, isFetchLocationDisabled, setShouldFetchLocation } from "slices/mapControls";
 import useIframeBridge from "hooks/useIframeBridge";
+import useHeadlines from "hooks/useHeadlines";
 import { ActionCreatorWithOptionalPayload, ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Mode } from "slices/modes";
 import ShareModal from "components/share-modal";
@@ -158,19 +159,24 @@ const MainContainer = ({
   } = useIframeBridge({
     allowClickEvents: !currentHeadline,
     headlines,
+    setHasReoriented,
+    pageTypeId,
+    outdatedHeadline,
+    setCurrentHeadline,
+    setCurrentHeadlineId
+  });
+
+  useHeadlines({
     setHeadlines,
     setHeadlinesLoading,
     currentMode,
     defaultMode,
-    setHasReoriented,
-    pageTypeId,
     currentHeadlineId,
     routePageTypeId,
-    outdatedHeadline,
     setOutdatedHeadline,
-    setCurrentHeadline,
-    setCurrentHeadlineId,
-    share
+    share,
+    pageTypeId,
+    outdatedHeadline
   });
 
   const overlayLayer = useMemo(() => {
