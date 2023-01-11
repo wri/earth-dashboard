@@ -21,6 +21,30 @@ import { scrollWindowToTop } from "utils/browserInterations";
 const LIMIT = 12;
 const LOAD_MORE_LIMIT = 12;
 
+const FetchMoreButton = ({
+  canFetchMore,
+  fetchMore,
+  isFetchingMore
+}: {
+  canFetchMore: boolean;
+  fetchMore: (amount: number) => void;
+  isFetchingMore: boolean;
+}) => {
+  return canFetchMore ? (
+    <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
+      <AnchorCTA
+        className={classnames(
+          newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"],
+          styles["c-page-search__load-more__btn"]
+        )}
+        onClick={() => fetchMore(LOAD_MORE_LIMIT)}
+      >
+        {isFetchingMore ? "Loading..." : "Load More "}
+      </AnchorCTA>
+    </div>
+  ) : null;
+};
+
 /** Shows the search bar and its results. */
 const NewsSearchLayout = () => {
   const [search, setSearch] = useState<string>();
@@ -50,7 +74,8 @@ const NewsSearchLayout = () => {
     };
   }, [posts]);
 
-  const hasSearchResults = posts && posts.length > 0;
+  const hasResults = posts && posts.length > 0;
+  const isSearch = Boolean(search?.length);
 
   return (
     <Layout title="Earth News">
@@ -74,44 +99,47 @@ const NewsSearchLayout = () => {
         />
       </div>
 
-      <Section
-        gridClassName={classnames(newsArticleStyles["c-page-section-grid-news-articles"], {
-          [newsArticleStyles["no-top-margin"]]: !hasSearchResults
-        })}
-        bgColour={BG_SPACE}
-        title="Most Recent"
-        noWrap
-      >
-        {isLoading
-          ? [...Array(3)].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
-          : mostRecent.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
-      </Section>
-      <Section
-        gridClassName={classnames(newsArticleStyles["c-page-section-grid-news-articles"], {
-          [newsArticleStyles["no-top-margin"]]: !hasSearchResults
-        })}
-        bgColour={BG_GALAXY}
-        title="More News"
-        noWrap
-      >
-        {isLoading
-          ? [...Array(6)].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
-          : moreNews.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
+      {isSearch ? (
+        <>
+          <Section
+            gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
+            bgColour={BG_SPACE}
+            title="All Results"
+            noWrap
+          >
+            {isLoading
+              ? [...Array(9)].map((a, index) => <NewsArticleSkeleton key={`skeleton-${index}`} />)
+              : posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
 
-        {canFetchMore && (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
-            <AnchorCTA
-              className={classnames(
-                newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"],
-                styles["c-page-search__load-more__btn"]
-              )}
-              onClick={() => fetchMore(LOAD_MORE_LIMIT)}
-            >
-              {isFetchingMore ? "Loading..." : "Load More "}
-            </AnchorCTA>
-          </div>
-        )}
-      </Section>
+            {!isLoading && !hasResults && <SearchEmptyState />}
+            <FetchMoreButton canFetchMore={canFetchMore} fetchMore={fetchMore} isFetchingMore={isFetchingMore} />
+          </Section>
+        </>
+      ) : (
+        <>
+          <Section
+            gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
+            bgColour={BG_SPACE}
+            title="Most Recent"
+            noWrap
+          >
+            {isLoading
+              ? [...Array(3)].map((a, index) => <NewsArticleSkeleton key={`skeleton-${index}`} />)
+              : mostRecent.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
+          </Section>
+          <Section
+            gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
+            bgColour={BG_GALAXY}
+            title="More News"
+            noWrap
+          >
+            {isLoading
+              ? [...Array(6)].map((a, index) => <NewsArticleSkeleton key={`skeleton-${index}`} />)
+              : moreNews.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
+            <FetchMoreButton canFetchMore={canFetchMore} fetchMore={fetchMore} isFetchingMore={isFetchingMore} />
+          </Section>
+        </>
+      )}
 
       {/* Search results */}
       {/* <Section
@@ -138,7 +166,7 @@ const NewsSearchLayout = () => {
         )}
       </Section> */}
 
-      {hasSearchResults && (
+      {hasResults && (
         // @ts-expect-error
         <MediaContextProvider>
           <Desktop>
