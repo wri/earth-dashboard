@@ -100,21 +100,19 @@ const NewsSearchLayout = () => {
       </div>
 
       {isSearch ? (
-        <>
-          <Section
-            gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
-            bgColour={BG_SPACE}
-            title="All Results"
-            noWrap
-          >
-            {isLoading
-              ? [...Array(9)].map((a, index) => <NewsArticleSkeleton key={`skeleton-${index}`} />)
-              : posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
+        <Section
+          gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
+          bgColour={BG_SPACE}
+          title="All Results"
+          noWrap
+        >
+          {isLoading
+            ? [...Array(9)].map((a, index) => <NewsArticleSkeleton key={`skeleton-${index}`} />)
+            : posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
 
-            {!isLoading && !hasResults && <SearchEmptyState />}
-            <FetchMoreButton canFetchMore={canFetchMore} fetchMore={fetchMore} isFetchingMore={isFetchingMore} />
-          </Section>
-        </>
+          {!isLoading && !hasResults && <SearchEmptyState />}
+          <FetchMoreButton canFetchMore={canFetchMore} fetchMore={fetchMore} isFetchingMore={isFetchingMore} />
+        </Section>
       ) : (
         <>
           <Section
