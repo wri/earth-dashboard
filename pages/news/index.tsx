@@ -9,17 +9,7 @@ const NewsPage = () => {
     fireEvent(PAGE_VIEW, "news_tab");
   }, []);
 
-  return (
-    // @ts-expect-error
-    <MediaContextProvider>
-      <Desktop>
-        <NewsLayout topic="climate" />
-      </Desktop>
-      <Mobile>
-        <NewsLayout topic="climate" isMobile />
-      </Mobile>
-    </MediaContextProvider>
-  );
+  return <NewsLayout />;
 };
 
 export default NewsPage;
