@@ -38,28 +38,14 @@ const NewsArticle = ({ className = "", topic, featured, title, author, date, ima
     >
       {/* Backdrop */}
       <div className={styles["c-news-article__backdrop"]}>
-        <Image
-          src={DropdownPlaceHolderImage}
-          layout="fill"
-          objectFit="cover"
-          role="presentation"
-          alt=""
-          className={classnames({
-            [styles["no-image"]]: !image
-          })}
-        />
+        <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
       </div>
 
       {/* Top section */}
       <div className={styles["c-news-article__top"]}>
-        <div
-          className={classnames(styles["c-news-article__thumbnail"], {
-            [styles["no-image"]]: !image
-          })}
-        >
-          {/* Thumbnail */}
-          <Image src={PlaceHolderImage} layout="fill" objectFit="fill" role="presentation" alt="" />
-          {/*<Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />*/}
+        {/* Thumbnail */}
+        <div className={styles["c-news-article__thumbnail"]}>
+          <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
         </div>
 
         {/* Title */}
