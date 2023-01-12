@@ -123,7 +123,7 @@ const NewsSearchLayout = () => {
           >
             {isLoading
               ? [...Array(3)].map((a, index) => <NewsArticleSkeleton key={`skeleton-${index}`} />)
-              : mostRecent.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
+              : mostRecent.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} featured />)}
           </Section>
           <Section
             gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}

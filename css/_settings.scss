@@ -23,6 +23,8 @@ $colour-flame: #d63c00;
 $colour-galaxy: #002841;
 $colour-midnight: #001928;
 
+$neutral-600: #4B4B4A;
+
 // ++++++++++ Topic colors +++++++++++++++
 // climate
 $climate: hsl(20, 100%, 48%);
@@ -156,6 +158,7 @@ $navbar-height: 60px;
 
 // Shadows
 $thick-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.1);
+$shadow-strong: 0 2px 10px rgba(26, 26, 25, 0.24);
 
 $bg-backdrop: rgba(0, 40, 65, 0.6);
 $bg-backdrop-lighter: rgba(56, 68, 79, 0.2);

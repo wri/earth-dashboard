@@ -1,0 +1,235 @@
+@import "css/settings";
+@import "css/settings/breakpoints";
+@import "css/tools/fontSize";
+
+$c-news-article-transition: 0.3s ease-in-out;
+
+.c-news-article {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: background-color $c-news-article-transition;
+
+  &:hover {
+    .bottom {
+      background-color: $colour-flame !important;
+
+      .link:after {
+        background-color: $colour-flame;
+      }
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    height: 100%;
+  }
+
+  &.featured {
+    .top {
+      gap: 12px;
+      padding: 20px 20px 0 20px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        padding: 32px;
+      }
+
+      .image {
+        height: 160px;
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          min-height: 275px;
+          height: 100%;
+        }
+      }
+
+      .title {
+        @include font-size(18px, 27px);
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          @include font-size(32px, 48px);
+        }
+      }
+    }
+
+    .bottom {
+      padding: 16px 20px 20px 20px;
+
+      .date {
+        @media screen and (min-width: $global-breakpoint-md) {
+          @include font-size(18px, 27px);
+        }
+      }
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        padding: 32px;
+      }
+    }
+  }
+
+  &:not(.featured) {
+    .top {
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      padding: 20px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .image {
+        height: 80px;
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          height: 160px;
+        }
+      }
+
+      .title {
+        @include font-size(16px, 24px);
+
+        @media screen and (min-width: $global-breakpoint-md) {
+          @include font-size(18px, 27px);
+        }
+      }
+    }
+
+    .bottom {
+      background-color: rgba($colour-galaxy, 0.5);
+      padding: 16px 20px;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        background-color: transparent;
+      }
+    }
+  }
+
+  .no-image {
+    background-color: $colour-galaxy;
+  }
+
+  .backdrop {
+    opacity: 0.2;
+    z-index: 0;
+    filter: blur(2px);
+  }
+
+  .top {
+    display: grid;
+    z-index: 1;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      height: 100%;
+    }
+
+    .image {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .title {
+      font-weight: 500;
+
+      @media screen and (min-width: $global-breakpoint-md) {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .title,
+  .date {
+    display: block;
+    color: $white;
+  }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    transition: background-color $c-news-article-transition;
+
+    .date {
+      @include font-size(14px, 18px);
+      font-weight: 600;
+    }
+
+    .link {
+      z-index: 1;
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: transparent;
+        opacity: 0.15;
+        transition: background-color $c-news-article-transition;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+.c-page-section-grid-news-articles-featured {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+
+  @media screen and (min-width: $global-breakpoint-lg) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &__article {
+    @media screen and (min-width: $global-breakpoint-lg) {
+      grid-column: span 3 / span 3;
+    }
+  }
+
+  &__widget {
+    @media screen and (min-width: $global-breakpoint-lg) {
+      grid-column: span 2 / span 2;
+    }
+  }
+}
+
+.c-page-section-grid-news-articles {
+  display: grid;
+  gap: 16px;
+
+  &.no-top-margin {
+    margin-top: 0px;
+  }
+
+  &__loading {
+    color: $white;
+  }
+
+  &__load-more {
+    display: flex;
+    justify-content: center;
+    grid-column: 1/-1;
+    padding-top: 8px;
+  }
+
+  @media screen and (min-width: $global-breakpoint-md) {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+
+    &__load-more {
+      justify-content: flex-start;
+      padding-top: 0;
+    }
+  }
+
+  @media screen and (min-width: $global-breakpoint-lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 30px;
+    row-gap: 16px;
+  }
+}
