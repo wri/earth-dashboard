@@ -25,7 +25,7 @@ const Header = () => {
   const title = (() => {
     switch (router.route) {
       case "/news":
-        return "News";
+        return "Earth News";
       default:
         return undefined;
     }
@@ -67,17 +67,17 @@ const Header = () => {
                 <div className={styles["top-section__links"]}>
                   <HeaderLink
                     href="/"
-                    text="Earth HQ"
+                    text="Extreme Events"
                     onClick={handleGlobeReset}
                     isActive={pageTypeId !== PAGE_TYPE_ID.INFO_PAGE ? false : undefined}
                   />
                   <HeaderLink
                     href="/explore"
-                    text="Explore"
+                    text="Event Trends"
                     onClick={handleGlobeReset}
                     isActive={pageTypeId !== PAGE_TYPE_ID.INFO_PAGE ? false : undefined}
                   />
-                  <HeaderLink href="/news" text="News" />
+                  <HeaderLink href="/news" text="Earth News" />
                 </div>
               </Desktop>
 
