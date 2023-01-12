@@ -6,8 +6,6 @@ import ExternalLink from "components/ui/external-link";
 import { fireEvent } from "utils/gtag";
 import { NEWS_OPENED_ARTICLE } from "constants/tag-manager";
 import TOPICS from "constants/news";
-import PlaceHolderImage from "public/static/images/news-card-placeholder.png";
-import DropdownPlaceHolderImage from "public/static/images/news-article-backdrop-placeholder.jpg";
 
 type NewsArticleProps = {
   featured?: boolean;
