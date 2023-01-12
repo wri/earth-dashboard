@@ -16,8 +16,8 @@ interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> 
   medium?: boolean;
   iconStyle?: Object;
   iconClassName?: string;
-  name?: IconProps["name"];
-  size?: IconProps["size"];
+  name: IconProps["name"];
+  size: IconProps["size"];
 }
 
 /** Styled icon button. */
