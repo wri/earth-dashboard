@@ -1,7 +1,7 @@
 import NewsSearchLayout from "layout/app/news";
 
 const NewsPage = () => {
-  return <NewsSearchLayout topic="climate" />;
+  return <NewsSearchLayout />;
 };
 
 export default NewsPage;

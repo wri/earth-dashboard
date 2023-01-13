@@ -8,7 +8,7 @@ import Section from "./section";
 import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
 import VideoArticle from "components/video-article";
-import Widget from "layout/app/news/widget";
+import Widget from "layout/app/news-legacy/widget";
 import { Desktop, MediaContextProvider, Mobile } from "utils/responsive";
 import TOPICS from "constants/news";
 import styles from "./news.module.scss";

@@ -9,7 +9,7 @@ import useDialogPanel from "hooks/useDialogPanel";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import { useState } from "react";
 import Section from "../section";
-import NewsSearch from "../news-search";
+import NewsSearch from "../search-bar";
 import SearchEmptyState from "../search-empty-state";
 import styles from "./search-dialog.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
@@ -71,8 +71,8 @@ const SearchDialog = ({ isOpen, isMobile, setIsNewsSearchOpen }: SearchDialogPro
           <div className={styles["bottom"]}>
             <NewsSearch
               topic={topic}
-              setTopic={setTopic}
-              setSearch={setSearch}
+              onTopicChange={setTopic}
+              onSearch={setSearch}
               inputClassName={styles["input"]}
               filtersClassName={styles["filters"]}
               darkColors
