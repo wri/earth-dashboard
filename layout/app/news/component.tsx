@@ -1,21 +1,24 @@
 import classnames from "classnames";
+import useCMSVideos from "hooks/useCMSVideos";
 import { useMemo, useState } from "react";
 import useMongabayPosts from "hooks/useMongabayPosts";
 import Layout from "layout/layout/layout-app";
 import AnchorCTA from "components/ui/anchor-cta";
 import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
-import { Desktop, MediaContextProvider } from "utils/responsive";
+import VideoArticle from "components/video-article";
 import TOPICS from "constants/news";
 import styles from "./search.module.scss";
 import newsStyles from "./news.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
+import videoArticleStyles from "components/video-article/video-article.module.scss";
 import IconButton from "components/ui/icon-button";
 import Section from "./section";
 import { BG_GALAXY, BG_SPACE } from "constants/section-colours";
 import SearchBar from "./search-bar";
 import SearchEmptyState from "./search-empty-state";
 import NewsArticleSkeleton from "components/news-article/news-article-skeleton";
+import SkeletonVideo from "components/ui/skeleton/skeleton-video";
 import { scrollWindowToTop } from "utils/browserInterations";
 
 const LIMIT = 12;
@@ -56,6 +59,11 @@ const NewsSearchLayout = () => {
     topic,
     search
   });
+
+  // Videos
+  const { videos: allCMSVideos, isLoading: isVideosLoading } = useCMSVideos();
+  let availableVideos = [...allCMSVideos],
+    videos = availableVideos.splice(0, 3);
 
   const { mostRecent, moreNews } = useMemo(() => {
     if (posts.length <= 3) {
@@ -139,39 +147,34 @@ const NewsSearchLayout = () => {
         </>
       )}
 
-      {/* Search results */}
-      {/* <Section
-        gridClassName={classnames(newsArticleStyles["c-page-section-grid-news-articles"], {
-          [newsArticleStyles["no-top-margin"]]: !hasSearchResults
-        })}
-        bgColour={BG_GALAXY}
-        {...(hasSearchResults
-          ? {
-              title: "All Results"
-            }
-          : {})}
-      >
-        {isLoading ? (
-          [...Array(9)].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
-        ) : !posts || !posts.length ? (
-          <SearchEmptyState />
-        ) : (
-          <>
-            {posts.map(({ key, ...articleProps }) => (
-              <NewsArticle key={key} {...articleProps} />
-            ))}
-          </>
-        )}
-      </Section> */}
-
-      {hasResults && (
-        // @ts-expect-error
-        <MediaContextProvider>
-          <Desktop>
-            <EarthHQCTA />
-          </Desktop>
-        </MediaContextProvider>
+      {/* Videos */}
+      {!topic && (
+        <Section
+          title="Must Watch"
+          bgColour={BG_SPACE}
+          gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
+        >
+          {isVideosLoading
+            ? [0, 1, 2].map(key => (
+                <SkeletonVideo
+                  key={`video-${key}`}
+                  className={key === 0 ? styles["c-news__must-watch-skeleton"] : undefined}
+                  large
+                />
+              ))
+            : videos?.map(({ id, attributes: video }) => (
+                <VideoArticle
+                  key={id}
+                  topic={topic}
+                  title={video["title"]}
+                  image={video["thumbnail_image"]}
+                  videoURL={video["url"]}
+                />
+              ))}
+        </Section>
       )}
+
+      {hasResults && <EarthHQCTA />}
     </Layout>
   );
 };
