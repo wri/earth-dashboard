@@ -3,16 +3,22 @@ import classnames from "classnames";
 import Icon, { IconProps } from "../Icon";
 import styles from "./icon-button.module.scss";
 
-type IconButtonProps = {
-  onClick?: () => void;
-  className?: string;
-  disabled?: boolean;
+// type IconButtonProps = {
+//   onClick?: () => void;
+//   className?: string;
+//   disabled?: boolean;
+
+// } & Pick<IconProps, "name" | "size">;
+
+interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   extraSmall?: boolean;
   small?: boolean;
   medium?: boolean;
   iconStyle?: Object;
   iconClassName?: string;
-} & Pick<IconProps, "name" | "size">;
+  name?: IconProps["name"];
+  size?: IconProps["size"];
+}
 
 /** Styled icon button. */
 const IconButton = forwardRef(

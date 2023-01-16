@@ -34,7 +34,7 @@ const Header = () => {
   const description = (() => {
     switch (router.route) {
       case "/news":
-        return "Real stories of planetary emergencies from partners across the globe.";
+        return "Real stories of planetary emergencies from Mongabay journalists across the globe.";
       default:
         return undefined;
     }

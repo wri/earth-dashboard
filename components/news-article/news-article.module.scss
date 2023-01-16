@@ -229,10 +229,7 @@ $c-news-article-transition: 0.3s ease-in-out;
 
   @media screen and (min-width: $global-breakpoint-lg) {
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px;
-  }
-
-  @media screen and (min-width: $global-breakpoint-xl) {
-    gap: 40px;
+    column-gap: 30px;
+    row-gap: 16px;
   }
 }

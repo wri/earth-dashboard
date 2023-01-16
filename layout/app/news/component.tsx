@@ -1,175 +1,179 @@
-import { useEffect } from "react";
+import classnames from "classnames";
+import { useMemo, useState } from "react";
 import useMongabayPosts from "hooks/useMongabayPosts";
-import useGCAWidgets from "hooks/useGCAWidgets";
-import useCMSVideos from "hooks/useCMSVideos";
 import Layout from "layout/layout/layout-app";
 import AnchorCTA from "components/ui/anchor-cta";
-import Section from "./section";
 import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
-import VideoArticle from "components/video-article";
-import Widget from "layout/app/news/widget";
-import { Desktop, MediaContextProvider, Mobile } from "utils/responsive";
+import { Desktop, MediaContextProvider } from "utils/responsive";
 import TOPICS from "constants/news";
-import styles from "./news.module.scss";
+import styles from "./search.module.scss";
+import newsStyles from "./news.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
-import videoArticleStyles from "components/video-article/video-article.module.scss";
-import { BG_GALAXY, BG_LIGHT_SPACE } from "constants/section-colours";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import IconButton from "components/ui/icon-button";
-import SearchDialog from "./search/search-dialog";
+import Section from "./section";
+import { BG_GALAXY, BG_SPACE } from "constants/section-colours";
+import SearchBar from "./search-bar";
+import SearchEmptyState from "./search-empty-state";
 import NewsArticleSkeleton from "components/news-article/news-article-skeleton";
-import WidgetSkeleton from "./widget/widget-skeleton";
-import SkeletonVideo from "components/ui/skeleton/skeleton-video";
-import WidgetsCarousel from "./widgets-carousel";
+import { scrollWindowToTop } from "utils/browserInterations";
 
-const LIMIT = 10;
-const LOAD_MORE_LIMIT = 9;
+const LIMIT = 12;
+const LOAD_MORE_LIMIT = 12;
 
-type NewsLayoutProps = {
-  topic: keyof typeof TOPICS;
-  isMobile?: boolean;
-  setIsMobile: ActionCreatorWithPayload<boolean, string>;
+const FetchMoreButton = ({
+  canFetchMore,
+  fetchMore,
+  isFetchingMore
+}: {
+  canFetchMore: boolean;
+  fetchMore: (amount: number) => void;
+  isFetchingMore: boolean;
+}) => {
+  return canFetchMore ? (
+    <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
+      <AnchorCTA
+        className={classnames(
+          newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"],
+          styles["c-page-search__load-more__btn"]
+        )}
+        onClick={() => fetchMore(LOAD_MORE_LIMIT)}
+      >
+        {isFetchingMore ? "Loading..." : "Load More "}
+      </AnchorCTA>
+    </div>
+  ) : null;
 };
 
-const NewsLayout = ({ topic, isMobile, setIsMobile }: NewsLayoutProps) => {
-  const {
-    isLoading: isPostsLoading,
-    hasErrored: hasPostsErrorred,
-    posts,
-    canFetchMore,
-    isFetchingMore,
-    fetchMore
-  } = useMongabayPosts({
-    limit: LIMIT
+/** Shows the search bar and its results. */
+const NewsSearchLayout = () => {
+  const [search, setSearch] = useState<string>();
+  const [topic, setTopic] = useState<keyof typeof TOPICS>();
+
+  // Data
+  const { isLoading, posts, canFetchMore, isFetchingMore, fetchMore } = useMongabayPosts({
+    limit: LIMIT,
+    topic,
+    search
   });
-  const { isLoading: isWidgetsLoading, hasErrored: hasWidgetsErrorred, widgets, featuredWidgets } = useGCAWidgets();
-  const { videos: allCMSVideos, isLoading: isVideosLoading } = useCMSVideos();
 
-  // Store the isMobile flag in the redux store
-  useEffect(() => {
-    setIsMobile(!!isMobile);
-  }, [isMobile, setIsMobile]);
+  const { mostRecent, moreNews } = useMemo(() => {
+    if (posts.length <= 3) {
+      return {
+        mostRecent: posts || [],
+        moreNews: []
+      };
+    }
 
-  let mostRecentArticle,
-    otherArticles,
-    postsLoadingMessage = "Loading...",
-    availableWidgets = [...widgets],
-    firstWidget = !isWidgetsLoading && !hasWidgetsErrorred && availableWidgets.shift(),
-    availableVideos = [...allCMSVideos],
-    videos = availableVideos.splice(0, 3);
+    const moreNews = [...posts];
+    const mostRecent = moreNews.splice(0, 3);
 
-  if (!isPostsLoading && !hasPostsErrorred) {
-    otherArticles = [...posts];
-    mostRecentArticle = otherArticles.shift();
-  }
+    return {
+      mostRecent,
+      moreNews
+    };
+  }, [posts]);
 
-  /** Scrolls to top. */
-  const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  };
+  const hasResults = posts && posts.length > 0;
+  const isSearch = Boolean(search?.length);
 
   return (
     <Layout title="Earth News">
       {/* To top button */}
-      <IconButton name="arrow-up" size={16} onClick={handleScrollToTop} className={styles["c-news__top-button"]} />
+      <IconButton
+        name="arrow-up"
+        size={16}
+        onClick={scrollWindowToTop}
+        className={newsStyles["c-news__top-button"]}
+        aria-label="Go to top of the page"
+      />
 
-      <Section title="Most Recent" gridClassName={newsArticleStyles["c-page-section-grid-news-articles-featured"]}>
-        <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__article"]}>
-          {/* Most Recent */}
-          {isPostsLoading ? (
-            <NewsArticleSkeleton featured />
-          ) : mostRecentArticle ? (
-            <NewsArticle topic={topic} featured {...mostRecentArticle} />
-          ) : (
-            <p>{postsLoadingMessage}</p>
-          )}
-        </div>
+      {/* Search controls */}
+      <div className={styles["c-page-search__header"]}>
+        <SearchBar
+          topic={topic}
+          onTopicChange={setTopic}
+          onSearch={setSearch}
+          filtersClassName={styles["c-page-search__filters"]}
+          darkColors
+        />
+      </div>
 
-        {/* Top widget */}
-        <div className={newsArticleStyles["c-page-section-grid-news-articles-featured__widget"]}>
-          {isWidgetsLoading ? (
-            <WidgetSkeleton />
-          ) : (
-            firstWidget && <Widget data-testid="first-widget" widget={firstWidget} bordered sourceButtonRight />
-          )}
-        </div>
-      </Section>
+      {isSearch ? (
+        <Section
+          gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
+          bgColour={BG_SPACE}
+          title="All Results"
+          noWrap
+        >
+          {isLoading
+            ? [...Array(9)].map((a, index) => <NewsArticleSkeleton key={`skeleton-${index}`} />)
+            : posts.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
 
-      {/* Second widget */}
-      {isWidgetsLoading ||
-        (featuredWidgets && featuredWidgets.length > 0 && (
-          <div className={styles["c-news__featured-widgets"]}>
-            <h2>FEATURED</h2>
-            <WidgetsCarousel widgets={featuredWidgets} isLoading={isWidgetsLoading} page="news" />
-          </div>
-        ))}
+          {!isLoading && !hasResults && <SearchEmptyState />}
+          <FetchMoreButton canFetchMore={canFetchMore} fetchMore={fetchMore} isFetchingMore={isFetchingMore} />
+        </Section>
+      ) : (
+        <>
+          <Section
+            gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
+            bgColour={BG_SPACE}
+            title="Most Recent"
+            noWrap
+          >
+            {isLoading
+              ? [...Array(3)].map((a, index) => <NewsArticleSkeleton key={`skeleton-${index}`} />)
+              : mostRecent.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
+          </Section>
+          <Section
+            gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
+            bgColour={BG_GALAXY}
+            title="More News"
+            noWrap
+          >
+            {isLoading
+              ? [...Array(6)].map((a, index) => <NewsArticleSkeleton key={`skeleton-${index}`} />)
+              : moreNews.map(({ key, ...articleProps }) => <NewsArticle key={key} {...articleProps} />)}
+            <FetchMoreButton canFetchMore={canFetchMore} fetchMore={fetchMore} isFetchingMore={isFetchingMore} />
+          </Section>
+        </>
+      )}
 
-      {/* Videos */}
-      <Section
-        title="Must Watch"
-        bgColour={BG_LIGHT_SPACE}
-        gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
-      >
-        {isVideosLoading
-          ? [0, 1, 2].map(key => (
-              <SkeletonVideo
-                key={`video-${key}`}
-                className={key === 0 ? styles["c-news__must-watch-skeleton"] : undefined}
-                large={!isMobile && key === 0}
-              />
-            ))
-          : videos?.map(({ id, attributes: video }) => (
-              <VideoArticle
-                key={id}
-                topic={topic}
-                title={video["title"]}
-                image={video["thumbnail_image"]}
-                videoURL={video["url"]}
-              />
-            ))}
-      </Section>
-
-      <Section
-        title="More News"
+      {/* Search results */}
+      {/* <Section
+        gridClassName={classnames(newsArticleStyles["c-page-section-grid-news-articles"], {
+          [newsArticleStyles["no-top-margin"]]: !hasSearchResults
+        })}
         bgColour={BG_GALAXY}
-        gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
+        {...(hasSearchResults
+          ? {
+              title: "All Results"
+            }
+          : {})}
       >
-        {/* More News */}
-        {isPostsLoading ? (
-          [0, 1, 2, 3, 4, 5, 6, 7, 8].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
-        ) : hasPostsErrorred ? (
-          <p>An error has occurred when trying to loading the News Articles, please try again later</p>
+        {isLoading ? (
+          [...Array(9)].map(key => <NewsArticleSkeleton key={`skeleton-${key}`} />)
+        ) : !posts || !posts.length ? (
+          <SearchEmptyState />
         ) : (
-          otherArticles?.map(({ key, ...articleProps }) => <NewsArticle key={key} topic={topic} {...articleProps} />)
+          <>
+            {posts.map(({ key, ...articleProps }) => (
+              <NewsArticle key={key} {...articleProps} />
+            ))}
+          </>
         )}
-        {canFetchMore && (
-          <div className={newsArticleStyles["c-page-section-grid-news-articles__load-more"]}>
-            <AnchorCTA
-              className={newsArticleStyles["c-page-section-grid-news-articles__load-more__btn"]}
-              onClick={() => fetchMore(LOAD_MORE_LIMIT)}
-            >
-              {isFetchingMore ? "Loading..." : "Load More "}
-            </AnchorCTA>
-          </div>
-        )}
-      </Section>
+      </Section> */}
 
-      {/* @ts-expect-error */}
-      <MediaContextProvider>
-        <Desktop>
-          <EarthHQCTA />
-        </Desktop>
-        <Mobile>
-          {/* Search */}
-          <SearchDialog />
-        </Mobile>
-      </MediaContextProvider>
+      {hasResults && (
+        // @ts-expect-error
+        <MediaContextProvider>
+          <Desktop>
+            <EarthHQCTA />
+          </Desktop>
+        </MediaContextProvider>
+      )}
     </Layout>
   );
 };
 
-export default NewsLayout;
+export default NewsSearchLayout;
