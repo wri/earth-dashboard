@@ -87,15 +87,6 @@ const NewsSearchLayout = () => {
 
   return (
     <Layout title="Earth News">
-      {/* To top button */}
-      <IconButton
-        name="arrow-up"
-        size={16}
-        onClick={scrollWindowToTop}
-        className={newsStyles["c-news__top-button"]}
-        aria-label="Go to top of the page"
-      />
-
       {/* Search controls */}
       <div className={styles["c-page-search__header"]}>
         <SearchBar
@@ -111,7 +102,7 @@ const NewsSearchLayout = () => {
         <Section
           gridClassName={newsArticleStyles["c-page-section-grid-news-articles"]}
           bgColour={BG_SPACE}
-          title="All Results"
+          title={hasResults ? "All Results" : ""}
           noWrap
         >
           {isLoading
@@ -147,34 +138,47 @@ const NewsSearchLayout = () => {
         </>
       )}
 
-      {/* Videos */}
-      {!topic && (
-        <Section
-          title="Must Watch"
-          bgColour={BG_SPACE}
-          gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
-        >
-          {isVideosLoading
-            ? [0, 1, 2].map(key => (
-                <SkeletonVideo
-                  key={`video-${key}`}
-                  className={key === 0 ? styles["c-news__must-watch-skeleton"] : undefined}
-                  large
-                />
-              ))
-            : videos?.map(({ id, attributes: video }) => (
-                <VideoArticle
-                  key={id}
-                  topic={topic}
-                  title={video["title"]}
-                  image={video["thumbnail_image"]}
-                  videoURL={video["url"]}
-                />
-              ))}
-        </Section>
-      )}
+      {hasResults && (
+        <>
+          {/* Videos */}
+          {!topic && (
+            <Section
+              title="Must Watch"
+              bgColour={BG_SPACE}
+              gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
+            >
+              {isVideosLoading
+                ? [0, 1, 2].map(key => (
+                    <SkeletonVideo
+                      key={`video-${key}`}
+                      className={key === 0 ? styles["c-news__must-watch-skeleton"] : undefined}
+                      large
+                    />
+                  ))
+                : videos?.map(({ id, attributes: video }) => (
+                    <VideoArticle
+                      key={id}
+                      topic={topic}
+                      title={video["title"]}
+                      image={video["thumbnail_image"]}
+                      videoURL={video["url"]}
+                    />
+                  ))}
+            </Section>
+          )}
 
-      {hasResults && <EarthHQCTA />}
+          <EarthHQCTA />
+
+          {/* To top button */}
+          <IconButton
+            name="arrow-up"
+            size={16}
+            onClick={scrollWindowToTop}
+            className={newsStyles["c-news__top-button"]}
+            aria-label="Go to top of the page"
+          />
+        </>
+      )}
     </Layout>
   );
 };
