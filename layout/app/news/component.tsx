@@ -140,33 +140,6 @@ const NewsSearchLayout = () => {
 
       {hasResults && (
         <>
-          {/* Videos */}
-          {!topic && (
-            <Section
-              title="Must Watch"
-              bgColour={BG_SPACE}
-              gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
-            >
-              {isVideosLoading
-                ? [0, 1, 2].map(key => (
-                    <SkeletonVideo
-                      key={`video-${key}`}
-                      className={key === 0 ? styles["c-news__must-watch-skeleton"] : undefined}
-                      large
-                    />
-                  ))
-                : videos?.map(({ id, attributes: video }) => (
-                    <VideoArticle
-                      key={id}
-                      topic={topic}
-                      title={video["title"]}
-                      image={video["thumbnail_image"]}
-                      videoURL={video["url"]}
-                    />
-                  ))}
-            </Section>
-          )}
-
           <EarthHQCTA />
 
           {/* To top button */}
