@@ -11,7 +11,8 @@ html {
 }
 
 body {
-  background: $body-background;
+  --body-bg-colour: #{$body-background};
+  background: var(--body-bg-colour);
   min-height: 100%;
 
   font-family: $body-font-family;
