@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import styles from "./news-article.module.scss";
+import styles from "components/news-article/news-article.module.scss";
 import Image from "next/image";
 import { formatDatePretty } from "utils/dates";
 import ExternalLink from "components/ui/external-link";
@@ -29,46 +29,35 @@ const NewsArticle = ({ className = "", topic, featured, title, author, date, ima
       className={classnames(
         styles["c-news-article"],
         {
-          [styles["featured"]]: featured
+          [styles["c-news-article--featured"]]: featured
         },
         className
       )}
     >
+      {/* Backdrop */}
+      <div className={styles["c-news-article__backdrop"]}>
+        <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
+      </div>
+
       {/* Top section */}
-      <div className={styles["top"]}>
-        <div
-          className={classnames(styles["image"], {
-            [styles["no-image"]]: !image
-          })}
-        >
-          {/* Thumbnail */}
+      <div className={styles["c-news-article__top"]}>
+        {/* Thumbnail */}
+        <div className={styles["c-news-article__thumbnail"]}>
           <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
         </div>
 
         {/* Title */}
-        <span className={styles["title"]}>{title}</span>
+        <span className={styles["c-news-article__title"]}>{title}</span>
       </div>
 
       {/* Bottom section */}
-      <div className={styles["bottom"]}>
+      <div className={styles["c-news-article__bottom"]}>
         {/* Date */}
-        <span className={styles["date"]}>{formatDatePretty(date)}</span>
+        <span className={styles["c-news-article__date"]}>{formatDatePretty(date)}</span>
 
         {/* Article link */}
-        <ExternalLink className={styles["link"]} onClick={handleClick} link={link} label={author} />
+        <ExternalLink className={styles["c-news-article__link"]} onClick={handleClick} link={link} label={author} />
       </div>
-
-      {/* Backdrop */}
-      <Image
-        src={image}
-        layout="fill"
-        objectFit="cover"
-        role="presentation"
-        alt=""
-        className={classnames(styles["backdrop"], {
-          [styles["no-image"]]: !image
-        })}
-      />
     </article>
   );
 };
