@@ -6,19 +6,16 @@ import Layout from "layout/layout/layout-app";
 import AnchorCTA from "components/ui/anchor-cta";
 import EarthHQCTA from "layout/app/news/earth-hq-cta";
 import NewsArticle from "components/news-article";
-import VideoArticle from "components/video-article";
 import TOPICS from "constants/news";
 import styles from "./search.module.scss";
 import newsStyles from "./news.module.scss";
 import newsArticleStyles from "components/news-article/news-article.module.scss";
-import videoArticleStyles from "components/video-article/video-article.module.scss";
 import IconButton from "components/ui/icon-button";
 import Section from "./section";
 import { BG_GALAXY, BG_SPACE } from "constants/section-colours";
 import SearchBar from "./search-bar";
 import SearchEmptyState from "./search-empty-state";
 import NewsArticleSkeleton from "components/news-article/news-article-skeleton";
-import SkeletonVideo from "components/ui/skeleton/skeleton-video";
 import { scrollWindowToTop } from "utils/browserInterations";
 
 const LIMIT = 12;
@@ -140,33 +137,6 @@ const NewsSearchLayout = () => {
 
       {hasResults && (
         <>
-          {/* Videos */}
-          {!topic && (
-            <Section
-              title="Must Watch"
-              bgColour={BG_SPACE}
-              gridClassName={videoArticleStyles["c-page-section-grid-video-articles"]}
-            >
-              {isVideosLoading
-                ? [0, 1, 2].map(key => (
-                    <SkeletonVideo
-                      key={`video-${key}`}
-                      className={key === 0 ? styles["c-news__must-watch-skeleton"] : undefined}
-                      large
-                    />
-                  ))
-                : videos?.map(({ id, attributes: video }) => (
-                    <VideoArticle
-                      key={id}
-                      topic={topic}
-                      title={video["title"]}
-                      image={video["thumbnail_image"]}
-                      videoURL={video["url"]}
-                    />
-                  ))}
-            </Section>
-          )}
-
           <EarthHQCTA />
 
           {/* To top button */}
