@@ -17,17 +17,14 @@
   &__filters {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 
     margin-bottom: 16px;
 
     button {
-      @include font-size(16px, 24px);
-
       background-color: $white;
       color: $colour-midnight;
-      padding: 6px 15px;
-      font-weight: 500;
+      padding: 6px 12px;
       border-radius: 10px;
       text-transform: capitalize;
 
@@ -47,6 +44,15 @@
       margin-right: -24px;
       padding-left: 24px;
       padding-right: 24px;
+    }
+  }
+
+  // Desktop and above
+  @media screen and (min-width: $global-breakpoint-lg) {
+    &__filters {
+      button {
+        padding: 6px 14px;
+      }
     }
   }
 }

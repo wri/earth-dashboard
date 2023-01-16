@@ -5,7 +5,10 @@
 
 .o-page-section {
   &:not(:empty) {
-    padding: $o-page-section-padding-y $o-page-section-padding-x $o-page-section-padding-bottom;
+    padding-top: $o-page-section-padding-y;
+    padding-bottom: $o-page-section-padding-y;
+    padding-left: $o-page-section-padding-x;
+    padding-right: $o-page-section-padding-x;
   }
 
   // Selector used here to avoid !important
@@ -64,13 +67,16 @@
   }
 
   &__grid {
-    margin-top: 16px;
+    margin-top: 12px;
   }
 
   @media screen and (min-width: $global-breakpoint-md) {
     &:not(:empty) {
-      padding: $o-page-section-padding-y-desktop $o-page-section-padding-x-desktop
-        $o-page-section-padding-bottom-desktop;
+      padding: $o-page-section-padding-y-desktop $o-page-section-padding-x-desktop;
+    }
+
+    &__grid {
+      margin-top: 16px;
     }
 
     // Repeated here to avoid !important

@@ -17,9 +17,10 @@
 
   &__wrapper {
     overflow: hidden;
+    padding-bottom: 144px !important;
 
     &-grid {
-      margin: 0;
+      margin: 0 !important;
     }
   }
 
@@ -106,6 +107,8 @@
       background-image: url("/static/images/star-background.jpg");
       background-repeat: no-repeat;
       background-size: cover;
+      padding-top: 60px !important;
+      padding-bottom: 60px !important;
     }
 
     &__content {
