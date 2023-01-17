@@ -65,6 +65,18 @@ const HeaderOptions = ({
         />
       )}
 
+      {/* Share */}
+      {pathname !== "/about" && pathname !== "/news/search" && pathname !== "/news" && (
+        <IconButton
+          name="share"
+          size={16}
+          aria-label="Share"
+          className={classnames(styles["c-header-options__share"], styles["c-header-options__icon-button"])}
+          onClick={onShareClick}
+          iconStyle={{ marginRight: "2px" }}
+        />
+      )}
+
       {/* More */}
       <IconButton
         name="more"
