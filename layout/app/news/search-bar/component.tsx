@@ -2,8 +2,8 @@ import { useDebounce } from "react-use";
 import classnames from "classnames";
 import Input from "components/form/input";
 import TOPICS from "constants/news";
-import { Dispatch, SetStateAction, useEffect } from "react";
 import { useForm, useWatch } from "react-hook-form";
+import { breakpoints } from "utils/responsive";
 import styles from "./news-search.module.scss";
 import { fireEvent } from "utils/gtag";
 import { NEWS_SEARCH_FILTER } from "constants/tag-manager";
@@ -62,6 +62,13 @@ const SearchBar = ({
     onTopicChange(topicName);
   };
 
+  const handleSearchBarOnBlur = () => {
+    // On Mobile devices, scroll to top
+    if (window.innerWidth <= breakpoints.md) {
+      window.scroll(0, 0);
+    }
+  };
+
   return (
     <div
       className={classnames(
@@ -103,6 +110,7 @@ const SearchBar = ({
         name="search"
         className={classnames(styles["c-news-search__input"], "u-text-body-200", inputClassName)}
         placeholder="What are you looking for?"
+        onblur={handleSearchBarOnBlur}
         {...form}
       />
     </div>
