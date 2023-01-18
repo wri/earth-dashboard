@@ -1,0 +1,7 @@
+// Trigger a browser re-print continuously
+// https://github.com/operasoftware/devopera/pull/330
+@keyframes triggerBrowserReprint {from { opacity: 1; } to { opacity: 1; }}
+
+@mixin triggerBrowserReprintContinuously() {
+  animation: triggerBrowserReprint infinite 1s;
+}
