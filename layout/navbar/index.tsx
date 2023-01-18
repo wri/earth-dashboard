@@ -51,7 +51,7 @@ const Navbar = () => {
                 isNewsPage && styles["c-mobile-navigation__link--active"]
               )}
             >
-              <Icon name="news-active" size={28} type="decorative" />
+              <Icon name={isNewsPage ? "news-active" : "news-inactive"} size={28} type="decorative" />
               <span>Earth News</span>
             </a>
           </Link>

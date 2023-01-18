@@ -47,6 +47,7 @@ export type IconNames =
   | "earth-hq-nav"
   | "news"
   | "news-active"
+  | "news-inactive"
   | "info-active";
 
 type AccessibilityProps =
