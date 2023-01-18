@@ -4,6 +4,7 @@
 @import "css/tools/scrollbar.scss";
 @import "css/tools/defaultScrollBar";
 @import "css/tools/fontSize.scss";
+@import "css/tools/repaint-bug-fix";
 
 .c-home-menu {
   position: absolute;
@@ -176,6 +177,8 @@
     display: flex;
     flex-direction: column;
     row-gap: 16px;
+
+    @include triggerBrowserReprintContinuously();
 
     @include defaultScrollBar();
 

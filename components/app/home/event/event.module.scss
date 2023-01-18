@@ -2,10 +2,12 @@
 @import "css/tools/_fontSize.scss";
 @import "css/settings/breakpoints";
 @import "css/tools/defaultScrollBar";
+@import "css/tools/repaint-bug-fix";
 
 .c-event {
   &__container {
     @include defaultScrollBar();
+    @include triggerBrowserReprintContinuously();
 
     display: flex;
     flex-direction: column;

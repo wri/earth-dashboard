@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import passiveIfSupported from "helpers/passiveIfSupported";
 
 const getWindowDimensions = () => {
   if (process.browser) {
@@ -23,8 +24,8 @@ const useWindowDimensions = () => {
       setWindowDimensions(getWindowDimensions());
     }
     if (process.browser) {
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
+      window.addEventListener("resize", handleResize, passiveIfSupported);
+      return () => window.removeEventListener("resize", handleResize, passiveIfSupported);
     }
   }, []);
 
