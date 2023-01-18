@@ -12,7 +12,7 @@ type InputProps = {
   Partial<HTMLInputElement>;
 
 /** Styles generic input. */
-const Input = ({ name, register, watch, setValue, setFocus, iconName, className, placeholder }: InputProps) => {
+const Input = ({ name, register, watch, setValue, setFocus, iconName, className, placeholder, onblur }: InputProps) => {
   /** Clears the text-entry of the input and re-focuses. */
   const handleClearInput = () => {
     setValue(name, undefined);
@@ -27,7 +27,14 @@ const Input = ({ name, register, watch, setValue, setFocus, iconName, className,
       {iconName && <Icon name={iconName} size={16} type="decorative" className={styles["icon"]} />}
 
       {/* Text entry */}
-      <input className={styles["text-entry"]} placeholder={placeholder} {...register(name)} />
+      <input
+        className={styles["text-entry"]}
+        placeholder={placeholder}
+        {...register(name, {
+          // @ts-ignore
+          onBlur: onblur
+        })}
+      />
 
       {/* On clear */}
       {!!value && <IconButton name="close" size={9} onClick={handleClearInput} extraSmall />}
