@@ -56,7 +56,7 @@ const useHeadlines = ({
         let numberOfHeadlines = EXTREME_EVENTS_PER_MODE_MAX;
 
         if (!mode_id) {
-          if (pageTypeId === PAGE_TYPE_ID.INFO_PAGE) {
+          if (pageTypeId === PAGE_TYPE_ID.INFO_PAGE || pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE) {
             numberOfHeadlines = EXTREME_EVENTS_INFO_PAGE_MAX;
           } else {
             numberOfHeadlines = EXTREME_EVENTS_MAX;
