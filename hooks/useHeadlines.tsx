@@ -12,9 +12,10 @@
 import { PAGE_TYPE_ID } from "components/app/home/main-container/component";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { fetchClimateAlertById, fetchClimateAlerts } from "services/gca";
 import { Headline } from "slices/headlines";
-import { Mode } from "slices/modes";
+import { Mode, selectPageTypeIdStack } from "slices/modes";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { ShareType } from "slices/common";
 
@@ -47,6 +48,8 @@ const useHeadlines = ({
   share
 }: UseHeadlineConfig) => {
   const router = useRouter();
+  const pageTypeIdStack = useSelector(selectPageTypeIdStack);
+
   useEffect(() => {
     (async () => {
       setHeadlinesLoading(true);
@@ -56,7 +59,11 @@ const useHeadlines = ({
         let numberOfHeadlines = EXTREME_EVENTS_PER_MODE_MAX;
 
         if (!mode_id) {
-          if (pageTypeId === PAGE_TYPE_ID.INFO_PAGE || pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE) {
+          if (
+            pageTypeId === PAGE_TYPE_ID.INFO_PAGE ||
+            (pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE &&
+              pageTypeIdStack[1] !== PAGE_TYPE_ID.EXTREME_EVENTS_LIST_PAGE)
+          ) {
             numberOfHeadlines = EXTREME_EVENTS_INFO_PAGE_MAX;
           } else {
             numberOfHeadlines = EXTREME_EVENTS_MAX;
