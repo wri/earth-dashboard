@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "store/types";
 import { Mode, ModesState } from "./types";
 
 export * from "./types";
@@ -134,6 +135,8 @@ const modesSlice = createSlice({
     }
   }
 });
+
+export const selectPageTypeIdStack = (state: RootState) => state.modes.pageTypeIdStack;
 
 export const {
   setModes,
