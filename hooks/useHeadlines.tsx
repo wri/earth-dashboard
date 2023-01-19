@@ -20,6 +20,7 @@ import { ShareType } from "slices/common";
 
 const EXTREME_EVENTS_MAX = 50; // Number of max extreme events on the "Extreme Events" page
 const EXTREME_EVENTS_PER_MODE_MAX = 20; // Number of max extreme events when viewing a mode. (Event trend)
+const EXTREME_EVENTS_INFO_PAGE_MAX = 10; // Number of max extreme events when viewing the Info Pages. (Extreme Events and Extreme Trends)
 
 type UseHeadlineConfig = {
   currentMode?: Mode;
@@ -52,15 +53,15 @@ const useHeadlines = ({
       try {
         const mode_id = currentMode?.id === defaultMode?.id ? undefined : currentMode?.id;
 
-        let numberOfHeadlines = mode_id
-          ? EXTREME_EVENTS_PER_MODE_MAX
-          : pageTypeId === PAGE_TYPE_ID.CURRENT_EVENT_PAGE
-          ? routePageTypeId === PAGE_TYPE_ID.INFO_PAGE
-            ? EXTREME_EVENTS_PER_MODE_MAX
-            : EXTREME_EVENTS_MAX
-          : pageTypeId === PAGE_TYPE_ID.INFO_PAGE
-          ? EXTREME_EVENTS_PER_MODE_MAX
-          : EXTREME_EVENTS_MAX;
+        let numberOfHeadlines = EXTREME_EVENTS_PER_MODE_MAX;
+
+        if (!mode_id) {
+          if (pageTypeId === PAGE_TYPE_ID.INFO_PAGE) {
+            numberOfHeadlines = EXTREME_EVENTS_INFO_PAGE_MAX;
+          } else {
+            numberOfHeadlines = EXTREME_EVENTS_MAX;
+          }
+        }
 
         const isEventInfo = router.pathname === "/" && pageTypeId === PAGE_TYPE_ID.INFO_PAGE;
 
