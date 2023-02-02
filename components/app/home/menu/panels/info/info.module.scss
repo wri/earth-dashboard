@@ -8,7 +8,7 @@
 
   &__skeleton-wrapper {
     width: 100%;
-    padding: 32px 24px 16px 24px;
+    padding: 20px 24px 22px 24px;
 
     @media screen and (min-width: $global-breakpoint-md) {
       padding: 16px 24px;
@@ -16,14 +16,10 @@
   }
 
   &__carousel {
-    margin-top: 16px;
+    padding: 20px 24px 24px 24px;
 
     @media screen and (min-width: $global-breakpoint-md) {
-      margin-top: 0;
+      padding: 16px 24px 0 24px;
     }
-  }
-
-  @media screen and (max-width: $global-breakpoint-md) {
-    display: flex;
   }
 }

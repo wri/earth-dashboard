@@ -48,7 +48,8 @@ export type IconNames =
   | "news"
   | "news-active"
   | "news-inactive"
-  | "info-active";
+  | "info-active"
+  | "play";
 
 type AccessibilityProps =
   | { type: "meaningful"; accessibilityText: string }

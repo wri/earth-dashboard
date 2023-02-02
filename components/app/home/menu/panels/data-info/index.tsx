@@ -193,7 +193,7 @@ const DataInfo = ({
                 />
               )) ?? []
             }
-            style={{ height: "100%" }}
+            className={styles["data-info-container__carousel"]}
             ref={carouselRef}
             setScroll={setCarouselScroll}
             finalItem={

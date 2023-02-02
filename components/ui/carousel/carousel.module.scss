@@ -6,11 +6,6 @@
   scroll-snap-type: x mandatory;
   width: 100%;
   column-gap: 12px;
-  padding: 16px 24px;
-
-  @media screen and (min-width: $global-breakpoint-md) {
-    padding: 16px 24px;
-  }
 
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none; /* IE and Edge */

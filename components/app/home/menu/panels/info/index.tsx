@@ -23,6 +23,7 @@ import {
 } from "constants/tag-manager";
 import EventCardSkeleton from "components/app/home/event-card/event-card-skeleton";
 import { ONBOARDING_COMPLETED } from "layout/layout/layout-app/constants";
+import TippingPoint from "./tipping-point";
 
 const SCROLL_NORMALIZE_VALUE = 37;
 
@@ -192,6 +193,8 @@ const InfoPanel = ({
 
   return (
     <div ref={containerRef} className={styles["info-container"]}>
+      <TippingPoint />
+
       {!isMobile && <EventPrompt />}
 
       {isLoading ? (
@@ -213,7 +216,8 @@ const InfoPanel = ({
           ref={carouselRef}
           setScroll={setCarouselScroll}
           className={styles["info-container__carousel"]}
-          style={{ height: isMobile ? "auto" : "calc(100% - 176px)" }}
+          // Subtract other heights of sibling elements
+          style={{ height: isMobile ? "auto" : "calc(100% - 72px - 84px - 80px)" }}
         />
       )}
 

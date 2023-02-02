@@ -24,7 +24,7 @@ const EventPrompt = ({ isMobile, isCondensed }: EventPromptProps) => {
       className={styles["event-prompt-container"]}
       style={
         router?.pathname === "/explore" && !isCondensed && isMobile
-          ? { margin: "24px 24px 0", minHeight: "auto" }
+          ? { margin: "20px 24px 0", minHeight: "auto" }
           : router?.pathname === "/explore" && !isMobile
           ? { margin: 0 }
           : {}

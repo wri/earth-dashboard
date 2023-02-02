@@ -1,0 +1,72 @@
+@import "css/settings";
+@import "css/tools/fontSize.scss";
+@import "css/settings/breakpoints";
+
+.c-tipping-point {
+  display: flex;
+  align-items: center;
+  padding: 10px 24px;
+  background-color: $colour-galaxy;
+  width: 100%;
+  color: $white;
+  border-radius: 0;
+  text-align: left;
+
+  &:hover {
+    background-color: $colour-flame;
+  }
+
+  &__video {
+    position: absolute;
+    width: 0 !important;
+    height: 0 !important;
+    border: 0;
+  }
+
+  &__pill {
+    display: flex;
+    align-items: center;
+    background-color: $colour-midnight;
+    border-radius: 32px;
+    padding: 4px;
+    margin-right: 12px;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      margin-right: 16px;
+    }
+
+    &__icon {
+      height: 24px;
+      width: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: $colour-flame;
+      margin-right: 8px;
+    }
+
+    &__text {
+      @include font-size(14px, 18px);
+
+      margin-right: 12px;
+      font-weight: 600;
+    }
+  }
+
+  &__text {
+    @include font-size(12px, 16px);
+
+    font-weight: 600;
+
+    @media screen and (min-width: $global-breakpoint-md) {
+      @include font-size(14px, 18px);
+    }
+  }
+
+  @media screen and (max-width: $global-breakpoint-md) {
+    &:hover {
+      background-color: $colour-galaxy;
+    }
+  }
+}

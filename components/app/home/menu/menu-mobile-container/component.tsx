@@ -40,9 +40,9 @@ const MenuMobileContainer = ({
   const isDataInfoPage = pageTypeId === PAGE_TYPE_ID.INFO_PAGE && router?.pathname === "/explore";
 
   const snapHeights = isInfoPage
-    ? [defaultPanelHeight, 404]
+    ? [defaultPanelHeight, 398]
     : isDataInfoPage
-    ? [defaultPanelHeight, 480]
+    ? [defaultPanelHeight, 440]
     : [defaultPanelHeight, windowHeight * 0.6, windowHeight * 0.9];
 
   const handleResize = (e: any, direction: any, div: any) => setPanelHeight(div.offsetHeight);
@@ -66,7 +66,7 @@ const MenuMobileContainer = ({
         height={panelHeight}
         onResize={handleResize}
         onResizeStop={handleResizeStop}
-        maxHeight={isInfoPage ? "404px" : isDataInfoPage ? "480px" : `${windowHeight * 0.9}px`}
+        maxHeight={isInfoPage ? "398px" : isDataInfoPage ? "440px" : `${windowHeight * 0.9}px`}
         snap={snapHeights}
       >
         {panelHeight === defaultPanelHeight ? (
