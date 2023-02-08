@@ -6,6 +6,7 @@ import styles from "./tipping-point-modal.module.scss";
 import nullSchoolLogoDesktop from "public/static/images/logo-earth-hq.svg";
 import nullSchoolLogoMobile from "public/static/images/logo-earth-hq-mobile.svg";
 import IconButton from "components/ui/icon-button";
+import { useEffect, useRef } from "react";
 
 type TippingPointModalProps = {
   isTippingPointOpen: boolean;
@@ -13,6 +14,19 @@ type TippingPointModalProps = {
 };
 
 const TippingPointModal = ({ isTippingPointOpen, setTippingPointOpen }: TippingPointModalProps) => {
+  const ref = useRef<YouTube>(null);
+
+  useEffect(() => {
+    const player = ref.current?.getInternalPlayer();
+
+    if (!player) return;
+
+    if (isTippingPointOpen) player.playVideo();
+    else {
+      player.pauseVideo();
+    }
+  }, [isTippingPointOpen]);
+
   const handleClose = () => {
     setTippingPointOpen(false);
   };
@@ -36,6 +50,7 @@ const TippingPointModal = ({ isTippingPointOpen, setTippingPointOpen }: TippingP
 
       {/* Video */}
       <YouTube
+        ref={ref}
         videoId="IPduu1D84PI"
         className={styles["c-tipping-point-modal__video"]}
         iframeClassName={styles["c-tipping-point-modal__iframe"]}
