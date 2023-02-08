@@ -11,6 +11,7 @@ import styles from "./homepage.module.scss";
 import MainContainer from "components/app/home/main-container";
 import useWindowDimensions from "hooks/useWindowDimensions";
 import Analytics from "./analytics";
+import TippingPointModal from "components/app/home/tipping-point-modal";
 
 type LayoutHomeProps = {
   title: string;
@@ -41,8 +42,9 @@ const LayoutHome = ({ title, thumbnail, description, headerTabSelected = "site-n
       headerButtonPosition="right"
       themeColor="#D63C00"
     >
+      <TippingPointModal />
+
       <Analytics />
-      {/* TODO: convert to TS so no need for expect error */}
       {/* @ts-expect-error */}
       <MediaContextProvider>
         <Desktop>

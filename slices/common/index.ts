@@ -14,7 +14,8 @@ const initialState: CommonState = {
   isShareOpen: false,
   isNewsSearchOpen: false,
   hasAppLoaded: false,
-  share: undefined
+  share: undefined,
+  isTippingPointOpen: false
 };
 
 const commonSlice = createSlice({
@@ -38,6 +39,9 @@ const commonSlice = createSlice({
     },
     setShare: (state, { payload }: PayloadAction<ShareType>) => {
       state.share = payload;
+    },
+    setTippingPointOpen: (state, { payload }) => {
+      state.isTippingPointOpen = payload;
     }
   }
 });
@@ -52,7 +56,14 @@ export const resetGlobeToDefault = () => (dispatch: any) => {
   dispatch(setHasReoriented(false));
 };
 
-export const { setHostname, setIsMobile, setIsShareOpen, setIsNewsSearchOpen, setAppLoaded, setShare } =
-  commonSlice.actions;
+export const {
+  setHostname,
+  setIsMobile,
+  setIsShareOpen,
+  setIsNewsSearchOpen,
+  setAppLoaded,
+  setShare,
+  setTippingPointOpen
+} = commonSlice.actions;
 
 export default commonSlice.reducer;

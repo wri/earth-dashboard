@@ -8,10 +8,15 @@ import styles from "./header.module.scss";
 import { useRouter } from "next/router";
 import { Desktop, Mobile } from "utils/responsive";
 import Navbar from "layout/navbar";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { RootState } from "store/types";
+
+type HeaderProps = {
+  isTippingPointOpen: boolean;
+};
 
 /** Header component for the site with the logo, links, and controls. */
-const Header = () => {
+const Header = ({ isTippingPointOpen }: HeaderProps) => {
   // Navigation
   const router = useRouter();
   const dispatch = useDispatch();
@@ -45,6 +50,8 @@ const Header = () => {
   };
 
   const is404 = router.pathname === "/404";
+
+  if (isTippingPointOpen) return null;
 
   return (
     <>
@@ -105,4 +112,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default connect((state: RootState) => ({ isTippingPointOpen: state.common.isTippingPointOpen }))(Header);

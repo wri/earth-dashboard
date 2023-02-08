@@ -10656,11 +10656,6 @@ screenfull@^5.1.0:
   resolved "http://registry.chelsea-apps.com:4873/screenfull/-/screenfull-5.2.0.tgz#6533d524d30621fc1283b9692146f3f13a93d1ba"
   integrity sha512-9BakfsO2aUQN2K9Fdbj87RJIEZ82Q9IGim7FqM5OsebfoFC6ZHXgDq/KvniuLTPdeM8wY2o6Dj3WQ7KeQCj3cA==
 
-screenfull@^6.0.2:
-  version "6.0.2"
-  resolved "http://registry.chelsea-apps.com:4873/screenfull/-/screenfull-6.0.2.tgz#3dbe4b8c4f8f49fb8e33caa8f69d0bca730ab238"
-  integrity sha512-AQdy8s4WhNvUZ6P8F6PB21tSPIYKniic+Ogx0AacBMjKP1GUHN2E9URxQHtCusiwxudnCKkdy4GrHXPPJSkCCw==
-
 seer@^0.2.4:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/seer/-/seer-0.2.5.tgz#f0975153741f4d1c3916a144eef4738458bcb05a"

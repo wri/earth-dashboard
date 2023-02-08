@@ -16,13 +16,6 @@
     background-color: $colour-flame;
   }
 
-  &__video {
-    position: absolute;
-    width: 0 !important;
-    height: 0 !important;
-    border: 0;
-  }
-
   &__pill {
     display: flex;
     align-items: center;

@@ -7,4 +7,5 @@ export type CommonState = {
   isNewsSearchOpen: boolean;
   hasAppLoaded: boolean;
   share: ShareType;
+  isTippingPointOpen: boolean;
 };
