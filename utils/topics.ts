@@ -4,6 +4,7 @@ export const FRESHWATER = "freshwater";
 export const OCEAN = "ocean";
 export const FORESTS = "forests";
 export const BIODIVERSITY = "biodiversity";
+export const INDIGENOUS = "indigenous";
 
 // ------- TOPIC COLORS -------
 export const CLIMATE_COLOR = "#F35600";
