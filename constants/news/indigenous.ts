@@ -1,1 +1,1 @@
-export const indigenousTopics = ["Land rights", "Land extractives", "Indigenous Peoples", "Indigenous Conservation"];
+export const indigenousTopics = ["Land rights and extractives", "Indigenous Peoples and Conservation"];
