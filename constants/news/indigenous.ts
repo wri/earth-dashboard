@@ -1,1 +1,9 @@
-export const indigenousTopics = ["Land rights and extractives", "Indigenous Peoples and Conservation"];
+export const indigenousTopics = [
+  "Indigenous Peoples",
+  "Indigenous Conservation",
+  "Indigenous Communities",
+  "Indigenous Rights",
+  "Indigenous Reserves",
+  "Indigenous Groups",
+  "Indigenous Cultures"
+];
