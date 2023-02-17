@@ -39,7 +39,7 @@ const Header = ({ isTippingPointOpen }: HeaderProps) => {
   const description = (() => {
     switch (router.route) {
       case "/news":
-        return "Real stories of planetary emergencies from Mongabay journalists across the globe.";
+        return "Latest news, science, and solutions from across the globe, powered by Mongabay.";
       default:
         return undefined;
     }
