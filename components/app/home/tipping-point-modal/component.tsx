@@ -1,10 +1,6 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import Image from "next/image";
 import YouTube from "react-youtube";
-import { Desktop, Mobile } from "utils/responsive";
 import styles from "./tipping-point-modal.module.scss";
-import nullSchoolLogoDesktop from "public/static/images/logo-earth-hq.svg";
-import nullSchoolLogoMobile from "public/static/images/logo-earth-hq-mobile.svg";
 import IconButton from "components/ui/icon-button";
 import { useEffect, useRef } from "react";
 
@@ -36,16 +32,13 @@ const TippingPointModal = ({ isTippingPointOpen, setTippingPointOpen }: TippingP
   return (
     <div className={styles["c-tipping-point-modal"]}>
       <div className={styles["c-tipping-point-modal__header"]}>
-        <Desktop>
-          <Image src={nullSchoolLogoDesktop} alt="GCA Earth HQ" />
-        </Desktop>
-        <Mobile>
-          <div className={styles["c-tipping-point-modal__header__img"]}>
-            <Image src={nullSchoolLogoMobile} alt="GCA Earth HQ" layout="fill" />
-          </div>
-        </Mobile>
+        <IconButton
+          name="arrow-left"
+          onClick={handleClose}
+          className={styles["c-tipping-point-modal__header__close"]}
+        />
 
-        <IconButton name="close" onClick={handleClose} className={styles["c-tipping-point-modal__header__close"]} />
+        <p className={styles["c-tipping-point-modal__header__text"]}>BACK TO EARTH HQ</p>
       </div>
 
       {/* Video */}
