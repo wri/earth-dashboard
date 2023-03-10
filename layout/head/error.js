@@ -13,7 +13,6 @@ class HeadError extends PureComponent {
         <title>{`${statusCode} | Earth Dashboard`}</title>
         <meta name="description" content="Ops, something went wrong" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="author" content="Vizzuality" />
 
         {/* Mobile Adress background */}
         {/* Chrome, Firefox OS and Opera */}
