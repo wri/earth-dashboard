@@ -10,7 +10,6 @@ import { Mobile, Desktop, MediaContextProvider } from "utils/responsive";
 import styles from "./homepage.module.scss";
 import MainContainer from "components/app/home/main-container";
 import useWindowDimensions from "hooks/useWindowDimensions";
-import Analytics from "./analytics";
 import TippingPointModal from "components/app/home/tipping-point-modal";
 
 type LayoutHomeProps = {
@@ -43,8 +42,6 @@ const LayoutHome = ({ title, thumbnail, description, headerTabSelected = "site-n
       themeColor="#D63C00"
     >
       <TippingPointModal />
-
-      <Analytics />
       {/* @ts-expect-error */}
       <MediaContextProvider>
         <Desktop>
