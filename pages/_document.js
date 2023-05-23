@@ -59,6 +59,9 @@ class MyDocument extends Document {
             src={`https://maps.googleapis.com/maps/api/js?v=weekly&key=${process.env.RW_GOGGLE_API_TOKEN_SHORTENER}&libraries=places`}
           />
 
+          {/* Facebook domain verification */}
+          <meta name="facebook-domain-verification" content="nggo1wzk8f97esp52y02yj23i83x09" />
+
           {/* Polifyll */}
           {/* TO-DO: remove once axios is completely implemented */}
           <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
