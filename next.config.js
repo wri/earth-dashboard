@@ -17,7 +17,8 @@ const moduleExports = {
     GA4_DEBUG: process.env.GA4_DEBUG,
     RW_GOGGLE_API_TOKEN_SHORTENER: process.env.RW_GOGGLE_API_TOKEN_SHORTENER,
     NEXTAUTH_URL: "https://earthhq.org",
-    NULL_SCHOOL_IFRAME_BASE: process.env.NULL_SCHOOL_IFRAME_BASE
+    NULL_SCHOOL_IFRAME_BASE: process.env.NULL_SCHOOL_IFRAME_BASE,
+    ENABLE_ONBOARDING_MODAL: process.env.ENABLE_ONBOARDING_MODAL
   },
 
   images: {

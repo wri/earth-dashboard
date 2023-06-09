@@ -12,5 +12,6 @@ set :default_env, {
   'NULL_SCHOOL_IFRAME_BASE' => 'https://earthhq.nullschool.net',
   'APPLICATIONS' => 'earthhq',
   'SENTRY_AUTH_TOKEN' => ENV['SENTRY_AUTH_TOKEN'],
-  'GA4_ID' => 'GTM-W4WTJL2'
+  'GA4_ID' => 'GTM-W4WTJL2',
+  'ENABLE_ONBOARDING_MODAL' => false
 }
