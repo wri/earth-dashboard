@@ -54,11 +54,13 @@ function LayoutApp(props) {
 
     // Check if GDPR has been accepted
     if (localStorage.getItem(GDPR_ACCEPTED_KEY) !== "true") {
-      setShowGDPRBanner("true");
+      setShowGDPRBanner(true);
     }
 
-    // Check if user as completed the onboarding phase
-    if (localStorage.getItem(ONBOARDING_COMPLETED) !== "true") {
+    if (process.env.ENABLE_ONBOARDING_MODAL === "false") {
+      setShowModal(false);
+    } else if (localStorage.getItem(ONBOARDING_COMPLETED) !== "true") {
+      // Check if user as completed the onboarding phase
       setShowModal(true);
     }
   }, []);
@@ -98,12 +100,13 @@ function LayoutApp(props) {
         <div className={styles["content"]}>
           <div className={styles["cookie"]}>
             <Icon name="cookie" size={32} type="decorative" className={styles["cookie-icon"]} />
-            <h3 className={styles["cookie-text"]}>COOKIES</h3>
+            <h3 className={styles["cookie-text"]}>Cookies</h3>
           </div>
           <div
             className={classnames({
               [styles["text"]]: true,
-              [styles["-desktop"]]: !mobile
+              [styles["-desktop"]]: !mobile,
+              [styles["-mobile"]]: mobile
             })}
           >
             This website uses cookies to provide you with an improved user experience. By continuing to browse this
