@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import styles from "components/news-article/news-article.module.scss";
-import Image from "next/image";
+import SeaViewImage from "components/ui/SeaViewImage";
 import { formatDatePretty } from "utils/dates";
 import ExternalLink from "components/ui/external-link";
 import { fireEvent } from "utils/gtag";
@@ -36,14 +36,14 @@ const NewsArticle = ({ className = "", topic, featured, title, author, date, ima
     >
       {/* Backdrop */}
       <div className={styles["c-news-article__backdrop"]}>
-        <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
+        <SeaViewImage src={image} resizeWidth={500} layout="fill" objectFit="cover" role="presentation" alt="" />
       </div>
 
       {/* Top section */}
       <div className={styles["c-news-article__top"]}>
         {/* Thumbnail */}
         <div className={styles["c-news-article__thumbnail"]}>
-          <Image src={image} layout="fill" objectFit="cover" role="presentation" alt="" />
+          <SeaViewImage src={image} resizeWidth={500} layout="fill" objectFit="cover" role="presentation" alt="" />
         </div>
 
         {/* Title */}

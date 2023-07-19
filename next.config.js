@@ -22,7 +22,12 @@ const moduleExports = {
   },
 
   images: {
-    domains: ["imgs.mongabay.com", "content.jwplatform.com", "gca-earth-hq-api-test.s3.us-west-1.amazonaws.com"]
+    domains: [
+      "imgs.mongabay.com",
+      "content.jwplatform.com",
+      "gca-earth-hq-api-test.s3.us-west-1.amazonaws.com",
+      "seaview.cubeapis.com"
+    ]
   },
 
   eslint: {
