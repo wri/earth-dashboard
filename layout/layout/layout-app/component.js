@@ -109,8 +109,9 @@ function LayoutApp(props) {
               [styles["-mobile"]]: mobile
             })}
           >
-            This website uses cookies to provide you with an improved user experience. By continuing to browse this
-            site, you consent to the use of{" "}
+            This website uses cookies to provide you with an improved user experience, including essential and first
+            party performance cookies that track web traffic. By continuing to browse this site, you consent to the use
+            of{" "}
             <button className={styles["cookie-banner-link"]} onClick={handleCookieSettingsOpen}>
               cookies
             </button>{" "}
