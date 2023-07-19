@@ -1,21 +1,15 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import Document, { Html, Main, NextScript, Head } from "next/document";
 
-// utils
-import { DEBUG as GA_DEBUG, GA_TRACKING_ID } from "utils/gtag";
-
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
     return {
-      ...initialProps,
-      includeGA: !ctx.asPath.startsWith("/admin") && !ctx.asPath.startsWith("/sign-in")
+      ...initialProps
     };
   }
 
   render() {
-    const { includeGA } = this.props;
-
     return (
       <Html lang="en">
         <Head>
@@ -67,14 +61,6 @@ class MyDocument extends Document {
           <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
         </Head>
         <body>
-          {(GA_DEBUG || (process.env.ED_NODE_ENV === "production" && includeGA)) && (
-            <noscript
-              dangerouslySetInnerHTML={{
-                __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GA_TRACKING_ID}"
-              height="0" width="0" style="display:none;visibility:hidden"></iframe>`
-              }}
-            />
-          )}
           <Main />
           <NextScript />
         </body>
