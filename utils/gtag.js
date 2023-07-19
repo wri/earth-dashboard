@@ -3,15 +3,11 @@
 export const DEBUG = process.env.GA4_DEBUG === "true" || false;
 
 export const GA_TRACKING_ID = process.env.GA4_ID;
-import { ANALYTICS_ACCEPTED } from "../layout/layout/layout-app/constants";
-
-// Check if Analytics data collection is permitted.
-const allowAnalytics = () => localStorage.getItem(ANALYTICS_ACCEPTED) === "true";
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = url => {
   console.log(`pageView, env: ${process.env.ED_NODE_ENV}`);
-  if (process.env.ED_NODE_ENV === "production" && allowAnalytics()) {
+  if (process.env.ED_NODE_ENV === "production") {
     window.gtag("config", GA_TRACKING_ID, {
       page_path: url
     });
@@ -20,7 +16,7 @@ export const pageview = url => {
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 export const logEvent = ({ action, category, label, value }) => {
-  if (process.env.ED_NODE_ENV === "production" && allowAnalytics()) {
+  if (process.env.ED_NODE_ENV === "production") {
     window.gtag("event", action, {
       event_category: category,
       event_label: label,
@@ -55,7 +51,7 @@ export const fireEvent = (eventName, param, ...rest) => {
   );
   let hasFired = false;
 
-  if ((process.env.ED_NODE_ENV === "production" && allowAnalytics()) || DEBUG) {
+  if (process.env.ED_NODE_ENV === "production" || DEBUG) {
     window.dataLayer?.push(payload);
     hasFired = true;
   }

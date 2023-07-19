@@ -24,7 +24,7 @@ in your terminal will install all dependencies. Once done, type:
 yarn dev
 ```
 
-and your app will be served in [http://localhost:9000/](http://localhost:9000/) (if you didn't change the default port in the `.env`).
+and your app will be served in [http://localhost:8081/](http://localhost:8081/)
 
 # Branch structure
 
