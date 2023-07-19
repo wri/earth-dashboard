@@ -1,8 +1,8 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import RadioImage from "components/form/radio-image";
 import Icon from "components/ui/Icon";
-import geographyImage from "public/static/images/basemaps/geography-basemap-thumbnail.png";
-import simpleImage from "public/static/images/basemaps/simple-basemap-thumbnail.png";
+import geographyImage from "public/static/images/basemaps/geography-basemap-thumbnail.webp";
+import simpleImage from "public/static/images/basemaps/simple-basemap-thumbnail.webp";
 import { BasemapType, GlobalSetting } from "slices/globalSettings";
 import styles from "./basemaps.module.scss";
 import { format } from "date-fns";

@@ -3,7 +3,7 @@ import styles from "layout/app/404/404.module.scss";
 import AnchorCTA from "components/ui/anchor-cta/component";
 import Icon from "components/ui/Icon";
 import Image from "next/image";
-import GlobeFiresHalf from "public/static/images/globe-fires-half.png";
+import GlobeFiresHalf from "public/static/images/globe-fires-half.webp";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { fireEvent } from "utils/gtag";

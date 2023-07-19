@@ -9,7 +9,7 @@
   border-radius: 12px;
   overflow: hidden;
 
-  background-image: url("/static/images/star-background.jpg");
+  background-image: url("/static/images/star-background.webp");
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -104,7 +104,7 @@
 
     &__wrapper {
       position: relative;
-      background-image: url("/static/images/star-background.jpg");
+      background-image: url("/static/images/star-background.webp");
       background-repeat: no-repeat;
       background-size: cover;
       padding-top: 60px !important;

@@ -1,7 +1,7 @@
 import RadioImage from "components/form/radio-image";
 import { setSettingById, getSettingValueById } from "slices/globalSettings";
-import geographyImage from "public/static/images/basemaps/geography-basemap-thumbnail.png";
-import simpleImage from "public/static/images/basemaps/simple-basemap-thumbnail.png";
+import geographyImage from "public/static/images/basemaps/geography-basemap-thumbnail.webp";
+import simpleImage from "public/static/images/basemaps/simple-basemap-thumbnail.webp";
 
 export const ID = "basemaps";
 

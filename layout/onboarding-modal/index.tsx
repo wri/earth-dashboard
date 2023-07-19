@@ -2,7 +2,7 @@ import classnames from "classnames";
 import styles from "./onboarding-modal.module.scss";
 import IconButton from "components/ui/icon-button";
 import Icon from "components/ui/Icon";
-import STAR_BG from "public/static/images/star-background.jpg";
+import STAR_BG from "public/static/images/star-background.webp";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { data } from "./onboarding";
