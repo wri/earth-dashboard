@@ -1,10 +1,10 @@
-import halfEarth from "public/static/images/half-earth.png";
-import halfEarth2 from "public/static/images/half-earth2.png";
-import threeCards from "public/static/images/three-cards.png";
+import halfEarth from "public/static/images/half-earth.webp";
+import halfEarth2 from "public/static/images/half-earth2.webp";
+import threeCards from "public/static/images/three-cards.webp";
 
-import halfEarthShadow from "/public/static/images/half-earth-shadow.png";
-import halfEarth2Shadow from "/public/static/images/half-earth2-shadow.png";
-import threeCardsShadow from "/public/static/images/three-cards-shadow.png";
+import halfEarthShadow from "/public/static/images/half-earth-shadow.webp";
+import halfEarth2Shadow from "/public/static/images/half-earth2-shadow.webp";
+import threeCardsShadow from "/public/static/images/three-cards-shadow.webp";
 
 interface IOnBoarding {
   id: number;

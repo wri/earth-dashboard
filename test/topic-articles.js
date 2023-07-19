@@ -1,4 +1,4 @@
-import TestImage from "public/static/images/star-background.jpg";
+import TestImage from "public/static/images/star-background.webp";
 
 export const BANNER_BODY =
   "Rising global temperatures pose a threat to every corner of the globe and most aspects of human life. By altering climatic conditions, we undermine food and water security, human and ocean health and the survival of countless species. These threats intensify with each half degree that temperatures climb.";

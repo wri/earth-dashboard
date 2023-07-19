@@ -5,8 +5,8 @@ import classnames from "classnames";
 import Icon from "components/ui/Icon";
 import Section from "layout/app/news/section";
 import Image from "next/image";
-import GlobeFires from "public/static/images/globe-fires.png";
-import GlobeFiresMobile from "public/static/images/globe-fires-mobile.png";
+import GlobeFires from "public/static/images/globe-fires.webp";
+import GlobeFiresMobile from "public/static/images/globe-fires-mobile.webp";
 
 type EarthHQCTAProps = {
   className?: string;
