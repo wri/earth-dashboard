@@ -13,5 +13,6 @@ set :default_env, {
   'APPLICATIONS' => 'earthhq',
   'SENTRY_AUTH_TOKEN' => ENV['SENTRY_AUTH_TOKEN'],
   'GA4_ID' => 'GTM-W4WTJL2',
-  'ENABLE_ONBOARDING_MODAL' => false
+  'ENABLE_ONBOARDING_MODAL' => false,
+  'SEAVIEW_API_ROOT' => 'https://seaview.cubeapis.com/v1/generate'
 }
